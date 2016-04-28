@@ -17,7 +17,7 @@ public class ProfilMapper {
 		
 	}
 	
-	public ProfilMapper profilMapper(){
+	public static ProfilMapper profilMapper(){
 		if(profilMapper ==null){
 			profilMapper = new ProfilMapper();
 		}
