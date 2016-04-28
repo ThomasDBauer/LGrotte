@@ -6,6 +6,7 @@ import com.google.cloud.sql.jdbc.Connection;
 import com.google.cloud.sql.jdbc.PreparedStatement;
 
 import de.shared.BO.Eigenschaft;
+import de.shared.BO.Profil;
 
 public class EigenschaftMapper {
 
@@ -44,11 +45,37 @@ public class EigenschaftMapper {
 
 	}
 
-	public void updateEigenschaft(Eigenschaft e) {
+	// Das ist nur eine provisorische Methode
+	public void updateEigenschaft(Profil p) throws Exception {
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement update = (PreparedStatement) conn
+				.prepareStatement("UPDATE EIGENSCHAFT (fname, lname) WHERE id =  VALUES (?,?)");
+		update.execute();
+		try {
+			update.close();
+		} catch (Exception e) {
+			/* ignored */ }
+		try {
+			conn.close();
+		} catch (Exception e) {
+			/* ignored */ }
 
 	}
 	
-	public void deleteEigenschaft(Eigenschaft e) {
+	// Das ist nur eine provisorische Methode
+	public void deleteEigenschaft(Profil p) throws Exception {
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement delete = (PreparedStatement) conn
+				.prepareStatement("DELETE EIGENSCHAFT WHERE id =  ");
+		delete.execute();
+		try {
+			delete.close();
+		} catch (Exception e) {
+			/* ignored */ }
+		try {
+			conn.close();
+		} catch (Exception e) {
+			/* ignored */ }
 
 	}
 

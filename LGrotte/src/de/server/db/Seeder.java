@@ -40,15 +40,19 @@ public class Seeder {
 	 */
 	
 
-	/** Diese Methode startet den ganzen Prozess) */
-	public void init(){
+	/** Diese Methode startet den ganzen Prozess) 
+	 * @throws Exception */
+	public void init() throws Exception{
 		migrate();
-		seed();
+		//seed();
 	}
 	
 
-	/**Hier müssen die createTable() Methoden der Mapper eingefügt werden */
-	private void migrate(){
+	/**Hier müssen die createTable() Methoden der Mapper eingefügt werden 
+	 * @throws Exception */
+	private void migrate() throws Exception{
+		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
+		ProfilMapper.profilMapper().createProfilTable();
 	}
 
 
