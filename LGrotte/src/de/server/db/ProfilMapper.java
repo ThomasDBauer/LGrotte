@@ -36,62 +36,38 @@ public class ProfilMapper {
 		return null;
 	}
 
+	public void createProfilTable() throws Exception {
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement create = (PreparedStatement) conn.prepareStatement
+				("CREATE TABLE IF NOT EXISTS profil (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
+		create.execute();
+	}
+	
+	public void insertProfil(Profil p) throws Exception {
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
+				("INSERT INTO PROFIL (fname, lname) VALUES (?,?)");
+		insert.execute();
+		
+	}	
+	
 	// Das ist nur eine provisorische Methode
 	public void deleteProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement delete = (PreparedStatement) conn
-				.prepareStatement("DELETE PROFIL WHERE id =  ");
+		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
+				("DELETE PROFIL WHERE id =  ");
 		delete.execute();
-		try {
-			delete.close();
-		} catch (Exception e) {
-			/* ignored */ }
-		try {
-			conn.close();
-		} catch (Exception e) {
-			/* ignored */ }
 
 	}
-
-	
 
 	// Das ist nur eine provisorische Methode
 	public void updateProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement update = (PreparedStatement) conn
-				.prepareStatement("UPDATE PROFIL (fname, lname) WHERE id =  VALUES (?,?)");
+		PreparedStatement update = (PreparedStatement) conn.prepareStatement
+				("UPDATE PROFIL (fname, lname) WHERE id =  VALUES (?,?)");
 		update.execute();
-		try {
-			update.close();
-		} catch (Exception e) {
-			/* ignored */ }
-		try {
-			conn.close();
-		} catch (Exception e) {
-			/* ignored */ }
 
 	}
 
-	public void insertProfil(Profil p) throws Exception {
-		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement insert = (PreparedStatement) conn
-				.prepareStatement("INSERT INTO PROFIL (fname, lname) VALUES (?,?)");
-		insert.execute();
-		try {
-			insert.close();
-		} catch (Exception e) {
-			/* ignored */ }
-		try {
-			conn.close();
-		} catch (Exception e) {
-			/* ignored */ }
 
-	}
-
-	public void createProfilTable() throws Exception {
-		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement create = (PreparedStatement) conn.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS profil (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
-		create.execute();
-	}
 }

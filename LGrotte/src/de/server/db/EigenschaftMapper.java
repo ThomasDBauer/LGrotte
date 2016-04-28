@@ -26,58 +26,34 @@ public class EigenschaftMapper {
 
 	public void createEigenschaftTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement create = (PreparedStatement) conn.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS EIGENSCHAFT (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
+		PreparedStatement create = (PreparedStatement) conn.prepareStatement
+				("CREATE TABLE IF NOT EXISTS EIGENSCHAFT (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
 		create.execute();
 
 	}
 
 	public void insertEigenschaft(Eigenschaft e) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement insert = (PreparedStatement) conn
-				.prepareStatement("INSERT INTO EIGENSCHAFT (fname, lname) VALUES (?,?)");
+		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
+				("INSERT INTO EIGENSCHAFT (fname, lname) VALUES (?,?)");
 		insert.execute();
-		try {
-			insert.close();
-		} catch (Exception ex) {
-			/* ignored */ }
-		try {
-			conn.close();
-		} catch (Exception ex) {
-			/* ignored */ }
 
 	}
 
 	// Das ist nur eine provisorische Methode
 	public void updateEigenschaft(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement update = (PreparedStatement) conn
-				.prepareStatement("UPDATE EIGENSCHAFT (fname, lname) WHERE id =  VALUES (?,?)");
+		PreparedStatement update = (PreparedStatement) conn.prepareStatement
+				("UPDATE EIGENSCHAFT (fname, lname) WHERE id =  VALUES (?,?)");
 		update.execute();
-		try {
-			update.close();
-		} catch (Exception e) {
-			/* ignored */ }
-		try {
-			conn.close();
-		} catch (Exception e) {
-			/* ignored */ }
-
 	}
 
 	// Das ist nur eine provisorische Methode
 	public void deleteEigenschaft(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement delete = (PreparedStatement) conn.prepareStatement("DELETE EIGENSCHAFT WHERE id =  ");
+		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
+				("DELETE EIGENSCHAFT WHERE id =  ");
 		delete.execute();
-		try {
-			delete.close();
-		} catch (Exception e) {
-			/* ignored */ }
-		try {
-			conn.close();
-		} catch (Exception e) {
-			/* ignored */ }
 
 	}
 
