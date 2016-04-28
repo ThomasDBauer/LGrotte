@@ -1,7 +1,12 @@
 package de.server;
 
 import de.client.GreetingService;
+import de.server.db.DBConnection;
 import de.shared.FieldVerifier;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
@@ -10,6 +15,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
 
+	public void createMonkeyTable() throws Exception{
+		Connection conn = DBConnection.connection();
+		PreparedStatement create = (PreparedStatement) conn.prepareStatement("CREATE TABLE IF NOT EXISTS MONKEYS (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
+		create.execute();
+	}
+	
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 
 		if (!FieldVerifier.isValidName(input)) {
