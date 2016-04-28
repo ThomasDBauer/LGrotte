@@ -25,16 +25,43 @@ public class ProfilMapper {
 		return null;
 	}
 
-	public void deleteProfil(Profil p) {
-		// delete p
+	// Das ist nur eine provisorische Methode
+	public void deleteProfil(Profil p) throws Exception {
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement delete = (PreparedStatement) conn
+				.prepareStatement("DELETE PROFIL WHERE id =  ");
+		delete.execute();
+		try {
+			delete.close();
+		} catch (Exception e) {
+			/* ignored */ }
+		try {
+			conn.close();
+		} catch (Exception e) {
+			/* ignored */ }
+
 	}
 
-	public void updateProfil(Profil p) {
-		// update p
+	
+
+	// Das ist nur eine provisorische Methode
+	public void updateProfil(Profil p) throws Exception {
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement update = (PreparedStatement) conn
+				.prepareStatement("UPDATE PROFIL (fname, lname) WHERE id =  VALUES (?,?)");
+		update.execute();
+		try {
+			update.close();
+		} catch (Exception e) {
+			/* ignored */ }
+		try {
+			conn.close();
+		} catch (Exception e) {
+			/* ignored */ }
+
 	}
-	
-	
-	public void insertProfil(Profil p) throws Exception{
+
+	public void insertProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn
 				.prepareStatement("INSERT INTO PROFIL (fname, lname) VALUES (?,?)");
@@ -65,6 +92,5 @@ public class ProfilMapper {
 			/* ignored */ }
 
 	}
-
 
 }
