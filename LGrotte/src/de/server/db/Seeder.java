@@ -54,6 +54,7 @@ public class Seeder {
 		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 		ProfilMapper.profilMapper().createProfilTable();
 		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
+		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
 	}
 
 
