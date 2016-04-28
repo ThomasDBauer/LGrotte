@@ -9,7 +9,20 @@ import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 
 public class ProfilMapper {
-	ProfilMapper profilMapper;
+	
+	
+	private static ProfilMapper profilMapper = null;
+	
+	protected ProfilMapper(){
+		
+	}
+	
+	public ProfilMapper profilMapper(){
+		if(profilMapper ==null){
+			profilMapper = new ProfilMapper();
+		}
+		return profilMapper;
+	}
 
 	// @param googleID
 	public Profil getProfilByGoogleID() {
@@ -77,20 +90,10 @@ public class ProfilMapper {
 
 	}
 
-	public void createProfil(Profil p) throws Exception {
+	public void createProfilTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS PROFIL (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
+				"CREATE TABLE IF NOT EXISTS profil (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
 		create.execute();
-		try {
-			create.close();
-		} catch (Exception e) {
-			/* ignored */ }
-		try {
-			conn.close();
-		} catch (Exception e) {
-			/* ignored */ }
-
 	}
-
 }
