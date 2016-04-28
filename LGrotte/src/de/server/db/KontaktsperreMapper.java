@@ -26,14 +26,24 @@ public class KontaktsperreMapper {
 	
 	public void createKontaktsperreTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement createKontaktsperre = (PreparedStatement) con.prepareStatement("CREATE TABLE IF NOT EXISTS Kontaktsperre(sperrendesProfil varchar(255), gesperrtesProfil varchar(255), PRIMARY KEY(sperrendesProfil, gesperrtesProfil))");
+		PreparedStatement createKontaktsperre = (PreparedStatement) con.prepareStatement(
+				"CREATE TABLE IF NOT EXISTS kontaktsperre(sperrendesProfil varchar(255), gesperrtesProfil varchar(255), "
+				+ "PRIMARY KEY(sperrendesProfil, gesperrtesProfil), FOREIGN KEY(profil_id) REFERENCES profil(id))");
 		createKontaktsperre.execute();
 	}
 	
-	public void insertMerkzettel(Profil gesperrtesProfil) throws Exception {
+	public void insertKontaktsperre(Profil gesperrtesProfil) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement insertKontaktsperre = (PreparedStatement) con.prepareStatement("INSERT INTO Kontaktsperre(gesperrtesProfil) VALUES ('" + gesperrtesProfil + "')");
+		PreparedStatement insertKontaktsperre = (PreparedStatement) con.prepareStatement(
+				"INSERT INTO kontaktsperre(gesperrtesProfil) VALUES ('" + gesperrtesProfil + "')");
 		insertKontaktsperre.execute();
+	}
+	
+	public void deleteKontaktsperre(Profil gesperrtesProfil) throws Exception {
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement deleteKontaktsperre = (PreparedStatement) con.prepareStatement(
+				"DELETE FROM kontaktsperre WHERE gesperrtesProfil='" + gesperrtesProfil + "'");
+		deleteKontaktsperre.execute();
 	}
 	
 	

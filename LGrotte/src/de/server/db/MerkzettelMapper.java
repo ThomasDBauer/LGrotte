@@ -22,14 +22,28 @@ public class MerkzettelMapper {
 	
 	public void createMerkzettelTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement createMerkzettel = (PreparedStatement) con.prepareStatement("CREATE TABLE IF NOT EXISTS Merkzettel(gemerkteProfile varchar(255), PRIMARY KEY(gemerkteProfile))");
+		PreparedStatement createMerkzettel = (PreparedStatement) con.prepareStatement(
+				"CREATE TABLE IF NOT EXISTS merkzettel(gemerkteProfile varchar(255), "
+				+ "PRIMARY KEY(gemerkteProfile), FOREIGN KEY(profil_id) REFERENCES profil(id))");
 		createMerkzettel.execute();
 	}
 	
 	public void insertMerkzettel(Profil[] gemerkteProfile) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement insertMerkzettel = (PreparedStatement)con.prepareStatement("INSERT INTO Merkzettel(gemerkteProfile) VALUES ('" + gemerkteProfile + "')");
+		PreparedStatement insertMerkzettel = (PreparedStatement)con.prepareStatement(
+				"INSERT INTO merkzettel(gemerkteProfile) VALUES ('" + gemerkteProfile + "')");
 		insertMerkzettel.execute();
 	}
+	
+	public void deleteMerkzettel(Profil[] gemerkteProfile) throws Exception {
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement(
+				"DELETE FROM merkzettel WHERE gemerkteProfile='" + gemerkteProfile + "'");
+		deleteMerkzettel.execute();
+	}
+	
+	
+	
+	
 	
 }
