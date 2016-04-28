@@ -1,5 +1,7 @@
 package de.server.db;
 
+import de.server.db.seeds.ProfilSeeds;
+
 public class Seeder {
 	/* !!Was ist das und warum?
 	 * Der Seeder erstellt erst die nötigen Tabellen und füllt sie mit Dummy-Daten. 
@@ -44,7 +46,7 @@ public class Seeder {
 	 * @throws Exception */
 	public void init() throws Exception{
 		migrate();
-		//seed();
+		seed();
 	}
 	
 
@@ -57,30 +59,9 @@ public class Seeder {
 		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
 	}
 
-
-	/**Hier werden die selbstgeschriebenen Methoden aus den Blöcken unten eingefügt */
 	private void seed(){
+		ProfilSeeds ps = new ProfilSeeds();
+		ps.seedProfilTable();
 	}
-	
-	/************* someTable start *******************/
-	private void seedSomeTable(){
-		for(int i = 0; i < someValues.length; i++){
-		}
-	}
-	
-	private int[]someValues = {
-		5, 6, 7, 12, 54, 2, 98, 1, 54, 90
-	};
-	
-	private String[]someOtherValues = {
-		"Thomas", "Hanna", "Dieter", "Gerd", "Mike",
-		"Kerstin", "Anna", "Peter", "Martin", "Tim"	
-	};
-	
-	/************* someTable end *******************/
-
-	/************* someOtherTable start *******************/
-	//genau wie bei 'someTable'
-
 
 }
