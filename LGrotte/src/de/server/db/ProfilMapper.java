@@ -39,7 +39,7 @@ public class ProfilMapper {
 	public void createProfilTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
-				("CREATE TABLE IF NOT EXISTS profil (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
+				("CREATE TABLE IF NOT EXISTS PROFIL (fname varchar(255), lname varchar(255), id int NOT NULL, PRIMARY KEY(id))");
 		create.execute();
 	}
 	

@@ -27,7 +27,7 @@ public class EigenschaftMapper {
 	public void createEigenschaftTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
-				("CREATE TABLE IF NOT EXISTS EIGENSCHAFT (fname varchar(255), lname varchar(255), PRIMARY KEY(fname))");
+				("CREATE TABLE IF NOT EXISTS EIGENSCHAFT (fname varchar(255), lname varchar(255), id int NOT NULL, PRIMARY KEY(id))");
 		create.execute();
 
 	}
