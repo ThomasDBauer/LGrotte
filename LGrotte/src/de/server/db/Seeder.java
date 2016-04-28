@@ -52,6 +52,7 @@ public class Seeder {
 	 * @throws Exception */
 	private void migrate() throws Exception{
 		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
+		ProfilMapper.profilMapper().createProfilTable();
 	}
 
 

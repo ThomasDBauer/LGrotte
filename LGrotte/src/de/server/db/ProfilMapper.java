@@ -2,9 +2,7 @@ package de.server.db;
 
 import java.sql.PreparedStatement;
 import java.util.Vector;
-
-import com.google.cloud.sql.jdbc.Connection;
-
+import java.sql.Connection;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 
