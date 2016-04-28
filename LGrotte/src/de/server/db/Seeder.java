@@ -53,6 +53,7 @@ public class Seeder {
 	private void migrate() throws Exception{
 		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 		ProfilMapper.profilMapper().createProfilTable();
+		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
 	}
 
 
