@@ -55,6 +55,8 @@ public class Seeder {
 		ProfilMapper.profilMapper().createProfilTable();
 		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
 		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
+		
+		
 	}
 
 
@@ -79,8 +81,25 @@ public class Seeder {
 	
 	/************* someTable end *******************/
 
-	/************* someOtherTable start *******************/
-	//genau wie bei 'someTable'
-
-
+	/************* ProfilTable start *******************/
+	private void seedProfilTable(){
+		for(int i = 0; i < alter.length; i++){
+			
+		}
+	}
+	
+	private int[]alter = {
+		5, 6, 7, 12, 54, 2, 98, 1, 54, 90
+	};
+	
+	private String[]ProfilFnameValues = {
+		"Thomas", "Hanna", "Dieter", "Gerd", "Mike",
+		"Kerstin", "Anna", "Peter", "Martin", "Tim"	
+	};
+	
+	private String[]ProfilLnameValues = {
+			"Hahn", "Otto", "Kern", "Müller", "Miks",
+			"Pups", "Horn", "Fox", "Wix", "Schock"	
+		};
+	/************* ProfilTable end *******************/
 }
