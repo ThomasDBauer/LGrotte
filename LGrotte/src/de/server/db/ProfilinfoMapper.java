@@ -1,10 +1,9 @@
 package de.server.db;
 
-import java.util.Vector;
 import java.sql.*;
 
 import de.server.db.DBConnection;
-import de.server.GreetingServiceImpl;
+import de.shared.BO.ProfilInfo;
 
 
 public class ProfilinfoMapper {
@@ -23,8 +22,8 @@ public class ProfilinfoMapper {
 	}
 	
 	public void createProfilInfo() throws Exception {
-		Connection connection = DBConnection.connection();
-			PreparedStatement create = (PreparedStatement) connection
+		Connection conn = DBConnection.connection();
+			PreparedStatement create = (PreparedStatement) conn
 					.prepareStatement("CREATE TABLE IF NOT EXISTS profil_info "
 							+ "(profil_id INT NOT NULL, info_id INT NOT NULL, "
 							+ "eigenschaft_id INT NOT NULL, "
@@ -39,22 +38,20 @@ public class ProfilinfoMapper {
 			create.execute();
 	}
 	
-//	public void insertProfilInfo(ProfilInfo pi) {
-//		Connection connection = DBConnection.connection();
-//
-//		try {
-//			Statement stmt = connection.createStatement();
-//			stmt.executeUpdate("INSERT INTO `profilinfo`(`Profil-id`, `Info-id`) "
-//					+ "VALUES ("
-//					+ pi.getInfoID()
-//					+ ","
-//					+ pi.getProfilID()
-//					+ ")");
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void insertProfilInfo(ProfilInfo pi) throws Exception {
+		Connection conn = DBConnection.connection();
+
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("INSERT INTO `profil_infos`(profil_id, "
+					+ "eigenschaft_id, Info_id) VALUES ("
+					+ pi.getProfilID() + ", "
+					+ pi.getEigenschaftID() + ", " + pi.getInfoID() + ")");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 //	
 //	public void updateProfilInfo (ProfilInfo pi){
