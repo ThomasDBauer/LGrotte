@@ -1,6 +1,7 @@
 package de.server.db;
 
 import java.sql.*;
+import java.util.Vector;
 
 import de.server.db.DBConnection;
 import de.shared.BO.ProfilInfo;
@@ -87,7 +88,7 @@ public class ProfilinfoMapper {
 			e2.printStackTrace();
 		}
 	}
-	
+
 	//
 	// public ProfilInfo getProfilInfo(int profilID){
 	// //Eigentlich müsste geProfilInfo ein Vetor oder einen Array mit der
@@ -113,28 +114,27 @@ public class ProfilinfoMapper {
 	//
 	// return null;
 	// }
-	//
-	// public Vector<ProfilInfo> getProfilInfos(){
-	// Connection connection = DBConnection.connection();
-	//
-	// try{
-	// Statement stmt = connection.createStatement();
-	// ResultSet rs = stmt.executeQuery("SELECT * FROM `profilinfo`");
-	// Vector<ProfilInfo> ProfilInfos = new Vector<ProfilInfo>();
-	// while(rs.next()){
-	// ProfilInfo pi = new ProfilInfo();
-	// pi.setInfoID(Integer.parseInt(rs.getString("`Eigenschaft-id`")));
-	// //Eigentlich müsste man hier neue Werte in den Vector<Info-ID> eintragen
-	// pi.setProfilID(Integer.parseInt(rs.getString("`Profil-id`")));
-	// ProfilInfos.add(pi);
-	// }
-	//
-	// }
-	// catch(Exception e2){
-	// e2.printStackTrace();
-	// }
-	//
-	//
-	// return null;
-	// }
+
+	public Vector<ProfilInfo> getProfilInfos() throws Exception {
+		Connection conn = DBConnection.connection();
+		Vector<ProfilInfo> profilInfos = new Vector<ProfilInfo>();
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT profil_id, info_id FROM `profil_infos`"
+							+ "Order BY id");
+
+			while (rs.next()) {
+				ProfilInfo pi = new ProfilInfo();
+				pi.setInfoID(Integer.parseInt(rs.getString("`info_id`")));
+				pi.setProfilID(Integer.parseInt(rs.getString("`profil_id`")));
+				profilInfos.addElement(pi);
+			}
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+
+		return profilInfos;
+	}
 }
