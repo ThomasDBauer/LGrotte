@@ -77,19 +77,20 @@ public class ProfilinfoMapper {
 	}
 	
 	
-//	
-//	public void deleteProfilInfo (ProfilInfo pi){
-//		Connection connection = DBConnection.connection();
-//		
-//		try{
-//			Statement stmt = connection.createStatement();
-//			stmt.executeUpdate("DELETE FROM `profilinfo`" + "WHERE `Profil-id`='" + pi.getProfilID() + 
-//					"' AND `Eigenschaft-id`='" + pi.getInfoID() + "'");
-//		}
-//		catch (SQLException e2){
-//			e2.printStackTrace();
-//		}
-//	}
+	
+	public void deleteProfilInfo (ProfilInfo pi) throws Exception{
+		Connection conn = DBConnection.connection();
+		
+		try{
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("DELETE FROM `profil_info` WHERE `profil_id`'" + pi.getProfilID() + 
+					"' AND `info-id`='" + pi.getInfoID() + "'");
+		}
+		
+		catch (SQLException e2){
+			e2.printStackTrace();
+		}
+	}
 //	
 //	public ProfilInfo getProfilInfo(int profilID){
 //		//Eigentlich müsste geProfilInfo ein Vetor oder einen Array mit der Anzahl aller Info-ID´s zurückgeben
