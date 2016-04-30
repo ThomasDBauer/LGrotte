@@ -53,25 +53,30 @@ public class ProfilinfoMapper {
 		}
 	}
 	
-//	
-//	public void updateProfilInfo (ProfilInfo pi){
-//		Connection connection = DBConnection.connection();
-//		
-//		try {
-//		Statement stmt = connection.createStatement();
-//
-//		stmt.executeUpdate("UPDATE `profilinfo`" + "SET `Profil-id`=[" + pi.getProfilID() + 
-//				"],`Eigenschaft-id`=[" + pi.getInfoID() + "] WHERE `Profil-id`='" + pi.getProfilID() + "'");
-//				
-//		/*Wenn wir das ERM so lassen, muss man über das SQL-Statement herauslesen können, zu welcher Eigenschafts-ID,
-//		Die Info-id zugehörig ist, um die info-id der richtigen Eigenschafts-id zu löschen --> das Problem liegt im 
-//		zusammengesetzten Primary-Key, der nur in Kombi beider Attribute Eindeutig ist*/
-//		}
-//		catch(SQLException e2){
-//			e2.printStackTrace();
-//		}
-////		return pi; ??? --> Analogie zu insert(ProfilInfo)
-//	}
+	
+	public void updateProfilInfo (ProfilInfo pi) throws Exception{
+		Connection conn = DBConnection.connection();
+		
+		try {
+		Statement stmt = conn.createStatement();
+
+		stmt.executeUpdate("UPDATE `profil_infos` SET `profi_Id`= "
+				+ pi.getProfilID()
+				+ ",`eigenschaft_id`= " + pi.getEigenschaftID() 
+				+ ",`Info_id`= " + pi.getInfoID() +" "
+				+ "WHERE `profil_id` = " + pi.getProfilID());
+				
+		
+		/*Wenn wir das ERM so lassen, muss man über das SQL-Statement herauslesen können, zu welcher Eigenschafts-ID,
+		Die Info-id zugehörig ist, um die info-id der richtigen Eigenschafts-id zu löschen --> das Problem liegt im 
+		zusammengesetzten Primary-Key, der nur in Kombi beider Attribute Eindeutig ist*/
+		}
+		catch(SQLException e2){
+			e2.printStackTrace();
+		}
+	}
+	
+	
 //	
 //	public void deleteProfilInfo (ProfilInfo pi){
 //		Connection connection = DBConnection.connection();
