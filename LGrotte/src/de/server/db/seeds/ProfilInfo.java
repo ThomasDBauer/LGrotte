@@ -1,11 +1,13 @@
 package de.server.db.seeds;
 
+import de.server.db.ProfilinfoMapper;
+
 public class ProfilInfo {
 
-	private void seedProfilInfoTable(){
+	private void seedProfilInfoTable() throws Exception{
 		for(int i = 0; i < someValues.length; i++){
-			// Profil p = new Profil();
-						//ProfilMapper.profilMapper().insert(p);
+			 ProfilInfo pi = new ProfilInfo();
+//						ProfilinfoMapper.profilinfoMapper().insertProfilinfo(pi);
 		}
 	}
 	
