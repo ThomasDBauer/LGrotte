@@ -53,10 +53,10 @@ public class Seeder {
 	/**Hier müssen die createTable() Methoden der Mapper eingefügt werden 
 	 * @throws Exception */
 	private void migrate() throws Exception{
-		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 		ProfilMapper.profilMapper().createProfilTable();
+		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
-		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
+		//KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
 	}
 
 	private void seed(){
