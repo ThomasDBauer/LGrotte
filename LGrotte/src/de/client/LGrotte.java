@@ -8,7 +8,7 @@ import de.client.temp.SeedButton;
 
 public class LGrotte implements EntryPoint {
 
-	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
+	private final TestServiceAsync greetingService = GWT.create(TestService.class);
 
 	public void onModuleLoad() {
 		
