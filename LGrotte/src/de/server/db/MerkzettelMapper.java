@@ -24,7 +24,7 @@ public class MerkzettelMapper {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createMerkzettel = (PreparedStatement) con.prepareStatement(
 				"CREATE TABLE IF NOT EXISTS merkzettel(gemerkteProfile varchar(255), "
-				+ "PRIMARY KEY(gemerkteProfile), FOREIGN KEY(profil_id) REFERENCES profil(id))");
+				+ "profil_id int, PRIMARY KEY(gemerkteProfile), FOREIGN KEY(profil_id) REFERENCES profil(id))");
 		createMerkzettel.execute();
 	}
 	

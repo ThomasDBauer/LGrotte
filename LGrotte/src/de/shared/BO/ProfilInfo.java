@@ -6,6 +6,7 @@ public class ProfilInfo extends BusinessObject{
 
 	private int profilID;
 	private int infoID;
+	private int EigenschaftID;
 	
 	public int getProfilID() {
 		return profilID;
@@ -19,6 +20,13 @@ public class ProfilInfo extends BusinessObject{
 	public void setInfoID(int infoID) {
 		this.infoID = infoID;
 	}
+	public int getEigenschaftID() {
+		return EigenschaftID;
+	}
+	public void setEigenschaftID(int eigenschaftID) {
+		EigenschaftID = eigenschaftID;
+	}
+	
 	
 	
 	
