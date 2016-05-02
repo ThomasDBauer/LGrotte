@@ -4,17 +4,17 @@ import de.server.db.seeds.ProfilSeeds;
 
 public class Seeder {
 	/* !!Was ist das und warum?
-	 * Der Seeder erstellt erst die nötigen Tabellen und füllt sie mit Dummy-Daten. 
-	 * Während der Entwicklung ist das sehr praktisch:
+	 * Der Seeder erstellt erst die nï¿½tigen Tabellen und fï¿½llt sie mit Dummy-Daten. 
+	 * Wï¿½hrend der Entwicklung ist das sehr praktisch:
 	 * 
 	 * 1. Im Laufe der Entwicklung muss die Datenbank immer wieder neu 
-	 * aufgesetzt werden: zB weil neue Spalten hinzugefügt oder gelöscht 
-	 * werden müssen. Jedes Mal neue Tabellen zu erstellen und die Daten 
-	 * dafür einzugeben ist sehr anstrengend.
+	 * aufgesetzt werden: zB weil neue Spalten hinzugefï¿½gt oder gelï¿½scht 
+	 * werden mï¿½ssen. Jedes Mal neue Tabellen zu erstellen und die Daten 
+	 * dafï¿½r einzugeben ist sehr anstrengend.
 	 * 
-	 * 2. Mit Testdaten lässt sich die Funktionalität der Datenbank/Applikation 
+	 * 2. Mit Testdaten lï¿½sst sich die Funktionalitï¿½t der Datenbank/Applikation 
 	 * schnell testen. Wenn Tabellen und Daten nicht richtig zusammenpassen, 
-	 * fällt das mit einem Seeder schnell auf.
+	 * fï¿½llt das mit einem Seeder schnell auf.
 	 */
 	
 	/* !!HowTo:
@@ -25,17 +25,17 @@ public class Seeder {
 	 * 
 	 * 2. eine Methode schreiben. zB seedProfilTable()
 	 * 
-	 * 3. für jedes Attribut des BusinessObjects einen Array anlegen
-	 * 	  mit den benötigten Werten. zB 10xVornamen, 10xNachnamen und 10xAlter
+	 * 3. fï¿½r jedes Attribut des BusinessObjects einen Array anlegen
+	 * 	  mit den benï¿½tigten Werten. zB 10xVornamen, 10xNachnamen und 10xAlter
 	 * 
 	 * 4. Eine Schleife in die seedProfilTable() schreiben, die die Mapper.insert()
-	 *    benutzt und dafür die Werte aus den Arrays aus 3. benutzt.
+	 *    benutzt und dafï¿½r die Werte aus den Arrays aus 3. benutzt.
 	 *    
 	 * 5. Die neue Methode aus 2. in die seed() Methode schreiben. 
 	 *    5.1 Die createTable() des Mappers in die migrate() Methode schreiben.
 	 * 
 	 * 6. Von wo auch immer die seed() Methode aufrufen. Die ruft alle andern Methoden
-	 *    auf und befüllt eure Datenbank.
+	 *    auf und befï¿½llt eure Datenbank.
 	 *    
 	 * 7. Sich freuen wie n Iltis! 
 	 * 
@@ -46,17 +46,20 @@ public class Seeder {
 	 * @throws Exception */
 	public void init() throws Exception{
 		migrate();
-		seed();
+		//seed();
 	}
 	
 
-	/**Hier müssen die createTable() Methoden der Mapper eingefügt werden 
+	/**Hier mï¿½ssen die createTable() Methoden der Mapper eingefï¿½gt werden 
 	 * @throws Exception */
 	private void migrate() throws Exception{
 		ProfilMapper.profilMapper().createProfilTable();
 		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
 		//KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
+		InfoMapper.infoMapper().createInfoTable();
+		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();
+		
 	}
 
 	private void seed(){
