@@ -24,31 +24,30 @@ public static AehnlichkeitMapper aehnlichkeitmapper = null;
 		
 		Connection con = (Connection) DBConnection.connection();
 		
-		PreparedStatement create = (PreparedStatement) con.prepareStatement("CREATE TABLE IF NOT EXISTS AEHNLICHKEIT (REFERENZPROFIL_id int, VERGLEICHSPROFIL_id int, mass byte, PRIMARY KEY (REFERENZPROFIL_id, VERGLEICHSPROFIL_id");
+		PreparedStatement createAehnlichkeit = (PreparedStatement) con.prepareStatement("CREATE TABLE IF NOT EXISTS AEHNLICHKEIT (REFERENZPROFIL_id int, VERGLEICHSPROFIL_id int, mass byte, PRIMARY KEY (REFERENZPROFIL_id, VERGLEICHSPROFIL_id");
 		
-		create.execute();
+		createAehnlichkeit.execute();
 		
-	}
+	}//createAehnlichkeit() zu
 	
 	
 	public void insertAehnlichkeit(Profil referenz, Profil vergleich, byte mass) throws Exception{
 		
 		Connection con = (Connection) DBConnection.connection();
 		
-		PreparedStatement insert = (PreparedStatement) con.prepareStatement("INSERT INTO AEHNLICHKEIT (REFERENZPROFIL_id, VERGLEICHSPROFIL_id, mass) VALUES (?,?,?)");
+		PreparedStatement insertAehnlichkeit = (PreparedStatement) con.prepareStatement("INSERT INTO AEHNLICHKEIT (REFERENZPROFIL_id, VERGLEICHSPROFIL_id, mass) VALUES (?,?,?)");
 		
 		
-		insert.execute();
-		
-		try {
-			insert.close();
-		} catch (Exception e) {
-			/* ignored */ }
-		try {
-			con.close();
-		} catch (Exception e) {
-			/* ignored */ }
-	}
+		insertAehnlichkeit.execute();
+	}//insertAehnlichkeit() zu
 	
+	
+	public void deleteAehnlichkeit (Profil referenz, Profil vergleich) throws Exception {
+		
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement deleteAehnlichkeit = (PreparedStatement) con.prepareStatement(
+				"DELETE FROM AEHNLICHKEIT WHERE REFERENZPROFIL_id='"+ referenz +  "',VERGLEICHSPROFIL_id='" + vergleich + "'" );
+		deleteAehnlichkeit.execute();
+	}
 
 }
