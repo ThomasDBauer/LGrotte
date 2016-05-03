@@ -32,30 +32,29 @@ public class InfoMapper {
 	public void createInfoTable() throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		
-		PreparedStatement create = (PreparedStatement) con.prepareStatement(
+		PreparedStatement createInfo = (PreparedStatement) con.prepareStatement(
 				
 				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL, value varchar(255), EIGENSCHAFT_id int, PRIMARY KEY(id), FOREIGN KEY(EIGENSCHAFT_id) references EIGENSCHAFT");
 		
-		create.execute();
+		createInfo.execute();
 		
 	}
 
 	public void insertInfo(Info info) throws Exception{
 
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement insert = (PreparedStatement) con.prepareStatement("INSERT INTO INFOS (id, value, EIGENSCHAFT_id) VALUES (?,?,?)");
+		PreparedStatement insertInfo = (PreparedStatement) con.prepareStatement("INSERT INTO INFOS (id, value, EIGENSCHAFT_id) VALUES (?,?,?)");
 		
-		insert.execute();
+		insertInfo.execute();
 		
-		try {
-			insert.close();
-		} catch (Exception e) {
-			/* ignored */ }
-		try {
-			con.close();
-		} catch (Exception e) {
-			/* ignored */ }
+	}
+	
+	public void deleteInfo (Info info) throws Exception {
 		
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement deleteInfo =  (PreparedStatement) con.prepareStatement(
+				"DELETE FROM INFOS WHERE id='"+info+"'");
+		deleteInfo.execute();
 	}
 
 
