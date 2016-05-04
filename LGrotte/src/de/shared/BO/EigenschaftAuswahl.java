@@ -4,7 +4,7 @@ public class EigenschaftAuswahl extends Eigenschaft{
 	
 	public EigenschaftAuswahl(int id) {
 		super(id);
-		// TODO Auto-generated constructor stub
+		 // TODO Auto-generated constructor stub
 	}
 
 	/**

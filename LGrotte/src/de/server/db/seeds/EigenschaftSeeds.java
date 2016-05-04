@@ -1,11 +1,20 @@
 package de.server.db.seeds;
 
+import de.server.db.EigenschaftMapper;
+import de.shared.BO.Eigenschaft;
+import de.shared.BO.Profil;
+
 public class EigenschaftSeeds {
 
-	private void seedEigenschaftTable(){
+	public void seedEigenschaftTable(){
 		for(int i = 0; i < someValues.length; i++){
-			// Profil p = new Profil();
-						//ProfilMapper.profilMapper().insert(p);
+//			Eigenschaft eg = new Eigenschaft(){};
+//			eg.setId(someValues[i]);
+//			try {
+//				EigenschaftMapper.eigenschaftMapper().insertEigenschaft(eg);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 		}
 	}
 	
