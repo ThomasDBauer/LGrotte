@@ -26,14 +26,10 @@ public class ProfilinfoMapper {
 		PreparedStatement create = (PreparedStatement) conn
 				.prepareStatement("CREATE TABLE IF NOT EXISTS profil_info "
 						+ "(profil_id INT NOT NULL, info_id INT NOT NULL, "
-						+ "eigenschaft_id INT NOT NULL, "
 						+ "PRIMARY KEY (profil_id, info_id), "
 						+ "FOREIGN KEY(profil_id) REFERENCES profile(id) "
 						+ "ON UPDATE CASCADE ON DELETE RESTRICT, "
 						+ "FOREIGN KEY(info_id) REFERENCES infos(id) "
-						+ "ON UPDATE CASCADE ON DELETE RESTRICT, "
-						+ "FOREIGN KEY(eigenschaft_id) "
-						+ "REFERENCES eigenschaften(id) "
 						+ "ON UPDATE CASCADE ON DELETE RESTRICT)");
 		create.execute();
 	}
@@ -44,8 +40,8 @@ public class ProfilinfoMapper {
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("INSERT INTO `profil_infos`(profil_id, "
-					+ "eigenschaft_id, Info_id) VALUES (" + pi.getProfilID()
-					+ ", " + pi.getEigenschaftID() + ", " + pi.getInfoID()
+					+ " Info_id) VALUES (" + pi.getProfilID()
+					+ ", " + pi.getInfoID()
 					+ ")");
 
 		} catch (SQLException e) {
@@ -60,8 +56,7 @@ public class ProfilinfoMapper {
 			Statement stmt = conn.createStatement();
 
 			stmt.executeUpdate("UPDATE `profil_infos` SET `profi_Id`= "
-					+ pi.getProfilID() + ",`eigenschaft_id`= "
-					+ pi.getEigenschaftID() + ",`Info_id`= " + pi.getInfoID()
+					+ pi.getProfilID() + ",`Info_id`= " + pi.getInfoID()
 					+ " " + "WHERE `profil_id` = " + pi.getProfilID());
 
 			/*
