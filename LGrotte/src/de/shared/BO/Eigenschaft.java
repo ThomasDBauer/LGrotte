@@ -10,17 +10,14 @@ public abstract class Eigenschaft extends BusinessObject{
 	private int id;
 	
 	private String erlaeuterung;
+	
+//	public Eigenschaft (){		
+//	}
 
-	public Eigenschaft(int id){
-		this.id = id;
-	}
-	
-	public Eigenschaft(int id, String erl){
-		this(id);
-		
-	}
-	
-	public int getId() {
+		public Eigenschaft(int id){
+		this.id= id;
+		}
+		public int getId() {
 		return id;
 	}
 

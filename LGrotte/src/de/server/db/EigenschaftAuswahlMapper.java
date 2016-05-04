@@ -35,17 +35,18 @@ public class EigenschaftAuswahlMapper {
 		public void insertEigenschaftAuswahl(EigenschaftAuswahl ea) throws Exception{
 			Connection conn = (Connection) DBConnection.connection();
 			PreparedStatement insert = (PreparedStatement) conn.prepareStatement(
-					"INSERT INTO EigenschaftAuswahl(eigenschaftauswahl_id, element) VALUES ('" + ea + "')");
+					"INSERT INTO eigenschaftauswahl(eigenschaftauswahl_id) VALUES ('" + ea.getId() + "')");
 				insert.execute();	
 		}
 		
-		public void updateEigenschaftAuswahl(EigenschaftAuswahl ea)throws Exception{
-			
+		public void deleteEigenschaftAuswahl(EigenschaftAuswahl ea)throws Exception{
+			Connection conn = (Connection) DBConnection.connection();
+			PreparedStatement deleteEigenschaftAuswahl = (PreparedStatement) conn.prepareStatement(
+					"DELETE FROM eigenschaftauswahl WHERE eigenschaftauswahl_id ='"+ ea.getId()+"'");
+				deleteEigenschaftAuswahl.execute();		
 		}
 		
-		public void deleteEigenschaftAuswahl(EigenschaftAuswahl ea)throws Exception{
-			
-		}
+		
 		
 		public EigenschaftAuswahl getEigenschaftAuswahlByID(int id)throws Exception{
 			return null;
