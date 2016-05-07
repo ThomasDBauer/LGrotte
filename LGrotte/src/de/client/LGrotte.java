@@ -13,7 +13,7 @@ public class LGrotte implements EntryPoint {
 	public void onModuleLoad() {
 		
 		//Der SeedButton aus dem temp-package
-		RootPanel.get().add(new SeedButton());
+		RootPanel.get("Inhalt_oben").add(new SeedButton());
 			
 	}
 }
