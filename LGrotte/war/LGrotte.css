@@ -1,7 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
 body {
@@ -13,7 +13,6 @@ h1 {
 	font-weight: bold;
 	color: #FFF;
 	margin: 40px 0px 70px;
-	
 }
 
 a {
@@ -57,32 +56,50 @@ li a:hover {
 	min-width: 960px;
 	margin: 10px auto;
 	background-color: #e2e2e2;
-}
-
-#Inhalt {
-	background-color: #FFF;
-	margin: 0 250px;
-	min-height: 600px;
-	padding: 20px;
 	border: 2px solid black;
 }
 
-#Oben {
-	
-}
-
-#Mitte {
-	
-}
-
 #Navi {
-	width: 250px;
+	width: auto;
+	min-width: 880px;
 	padding: 20px;
 	background-color: #ffffff;
+	border: 2px solid black;
 }
 
-#Unten {
+#Inhalt {
+	float: left;
+	background-color: #FFF;
+	padding: 20px;
+	min-height: 600px;
+	border: 2px solid black;
+	margin-rigth: 300px;
+}
+
+#Inhalt_oben {
+	border: 2px solid black;
+}
+
+#Inhalt_unten {
+	border: 2px solid black;
+}
+
+#Einstellungen {
+	border: 2px solid black;
+	width: 250px;
+}
+
+#Einsellungen_oben {
+	border: 2px solid black;
+}
+
+#Einsellungen_unten {
+	border: 2px solid black;
+}
+
+#Fuﬂzeile {
 	padding: 20px;
 	clear: both;
 	border-top: 5px solid #FFFFFF;
+	border: 2px solid black;
 }
