@@ -60,9 +60,8 @@ li a:hover {
 	height: auto;
 }
 
-#Headline{
+#Headline {
 	height: 150px;
-	
 }
 
 #Navi {
@@ -78,8 +77,9 @@ li a:hover {
 	float: left;
 	background-color: #FFF;
 	padding: 20px;
-	min-height: 600px;
-	min-width: 550px;
+	/* min-height: 600px;
+	min-width: 550px; */
+	max-width: 600px;
 	border: 2px solid black;
 	margin-rigth: 300px;
 }
@@ -88,35 +88,47 @@ li a:hover {
 	border: 2px solid black;
 	padding: 20px;
 	min-heigt: 300px;
-	min-width: 255;
+	min-width: 255px;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
 }
 
 #Inhalt_unten {
 	border: 2px solid black;
 	padding: 20px;
 	min-height: 300px;
-	min-width: 255;
+	min-width: 255px;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
 }
 
 #Einstellungen {
 	border: 2px solid black;
+	float: right;
 	width: 250px;
 	min-height: 400px;
+	margin: 20px;
+	background-color: #fff;
 }
 
-#Einsellungen_oben {
+#Einstellungen_oben {
 	border: 2px solid black;
 	min-height: 200px;
-	width: 210px;
+	width: 200px;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
 }
 
-#Einsellungen_unten {
+#Einstellungen_unten {
 	border: 2px solid black;
 	min-height: 200px;
-	width: 210px;
+	width: 200px;
+	background-color: #fff;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
 }
 
-#Fuﬂzeile {
+#Fusszeile {
 	padding: 20px;
 	clear: both;
 	border-top: 5px solid black;
