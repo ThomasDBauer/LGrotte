@@ -1,20 +1,26 @@
 package de.server.db.seeds;
 
+import de.server.db.InfoMapper;
+import de.shared.BO.Info;
+
 public class InfoSeeds {
 
-	private void seedInfoTable(){
-		for(int i = 0; i < someValues.length; i++){
-			// Profil p = new Profil();
-						//ProfilMapper.profilMapper().insert(p);
+	public void seedInfoTable() throws Exception{
+		for(int i = 0; i < eigenschaften.length; i++){
+			Info info = new Info();
+			info.setEigenschaft(eigenschaften[i]);
+			info.setValue(values[i]);
+			InfoMapper.infoMapper().insertInfo(info);
 		}
 	}
 	
-	private int[]someValues = {
-		5, 6, 7, 12, 54, 2, 98, 1, 54, 90
+	private String[]values = {
+		"Fußball", "Fussball", "Schwimmen",
+		"Titanic", "Django", "Lucky#Slevin",
+		"HipHop", "Hip-Hop", "Schlager", "Jazz"
 	};
 	
-	private String[]someOtherValues = {
-		"Thomas", "Hanna", "Dieter", "Gerd", "Mike",
-		"Kerstin", "Anna", "Peter", "Martin", "Tim"	
+	private int[]eigenschaften = {
+		1, 1, 1, 2, 2, 2, 3, 3, 3, 3
 	};
 }

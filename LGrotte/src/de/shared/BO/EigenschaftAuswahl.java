@@ -3,8 +3,7 @@ package de.shared.BO;
 public class EigenschaftAuswahl extends Eigenschaft{
 	
 	public EigenschaftAuswahl(int id) {
-		super(id);
-		 // TODO Auto-generated constructor stub
+		super.setId(id);
 	}
 
 	/**

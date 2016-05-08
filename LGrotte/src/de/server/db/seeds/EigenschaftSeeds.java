@@ -6,24 +6,15 @@ import de.shared.BO.Profil;
 
 public class EigenschaftSeeds {
 
-	public void seedEigenschaftTable(){
-		for(int i = 0; i < someValues.length; i++){
-//			Eigenschaft eg = new Eigenschaft(){};
-//			eg.setId(someValues[i]);
-//			try {
-//				EigenschaftMapper.eigenschaftMapper().insertEigenschaft(eg);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
+	public void seedEigenschaftTable() throws Exception{
+		for(int i = 0; i < erlaeuterungen.length; i++){
+			Eigenschaft e = new Eigenschaft();
+			e.setErlaeuterung(erlaeuterungen[i]);
+			EigenschaftMapper.eigenschaftMapper().insertEigenschaft(e);
 		}
 	}
 	
-	private int[]someValues = {
-		5, 6, 7, 12, 54, 2, 98, 1, 54, 90
-	};
-	
-	private String[]someOtherValues = {
-		"Thomas", "Hanna", "Dieter", "Gerd", "Mike",
-		"Kerstin", "Anna", "Peter", "Martin", "Tim"	
+	private String[]erlaeuterungen = {
+		"Lieblingssport", "Lieblingsfilm", "Lieblingsmusik"
 	};
 }
