@@ -11,16 +11,21 @@ public class Profil extends BusinessObject{
 
 	private int id;
 	
-	private String fname, lname, haarfarbe, religion;
+	private String fname, lname, haarfarbe, religion, geschlecht, raucher;
 	private int alter, koerpergroesse;
 	private Date geburtsdatum;
-	private boolean raucher;
 	private Info[] profilInformation;
 	private Merkzettel merkzettel;
 	private Kontaktsperre[] sperrliste;
 	private Aehnlichkeitsmass[]aehnlichkeitsmasse;
 	
 	
+	public void setGeschlecht(String geschlecht){
+		this.geschlecht = geschlecht;
+	}
+	public String getGeschlecht(){
+		return this.geschlecht;
+	}
 	
 	public Merkzettel getMerkzettel() {
 		return merkzettel;
@@ -70,10 +75,10 @@ public class Profil extends BusinessObject{
 	public void setGeburtsdatum(Date geburtsdatum) {
 		this.geburtsdatum = geburtsdatum;
 	}
-	public boolean isRaucher() {
+	public String getRaucher() {
 		return raucher;
 	}
-	public void setRaucher(boolean raucher) {
+	public void setRaucher(String raucher) {
 		this.raucher = raucher;
 	}
 	public int getId() {

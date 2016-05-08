@@ -1,7 +1,7 @@
 package de.server.db;
 
-import com.google.cloud.sql.jdbc.Connection;
-import com.google.cloud.sql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import de.shared.BO.Info;
 
@@ -29,21 +29,28 @@ public class InfoMapper {
 
 
 
+//	public void createInfoTable() throws Exception{
+//		Connection con = (Connection)DBConnection.connection();
+//		PreparedStatement createInfo = (PreparedStatement) con.prepareStatement(
+//				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL AUTO_INCREMENT, "
+//				+ "value varchar(50), eigenschaft_id int NOT NULL, PRIMARY KEY(id), "
+//				+ "FOREIGN KEY(eigenschaft_id) REFERENCES eigenschaft(id)");
+//		createInfo.execute();
+//	}
+
 	public void createInfoTable() throws Exception{
-		Connection con = (Connection) DBConnection.connection();
-		
+		Connection con = (Connection)DBConnection.connection();
 		PreparedStatement createInfo = (PreparedStatement) con.prepareStatement(
-				
-				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL, value varchar(255), EIGENSCHAFT_id int, PRIMARY KEY(id), FOREIGN KEY(EIGENSCHAFT_id) references EIGENSCHAFT");
-		
+				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL AUTO_INCREMENT, value varchar(50), eigenschaft_id int, PRIMARY KEY(id))");
 		createInfo.execute();
-		
 	}
 
 	public void insertInfo(Info info) throws Exception{
 
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement insertInfo = (PreparedStatement) con.prepareStatement("INSERT INTO INFOS (id, value, EIGENSCHAFT_id) VALUES (?,?,?)");
+		PreparedStatement insertInfo = (PreparedStatement) con.prepareStatement(
+				"INSERT INTO INFOS (value, eigenschaft_id) VALUES "
+				+ "('"+info.getValue()+"',"+info.getEigenschaft()+")");
 		
 		insertInfo.execute();
 		

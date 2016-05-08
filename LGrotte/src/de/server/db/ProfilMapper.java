@@ -39,28 +39,33 @@ public class ProfilMapper {
 	public void createProfilTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
-				("CREATE TABLE IF NOT EXISTS PROFIL (fname varchar(255), lname varchar(255), id int NOT NULL, PRIMARY KEY(id))");
+				("CREATE TABLE IF NOT EXISTS PROFIL (fname varchar(35), lname varchar(35), "
+						+ "koerpergroesse int(3), geschlecht varchar(35), religion varchar(35), "
+						+ "haarfarbe varchar(35), geburtsdatum int(8), raucher varchar(35), "
+						+ "id int(10) NOT NULL AUTO_INCREMENT, PRIMARY KEY(id))");
 		create.execute();
 	}
 	
 	public void insertProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
-				("INSERT INTO PROFIL (fname, lname) VALUES (?,?)");
+				("INSERT INTO PROFIL (fname, lname, koerpergroesse, geschlecht, religion,"
+						+ "haarfarbe, geburtsdatum, raucher) VALUES ('"+p.getFname()+"','"+
+						p.getLname()+"',"+p.getKoerpergroesse()+",'"+p.getGeschlecht()+"','"+
+						p.getReligion()+"','"+p.getHaarfarbe()+"',"+15111985+",'"+p.getRaucher()+"')");
 		insert.execute();
 		
 	}	
 	
-	// Das ist nur eine provisorische Methode
 	public void deleteProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
-				("DELETE PROFIL WHERE id =  ");
+				("DELETE PROFIL WHERE id =" + p.getId());
 		delete.execute();
 
 	}
-
-	// Das ist nur eine provisorische Methode
+	
+	//TODO
 	public void updateProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement update = (PreparedStatement) conn.prepareStatement

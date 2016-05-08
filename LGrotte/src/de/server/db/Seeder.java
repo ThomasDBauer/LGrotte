@@ -1,5 +1,7 @@
 package de.server.db;
 
+import de.server.db.seeds.EigenschaftSeeds;
+import de.server.db.seeds.InfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
 
 public class Seeder {
@@ -46,7 +48,7 @@ public class Seeder {
 	 * @throws Exception */
 	public void init() throws Exception{
 		migrate();
-		//seed();
+		seed();
 	}
 	
 
@@ -54,17 +56,23 @@ public class Seeder {
 	 * @throws Exception */
 	private void migrate() throws Exception{
 		ProfilMapper.profilMapper().createProfilTable();
-		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
-		//KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
 		InfoMapper.infoMapper().createInfoTable();
-		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();
+//		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
+//		//KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
+//		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();
 		
 	}
 
-	private void seed(){
+	private void seed() throws Exception{
 		ProfilSeeds ps = new ProfilSeeds();
 		ps.seedProfilTable();
+		EigenschaftSeeds es = new EigenschaftSeeds();
+		es.seedEigenschaftTable();
+		InfoSeeds is = new InfoSeeds();
+		is.seedInfoTable();
+		
+		
 	}
 
 }

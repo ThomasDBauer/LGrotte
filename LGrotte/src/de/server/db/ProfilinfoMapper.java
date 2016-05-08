@@ -1,6 +1,9 @@
 package de.server.db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import de.server.db.DBConnection;
@@ -38,7 +41,7 @@ public class ProfilinfoMapper {
 		Connection conn = DBConnection.connection();
 
 		try {
-			Statement stmt = conn.createStatement();
+			PreparedStatement stmt = (PreparedStatement)conn.createStatement();
 			stmt.executeUpdate("INSERT INTO `profil_infos`(profil_id, "
 					+ " Info_id) VALUES (" + pi.getProfilID()
 					+ ", " + pi.getInfoID()
@@ -53,7 +56,7 @@ public class ProfilinfoMapper {
 		Connection conn = DBConnection.connection();
 
 		try {
-			Statement stmt = conn.createStatement();
+			PreparedStatement stmt = (PreparedStatement)conn.createStatement();
 
 			stmt.executeUpdate("UPDATE `profil_infos` SET `profi_Id`= "
 					+ pi.getProfilID() + ",`Info_id`= " + pi.getInfoID()
@@ -75,7 +78,7 @@ public class ProfilinfoMapper {
 		Connection conn = DBConnection.connection();
 
 		try {
-			Statement stmt = conn.createStatement();
+			PreparedStatement stmt = (PreparedStatement)conn.createStatement();
 			stmt.executeUpdate("DELETE FROM `profil_info` WHERE `profil_id`'"
 					+ pi.getProfilID() + "' AND `info-id`='" + pi.getInfoID()
 					+ "'");
@@ -115,7 +118,7 @@ public class ProfilinfoMapper {
 		Vector<ProfilInfo> profilInfos = new Vector<ProfilInfo>();
 
 		try {
-			Statement stmt = conn.createStatement();
+			PreparedStatement stmt = (PreparedStatement)conn.createStatement();
 			ResultSet rs = stmt
 					.executeQuery("SELECT profil_id, info_id FROM `profil_infos`"
 							+ "Order BY id");

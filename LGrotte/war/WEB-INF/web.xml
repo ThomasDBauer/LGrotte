@@ -8,7 +8,7 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>greetServlet</servlet-name>
-    <servlet-class>de.server.TestServiceImpl</servlet-class>
+    <servlet-class>de.server.SeedServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
