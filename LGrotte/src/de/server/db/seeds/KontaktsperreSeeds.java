@@ -1,11 +1,33 @@
 package de.server.db.seeds;
 
+import de.server.db.KontaktsperreMapper;
+import de.shared.BO.Profil;
+
 public class KontaktsperreSeeds {
 
-	private void seedKontaktsperreTable(){
+	public void seedKontaktsperreTable(){
 		for(int i = 0; i < someValues.length; i++){
-			// Profil p = new Profil();
-						//ProfilMapper.profilMapper().insert(p);
+			Profil ks = new Profil();
+			ks.setId(someValues[i]);
+			try {
+				KontaktsperreMapper.kontaktsperreMapper().insertKontaktsperre(ks);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void seedKontaktsperreDelete() {
+		for(int i = 0; i < someValues.length; i++){
+			Profil ks = new Profil();
+			ks.setId(someValues[i]);
+			try {
+				KontaktsperreMapper.kontaktsperreMapper().deleteKontaktsperre(ks);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
