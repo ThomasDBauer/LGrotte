@@ -15,6 +15,8 @@ import de.client.TestServiceAsync;
 //Die Klasse SeedButton ist ein Panel, in dem auch Fehlermeldungen angezeigt werden.
 public class SeedButton extends VerticalPanel {
 	
+	//eine ä#nderung. verrückt
+	
 	/* Um auf das Panel in den inneren Klassen Callback und ClickHandler zuzugreifen,
 	 * wird eine Instanzvariable gesetzt.
 	 */
