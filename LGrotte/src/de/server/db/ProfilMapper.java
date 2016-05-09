@@ -69,7 +69,11 @@ public class ProfilMapper {
 	public void updateProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement update = (PreparedStatement) conn.prepareStatement
-				("UPDATE PROFIL (fname, lname) WHERE id =  VALUES (?,?)");
+				("UPDATE PROFIL (fname, lname, koerpergroesse, geschlecht, religion,"
+						+ "haarfarbe, geburtsdatum, raucher) VALUES ('"+p.getFname()+"','"+
+						p.getLname()+"',"+p.getKoerpergroesse()+",'"+p.getGeschlecht()+"','"+
+						p.getReligion()+"','"+p.getHaarfarbe()+"',"+15111985+",'"+p.getRaucher()+"')"
+								+ "WHERE id="+p.getId());
 		update.execute();
 
 	}

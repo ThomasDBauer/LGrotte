@@ -3,6 +3,7 @@ package de.server.db;
 import de.server.db.seeds.EigenschaftSeeds;
 import de.server.db.seeds.InfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
+import de.shared.BO.Profil;
 
 public class Seeder {
 	/* !!Was ist das und warum?
@@ -47,8 +48,7 @@ public class Seeder {
 	/** Diese Methode startet den ganzen Prozess) 
 	 * @throws Exception */
 	public void init() throws Exception{
-		migrate();
-		seed();
+		updateProfil();
 	}
 	
 
@@ -71,8 +71,20 @@ public class Seeder {
 		es.seedEigenschaftTable();
 		InfoSeeds is = new InfoSeeds();
 		is.seedInfoTable();
-		
-		
+	}
+	
+	private void updateProfil() throws Exception{
+		Profil p = new Profil();
+		p.setFname("Gerd");
+		p.setLname("Meyer");
+		p.setAlter(111213);
+		p.setId(1);
+		p.setGeschlecht("männlich");
+		p.setHaarfarbe("blond");
+		p.setKoerpergroesse(191);
+		p.setRaucher("jo");
+		p.setReligion("sehr");
+		ProfilMapper.profilMapper().updateProfil(p);
 	}
 
 }
