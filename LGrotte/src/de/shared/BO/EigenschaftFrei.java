@@ -3,8 +3,7 @@ package de.shared.BO;
 public class EigenschaftFrei extends Eigenschaft{
 	
 	public EigenschaftFrei(int id) {
-		super(id);
-		// TODO Auto-generated constructor stub
+			super.setId(id);
 	}
 
 	/**

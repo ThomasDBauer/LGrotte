@@ -11,7 +11,7 @@ public class Info extends BusinessObject{
 	
 	private String value;
 	
-	private Eigenschaft eigenschaft;
+	private int eigenschaft;
 	
 
 	public int getId() {
@@ -30,11 +30,11 @@ public class Info extends BusinessObject{
 		this.value = value;
 	}
 
-	public Eigenschaft getEigenschaft() {
+	public int getEigenschaft() {
 		return eigenschaft;
 	}
 
-	public void setEigenschaft(Eigenschaft eigenschaft) {
+	public void setEigenschaft(int eigenschaft) {
 		this.eigenschaft = eigenschaft;
 	}
 	

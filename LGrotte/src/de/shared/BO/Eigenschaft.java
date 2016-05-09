@@ -1,6 +1,6 @@
 package de.shared.BO;
 
-public abstract class Eigenschaft extends BusinessObject{
+public class Eigenschaft extends BusinessObject{
 	
 	/**
 	 * 
@@ -10,16 +10,8 @@ public abstract class Eigenschaft extends BusinessObject{
 	private int id;
 	
 	private String erlaeuterung;
+	
 
-	public Eigenschaft(int id){
-		this.id = id;
-	}
-	
-	public Eigenschaft(int id, String erl){
-		this(id);
-		
-	}
-	
 	public int getId() {
 		return id;
 	}
@@ -28,11 +20,11 @@ public abstract class Eigenschaft extends BusinessObject{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getErlaeuterung() {
 		return erlaeuterung;
 	}
 
-	public void setName(String name) {
+	public void setErlaeuterung(String name) {
 		this.erlaeuterung = name;
 	}
 	

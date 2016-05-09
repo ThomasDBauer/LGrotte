@@ -11,7 +11,7 @@ import de.shared.BO.Profil;
 
 public class EigenschaftMapper {
 
-	private static EigenschaftMapper eigenschaftMapper;
+	private static EigenschaftMapper eigenschaftMapper = null;
 
 	protected EigenschaftMapper() {
 
@@ -27,15 +27,17 @@ public class EigenschaftMapper {
 	public void createEigenschaftTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
-				("CREATE TABLE IF NOT EXISTS EIGENSCHAFT (fname varchar(255), lname varchar(255), id int NOT NULL, PRIMARY KEY(id))");
+				("CREATE TABLE IF NOT EXISTS eigenschaft (erlauterung varchar(255), "
+						+ "id int NOT NULL AUTO_INCREMENT, PRIMARY KEY(id))");
 		create.execute();
 
 	}
 
-	public void insertEigenschaft(Eigenschaft e) throws Exception {
+	public void insertEigenschaft(Eigenschaft eigenschaft) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
-				("INSERT INTO EIGENSCHAFT (fname, lname) VALUES (?,?)");
+				("INSERT INTO eigenschaft(erlauterung) VALUES ('" + 
+						eigenschaft.getErlaeuterung() + "')");
 		insert.execute();
 
 	}

@@ -1,34 +1,141 @@
-/** Add css rules here for your application. */
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
 
+body {
+	background-color: #e2e2e2;
+}
 
-/** Example rules used by the template application (remove for your app) */
 h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+	color: #FFF;
+	margin: 40px 0px 70px;
 }
 
-.sendButton {
-  display: block;
-  font-size: 16pt;
+a {
+	text-decoration: none;
+	color: black;
+	display: block;
+	padding: 8px;
 }
 
-/** Most GWT widgets already have a style name defined */
-.gwt-DialogBox {
-  width: 400px;
+ul {
+	list-style-type: none;
+	border: 1px solid #f3f3f3;
+	margin: 0;
+	padding: 0;
+	background-color: #f3f3f3;
 }
 
-.dialogVPanel {
-  margin: 5px;
+li {
+	display: inline;
+	float: left
 }
 
-.serverResponseLabelError {
-  color: red;
+li a {
+	display: block;
+	color: #666;
+	text-algin: center;
+	text-decoration: none;
+	padding: 14px 16px;
 }
 
-/** Set ids using widget.getElement().setId("idOfElement") */
-#closeButton {
-  margin: 15px 6px 6px;
+li a:hover {
+	background-color: #e2e2e2;
+}
+
+.active {
+	background-color: #4CAF50;
+}
+
+#Container {
+	max-width: 1200px;
+	min-width: 960px;
+	margin: 10px auto;
+	background-color: #e2e2e2;
+	border: 2px solid black;
+	height: auto;
+}
+
+#Headline {
+	height: 150px;
+}
+
+#Navi {
+	width: auto;
+	min-width: 880px;
+	padding: 20px;
+	background-color: #ffffff;
+	border: 2px solid black;
+	height: 100px;
+}
+
+#Inhalt {
+	float: left;
+	background-color: #FFF;
+	padding: 20px;
+	/* min-height: 600px;
+	min-width: 550px; */
+	max-width: 600px;
+	border: 2px solid black;
+	margin-rigth: 300px;
+}
+
+#Inhalt_oben {
+	border: 2px solid black;
+	padding: 20px;
+	min-heigt: 300px;
+	min-width: 255px;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
+}
+
+#Inhalt_unten {
+	border: 2px solid black;
+	padding: 20px;
+	min-height: 300px;
+	min-width: 255px;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
+}
+
+#Einstellungen {
+	border: 2px solid black;
+	float: right;
+	width: 250px;
+	min-height: 400px;
+	margin: 20px;
+	background-color: #fff;
+}
+
+#Einstellungen_oben {
+	border: 2px solid black;
+	min-height: 200px;
+	width: 200px;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
+}
+
+#Einstellungen_unten {
+	border: 2px solid black;
+	min-height: 200px;
+	width: 200px;
+	background-color: #fff;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
+}
+
+#Fusszeile {
+	padding: 20px;
+	clear: both;
+	border-top: 5px solid black;
+	border: 2px solid black;
+	min-height: 120px;
+	min-width: 860px;
+	width: auto;
+	background-color: #FFF;
+	padding: 20px;
 }

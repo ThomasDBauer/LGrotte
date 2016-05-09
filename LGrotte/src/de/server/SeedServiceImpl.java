@@ -10,7 +10,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * The server-side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class TestServiceImpl extends RemoteServiceServlet implements TestService {
+public class SeedServiceImpl extends RemoteServiceServlet implements TestService {
 	
 	//die hier geht nicht. die ruft die methode im merkzettelmapper auf:
 	public void seed() throws Exception{
