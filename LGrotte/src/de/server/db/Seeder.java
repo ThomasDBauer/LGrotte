@@ -3,7 +3,6 @@ package de.server.db;
 import de.server.db.seeds.EigenschaftSeeds;
 import de.server.db.seeds.InfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
-import de.shared.BO.Profil;
 
 public class Seeder {
 	/* !!Was ist das und warum?
@@ -43,17 +42,14 @@ public class Seeder {
 	 * 7. Sich freuen wie n Iltis! 
 	 * 
 	 */
-	
 
 	/** Diese Methode startet den ganzen Prozess) 
 	 * @throws Exception */
 	public void init() throws Exception{
-//		migrate();
-//		seed();
-		deleteProfil();
+		migrate();
+		seed();
 	}
 	
-
 	/**Hier mï¿½ssen die createTable() Methoden der Mapper eingefï¿½gt werden 
 	 * @throws Exception */
 	private void migrate() throws Exception{
@@ -63,7 +59,6 @@ public class Seeder {
 //		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 //		//KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
 //		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();
-		
 	}
 
 	private void seed() throws Exception{
@@ -74,19 +69,4 @@ public class Seeder {
 		InfoSeeds is = new InfoSeeds();
 		is.seedInfoTable();
 	}
-	
-	private void deleteProfil() throws Exception{
-		Profil p = new Profil();
-		p.setFname("Gerd");
-		p.setLname("Meyer");
-		p.setAlter(111213);
-		p.setId(1);
-		p.setGeschlecht("männlich");
-		p.setHaarfarbe("blond");
-		p.setKoerpergroesse(191);
-		p.setRaucher("jo");
-		p.setReligion("sehr");
-		ProfilMapper.profilMapper().deleteProfil(p);
-	}
-
 }
