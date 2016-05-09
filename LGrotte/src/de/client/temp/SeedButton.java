@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.TestService;
 import de.client.TestServiceAsync;
-import de.shared.BO.Profil;
 
 
 //Die Klasse SeedButton ist ein Panel, in dem auch Fehlermeldungen angezeigt werden.
@@ -28,9 +27,7 @@ public class SeedButton extends VerticalPanel {
 	//Beim Erzeugen der Klasse wird dem Panel direkt der eigentliche Button hinzugefügt.
 	public SeedButton(){
 		this.add(new Button("Seed", new SeedHandler()));
-		
 	}
-	
 	//Der ClickHandler ruft die service-Methode auf.
 	private class SeedHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
@@ -49,21 +46,8 @@ public class SeedButton extends VerticalPanel {
 		public void onFailure(Throwable caught) {
 			 vpanel.add(new Label(caught.toString()));
 		}
-
 		public void onSuccess(Object result) {
 			 vpanel.add(new Label("onSuccess@callback"));
 		}
-	}
-	
-	private class GetAllProfilesCallback implements AsyncCallback<Vector<Profil>> {
-		public void onFailure(Throwable caught){
-			vpanel.add(new Label(caught.toString()));
-		}
-		public void onSuccess(Vector<Profil> result){
-			for(int i = 0; i < result.size(); i++){
-				vpanel.add(new Label(result.elementAt(i).getFname()));
-			}
-		}
-		
 	}
 }
