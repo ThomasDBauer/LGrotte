@@ -28,17 +28,17 @@ public class MerkzettelMapper {
 		createMerkzettel.execute();
 	}
 	
-	public void insertMerkzettel(Profil[] gemerkteProfile) throws Exception {
+	public void insertMerkzettel(Profil profil) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertMerkzettel = (PreparedStatement)con.prepareStatement(
-				"INSERT INTO merkzettel(gemerkteProfile) VALUES ('" + gemerkteProfile + "')");
+				"INSERT INTO merkzettel(gemerkteProfile) VALUES ('" + profil.getId() + "')");
 		insertMerkzettel.execute();
 	}
 	
-	public void deleteMerkzettel(Profil[] gemerkteProfile) throws Exception {
+	public void deleteMerkzettel(Profil profil) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement(
-				"DELETE FROM merkzettel WHERE gemerkteProfile='" + gemerkteProfile + "'");
+				"DELETE FROM merkzettel WHERE gemerkteProfile='" + profil.getId() + "'");
 		deleteMerkzettel.execute();
 	}
 	
