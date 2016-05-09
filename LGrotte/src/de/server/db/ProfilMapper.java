@@ -69,11 +69,11 @@ public class ProfilMapper {
 	public void updateProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement update = (PreparedStatement) conn.prepareStatement
-				("UPDATE PROFIL (fname, lname, koerpergroesse, geschlecht, religion,"
-						+ "haarfarbe, geburtsdatum, raucher) VALUES ('"+p.getFname()+"','"+
-						p.getLname()+"',"+p.getKoerpergroesse()+",'"+p.getGeschlecht()+"','"+
-						p.getReligion()+"','"+p.getHaarfarbe()+"',"+15111985+",'"+p.getRaucher()+"')"
-								+ "WHERE id="+p.getId());
+				("UPDATE PROFIL SET fname = '"+p.getFname()+"', lname = '"+ p.getLname()+"',"
+						+ "geburtsdatum = '"+19214321+"', geschlecht = '"+p.getGeschlecht()+"',"
+						+ "haarfarbe ='"+p.getHaarfarbe()+"', religion = '"+p.getReligion()+"',"
+						+ "raucher = '"+p.getRaucher()+"', koerpergroesse = '"+p.getKoerpergroesse()+"' "
+						+ "WHERE id='"+p.getId()+"'");								
 		update.execute();
 
 	}

@@ -48,8 +48,9 @@ public class Seeder {
 	/** Diese Methode startet den ganzen Prozess) 
 	 * @throws Exception */
 	public void init() throws Exception{
-		migrate();
-		seed();
+//		migrate();
+//		seed();
+		updateProfil();
 	}
 	
 
