@@ -12,7 +12,7 @@ public class Profil extends BusinessObject{
 	private int id;
 	
 	private String fname, lname, haarfarbe, religion, geschlecht, raucher;
-	private int alter, koerpergroesse;
+	private int koerpergroesse;
 	private Date geburtsdatum;
 	private Info[] profilInformation;
 	private Merkzettel merkzettel;
@@ -56,12 +56,6 @@ public class Profil extends BusinessObject{
 	}
 	public void setReligion(String religion) {
 		this.religion = religion;
-	}
-	public int getAlter() {
-		return alter;
-	}
-	public void setAlter(int alter) {
-		this.alter = alter;
 	}
 	public int getKoerpergroesse() {
 		return koerpergroesse;

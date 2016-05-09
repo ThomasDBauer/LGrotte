@@ -1,6 +1,7 @@
 package de.server.db;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Vector;
 import java.sql.Connection;
 import de.shared.BO.Profil;
@@ -32,8 +33,27 @@ public class ProfilMapper {
 		return null;
 	}
 
-	public Vector<Profil> getAll() {
-		return null;
+	public Vector<Profil> getAll() throws Exception {
+		Vector<Profil>profile = new Vector<Profil>();
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
+				"SELECT * FROM PROFIL");
+		ResultSet rs = select.executeQuery();
+		while(rs.next()){
+			Profil p = new Profil();
+			p.setFname(rs.getString("fname"));
+			p.setLname(rs.getString("lname"));
+			p.setGeschlecht(rs.getString("geschlecht"));
+			p.setHaarfarbe(rs.getString("haarfarbe"));
+			p.setId(rs.getInt("id"));
+			p.setKoerpergroesse(rs.getInt("koerpergroesse"));
+			p.setReligion(rs.getString("religion"));
+			p.setRaucher(rs.getString("raucher"));
+			profile.add(p);
+		}
+		
+		return profile;
+		
 	}
 
 	public void createProfilTable() throws Exception {
