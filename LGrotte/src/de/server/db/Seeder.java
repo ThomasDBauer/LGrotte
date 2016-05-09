@@ -50,7 +50,7 @@ public class Seeder {
 	public void init() throws Exception{
 //		migrate();
 //		seed();
-		updateProfil();
+		deleteProfil();
 	}
 	
 
@@ -75,7 +75,7 @@ public class Seeder {
 		is.seedInfoTable();
 	}
 	
-	private void updateProfil() throws Exception{
+	private void deleteProfil() throws Exception{
 		Profil p = new Profil();
 		p.setFname("Gerd");
 		p.setLname("Meyer");
@@ -86,7 +86,7 @@ public class Seeder {
 		p.setKoerpergroesse(191);
 		p.setRaucher("jo");
 		p.setReligion("sehr");
-		ProfilMapper.profilMapper().updateProfil(p);
+		ProfilMapper.profilMapper().deleteProfil(p);
 	}
 
 }

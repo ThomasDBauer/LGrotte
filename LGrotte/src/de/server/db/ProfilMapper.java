@@ -60,12 +60,11 @@ public class ProfilMapper {
 	public void deleteProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
-				("DELETE PROFIL WHERE id =" + p.getId());
+				("DELETE FROM PROFIL WHERE id =" + p.getId()+"");
 		delete.execute();
 
 	}
 	
-	//TODO
 	public void updateProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement update = (PreparedStatement) conn.prepareStatement
