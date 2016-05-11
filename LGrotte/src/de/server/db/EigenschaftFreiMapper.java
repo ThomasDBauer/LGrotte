@@ -18,6 +18,8 @@ public class EigenschaftFreiMapper {
 		
 	}
 	
+	//for test commit
+	
 	public static EigenschaftFreiMapper eigenschaftFreiMapper(){
 		if(eigenschaftFreiMapper == null){
 			eigenschaftFreiMapper = new EigenschaftFreiMapper();
