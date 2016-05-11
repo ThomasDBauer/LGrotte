@@ -23,8 +23,10 @@ public static AehnlichkeitMapper aehnlichkeitmapper = null;
 	public void createAehnlichkeitTable() throws Exception {
 		
 		Connection con = (Connection) DBConnection.connection();
-		
-		PreparedStatement createAehnlichkeit = (PreparedStatement) con.prepareStatement("CREATE TABLE IF NOT EXISTS AEHNLICHKEIT (REFERENZPROFIL_id int, VERGLEICHSPROFIL_id int, mass byte, PRIMARY KEY (REFERENZPROFIL_id, VERGLEICHSPROFIL_id");
+		//zusammengesetzer PrimaryKey
+		PreparedStatement createAehnlichkeit = (PreparedStatement) con.prepareStatement
+				("CREATE TABLE IF NOT EXISTS aehnlichkeit (REFERENZPROFIL_id int, VERGLEICHSPROFIL_id int,"+
+						"mass byte, PRIMARY KEY (REFERENZPROFIL_id, VERGLEICHSPROFIL_id))");
 		
 		createAehnlichkeit.execute();
 		
@@ -35,7 +37,8 @@ public static AehnlichkeitMapper aehnlichkeitmapper = null;
 		
 		Connection con = (Connection) DBConnection.connection();
 		
-		PreparedStatement insertAehnlichkeit = (PreparedStatement) con.prepareStatement("INSERT INTO AEHNLICHKEIT (REFERENZPROFIL_id, VERGLEICHSPROFIL_id, mass) VALUES (?,?,?)");
+		PreparedStatement insertAehnlichkeit = (PreparedStatement) con.prepareStatement("INSERT INTO aehnlichkeit (REFERENZPROFIL_id, VERGLEICHSPROFIL_id, mass) VALUES ('"
+		+ referenz.getId() + vergleich.getId() + mass + "')");
 		
 		
 		insertAehnlichkeit.execute();
