@@ -26,7 +26,7 @@ public class InfoMapper {
 
 	return infomapper;
 	}
-
+//to.d.
 
 
 //	public void createInfoTable() throws Exception{
