@@ -2,6 +2,8 @@ package de.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -21,21 +23,33 @@ public class LGrotte implements EntryPoint {
 		RootPanel.get("Inhalt_oben").add(new SeedButton());
 		RootPanel.get("Navi").add(navPanel);
 		
-		final Button findLove = new Button("Find Love");
-		findLove.setStylePrimaryName("navi-button");
-		navPanel.add(findLove);
+		//Der FindLove-Button
+		final Button findLoveButton = new Button("Find Love");
+		findLoveButton.setStylePrimaryName("navi-button");
+		navPanel.add(findLoveButton);
 		
-		final Button profil = new Button("Profil");
-		profil.setStylePrimaryName("navi-button");
-		navPanel.add(profil);
+		//Der Profil-Button
+		final Button profilButton = new Button("Profil");
+		profilButton.setStylePrimaryName("navi-button");
+		navPanel.add(profilButton);
 		
-		final Button merkliste = new Button("Merkliste");
-		merkliste.setStylePrimaryName("navi-button");
-		navPanel.add(merkliste);
+		//Der Merkliste-Button
+		final Button merklisteButton = new Button("Merkliste");
+		merklisteButton.setStylePrimaryName("navi-button");
+		navPanel.add(merklisteButton);
 		
-		final Button impressum = new Button("Impressum");
-		impressum.setStylePrimaryName("navi-button");
-		navPanel.add(impressum);
-			
+		//Der Impressum-Button
+		final Button impressumButton = new Button("Impressum");
+		impressumButton.setStylePrimaryName("navi-button");
+		navPanel.add(impressumButton);
+		
+		findLoveButton.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				
+				
+			}
+		});	
 	}
 }
