@@ -29,7 +29,7 @@ public class LGrotte implements EntryPoint {
 		navPanel.add(findLoveButton);
 		
 		//Der Profil-Button
-		final Button profilButton = new Button("Profil");
+		final Button profilButton = new Button("Mein Profil");
 		profilButton.setStylePrimaryName("navi-button");
 		navPanel.add(profilButton);
 		
