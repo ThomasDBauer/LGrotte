@@ -12,10 +12,17 @@ public class ClientSideSettings {
 	private static ReportServiceAsync reportService = null;
 	
 	public static EditorServiceAsync getEditorService() {
-	    if (editorService == null) {
-	      editorService = GWT.create(EditorService.class);
-	    }
-	    return editorService;
-	  }
+		if (editorService == null) {
+			editorService = GWT.create(EditorService.class);
+		}
+		return editorService;
+	}
+	
+	public static ReportServiceAsync getReportService() {
+		if (reportService == null) {
+			reportService = GWT.create(EditorService.class);
+		}
+		return reportService;
+	}
 	
 }
