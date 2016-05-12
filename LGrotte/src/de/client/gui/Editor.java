@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -18,22 +19,80 @@ import de.shared.EditorServiceAsync;
 public class Editor extends VerticalPanel {
 	private VerticalPanel panel = this;
 	private FlexTable flexTable = new FlexTable();
+	
 	private TextBox fNameTextBox = new TextBox();
 	private TextBox lNameTextBox = new TextBox();
+	private TextBox koerpergroesseTextBox= new TextBox();
+	
+	private ListBox geschlechtListBox = new ListBox();
+	private ListBox haarfarbeListBox = new ListBox();
+	private ListBox religionListBox = new ListBox();
+	private ListBox raucherListBox = new ListBox();
+	
+	private Label koerpergroesseLabel = new Label("Körpergröße");
+	private Label geschlechtLabel = new Label("Geschlecht");
+	private Label haarfarbeLabel = new Label("Haarfarbe");
+	private Label religionLabel = new Label("Religion");
+	private Label raucherLabel = new Label("Raucher");
+	
+	
 	private Label fNameLabel = new Label("Vorname");
 	private Label lNameLabel = new Label("Nachname");
 	private Button profilAnlegenButton = new Button("Einschreiben");
 	
+	
 	public Editor(){
 		flexTable.setWidget(0, 0, fNameTextBox);
 		flexTable.setWidget(0, 1, fNameLabel);
+		
 		flexTable.setWidget(1, 0, lNameTextBox);
 		flexTable.setWidget(1, 1, lNameLabel);
+		
+		flexTable.setWidget(2, 0, geschlechtListBox);
+		flexTable.setWidget(2, 1, geschlechtLabel);
+		
+		flexTable.setWidget(3, 0, haarfarbeListBox);
+		flexTable.setWidget(3, 1, haarfarbeLabel);
+		
+		flexTable.setWidget(4, 0, koerpergroesseTextBox);
+		flexTable.setWidget(4, 1, koerpergroesseLabel);
+		
+		flexTable.setWidget(5, 0, religionListBox);
+		flexTable.setWidget(5, 1, religionLabel);
+		
+		flexTable.setWidget(6, 0, raucherListBox);
+		flexTable.setWidget(6, 1, raucherLabel);
+		
+		geschlechtListBox.addItem("männlich");
+		geschlechtListBox.addItem("weiblich");
+		geschlechtListBox.addItem("Andere");
+		
+		haarfarbeListBox.addItem("blond");
+		haarfarbeListBox.addItem("brunette");
+		haarfarbeListBox.addItem("schwarz");
+		haarfarbeListBox.addItem("rot");
+		haarfarbeListBox.addItem("grau");
+		
+		religionListBox.addItem("christlich");
+		religionListBox.addItem("muslimisch");
+		religionListBox.addItem("buddhistisch");
+		religionListBox.addItem("hinduitsisch");
+		religionListBox.addItem("jüdisch");
+		
+		raucherListBox.addItem("Ja");
+		raucherListBox.addItem("Nein");
+		raucherListBox.addItem("ab und an");
+		
 		this.add(flexTable);
+		
 		this.add(profilAnlegenButton);
 		profilAnlegenButton.addClickHandler(new ProfilAnlegenClickHandler());
 	}
 	
+	String geschlecht = geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex());
+	String haarfarbe = haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex());
+	String religion = religionListBox.getItemText(religionListBox.getSelectedIndex());
+	String raucher = raucherListBox.getItemText(raucherListBox.getSelectedIndex());
 	private class ProfilAnlegenCallback implements AsyncCallback{
 
 		@Override
@@ -53,7 +112,7 @@ public class Editor extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), "männlich", "Strassenköterblond", 187, "Error", "JA", new ProfilAnlegenCallback());
+	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), geschlecht , haarfarbe , Integer.parseInt(koerpergroesseTextBox.getText()), religion , raucher , new ProfilAnlegenCallback());
 			
 		}
 		
