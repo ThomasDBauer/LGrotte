@@ -49,7 +49,7 @@ public static AehnlichkeitMapper aehnlichkeitmapper = null;
 		
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteAehnlichkeit = (PreparedStatement) con.prepareStatement(
-				"DELETE FROM AEHNLICHKEIT WHERE REFERENZPROFIL_id='"+ referenz +  "',VERGLEICHSPROFIL_id='" + vergleich + "'" );
+				"DELETE FROM AEHNLICHKEIT WHERE REFERENZPROFIL_id='"+ referenz.getId() +  "',VERGLEICHSPROFIL_id='" + vergleich.getId() + "'" );
 		deleteAehnlichkeit.execute();
 	}
 
