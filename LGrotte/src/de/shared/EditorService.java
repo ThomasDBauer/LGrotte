@@ -12,6 +12,7 @@ import de.shared.BO.Profil;
 	 */
 	@RemoteServiceRelativePath("editor")
 	public interface EditorService extends RemoteService {
-		
+		void init() throws IllegalArgumentException;
+		public void insertProfil(String fname, String lname, String geschlecht, String haarfarbe, int koerpergroesse, String religion, String raucher) throws IllegalArgumentException;
 	}
 
