@@ -15,10 +15,13 @@ import de.shared.BO.Profil;
 @SuppressWarnings("serial")
 public class ReportServiceImpl extends RemoteServiceServlet implements ReportService {
 
-	Profil showProfilReport(int id) throws Exception {
-
+	@Override
+	public Profil showProfilReport(int id) throws Exception{
 		Profil p = ProfilMapper.profilMapper().getProfilByID(id);
 		return p;
+		
 	}
+
+	
 
 }
