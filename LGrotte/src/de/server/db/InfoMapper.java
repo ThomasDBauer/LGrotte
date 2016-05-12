@@ -62,6 +62,14 @@ public class InfoMapper {
 				"DELETE FROM INFOS WHERE id='"+info.getId()+"'");
 		deleteInfo.execute();
 	}
+	
+	public void updateInfo (Info info) throws Exception{
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement updateInfo = (PreparedStatement) con.prepareStatement(
+				"UPDATE INFOS (value) WHERE id='"+info.getId()+"' VALUES('"+info.getValue()+"')");
+		updateInfo.execute();
+	}
 
 
 }

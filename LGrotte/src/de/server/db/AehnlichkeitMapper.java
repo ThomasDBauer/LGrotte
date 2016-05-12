@@ -52,5 +52,5 @@ public static AehnlichkeitMapper aehnlichkeitmapper = null;
 				"DELETE FROM AEHNLICHKEIT WHERE REFERENZPROFIL_id='"+ referenz.getId() +  "',VERGLEICHSPROFIL_id='" + vergleich.getId() + "'" );
 		deleteAehnlichkeit.execute();
 	}
-
+	
 }
