@@ -8,46 +8,35 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import de.client.temp.SeedButton;
 
-public class Navigation extends HorizontalPanel{
+public class Navigation extends HorizontalPanel {
 
-	private static Navigation navigation;
+//	private static Navigation navigation;
+//
+//	public static Navigation navigation() {
+//		if (navigation == null) {
+//			navigation = new Navigation();
+//		}
+//		return navigation;
+//	}
+	private Navigation navigation = this;
+	final Button findLoveButton = new Button("Find Love");
+	final Button profilButton = new Button("Mein Profil");
+	final Button merklisteButton = new Button("Merkliste");
+	final Button impressumButton = new Button("Impressum");
 
-	protected Navigation(){
-HorizontalPanel navPanel = new HorizontalPanel();
-		
-		//Der SeedButton aus dem temp-package
-		RootPanel.get("Inhalt_oben").add(new SeedButton());
-		RootPanel.get("Navi").add(navPanel);
-		
-		//Der FindLove-Button
-		final Button findLoveButton = new Button("Find Love");
+	public Navigation() {
+		// Navigation navigation = new Navigation() ;
 		findLoveButton.setStylePrimaryName("navi-button");
-		navPanel.add(findLoveButton);
-		
-		//Der Profil-Button
-		final Button profilButton = new Button("Mein Profil");
-		profilButton.setStylePrimaryName("navi-button");
-		navPanel.add(profilButton);
-		
-		//Der Merkliste-Button
-		final Button merklisteButton = new Button("Merkliste");
-		merklisteButton.setStylePrimaryName("navi-button");
-		navPanel.add(merklisteButton);
-		
-		//Der Impressum-Button
-		final Button impressumButton = new Button("Impressum");
-		impressumButton.setStylePrimaryName("navi-button");
-		navPanel.add(impressumButton);
-		
-		findLoveButton.addClickHandler(new ClickHandler() {
+		this.add(findLoveButton);
 
-			@Override
-			public void onClick(ClickEvent event) {
-				
-				
-			}
-		});	
-	}
-	
-	
+		profilButton.setStylePrimaryName("navi-button");
+		this.add(profilButton);
+
+		merklisteButton.setStylePrimaryName("navi-button");
+		this.add(merklisteButton);
+
+		impressumButton.setStylePrimaryName("navi-button");
+		this.add(impressumButton);
+	};
+
 }
