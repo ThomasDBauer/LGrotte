@@ -26,7 +26,6 @@ public class InfoMapper {
 
 	return infomapper;
 	}
-//to.d.
 
 
 //	public void createInfoTable() throws Exception{
@@ -60,7 +59,7 @@ public class InfoMapper {
 		
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteInfo =  (PreparedStatement) con.prepareStatement(
-				"DELETE FROM INFOS WHERE id='"+info+"'");
+				"DELETE FROM INFOS WHERE id='"+info.getId()+"'");
 		deleteInfo.execute();
 	}
 
