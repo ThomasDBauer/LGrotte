@@ -16,6 +16,29 @@
     <url-pattern>/lgrotte/greet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>editorServlet</servlet-name>
+    <servlet-class>de.server.editor.EditorServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>editorServlet</servlet-name>
+    <url-pattern>/lgrotte/editor</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>reportServlet</servlet-name>
+    <servlet-class>de.server.report.ReportServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>reportServlet</servlet-name>
+    <url-pattern>/lgrotte/report</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>LGrotte.html</welcome-file>
