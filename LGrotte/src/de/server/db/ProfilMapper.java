@@ -24,8 +24,17 @@ public class ProfilMapper {
 	}
 
 	// @param googleID
-	public Profil getProfilByGoogleID() {
-		return null;
+	public Profil getProfilByID(int id) throws Exception {
+		Connection conn = (Connection)DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
+				"SELECT fname, lname FROM PROFIL WHERE id = " + id);
+		ResultSet rs = select.executeQuery();
+		Profil p = new Profil();
+		while(rs.next()){
+			p.setFname(rs.getString("fname"));
+			p.setLname(rs.getString("lname"));
+		}
+		return p;
 	}
 
 	public Vector<Profil> getBySuchprofil(Suchprofil sp) {
