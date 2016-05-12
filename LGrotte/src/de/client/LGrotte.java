@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.client.gui.Editor;
 import de.client.gui.Navigation;
 import de.client.temp.SeedButton;
 
@@ -20,6 +21,7 @@ public class LGrotte implements EntryPoint {
 		
 		RootPanel.get("Inhalt_oben").add(new SeedButton());
 		RootPanel.get("Navi").add(new Navigation());
+		RootPanel.get("Inhalt_unten").add(new Editor());
 		
 		
 	}
