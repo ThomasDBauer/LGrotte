@@ -10,9 +10,10 @@ public class Suchprofil extends BusinessObject{
 	private static final long serialVersionUID = 1L;
 	
 	private String fname, lname, haarfarbe, religion;
-	private int alter, koerpergroesse;
+	private int koerpergroesse;
 	private Date geburtsdatum;
 	private boolean raucher;
+	private boolean geschlecht;
 	
 	
 	public String getFname() {
@@ -39,12 +40,6 @@ public class Suchprofil extends BusinessObject{
 	public void setReligion(String religion) {
 		this.religion = religion;
 	}
-	public int getAlter() {
-		return alter;
-	}
-	public void setAlter(int alter) {
-		this.alter = alter;
-	}
 	public int getKoerpergroesse() {
 		return koerpergroesse;
 	}
@@ -63,7 +58,12 @@ public class Suchprofil extends BusinessObject{
 	public void setRaucher(boolean raucher) {
 		this.raucher = raucher;
 	}
-	
+	public void setGeschlecht(boolean geschlecht){
+		this.geschlecht = geschlecht;
+	}
+	public boolean isGeschlecht(){
+		return geschlecht;
+	}
 	
 	
 }
