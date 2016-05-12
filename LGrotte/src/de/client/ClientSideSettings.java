@@ -11,7 +11,7 @@ public class ClientSideSettings {
 	private static EditorServiceAsync editorService = null;
 	private static ReportServiceAsync reportService = null;
 	
-	public static EditorServiceAsync getBankVerwaltung() {
+	public static EditorServiceAsync getEditorService() {
 	    if (editorService == null) {
 	      editorService = GWT.create(EditorService.class);
 	    }
