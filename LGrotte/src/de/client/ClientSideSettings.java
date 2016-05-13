@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 
 import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
+import de.shared.ReportService;
 import de.shared.ReportServiceAsync;
 
 public class ClientSideSettings {
@@ -20,7 +21,7 @@ public class ClientSideSettings {
 	
 	public static ReportServiceAsync getReportService() {
 		if (reportService == null) {
-			reportService = GWT.create(EditorService.class);
+			reportService = GWT.create(ReportService.class);
 		}
 		return reportService;
 	}
