@@ -19,7 +19,7 @@ public class LGrotte implements EntryPoint {
 
 	public void onModuleLoad() {
 		
-		RootPanel.get("Inhalt_oben").add(new SeedButton());
+		RootPanel.get("Einstellungen_oben").add(new SeedButton());
 		RootPanel.get("Navi").add(new Navigation());
 		RootPanel.get("Inhalt_unten").add(new Editor());
 		
