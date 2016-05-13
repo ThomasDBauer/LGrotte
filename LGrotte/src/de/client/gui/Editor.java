@@ -3,6 +3,7 @@ package de.client.gui;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -11,6 +12,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.datepicker.client.DateBox;
+import com.google.gwt.user.datepicker.client.DatePicker;
 
 import de.client.ClientSideSettings;
 import de.shared.EditorService;
@@ -23,6 +26,7 @@ public class Editor extends VerticalPanel {
 	private TextBox fNameTextBox = new TextBox();
 	private TextBox lNameTextBox = new TextBox();
 	private TextBox koerpergroesseTextBox= new TextBox();
+
 	
 	private ListBox geschlechtListBox = new ListBox();
 	private ListBox haarfarbeListBox = new ListBox();
@@ -34,9 +38,15 @@ public class Editor extends VerticalPanel {
 	private Label haarfarbeLabel = new Label("Haarfarbe");
 	private Label religionLabel = new Label("Religion");
 	private Label raucherLabel = new Label("Raucher");
+	private DateTimeFormat datumsFormat = DateTimeFormat.getShortDateFormat();
+	private Label geburtsdatumLabel = new Label ("Gebursdatum");
 	
 	private Label fNameLabel = new Label("Vorname");
 	private Label lNameLabel = new Label("Nachname");
+	
+	private DateBox datumsBox = new DateBox();
+	
+	
 	private Button profilAnlegenButton = new Button("Einschreiben");
 	
 	
@@ -61,6 +71,15 @@ public class Editor extends VerticalPanel {
 		
 		flexTable.setWidget(6, 0, raucherListBox);
 		flexTable.setWidget(6, 1, raucherLabel);
+		
+		
+		flexTable.setWidget(7, 0, datumsBox);
+		flexTable.setWidget(7, 1, geburtsdatumLabel);
+	
+		
+		datumsBox.setFormat(new DateBox.DefaultFormat(datumsFormat));
+	    datumsBox.getDatePicker().setYearArrowsVisible(true);
+		datumsBox.getDatePicker().setYearAndMonthDropdownVisible(true);
 		
 		geschlechtListBox.addItem("männlich");
 		geschlechtListBox.addItem("weiblich");
