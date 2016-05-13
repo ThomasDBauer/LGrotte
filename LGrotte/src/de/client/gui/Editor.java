@@ -41,43 +41,43 @@ public class Editor extends VerticalPanel {
 	private Label religionLabel = new Label("Religion");
 	private Label raucherLabel = new Label("Raucher");
 	private DateTimeFormat datumsFormat = DateTimeFormat.getShortDateFormat();
-	private Label geburtsdatumLabel = new Label ("Gebursdatum");
+	private Label geburtsdatumLabel = new Label ("Geburtsdatum");
 	
 	private Label fNameLabel = new Label("Vorname");
 	private Label lNameLabel = new Label("Nachname");
 	
 	private DateBox datumsBox = new DateBox();
 	
-	Date bday;
+	
 	
 	private Button profilAnlegenButton = new Button("Einschreiben");
 	
 	
 	public Editor(){
-		flexTable.setWidget(0, 0, fNameTextBox);
-		flexTable.setWidget(0, 1, fNameLabel);
+		flexTable.setWidget(0, 1, fNameTextBox);
+		flexTable.setWidget(0, 0, fNameLabel);
 		
-		flexTable.setWidget(1, 0, lNameTextBox);
-		flexTable.setWidget(1, 1, lNameLabel);
+		flexTable.setWidget(1, 1, lNameTextBox);
+		flexTable.setWidget(1, 0, lNameLabel);
 		
-		flexTable.setWidget(2, 0, geschlechtListBox);
-		flexTable.setWidget(2, 1, geschlechtLabel);
+		flexTable.setWidget(2, 1, geschlechtListBox);
+		flexTable.setWidget(2, 0, geschlechtLabel);
 		
-		flexTable.setWidget(3, 0, haarfarbeListBox);
-		flexTable.setWidget(3, 1, haarfarbeLabel);
+		flexTable.setWidget(3, 1, haarfarbeListBox);
+		flexTable.setWidget(3, 0, haarfarbeLabel);
 		
-		flexTable.setWidget(4, 0, koerpergroesseTextBox);
-		flexTable.setWidget(4, 1, koerpergroesseLabel);
+		flexTable.setWidget(4, 1, koerpergroesseTextBox);
+		flexTable.setWidget(4, 0, koerpergroesseLabel);
 		
-		flexTable.setWidget(5, 0, religionListBox);
-		flexTable.setWidget(5, 1, religionLabel);
+		flexTable.setWidget(5, 1, religionListBox);
+		flexTable.setWidget(5, 0, religionLabel);
 		
-		flexTable.setWidget(6, 0, raucherListBox);
-		flexTable.setWidget(6, 1, raucherLabel);
+		flexTable.setWidget(6, 1, raucherListBox);
+		flexTable.setWidget(6, 0, raucherLabel);
 		
 		
-		flexTable.setWidget(7, 0, datumsBox);
-		flexTable.setWidget(7, 1, geburtsdatumLabel);
+		flexTable.setWidget(7, 1, datumsBox);
+		flexTable.setWidget(7, 0, geburtsdatumLabel);
 	
 		
 		datumsBox.setFormat(new DateBox.DefaultFormat(datumsFormat));
@@ -127,6 +127,10 @@ public class Editor extends VerticalPanel {
 	String raucher = raucherListBox.getItemText(raucherListBox.getSelectedIndex());
 	return raucher;
 	}
+	Date getGeburtsdatum(){
+		Date geburtsdatum = datumsBox.getValue();
+		return geburtsdatum;
+	}
 
 	private class ProfilAnlegenCallback implements AsyncCallback{
 
@@ -147,7 +151,7 @@ public class Editor extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), getGeschlecht() , getHaarfarbe() , Integer.parseInt(koerpergroesseTextBox.getText()), getReligion(), getRaucher(), bday, new ProfilAnlegenCallback());
+	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), getGeschlecht() , getHaarfarbe() , Integer.parseInt(koerpergroesseTextBox.getText()), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilAnlegenCallback());
 			
 		}
 		
