@@ -27,12 +27,18 @@ public class ProfilMapper {
 	public Profil getProfilByID(int id) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
-				"SELECT fname, lname FROM PROFIL WHERE id = " + id);
+				"SELECT fname, lname, geschlecht, haarfarbe, religion, raucher FROM PROFIL WHERE id = " + id);
 		ResultSet rs = select.executeQuery();
 		Profil p = new Profil();
 		while(rs.next()){
 			p.setFname(rs.getString("fname"));
 			p.setLname(rs.getString("lname"));
+			p.setGeschlecht(rs.getString("geschlecht"));
+			p.setHaarfarbe(rs.getString("haarfarbe"));
+			p.setReligion(rs.getString("religion"));
+			p.setRaucher(rs.getString("raucher"));
+			
+			
 		}
 		return p;
 	}
