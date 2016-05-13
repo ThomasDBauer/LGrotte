@@ -35,7 +35,6 @@ public class Editor extends VerticalPanel {
 	private Label religionLabel = new Label("Religion");
 	private Label raucherLabel = new Label("Raucher");
 	
-	
 	private Label fNameLabel = new Label("Vorname");
 	private Label lNameLabel = new Label("Nachname");
 	private Button profilAnlegenButton = new Button("Einschreiben");
@@ -83,16 +82,30 @@ public class Editor extends VerticalPanel {
 		raucherListBox.addItem("Nein");
 		raucherListBox.addItem("ab und an");
 		
+	
 		this.add(flexTable);
 		
 		this.add(profilAnlegenButton);
 		profilAnlegenButton.addClickHandler(new ProfilAnlegenClickHandler());
 	}
 	
+	String getGeschlecht(){
 	String geschlecht = geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex());
+	return geschlecht;
+	}
+	String getHaarfarbe() {
 	String haarfarbe = haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex());
+	return haarfarbe;
+	}
+	String getReligion() {
 	String religion = religionListBox.getItemText(religionListBox.getSelectedIndex());
+	return religion;
+	}
+	String getRaucher() {
 	String raucher = raucherListBox.getItemText(raucherListBox.getSelectedIndex());
+	return raucher;
+	}
+
 	private class ProfilAnlegenCallback implements AsyncCallback{
 
 		@Override
@@ -112,7 +125,7 @@ public class Editor extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), geschlecht , haarfarbe , Integer.parseInt(koerpergroesseTextBox.getText()), religion , raucher , new ProfilAnlegenCallback());
+	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), getGeschlecht() , getHaarfarbe() , Integer.parseInt(koerpergroesseTextBox.getText()), getReligion(), getRaucher(), new ProfilAnlegenCallback());
 			
 		}
 		
