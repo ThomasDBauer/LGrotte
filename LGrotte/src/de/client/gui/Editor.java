@@ -1,5 +1,7 @@
 package de.client.gui;
 
+import java.util.Date;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -46,6 +48,7 @@ public class Editor extends VerticalPanel {
 	
 	private DateBox datumsBox = new DateBox();
 	
+	Date bday;
 	
 	private Button profilAnlegenButton = new Button("Einschreiben");
 	
@@ -144,7 +147,7 @@ public class Editor extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), getGeschlecht() , getHaarfarbe() , Integer.parseInt(koerpergroesseTextBox.getText()), getReligion(), getRaucher(), new ProfilAnlegenCallback());
+	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), getGeschlecht() , getHaarfarbe() , Integer.parseInt(koerpergroesseTextBox.getText()), getReligion(), getRaucher(), bday, new ProfilAnlegenCallback());
 			
 		}
 		
