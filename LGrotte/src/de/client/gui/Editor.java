@@ -6,6 +6,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -40,7 +41,7 @@ public class Editor extends VerticalPanel {
 	private Label haarfarbeLabel = new Label("Haarfarbe");
 	private Label religionLabel = new Label("Religion");
 	private Label raucherLabel = new Label("Raucher");
-	private DateTimeFormat datumsFormat = DateTimeFormat.getShortDateFormat();
+	private DateTimeFormat datumsFormat = DateTimeFormat.getFormat(PredefinedFormat.DATE_SHORT);
 	private Label geburtsdatumLabel = new Label ("Geburtsdatum");
 	
 	private Label fNameLabel = new Label("Vorname");
@@ -81,8 +82,9 @@ public class Editor extends VerticalPanel {
 	
 		
 		datumsBox.setFormat(new DateBox.DefaultFormat(datumsFormat));
-	    datumsBox.getDatePicker().setYearArrowsVisible(true);
-		datumsBox.getDatePicker().setYearAndMonthDropdownVisible(true);
+	    datumsBox.getDatePicker().setYearAndMonthDropdownVisible(true);
+		datumsBox.getDatePicker().setVisibleYearCount(20);
+		
 		
 		geschlechtListBox.addItem("männlich");
 		geschlechtListBox.addItem("weiblich");
