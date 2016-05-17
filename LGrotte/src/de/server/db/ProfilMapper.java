@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 import java.sql.Connection;
-import java.sql.Date;
-
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 
