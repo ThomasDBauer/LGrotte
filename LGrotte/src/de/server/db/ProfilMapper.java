@@ -27,7 +27,8 @@ public class ProfilMapper {
 	public Profil getProfilByID(int id) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
-				"SELECT fname, lname, geschlecht, haarfarbe, religion, raucher FROM PROFIL WHERE id = " + id);
+				"SELECT fname, lname, geschlecht, haarfarbe, religion, raucher "
+				+ "FROM PROFIL WHERE id = " + id);
 		ResultSet rs = select.executeQuery();
 		Profil p = new Profil();
 		while(rs.next()){
@@ -87,7 +88,8 @@ public class ProfilMapper {
 				("INSERT INTO PROFIL (fname, lname, koerpergroesse, geschlecht, religion,"
 						+ "haarfarbe, geburtsdatum, raucher) VALUES ('"+p.getFname()+"','"+
 						p.getLname()+"',"+p.getKoerpergroesse()+",'"+p.getGeschlecht()+"','"+
-						p.getReligion()+"','"+p.getHaarfarbe()+"','"+p.getGeburtsdatum()+"','"+p.getRaucher()+"')");
+						p.getReligion()+"','"+p.getHaarfarbe()+"','"+p.getGeburtsdatum()+"','"+
+						p.getRaucher()+"')");
 		insert.execute();
 		
 	}	
