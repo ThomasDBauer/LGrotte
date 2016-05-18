@@ -20,7 +20,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		this.pMapper = ProfilMapper.profilMapper();
 	}
 	
-	public void insertProfil(String fname, String lname, int koerpergroesse, String geschlecht, String religion, String haarfarbe, Date geburtsdatum, String raucher) throws IllegalArgumentException{
+	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht, String religion, String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException{
 		Profil p = new Profil();
 		p.setFname(fname);
 		p.setLname(lname);
@@ -30,6 +30,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		p.setHaarfarbe(haarfarbe);
 		p.setGeburtsdatum(geburtsdatum);
 		p.setRaucher(raucher);
+		p.setEmail(email);
 		
 		try {
 			ProfilMapper.profilMapper().insertProfil(p);

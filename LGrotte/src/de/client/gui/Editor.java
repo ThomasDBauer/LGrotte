@@ -153,7 +153,9 @@ public class Editor extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-	ClientSideSettings.getEditorService().insertProfil(fNameTextBox.getText(), lNameTextBox.getText(), getGeschlecht() , getHaarfarbe() , Integer.parseInt(koerpergroesseTextBox.getText()), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilAnlegenCallback());
+	ClientSideSettings.getEditorService().insertProfil("Email", fNameTextBox.getText(), 
+			lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
+			getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilAnlegenCallback());
 			
 		}
 		
