@@ -21,14 +21,6 @@ import de.shared.BO.Profil;
 
 public class Navigation extends HorizontalPanel {
 
-	// private static Navigation navigation;
-	//
-	// public static Navigation navigation() {
-	// if (navigation == null) {
-	// navigation = new Navigation();
-	// }
-	// return navigation;
-	// }
 	private Navigation navigation = this;
 	private Button findLoveButton = new Button("Find Love",
 			new NavigationsButtonHandler());
@@ -37,6 +29,8 @@ public class Navigation extends HorizontalPanel {
 	private Button suchprofilButton = new Button("Suchprofil",
 			new NavigationsButtonHandler());
 	private Button merklisteButton = new Button("Merkliste",
+			new NavigationsButtonHandler());
+	private Button kontaktsperreButton = new Button("Kontaktsperre",
 			new NavigationsButtonHandler());
 	private Button impressumButton = new Button("Impressum",
 			new NavigationsButtonHandler());
@@ -54,16 +48,12 @@ public class Navigation extends HorizontalPanel {
 		merklisteButton.setStylePrimaryName("navi-button");
 		this.add(merklisteButton);
 
+		kontaktsperreButton.setStylePrimaryName("navi-button");
+		this.add(kontaktsperreButton);
+
 		impressumButton.setStylePrimaryName("navi-button");
 		this.add(impressumButton);
 	};
-
-	private class ActiveButtonHandler implements ClickHandler {
-		public void onClick(ClickEvent e) {
-			Button active = (Button) e.getSource();
-			active.setStylePrimaryName("aktiver-navi-button");
-		}
-	}
 
 	private class NavigationsButtonHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
@@ -100,15 +90,17 @@ public class Navigation extends HorizontalPanel {
 						new Label("Hier kommt die Merkzettelauflistung hin!"));
 				break;
 
+			case "Kontaktsperre":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt die Kontaktsperre hin!"));
+				break;
+
 			case "Impressum":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Inhalt_unten").add(
 						new Label("Hier kommt das Impressum hin!"));
 				break;
-
-			default:
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(new Label("Error 404"));
 			}
 		}
 	}
