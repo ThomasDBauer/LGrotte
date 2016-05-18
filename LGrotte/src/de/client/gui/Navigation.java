@@ -47,7 +47,7 @@ public class Navigation extends HorizontalPanel {
 
 		profilButton.setStylePrimaryName("navi-button");
 		this.add(profilButton);
-		
+
 		suchprofilButton.setStylePrimaryName("navi-button");
 		this.add(suchprofilButton);
 
@@ -67,9 +67,9 @@ public class Navigation extends HorizontalPanel {
 
 	private class NavigationsButtonHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-			
+
 			Button active = (Button) e.getSource();
-			
+
 			if (!active.getStyleName().equals("aktiv")) {
 				findLoveButton.removeStyleName("aktiv");
 				profilButton.removeStyleName("aktiv");
@@ -78,41 +78,38 @@ public class Navigation extends HorizontalPanel {
 				impressumButton.removeStyleName("aktiv");
 				active.addStyleName("aktiv");
 			}
-			
-			
-			
-// Jetzt muss gewährleistet sein, dass nur ein Button den Style aktiv haben kann,
-// dann kann ma prüfen, welcher Style aktiv ist und dementsprechend die Formulare adden und clearen
-			
-// Für jedes Gui eine id, welche zur eindeutigen
 
-			// switch (buttonName) {
-			// case "Find Love":
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(
-			// new PartnervorschlaegeReport());
-			// break;
-			// case "Mein Profil":
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(new Editor());
-			// break;
-			// case "Merkliste":
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(
-			// new Label("Hier kommt die Merkzettelauflistung hin!"));
-			// break;
-			//
-			// case "Impressum":
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(
-			// new Label("Hier kommt die Merkzettelauflistung hin!"));
-			// break;
-			//
-			// default:
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(new Label("Error 404"));
-			// }
+			switch (active.getText()) {
+			case "Find Love":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new PartnervorschlaegeReport());
+				break;
+			case "Mein Profil":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(new Editor());
+				break;
+			case "Suchprofil":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt das Suchprofil hin!"));
+				break;
+			case "Merkliste":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt die Merkzettelauflistung hin!"));
+				break;
+
+			case "Impressum":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt das Impressum hin!"));
+				break;
+
+			default:
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(new Label("Error 404"));
+			}
 		}
-
 	}
 }
