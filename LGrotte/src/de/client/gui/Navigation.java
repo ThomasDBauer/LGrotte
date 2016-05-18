@@ -34,6 +34,8 @@ public class Navigation extends HorizontalPanel {
 			new NavigationsButtonHandler());
 	private Button profilButton = new Button("Mein Profil",
 			new NavigationsButtonHandler());
+	private Button suchprofilButton = new Button("Suchprofil",
+			new NavigationsButtonHandler());
 	private Button merklisteButton = new Button("Merkliste",
 			new NavigationsButtonHandler());
 	private Button impressumButton = new Button("Impressum",
@@ -45,6 +47,9 @@ public class Navigation extends HorizontalPanel {
 
 		profilButton.setStylePrimaryName("navi-button");
 		this.add(profilButton);
+
+		suchprofilButton.setStylePrimaryName("navi-button");
+		this.add(suchprofilButton);
 
 		merklisteButton.setStylePrimaryName("navi-button");
 		this.add(merklisteButton);
@@ -64,39 +69,47 @@ public class Navigation extends HorizontalPanel {
 		public void onClick(ClickEvent e) {
 
 			Button active = (Button) e.getSource();
+
 			if (!active.getStyleName().equals("aktiv")) {
+				findLoveButton.removeStyleName("aktiv");
+				profilButton.removeStyleName("aktiv");
+				suchprofilButton.removeStyleName("aktiv");
+				merklisteButton.removeStyleName("aktiv");
+				impressumButton.removeStyleName("aktiv");
 				active.addStyleName("aktiv");
 			}
-// Jetzt muss gewährleistet sein, dass nur ein Button den Style aktiv haben kann,
-// dann kann ma prüfen, welcher Style aktiv ist und dementsprechend die Formulare adden und clearen
 
-			// switch (buttonName) {
-			// case "Find Love":
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(
-			// new PartnervorschlaegeReport());
-			// break;
-			// case "Mein Profil":
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(new Editor());
-			// break;
-			// case "Merkliste":
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(
-			// new Label("Hier kommt die Merkzettelauflistung hin!"));
-			// break;
-			//
-			// case "Impressum":
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(
-			// new Label("Hier kommt die Merkzettelauflistung hin!"));
-			// break;
-			//
-			// default:
-			// RootPanel.get("Inhalt_unten").clear();
-			// RootPanel.get("Inhalt_unten").add(new Label("Error 404"));
-			// }
+			switch (active.getText()) {
+			case "Find Love":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new PartnervorschlaegeReport());
+				break;
+			case "Mein Profil":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(new Editor());
+				break;
+			case "Suchprofil":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt das Suchprofil hin!"));
+				break;
+			case "Merkliste":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt die Merkzettelauflistung hin!"));
+				break;
+
+			case "Impressum":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt das Impressum hin!"));
+				break;
+
+			default:
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(new Label("Error 404"));
+			}
 		}
-
 	}
 }
