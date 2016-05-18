@@ -5,6 +5,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -22,6 +23,7 @@ public class LGrotte implements EntryPoint {
 		RootPanel.get("Einstellungen_oben").add(new SeedButton());
 		RootPanel.get("Navi").add(new Navigation());
 		RootPanel.get("Inhalt_unten").add(new Editor());
+		
 		
 		
 	}
