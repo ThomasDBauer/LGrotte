@@ -6,5 +6,5 @@ import de.shared.BO.Profil;
 
 public interface LoginServiceAsync {
 	void hallo(AsyncCallback callback);
-	void login(AsyncCallback<Profil>callback);
+	void login(String requestUri, AsyncCallback<Profil>callback);
 }
