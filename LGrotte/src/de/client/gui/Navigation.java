@@ -4,16 +4,19 @@ import com.google.api.server.spi.Constant;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.client.ClientSideSettings;
 import de.client.TestService;
 import de.client.TestServiceAsync;
+//import de.client.gui.PopupNavi.NavigationPopup;
 import de.client.temp.SeedButton;
 import de.shared.ReportService;
 import de.shared.ReportServiceAsync;
@@ -25,7 +28,7 @@ public class Navigation extends HorizontalPanel {
 	private Button findLoveButton = new Button("Find Love",
 			new NavigationsButtonHandler());
 	private Button profilButton = new Button("Mein Profil",
-			new NavigationsButtonHandler());
+			new ProfilPopupClickHandler());
 	private Button suchprofilButton = new Button("Suchprofil",
 			new NavigationsButtonHandler());
 	private Button merklisteButton = new Button("Merkliste",
@@ -34,6 +37,38 @@ public class Navigation extends HorizontalPanel {
 			new NavigationsButtonHandler());
 	private Button impressumButton = new Button("Impressum",
 			new NavigationsButtonHandler());
+	
+	private static class PopupNavi extends PopupPanel {
+
+	      public PopupNavi() {
+	         super(true);
+	         setWidget(new Label("Click outside of this popup to close it"));
+	      }
+	}
+	
+	public class ProfilPopupClickHandler implements ClickHandler {
+		public void onClick(ClickEvent e) {
+			Button active = (Button) e.getSource();
+
+			if (!active.getStyleName().equals("aktiv")) {
+				findLoveButton.removeStyleName("aktiv");
+				profilButton.removeStyleName("aktiv");
+				suchprofilButton.removeStyleName("aktiv");
+				merklisteButton.removeStyleName("aktiv");
+				impressumButton.removeStyleName("aktiv");
+				active.addStyleName("aktiv");
+			}
+
+	            final PopupNavi popup = new PopupNavi();
+	            popup.setPopupPositionAndShow(new PopupPanel.PositionCallback(){
+	               public void setPosition(int offsetWidth, int offsetHeight) {
+	                  int left = (Window.getClientWidth() - offsetWidth) / 3;
+	                  int top = (Window.getClientHeight() - offsetHeight) / 3;
+	                  popup.setPopupPosition(left, top);
+	               }
+	            });
+		}
+	}
 
 	public Navigation() {
 		findLoveButton.setStylePrimaryName("navi-button");
