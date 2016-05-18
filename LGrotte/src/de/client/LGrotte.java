@@ -30,6 +30,11 @@ public class LGrotte implements EntryPoint {
 	public void onModuleLoad() {
 		
 		RootPanel.get("Einstellungen_oben").add(new SeedButton());
+		RootPanel.get("Navi").add(new Navigation());
+		RootPanel.get("Inhalt_unten").add(new Editor());
+		RootPanel.get("Einstellungen_unten").add(new UserLoginTestGUI());
+		
+
 		
 		ClientSideSettings.getLoginService().login(GWT.getHostPageBaseURL() + 
 				"LGrotte.html"
@@ -38,10 +43,6 @@ public class LGrotte implements EntryPoint {
 			}
 			public void onSuccess(Profil result) {
 				if(result.isLoggedIn()){
-					RootPanel.get("Navi").add(new Navigation());
-					RootPanel.get("Inhalt_unten").add(new Editor());
-					RootPanel.get("Einstellungen_unten").add(new UserLoginTestGUI());
-					RootPanel.get("Einstellungen_oben").add(new Label("Eingeloggter User: "+result.getEmail()));
 				}else{
 				signInLink.setHref(result.getLoginUrl());
 				loginPanel.add(loginLabel);
