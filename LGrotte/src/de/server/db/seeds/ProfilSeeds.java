@@ -26,7 +26,7 @@ public class ProfilSeeds {
 	}
 	
 	private String[]emails = {
-			"Thomas@LG", "Daniel@LG", "Dieter@LG", "Gerd@LG", "Mike@LG",
+			"thdobauer@gmail.com", "Daniel@LG", "Dieter@LG", "Gerd@LG", "Mike@LG",
 			"Kerstin@LG", "Anna@LG", "Hanna@LG", "Lina@LG", "Sarah@LG"	
 		};
 	
