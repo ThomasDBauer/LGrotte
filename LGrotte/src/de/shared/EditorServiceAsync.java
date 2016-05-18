@@ -6,5 +6,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface EditorServiceAsync {
 	public void init(AsyncCallback callback) throws IllegalArgumentException;
-	public void insertProfil(String fname, String lname, String geschlecht, String haarfarbe, int koerpergroesse, String religion, String raucher, Date geburtsdatum, AsyncCallback callback) throws IllegalArgumentException;
+	public void insertProfil(String fname, String lname, int koerpergroesse, String geschlecht, String religion, String haarfarbe, Date geburtsdatum, String raucher, AsyncCallback callback) throws IllegalArgumentException;
 }

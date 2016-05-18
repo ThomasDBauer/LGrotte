@@ -20,16 +20,16 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		this.pMapper = ProfilMapper.profilMapper();
 	}
 	
-	public void insertProfil(String fname, String lname, String geschlecht, String haarfarbe, int koerpergroesse, String religion, String raucher, Date geburtsdatum) throws IllegalArgumentException{
+	public void insertProfil(String fname, String lname, int koerpergroesse, String geschlecht, String religion, String haarfarbe, Date geburtsdatum, String raucher) throws IllegalArgumentException{
 		Profil p = new Profil();
 		p.setFname(fname);
 		p.setLname(lname);
-		p.setGeschlecht(geschlecht);
-		p.setHaarfarbe(haarfarbe);
 		p.setKoerpergroesse(koerpergroesse);
+		p.setGeschlecht(geschlecht);
 		p.setReligion(religion);
-		p.setRaucher(raucher);
+		p.setHaarfarbe(haarfarbe);
 		p.setGeburtsdatum(geburtsdatum);
+		p.setRaucher(raucher);
 		
 		try {
 			ProfilMapper.profilMapper().insertProfil(p);
