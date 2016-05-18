@@ -9,7 +9,7 @@ public class MerkzettelSeeds {
 	public void seedMerkzettelTable(){
 		for(int i = 0; i < someValues.length; i++){
 			Profil mz = new Profil();
-			mz.setId(someValues[i]);
+//			mz.setId(someValues[i]);
 			try {
 				MerkzettelMapper.merkzettelMapper().insertMerkzettel(mz);
 			} catch (Exception e) {
@@ -22,7 +22,7 @@ public class MerkzettelSeeds {
 	public void seedMerkzettelDelete() {
 		for(int i = 0; i < someValues.length; i++){
 			Profil mz = new Profil();
-			mz.setId(someValues[i]);
+//			mz.setId(someValues[i]);
 			try {
 				MerkzettelMapper.merkzettelMapper().deleteMerkzettel(mz);
 			} catch (Exception e) {

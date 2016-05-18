@@ -31,14 +31,14 @@ public class MerkzettelMapper {
 	public void insertMerkzettel(Profil profil) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertMerkzettel = (PreparedStatement)con.prepareStatement(
-				"INSERT INTO merkzettel(gemerkteProfile) VALUES ('" + profil.getId() + "')");
+				"INSERT INTO merkzettel(gemerkteProfile) VALUES ('" + profil.getEmail() + "')");
 		insertMerkzettel.execute();
 	}
 	
 	public void deleteMerkzettel(Profil profil) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement(
-				"DELETE FROM merkzettel WHERE gemerkteProfile='" + profil.getId() + "'");
+				"DELETE FROM merkzettel WHERE gemerkteProfile='" + profil.getEmail() + "'");
 		deleteMerkzettel.execute();
 	}
 	

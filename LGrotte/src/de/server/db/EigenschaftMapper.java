@@ -42,20 +42,20 @@ public class EigenschaftMapper {
 
 	}
 
-	public void updateEigenschaft(Profil p) throws Exception {
-		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement update = (PreparedStatement) conn.prepareStatement
-				("UPDATE EIGENSCHAFT (fname, lname) WHERE id ='"+p.getId()+"'  VALUES ('"+p.getFname()+"','"+p.getLname()+"')");
-		update.execute();
-	}
-
-	public void deleteEigenschaft(Profil p) throws Exception {
-		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
-				("DELETE EIGENSCHAFT WHERE id = '"+p.getId()+"'");
-		delete.execute();
-
-	}
+//	public void updateEigenschaft(Profil p) throws Exception {
+//		Connection conn = (Connection) DBConnection.connection();
+//		PreparedStatement update = (PreparedStatement) conn.prepareStatement
+//				("UPDATE EIGENSCHAFT (fname, lname) WHERE id ='"+p.getId()+"'  VALUES ('"+p.getFname()+"','"+p.getLname()+"')");
+//		update.execute();
+//	}
+//
+//	public void deleteEigenschaft(Profil p) throws Exception {
+//		Connection conn = (Connection) DBConnection.connection();
+//		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
+//				("DELETE EIGENSCHAFT WHERE id = '"+p.getId()+"'");
+//		delete.execute();
+//
+//	}
 
 	public Eigenschaft getEigenschaftByID(int id) {
 		return null;
