@@ -11,7 +11,7 @@ public class Profil extends BusinessObject{
 
 	private int id;
 	
-	private String fname, lname, haarfarbe, religion, geschlecht, raucher;
+	private String fname, lname, haarfarbe, religion, geschlecht, raucher, email;
 	private int koerpergroesse;
 	private Date geburtsdatum;
 	private Info[] profilInformation;
@@ -75,12 +75,6 @@ public class Profil extends BusinessObject{
 	public void setRaucher(String raucher) {
 		this.raucher = raucher;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getFname() {
 		return fname;
 	}
@@ -98,6 +92,12 @@ public class Profil extends BusinessObject{
 	}
 	public void setProfilInformation(Info[] profilInformation) {
 		this.profilInformation = profilInformation;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

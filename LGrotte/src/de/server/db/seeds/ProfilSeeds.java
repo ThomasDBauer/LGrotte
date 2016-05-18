@@ -1,10 +1,13 @@
 package de.server.db.seeds;
 
+import java.sql.Date;
+
 import de.server.db.ProfilMapper;
 import de.shared.BO.Profil;
 
 public class ProfilSeeds {
 
+	@SuppressWarnings("deprecation")
 	public void seedProfilTable() throws Exception{
 		for(int i = 0; i < 10; i++){
 			Profil p = new Profil();
@@ -14,11 +17,18 @@ public class ProfilSeeds {
 			p.setReligion(religion[(int)(Math.random()*(religion.length))]);
 			p.setHaarfarbe(haarfarbe[(int)(Math.random()*(haarfarbe.length))]);
 			p.setRaucher(raucher[(int)(Math.random()*(raucher.length))]);
+			p.setGeburtsdatum(new Date(85, 10, 5));
+			p.setEmail(emails[i]);
 			if(i < 5)p.setGeschlecht(geschlecht[0]);
 			if(i > 5)p.setGeschlecht(geschlecht[1]);
 			ProfilMapper.profilMapper().insertProfil(p);
 		}
 	}
+	
+	private String[]emails = {
+			"Thomas@LG", "Daniel@LG", "Dieter@LG", "Gerd@LG", "Mike@LG",
+			"Kerstin@LG", "Anna@LG", "Hanna@LG", "Lina@LG", "Sarah@LG"	
+		};
 	
 	private String[]vornamen = {
 		"Thomas", "Daniel", "Dieter", "Gerd", "Mike",

@@ -12,8 +12,8 @@ import de.shared.BO.Profil;
 public class ReportServiceImpl extends RemoteServiceServlet implements ReportService {
 
 	@Override
-	public Profil showProfilReport(int id) throws Exception {
-		Profil p = ProfilMapper.profilMapper().getProfilByID(id);
+	public Profil showProfilReport(String email) throws Exception {
+		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
 		return p;
 
 	}
