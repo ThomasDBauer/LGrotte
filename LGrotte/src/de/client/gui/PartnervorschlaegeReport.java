@@ -14,7 +14,7 @@ public class PartnervorschlaegeReport extends HorizontalPanel {
 	public PartnervorschlaegeReport() {
 
 		try {
-			ClientSideSettings.getReportService().showProfilReport(1, new ReportCallback());
+			ClientSideSettings.getReportService().showProfilReport("Thomas@LG", new ReportCallback());
 		} catch (Exception e1) {
 			pvR.add(new Label(e1.toString()));
 			e1.printStackTrace();
