@@ -32,7 +32,10 @@ public class LoginFrame extends VerticalPanel {
 
 					public void onSuccess(Profil result) {
 						if (result.isLoggedIn()) {
+							RootPanel.get("Navi").add(new Label("Willkommen in der Grotte, " + result.getFname()));
 							RootPanel.get("Einstellungen_oben").add(new SeedButton());
+							logOutLink.setHref(result.getLogoutUrl());
+							RootPanel.get("Einstellungen_oben").add(logOutLink);
 							RootPanel.get("Navi").add(new Navigation());
 							RootPanel.get("Inhalt_unten").add(new Editor());
 							RootPanel.get("Einstellungen_unten").add(new UserLoginTestGUI());
@@ -40,7 +43,7 @@ public class LoginFrame extends VerticalPanel {
 							signInLink.setHref(result.getLoginUrl());
 							loginPanel.add(loginLabel);
 							loginPanel.add(signInLink);
-							RootPanel.get("Einstellungen_oben").add(loginPanel);
+							RootPanel.get("Inhalt_oben").add(loginPanel);
 						}
 					}
 
