@@ -32,19 +32,19 @@ public class KontaktsperreMapper {
 		createKontaktsperre.execute();
 	}
 	
-	public void insertKontaktsperre(Profil profil) throws Exception {
-		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement insertKontaktsperre = (PreparedStatement) con.prepareStatement(
-				"INSERT INTO kontaktsperre(gesperrtesProfil) VALUES ('" + profil.getId() + "')");
-		insertKontaktsperre.execute();
-	}
-	
-	public void deleteKontaktsperre(Profil profil) throws Exception {
-		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement deleteKontaktsperre = (PreparedStatement) con.prepareStatement(
-				"DELETE FROM kontaktsperre WHERE gesperrtesProfil='" + profil.getId() + "'");
-		deleteKontaktsperre.execute();
-	}
+//	public void insertKontaktsperre(Profil profil) throws Exception {
+//		Connection con = (Connection) DBConnection.connection();
+//		PreparedStatement insertKontaktsperre = (PreparedStatement) con.prepareStatement(
+//				"INSERT INTO kontaktsperre(gesperrtesProfil) VALUES ('" + profil.getId() + "')");
+//		insertKontaktsperre.execute();
+//	}
+//	
+//	public void deleteKontaktsperre(Profil profil) throws Exception {
+//		Connection con = (Connection) DBConnection.connection();
+//		PreparedStatement deleteKontaktsperre = (PreparedStatement) con.prepareStatement(
+//				"DELETE FROM kontaktsperre WHERE gesperrtesProfil='" + profil.getId() + "'");
+//		deleteKontaktsperre.execute();
+//	}
 	
 	
 }

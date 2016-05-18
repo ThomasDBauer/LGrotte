@@ -37,20 +37,20 @@ public static AehnlichkeitMapper aehnlichkeitmapper = null;
 		
 		Connection con = (Connection) DBConnection.connection();
 		
-		PreparedStatement insertAehnlichkeit = (PreparedStatement) con.prepareStatement("INSERT INTO aehnlichkeit (REFERENZPROFIL_id, VERGLEICHSPROFIL_id, mass) VALUES ('"
-		+ referenz.getId() + vergleich.getId() + mass + "')");
+//		PreparedStatement insertAehnlichkeit = (PreparedStatement) con.prepareStatement("INSERT INTO aehnlichkeit (REFERENZPROFIL_id, VERGLEICHSPROFIL_id, mass) VALUES ('"
+//		+ referenz.getId() + vergleich.getId() + mass + "')");
 		
 		
-		insertAehnlichkeit.execute();
+//		insertAehnlichkeit.execute();
 	}//insertAehnlichkeit() zu
 	
 	
-	public void deleteAehnlichkeit (Profil referenz, Profil vergleich) throws Exception {
-		
-		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement deleteAehnlichkeit = (PreparedStatement) con.prepareStatement(
-				"DELETE FROM AEHNLICHKEIT WHERE REFERENZPROFIL_id='"+ referenz.getId() +  "',VERGLEICHSPROFIL_id='" + vergleich.getId() + "'" );
-		deleteAehnlichkeit.execute();
-	}
+//	public void deleteAehnlichkeit (Profil referenz, Profil vergleich) throws Exception {
+//		
+//		Connection con = (Connection) DBConnection.connection();
+//		PreparedStatement deleteAehnlichkeit = (PreparedStatement) con.prepareStatement(
+//				"DELETE FROM AEHNLICHKEIT WHERE REFERENZPROFIL_id='"+ referenz.getId() +  "',VERGLEICHSPROFIL_id='" + vergleich.getId() + "'" );
+//		deleteAehnlichkeit.execute();
+//	}
 	
 }

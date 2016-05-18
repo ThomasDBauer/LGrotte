@@ -24,11 +24,11 @@ public class ProfilMapper {
 	}
 
 	// @param googleID
-	public Profil getProfilByID(int id) throws Exception {
+	public Profil getProfilByEmail(String email) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
-				"SELECT fname, lname, geschlecht, haarfarbe, religion, raucher "
-				+ "FROM PROFIL WHERE id = " + id);
+				"SELECT email, name, lname, geschlecht, haarfarbe, religion, raucher "
+				+ "FROM PROFIL WHERE email = " + email);
 		ResultSet rs = select.executeQuery();
 		Profil p = new Profil();
 		while(rs.next()){
@@ -61,7 +61,6 @@ public class ProfilMapper {
 			p.setLname(rs.getString("lname"));
 			p.setGeschlecht(rs.getString("geschlecht"));
 			p.setHaarfarbe(rs.getString("haarfarbe"));
-			p.setId(rs.getInt("id"));
 			p.setKoerpergroesse(rs.getInt("koerpergroesse"));
 			p.setReligion(rs.getString("religion"));
 			p.setRaucher(rs.getString("raucher"));
@@ -75,18 +74,18 @@ public class ProfilMapper {
 	public void createProfilTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
-				("CREATE TABLE IF NOT EXISTS PROFIL (fname varchar(35), lname varchar(35), "
+				("CREATE TABLE IF NOT EXISTS PROFIL (email varchar(35),fname varchar(35), lname varchar(35), "
 						+ "koerpergroesse int(3), geschlecht varchar(35), religion varchar(35), "
 						+ "haarfarbe varchar(35), geburtsdatum date, raucher varchar(35), "
-						+ "id int(10) NOT NULL AUTO_INCREMENT, PRIMARY KEY(id))");
+						+ "PRIMARY KEY(email))");
 		create.execute();
 	}
 	
 	public void insertProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
-				("INSERT INTO PROFIL (fname, lname, koerpergroesse, geschlecht, religion,"
-						+ "haarfarbe, geburtsdatum, raucher) VALUES ('"+p.getFname()+"','"+
+				("INSERT INTO PROFIL (email, fname, lname, koerpergroesse, geschlecht, religion,"
+						+ "haarfarbe, geburtsdatum, raucher) VALUES ('"+p.getEmail()+"','"+p.getFname()+"','"+
 						p.getLname()+"',"+p.getKoerpergroesse()+",'"+p.getGeschlecht()+"','"+
 						p.getReligion()+"','"+p.getHaarfarbe()+"','"+p.getGeburtsdatum()+"','"+
 						p.getRaucher()+"')");
@@ -97,7 +96,7 @@ public class ProfilMapper {
 	public void deleteProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
-				("DELETE FROM PROFIL WHERE id =" + p.getId()+"");
+				("DELETE FROM PROFIL WHERE email ='" + p.getEmail()+"'");
 		delete.execute();
 
 	}
@@ -109,7 +108,7 @@ public class ProfilMapper {
 						+ "geburtsdatum = '"+p.getGeburtsdatum()+"', geschlecht = '"+p.getGeschlecht()+"',"
 						+ "haarfarbe ='"+p.getHaarfarbe()+"', religion = '"+p.getReligion()+"',"
 						+ "raucher = '"+p.getRaucher()+"', koerpergroesse = '"+p.getKoerpergroesse()+"' "
-						+ "WHERE id='"+p.getId()+"'");								
+						+ "WHERE email='"+p.getEmail()+"'");								
 		update.execute();
 
 	}
