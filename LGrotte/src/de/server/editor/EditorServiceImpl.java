@@ -1,5 +1,7 @@
 package de.server.editor;
 
+import java.util.Date;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.client.TestService;
@@ -18,7 +20,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		this.pMapper = ProfilMapper.profilMapper();
 	}
 	
-	public void insertProfil(String fname, String lname, String geschlecht, String haarfarbe, int koerpergroesse, String religion, String raucher) throws IllegalArgumentException{
+	public void insertProfil(String fname, String lname, String geschlecht, String haarfarbe, int koerpergroesse, String religion, String raucher, Date geburtsdatum) throws IllegalArgumentException{
 		Profil p = new Profil();
 		p.setFname(fname);
 		p.setLname(lname);
@@ -27,6 +29,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		p.setKoerpergroesse(koerpergroesse);
 		p.setReligion(religion);
 		p.setRaucher(raucher);
+		p.setGeburtsdatum(geburtsdatum);
 		
 		try {
 			ProfilMapper.profilMapper().insertProfil(p);
