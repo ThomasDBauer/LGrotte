@@ -34,6 +34,8 @@ public class Navigation extends HorizontalPanel {
 			new NavigationsButtonHandler());
 	private Button profilButton = new Button("Mein Profil",
 			new NavigationsButtonHandler());
+	private Button suchprofilButton = new Button("Suchprofil",
+			new NavigationsButtonHandler());
 	private Button merklisteButton = new Button("Merkliste",
 			new NavigationsButtonHandler());
 	private Button impressumButton = new Button("Impressum",
@@ -45,6 +47,9 @@ public class Navigation extends HorizontalPanel {
 
 		profilButton.setStylePrimaryName("navi-button");
 		this.add(profilButton);
+		
+		suchprofilButton.setStylePrimaryName("navi-button");
+		this.add(suchprofilButton);
 
 		merklisteButton.setStylePrimaryName("navi-button");
 		this.add(merklisteButton);
@@ -62,13 +67,24 @@ public class Navigation extends HorizontalPanel {
 
 	private class NavigationsButtonHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-
+			
 			Button active = (Button) e.getSource();
+			
 			if (!active.getStyleName().equals("aktiv")) {
+				findLoveButton.removeStyleName("aktiv");
+				profilButton.removeStyleName("aktiv");
+				suchprofilButton.removeStyleName("aktiv");
+				merklisteButton.removeStyleName("aktiv");
+				impressumButton.removeStyleName("aktiv");
 				active.addStyleName("aktiv");
 			}
+			
+			
+			
 // Jetzt muss gewährleistet sein, dass nur ein Button den Style aktiv haben kann,
 // dann kann ma prüfen, welcher Style aktiv ist und dementsprechend die Formulare adden und clearen
+			
+// Für jedes Gui eine id, welche zur eindeutigen
 
 			// switch (buttonName) {
 			// case "Find Love":
