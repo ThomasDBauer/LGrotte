@@ -17,11 +17,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public String showProfilReport(String email) throws Exception {
 		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
 		StringBuffer sb = new StringBuffer();
-		sb.append("<div style = \"color: black\">");
-		sb.append("<h2>" + p.getFname() +" "+ p.getLname() + "</h2>");
-		sb.append("Email: " + p.getEmail());
-		sb.append("Raucher: " + p.getRaucher());
-		sb.append("Religion:" + p.getReligion());
+		sb.append("<div style = \"border:1px solid black; margin: 10px; background-color: #F6CED8;\">");
+		sb.append("<h2>" + p.getFname() +" "+ p.getLname() + "<br/>" + "</h2>");
+		sb.append("<b>" + "Email: " + "</b>" + p.getEmail()+ " ");
+		sb.append("<b>" + "Raucher: " + "</b>" + p.getRaucher()+ " ");
+		sb.append("<b>" + "Religion: " + "</b>" + p.getReligion());
 		sb.append("</div>");
 		return sb.toString();
 	}
