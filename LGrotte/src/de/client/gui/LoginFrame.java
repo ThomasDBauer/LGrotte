@@ -24,6 +24,7 @@ public class LoginFrame extends VerticalPanel {
 	final Anchor logOutLink = new Anchor("Logout");
 	
 	public LoginFrame() {
+		RootPanel.get("Einstellungen_oben").add(new SeedButton());
 		ClientSideSettings.getLoginService().login(GWT.getHostPageBaseURL() + "LGrotte.html",
 				new AsyncCallback<Profil>() {
 					public void onFailure(Throwable caught) {
@@ -33,7 +34,6 @@ public class LoginFrame extends VerticalPanel {
 					public void onSuccess(Profil result) {
 						if (result.isLoggedIn()) {
 							RootPanel.get("Navi").add(new Label("Willkommen in der Grotte, " + result.getFname()));
-							RootPanel.get("Einstellungen_oben").add(new SeedButton());
 							logOutLink.setHref(result.getLogoutUrl());
 							RootPanel.get("Einstellungen_oben").add(logOutLink);
 							RootPanel.get("Navi").add(new Navigation());

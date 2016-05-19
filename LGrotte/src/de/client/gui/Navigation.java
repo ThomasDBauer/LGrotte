@@ -47,8 +47,9 @@ public class Navigation extends HorizontalPanel {
 				popup.setPopupPositionAndShow(new PopupPanel.PositionCallback() {
 					public void setPosition(int offsetWidth, int offsetHeight) {
 						int left = profilButton.getAbsoluteLeft();
-						int top = profilButton.getAbsoluteTop() + 30;
+						int top = profilButton.getAbsoluteTop() + 40;
 						popup.setPopupPosition(left, top);
+						popup.show();
 					}
 
 				});
@@ -74,30 +75,6 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Inhalt_unten").add(
 						new PartnervorschlaegeReport());
 				break;
-<<<<<<< HEAD
-=======
-			case "Mein Profil":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
-				break;
-			case "Suchprofil":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(
-						new Label("Hier kommt das Suchprofil hin!"));
-				break;
-			case "Merkliste":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(
-						new Label("Hier kommt die Merkzettelauflistung hin!"));
-				break;
-
-			case "Kontaktsperre":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(
-						new Label("Hier kommt die Kontaktsperre hin!"));
-				break;
-
->>>>>>> refs/heads/master
 			case "Impressum":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Inhalt_unten").add(
