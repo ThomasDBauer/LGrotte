@@ -29,7 +29,8 @@ public class PartnervorschlaegeReport extends HorizontalPanel {
 		}
 		//Er aber, sag's ihm, er kann mich im Arsche lecken!
 		public void onSuccess(String s) {
-			 pvR.add(new HTML(s)); 
+			pvR.add(new HTML(s));
+			 
 			
 		}
 	}

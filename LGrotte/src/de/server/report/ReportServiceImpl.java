@@ -18,8 +18,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
 		StringBuffer sb = new StringBuffer();
 		sb.append("<div style = \"color: black\">");
-		sb.append("<h1 style = \"color: black\">Deine Grotte</h1>");
-		sb.append("Name: " + p.getFname() + " " + p.getLname());
+		sb.append("<h2>" + p.getFname() +" "+ p.getLname() + "</h2>");
 		sb.append("Email: " + p.getEmail());
 		sb.append("Raucher: " + p.getRaucher());
 		sb.append("Religion:" + p.getReligion());
