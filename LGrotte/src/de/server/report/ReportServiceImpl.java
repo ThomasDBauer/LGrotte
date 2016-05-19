@@ -26,14 +26,26 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		sb.append("</div>");
 		return sb.toString();
 	}
-	
-	public String showAllProfiles() throws Exception{
-		
+
+	public String showAllProfiles() throws Exception {
+
 		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
 		StringBuffer sb = new StringBuffer();
-		for(int i = 0; i < profile.size(); i++){
+		for (int i = 0; i < profile.size(); i++) {
 			sb.append(showProfilReport(profile.elementAt(i).getEmail()));
 		}
 		return sb.toString();
+	}
+
+	public String showImpressum() throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<div style = \"color: black\">");
+		sb.append("<h1 style = \"color: black\">Impressum</h1>");
+		sb.append("<div class>" + "<h2>Angaben gem‰ﬂ ß5 TMG:</h2>"
+				+ "<p>LiebesGrotte<br />" + "Nobelstraﬂe 10<br />" + "70569 Stuttgart" + "</p>" + "<h2>Kontakt:</h2>"
+				+ "<table><tr>" + "<td>Telefon:</td>" + "<td>+49 711 8923 10</td></tr>" + "<tr><td>E-Mail:</td>"
+				+ "<td>LGh(at)dm-stuttgart.de</td>" + "</tr></table><p></div>");
+		return sb.toString();
+
 	}
 }

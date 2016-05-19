@@ -14,4 +14,6 @@ public interface ReportService extends RemoteService {
 
 	String showAllProfiles()throws Exception;
 	
+	String showImpressum() throws Exception;
+	
 }
