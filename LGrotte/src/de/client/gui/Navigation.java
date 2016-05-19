@@ -112,7 +112,7 @@ public class Navigation extends HorizontalPanel {
 				break;
 			case "Mein Profil":
 				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(new Editor());
+				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				break;
 			case "Suchprofil":
 				RootPanel.get("Inhalt_unten").clear();

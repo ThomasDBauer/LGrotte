@@ -24,7 +24,7 @@ import de.client.ClientSideSettings;
 import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
 
-public class Editor extends VerticalPanel {
+public class MeinProfilEditor extends VerticalPanel {
 	private VerticalPanel panel = this;
 	private FlexTable flexTable = new FlexTable();
 	
@@ -54,10 +54,10 @@ public class Editor extends VerticalPanel {
 	
 	
 	
-	private Button profilAnlegenButton = new Button("Einschreiben");
+	private Button profilAnlegenButton = new Button("Speichern");
 	
 	
-	public Editor(){
+	public MeinProfilEditor(){
 		flexTable.setWidget(0, 1, fNameTextBox);
 		flexTable.setWidget(0, 0, fNameLabel);
 		
@@ -159,7 +159,7 @@ public class Editor extends VerticalPanel {
 	ClientSideSettings.getEditorService().insertProfil("fakemail", fNameTextBox.getText(), 
 			lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
 			getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilAnlegenCallback());
-			panel.add(datumsinhalt);
+			
 		}
 	}
 	

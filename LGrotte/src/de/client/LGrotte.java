@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.client.gui.Editor;
+import de.client.gui.MeinProfilEditor;
 import de.client.gui.LoginFrame;
 import de.client.gui.Navigation;
 import de.client.temp.SeedButton;

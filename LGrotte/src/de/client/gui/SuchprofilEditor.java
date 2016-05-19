@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class Suchprofileditor extends VerticalPanel{
+public class SuchprofilEditor extends VerticalPanel{
 	
 	private VerticalPanel vPanel = this;
 	// Button zum Suchprofil anlegen und deren Inhalt wenn er geklickt wird
@@ -47,7 +47,7 @@ public class Suchprofileditor extends VerticalPanel{
 	private Button loeschenButton = new Button("Löschen");
 	
 	
-	public Suchprofileditor() {
+	public SuchprofilEditor() {
 	spAnlegenButton.addClickHandler(new SuchprofilAnlegenClickHandler());
 	spLoeschenButton.addClickHandler(new SuchprofilLoeschenClickHandler());
 	this.add(spAnlegenButton);

@@ -37,7 +37,7 @@ public class LoginFrame extends VerticalPanel {
 							logOutLink.setHref(result.getLogoutUrl());
 							RootPanel.get("Einstellungen_oben").add(logOutLink);
 							RootPanel.get("Navi").add(new Navigation());
-							RootPanel.get("Inhalt_unten").add(new Editor());
+							RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 							RootPanel.get("Einstellungen_unten").add(new UserLoginTestGUI());
 						} else {
 							signInLink.setHref(result.getLoginUrl());
