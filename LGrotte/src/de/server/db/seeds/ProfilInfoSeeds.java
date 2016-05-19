@@ -9,19 +9,21 @@ public class ProfilInfoSeeds {
 		for(int i = 0; i < profilId.length; i++){
 			ProfilInfo pi = new ProfilInfo();
 			pi.setInfoID(infoId[i]);
-			pi.setProfilID(profilId[i]);
+			pi.setProfilEmail(profilId[i]);
 			ProfilinfoMapper.profilinfoMapper()
 			.insertProfilInfo(pi);
 		}
 	}
 		
 	
-	private int[]profilId = {
-			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+	private String[]profilId = {
+			"Anna@LG", "Daniel@LG", "Daniel@LG", "Daniel@LG", "thdobauer@gmail.com", 
+			"thdobauer@gmail.com", "thdobauer@gmail.com", "thdobauer@gmail.com", 
+			"thdobauer@gmail.com", "Lina@LG", "Lina@LG", "Lina@LG", "Lina@LG"
 	};
 	
 	private int[]infoId = {
-			1, 9, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8,
+			1, 9, 10, 1, 2, 3, 8, 7, 4, 5, 6, 7, 8,
 	};
 
 }
