@@ -10,6 +10,6 @@ import de.shared.BO.Profil;
 @RemoteServiceRelativePath("report")
 public interface ReportService extends RemoteService {
 
-	Profil showProfilReport(String email) throws Exception;
+	String showProfilReport(String email) throws Exception;
 	
 }

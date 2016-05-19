@@ -74,6 +74,30 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Inhalt_unten").add(
 						new PartnervorschlaegeReport());
 				break;
+<<<<<<< HEAD
+=======
+			case "Mein Profil":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
+				break;
+			case "Suchprofil":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt das Suchprofil hin!"));
+				break;
+			case "Merkliste":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt die Merkzettelauflistung hin!"));
+				break;
+
+			case "Kontaktsperre":
+				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Inhalt_unten").add(
+						new Label("Hier kommt die Kontaktsperre hin!"));
+				break;
+
+>>>>>>> refs/heads/master
 			case "Impressum":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Inhalt_unten").add(

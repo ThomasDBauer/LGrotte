@@ -19,6 +19,32 @@ public class Profil extends BusinessObject{
 	private Kontaktsperre[] sperrliste;
 	private Aehnlichkeitsmass[]aehnlichkeitsmasse;
 	
+	private boolean loggedIn;
+	private String loginUrl, logoutUrl;
+	
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+
+	public String getLoginUrl() {
+		return loginUrl;
+	}
+
+	public void setLoginUrl(String loginUrl) {
+		this.loginUrl = loginUrl;
+	}
+
+	public String getLogoutUrl() {
+		return logoutUrl;
+	}
+
+	public void setLogoutUrl(String logoutUrl) {
+		this.logoutUrl = logoutUrl;
+	}
 	
 	public void setGeschlecht(String geschlecht){
 		this.geschlecht = geschlecht;

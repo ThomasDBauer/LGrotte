@@ -27,8 +27,8 @@ public class ProfilMapper {
 	public Profil getProfilByEmail(String email) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
-				"SELECT email, name, lname, geschlecht, haarfarbe, religion, raucher "
-				+ "FROM PROFIL WHERE email = " + email);
+				"SELECT email, fname, lname, geschlecht, haarfarbe, religion, raucher "
+				+ "FROM PROFIL WHERE email = '" + email+"'");
 		ResultSet rs = select.executeQuery();
 		Profil p = new Profil();
 		while(rs.next()){
@@ -38,7 +38,7 @@ public class ProfilMapper {
 			p.setHaarfarbe(rs.getString("haarfarbe"));
 			p.setReligion(rs.getString("religion"));
 			p.setRaucher(rs.getString("raucher"));
-			
+			p.setEmail(rs.getString("email"));
 			
 		}
 		return p;

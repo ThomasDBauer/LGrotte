@@ -6,5 +6,5 @@ import de.shared.BO.Profil;
 
 public interface ReportServiceAsync {
 
-	public void showProfilReport(String email, AsyncCallback<Profil> callback) throws Exception;
+	public void showProfilReport(String email, AsyncCallback<String> callback) throws Exception;
 }

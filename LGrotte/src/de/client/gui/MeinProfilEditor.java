@@ -5,6 +5,8 @@ import java.util.Date;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -22,7 +24,7 @@ import de.client.ClientSideSettings;
 import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
 
-public class Editor extends VerticalPanel {
+public class MeinProfilEditor extends VerticalPanel {
 	private VerticalPanel panel = this;
 	private FlexTable flexTable = new FlexTable();
 	
@@ -41,7 +43,8 @@ public class Editor extends VerticalPanel {
 	private Label haarfarbeLabel = new Label("Haarfarbe");
 	private Label religionLabel = new Label("Religion");
 	private Label raucherLabel = new Label("Raucher");
-	private DateTimeFormat datumsFormat = DateTimeFormat.getFormat(PredefinedFormat.DATE_SHORT);
+	private DateTimeFormat datumsFormat = DateTimeFormat.getFormat("yyyy-MM-dd");
+	private Label datumsinhalt = new Label();
 	private Label geburtsdatumLabel = new Label ("Geburtsdatum");
 	
 	private Label fNameLabel = new Label("Vorname");
@@ -51,10 +54,10 @@ public class Editor extends VerticalPanel {
 	
 	
 	
-	private Button profilAnlegenButton = new Button("Einschreiben");
+	private Button profilAnlegenButton = new Button("Speichern");
 	
 	
-	public Editor(){
+	public MeinProfilEditor(){
 		flexTable.setWidget(0, 1, fNameTextBox);
 		flexTable.setWidget(0, 0, fNameLabel);
 		
@@ -84,7 +87,15 @@ public class Editor extends VerticalPanel {
 		datumsBox.setFormat(new DateBox.DefaultFormat(datumsFormat));
 	    datumsBox.getDatePicker().setYearAndMonthDropdownVisible(true);
 		datumsBox.getDatePicker().setVisibleYearCount(20);
+		datumsBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
+			public void onValueChange(ValueChangeEvent<Date> event) {
+				Date datum = event.getValue();
+				String datumsString = DateTimeFormat.getFormat("yyyy-MM-dd").format(datum);
+				datumsinhalt.setText(datumsString);
+			}
+		});
 		
+		datumsBox.setValue(new Date());
 		
 		geschlechtListBox.addItem("männlich");
 		geschlechtListBox.addItem("weiblich");
@@ -130,35 +141,26 @@ public class Editor extends VerticalPanel {
 	return raucher;
 	}
 	Date getGeburtsdatum(){
-		Date geburtsdatum = datumsBox.getValue();
-		return geburtsdatum;
+		Date geburtsdatum = datumsFormat.parse(datumsinhalt.getText());
+		java.sql.Date sqlDate = new java.sql.Date(geburtsdatum.getTime());
+		return sqlDate;
 	}
 
 	private class ProfilAnlegenCallback implements AsyncCallback{
-
-		@Override
 		public void onFailure(Throwable caught) {
 			panel.add(new Label(caught.toString()));
-			
 		}
-
-		@Override
 		public void onSuccess(Object result) {
-			
-			
 		}
 		
 	}
 	private class ProfilAnlegenClickHandler implements ClickHandler{
-
-		@Override
 		public void onClick(ClickEvent event) {
-	ClientSideSettings.getEditorService().insertProfil("Email", fNameTextBox.getText(), 
+	ClientSideSettings.getEditorService().insertProfil("fakemail", fNameTextBox.getText(), 
 			lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
 			getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilAnlegenCallback());
 			
 		}
-		
 	}
 	
 	

@@ -6,6 +6,6 @@ abgelegt und kann nach Aufruf der entsprechenden Prozessierungsmethode mit
 <code>getReportText()</code> ausgelesen werden."
 	Zitat Herr Thies.
 */
-public class HTMLReportWriter extends ReportWriter {
+public class HTMLReportWriter{
 
 }
