@@ -12,10 +12,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class PopupNavi extends PopupPanel {
 	private VerticalPanel popupPanel = new VerticalPanel();
-	private Button profilBearbeitenButton = new Button("Profil bearbeiten");
-	private Button suchprofilButton = new Button("Suchprofil");
-	private Button merklisteButton = new Button("Merkliste");
-	private Button kontaktsperreButton = new Button("Kontaktsperre");
+	private Button profilBearbeitenButton = new Button("Profil bearbeiten", new PopupClickHandler());
+	private Button suchprofilButton = new Button("Suchprofil", new PopupClickHandler());
+	private Button merklisteButton = new Button("Merkliste", new PopupClickHandler());
+	private Button kontaktsperreButton = new Button("Kontaktsperre", new PopupClickHandler());
 
 //	public void setPopupPosition(int left, int top) {
 //		this.setPopupPosition(left, top);
@@ -31,7 +31,6 @@ public class PopupNavi extends PopupPanel {
 	}
 	
 	private class PopupClickHandler implements ClickHandler{
-		@Override
 		public void onClick(ClickEvent e) {
 			
 			Button popClick = (Button) e.getSource();
