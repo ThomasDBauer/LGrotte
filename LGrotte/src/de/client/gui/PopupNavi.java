@@ -60,6 +60,7 @@ public class PopupNavi extends PopupPanel {
 			case "Suchprofil":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Inhalt_unten").add(new SuchprofilEditor());
+//				RootPanel.get("Mitte").add(new NicolaisEditor()
 				break;
 			case "Merkliste":
 				RootPanel.get("Inhalt_unten").clear();
