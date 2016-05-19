@@ -12,14 +12,18 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class PopupNavi extends PopupPanel {
 	private VerticalPanel popupPanel = new VerticalPanel();
-	private Button profilBearbeitenButton = new Button("Profil bearbeiten", new PopupClickHandler());
-	private Button suchprofilButton = new Button("Suchprofil", new PopupClickHandler());
-	private Button merklisteButton = new Button("Merkliste", new PopupClickHandler());
-	private Button kontaktsperreButton = new Button("Kontaktsperre", new PopupClickHandler());
+	private Button profilBearbeitenButton = new Button("Profil bearbeiten",
+			new PopupClickHandler());
+	private Button suchprofilButton = new Button("Suchprofil",
+			new PopupClickHandler());
+	private Button merklisteButton = new Button("Merkliste",
+			new PopupClickHandler());
+	private Button kontaktsperreButton = new Button("Kontaktsperre",
+			new PopupClickHandler());
 
-//	public void setPopupPosition(int left, int top) {
-//		this.setPopupPosition(left, top);
-//	}
+	// public void setPopupPosition(int left, int top) {
+	// this.setPopupPosition(left, top);
+	// }
 
 	public PopupNavi() {
 		super(true);
@@ -29,10 +33,10 @@ public class PopupNavi extends PopupPanel {
 		popupPanel.add(kontaktsperreButton);
 		setWidget(popupPanel);
 	}
-	
-	private class PopupClickHandler implements ClickHandler{
+
+	private class PopupClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-			
+
 			Button popClick = (Button) e.getSource();
 
 			if (!popClick.getStyleName().equals("aktiv")) {
@@ -41,19 +45,16 @@ public class PopupNavi extends PopupPanel {
 				merklisteButton.removeStyleName("aktiv");
 				kontaktsperreButton.removeStyleName("aktiv");
 				popClick.addStyleName("aktiv");
-			
-		}
+			}
 			
 			switch (popClick.getText()) {
 			case "Profil bearbeiten":
 				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(
-						new MeinProfilEditor());
+				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				break;
 			case "Suchprofil":
 				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(
-						new SuchprofilEditor());
+				RootPanel.get("Inhalt_unten").add(new SuchprofilEditor());
 				break;
 			case "Merkliste":
 				RootPanel.get("Inhalt_unten").clear();
@@ -66,6 +67,6 @@ public class PopupNavi extends PopupPanel {
 						new Label("Hier käme die Kontaktsperre hin!"));
 				break;
 			}
+		}
 	}
-}
 }
