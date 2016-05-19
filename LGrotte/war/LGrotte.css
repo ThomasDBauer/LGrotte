@@ -125,13 +125,12 @@ li a:hover {
 	float: left;
 	background-color: #FFF;
 	padding: 20px;
-	/* min-height: 600px;
-	min-width: 550px; */
-	max-width: 600px;
-/* 	border: 2px solid black; */
-	margin-rigth: 300px;
+	min-height: 600px;
+	max-width: 450px;
+  /*border: 2px solid black; */
+/* 	margin-rigth: 300px; */
+	width: 30%;
 	margin-left: 20px;
-	margin-right: 20px;
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
@@ -150,16 +149,31 @@ li a:hover {
 	padding: 20px;
 	min-height: 300px;
 	min-width: 255px;
+	max-width: 310px;
 	margin-left: 0 auto;
 	margin-right: 0 auto;
 }
 
+
+#Mitte {
+	background-color: #FFF;
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	/* height: auto;
+	min-height: 150px; */
+	margin-left: 37%;
+	margin-right: 27%;
+}
+
 #Einstellungen {
-/* 	border: 2px solid black; */
 	float: right;
-	width: 250px;
-	min-height: 400px;
-	margin: 20px;
+	width: 20%;
+	height: auto;
+	margin-right: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 20px;
 	background-color: #fff;
 }
 
@@ -182,12 +196,11 @@ li a:hover {
 
 #Fusszeile {
 	padding: 20px;
+	margin: 20px;
 	clear: both;
 	border-top: 1px solid black;
-	/* border: 2px solid black; */
 	min-height: 120px;
 	min-width: 860px;
 	width: auto;
 	background-color: #FFF;
-	padding: 20px;
 }
