@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 public class Navigation extends HorizontalPanel {
 
-	private Navigation navigation = this;
+	public Navigation navigation = this;
 	private final Button findLoveButton = new Button("Find Love",
 			new NavigationsButtonHandler());
 	private final Button profilButton = new Button("Mein Profil",
@@ -21,7 +21,7 @@ public class Navigation extends HorizontalPanel {
 	private final Button impressumButton = new Button("Impressum",
 			new NavigationsButtonHandler());
 
-	public final PopupNavi popup = new PopupNavi();
+	public static final PopupNavi popup = new PopupNavi();
 
 	public Navigation() {
 		findLoveButton.setStylePrimaryName("navi-button");

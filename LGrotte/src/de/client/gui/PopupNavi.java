@@ -9,16 +9,17 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import de.client.gui.Navigation;
 
 public class PopupNavi extends PopupPanel {
 	private VerticalPanel popupPanel = new VerticalPanel();
-	private Button profilBearbeitenButton = new Button("Profil bearbeiten",
+	public final Button profilBearbeitenButton = new Button("Profil bearbeiten",
 			new PopupClickHandler());
-	private Button suchprofilButton = new Button("Suchprofil",
+	public final Button suchprofilButton = new Button("Suchprofil",
 			new PopupClickHandler());
-	private Button merklisteButton = new Button("Merkliste",
+	public final Button merklisteButton = new Button("Merkliste",
 			new PopupClickHandler());
-	private Button kontaktsperreButton = new Button("Kontaktsperre",
+	public final Button kontaktsperreButton = new Button("Kontaktsperre",
 			new PopupClickHandler());
 
 	// public void setPopupPosition(int left, int top) {
@@ -47,6 +48,10 @@ public class PopupNavi extends PopupPanel {
 				popClick.addStyleName("aktiv");
 			}
 			
+			PopupNavi popup = new PopupNavi();
+			popup = Navigation.popup;
+			popup.hide();
+			
 			switch (popClick.getText()) {
 			case "Profil bearbeiten":
 				RootPanel.get("Inhalt_unten").clear();
@@ -66,6 +71,7 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Inhalt_unten").add(
 						new Label("Hier käme die Kontaktsperre hin!"));
 				break;
+			
 			}
 		}
 	}
