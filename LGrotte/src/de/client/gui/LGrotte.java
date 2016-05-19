@@ -14,7 +14,7 @@ public class LGrotte implements EntryPoint {
 
 	public void onModuleLoad() {
 		
-		
+		RootPanel.get().add(new LoginFrame());
 		
 	}
 }
