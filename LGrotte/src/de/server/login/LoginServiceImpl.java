@@ -10,20 +10,36 @@ import de.server.db.ProfilMapper;
 import de.shared.LoginService;
 import de.shared.BO.Profil;
 
-public class LoginServiceImpl extends RemoteServiceServlet implements LoginService{
-	
-	//TestMethode
-	public String hallo(){
+public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
+
+	// TestMethode
+	public String hallo() {
 		return "Halllooo ich bin dein Server";
 	}
-	
-	
-	public Profil login(String requestUri) throws Exception{
+
+	public Profil login(String requestUri) throws Exception {
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
-		Profil p = ProfilMapper.profilMapper().getProfilByEmail(user.getEmail());
-		p.setLoggedIn(true);
-		ClientSideSettings.setUserProfil(p);
+
+		Profil p = new Profil();
+		if (user != null) {
+			//EXISTING PROFILE
+			Profil bestehendesProfil = ProfilMapper.profilMapper().getProfilByEmail(user.getEmail());
+			if(bestehendesProfil != null){
+			p.setLoggedIn(true);
+				ClientSideSettings.setUserProfil(p);
+				bestehendesProfil.setLoggedIn(true);
+				bestehendesProfil.setLogoutUrl(userService.createLogoutURL(requestUri));
+				return bestehendesProfil;
+			}
+			//NO PROFILE
+			p.setLoggedIn(true);
+			p.setEmail(user.getEmail());
+		//USER = NULL
+		}else{
+		p.setLoggedIn(false);
+		}
+		p.setLoginUrl(userService.createLoginURL(requestUri));
 		return p;
 	}
 	
