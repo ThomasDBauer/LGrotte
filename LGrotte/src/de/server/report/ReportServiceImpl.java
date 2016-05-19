@@ -1,5 +1,7 @@
 package de.server.report;
 
+import java.util.Vector;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.server.db.ProfilMapper;
 import de.shared.ReportService;
@@ -16,13 +18,22 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
 		StringBuffer sb = new StringBuffer();
 		sb.append("<div style = \"color: black\">");
-		sb.append("<h1 style = \"color: black\">Mein Profil</h1>");
+		sb.append("<h1 style = \"color: black\">Deine Grotte</h1>");
 		sb.append("Name: " + p.getFname() + " " + p.getLname());
 		sb.append("Email: " + p.getEmail());
 		sb.append("Raucher: " + p.getRaucher());
-		sb.append("Religion:" + p.getRaucher());
+		sb.append("Religion:" + p.getReligion());
 		sb.append("</div>");
 		return sb.toString();
 	}
-
+	
+	public String showAllProfiles() throws Exception{
+		
+		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i < profile.size(); i++){
+			sb.append(showProfilReport(profile.elementAt(i).getEmail()));
+		}
+		return sb.toString();
+	}
 }
