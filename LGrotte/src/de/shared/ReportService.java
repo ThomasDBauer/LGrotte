@@ -11,5 +11,7 @@ import de.shared.BO.Profil;
 public interface ReportService extends RemoteService {
 
 	String showProfilReport(String email) throws Exception;
+
+	String showAllProfiles()throws Exception;
 	
 }
