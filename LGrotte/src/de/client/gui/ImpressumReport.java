@@ -1,27 +1,36 @@
 package de.client.gui;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 
-public class ImpressumReport extends HTML{
+import de.client.ClientSideSettings;
+
+
+public class ImpressumReport extends HorizontalPanel {
+	private HorizontalPanel pvR = this;
 	
-	private HTML impressum = new HTML ("<div class='" + 
-			"Impressum"+ 
-			"'><h2>Impressum</h2>" + 
-			"<h2>Angaben gemäß § 5 TMG:</h2>" +
-			"<p>Dana Thüring<br />" +
-			"Nobelstraße 10<br />" +
-			"70569 Stuttgart" +
-			"</p>" +
-			"<h2>Kontakt:</h2>" +
-			"<table><tr>" +
-			"<td>Telefon:</td>" +
-			"<td>0711 8923 10</td></tr>" +
-			"<tr><td>E-Mail:</td>" +
-			"<td>dt018@hdm-stuttgart.de</td>" +
-			"</tr></table><p></div>");
-	
-	public HTML getImpressum(){
-		return impressum;
+	public ImpressumReport() {
+
+		try {
+			ClientSideSettings.getReportService().showImpressum(new ReportCallback());
+		} catch (Exception e1) {
+			pvR.add(new Label(e1.toString()));
+			e1.printStackTrace();
+		}
+
 	}
 
-}
+	private class ReportCallback implements AsyncCallback<String> {
+		public void onFailure(Throwable caught) {
+			pvR.add(new Label(caught.toString()));
+		}
+		//Er aber, sag's ihm, er kann mich im Arsche lecken!
+		public void onSuccess(String s) {
+			 pvR.add(new HTML(s)); 
+			
+		}
+	}
+	}
+
