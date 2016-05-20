@@ -29,7 +29,7 @@ public class FindLoveEditor extends VerticalPanel {
 	
 	
 	
-	FindLoveEditor(){
+	public FindLoveEditor(){
 		anzeigeTabelle.setWidget(0, 0, matchFaktorLabel);
 		anzeigeTabelle.setWidget(0, 1, profilNameLabel);
 		anzeigeTabelle.setWidget(0, 2, goLabel);
