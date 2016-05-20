@@ -13,15 +13,16 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 public class Navigation extends HorizontalPanel {
 
-	private Navigation navigation = this;
+	public Navigation navigation = this;
+
 	private final Button findLoveButton = new Button("Find Love",
 			new NavigationsButtonHandler());
 	private final Button profilButton = new Button("Mein Profil",
 			new ProfilPopupClickHandler());
 	private final Button impressumButton = new Button("Impressum",
 			new NavigationsButtonHandler());
-
-	public final PopupNavi popup = new PopupNavi();
+	
+	public static final PopupNavi popup = new PopupNavi();
 
 	public Navigation() {
 		findLoveButton.setStylePrimaryName("navi-button");
@@ -33,6 +34,7 @@ public class Navigation extends HorizontalPanel {
 		impressumButton.setStylePrimaryName("navi-button");
 		this.add(impressumButton);
 	}
+	
 	
 	class ProfilPopupClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
@@ -77,8 +79,7 @@ public class Navigation extends HorizontalPanel {
 				break;
 			case "Impressum":
 				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Inhalt_unten").add(
-						new ImpressumReport());
+				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
 				break;
 			}
 		};

@@ -4,15 +4,15 @@ public class ProfilInfo extends BusinessObject{
 
 	private static final long serialVersionUID = 1L;
 
-	private int profilID;
+	private String profilEmail;
 	private int infoID;
 	private int EigenschaftID;
 	
-	public int getProfilID() {
-		return profilID;
+	public String getProfilEmail() {
+		return profilEmail;
 	}
-	public void setProfilID(int profilID) {
-		this.profilID = profilID;
+	public void setProfilEmail(String profilEmail) {
+		this.profilEmail = profilEmail;
 	}
 	public int getInfoID() {
 		return infoID;

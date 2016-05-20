@@ -17,12 +17,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public String showProfilReport(String email) throws Exception {
 		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
 		StringBuffer sb = new StringBuffer();
-		sb.append("<div style = \"color: black\">");
-		sb.append("<h1 style = \"color: black\">Deine Grotte</h1>");
-		sb.append("Name: " + p.getFname() + " " + p.getLname());
-		sb.append("Email: " + p.getEmail());
-		sb.append("Raucher: " + p.getRaucher());
-		sb.append("Religion:" + p.getReligion());
+		sb.append("<div style = \"border:1px solid black; margin: 10px; background-color: #F6CED8;\">");
+		sb.append("<h2>" + p.getFname() +" "+ p.getLname() + "<br/>" + "</h2>");
+		sb.append("<b>" + "Email: " + "</b>" + p.getEmail()+ " ");
+		sb.append("<b>" + "Raucher: " + "</b>" + p.getRaucher()+ " ");
+		sb.append("<b>" + "Religion: " + "</b>" + p.getReligion());
 		sb.append("</div>");
 		return sb.toString();
 	}
@@ -40,11 +39,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public String showImpressum() throws Exception {
 		StringBuffer sb = new StringBuffer();
 		sb.append("<div style = \"color: black\">");
-		sb.append("<h1 style = \"color: black\">Impressum</h1>");
-		sb.append("<div class>" + "<h2>Angaben gem‰ﬂ ß5 TMG:</h2>"
-				+ "<p>LiebesGrotte<br />" + "Nobelstraﬂe 10<br />" + "70569 Stuttgart" + "</p>" + "<h2>Kontakt:</h2>"
+		sb.append("<h2 style = \"color: black\">Impressum</h2>");
+		sb.append("<div class>" + "<b>Angaben gem‰ﬂ ß5 TMG:</b>"
+				+ "<p>LiebesGrotte<br />" + "Nobelstraﬂe 10<br />" + "70569 Stuttgart" + "</p>" + "<b>Kontakt:</b>"
 				+ "<table><tr>" + "<td>Telefon:</td>" + "<td>+49 711 8923 10</td></tr>" + "<tr><td>E-Mail:</td>"
-				+ "<td>LGh(at)dm-stuttgart.de</td>" + "</tr></table><p></div>");
+				+ "<td>LG(at)hdm-stuttgart.de</td>" + "</tr></table><p></div>");
 		return sb.toString();
 
 	}

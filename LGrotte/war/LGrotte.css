@@ -5,7 +5,7 @@
 }
 
 body {
-	background-color: #e2e2e2;
+	background-color: #FFF;
 }
 
 h1 {
@@ -55,8 +55,9 @@ li a:hover {
 	max-width: 1200px;
 	min-width: 960px;
 	margin: 10px auto;
-	background-color: #e2e2e2;
-	border: 2px solid black;
+	padding: 10 px;
+	background-color: #F6CECE;
+	border: 1px solid #c0c0c0;
 	height: auto;
 }
 
@@ -69,13 +70,15 @@ li a:hover {
 	min-width: 880px;
 	padding: 20px;
 	background-color: #ffffff;
-	border: 2px solid black;
-	height: 100px;
+/* 	border: 2px solid black;*/
+ 	height: 100px;
+ 	border-top: 1px solid black;
+ 	border-bottom: 1px solid black;
 }
 
 .navi-button {
-	background-color: #c0c0c0;
- /*  background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
+	background-color: #F5A9A9;
+	/*  background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
   background-image: -moz-linear-gradient(top, #d93434, #b82b2b);
   background-image: -ms-linear-gradient(top, #d93434, #b82b2b);
   background-image: -o-linear-gradient(top, #d93434, #b82b2b);
@@ -83,25 +86,28 @@ li a:hover {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px; */
-  color: #000000;
-  font-size: 14px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
+	color: #000000;
+	font-size: 14px;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+	border-color:;
+	outline-color:;
+	backgroundcolor;
 }
 
 .navi-button:hover {
-  background: #ffffff;
-  /* background-image: -webkit-linear-gradient(top, #fc3c3c, #d93434);
+	background: #FA5858;
+	/* background-image: -webkit-linear-gradient(top, #fc3c3c, #d93434);
   background-image: -moz-linear-gradient(top, #fc3c3c, #d93434);
   background-image: -ms-linear-gradient(top, #fc3c3c, #d93434);
   background-image: -o-linear-gradient(top, #fc3c3c, #d93434);
   background-image: linear-gradient(to bottom, #fc3c3c, #d93434); */
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .navi-button.aktiv {
 	background: #000000;
-  /* background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
+	/* background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
   background-image: -moz-linear-gradient(top, #d93434, #b82b2b);
   background-image: -ms-linear-gradient(top, #d93434, #b82b2b);
   background-image: -o-linear-gradient(top, #d93434, #b82b2b);
@@ -109,26 +115,28 @@ li a:hover {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px; */
-  color: #ffffff;
-  font-size: 14px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
+	color: #ffffff;
+	font-size: 14px;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
 }
-
 
 #Inhalt {
 	float: left;
 	background-color: #FFF;
 	padding: 20px;
-	/* min-height: 600px;
-	min-width: 550px; */
-	max-width: 600px;
-	border: 2px solid black;
-	margin-rigth: 300px;
+	min-height: 600px;
+	max-width: 450px;
+  /*border: 2px solid black; */
+/* 	margin-rigth: 300px; */
+	width: 30%;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 #Inhalt_oben {
-	border: 2px solid black;
+/* 	border: 2px solid black; */
 	padding: 20px;
 	min-heigt: 300px;
 	min-width: 255px;
@@ -137,25 +145,40 @@ li a:hover {
 }
 
 #Inhalt_unten {
-	border: 2px solid black;
+/* 	border: 2px solid black; */
 	padding: 20px;
 	min-height: 300px;
 	min-width: 255px;
+	max-width: 310px;
 	margin-left: 0 auto;
 	margin-right: 0 auto;
 }
 
+
+#Mitte {
+	background-color: #FFF;
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	/* height: auto;
+	min-height: 150px; */
+	margin-left: 37%;
+	margin-right: 27%;
+}
+
 #Einstellungen {
-	border: 2px solid black;
 	float: right;
-	width: 250px;
-	min-height: 400px;
-	margin: 20px;
+	width: 20%;
+	height: auto;
+	margin-right: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 20px;
 	background-color: #fff;
 }
 
 #Einstellungen_oben {
-	border: 2px solid black;
+/* 	border: 2px solid black; */
 	min-height: 200px;
 	width: 200px;
 	margin-left: 0 auto;
@@ -163,7 +186,7 @@ li a:hover {
 }
 
 #Einstellungen_unten {
-	border: 2px solid black;
+/* 	border: 2px solid black; */
 	min-height: 200px;
 	width: 200px;
 	background-color: #fff;
@@ -173,12 +196,11 @@ li a:hover {
 
 #Fusszeile {
 	padding: 20px;
+	margin: 20px;
 	clear: both;
-	border-top: 5px solid black;
-	border: 2px solid black;
+	border-top: 1px solid black;
 	min-height: 120px;
 	min-width: 860px;
 	width: auto;
 	background-color: #FFF;
-	padding: 20px;
 }
