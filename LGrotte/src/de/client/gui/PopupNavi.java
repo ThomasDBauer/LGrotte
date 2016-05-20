@@ -56,11 +56,11 @@ public class PopupNavi extends PopupPanel {
 			case "Profil bearbeiten":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
+				RootPanel.get("Mitte").add(new ProfilEigenschaftEditor());
 				break;
 			case "Suchprofil":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Inhalt_unten").add(new SuchprofilEditor());
-//				RootPanel.get("Mitte").add(new NicolaisEditor()
 				break;
 			case "Merkliste":
 				RootPanel.get("Inhalt_unten").clear();
@@ -70,7 +70,7 @@ public class PopupNavi extends PopupPanel {
 			case "Kontaktsperre":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Inhalt_unten").add(
-						new Label("Hier käme die Kontaktsperre hin!"));
+						new Label("Hier kï¿½me die Kontaktsperre hin!"));
 				break;
 			
 			}

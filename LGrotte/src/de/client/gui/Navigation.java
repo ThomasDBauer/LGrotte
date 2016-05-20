@@ -78,7 +78,7 @@ public class Navigation extends HorizontalPanel {
 			case "Find Love":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Inhalt_unten").add(
-						new PartnervorschlaegeReport());
+						new FindLoveEditor());
 				break;
 			case "Impressum":
 				RootPanel.get("Inhalt_unten").clear();
