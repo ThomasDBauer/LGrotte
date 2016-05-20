@@ -1,4 +1,4 @@
-package de.client.gui;
+package de.shared.RO;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
