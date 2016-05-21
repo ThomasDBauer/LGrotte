@@ -39,6 +39,7 @@ public class LoginFrame extends VerticalPanel {
 							RootPanel.get("Navi").add(new Navigation());
 							RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 							RootPanel.get("Einstellungen_unten").add(new UserLoginTestGUI());
+							RootPanel.get("Fusszeile").add(new ImageFooter());
 						} else {
 							signInLink.setHref(result.getLoginUrl());
 							loginPanel.add(loginLabel);
