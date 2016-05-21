@@ -53,7 +53,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	private DateBox datumsBox = new DateBox();
 	
 	
-	private Button profilLöschenButton = new Button("Löschen");
+	private Button profilLoeschenButton = new Button("Loeschen");
 	private Button profilAnlegenButton = new Button("Speichern");
 	
 	
@@ -121,7 +121,7 @@ public class MeinProfilEditor extends VerticalPanel {
 		this.add(flexTable);
 		
 		this.add(profilAnlegenButton);
-		this.add(profilLöschenButton);
+		this.add(profilLoeschenButton);
 		profilAnlegenButton.addClickHandler(new ProfilAnlegenClickHandler());
 	}
 	
