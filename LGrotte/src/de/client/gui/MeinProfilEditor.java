@@ -123,6 +123,7 @@ public class MeinProfilEditor extends VerticalPanel {
 		this.add(profilAnlegenButton);
 		this.add(profilLoeschenButton);
 		profilAnlegenButton.addClickHandler(new ProfilAnlegenClickHandler());
+		profilLoeschenButton.addClickHandler(new ProfilLoeschenClickHandler());
 	}
 	
 	String getGeschlecht(){

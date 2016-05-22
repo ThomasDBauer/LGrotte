@@ -45,11 +45,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Profil löschen
 	public void deleteProfil(String email) throws IllegalArgumentException {
 
-		// Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
-		//p.setEmail(email);
+		Profil deletep = new Profil();
+		deletep.setEmail(email);
 
 		try {
-			// ProfilMapper.profilMapper().deleteProfil(p);
+			ProfilMapper.profilMapper().deleteProfil(deletep);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
