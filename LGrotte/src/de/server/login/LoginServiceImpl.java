@@ -12,10 +12,6 @@ import de.shared.BO.Profil;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
 
-	// TestMethode
-	public String hallo() {
-		return "Halllooo ich bin dein Server";
-	}
 
 	public Profil login(String requestUri) throws Exception {
 		UserService userService = UserServiceFactory.getUserService();

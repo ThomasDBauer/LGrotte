@@ -11,7 +11,6 @@ import de.client.ClientSideSettings;
 import de.client.TestService;
 import de.client.TestServiceAsync;
 import de.client.temp.SeedButton;
-import de.client.temp.UserLoginTestGUI;
 import de.shared.BO.Profil;
 
 public class LoginFrame extends VerticalPanel {
@@ -38,7 +37,6 @@ public class LoginFrame extends VerticalPanel {
 							RootPanel.get("Einstellungen_oben").add(logOutLink);
 							RootPanel.get("Navi").add(new Navigation());
 							RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
-							RootPanel.get("Einstellungen_unten").add(new UserLoginTestGUI());
 							RootPanel.get("Fusszeile").add(new ImageFooter());
 						} else {
 							signInLink.setHref(result.getLoginUrl());
