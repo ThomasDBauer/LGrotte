@@ -9,38 +9,43 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.client.ClientSideSettings;
+
 public class ProfilEigenschaftEditor extends VerticalPanel {
 
-	private VerticalPanel panel = this;
+	private Button addEigenschaftenButton = new Button("+");
 	
-	private HorizontalPanel eigenschaftPanel = new HorizontalPanel();
-	private HorizontalPanel infoPanel = new HorizontalPanel();
 	
-	private Label ProfilErweiternLabel = new Label("Profil erweitern");
-	
-	private TextBox eigenschaftTextBox = new TextBox();
-	private TextBox InfoTextBox = new TextBox();
-	
-	private Button addEigenschaftButton = new Button("Eigenschaft hinzufügen");
-	private Button addInfoButton = new Button("Info hinzufügen");
-	
-	private ListBox auswahlEigenschaftBox = new ListBox();
-	
-	ProfilEigenschaftEditor(){
-		auswahlEigenschaftBox.addItem("Huhu");
-		auswahlEigenschaftBox.addItem("hihi");
-		
-		this.add(ProfilErweiternLabel);
-		this.add(eigenschaftPanel);
-		eigenschaftPanel.add(eigenschaftTextBox);
-		eigenschaftPanel.add(addEigenschaftButton);
-		this.add(infoPanel);
-		infoPanel.add(auswahlEigenschaftBox);
-		infoPanel.add(InfoTextBox);
-		infoPanel.add(addInfoButton);
-		
-		
+	private class AddEigenschaftenClickHandler{
+		public void onClick(ClickEvent e){
+			
+		}
 	}
 	
+	
+	
+	/*private VerticalPanel vPanel = this;
+	private Button eigenschaftHinzufügenButton = new Button("+");
+	private Button speichernButton = new Button("speichern");
+	
+	private ListBox eigenschaftenListBox = new ListBox();
+	
+	private TextBox infoObjektTextBox = new TextBox();
+	
+	
+	ProfilEigenschaftEditor(){	
+		vPanel.add(eigenschaftHinzufügenButton);
+		eigenschaftHinzufügenButton.addClickHandler(new eigenschaftAnzeigenClickHandler());
+	}
+	private class eigenschaftAnzeigenClickHandler implements ClickHandler {
+		
+		public void onClick(ClickEvent event) {
+		    vPanel.add(eigenschaftenListBox);
+			for(int i = 0; i < ClientSideSettings.getEditorService(). )
+			vPanel.add(speichernButton);
+			
+		}
+		
+	}*/
 	
 }
