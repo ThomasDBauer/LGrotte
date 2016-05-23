@@ -48,8 +48,8 @@ public class Navigation extends HorizontalPanel {
 
 				popup.setPopupPositionAndShow(new PopupPanel.PositionCallback() {
 					public void setPosition(int offsetWidth, int offsetHeight) {
-						int left = profilButton.getAbsoluteLeft();
-						int top = profilButton.getAbsoluteTop() + 40;
+						int left = findLoveButton.getAbsoluteLeft();
+						int top = profilButton.getAbsoluteTop() +45;
 						popup.setPopupPosition(left, top);
 						popup.show();
 					}
@@ -77,11 +77,13 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(
 						new PartnervorschlaegeReport());
+				popup.hide();
 				break;
 			case "Impressum":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
+				popup.hide();
 				break;
 			}
 		};
