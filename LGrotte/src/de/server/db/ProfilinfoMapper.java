@@ -118,7 +118,8 @@ public class ProfilinfoMapper {
 
 		try {
 			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT profil, info_id FROM profil_info" + "Order BY id");
+			ResultSet rs = stmt.executeQuery("SELECT profil, info_id FROM profil_info"
+					+ "Order BY id");
 
 			while (rs.next()) {
 				ProfilInfo pi = new ProfilInfo();
