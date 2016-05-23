@@ -64,12 +64,14 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	
-	// Methoden rund um die Eigenschaften
+	// Methoden rund um die Eigenschaften und Infos
+	
 	// Eigenschaften auslesen
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
 		return this.eMapper.getEigenschaften();
 	}
 	
+	// Infos einfürgen 
 	public void insertInfo(Info info) throws Exception{
 		InfoMapper.infoMapper().insertInfo(info);
 	}
