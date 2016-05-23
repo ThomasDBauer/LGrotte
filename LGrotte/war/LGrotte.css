@@ -12,7 +12,7 @@ h1 {
 	font-size: 2em;
 	font-weight: bold;
 	color: #FFF;
-	margin: 40px 0px 70px;
+	margin: 20px 15px;
 }
 
 a {
@@ -62,7 +62,10 @@ li a:hover {
 }
 
 #Headline {
-	height: 150px;
+	min-height: 50px;
+	height: auto;
+	padding-top: 0 auto;
+	padding-bottom: 0 auto;
 }
 
 #Navi {
@@ -71,13 +74,14 @@ li a:hover {
 	padding: 20px;
 	background-color: #ffffff;
 /* 	border: 2px solid black;*/
- 	height: 100px;
+ 	min-height: 50px;
+ 	height: 0 auto;
  	border-top: 1px solid black;
  	border-bottom: 1px solid black;
 }
 
 .navi-button {
-	background-color: #F5A9A9;
+	background-color: #f39c9c;
 	/*  background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
   background-image: -moz-linear-gradient(top, #d93434, #b82b2b);
   background-image: -ms-linear-gradient(top, #d93434, #b82b2b);
@@ -87,16 +91,18 @@ li a:hover {
   -moz-border-radius: 28;
   border-radius: 28px; */
 	color: #000000;
-	font-size: 14px;
-	padding: 10px 20px 10px 20px;
+	font-size: 15px;
+	padding: 5px 15px 5px 15px;
 	text-decoration: none;
-	border-color:;
-	outline-color:;
-	backgroundcolor;
+	border-color: #FFF;
+	outline-color: #000000;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .navi-button:hover {
-	background: #FA5858;
+	background: #ff4646;
+	color: #000000;
 	/* background-image: -webkit-linear-gradient(top, #fc3c3c, #d93434);
   background-image: -moz-linear-gradient(top, #fc3c3c, #d93434);
   background-image: -ms-linear-gradient(top, #fc3c3c, #d93434);
@@ -106,7 +112,7 @@ li a:hover {
 }
 
 .navi-button.aktiv {
-	background: #000000;
+	background: #c0c0c0;
 	/* background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
   background-image: -moz-linear-gradient(top, #d93434, #b82b2b);
   background-image: -ms-linear-gradient(top, #d93434, #b82b2b);
@@ -115,10 +121,12 @@ li a:hover {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px; */
-	color: #ffffff;
-	font-size: 14px;
-	padding: 10px 20px 10px 20px;
+	color: #000000;
+	font-size: 15px;
+	padding: 5px 15px 5px 15px;
 	text-decoration: none;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 #Inhalt {
@@ -160,10 +168,11 @@ li a:hover {
 	padding: 20px;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	/* height: auto;
-	min-height: 150px; */
+	height: auto;
+	min-height: 350px;
 	margin-left: 37%;
 	margin-right: 27%;
+
 }
 
 #Einstellungen {
@@ -203,4 +212,14 @@ li a:hover {
 	min-width: 860px;
 	width: auto;
 	background-color: #FFF;
+}
+
+.bild_links{
+	margin: 20px;
+	float: left;
+}
+
+.bild_rechts{
+	margin: 20px;
+	float: right;
 }

@@ -13,18 +13,14 @@ import de.client.gui.Navigation;
 
 public class PopupNavi extends PopupPanel {
 	private VerticalPanel popupPanel = new VerticalPanel();
-	public final Button profilBearbeitenButton = new Button("Profil bearbeiten",
-			new PopupClickHandler());
+	public final Button profilBearbeitenButton = new Button(
+			"Profil bearbeiten", new PopupClickHandler());
 	public final Button suchprofilButton = new Button("Suchprofil",
 			new PopupClickHandler());
 	public final Button merklisteButton = new Button("Merkliste",
 			new PopupClickHandler());
 	public final Button kontaktsperreButton = new Button("Kontaktsperre",
 			new PopupClickHandler());
-
-	// public void setPopupPosition(int left, int top) {
-	// this.setPopupPosition(left, top);
-	// }
 
 	public PopupNavi() {
 		super(true);
@@ -47,32 +43,36 @@ public class PopupNavi extends PopupPanel {
 				kontaktsperreButton.removeStyleName("aktiv");
 				popClick.addStyleName("aktiv");
 			}
-			
+
 			PopupNavi popup = new PopupNavi();
 			popup = Navigation.popup;
 			popup.hide();
-			
+
 			switch (popClick.getText()) {
 			case "Profil bearbeiten":
 				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				RootPanel.get("Mitte").add(new ProfilEigenschaftEditor());
 				break;
 			case "Suchprofil":
 				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(new SuchprofilEditor());
 				break;
 			case "Merkliste":
 				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(
 						(IsWidget) new MerkzettelEditor());
 				break;
 			case "Kontaktsperre":
 				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(
-						new Label("Hier k�me die Kontaktsperre hin!"));
+						new Label("Hier kaeme die Kontaktsperre hin!"));
 				break;
-			
+
 			}
 		}
 	}

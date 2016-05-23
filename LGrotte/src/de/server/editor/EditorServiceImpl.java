@@ -1,6 +1,7 @@
 package de.server.editor;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -20,6 +21,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		this.pMapper = ProfilMapper.profilMapper();
 	}
 	
+	// Profil erstellen
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht, String religion, String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException{
 		Profil p = new Profil();
 		p.setFname(fname);
@@ -39,4 +41,19 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			e.printStackTrace();
 		}
 	}
+	
+	// Profil löschen
+	public void deleteProfil(String email) throws IllegalArgumentException {
+
+		Profil deletep = new Profil();
+		deletep.setEmail(email);
+
+		try {
+			ProfilMapper.profilMapper().deleteProfil(deletep);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

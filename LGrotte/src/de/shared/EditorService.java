@@ -17,5 +17,6 @@ import de.shared.BO.Profil;
 		public void insertProfil(String email, String fname, String lname, 
 				int koerpergroesse, String geschlecht, String religion, 
 				String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException;
+		public void deleteProfil(String email) throws IllegalArgumentException;
 	}
 

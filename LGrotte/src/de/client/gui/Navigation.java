@@ -77,11 +77,13 @@ public class Navigation extends HorizontalPanel {
 			switch (active.getText()) {
 			case "Find Love":
 				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(
 						new FindLoveEditor());
 				break;
 			case "Impressum":
 				RootPanel.get("Inhalt_unten").clear();
+				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
 				break;
 			}

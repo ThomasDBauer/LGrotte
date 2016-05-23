@@ -53,7 +53,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	private DateBox datumsBox = new DateBox();
 	
 	
-	
+	private Button profilLoeschenButton = new Button("Loeschen");
 	private Button profilAnlegenButton = new Button("Speichern");
 	
 	
@@ -121,7 +121,9 @@ public class MeinProfilEditor extends VerticalPanel {
 		this.add(flexTable);
 		
 		this.add(profilAnlegenButton);
+		this.add(profilLoeschenButton);
 		profilAnlegenButton.addClickHandler(new ProfilAnlegenClickHandler());
+		profilLoeschenButton.addClickHandler(new ProfilLoeschenClickHandler());
 	}
 	
 	String getGeschlecht(){
@@ -145,7 +147,7 @@ public class MeinProfilEditor extends VerticalPanel {
 		java.sql.Date sqlDate = new java.sql.Date(geburtsdatum.getTime());
 		return sqlDate;
 	}
-
+	// Profil anlegen
 	private class ProfilAnlegenCallback implements AsyncCallback{
 		public void onFailure(Throwable caught) {
 			panel.add(new Label(caught.toString()));
@@ -162,6 +164,21 @@ public class MeinProfilEditor extends VerticalPanel {
 			
 		}
 	}
+	
+	// Profil löschen
+	private class ProfilLoeschenCallback implements AsyncCallback{
+		public void onFailure(Throwable caught) {
+			panel.add(new Label(caught.toString()));
+		}
+		public void onSuccess(Object result) {
+		}
+	}
+	private class ProfilLoeschenClickHandler implements ClickHandler{
+		public void onClick(ClickEvent event) {
+			ClientSideSettings.getEditorService().deleteProfil("fakemail", new ProfilLoeschenCallback());	
+		}
+	}
+	
 	
 	
 }
