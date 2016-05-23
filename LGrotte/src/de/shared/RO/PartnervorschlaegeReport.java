@@ -35,4 +35,24 @@ public class PartnervorschlaegeReport extends HorizontalPanel {
 		}
 	}
 
+	public String getHeaderData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getCreated() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public PartnervorschlaegeReport getSubReportAt(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getNumSubReports() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

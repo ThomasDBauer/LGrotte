@@ -39,4 +39,14 @@ public abstract class ReportWriter {
    * @param r der zu Übersetzende Report
    */
   public abstract void process(ImpressumReport r);
+
+public void process(AllAccountsOfCustomerReport r) {
+	// TODO Auto-generated method stub
+	
+}
+
+public void process(AllAccountsOfAllCustomersReport r) {
+	// TODO Auto-generated method stub
+	
+}
 }

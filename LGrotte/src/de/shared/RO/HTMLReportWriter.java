@@ -225,4 +225,22 @@ public void process(AllAccountsOfAllCustomersReport r) {
   public String getReportText() {
     return this.getHeader() + this.reportText + this.getTrailer();
   }
+
+@Override
+public void process(PartnervorschlaegeReport r) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void process(MeinProfilReport r) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void process(ImpressumReport r) {
+	// TODO Auto-generated method stub
+	
+}
 }
