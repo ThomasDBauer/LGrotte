@@ -63,9 +63,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 	// Methoden rund um die Eigenschaften
 	// Eigenschaften auslesen
-	public Vector<Eigenschaft> getEigenschaften() throws IllegalArgumentException {
-		return null;
-		
+	public Vector<Eigenschaft> readEigenschaften() throws Exception {
+		return this.eMapper.getEigenschaften();
 	}
 	
 	
