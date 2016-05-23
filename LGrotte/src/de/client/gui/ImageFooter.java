@@ -21,26 +21,26 @@ public class ImageFooter implements IsWidget{
 
 	
 	public ImageFooter() {
-		imageLeft.addErrorHandler(new ErrorHandler() {
-			public void onError(ErrorEvent event) {
-				lb1.setText("Fehler aufgetreten");
-			}
-		});
-
-		imageRight.addErrorHandler(new ErrorHandler() {
-			public void onError(ErrorEvent event) {
-				lb1.setText("Fehler aufgetreten");
-			}
-		});
+//		imageLeft.addErrorHandler(new ErrorHandler() {
+//			public void onError(ErrorEvent event) {
+//				lb1.setText("Fehler aufgetreten");
+//			}
+//		});
+//
+//		imageRight.addErrorHandler(new ErrorHandler() {
+//			public void onError(ErrorEvent event) {
+//				lb1.setText("Fehler aufgetreten");
+//			}
+//		});
 		
-		imageLeft.setUrl("https://www.hdm-stuttgart.de/stylesheets_bilder/Logo_Graustufen_1.gif");
-		imageLeft.setStylePrimaryName("bild_links");
+//		imageLeft.setUrl("https://www.hdm-stuttgart.de/stylesheets_bilder/Logo_Graustufen_1.gif");
+//		imageLeft.setStylePrimaryName("bild_links");
 //		imageLeft.addClickHandler(new ImageFooterClickHandler());
-		RootPanel.get("Fusszeile").add(imageLeft);
+//		RootPanel.get("Fusszeile").add(imageLeft);
 		
-		imageRight.setUrl("http://www.wi.hdm-stuttgart.de/files/WI_2013/images/wi_logo.png");
-		imageRight.setStylePrimaryName("bild_rechts");
-		RootPanel.get("Fusszeile").add(imageRight);
+//		imageRight.setUrl("https://idblog.hdm-stuttgart.de/projektkonzept-2015-hdmlogo/files/2015/04/logo_Wirtschaftsinformatik-und-digitale-Meiden.jpg");
+//		imageRight.setStylePrimaryName("bild_rechts");
+//		RootPanel.get("Fusszeile").add(imageRight);
 	}
 	
 //	private ImageFooterClickHandler implements ClickHandler{

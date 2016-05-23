@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.client.gui.Navigation;
 
 public class PopupNavi extends PopupPanel {
-	private VerticalPanel popupPanel = new VerticalPanel();
+	private HorizontalPanel popupPanel = new HorizontalPanel();
 	public final Button profilBearbeitenButton = new Button(
 			"Profil bearbeiten", new PopupClickHandler());
 	public final Button suchprofilButton = new Button("Suchprofil",
@@ -24,6 +24,10 @@ public class PopupNavi extends PopupPanel {
 
 	public PopupNavi() {
 		super(true);
+		profilBearbeitenButton.setStylePrimaryName("navi-button");
+		suchprofilButton.setStylePrimaryName("navi-button");
+		merklisteButton.setStylePrimaryName("navi-button");
+		kontaktsperreButton.setStylePrimaryName("navi-button");
 		popupPanel.add(profilBearbeitenButton);
 		popupPanel.add(suchprofilButton);
 		popupPanel.add(merklisteButton);
@@ -44,9 +48,9 @@ public class PopupNavi extends PopupPanel {
 				popClick.addStyleName("aktiv");
 			}
 
-			PopupNavi popup = new PopupNavi();
-			popup = Navigation.popup;
-			popup.hide();
+//			PopupNavi popup = new PopupNavi();
+//			popup = Navigation.popup;
+//			popup.hide();
 
 			switch (popClick.getText()) {
 			case "Profil bearbeiten":

@@ -74,7 +74,7 @@ li a:hover {
 	padding: 20px;
 	background-color: #ffffff;
 /* 	border: 2px solid black;*/
- 	min-height: 50px;
+ 	min-height: 70px;
  	height: 0 auto;
  	border-top: 1px solid black;
  	border-bottom: 1px solid black;
@@ -169,7 +169,7 @@ li a:hover {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	height: auto;
-	min-height: 350px;
+	min-height: 600px;
 	margin-left: 37%;
 	margin-right: 27%;
 
@@ -184,6 +184,7 @@ li a:hover {
 	margin-bottom: 20px;
 	padding: 20px;
 	background-color: #fff;
+	min-height: 600px;
 }
 
 #Einstellungen_oben {
@@ -215,11 +216,15 @@ li a:hover {
 }
 
 .bild_links{
-	margin: 20px;
+	margin-left: 20px;
 	float: left;
+	margin-top: 0 auto;
+	margin-bottom: 0 auto;
 }
 
 .bild_rechts{
-	margin: 20px;
+	margin-right: 20px;
 	float: right;
+	margin-top: 0 auto;
+	margin-bottom: 0 auto;
 }
