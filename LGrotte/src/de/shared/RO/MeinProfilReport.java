@@ -1,4 +1,6 @@
-package de.client.gui;
+package de.shared.RO;
+
+import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
@@ -34,6 +36,26 @@ public class MeinProfilReport extends HorizontalPanel{
 			 
 			
 		}
+	}
+
+	public String getHeaderData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getCreated() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Vector<Row> getRows() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getImprint() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
