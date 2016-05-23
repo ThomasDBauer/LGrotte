@@ -1,4 +1,4 @@
-package de.client.gui;
+package de.shared.RO;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
@@ -27,7 +27,7 @@ public class PartnervorschlaegeReport extends HorizontalPanel {
 		public void onFailure(Throwable caught) {
 			pvR.add(new Label(caught.toString()));
 		}
-		//Er aber, sag's ihm, er kann mich im Arsche lecken!
+		
 		public void onSuccess(String s) {
 			pvR.add(new HTML(s));
 			 
