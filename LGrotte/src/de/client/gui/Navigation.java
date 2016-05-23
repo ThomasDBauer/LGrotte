@@ -11,9 +11,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import de.shared.RO.ImpressumReport;
-import de.shared.RO.PartnervorschlaegeReport;
-
 public class Navigation extends HorizontalPanel {
 
 	public Navigation navigation = this;
