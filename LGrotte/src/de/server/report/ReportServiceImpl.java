@@ -47,4 +47,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return sb.toString();
 
 	}
+
+	@Override
+	public String showMyProfile(String email) throws Exception {
+		Profil profil = ProfilMapper.profilMapper().getProfilByEmail(email);
+		StringBuffer sb = new StringBuffer();
+		sb.append(showProfilReport(profil.getEmail()));
+		return sb.toString();
+	}
 }

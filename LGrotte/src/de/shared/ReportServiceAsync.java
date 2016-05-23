@@ -11,4 +11,6 @@ public interface ReportServiceAsync {
 	public void showAllProfiles(AsyncCallback<String> callback) throws Exception;
 
 	public void showImpressum(AsyncCallback<String> callback)throws Exception;
+
+	public void showMyProfile(String email, AsyncCallback<String> callback) throws Exception;
 }
