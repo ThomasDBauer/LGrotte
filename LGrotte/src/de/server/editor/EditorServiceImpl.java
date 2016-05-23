@@ -6,8 +6,10 @@ import java.util.Vector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.client.TestService;
+import de.server.db.EigenschaftMapper;
 import de.server.db.ProfilMapper;
 import de.shared.EditorService;
+import de.shared.BO.Eigenschaft;
 import de.shared.BO.Profil;
 /**
  * The server-side implementation of the RPC service.
@@ -16,11 +18,13 @@ import de.shared.BO.Profil;
 public class EditorServiceImpl extends RemoteServiceServlet implements EditorService{
 	
 	private ProfilMapper pMapper = null;
+	private EigenschaftMapper eMapper = null;
 	
 	public void init() throws IllegalArgumentException {
 		this.pMapper = ProfilMapper.profilMapper();
+		this.eMapper = EigenschaftMapper.eigenschaftMapper();
 	}
-	
+	// Methoden rund um das Profil
 	// Profil erstellen
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht, String religion, String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException{
 		Profil p = new Profil();
@@ -55,5 +59,15 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			e.printStackTrace();
 		}
 	}
+	
+	
+	// Methoden rund um die Eigenschaften
+	// Eigenschaften auslesen
+	public Vector<Eigenschaft> getEigenschaften() throws IllegalArgumentException {
+		return null;
+		
+	}
+	
+	
 	
 }
