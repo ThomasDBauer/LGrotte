@@ -1,8 +1,11 @@
 package de.shared;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import de.shared.BO.Eigenschaft;
 
 public interface EditorServiceAsync {
 	public void init(AsyncCallback callback) throws IllegalArgumentException;
@@ -10,4 +13,6 @@ public interface EditorServiceAsync {
 			String geschlecht, String religion, String haarfarbe, String raucher, Date geburtsdatum, 
 			AsyncCallback callback) throws IllegalArgumentException;
 	public void deleteProfil(String email, AsyncCallback callback) throws IllegalArgumentException;
+
+	void getEigenschaften(AsyncCallback<Vector<Eigenschaft>> callback) throws Exception;
 }
