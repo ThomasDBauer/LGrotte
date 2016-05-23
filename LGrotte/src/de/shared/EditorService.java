@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.shared.BO.Eigenschaft;
+import de.shared.BO.Info;
 import de.shared.BO.Profil;
 
 	/**
@@ -21,5 +22,6 @@ import de.shared.BO.Profil;
 		public void deleteProfil(String email) throws IllegalArgumentException;
 		
 		Vector<Eigenschaft> getEigenschaften() throws Exception;
+		void insertInfo(Info info) throws Exception;
 	}
 

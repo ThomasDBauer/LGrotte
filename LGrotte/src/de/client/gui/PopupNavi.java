@@ -57,7 +57,12 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
 				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
-				RootPanel.get("Mitte").add(new ProfilEigenschaftEditor());
+				try {
+					RootPanel.get("Mitte").add(new ProfilEigenschaftEditor());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				break;
 			case "Suchprofil":
 				RootPanel.get("Inhalt_unten").clear();

@@ -5,11 +5,14 @@ import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import de.client.ClientSideSettings;
 import de.client.TestService;
 import de.server.db.EigenschaftMapper;
+import de.server.db.InfoMapper;
 import de.server.db.ProfilMapper;
 import de.shared.EditorService;
 import de.shared.BO.Eigenschaft;
+import de.shared.BO.Info;
 import de.shared.BO.Profil;
 /**
  * The server-side implementation of the RPC service.
@@ -65,6 +68,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Eigenschaften auslesen
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
 		return this.eMapper.getEigenschaften();
+	}
+	
+	public void insertInfo(Info info) throws Exception{
+		InfoMapper.infoMapper().insertInfo(info);
 	}
 	
 	

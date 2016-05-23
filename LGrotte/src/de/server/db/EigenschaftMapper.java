@@ -68,8 +68,8 @@ public class EigenschaftMapper {
 				"SELECT * FROM eigenschaft");
 		ResultSet rs = select.executeQuery();
 		Vector<Eigenschaft>eigenschaften = new Vector<Eigenschaft>();
-		Eigenschaft e = new Eigenschaft();
 		while(rs.next()){
+			Eigenschaft e = new Eigenschaft();
 			e.setErlaeuterung(rs.getString("erlauterung"));
 			e.setId(rs.getInt("id"));
 			eigenschaften.add(e);
