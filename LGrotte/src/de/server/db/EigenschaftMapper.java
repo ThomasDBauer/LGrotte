@@ -70,7 +70,7 @@ public class EigenschaftMapper {
 		Vector<Eigenschaft>eigenschaften = new Vector<Eigenschaft>();
 		Eigenschaft e = new Eigenschaft();
 		while(rs.next()){
-			e.setErlaeuterung(rs.getString("erlaeuterung"));
+			e.setErlaeuterung(rs.getString("erlauterung"));
 			e.setId(rs.getInt("id"));
 			eigenschaften.add(e);
 		}
