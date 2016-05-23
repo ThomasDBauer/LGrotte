@@ -4,7 +4,8 @@ import java.util.Vector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Profil;
@@ -61,8 +62,19 @@ public class EigenschaftMapper {
 		return null;
 	}
 
-	public Vector<Eigenschaft> getEigenschaft() {
-		return null;
+	public Vector<Eigenschaft> getEigenschaften() throws Exception {
+		Connection conn = (Connection)DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
+				"SELECT * FROM eigenschaft");
+		ResultSet rs = select.executeQuery();
+		Vector<Eigenschaft>eigenschaften = new Vector<Eigenschaft>();
+		Eigenschaft e = new Eigenschaft();
+		while(rs.next()){
+			e.setErlaeuterung(rs.getString("erlaeuterung"));
+			e.setId(rs.getInt("id"));
+			eigenschaften.add(e);
+		}
+		return eigenschaften;
 	}
 
 }
