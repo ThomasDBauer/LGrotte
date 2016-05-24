@@ -218,13 +218,11 @@ li a:hover {
 .bild_links{
 	margin-left: 20px;
 	float: left;
-	margin-top: 0 auto;
-	margin-bottom: 0 auto;
+	vertical-align: middle;
 }
 
 .bild_rechts{
 	margin-right: 20px;
 	float: right;
-	margin-top: 0 auto;
-	margin-bottom: 0 auto;
+	vertical-align: middle;
 }
