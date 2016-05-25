@@ -1,5 +1,6 @@
 package de.client.gui;
 
+
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
@@ -21,6 +22,7 @@ public class MerkzettelEditor extends VerticalPanel{
 	
 	
 	public MerkzettelEditor(){
+
 		flexTable.setWidget(0, 0, profilLabel);
 		flexTable.setWidget(0, 1, ueWertLabel);	
 		flexTable.setWidget(0, 2, anzeigeButton);
@@ -28,6 +30,7 @@ public class MerkzettelEditor extends VerticalPanel{
 		
 		vpanel.add(suchprofilListBox);
 		vpanel.add(flexTable);
+
 	}
 	
 }
