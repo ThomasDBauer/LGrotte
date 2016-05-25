@@ -56,7 +56,7 @@ li a:hover {
 	min-width: 960px;
 	margin: 10px auto;
 	padding: 10 px;
-	background-color: #F6CECE;
+	background-color: #b61414;
 	border: 1px solid #c0c0c0;
 	height: auto;
 }
@@ -129,35 +129,42 @@ li a:hover {
 	margin-right: 5px;
 }
 
+#Content{
+	Padding:3%;
+	heigth: auto;
+	overflow: hidden;
+}
+
+#Spalte_links{
+	float:left;
+	position: relative;
+	background-color: #FFF;
+	width: 73%;
+}
+
 #Inhalt {
 	float: left;
+	position: relative;
 	background-color: #FFF;
-	padding: 20px;
+	padding: 20px 0px 20px 20px;
 	min-height: 600px;
-	max-width: 450px;
-  /*border: 2px solid black; */
 /* 	margin-rigth: 300px; */
-	width: 30%;
-	margin-left: 20px;
-	margin-bottom: 20px;
-	margin-top: 20px;
+	width: 48%;
+	border-rigth: 1px solid #808080;
 }
 
 #Inhalt_oben {
 /* 	border: 2px solid black; */
-	padding: 20px;
-	min-heigt: 300px;
-	min-width: 255px;
+	width: inhert;
+	margin-bottom: 5px;
 	margin-left: 0 auto;
 	margin-right: 0 auto;
 }
 
 #Inhalt_unten {
 /* 	border: 2px solid black; */
-	padding: 20px;
 	min-height: 300px;
-	min-width: 255px;
-	max-width: 310px;
+	width: inhert;
 	margin-left: 0 auto;
 	margin-right: 0 auto;
 }
@@ -165,43 +172,24 @@ li a:hover {
 
 #Mitte {
 	background-color: #FFF;
-	padding: 20px;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	padding: 20px 20px 20px 0px;
+	/* margin-top: 20px;
+	margin-bottom: 20px; */
 	height: auto;
 	min-height: 600px;
-	margin-left: 37%;
-	margin-right: 27%;
-
+	/* margin-left: 37%;
+	margin-right: 27%; */
+	float: right;
+	width: 48%;
 }
 
 #Einstellungen {
 	float: right;
 	width: 20%;
 	height: auto;
-	margin-right: 20px;
-	margin-top: 20px;
-	margin-bottom: 20px;
 	padding: 20px;
 	background-color: #fff;
 	min-height: 600px;
-}
-
-#Einstellungen_oben {
-/* 	border: 2px solid black; */
-	min-height: 200px;
-	width: 200px;
-	margin-left: 0 auto;
-	margin-right: 0 auto;
-}
-
-#Einstellungen_unten {
-/* 	border: 2px solid black; */
-	min-height: 200px;
-	width: 200px;
-	background-color: #fff;
-	margin-left: 0 auto;
-	margin-right: 0 auto;
 }
 
 #Fusszeile {
