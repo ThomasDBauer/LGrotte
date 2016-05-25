@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class MerkzettelEditor extends VerticalPanel{
 	
-	private VerticalPanel vpanel = new VerticalPanel(); 
+	private VerticalPanel vpanel = this; 
 	private FlexTable flexTable = new FlexTable();
 	private Button anzeigeButton = new Button("anzeigen");
 	private Button loeschButton = new Button("x");
@@ -29,8 +29,8 @@ public class MerkzettelEditor extends VerticalPanel{
 		flexTable.setWidget(0, 3, loeschButton);
 		
 
-		vpanel.add(flexTable);
-		RootPanel.get().add(vpanel);
+		this.add(flexTable);
+//		RootPanel.get("Inhalt_unten").add(vpanel);
 	}
 	
 }
