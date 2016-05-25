@@ -140,6 +140,9 @@ li a:hover {
 	position: relative;
 	background-color: #FFF;
 	width: 73%;
+	-webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
 }
 
 #Inhalt {
@@ -151,6 +154,9 @@ li a:hover {
 /* 	margin-rigth: 300px; */
 	width: 47%;
 	border-rigth: 1px solid #808080;
+	-webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
 }
 
 #Inhalt_oben {
@@ -181,6 +187,9 @@ li a:hover {
 	margin-right: 27%; */
 	float: right;
 	width: 47%;
+	-webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
 }
 
 #Einstellungen {
@@ -190,11 +199,14 @@ li a:hover {
 	padding: 20px;
 	background-color: #fff;
 	min-height: 600px;
+	-webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
 }
 
 #Fusszeile {
 	padding: 20px;
-	margin: 20px;
+	margin-top: 20px;
 	clear: both;
 	border-top: 1px solid black;
 	min-height: 120px;
