@@ -48,9 +48,9 @@ public class PopupNavi extends PopupPanel {
 				popClick.addStyleName("aktiv");
 			}
 
-//			PopupNavi popup = new PopupNavi();
-//			popup = Navigation.popup;
-//			popup.hide();
+			// PopupNavi popup = new PopupNavi();
+			// popup = Navigation.popup;
+			// popup.hide();
 
 			switch (popClick.getText()) {
 			case "Profil bearbeiten":
@@ -72,8 +72,7 @@ public class PopupNavi extends PopupPanel {
 			case "Merkliste":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
-				RootPanel.get("Inhalt_unten").add(
-						(IsWidget) new MerkzettelEditor());
+				RootPanel.get("Inhalt_unten").add(new MerkzettelEditor());
 				break;
 			case "Kontaktsperre":
 				RootPanel.get("Inhalt_unten").clear();
