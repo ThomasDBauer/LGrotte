@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class MerkzettelEditor extends VerticalPanel{
@@ -14,10 +15,9 @@ public class MerkzettelEditor extends VerticalPanel{
 	private Button anzeigeButton = new Button("anzeigen");
 	private Button loeschButton = new Button("x");
 	
-	private ListBox suchprofilListBox = new ListBox();
 	
-	private Label profilLabel = new Label("ProfilName");
-	private Label ueWertLabel = new Label("in %");
+	private Label profilLabel = new Label("ProfilName    ");
+	private Label ueWertLabel = new Label("in %   ");
 	
 	
 	
@@ -28,9 +28,9 @@ public class MerkzettelEditor extends VerticalPanel{
 		flexTable.setWidget(0, 2, anzeigeButton);
 		flexTable.setWidget(0, 3, loeschButton);
 		
-		vpanel.add(suchprofilListBox);
-		vpanel.add(flexTable);
 
+		vpanel.add(flexTable);
+		RootPanel.get().add(vpanel);
 	}
 	
 }
