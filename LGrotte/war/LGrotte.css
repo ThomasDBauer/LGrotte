@@ -140,6 +140,7 @@ li a:hover {
 	position: relative;
 	background-color: #FFF;
 	width: 73%;
+	min-width: 670px;
 	-webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
