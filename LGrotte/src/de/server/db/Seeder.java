@@ -2,6 +2,7 @@ package de.server.db;
 
 import de.server.db.seeds.EigenschaftSeeds;
 import de.server.db.seeds.InfoSeeds;
+import de.server.db.seeds.MerkzettelSeeds;
 import de.server.db.seeds.ProfilInfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
 
@@ -58,7 +59,7 @@ public class Seeder {
 		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
 		InfoMapper.infoMapper().createInfoTable();
 		ProfilinfoMapper.profilinfoMapper().createProfilInfo();
-//		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
+		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 //		//KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
 //		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();
 	}
@@ -76,5 +77,8 @@ public class Seeder {
 		//ProfilInfos
 		ProfilInfoSeeds pis = new ProfilInfoSeeds();
 		pis.seedProfilinfoTable();
+		// MerkzettelSeeds
+		//MerkzettelSeeds mz = new MerkzettelSeeds();
+		//mz.seedMerkzettelTable();
 	}
 }

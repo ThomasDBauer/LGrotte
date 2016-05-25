@@ -10,7 +10,6 @@ public class MerkzettelMapper {
 	private static MerkzettelMapper merkzettelMapper = null; 
 	
 	protected MerkzettelMapper() {
-		
 	}
 	
 	public static MerkzettelMapper merkzettelMapper() {
@@ -23,15 +22,15 @@ public class MerkzettelMapper {
 	public void createMerkzettelTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createMerkzettel = (PreparedStatement) con.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS merkzettel(gemerkteProfile varchar(255), "
-				+ "profil_id int, PRIMARY KEY(gemerkteProfile), FOREIGN KEY(profil_id) REFERENCES profil(id))");
+				"CREATE TABLE IF NOT EXISTS merkzettel(gemerktesProfil varchar(255), "
+				+ "merkendesProfil varchar(255), PRIMARY KEY(gemerktesProfil, merkendesProfil), FOREIGN KEY(gemerktesProfil) REFERENCES profil(email), FOREIGN KEY (merkendesProfil) REFERENCES profil(email))");
 		createMerkzettel.execute();
 	}
 	
 	public void insertMerkzettel(Profil profil) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertMerkzettel = (PreparedStatement)con.prepareStatement(
-				"INSERT INTO merkzettel(gemerkteProfile) VALUES ('" + profil.getEmail() + "')");
+				"INSERT INTO merkzettel(gemerktesProfil, merkendesProfil) VALUES ('" + profil.getEmail() + "', '" + profil.getEmail() + "')");
 		insertMerkzettel.execute();
 	}
 	

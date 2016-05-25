@@ -8,6 +8,15 @@ public class Merkzettel extends BusinessObject{
 	private static final long serialVersionUID = 1L;
 	
 	private Profil[]gemerkteProfile;
+	private Profil[] merkendeProfile;
+
+	public Profil[] getMerkendeProfile() {
+		return merkendeProfile;
+	}
+
+	public void setMerkendeProfile(Profil[] merkendeProfile) {
+		this.merkendeProfile = merkendeProfile;
+	}
 
 	public Profil[] getGemerkteProfile() {
 		return gemerkteProfile;
@@ -17,14 +26,14 @@ public class Merkzettel extends BusinessObject{
 		this.gemerkteProfile = gemerkteProfile;
 	}
 	
-	/** wahrscheinlich unnötig: */
+	/** wahrscheinlich unnï¿½tig: */
 	public void addProfil(Profil p){
 		//crazy code um Profil dem merkzettel
-		//hinzuzufügen + service.addProfilZuMerkzettel
+		//hinzuzufï¿½gen + service.addProfilZuMerkzettel
 	}
 	
 	public void removeProfil(Profil p){
-		/* code um Profil vom Merkzettel zu löschen
+		/* code um Profil vom Merkzettel zu lï¿½schen
 		 * + service.removeProfilbazinga?*/
 	}
 	
