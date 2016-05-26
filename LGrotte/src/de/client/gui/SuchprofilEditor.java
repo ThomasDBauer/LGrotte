@@ -175,22 +175,20 @@ public class SuchprofilEditor extends VerticalPanel {
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}vPanel.add(new Label("Suchprofil angelegt"));
 		}
 	}
 
 	private class DeleteSuchprofilClickHandler implements ClickHandler{
 		
 		public void onClick(ClickEvent event) {
-			
-				try {
-					ClientSideSettings.getEditorService().deleteSuchprofil(spListBox.getItemText(spListBox.getSelectedIndex()), new SPdeleteCallback());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
-			
+			try {
+				ClientSideSettings.getEditorService().deleteSuchprofil(spListBox.getItemText(spListBox.getSelectedIndex()), new SPdeleteCallback());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			vPanel.add(new Label("Suchprofil gelöscht"));
 		}
 		
 	}
