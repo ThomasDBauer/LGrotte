@@ -81,7 +81,7 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Inhalt_oben").clear();
 				RootPanel.get("Inhalt_oben")
 				.add(new HTML(
-						"<h2 style = \"color: black\">Deine Partnervorschlaege</h2>"));
+						"<h2 style = \"color: #c0c0c0\">Deine Partnervorschlaege</h2>"));
 				RootPanel.get("Einstellungen").add(new SuchprofilEditor());
 				RootPanel.get("Inhalt_unten").add(
 						new PartnervorschlaegeReport());
@@ -94,7 +94,7 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Inhalt_oben").clear();
 				RootPanel.get("Inhalt_oben")
 						.add(new HTML(
-								"<h2 style = \"color: black\">Impressum</h2>"));
+								"<h2 style = \"color: #c0c0c0\">Impressum</h2>"));
 				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
 				popup.hide();
 				break;
