@@ -40,8 +40,8 @@ public class SuchprofilEditor extends VerticalPanel{
 	private Label religionLabel = new Label("Religion:");
 	private ListBox religionListBox = new ListBox();
 	
-	private Label bdayLabel = new Label("Geburtsdatum:");
-	// box für bday
+	private Label bdayLabel = new Label("Alter:");
+	private ListBox alterListBox= new ListBox();
 	
 	private Button anlegenButton = new Button("Anlegen");
 	
@@ -86,6 +86,7 @@ public class SuchprofilEditor extends VerticalPanel{
 			anlegenTable.setWidget(5, 1, religionListBox);
 			
 			anlegenTable.setWidget(6, 0, bdayLabel);
+			anlegenTable.setWidget(6, 1, alterListBox);
 			// table bday
 			
 			// anhängen der Items zur Auswahl
@@ -111,6 +112,13 @@ public class SuchprofilEditor extends VerticalPanel{
 			raucherListBox.addItem("Nein");
 			raucherListBox.addItem("ab und an");
 			raucherListBox.addItem("egal");
+			
+			alterListBox.addItem("18-25");
+			alterListBox.addItem("26-35");
+			alterListBox.addItem("36-45");
+			alterListBox.addItem("46-55");
+			alterListBox.addItem("56-65");
+			alterListBox.addItem("66-75");
 			
 			// anheften an Panels
 			vPanel.add(anlegenTable);
