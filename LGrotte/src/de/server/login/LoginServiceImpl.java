@@ -23,9 +23,10 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 			Profil bestehendesProfil = ProfilMapper.profilMapper().getProfilByEmail(user.getEmail());
 			if(bestehendesProfil != null){
 			p.setLoggedIn(true);
-				ClientSideSettings.setUserProfil(p);
 				bestehendesProfil.setLoggedIn(true);
 				bestehendesProfil.setLogoutUrl(userService.createLogoutURL(requestUri));
+				p.setEmail(user.getEmail());
+				ClientSideSettings.setUserProfil(p);
 				return bestehendesProfil;
 			}
 			//NO PROFILE

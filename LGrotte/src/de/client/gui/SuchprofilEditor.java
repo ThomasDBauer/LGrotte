@@ -4,6 +4,7 @@ import org.eclipse.jdt.core.dom.ThisExpression;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -14,10 +15,12 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.client.ClientSideSettings;
+
 public class SuchprofilEditor extends VerticalPanel{
 	
 	private VerticalPanel vPanel = this;
-	private HorizontalPanel hPanel = new HorizontalPanel();
+	private HorizontalPanel anlegenLoeschenPanel = new HorizontalPanel();
 	// Button zum Suchprofil anlegen und deren Inhalt wenn er geklickt wird
 	private Button spAnlegenButton = new Button("Anlegen");
 	private FlexTable anlegenTable = new FlexTable();
@@ -39,11 +42,15 @@ public class SuchprofilEditor extends VerticalPanel{
 	
 	private Label religionLabel = new Label("Religion:");
 	private ListBox religionListBox = new ListBox();
+
+	//min - max Alter
+	private HorizontalPanel alterPanel = new HorizontalPanel();
+	private Label alterLabel = new Label("Alter:");
+	private TextBox minAlter = new TextBox();
+	private TextBox maxAlter = new TextBox();
 	
-	private Label bdayLabel = new Label("Alter:");
-	private ListBox alterListBox= new ListBox();
 	
-	private Button anlegenButton = new Button("Anlegen");
+	private Button anlegenButton = new Button("Anlegen", new SuchProfilAnlegenClickHandler());
 	
 	// Button zum Suchprofil löschen und dessen Inhalt wenn er gelöscht wird
 	private Button spLoeschenButton = new Button("Löschen");
@@ -57,9 +64,9 @@ public class SuchprofilEditor extends VerticalPanel{
 	public SuchprofilEditor() {
 	spAnlegenButton.addClickHandler(new SuchprofilAnlegenClickHandler());
 	spLoeschenButton.addClickHandler(new SuchprofilLoeschenClickHandler());
-	hPanel.add(spAnlegenButton);
-	hPanel.add(spLoeschenButton);
-	this.add(hPanel);
+	anlegenLoeschenPanel.add(spAnlegenButton);
+	anlegenLoeschenPanel.add(spLoeschenButton);
+	this.add(anlegenLoeschenPanel);
 	}
 	
 
@@ -85,8 +92,12 @@ public class SuchprofilEditor extends VerticalPanel{
 			anlegenTable.setWidget(5, 0, religionLabel);
 			anlegenTable.setWidget(5, 1, religionListBox);
 			
-			anlegenTable.setWidget(6, 0, bdayLabel);
-			anlegenTable.setWidget(6, 1, alterListBox);
+			anlegenTable.setWidget(6, 0, alterLabel);
+			alterPanel.add(new Label("von"));
+			alterPanel.add(minAlter);
+			alterPanel.add(new Label("bis"));
+			alterPanel.add(maxAlter);
+			anlegenTable.setWidget(6, 1, alterPanel);
 			// table bday
 			
 			// anhängen der Items zur Auswahl
@@ -113,12 +124,6 @@ public class SuchprofilEditor extends VerticalPanel{
 			raucherListBox.addItem("ab und an");
 			raucherListBox.addItem("egal");
 			
-			alterListBox.addItem("18-25");
-			alterListBox.addItem("26-35");
-			alterListBox.addItem("36-45");
-			alterListBox.addItem("46-55");
-			alterListBox.addItem("56-65");
-			alterListBox.addItem("66-75");
 			
 			// anheften an Panels
 			vPanel.add(anlegenTable);
@@ -142,6 +147,33 @@ public class SuchprofilEditor extends VerticalPanel{
 		}	
 	}
 	
+	private class SuchProfilAnlegenClickHandler implements ClickHandler {
+
+		public void onClick(ClickEvent event) {
+			try {
+				ClientSideSettings.getEditorService().insertSuchprofil(
+						spNameTextBox.getText(), geschlechtListBox.getItemText(
+						geschlechtListBox.getSelectedIndex()), raucherListBox.
+						getItemText(raucherListBox.getSelectedIndex()), religionListBox.
+						getItemText(raucherListBox.getSelectedIndex()), Integer.parseInt(
+						minAlter.getText()), Integer.parseInt(maxAlter.getText()), 
+						Integer.parseInt(koerpergTextBox.getText()), haarfarbeListBox.
+						getItemText(haarfarbeListBox.getSelectedIndex()), new SPAnlegenCallback());
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
-	
+	private class SPAnlegenCallback implements AsyncCallback {
+
+		public void onFailure(Throwable caught) {
+			RootPanel.get().add(new Label(caught.toString()));
+		}
+		public void onSuccess(Object result) {
+			RootPanel.get().add(new Label(result.toString()));
+		}
+	}
 }

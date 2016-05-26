@@ -67,15 +67,19 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 	// Methoden zum Suchprofil
 	// Suchprofil erstellen
-	public void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion, String suchprofilalter, int koerpergroesse, String haarfarbe) throws Exception{
+	public void insertSuchprofil(String suchprofilname, String geschlecht, 
+			String raucher, String religion, int minAlter, int maxAlter, 
+			int koerpergroesse, String haarfarbe) throws Exception{
 		Suchprofil sp = new Suchprofil();
-		sp.getSuchprofilname();
-		sp.getGeschlecht();
-		sp.getRaucher();
-		sp.getReligion();
-		sp.getSuchprofilalter();
-		sp.getKoerpergroesse();
-		sp.getHaarfarbe();
+		sp.setSuchprofilname(suchprofilname);
+		sp.setGeschlecht(geschlecht);
+		sp.setRaucher(raucher);
+		sp.setReligion(religion);
+		sp.setMinAlter(minAlter);
+		sp.setMaxAlter(maxAlter);
+		sp.setKoerpergroesse(koerpergroesse);
+		sp.setHaarfarbe(haarfarbe);
+		sp.setProfil(ClientSideSettings.getUserProfil().getEmail());
 		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
 	}
 	

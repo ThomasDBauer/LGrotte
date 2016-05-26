@@ -9,8 +9,8 @@ public class Suchprofil extends BusinessObject{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String suchprofilname, haarfarbe, religion, suchprofilalter, raucher, geschlecht;
-	private int koerpergroesse;
+	private String suchprofilname, profil, haarfarbe, religion, raucher, geschlecht;
+	private int koerpergroesse, minAlter, maxAlter;
 	
 	
 	public String getSuchprofilname() {
@@ -31,12 +31,6 @@ public class Suchprofil extends BusinessObject{
 	public void setReligion(String religion) {
 		this.religion = religion;
 	}
-	public String getSuchprofilalter() {
-		return suchprofilalter;
-	}
-	public void setSuchprofilalter(String suchprofilalter) {
-		this.suchprofilalter = suchprofilalter;
-	}
 	public String getRaucher() {
 		return raucher;
 	}
@@ -54,6 +48,24 @@ public class Suchprofil extends BusinessObject{
 	}
 	public void setKoerpergroesse(int koerpergroesse) {
 		this.koerpergroesse = koerpergroesse;
+	}
+	public int getMinAlter() {
+		return minAlter;
+	}
+	public void setMinAlter(int minAlter) {
+		this.minAlter = minAlter;
+	}
+	public int getMaxAlter() {
+		return maxAlter;
+	}
+	public void setMaxAlter(int maxAlter) {
+		this.maxAlter = maxAlter;
+	}
+	public String getProfil() {
+		return profil;
+	}
+	public void setProfil(String profil) {
+		this.profil = profil;
 	}
 	
 	
