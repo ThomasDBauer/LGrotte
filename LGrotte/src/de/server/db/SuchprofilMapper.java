@@ -1,38 +1,39 @@
 package de.server.db;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import com.google.cloud.sql.jdbc.Connection;
 
 import de.shared.BO.Suchprofil;
 
 public class SuchprofilMapper {
 	
-	public void createSuchprofilTable () throws Exception {
+    private static SuchprofilMapper suchprofilMapper = null; 
+	
+	protected SuchprofilMapper() {
+	}
+	
+	public static SuchprofilMapper suchprofilMapper() {
+	if(suchprofilMapper == null) {
+		suchprofilMapper = new SuchprofilMapper();
+	}
+	return suchprofilMapper;
+	}
+	
+	public void createSuchprofilTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		
-		PreparedStatement createSuchprofil = (PreparedStatement) con
-				.prepareStatement("CREATE TABLE IF NOT EXISTS suchprofil,"
-						+"suchprofil_id INT NOT NULL AUTO_INCREMENT,"
-						+"PRIMARY KEY(suchprofil_id),"
-						+"geschlecht boolean(1),"
-						+"geburtsdatum Date(1),"
-						+"religion varchar(255),"
-						+"raucher boolean(1)");
-		
+		PreparedStatement createSuchprofil = (PreparedStatement) con.prepareStatement(
+				"CREATE TABLE IF NOT EXISTS suchprofil(suchprofilname varchar(30), geschlecht varchar(30), suchprofilalter varchar(30), religion varchar(30), raucher varchar(30), PRIMARY KEY(suchprofilname))");
 		createSuchprofil.execute();
-		
 	}
 	
 	
 	public void insertSuchprofil (Suchprofil sp) throws Exception{
-	
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertSuchprofil = (PreparedStatement)con.prepareStatement(
-				"INSERT INTO suchprofil(suchprofil_id, geschlecht, raucher, religion, geburtsdatum,"
-				+ "koerpergroesse, haarfarbe) VALUES ('"+sp.getId()+"','"+sp.isGeschlecht()+"'.'"+sp.getGeburtsdatum()+"','"+sp.getReligion()+"','"+sp.getKoerpergroesse()+"','"+sp.isRaucher()+"')");
+				"INSERT INTO suchprofil(suchprofilname, geschlecht, raucher, religion, suchprofilalter,"
+				+ "koerpergroesse, haarfarbe) VALUES ('"+ sp.getSuchprofilname() +"','"+ sp.getGeschlecht() +"', '"+ sp.getRaucher() + "', '" + sp.getReligion() + "', '" + sp.getSuchprofilalter() + "', '" + sp.getKoerpergroesse() + "', '" + sp.getHaarfarbe() + "')");
 		insertSuchprofil.execute();
-		
 }
 
 //public void updateSuchprofil (Suchprofil sp){

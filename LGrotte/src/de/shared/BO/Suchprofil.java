@@ -9,31 +9,15 @@ public class Suchprofil extends BusinessObject{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
-	private String fname, lname, haarfarbe, religion;
+	private String suchprofilname, haarfarbe, religion, suchprofilalter, raucher, geschlecht;
 	private int koerpergroesse;
-	private Date geburtsdatum;
-	private boolean raucher;
-	private boolean geschlecht;
 	
 	
-	public int getId(){
-		return id;
+	public String getSuchprofilname() {
+		return suchprofilname;
 	}
-	public void setId(int id){
-		this.id = id;
-	}
-	public String getFname() {
-		return fname;
-	}
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-	public String getLname() {
-		return lname;
-	}
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setSuchprofilname(String suchprofilname) {
+		this.suchprofilname = suchprofilname;
 	}
 	public String getHaarfarbe() {
 		return haarfarbe;
@@ -47,30 +31,34 @@ public class Suchprofil extends BusinessObject{
 	public void setReligion(String religion) {
 		this.religion = religion;
 	}
+	public String getSuchprofilalter() {
+		return suchprofilalter;
+	}
+	public void setSuchprofilalter(String suchprofilalter) {
+		this.suchprofilalter = suchprofilalter;
+	}
+	public String getRaucher() {
+		return raucher;
+	}
+	public void setRaucher(String raucher) {
+		this.raucher = raucher;
+	}
+	public String getGeschlecht() {
+		return geschlecht;
+	}
+	public void setGeschlecht(String geschlecht) {
+		this.geschlecht = geschlecht;
+	}
 	public int getKoerpergroesse() {
 		return koerpergroesse;
 	}
 	public void setKoerpergroesse(int koerpergroesse) {
 		this.koerpergroesse = koerpergroesse;
 	}
-	public Date getGeburtsdatum() {
-		return geburtsdatum;
-	}
-	public void setGeburtsdatum(Date geburtsdatum) {
-		this.geburtsdatum = geburtsdatum;
-	}
-	public boolean isRaucher() {
-		return raucher;
-	}
-	public void setRaucher(boolean raucher) {
-		this.raucher = raucher;
-	}
-	public void setGeschlecht(boolean geschlecht){
-		this.geschlecht = geschlecht;
-	}
-	public boolean isGeschlecht(){
-		return geschlecht;
-	}
+	
+	
+	
+	
 	
 	
 }

@@ -10,10 +10,12 @@ import de.client.TestService;
 import de.server.db.EigenschaftMapper;
 import de.server.db.InfoMapper;
 import de.server.db.ProfilMapper;
+import de.server.db.SuchprofilMapper;
 import de.shared.EditorService;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Profil;
+import de.shared.BO.Suchprofil;
 /**
  * The server-side implementation of the RPC service.
  */
@@ -63,6 +65,19 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 	}
 	
+	// Methoden zum Suchprofil
+	// Suchprofil erstellen
+	public void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion, String suchprofilalter, int koerpergroesse, String haarfarbe) throws Exception{
+		Suchprofil sp = new Suchprofil();
+		sp.getSuchprofilname();
+		sp.getGeschlecht();
+		sp.getRaucher();
+		sp.getReligion();
+		sp.getSuchprofilalter();
+		sp.getKoerpergroesse();
+		sp.getHaarfarbe();
+		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
+	}
 	
 	// Methoden rund um die Eigenschaften und Infos
 	

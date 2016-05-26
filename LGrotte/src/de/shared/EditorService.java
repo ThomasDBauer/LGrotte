@@ -16,11 +16,11 @@ import de.shared.BO.Profil;
 	@RemoteServiceRelativePath("editor")
 	public interface EditorService extends RemoteService {
 		void init() throws IllegalArgumentException;
-		public void insertProfil(String email, String fname, String lname, 
+		void insertProfil(String email, String fname, String lname, 
 				int koerpergroesse, String geschlecht, String religion, 
 				String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException;
-		public void deleteProfil(String email) throws IllegalArgumentException;
-		
+		void deleteProfil(String email) throws IllegalArgumentException;
+		void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion, String suchprofilalter, int koerpergroesse, String haarfarbe) throws Exception;
 		Vector<Eigenschaft> getEigenschaften() throws Exception;
 		void insertInfo(Info info) throws Exception;
 	}
