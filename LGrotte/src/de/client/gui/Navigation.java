@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -24,7 +25,6 @@ public class Navigation extends HorizontalPanel {
 			new ProfilPopupClickHandler());
 	private final Button impressumButton = new Button("Impressum",
 			new NavigationsButtonHandler());
-	
 	public static final PopupNavi popup = new PopupNavi();
 
 	public Navigation() {
@@ -37,8 +37,7 @@ public class Navigation extends HorizontalPanel {
 		impressumButton.setStylePrimaryName("navi-button");
 		this.add(impressumButton);
 	}
-	
-	
+
 	class ProfilPopupClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			Button active = (Button) e.getSource();
@@ -52,7 +51,7 @@ public class Navigation extends HorizontalPanel {
 				popup.setPopupPositionAndShow(new PopupPanel.PositionCallback() {
 					public void setPosition(int offsetWidth, int offsetHeight) {
 						int left = findLoveButton.getAbsoluteLeft();
-						int top = profilButton.getAbsoluteTop() +45;
+						int top = profilButton.getAbsoluteTop() + 45;
 						popup.setPopupPosition(left, top);
 						popup.show();
 					}
@@ -78,6 +77,12 @@ public class Navigation extends HorizontalPanel {
 			case "Find Love":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
+				RootPanel.get("Einstellungen").clear();
+				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Inhalt_oben")
+				.add(new HTML(
+						"<h2 style = \"color: #c0c0c0\">Deine Partnervorschlaege</h2>"));
+				RootPanel.get("Einstellungen").add(new SuchprofilEditor());
 				RootPanel.get("Inhalt_unten").add(
 						new PartnervorschlaegeReport());
 				popup.hide();
@@ -85,6 +90,11 @@ public class Navigation extends HorizontalPanel {
 			case "Impressum":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
+				RootPanel.get("Einstellungen").clear();
+				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Inhalt_oben")
+						.add(new HTML(
+								"<h2 style = \"color: #c0c0c0\">Impressum</h2>"));
 				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
 				popup.hide();
 				break;

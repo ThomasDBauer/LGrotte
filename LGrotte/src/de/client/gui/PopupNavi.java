@@ -3,12 +3,14 @@ package de.client.gui;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
 import de.client.gui.Navigation;
 
 public class PopupNavi extends PopupPanel {
@@ -56,27 +58,46 @@ public class PopupNavi extends PopupPanel {
 			case "Profil bearbeiten":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
+				RootPanel.get("Einstellungen").clear();
+				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Inhalt_oben").add(new HTML(
+						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
+				RootPanel.get("Einstellungen").add(new SuchprofilEditor());
 				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				try {
 					RootPanel.get("Mitte").add(new ProfilEigenschaftEditor());
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				break;
 			case "Suchprofil":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
+				RootPanel.get("Einstellungen").clear();
+				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Inhalt_oben")
+				.add(new HTML(
+						"<h2 style = \"color: #c0c0c0\">Deine Suchprofile</h2>"));
 				RootPanel.get("Inhalt_unten").add(new SuchprofilEditor());
 				break;
 			case "Merkliste":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
+				RootPanel.get("Einstellungen").clear();
+				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Inhalt_oben")
+				.add(new HTML(
+						"<h2 style = \"color: #c0c0c0\">Deine Merkliste</h2>"));
 				RootPanel.get("Inhalt_unten").add(new MerkzettelEditor());
 				break;
 			case "Kontaktsperre":
 				RootPanel.get("Inhalt_unten").clear();
 				RootPanel.get("Mitte").clear();
+				RootPanel.get("Einstellungen").clear();
+				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Inhalt_oben")
+				.add(new HTML(
+						"<h2 style = \"color: #c0c0c0\">Kontaktsperre</h2>"));
 				RootPanel.get("Inhalt_unten").add(
 						new Label("Hier kaeme die Kontaktsperre hin!"));
 				break;

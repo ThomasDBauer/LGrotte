@@ -39,7 +39,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public String showImpressum() throws Exception {
 		StringBuffer sb = new StringBuffer();
 		sb.append("<div style = \"color: black\">");
-		sb.append("<h2 style = \"color: black\">Impressum</h2>");
+//		sb.append("<h2 style = \"color: black\">Impressum</h2>");
 		sb.append("<div class>" + "<b>Angaben gem‰ﬂ ß5 TMG:</b>"
 				+ "<p>LiebesGrotte<br />" + "Nobelstraﬂe 10<br />" + "70569 Stuttgart" + "</p>" + "<b>Kontakt:</b>"
 				+ "<table><tr>" + "<td>Telefon:</td>" + "<td>+49 711 8923 10</td></tr>" + "<tr><td>E-Mail:</td>"
