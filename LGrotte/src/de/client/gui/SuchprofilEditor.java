@@ -63,7 +63,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 	private Label aussuchenLabel = new Label("Wählen Sie bitte das zu löschende Suchprofil aus:");
 	private ListBox spListBox = new ListBox();
-	private Button loeschenButton = new Button("Löschen");
+	private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
 
 	public SuchprofilEditor() throws Exception {
 		
@@ -179,6 +179,30 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 	}
 
+	private class DeleteSuchprofilClickHandler implements ClickHandler{
+		
+		public void onClick(ClickEvent event) {
+			
+				try {
+					ClientSideSettings.getEditorService().deleteSuchprofil(spListBox.getItemText(spListBox.getSelectedIndex()), new SPdeleteCallback());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			
+		}
+		
+	}
+	private class SPdeleteCallback implements AsyncCallback{
+		public void onFailure(Throwable caught) {
+			vPanel.add(new Label (caught.toString()));
+		}
+		public void onSuccess(Object result) {
+		}
+		
+	}
+	
 	private class SPAnlegenCallback implements AsyncCallback {
 
 		public void onFailure(Throwable caught) {
