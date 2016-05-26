@@ -70,14 +70,19 @@ public class SuchprofilMapper {
 				+ sp.getHaarfarbe() + "','"+sp.getProfil()+"')");
 		insertSuchprofil.execute();
 }
+	
+	public void deleteSuchprofil (Suchprofil sp) throws Exception{
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
+				("DELETE FROM suchprofil WHERE suchprofilname ='" + sp.getSuchprofilname() +"'");
+		delete.execute();
+	}
+	
 
 //public void updateSuchprofil (Suchprofil sp){
 //	
 //}
 //
-//public void deleteSuchprofil (Suchprofil sp){
-//	
-//}
 //
 //public Suchprofil getSuchprofil(int profilID){
 //	return null;

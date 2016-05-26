@@ -85,8 +85,14 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
 	}
 	
-	// Methoden rund um die Eigenschaften und Infos
+	// Suchprofillöschen
+	public void deleteSuchprofil(String suchprofilname) throws Exception {
+		Suchprofil deletesp = new Suchprofil();
+		deletesp.setSuchprofilname(suchprofilname);
+		SuchprofilMapper.suchprofilMapper().deleteSuchprofil(deletesp);
+	}
 	
+	// Methoden rund um die Eigenschaften und Infos
 	// Eigenschaften auslesen
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
 		return this.eMapper.getEigenschaften();

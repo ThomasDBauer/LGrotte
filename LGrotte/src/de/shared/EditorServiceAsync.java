@@ -22,6 +22,8 @@ public interface EditorServiceAsync {
 			String religion, int minAlter, int maxAlter, int koerpergroesse, String haarfarbe, 
 			AsyncCallback callback) throws Exception;
 	
+	void deleteSuchprofil(String suchprofilname, AsyncCallback callback) throws Exception;
+	
 	void getEigenschaften(AsyncCallback<Vector<Eigenschaft>> callback) throws Exception;
 	
 	void insertInfo(Info info, AsyncCallback callback) throws Exception;
