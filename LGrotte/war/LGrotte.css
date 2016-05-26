@@ -140,9 +140,9 @@ li a:hover {
 	position: relative;
 	background-color: #FFF;
 	width: 73%;
-	-webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #Inhalt {
@@ -154,9 +154,9 @@ li a:hover {
 /* 	margin-rigth: 300px; */
 	width: 47%;
 	border-rigth: 1px solid #808080;
-	-webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 25px;
 }
 
 #Inhalt_oben {
@@ -187,9 +187,9 @@ li a:hover {
 	margin-right: 27%; */
 	float: right;
 	width: 47%;
-	-webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #Einstellungen {
@@ -199,9 +199,8 @@ li a:hover {
 	padding: 20px;
 	background-color: #fff;
 	min-height: 600px;
-	-webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #Fusszeile {
@@ -213,6 +212,12 @@ li a:hover {
 	min-width: 860px;
 	width: auto;
 	background-color: #FFF;
+}
+
+.header_navi{
+	font-size: 20px;
+	color: #c0c0c0;
+	margin-left: 35px;
 }
 
 .bild_links{
