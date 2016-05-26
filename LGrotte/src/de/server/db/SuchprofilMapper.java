@@ -52,7 +52,7 @@ public class SuchprofilMapper {
 			sp.setProfil(email);
 			sp.setRaucher(result.getString("raucher"));
 			sp.setReligion(result.getString("religion"));
-			sp.setSuchprofilname("suchprofilname");
+			sp.setSuchprofilname(result.getString("suchprofilname"));
 			suchprofile.add(sp);
 		}
 		return suchprofile;

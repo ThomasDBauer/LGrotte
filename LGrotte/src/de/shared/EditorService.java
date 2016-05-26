@@ -31,6 +31,6 @@ import de.shared.BO.Suchprofil;
 		
 		void insertInfo(Info info) throws Exception;
 		
-		Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception;	
+		Vector<Suchprofil> getSuchprofile() throws Exception;	
 		}
 

@@ -26,7 +26,7 @@ public interface EditorServiceAsync {
 	
 	void insertInfo(Info info, AsyncCallback callback) throws Exception;
 	
-	void getSuchprofileByEmail(String email, AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
+	void getSuchprofile(AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
 	
 	
 }

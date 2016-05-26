@@ -31,7 +31,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	// Methoden rund um das Profil
 	// Profil erstellen
-	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht, String religion, String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException{
+	public void insertProfil(String email, String fname, String lname, int koerpergroesse, 
+			String geschlecht, String religion, String haarfarbe, String raucher, Date geburtsdatum) 
+					throws IllegalArgumentException{
 		Profil p = new Profil();
 		p.setFname(fname);
 		p.setLname(lname);
@@ -95,7 +97,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		InfoMapper.infoMapper().insertInfo(info);
 	}
 	
-	public Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception{
+	public Vector<Suchprofil> getSuchprofile() throws Exception{
+		String email = ClientSideSettings.getUserProfil().getEmail();
 		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(email);
 	}
 	
