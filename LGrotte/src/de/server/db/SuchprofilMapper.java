@@ -2,7 +2,9 @@ package de.server.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
 import de.shared.BO.Suchprofil;
 
@@ -30,6 +32,30 @@ public class SuchprofilMapper {
 				+ "PRIMARY KEY(suchprofilname, profil), FOREIGN KEY (profil)"
 				+ "REFERENCES profil(email) ON UPDATE CASCADE ON DELETE RESTRICT)");
 		createSuchprofil.execute();
+	}
+	
+	public Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception{
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) con.prepareStatement(
+				"SELECT * FROM suchprofil WHERE profil = '"+email+"'");
+		ResultSet result = select.executeQuery();
+		
+		Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
+		
+		while(result.next()){
+			Suchprofil sp = new Suchprofil();
+			sp.setGeschlecht(result.getString("geschlecht"));
+			sp.setHaarfarbe(result.getString("haarfarbe"));
+			sp.setKoerpergroesse(result.getInt("koerpergroesse"));
+			sp.setMaxAlter(result.getInt("maxAlter"));
+			sp.setMinAlter(result.getInt("minAlter"));
+			sp.setProfil(email);
+			sp.setRaucher(result.getString("raucher"));
+			sp.setReligion(result.getString("religion"));
+			sp.setSuchprofilname("suchprofilname");
+			suchprofile.add(sp);
+		}
+		return suchprofile;
 	}
 	
 	

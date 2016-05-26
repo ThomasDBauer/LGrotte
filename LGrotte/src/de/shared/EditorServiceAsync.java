@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
+import de.shared.BO.Suchprofil;
 
 public interface EditorServiceAsync {
 	void init(AsyncCallback callback) throws IllegalArgumentException;
@@ -24,4 +25,8 @@ public interface EditorServiceAsync {
 	void getEigenschaften(AsyncCallback<Vector<Eigenschaft>> callback) throws Exception;
 	
 	void insertInfo(Info info, AsyncCallback callback) throws Exception;
+	
+	void getSuchprofileByEmail(String email, AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
+	
+	
 }

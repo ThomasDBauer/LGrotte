@@ -95,6 +95,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		InfoMapper.infoMapper().insertInfo(info);
 	}
 	
+	public Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception{
+		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(email);
+	}
+	
 	
 	
 }

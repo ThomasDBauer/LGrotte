@@ -1,5 +1,7 @@
 package de.client.gui;
 
+import java.util.Vector;
+
 import org.eclipse.jdt.core.dom.ThisExpression;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -16,6 +18,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.ClientSideSettings;
+import de.shared.BO.Suchprofil;
 
 public class SuchprofilEditor extends VerticalPanel{
 	
@@ -50,6 +53,9 @@ public class SuchprofilEditor extends VerticalPanel{
 	private TextBox maxAlter = new TextBox();
 	
 	
+	private Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
+	
+	
 	private Button anlegenButton = new Button("Anlegen", new SuchProfilAnlegenClickHandler());
 	
 	// Button zum Suchprofil löschen und dessen Inhalt wenn er gelöscht wird
@@ -61,12 +67,14 @@ public class SuchprofilEditor extends VerticalPanel{
 	private Button loeschenButton = new Button("Löschen");
 	
 	
-	public SuchprofilEditor() {
+	public SuchprofilEditor() throws Exception {
 	spAnlegenButton.addClickHandler(new SuchprofilAnlegenClickHandler());
 	spLoeschenButton.addClickHandler(new SuchprofilLoeschenClickHandler());
 	anlegenLoeschenPanel.add(spAnlegenButton);
 	anlegenLoeschenPanel.add(spLoeschenButton);
 	this.add(anlegenLoeschenPanel);
+	ClientSideSettings.getEditorService().getSuchprofileByEmail(ClientSideSettings.
+			getUserProfil().getEmail(), new GetSuchprofileCallback());
 	}
 	
 
@@ -174,6 +182,18 @@ public class SuchprofilEditor extends VerticalPanel{
 		}
 		public void onSuccess(Object result) {
 			RootPanel.get().add(new Label(result.toString()));
+		}
+	}
+	
+	private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>>{
+		public void onFailure(Throwable caught) {
+			
+		}
+		public void onSuccess(Vector<Suchprofil> result) {
+			suchprofile = result;
+			for(int i = 0; i < result.size(); i++){
+				spListBox.addItem(result.elementAt(i).getSuchprofilname());
+			}
 		}
 	}
 }
