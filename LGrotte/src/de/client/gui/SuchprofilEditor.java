@@ -30,10 +30,14 @@ public class SuchprofilEditor extends VerticalPanel {
 	// Startseite Buttons und Labels
 	private Label aussuchenLabel = new Label("Wählen Sie ein Suchprofil aus:");
 	private ListBox spListBox = new ListBox();
-	private FlexTable komplettTable = new FlexTable(); // Table für die Listbox 
-	private Button anzeigenButton = new Button("Anzeigen"); // Hier ClickHandlereinfügen
+	private FlexTable komplettTable = new FlexTable(); 
+	private Button anzeigenButton = new Button("Anzeigen", new SuchProfilAnzeigenClickHandler()); 
 	private Button spHinzufuegenButton = new Button("Neues Suchprofil hinzufügen", new SuchprofilHinzufuegenClickHandler());
 	private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
+	
+	// AnzeigenTable
+	private FlexTable anzeigenTable = new FlexTable();
+	private Label nameAnzeigenLabel = new Label("Name des Suchprofils:");
 	
 	// Buttons, Labels und Table fürs Suchprofil hinzufügen
 	private FlexTable anlegenTable = new FlexTable();
@@ -81,8 +85,8 @@ public class SuchprofilEditor extends VerticalPanel {
 		komplettTable.setWidget(0, 0, aussuchenLabel);
 		komplettTable.setWidget(1, 0, spListBox);
 		komplettTable.setWidget(1, 1, anzeigenButton);
-		komplettTable.setWidget(2, 0, spHinzufuegenButton);
-		komplettTable.setWidget(2, 1, loeschenButton);
+		komplettTable.setWidget(3, 0, spHinzufuegenButton);
+		komplettTable.setWidget(3, 1, loeschenButton);
 		this.add(komplettTable);
 	}
 	
@@ -148,7 +152,17 @@ public class SuchprofilEditor extends VerticalPanel {
 	}
 	
 	// ClickHandler zum Anzeigen des Suchprofils
-	
+	private class SuchProfilAnzeigenClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			try {
+				ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileKomplettCallback());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
 
 	// ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
 	private class SuchProfilAnlegenClickHandler implements ClickHandler {
@@ -197,7 +211,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 	}
 	
-	// Callback zum löschen des Suchprofils
+	// Callback zum anlegen des Suchprofils
 	private class SPAnlegenCallback implements AsyncCallback {
 
 		public void onFailure(Throwable caught) {
@@ -221,6 +235,53 @@ public class SuchprofilEditor extends VerticalPanel {
 				spListBox.addItem(result.elementAt(i).getSuchprofilname());
 			}
 		}
+	}
+	
+	// Callback zum Anzeigen des kompletten Suchprofils
+	private class GetSuchprofileKomplettCallback implements AsyncCallback<Vector<Suchprofil>> {
+		public void onFailure(Throwable caught) {
+			RootPanel.get().add(new Label(caught.toString()));
+		}
+
+		public void onSuccess(Vector<Suchprofil> result) {
+			suchprofile = result;
+			for (int i = spListBox.getSelectedIndex(); i < result.size(); i++) {
+				anzeigenTable.clear();
+				alterPanel.clear();
+				
+				anzeigenTable.setWidget(0, 0, nameAnzeigenLabel);
+				anzeigenTable.setWidget(0, 1, new Label(result.elementAt(i).getSuchprofilname()));
+
+				anzeigenTable.setWidget(1, 0, geschlechtLabel);
+				anzeigenTable.setWidget(1, 1, new Label(result.elementAt(i).getGeschlecht()));
+
+				anzeigenTable.setWidget(2, 0, raucherLabel);
+				anzeigenTable.setWidget(2, 1, new Label(result.elementAt(i).getRaucher()));
+
+				anzeigenTable.setWidget(3, 0, haarfarbeLabel);
+				anzeigenTable.setWidget(3, 1, new Label(result.elementAt(i).getHaarfarbe()));
+				
+				String koerperString = String.valueOf(result.elementAt(i).getKoerpergroesse());
+				anzeigenTable.setWidget(4, 0, koerpergLabel);
+				anzeigenTable.setWidget(4, 1, new Label(koerperString));
+
+				anzeigenTable.setWidget(5, 0, religionLabel);
+				anzeigenTable.setWidget(5, 1, new Label(result.elementAt(i).getReligion()));
+				
+				String minAlterString = String.valueOf(result.elementAt(i).getMinAlter());
+				String maxAlterString = String.valueOf(result.elementAt(i).getMaxAlter());
+				anzeigenTable.setWidget(6, 0, alterLabel);
+				alterPanel.add(new Label("von "));
+				alterPanel.add(new Label(minAlterString));
+				alterPanel.add(new Label(" bis "));
+				alterPanel.add(new Label(maxAlterString));
+				anzeigenTable.setWidget(6, 1, alterPanel);
+				
+				komplettTable.setWidget(2, 0, anzeigenTable);
+				
+			}
+		}
+		
 	}
 	
 

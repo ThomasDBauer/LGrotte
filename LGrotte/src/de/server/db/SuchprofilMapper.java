@@ -22,6 +22,7 @@ public class SuchprofilMapper {
 	return suchprofilMapper;
 	}
 	
+	// Tabelle erstellen
 	public void createSuchprofilTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createSuchprofil = (PreparedStatement) con.prepareStatement(
@@ -34,6 +35,7 @@ public class SuchprofilMapper {
 		createSuchprofil.execute();
 	}
 	
+	// Suchprofil name anzeigen
 	public Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) con.prepareStatement(
@@ -58,7 +60,7 @@ public class SuchprofilMapper {
 		return suchprofile;
 	}
 	
-	
+	// Suchprofil einfürgen
 	public void insertSuchprofil (Suchprofil sp) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertSuchprofil = (PreparedStatement)con.prepareStatement(
@@ -69,8 +71,9 @@ public class SuchprofilMapper {
 				"', '" +sp.getMaxAlter()+"','"+ sp.getKoerpergroesse() + "', '" 
 				+ sp.getHaarfarbe() + "','"+sp.getProfil()+"')");
 		insertSuchprofil.execute();
-}
+	}
 	
+	// Suchprofil löschen
 	public void deleteSuchprofil (Suchprofil sp) throws Exception{
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
