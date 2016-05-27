@@ -22,11 +22,20 @@ import de.shared.BO.Suchprofil;
 
 public class SuchprofilEditor extends VerticalPanel {
 
-	private VerticalPanel vPanel = this;
-	private VerticalPanel content = new VerticalPanel();
+	// Verschiedene Panels
+	private VerticalPanel suchprofilPanel = this;
+	private HorizontalPanel auswaehlenAnzeigenPanel = new HorizontalPanel();
 	private HorizontalPanel anlegenLoeschenPanel = new HorizontalPanel();
-	// Button zum Suchprofil anlegen und deren Inhalt wenn er geklickt wird
-	private Button spAnlegenButton = new Button("Anlegen");
+	
+	// Startseite Buttons und Labels
+	private Label aussuchenLabel = new Label("Wählen Sie ein Suchprofil aus:");
+	private ListBox spListBox = new ListBox();
+	private FlexTable komplettTable = new FlexTable(); // Table für die Listbox 
+	private Button anzeigenButton = new Button("Anzeigen"); // Hier ClickHandlereinfügen
+	private Button spHinzufuegenButton = new Button("Neues Suchprofil hinzufügen", new SuchprofilHinzufuegenClickHandler());
+	private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
+	
+	// Buttons, Labels und Table fürs Suchprofil hinzufügen
 	private FlexTable anlegenTable = new FlexTable();
 
 	private Label spNameLabel = new Label("Benenne dein Suchprofil:");
@@ -46,8 +55,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 	private Label religionLabel = new Label("Religion:");
 	private ListBox religionListBox = new ListBox();
-
-	// min - max Alter
+	
 	private HorizontalPanel alterPanel = new HorizontalPanel();
 	private Label alterLabel = new Label("Alter:");
 	private TextBox minAlter = new TextBox();
@@ -57,14 +65,8 @@ public class SuchprofilEditor extends VerticalPanel {
 
 	private Button anlegenButton = new Button("Anlegen", new SuchProfilAnlegenClickHandler());
 
-	// Button zum Suchprofil löschen und dessen Inhalt wenn er gelöscht wird
-	private Button spLoeschenButton = new Button("Löschen");
-	private FlexTable loeschenTable = new FlexTable();
 
-	private Label aussuchenLabel = new Label("Wählen Sie bitte das zu löschende Suchprofil aus:");
-	private ListBox spListBox = new ListBox();
-	private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
-
+	// Editor 
 	public SuchprofilEditor() throws Exception {
 		
 		try {
@@ -75,19 +77,19 @@ public class SuchprofilEditor extends VerticalPanel {
 			e.printStackTrace();
 		}
 
-		spAnlegenButton.addClickHandler(new SuchprofilAnlegenClickHandler());
-		spLoeschenButton.addClickHandler(new SuchprofilLoeschenClickHandler());
-		anlegenLoeschenPanel.add(spAnlegenButton);
-		anlegenLoeschenPanel.add(spLoeschenButton);
-		this.add(anlegenLoeschenPanel);
-		this.add(content);
+		// Anfängen der Panels
+		komplettTable.setWidget(0, 0, aussuchenLabel);
+		komplettTable.setWidget(1, 0, spListBox);
+		komplettTable.setWidget(1, 1, anzeigenButton);
+		komplettTable.setWidget(2, 0, spHinzufuegenButton);
+		komplettTable.setWidget(2, 1, loeschenButton);
+		this.add(komplettTable);
 	}
-
-	private class SuchprofilAnlegenClickHandler implements ClickHandler {
+	
+	// ClickHandler zum suchprofil hizufügen Funktion
+	private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			
-			content.clear();
-
 			// Der FlexTable unsere Labels und Listboxen geben
 			anlegenTable.setWidget(0, 0, spNameLabel);
 			anlegenTable.setWidget(0, 1, spNameTextBox);
@@ -113,9 +115,8 @@ public class SuchprofilEditor extends VerticalPanel {
 			alterPanel.add(new Label("bis"));
 			alterPanel.add(maxAlter);
 			anlegenTable.setWidget(6, 1, alterPanel);
-			// table bday
 
-			// anhängen der Items zur Auswahl
+			// Anhängen der Items zur Auswahl
 			geschlechtListBox.addItem("männlich");
 			geschlechtListBox.addItem("weiblich");
 			geschlechtListBox.addItem("Andere");
@@ -139,27 +140,17 @@ public class SuchprofilEditor extends VerticalPanel {
 			raucherListBox.addItem("ab und an");
 			raucherListBox.addItem("egal");
 
-			// anheften an Panels
-			content.add(anlegenTable);
-			content.add(anlegenButton);
+			// Anheften an Panels
+			suchprofilPanel.add(anlegenTable);
+			suchprofilPanel.add(anlegenButton);
 
 		}
 	}
+	
+	// ClickHandler zum Anzeigen des Suchprofils
+	
 
-	private class SuchprofilLoeschenClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			content.clear();
-			// Ankleben an FlexTable
-			loeschenTable.setWidget(0, 0, aussuchenLabel);
-			loeschenTable.setWidget(1, 0, spListBox);
-			// Hier muss die Box der zu auswählenden Profile noch hin
-
-			// Panels
-			content.add(loeschenTable);
-			content.add(loeschenButton);
-		}
-	}
-
+	// ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
 	private class SuchProfilAnlegenClickHandler implements ClickHandler {
 
 		public void onClick(ClickEvent event) {
@@ -175,10 +166,13 @@ public class SuchprofilEditor extends VerticalPanel {
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}vPanel.add(new Label("Suchprofil angelegt"));
+			}
+			// Hiermit merkt der Nutzer das sein Suchprofil hinzugefügt wurde
+			suchprofilPanel.add(new Label("Suchprofil angelegt"));
 		}
 	}
-
+	
+	// ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
 	private class DeleteSuchprofilClickHandler implements ClickHandler{
 		
 		public void onClick(ClickEvent event) {
@@ -188,19 +182,22 @@ public class SuchprofilEditor extends VerticalPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			vPanel.add(new Label("Suchprofil gelöscht"));
-		}
-		
-	}
-	private class SPdeleteCallback implements AsyncCallback{
-		public void onFailure(Throwable caught) {
-			vPanel.add(new Label (caught.toString()));
-		}
-		public void onSuccess(Object result) {
+			// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
+			suchprofilPanel.add(new Label("Suchprofil gelöscht"));
 		}
 		
 	}
 	
+	// Callback zum löschen des Suchprofils
+	private class SPdeleteCallback implements AsyncCallback{
+		public void onFailure(Throwable caught) {
+			suchprofilPanel.add(new Label (caught.toString()));
+		}
+		public void onSuccess(Object result) {
+		}
+	}
+	
+	// Callback zum löschen des Suchprofils
 	private class SPAnlegenCallback implements AsyncCallback {
 
 		public void onFailure(Throwable caught) {
@@ -212,6 +209,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 	}
 
+	// Callback zum Anzeigen der neuen Suchprofile in unserer Listbox
 	private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {
 		public void onFailure(Throwable caught) {
 			RootPanel.get().add(new Label(caught.toString()));
@@ -224,5 +222,6 @@ public class SuchprofilEditor extends VerticalPanel {
 			}
 		}
 	}
+	
 
 }
