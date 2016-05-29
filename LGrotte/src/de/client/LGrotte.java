@@ -10,6 +10,10 @@ public class LGrotte implements EntryPoint {
 
 	public void onModuleLoad() {
 		RootPanel.get().add(new LoginFrame());
-		RootPanel.get().add(new FindLove());
+		try {
+			RootPanel.get().add(new FindLove());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

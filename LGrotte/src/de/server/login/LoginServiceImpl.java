@@ -25,8 +25,8 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 			p.setLoggedIn(true);
 				bestehendesProfil.setLoggedIn(true);
 				bestehendesProfil.setLogoutUrl(userService.createLogoutURL(requestUri));
-				p.setEmail(user.getEmail());
-				ClientSideSettings.setUserProfil(p);
+//				bestehendesProfil.setEmail(user.getEmail());
+				ClientSideSettings.setUserProfil(bestehendesProfil);
 				return bestehendesProfil;
 			}
 			//NO PROFILE

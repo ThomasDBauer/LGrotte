@@ -9,11 +9,14 @@ import de.client.ClientSideSettings;
 import de.client.TestService;
 import de.server.db.EigenschaftMapper;
 import de.server.db.InfoMapper;
+import de.server.db.MerkzettelMapper;
 import de.server.db.ProfilMapper;
+import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.EditorService;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
+import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 /**
@@ -108,6 +111,41 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(email);
 	}
 	
+	public Vector<Profil> getProfile() throws Exception{
+		
+		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
+		
+		return profile;
+	}
+	
+	public Vector<Profil> getProfilesForEditor() throws Exception{
+		
+		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
+		Vector<Merkzettel>merkzettel = MerkzettelMapper.merkzettelMapper().
+				getMerkzettelByOwner(ClientSideSettings.getUserProfil().getEmail());
+		Vector<Profil>result = new Vector<Profil>();
+		for(int i = 0; i < profile.size(); i++){
+			boolean ok = true;
+			for(int o = 0; i < merkzettel.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						merkzettel.elementAt(o).getGemerktesProfil())){
+					ok = false;
+					break;
+				}
+			}
+			if(ok)result.add(profile.elementAt(i));
+		}
+		return result;
+	}
+	
+	public void insertMerkzettel(Vector<String> emails) throws Exception{
+		for(int i = 0; i < emails.size(); i++){
+			Merkzettel mz = new Merkzettel();
+			mz.setGemerktesProfil(emails.elementAt(i));
+			mz.setMerkendesProfil(ClientSideSettings.getUserProfil().getEmail());
+			MerkzettelMapper.merkzettelMapper().insertMerkzettel(mz);
+		}
+	}
 	
 	
 }
