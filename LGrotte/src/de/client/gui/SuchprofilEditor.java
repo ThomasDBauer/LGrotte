@@ -245,13 +245,13 @@ public class SuchprofilEditor extends VerticalPanel {
 
 		public void onSuccess(Vector<Suchprofil> result) {
 			suchprofile = result;
-			for (int i = spListBox.getSelectedIndex(); i < result.size(); i++) {
+			for (int i = 0; i < result.size(); i++) {
 				anzeigenTable.clear();
 				alterPanel.clear();
 				
 				anzeigenTable.setWidget(0, 0, nameAnzeigenLabel);
 				anzeigenTable.setWidget(0, 1, new Label(result.elementAt(i).getSuchprofilname()));
-
+				
 				anzeigenTable.setWidget(1, 0, geschlechtLabel);
 				anzeigenTable.setWidget(1, 1, new Label(result.elementAt(i).getGeschlecht()));
 
