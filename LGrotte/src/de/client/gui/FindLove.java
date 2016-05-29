@@ -37,7 +37,7 @@ public class FindLove extends VerticalPanel{
 	public void loadProfiles() throws Exception{
 		resultPanel.clear();
 		resultPanel.add(table);
-		ClientSideSettings.getEditorService().getProfile(new GetProfileCallback());
+		ClientSideSettings.getEditorService().getProfilesForEditor(new GetProfileCallback());
 	}
 	
 	private class GetProfileCallback implements AsyncCallback<Vector<Profil>>{

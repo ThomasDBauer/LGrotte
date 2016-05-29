@@ -34,5 +34,7 @@ public interface EditorServiceAsync {
 	
 	void insertMerkzettel(Vector<String> emails, AsyncCallback callback) throws Exception;
 	
+	void getProfilesForEditor(AsyncCallback<Vector<Profil>> troll) throws Exception;
+	
 	
 }

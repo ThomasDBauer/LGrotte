@@ -112,6 +112,26 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return profile;
 	}
 	
+	public Vector<Profil> getProfilesForEditor() throws Exception{
+		
+		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
+		Vector<Merkzettel>merkzettel = MerkzettelMapper.merkzettelMapper().
+				getMerkzettelByOwner(ClientSideSettings.getUserProfil().getEmail());
+		Vector<Profil>result = new Vector<Profil>();
+		for(int i = 0; i < profile.size(); i++){
+			boolean ok = true;
+			for(int o = 0; i < merkzettel.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						merkzettel.elementAt(o).getGemerktesProfil())){
+					ok = false;
+					break;
+				}
+			}
+			if(ok)result.add(profile.elementAt(i));
+		}
+		return result;
+	}
+	
 	public void insertMerkzettel(Vector<String> emails) throws Exception{
 		for(int i = 0; i < emails.size(); i++){
 			Merkzettel mz = new Merkzettel();
@@ -120,7 +140,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			MerkzettelMapper.merkzettelMapper().insertMerkzettel(mz);
 		}
 	}
-	
 	
 	
 }

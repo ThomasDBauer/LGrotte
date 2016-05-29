@@ -2,6 +2,9 @@ package de.server.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
 import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
@@ -44,6 +47,22 @@ public class MerkzettelMapper {
 		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement(
 				"DELETE FROM merkzettel WHERE gemerkteProfile='" + profil.getEmail() + "'");
 		deleteMerkzettel.execute();
+	}
+	
+	public Vector<Merkzettel> getMerkzettelByOwner(String email) throws Exception{
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) con.prepareStatement(
+				"SELECT gemerktesProfil FROM merkzettel WHERE merkendesProfil="
+				+ "'" + email + "'");
+		ResultSet result = select.executeQuery();
+		Vector<Merkzettel> merkzettel = new Vector<Merkzettel>();
+		while(result.next()){
+			Merkzettel m = new Merkzettel();
+			m.setGemerktesProfil(result.getString("gemerktesProfil"));
+			m.setMerkendesProfil(email);
+			merkzettel.add(m);
+		}
+		return merkzettel;
 	}
 	
 	
