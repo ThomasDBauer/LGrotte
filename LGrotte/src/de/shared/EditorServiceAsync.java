@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
+import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 
 public interface EditorServiceAsync {
@@ -30,5 +31,10 @@ public interface EditorServiceAsync {
 	
 	void getSuchprofile(AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
 	
+	void setUser(Profil p, AsyncCallback callback);
+	
+	void getProfilesForEditor(AsyncCallback<Vector<Profil>>callback) throws Exception;
+	
+	void insertMerkzettel(Vector<String> emails, AsyncCallback callback) throws Exception;
 	
 }

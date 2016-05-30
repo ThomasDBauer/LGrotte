@@ -10,7 +10,7 @@ public class MerkzettelSeeds {
 		for(int i = 0; i < profile.length; i++){
 			Profil mz = new Profil();
 			mz.setEmail(profile[i]);
-			MerkzettelMapper.merkzettelMapper().insertMerkzettel(mz);
+//			MerkzettelMapper.merkzettelMapper().insertMerkzettel(mz);
 		}
 	}
 	

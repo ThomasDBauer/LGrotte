@@ -2,7 +2,11 @@ package de.server.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
+import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 
 public class MerkzettelMapper {
@@ -22,15 +26,19 @@ public class MerkzettelMapper {
 	public void createMerkzettelTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createMerkzettel = (PreparedStatement) con.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS merkzettel(gemerktesProfil varchar(255), "
-				+ "merkendesProfil varchar(255), PRIMARY KEY(gemerktesProfil, merkendesProfil), FOREIGN KEY(gemerktesProfil) REFERENCES profil(email), FOREIGN KEY (merkendesProfil) REFERENCES profil(email))");
+				"CREATE TABLE IF NOT EXISTS merkzettel(gemerktesProfil varchar(45), "
+				+ "merkendesProfil varchar(45), PRIMARY KEY("
+				+ "gemerktesProfil, merkendesProfil), FOREIGN KEY(gemerktesProfil) "
+				+ "REFERENCES profil(email), FOREIGN KEY (merkendesProfil) "
+				+ "REFERENCES profil(email))");
 		createMerkzettel.execute();
 	}
 	
-	public void insertMerkzettel(Profil profil) throws Exception {
+	public void insertMerkzettel(Merkzettel mz) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertMerkzettel = (PreparedStatement)con.prepareStatement(
-				"INSERT INTO merkzettel(gemerktesProfil, merkendesProfil) VALUES ('" + profil.getEmail() + "', '" + profil.getEmail() + "')");
+				"INSERT INTO merkzettel(gemerktesProfil, merkendesProfil) VALUES ("
+				+ "'" + mz.getGemerktesProfil() + "', '" + mz.getMerkendesProfil() + "')");
 		insertMerkzettel.execute();
 	}
 	
@@ -41,8 +49,19 @@ public class MerkzettelMapper {
 		deleteMerkzettel.execute();
 	}
 	
-	
-	
-	
-	
+	public Vector<Merkzettel> getMerkzettelByOwner(String email) throws Exception{
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) con.prepareStatement(
+				"SELECT gemerktesProfil FROM merkzettel WHERE merkendesProfil="
+				+ "'" + email + "'");
+		ResultSet result = select.executeQuery();
+		Vector<Merkzettel> merkzettel = new Vector<Merkzettel>();
+		while(result.next()){
+			Merkzettel m = new Merkzettel();
+			m.setGemerktesProfil(result.getString("gemerktesProfil"));
+			m.setMerkendesProfil(email);
+			merkzettel.add(m);
+		}
+		return merkzettel;
+	}
 }
