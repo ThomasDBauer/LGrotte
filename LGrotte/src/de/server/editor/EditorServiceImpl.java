@@ -158,6 +158,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return profile;
 		
 	}		
+	
+	// Suchprofil anzeigen by name
+		public Vector<Suchprofil> getSuchprofileByName(String suchprofilname) throws Exception{
+			return SuchprofilMapper.suchprofilMapper().getSuchprofiByName(suchprofilname);
+		}
 
 	public void insertMerkzettel(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++) {

@@ -163,7 +163,10 @@ public class SuchprofilEditor extends VerticalPanel {
 	private class SuchProfilAnzeigenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
 			try {
-				ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileKomplettCallback());
+				ClientSideSettings.getEditorService().getSuchprofileByName(
+						spListBox.getItemText(spListBox.getSelectedIndex()), 
+						new GetSuchprofileKomplettCallback());
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -172,18 +175,6 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 		
 	}
-	// ClickHandler zum Ausblenden des Suchprofils ??
-		private class SuchProfilAusblendenClickHandler implements ClickHandler {
-			public void onClick(ClickEvent event) {
-				try {
-					ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileKomplettCallback());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-		}
 
 	// ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
 	private class SuchProfilAnlegenClickHandler implements ClickHandler {
@@ -265,8 +256,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 
 		public void onSuccess(Vector<Suchprofil> result) {
-			suchprofile = result;
-			for (int i = spListBox.getSelectedIndex(); i < result.size(); i++) {
+			for (int i = 0; i < result.size(); i++) {
 				anzeigenTable.clear();
 				alterPanel.clear();
 				groessenPanel.clear();

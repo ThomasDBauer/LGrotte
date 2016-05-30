@@ -39,4 +39,6 @@ public interface EditorServiceAsync {
 	
 	void insertKontaktsperren(Vector<String>emails, AsyncCallback callback) throws Exception;
 	
+	void getSuchprofileByName(String suchprofilname, AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
+	
 }
