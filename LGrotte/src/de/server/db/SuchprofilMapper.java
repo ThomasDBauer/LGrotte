@@ -29,7 +29,7 @@ public class SuchprofilMapper {
 				"CREATE TABLE IF NOT EXISTS suchprofil(suchprofilname varchar(30), "
 				+ "geschlecht varchar(30), minAlter int(3), maxAlter int(3), "
 				+ "religion varchar(30), haarfarbe varchar(15), profil varchar(35),"
-				+ "raucher varchar(30), koerpergroesse int(3),"
+				+ "raucher varchar(30), minGroesse int(3), maxGroesse int(3),"
 				+ "PRIMARY KEY(suchprofilname, profil), FOREIGN KEY (profil)"
 				+ "REFERENCES profil(email) ON UPDATE CASCADE ON DELETE RESTRICT)");
 		createSuchprofil.execute();
@@ -48,7 +48,8 @@ public class SuchprofilMapper {
 			Suchprofil sp = new Suchprofil();
 			sp.setGeschlecht(result.getString("geschlecht"));
 			sp.setHaarfarbe(result.getString("haarfarbe"));
-			sp.setKoerpergroesse(result.getInt("koerpergroesse"));
+			sp.setMaxGroesse(result.getInt("maxGroesse"));
+			sp.setMinGroesse(result.getInt("minGroesse"));
 			sp.setMaxAlter(result.getInt("maxAlter"));
 			sp.setMinAlter(result.getInt("minAlter"));
 			sp.setProfil(email);
@@ -65,10 +66,10 @@ public class SuchprofilMapper {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertSuchprofil = (PreparedStatement)con.prepareStatement(
 				"INSERT INTO suchprofil(suchprofilname, geschlecht, raucher, religion, "
-				+ "minAlter, maxAlter, koerpergroesse, haarfarbe, profil) VALUES ('"+ 
+				+ "minAlter, maxAlter, maxGroesse, minGroesse, haarfarbe, profil) VALUES ('"+ 
 				sp.getSuchprofilname() +"','" + sp.getGeschlecht() +"', '"+ 
 				sp.getRaucher() + "', '" + sp.getReligion() + "', '" + sp.getMinAlter() + 
-				"', '" +sp.getMaxAlter()+"','"+ sp.getKoerpergroesse() + "', '" 
+				"', '" +sp.getMaxAlter()+"','"+ sp.getMinGroesse() + "','"+ sp.getMaxGroesse() + "', '" 
 				+ sp.getHaarfarbe() + "','"+sp.getProfil()+"')");
 		insertSuchprofil.execute();
 	}

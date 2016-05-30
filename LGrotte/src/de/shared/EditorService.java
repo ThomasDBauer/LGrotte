@@ -25,7 +25,7 @@ import de.shared.BO.Suchprofil;
 		void deleteProfil(String email) throws IllegalArgumentException;
 		
 		void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, 
-				String religion, int minAlter, int maxAlter, int koerpergroesse, 
+				String religion, int minAlter, int maxAlter, int minGroesse, int maxGroesse, 
 				String haarfarbe) throws Exception;
 		void deleteSuchprofil(String suchprofilname) throws Exception;
 		

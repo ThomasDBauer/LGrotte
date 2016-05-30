@@ -31,7 +31,8 @@ public class SuchprofilEditor extends VerticalPanel {
 	private Label aussuchenLabel = new Label("Wählen Sie ein Suchprofil aus:");
 	private ListBox spListBox = new ListBox();
 	private FlexTable komplettTable = new FlexTable(); 
-	private Button anzeigenButton = new Button("Anzeigen", new SuchProfilAnzeigenClickHandler()); 
+	private Button anzeigenButton = new Button("Anzeigen", new SuchProfilAnzeigenClickHandler());
+	private Button ausblendenButton= new Button ("Ausblenden");
 	private Button spHinzufuegenButton = new Button("Neues Suchprofil hinzufügen", new SuchprofilHinzufuegenClickHandler());
 	private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
 	
@@ -54,8 +55,10 @@ public class SuchprofilEditor extends VerticalPanel {
 	private Label haarfarbeLabel = new Label("Haarfarbe:");
 	private ListBox haarfarbeListBox = new ListBox();
 
+	private HorizontalPanel groessenPanel = new HorizontalPanel();
 	private Label koerpergLabel = new Label("Körpergröße:");
-	private TextBox koerpergTextBox = new TextBox();
+	private TextBox minGroesse = new TextBox();
+	private TextBox maxGroesse= new TextBox();
 
 	private Label religionLabel = new Label("Religion:");
 	private ListBox religionListBox = new ListBox();
@@ -81,7 +84,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			e.printStackTrace();
 		}
 
-		// Anfängen der Panels
+		// Anhängen der Panels
 		komplettTable.setWidget(0, 0, aussuchenLabel);
 		komplettTable.setWidget(1, 0, spListBox);
 		komplettTable.setWidget(1, 1, anzeigenButton);
@@ -108,15 +111,19 @@ public class SuchprofilEditor extends VerticalPanel {
 			anlegenTable.setWidget(3, 1, haarfarbeListBox);
 
 			anlegenTable.setWidget(4, 0, koerpergLabel);
-			anlegenTable.setWidget(4, 1, koerpergTextBox);
+			groessenPanel.add(new Label("von "));
+			groessenPanel.add(minGroesse);
+			groessenPanel.add(new Label(" bis "));
+			groessenPanel.add(maxGroesse);
+			anlegenTable.setWidget(4, 1, groessenPanel);
 
 			anlegenTable.setWidget(5, 0, religionLabel);
 			anlegenTable.setWidget(5, 1, religionListBox);
 
 			anlegenTable.setWidget(6, 0, alterLabel);
-			alterPanel.add(new Label("von"));
+			alterPanel.add(new Label("von "));
 			alterPanel.add(minAlter);
-			alterPanel.add(new Label("bis"));
+			alterPanel.add(new Label(" bis "));
 			alterPanel.add(maxAlter);
 			anlegenTable.setWidget(6, 1, alterPanel);
 
@@ -147,6 +154,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			// Anheften an Panels
 			suchprofilPanel.add(anlegenTable);
 			suchprofilPanel.add(anlegenButton);
+			suchprofilPanel.add(ausblendenButton);
 
 		}
 	}
@@ -160,9 +168,22 @@ public class SuchprofilEditor extends VerticalPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	
 		}
 		
 	}
+	// ClickHandler zum Ausblenden des Suchprofils ??
+		private class SuchProfilAusblendenClickHandler implements ClickHandler {
+			public void onClick(ClickEvent event) {
+				try {
+					ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileKomplettCallback());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
 
 	// ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
 	private class SuchProfilAnlegenClickHandler implements ClickHandler {
@@ -174,7 +195,7 @@ public class SuchprofilEditor extends VerticalPanel {
 						raucherListBox.getItemText(raucherListBox.getSelectedIndex()),
 						religionListBox.getItemText(raucherListBox.getSelectedIndex()),
 						Integer.parseInt(minAlter.getText()), Integer.parseInt(maxAlter.getText()),
-						Integer.parseInt(koerpergTextBox.getText()),
+						Integer.parseInt(minGroesse.getText()), Integer.parseInt(maxGroesse.getText()),
 						haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex()), new SPAnlegenCallback());
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -248,6 +269,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			for (int i = spListBox.getSelectedIndex(); i < result.size(); i++) {
 				anzeigenTable.clear();
 				alterPanel.clear();
+				groessenPanel.clear();
 				
 				anzeigenTable.setWidget(0, 0, nameAnzeigenLabel);
 				anzeigenTable.setWidget(0, 1, new Label(result.elementAt(i).getSuchprofilname()));
@@ -261,9 +283,14 @@ public class SuchprofilEditor extends VerticalPanel {
 				anzeigenTable.setWidget(3, 0, haarfarbeLabel);
 				anzeigenTable.setWidget(3, 1, new Label(result.elementAt(i).getHaarfarbe()));
 				
-				String koerperString = String.valueOf(result.elementAt(i).getKoerpergroesse());
+				String minKoerperString = String.valueOf(result.elementAt(i).getMinGroesse());
+				String maxKoerperString = String.valueOf(result.elementAt(i).getMaxGroesse());
 				anzeigenTable.setWidget(4, 0, koerpergLabel);
-				anzeigenTable.setWidget(4, 1, new Label(koerperString));
+				groessenPanel.add(new Label("von "));
+				groessenPanel.add(new Label(minKoerperString));
+				groessenPanel.add(new Label(" bis "));
+				groessenPanel.add(new Label(maxKoerperString));
+				anzeigenTable.setWidget(4, 1, groessenPanel);
 
 				anzeigenTable.setWidget(5, 0, religionLabel);
 				anzeigenTable.setWidget(5, 1, new Label(result.elementAt(i).getReligion()));

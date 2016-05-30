@@ -19,7 +19,7 @@ public interface EditorServiceAsync {
 	void deleteProfil(String email, AsyncCallback callback) throws IllegalArgumentException;
 	
 	void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, 
-			String religion, int minAlter, int maxAlter, int koerpergroesse, String haarfarbe, 
+			String religion, int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe, 
 			AsyncCallback callback) throws Exception;
 	
 	void deleteSuchprofil(String suchprofilname, AsyncCallback callback) throws Exception;

@@ -71,7 +71,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Suchprofil erstellen
 	public void insertSuchprofil(String suchprofilname, String geschlecht, 
 			String raucher, String religion, int minAlter, int maxAlter, 
-			int koerpergroesse, String haarfarbe) throws Exception{
+			int minGroesse, int maxGroesse, String haarfarbe) throws Exception{
 		Suchprofil sp = new Suchprofil();
 		sp.setSuchprofilname(suchprofilname);
 		sp.setGeschlecht(geschlecht);
@@ -79,7 +79,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		sp.setReligion(religion);
 		sp.setMinAlter(minAlter);
 		sp.setMaxAlter(maxAlter);
-		sp.setKoerpergroesse(koerpergroesse);
+		sp.setMinGroesse(minGroesse);
+		sp.setMaxGroesse(maxGroesse);
 		sp.setHaarfarbe(haarfarbe);
 		sp.setProfil(ClientSideSettings.getUserProfil().getEmail());
 		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
