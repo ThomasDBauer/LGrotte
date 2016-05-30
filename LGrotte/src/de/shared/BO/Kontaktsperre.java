@@ -7,28 +7,26 @@ public class Kontaktsperre extends BusinessObject{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Profil sperrendesProfil;
+	private String sperrendesProfil;
 	
-	private Profil gesperrtesProfil;
+	private String gesperrtesProfil;
 
-	
-	
-	public Profil getSperrendesProfil() {
+	public String getSperrendesProfil() {
 		return sperrendesProfil;
 	}
 
-	public void setSperrendesProfil(Profil sperrendesProfil) {
+	public void setSperrendesProfil(String sperrendesProfil) {
 		this.sperrendesProfil = sperrendesProfil;
 	}
 
-	public Profil getGesperrtesProfil() {
+	public String getGesperrtesProfil() {
 		return gesperrtesProfil;
 	}
 
-	public void setGesperrtesProfil(Profil gesperrtesProfil) {
+	public void setGesperrtesProfil(String gesperrtesProfil) {
 		this.gesperrtesProfil = gesperrtesProfil;
 	}
-	
+
 	
 	
 }

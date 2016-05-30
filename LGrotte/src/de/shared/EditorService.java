@@ -39,4 +39,6 @@ public interface EditorService extends RemoteService {
 	Vector<Profil> getProfilesForEditor() throws Exception;
 	
 	void insertMerkzettel(Vector<String> emails) throws Exception;
+	
+	void insertKontaktsperren(Vector<String>emails) throws Exception;
 }

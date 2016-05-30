@@ -9,12 +9,14 @@ import de.client.ClientSideSettings;
 import de.client.TestService;
 import de.server.db.EigenschaftMapper;
 import de.server.db.InfoMapper;
+import de.server.db.KontaktsperreMapper;
 import de.server.db.MerkzettelMapper;
 import de.server.db.ProfilMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.EditorService;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
+import de.shared.BO.Kontaktsperre;
 import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
@@ -115,46 +117,63 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		String email = ClientSideSettings.getUserProfil().getEmail();
 		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(email);
 	}
+	
 
 	/*
-	 * Die Methode liefert alle Profile, die nicht auf Merkzetteln oder
+	 * Die Methode liefert alle Profile zurück, die nicht auf Merkzetteln oder
 	 * Kontaktsperren des Users stehen.
 	 */
 	public Vector<Profil> getProfilesForEditor() throws Exception {
 
 		// Erstmal alle Profile auslesen:
 		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
-		// Au0erdem alle Merkzettel des Users:
-		Vector<Merkzettel> merkzettel = MerkzettelMapper.merkzettelMapper().getMerkzettelByOwner(user.getEmail());
+		// Au0erdem alle Merkzettel und Kontaktsperren des Users:
+		Vector<Merkzettel> merkzettel = MerkzettelMapper.merkzettelMapper().
+				getMerkzettelByOwner(user.getEmail());
+		Vector<Kontaktsperre> sperren = KontaktsperreMapper.kontaktsperreMapper().
+				getKontaktsperreByOwner(user.getEmail());
 
-		// Der Ergebnis-Vektor:
-		Vector<Profil> result = new Vector<Profil>();
-
-		// Aussortieren:
-		for (int i = 0; i < profile.size(); i++) {
-			// Den User selbst:
-			if (profile.elementAt(i).getEmail().equals(user.getEmail()))
-				continue;
-			// Jetzt alle Profile auf den Merkzetteln:
-			boolean ok = true;
-			for (int o = 0; i < merkzettel.size(); o++) {
-				if (profile.elementAt(i).getEmail().equals(merkzettel.elementAt(o).getGemerktesProfil())) {
-					ok = false;
-					break;
-				}
+		for(int i = 0; i < profile.size(); i++){
+			//Merkzettel aussortieren
+			for(int o = 0; o < merkzettel.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						merkzettel.elementAt(o).getGemerktesProfil())){
+					profile.remove(i);
+				};
 			}
-			if (ok)
-				result.add(profile.elementAt(i));
+			//Kontaktsperren aussortieren
+			for(int o = 0; o < sperren.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						sperren.elementAt(o).getGesperrtesProfil())){
+					profile.remove(i);
+				};
+			}
+			//User aussortieren
+			if (profile.elementAt(i).getEmail().equals(user.getEmail())){
+				profile.remove(i);
+				continue;
+			}
 		}
-		return result;
-	}
+		
+		return profile;
+		
+	}		
 
 	public void insertMerkzettel(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++) {
 			Merkzettel mz = new Merkzettel();
 			mz.setGemerktesProfil(emails.elementAt(i));
-			mz.setMerkendesProfil(ClientSideSettings.getUserProfil().getEmail());
+			mz.setMerkendesProfil(user.getEmail());
 			MerkzettelMapper.merkzettelMapper().insertMerkzettel(mz);
+		}
+	}
+	
+	public void insertKontaktsperren(Vector<String>emails) throws Exception {
+		for(int i = 0; i < emails.size(); i++){
+			Kontaktsperre k = new Kontaktsperre();
+			k.setGesperrtesProfil(emails.elementAt(i));
+			k.setSperrendesProfil(user.getEmail());
+			KontaktsperreMapper.kontaktsperreMapper().insertKontaktsperre(k);
 		}
 	}
 

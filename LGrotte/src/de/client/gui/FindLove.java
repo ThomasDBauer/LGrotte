@@ -62,7 +62,6 @@ public class FindLove extends VerticalPanel {
 	}
 
 	private class CheckProfilHandler implements ClickHandler {
-
 		private String userEmail;
 
 		public CheckProfilHandler(String email) {
@@ -81,6 +80,7 @@ public class FindLove extends VerticalPanel {
 
 	private class MerkHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
+			merkButton.setEnabled(false);
 			for(int i = 0; i < emailBuffer.size(); i++){
 			}
 			try {
@@ -99,7 +99,17 @@ public class FindLove extends VerticalPanel {
 	}
 
 	private class SperrHandler implements ClickHandler {
+		
 		public void onClick(ClickEvent e) {
+			sperrButton.setEnabled(false);
+			for(int i = 0; i < emailBuffer.size(); i++){
+			}
+			try {
+				ClientSideSettings.getEditorService().insertKontaktsperren(
+						emailBuffer, new InsertCallback());
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	}
 
@@ -109,7 +119,14 @@ public class FindLove extends VerticalPanel {
 		}
 
 		public void onSuccess(Object result) {
-
+			sperrButton.setEnabled(true);
+			merkButton.setEnabled(true);
+			emailBuffer.clear();
+			try {
+				loadProfiles();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 }
