@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.ClientSideSettings;
@@ -22,11 +23,28 @@ public class FindLove extends VerticalPanel {
 	private Button merkButton = new Button("Profile merken", new MerkHandler());
 	private Button sperrButton = new Button("Profile sperren", new SperrHandler());
 	private VerticalPanel resultPanel = new VerticalPanel();
+	
+	/*
+	 * TEST PEWPEW
+	 */
+		
+		private Button testButton = new Button("Test", new ClickHandler(){
+			public void onClick(ClickEvent e){
+				for(int i = 0; i < emailBuffer.size(); i++){
+					resultPanel.add(new Label(emailBuffer.elementAt(i)));
+				}
+			}
+		});
+	
+	/*
+	 * TEST PEWPEW ENDE
+	 */
 
 	public FindLove() throws Exception {
 		HorizontalPanel controlPanel = new HorizontalPanel();
 		controlPanel.add(merkButton);
 		controlPanel.add(sperrButton);
+		controlPanel.add(testButton);
 		this.add(controlPanel);
 		this.add(resultPanel);
 		loadProfiles();
@@ -42,21 +60,26 @@ public class FindLove extends VerticalPanel {
 	private class GetProfileCallback implements AsyncCallback<Vector<Profil>> {
 
 		public void onFailure(Throwable caught) {
+			RootPanel.get().add(new Label(caught.toString() + " @FindLove.GetProfileCallback"));
 		}
 
 		public void onSuccess(Vector<Profil> result) {
-			for (int i = 0; i < result.size(); i++) {
-				Profil p = result.elementAt(i);
+			if (result.size() == 0) {
+				resultPanel.add(new Label("Keine Ergebnisse"));
+			} else {
+				for (int i = 0; i < result.size(); i++) {
+					Profil p = result.elementAt(i);
 
-				CheckBox cb = new CheckBox();
-				cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
+					CheckBox cb = new CheckBox();
+					cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 
-				table.setWidget(i, 0, cb);
+					table.setWidget(i, 0, cb);
 
-				table.setWidget(i, 1, new Label("Name"));
-				table.setWidget(i, 2, new Label(p.getFname() + " " + p.getLname()));
-				table.setWidget(i, 3, new Label("Email"));
-				table.setWidget(i, 4, new Label(p.getEmail()));
+					table.setWidget(i, 1, new Label("Name"));
+					table.setWidget(i, 2, new Label(p.getFname() + " " + p.getLname()));
+					table.setWidget(i, 3, new Label("Email"));
+					table.setWidget(i, 4, new Label(p.getEmail()));
+				}
 			}
 		}
 	}
@@ -81,32 +104,21 @@ public class FindLove extends VerticalPanel {
 	private class MerkHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			merkButton.setEnabled(false);
-			for(int i = 0; i < emailBuffer.size(); i++){
-			}
 			try {
-				ClientSideSettings.getEditorService().insertMerkzettel(
-						emailBuffer, new InsertCallback());
+				ClientSideSettings.getEditorService().insertMerkzettel(emailBuffer, new InsertCallback());
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 			emailBuffer.clear();
-			try {
-				loadProfiles();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
 		}
 	}
 
 	private class SperrHandler implements ClickHandler {
-		
+
 		public void onClick(ClickEvent e) {
 			sperrButton.setEnabled(false);
-			for(int i = 0; i < emailBuffer.size(); i++){
-			}
 			try {
-				ClientSideSettings.getEditorService().insertKontaktsperren(
-						emailBuffer, new InsertCallback());
+				ClientSideSettings.getEditorService().insertKontaktsperren(emailBuffer, new InsertCallback());
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -115,7 +127,7 @@ public class FindLove extends VerticalPanel {
 
 	private class InsertCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
-
+			RootPanel.get().add(new Label(caught.toString()+ " @FindLove.InsertCallback"));
 		}
 
 		public void onSuccess(Object result) {

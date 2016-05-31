@@ -154,9 +154,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 				continue;
 			}
 		}
-		
-		return profile;
-		
+			return profile;
 	}		
 	
 	// Suchprofil anzeigen by name
