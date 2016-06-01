@@ -21,7 +21,7 @@ public class ImpressumReport extends HorizontalPanel {
 		}
 
 	}
-
+//Das ist ein Test-Commit
 	private class ReportCallback implements AsyncCallback<String> {
 		public void onFailure(Throwable caught) {
 			pvR.add(new Label(caught.toString()));
