@@ -44,7 +44,7 @@ public class LGrotte implements EntryPoint {
 					public void onSuccess(Profil result) {
 						editorService.setUser(result, new SetUserCallback());
 						if (result.isLoggedIn()) {
-							RootPanel.get("Navi").add(new Label("Willkommen in der Grotte, " + result.getFname()));
+							RootPanel.get("Inhalt_oben").add(new Label("Willkommen in der Grotte, " + result.getFname()));
 							logOutLink.setHref(result.getLogoutUrl());
 							RootPanel.get("Einstellungen").add(logOutLink);
 							RootPanel.get("Navi").add(new Navigation());
