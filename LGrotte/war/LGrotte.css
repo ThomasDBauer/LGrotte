@@ -71,38 +71,37 @@ li a:hover {
 #Navi {
 	width: auto;
 	min-width: 880px;
-	padding: 20px;
-	background-color: #ffffff;
-/* 	border: 2px solid black;*/
- 	min-height: 70px;
- 	height: 0 auto;
- 	border-top: 1px solid black;
- 	border-bottom: 1px solid black;
+	padding: 7px;
+	background-color: #b61414;
+	/* 	border: 2px solid black;*/
+	min-height: 30 px;
+	height: 0 auto;
+	border-top: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
 }
 
 .navi-button {
-	background-color: #f39c9c;
-	/*  background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
-  background-image: -moz-linear-gradient(top, #d93434, #b82b2b);
-  background-image: -ms-linear-gradient(top, #d93434, #b82b2b);
-  background-image: -o-linear-gradient(top, #d93434, #b82b2b);
-  background-image: linear-gradient(to bottom, #d93434, #b82b2b);
-  -webkit-border-radius: 28;
+	background-color: #FFF;
+	/*-webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px; */
 	color: #000000;
 	font-size: 15px;
 	padding: 5px 15px 5px 15px;
 	text-decoration: none;
-	border-color: #FFF;
 	outline-color: #000000;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+	cursor: pointer;
+	cursor: hand;
+	border: 1px solid #c0c0c0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 
 .navi-button:hover {
-	background: #ff4646;
-	color: #000000;
+	background: #e72525;
+	color: #FFF;
 	/* background-image: -webkit-linear-gradient(top, #fc3c3c, #d93434);
   background-image: -moz-linear-gradient(top, #fc3c3c, #d93434);
   background-image: -ms-linear-gradient(top, #fc3c3c, #d93434);
@@ -125,24 +124,24 @@ li a:hover {
 	font-size: 15px;
 	padding: 5px 15px 5px 15px;
 	text-decoration: none;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
-#Content{
-	Padding:3%;
+#Content {
+	Padding: 3%;
 	heigth: auto;
 	overflow: hidden;
 }
 
-#Spalte_links{
-	float:left;
+#Spalte_links {
+	float: left;
 	position: relative;
 	background-color: #FFF;
 	width: 73%;
 	-webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
 #Inhalt {
@@ -151,16 +150,16 @@ li a:hover {
 	background-color: #FFF;
 	padding: 20px 0px 20px 20px;
 	min-height: 600px;
-/* 	margin-rigth: 300px; */
+	/* 	margin-rigth: 300px; */
 	width: 47%;
 	border-rigth: 1px solid #808080;
 	-webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 25px;
+	-moz-border-radius: 5px;
+	border-radius: 25px;
 }
 
 #Inhalt_oben {
-/* 	border: 2px solid black; */
+	/* 	border: 2px solid black; */
 	width: inhert;
 	margin-bottom: 5px;
 	margin-left: 0 auto;
@@ -168,13 +167,12 @@ li a:hover {
 }
 
 #Inhalt_unten {
-/* 	border: 2px solid black; */
+	/* 	border: 2px solid black; */
 	min-height: 300px;
 	width: inhert;
 	margin-left: 0 auto;
 	margin-right: 0 auto;
 }
-
 
 #Mitte {
 	background-color: #FFF;
@@ -188,8 +186,8 @@ li a:hover {
 	float: right;
 	width: 47%;
 	-webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
 #Einstellungen {
@@ -200,7 +198,7 @@ li a:hover {
 	background-color: #fff;
 	min-height: 600px;
 	-webkit-border-radius: 5px;
-    border-radius: 5px;
+	border-radius: 5px;
 }
 
 #Fusszeile {
@@ -214,13 +212,13 @@ li a:hover {
 	background-color: #FFF;
 }
 
-.bild_links{
+.bild_links {
 	margin-left: 20px;
 	float: left;
 	vertical-align: middle;
 }
 
-.bild_rechts{
+.bild_rechts {
 	margin-right: 20px;
 	float: right;
 	vertical-align: middle;
