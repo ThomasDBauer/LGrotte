@@ -6,6 +6,8 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
+  
+  <!-- Seed Start -->
   <servlet>
     <servlet-name>greetServlet</servlet-name>
     <servlet-class>de.server.SeedServiceImpl</servlet-class>
@@ -15,6 +17,11 @@
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/lgrotte/greet</url-pattern>
   </servlet-mapping>
+  
+  <!-- Seed Ende -->
+  
+  
+  <!-- Editor Start -->
   
   <servlet>
     <servlet-name>editorServlet</servlet-name>
@@ -26,6 +33,10 @@
     <url-pattern>/lgrotte/editor</url-pattern>
   </servlet-mapping>
   
+  <!-- Seed Ende -->
+  
+  <!-- Report Start -->
+  
   <servlet>
     <servlet-name>reportServlet</servlet-name>
     <servlet-class>de.server.report.ReportServiceImpl</servlet-class>
@@ -33,8 +44,13 @@
   
   <servlet-mapping>
     <servlet-name>reportServlet</servlet-name>
-    <url-pattern>/lgrotte/report</url-pattern>
+    <url-pattern>/report</url-pattern>
   </servlet-mapping>
+  
+  <!-- Report Ende -->
+  
+  
+  <!-- LOGIN Start -->
   
   <servlet>
     <servlet-name>loginServlet</servlet-name>
@@ -46,7 +62,7 @@
     <url-pattern>/lgrotte/login</url-pattern>
   </servlet-mapping>
   
-  
+  <!-- LOGIN Ende -->
   
   
   <!-- Default page to serve -->
