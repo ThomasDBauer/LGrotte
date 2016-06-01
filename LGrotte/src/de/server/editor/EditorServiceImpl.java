@@ -136,9 +136,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		for(int i = 0; i < profile.size(); i++){
 			
 			//User aussortieren
-			if(profile.elementAt(i).getEmail().equals(user.getEmail())){
-				profile.remove(i);
-			}
+//			if(profile.elementAt(i).getEmail().equals(user.getEmail())){
+//				profile.remove(i);
+//			}
 			
 			//Merkzettel aussortieren
 			for(int o = 0; o < merkzettel.size(); o++){
