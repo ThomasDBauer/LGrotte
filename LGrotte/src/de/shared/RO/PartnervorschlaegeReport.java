@@ -6,7 +6,6 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
 import de.client.ClientSideSettings;
-import de.shared.BO.Profil;
 
 public class PartnervorschlaegeReport extends HorizontalPanel {
 	private HorizontalPanel pvR = this;

@@ -17,7 +17,7 @@ import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 
 public class FindLove extends VerticalPanel {
-
+ //dieter
 	private FlexTable table = new FlexTable();
 	private Vector<String> emailBuffer = new Vector<String>();
 	private Button merkButton = new Button("Profile merken", new MerkHandler());
