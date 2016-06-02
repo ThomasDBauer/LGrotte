@@ -40,21 +40,23 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			// wir wollen eine listbox und eine textbox
 			ListBox listbox = new ListBox(false);
 			TextBox textbox = new TextBox();
+			Button loeschenButton = new Button("x");
 
-			// um sie später auszulesen, werden sie außerhalb der methode
+			// um sie spï¿½ter auszulesen, werden sie auï¿½erhalb der methode
 			// gespeichert
 			eigenschaftenListboxen.add(listbox);
 			eigenschaftenTextboxen.add(textbox);
 
-			// füllen der listbox mit allen eigenschaften
+			// fï¿½llen der listbox mit allen eigenschaften
 			for (int i = 0; i < eigenschaften.size(); i++) {
 				listbox.addItem(eigenschaften.elementAt(i).getErlaeuterung());
 			}
 
-			// hübsch anordnen
+			// hï¿½bsch anordnen
 			HorizontalPanel hpanel = new HorizontalPanel();
 			hpanel.add(listbox);
 			hpanel.add(textbox);
+			hpanel.add(loeschenButton);
 			editPanel.add(hpanel);
 		}
 	}
@@ -99,26 +101,4 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 	}
 }
 
-/*
- * private VerticalPanel vPanel = this; private Button
- * eigenschaftHinzufÃ¼genButton = new Button("+"); private Button
- * speichernButton = new Button("speichern");
- * 
- * private ListBox eigenschaftenListBox = new ListBox();
- * 
- * private TextBox infoObjektTextBox = new TextBox();
- * 
- * 
- * ProfilEigenschaftEditor(){ vPanel.add(eigenschaftHinzufÃ¼genButton);
- * eigenschaftHinzufÃ¼genButton.addClickHandler(new
- * eigenschaftAnzeigenClickHandler()); } private class
- * eigenschaftAnzeigenClickHandler implements ClickHandler {
- * 
- * public void onClick(ClickEvent event) { vPanel.add(eigenschaftenListBox);
- * for(int i = 0; i < ClientSideSettings.getEditorService(). )
- * vPanel.add(speichernButton);
- * 
- * }
- * 
- * }
- */
+
