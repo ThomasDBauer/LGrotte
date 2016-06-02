@@ -9,12 +9,13 @@ public class InfoSeeds {
 		for(int i = 0; i < eigenschaften.length; i++){
 			Info info = new Info();
 			info.setValue(values[i]);
+			info.setEigenschaft(eigenschaften[i]);
 			InfoMapper.infoMapper().insertInfo(info);
 		}
 	}
 	
 	private String[]values = {
-		"Fußball", "Fussball", "Schwimmen",
+		"Fuï¿½ball", "Fussball", "Schwimmen",
 		"Titanic", "Django", "Lucky#Slevin",
 		"HipHop", "Hip-Hop", "Schlager", "Jazz"
 	};

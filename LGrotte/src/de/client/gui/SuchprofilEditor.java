@@ -227,7 +227,7 @@ public class SuchprofilEditor extends VerticalPanel {
 	private class SPAnlegenCallback implements AsyncCallback {
 
 		public void onFailure(Throwable caught) {
-			RootPanel.get().add(new Label(caught.toString()));
+			RootPanel.get().add(new Label("Fehler in SuchprofilAnlegenEditor.SPAnlegenCallback" + caught.toString()));
 		}
 
 		public void onSuccess(Object result) {

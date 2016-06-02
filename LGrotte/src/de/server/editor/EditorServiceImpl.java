@@ -91,7 +91,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		sp.setMinGroesse(minGroesse);
 		sp.setMaxGroesse(maxGroesse);
 		sp.setHaarfarbe(haarfarbe);
-		sp.setProfil(ClientSideSettings.getUserProfil().getEmail());
+		sp.setProfil(user.getEmail());
 		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
 	}
 
@@ -114,13 +114,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
-		String email = ClientSideSettings.getUserProfil().getEmail();
+		String email = user.getEmail();
 		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(email);
 	}
 	
 
 	/*
-	 * Die Methode liefert alle Profile zurück, die nicht auf Merkzetteln oder
+	 * Die Methode liefert alle Profile zurï¿½ck, die nicht auf Merkzetteln oder
 	 * Kontaktsperren des Users stehen.
 	 */
 	public Vector<Profil> getProfilesForEditor() throws Exception {
