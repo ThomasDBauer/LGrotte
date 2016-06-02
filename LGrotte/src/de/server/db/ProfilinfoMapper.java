@@ -62,10 +62,10 @@ public class ProfilinfoMapper {
 					+ pi.getInfoID() + "WHERE profil = " + pi.getProfilEmail());
 
 			/*
-			 * Wenn wir das ERM so lassen, muss man über das SQL-Statement
-			 * herauslesen können, zu welcher Eigenschafts-ID, Die Info-id
-			 * zugehörig ist, um die info-id der richtigen Eigenschafts-id zu
-			 * löschen --> das Problem liegt im zusammengesetzten Primary-Key,
+			 * Wenn wir das ERM so lassen, muss man ï¿½ber das SQL-Statement
+			 * herauslesen kï¿½nnen, zu welcher Eigenschafts-ID, Die Info-id
+			 * zugehï¿½rig ist, um die info-id der richtigen Eigenschafts-id zu
+			 * lï¿½schen --> das Problem liegt im zusammengesetzten Primary-Key,
 			 * der nur in Kombi beider Attribute Eindeutig ist
 			 */
 		} catch (SQLException e2) {
@@ -87,8 +87,8 @@ public class ProfilinfoMapper {
 
 	//
 	// public ProfilInfo getProfilInfo(int profilID){
-	// //Eigentlich müsste geProfilInfo ein Vetor oder einen Array mit der
-	// Anzahl aller Info-ID´s zurückgeben
+	// //Eigentlich mï¿½sste geProfilInfo ein Vetor oder einen Array mit der
+	// Anzahl aller Info-IDï¿½s zurï¿½ckgeben
 	// Connection connection = DBConnection.connection();
 	//
 	// try{

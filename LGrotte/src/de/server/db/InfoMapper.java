@@ -7,8 +7,7 @@ import de.shared.BO.Info;
 
 public class InfoMapper {
 	//Klasse ist Singleton und das gewährleistet diese Funktion, es speichert die einzige Instanz dieser Klasse.
-	public static InfoMapper infomapper = null;
-
+	private static InfoMapper infomapper = null;
 
 
 	//Ein geschützter Konstruktor, der verhindert dass man per "new" eine neue Instanz erzeugen kann.
@@ -28,19 +27,12 @@ public class InfoMapper {
 	}
 
 
-//	public void createInfoTable() throws Exception{
-//		Connection con = (Connection)DBConnection.connection();
-//		PreparedStatement createInfo = (PreparedStatement) con.prepareStatement(
-//				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL AUTO_INCREMENT, "
-//				+ "value varchar(50), eigenschaft_id int NOT NULL, PRIMARY KEY(id), "
-//				+ "FOREIGN KEY(eigenschaft_id) REFERENCES eigenschaft(id)");
-//		createInfo.execute();
-//	}
-
 	public void createInfoTable() throws Exception{
-		Connection con = (Connection)DBConnection.connection();
-		PreparedStatement createInfo = (PreparedStatement) con.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL AUTO_INCREMENT, value varchar(50), eigenschaft_id int, PRIMARY KEY(id))");
+		Connection conn = (Connection)DBConnection.connection();
+		PreparedStatement createInfo = (PreparedStatement) conn.prepareStatement(
+				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL AUTO_INCREMENT, "
+				+ "value varchar(50), eigenschaft_id int , PRIMARY KEY(id), "
+				+ "FOREIGN KEY(eigenschaft_id) REFERENCES eigenschaft(id) ON UPDATE CASCADE ON DELETE RESTRICT)"); // 
 		createInfo.execute();
 	}
 

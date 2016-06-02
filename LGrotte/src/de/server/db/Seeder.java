@@ -55,14 +55,14 @@ public class Seeder {
 	/**Hier m�ssen die createTable() Methoden der Mapper eingef�gt werden 
 	 * @throws Exception */
 	private void migrate() throws Exception{
-		ProfilMapper.profilMapper().createProfilTable();
 		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
+		ProfilMapper.profilMapper().createProfilTable();
 		InfoMapper.infoMapper().createInfoTable();
 		ProfilinfoMapper.profilinfoMapper().createProfilInfo();
 		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
 		SuchprofilMapper.suchprofilMapper().createSuchprofilTable();
 		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
-//		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();
+//		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();    <-- brauch mer nimmer
 	}
 
 	private void seed() throws Exception{
