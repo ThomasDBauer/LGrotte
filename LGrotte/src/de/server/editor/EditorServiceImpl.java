@@ -76,6 +76,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			e.printStackTrace();
 		}
 	}
+	
+	// Profile anzeigen lassen im Bearbeiten Modus
+	public Profil getProfilEintraege(String Email) throws Exception {
+		String email = user.getEmail();
+		return ProfilMapper.profilMapper().getProfilByEmail(email);
+	}
 
 	// Methoden zum Suchprofil
 	// Suchprofil erstellen
