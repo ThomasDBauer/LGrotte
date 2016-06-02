@@ -40,7 +40,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			// wir wollen eine listbox und eine textbox
 			ListBox listbox = new ListBox(false);
 			TextBox textbox = new TextBox();
-			Button loeschenButton = new Button("x");
+			Button loeschenButton = new Button("x", new LoeschenClickHandler());
 
 			// um sie sp�ter auszulesen, werden sie au�erhalb der methode
 			// gespeichert
@@ -93,6 +93,23 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
+	public class LoeschenClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+		//Heir kommt die Deletedunktion die anhand der im TextFeld eingegebenen eigenschaft NICHT anhand der ID	
+			
+		}
+		
+	}
+	private class DeleteInfoCallback implements AsyncCallback{
+		public void onFailure(Throwable caught) {
+			
+		}
+		public void onSuccess(Object result) {
+
+		}
+		
+	}
+	
 	private class InsertInfoCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 		}
