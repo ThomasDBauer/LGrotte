@@ -1,11 +1,13 @@
 package de.server.report;
 
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.server.db.ProfilMapper;
 import de.shared.ReportService;
 import de.shared.BO.Profil;
+import de.shared.RO.AlleProfileReport;
 
 /**
  * The server-side implementation of the RPC service.
@@ -55,4 +57,52 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		sb.append(showProfilReport(profil.getEmail()));
 		return sb.toString();
 	}
-}
+
+	@Override
+	public AlleProfileReport createAlleProfileReport() throws Exception {
+	    /*
+	     * Zunächst legen wir uns einen leeren Report an.
+	     */
+	    AlleProfileReport result = new AlleProfileReport();
+
+	    // Jeder Report hat einen Titel (Bezeichnung / überschrift).
+	    result.setTitle("Report aller Teilnehmer");
+
+	       /*
+	     * Datum der Erstellung hinzufügen. new Date() erzeugt autom. einen
+	     * "Timestamp" des Zeitpunkts der Instantiierung des Date-Objekts.
+	     */
+	    result.setCreated(new Date());
+
+	    /*
+	     * Da AllAccountsOfAllCustomersReport-Objekte aus einer Sammlung von
+	     * AllAccountsOfCustomerReport-Objekten besteht, benötigen wir keine
+	     * Kopfdaten für diesen Report-Typ. Wir geben einfach keine Kopfdaten an...
+	     */
+
+	    /*
+	     * Nun müssen sämtliche Kunden-Objekte ausgelesen werden. Anschließend wir
+	     * für jedes Kundenobjekt c ein Aufruf von
+	     * createAllAccountsOfCustomerReport(c) durchgeführt und somit jeweils ein
+	     * AllAccountsOfCustomerReport-Objekt erzeugt. Diese Objekte werden
+	     * sukzessive der result-Variable hinzugefügt. Sie ist vom Typ
+	     * AllAccountsOfAllCustomersReport, welches eine Subklasse von
+	     * CompositeReport ist.
+	     */
+	    Vector<Profil> alleProfile = ProfilMapper.profilMapper().getAll();
+
+	    for (Profil c : alleProfile) {
+	      /*
+	       * Anlegen des jew. Teil-Reports und Hinzufügen zum Gesamt-Report.
+	       */
+	      result.addSubReport(createAlleProfileReport());
+	    }
+
+	    /*
+	     * Zu guter Letzt müssen wir noch den fertigen Report zurückgeben.
+	     */
+	    return result;
+	  }
+	}
+
+
