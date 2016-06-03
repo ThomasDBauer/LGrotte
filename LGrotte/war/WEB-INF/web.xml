@@ -31,7 +31,7 @@
   <servlet-mapping>
     <servlet-name>editorServlet</servlet-name>
     <url-pattern>/lgrotte/editor</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>  
   
   <!-- Seed Ende -->
   
@@ -44,7 +44,7 @@
   
   <servlet-mapping>
     <servlet-name>reportServlet</servlet-name>
-    <url-pattern>/report</url-pattern>
+    <url-pattern>/reportgenerator/report</url-pattern>
   </servlet-mapping>
   
   <!-- Report Ende -->

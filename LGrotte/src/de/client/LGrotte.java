@@ -15,6 +15,9 @@ import de.client.gui.Navigation;
 import de.client.temp.SeedButton;
 import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
+import de.shared.LoginServiceAsync;
+import de.shared.ReportService;
+import de.shared.ReportServiceAsync;
 import de.shared.BO.Profil;
 
 
@@ -28,14 +31,17 @@ public class LGrotte implements EntryPoint {
 	private Anchor signInLink = new Anchor("Sign In");
 	private final Anchor logOutLink = new Anchor("Logout");
 	private EditorServiceAsync editorService;
+	private ReportServiceAsync reportService;
+	private LoginServiceAsync loginService;
 	
 	
 	public void onModuleLoad() {
 		
-		editorService = GWT.create(EditorService.class);
+		editorService = ClientSideSettings.getEditorService();
+		loginService = ClientSideSettings.getLoginService();
 		
 		RootPanel.get("Einstellungen").add(new SeedButton());
-		ClientSideSettings.getLoginService().login(GWT.getHostPageBaseURL() + "LGrotte.html",
+		loginService.login(GWT.getHostPageBaseURL() + "LGrotte.html",
 				new AsyncCallback<Profil>() {
 					public void onFailure(Throwable caught) {
 						RootPanel.get("Einstellungen").add(new Label(caught.toString()));

@@ -12,8 +12,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import de.shared.RO.ImpressumReport;
-import de.shared.RO.PartnervorschlaegeReport;
 
 public class Navigation extends HorizontalPanel {
 
@@ -88,8 +86,8 @@ public class Navigation extends HorizontalPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				RootPanel.get("Inhalt_unten").add(
-						new PartnervorschlaegeReport());
+//				RootPanel.get("Inhalt_unten").add(
+//						new PartnervorschlaegeReport());
 				popup.hide();
 				break;
 			case "Impressum":
@@ -100,7 +98,7 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Inhalt_oben")
 						.add(new HTML(
 								"<h2 style = \"color: #c0c0c0\">Impressum</h2>"));
-				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
+//				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
 				popup.hide();
 				break;
 			}

@@ -1,9 +1,12 @@
 package de.shared;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import de.shared.RO.AlleProfileReport;
+
+import de.shared.RO.ProfilReport;
 
 public interface ReportServiceAsync {
+	
+	void hallo(AsyncCallback<String>callback);
 
 	public void showProfilReport(String email, AsyncCallback<String> callback) throws Exception;
 
@@ -13,5 +16,7 @@ public interface ReportServiceAsync {
 
 	public void showMyProfile(String email, AsyncCallback<String> callback) throws Exception;
 	
-	void createAlleProfileReport(AsyncCallback<AlleProfileReport> callback);
+	void getProfilReport(AsyncCallback<ProfilReport>callback);
+	
+//	void createAlleProfileReport(AsyncCallback<AlleProfileReport> callback);
 }

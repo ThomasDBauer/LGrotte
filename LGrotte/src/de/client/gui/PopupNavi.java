@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.gui.Navigation;
-import de.shared.RO.MeinProfilReport;
 
 public class PopupNavi extends PopupPanel {
 	private HorizontalPanel popupPanel = new HorizontalPanel();
@@ -63,7 +62,7 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Inhalt_oben").clear();
 				RootPanel.get("Inhalt_oben").add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
-				RootPanel.get("Einstellungen").add(new MeinProfilReport());
+//				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				try {
 					RootPanel.get("Mitte").add(new ProfilEigenschaftEditor());
@@ -76,7 +75,7 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Mitte").clear();
 				RootPanel.get("Einstellungen").clear();
 				RootPanel.get("Inhalt_oben").clear();
-				RootPanel.get("Einstellungen").add(new MeinProfilReport());
+//				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 				RootPanel.get("Inhalt_oben")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Deine Suchprofile</h2>"));
@@ -92,7 +91,7 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Mitte").clear();
 				RootPanel.get("Einstellungen").clear();
 				RootPanel.get("Inhalt_oben").clear();
-				RootPanel.get("Einstellungen").add(new MeinProfilReport());
+//				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 				RootPanel.get("Inhalt_oben")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Deine Merkliste</h2>"));
@@ -103,7 +102,7 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Mitte").clear();
 				RootPanel.get("Einstellungen").clear();
 				RootPanel.get("Inhalt_oben").clear();
-				RootPanel.get("Einstellungen").add(new MeinProfilReport());
+//				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 				RootPanel.get("Inhalt_oben")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Kontaktsperre</h2>"));

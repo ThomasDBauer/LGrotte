@@ -7,7 +7,9 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.server.db.ProfilMapper;
 import de.shared.ReportService;
 import de.shared.BO.Profil;
-import de.shared.RO.AlleProfileReport;
+import de.shared.RO.Column;
+import de.shared.RO.ProfilReport;
+import de.shared.RO.Row;
 
 /**
  * The server-side implementation of the RPC service.
@@ -15,6 +17,35 @@ import de.shared.RO.AlleProfileReport;
 @SuppressWarnings("serial")
 public class ReportServiceImpl extends RemoteServiceServlet implements ReportService {
 
+	
+	public String hallo(){
+		return "Hallo, ich bin der ReportService";
+	}
+	
+public ProfilReport getProfilReport(){
+		
+		
+		ProfilReport report = new ProfilReport();
+		
+		report.setTitle("Mein erster Report");
+		
+		report.setImprint("WhoTF needs an imprint");
+		
+		Row row = new Row();
+		Column c1 = new Column();
+		Column c2 = new Column();
+		c1.setValue("Profil: ");
+		c2.setValue("Sedat");
+		row.addColumn(c1);
+		row.addColumn(c2);
+		
+		report.addRow(row);
+		
+		return report;
+		
+	}
+	
+	
 	@Override
 	public String showProfilReport(String email) throws Exception {
 		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
@@ -58,51 +89,50 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return sb.toString();
 	}
 
-	@Override
-	public AlleProfileReport createAlleProfileReport() throws Exception {
-	    /*
-	     * Zunächst legen wir uns einen leeren Report an.
-	     */
-	    AlleProfileReport result = new AlleProfileReport();
-
-	    // Jeder Report hat einen Titel (Bezeichnung / überschrift).
-	    result.setTitle("Report aller Teilnehmer");
-
-	       /*
-	     * Datum der Erstellung hinzufügen. new Date() erzeugt autom. einen
-	     * "Timestamp" des Zeitpunkts der Instantiierung des Date-Objekts.
-	     */
-	    result.setCreated(new Date());
-
-	    /*
-	     * Da AllAccountsOfAllCustomersReport-Objekte aus einer Sammlung von
-	     * AllAccountsOfCustomerReport-Objekten besteht, benötigen wir keine
-	     * Kopfdaten für diesen Report-Typ. Wir geben einfach keine Kopfdaten an...
-	     */
-
-	    /*
-	     * Nun müssen sämtliche Kunden-Objekte ausgelesen werden. Anschließend wir
-	     * für jedes Kundenobjekt c ein Aufruf von
-	     * createAllAccountsOfCustomerReport(c) durchgeführt und somit jeweils ein
-	     * AllAccountsOfCustomerReport-Objekt erzeugt. Diese Objekte werden
-	     * sukzessive der result-Variable hinzugefügt. Sie ist vom Typ
-	     * AllAccountsOfAllCustomersReport, welches eine Subklasse von
-	     * CompositeReport ist.
-	     */
-	    Vector<Profil> alleProfile = ProfilMapper.profilMapper().getAll();
-
-	    for (Profil c : alleProfile) {
-	      /*
-	       * Anlegen des jew. Teil-Reports und Hinzufügen zum Gesamt-Report.
-	       */
-	      result.addSubReport(createAlleProfileReport());
-	    }
-
-	    /*
-	     * Zu guter Letzt müssen wir noch den fertigen Report zurückgeben.
-	     */
-	    return result;
-	  }
-	}
+//	public AlleProfileReport createAlleProfileReport() throws Exception {
+//	    /*
+//	     * Zunächst legen wir uns einen leeren Report an.
+//	     */
+//	    AlleProfileReport result = new AlleProfileReport();
+//
+//	    // Jeder Report hat einen Titel (Bezeichnung / überschrift).
+//	    result.setTitle("Report aller Teilnehmer");
+//
+//	       /*
+//	     * Datum der Erstellung hinzufügen. new Date() erzeugt autom. einen
+//	     * "Timestamp" des Zeitpunkts der Instantiierung des Date-Objekts.
+//	     */
+//	    result.setCreated(new Date());
+//
+//	    /*
+//	     * Da AllAccountsOfAllCustomersReport-Objekte aus einer Sammlung von
+//	     * AllAccountsOfCustomerReport-Objekten besteht, benötigen wir keine
+//	     * Kopfdaten für diesen Report-Typ. Wir geben einfach keine Kopfdaten an...
+//	     */
+//
+//	    /*
+//	     * Nun müssen sämtliche Kunden-Objekte ausgelesen werden. Anschließend wir
+//	     * für jedes Kundenobjekt c ein Aufruf von
+//	     * createAllAccountsOfCustomerReport(c) durchgeführt und somit jeweils ein
+//	     * AllAccountsOfCustomerReport-Objekt erzeugt. Diese Objekte werden
+//	     * sukzessive der result-Variable hinzugefügt. Sie ist vom Typ
+//	     * AllAccountsOfAllCustomersReport, welches eine Subklasse von
+//	     * CompositeReport ist.
+//	     */
+//	    Vector<Profil> alleProfile = ProfilMapper.profilMapper().getAll();
+//
+//	    for (Profil c : alleProfile) {
+//	      /*
+//	       * Anlegen des jew. Teil-Reports und Hinzufügen zum Gesamt-Report.
+//	       */
+////	      result.addSubReport(createAlleProfileReport());
+//	    }
+//
+//	    /*
+//	     * Zu guter Letzt müssen wir noch den fertigen Report zurückgeben.
+//	     */
+//	    return result;
+//	  }
+}
 
 
