@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.LGrotte;
-import de.shared.RO.MeinProfilReport;
 
 public class LogOutPopUp extends PopupPanel {
 		private VerticalPanel popupPanel = new VerticalPanel();

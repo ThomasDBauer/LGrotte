@@ -39,31 +39,17 @@ public class LGrotte implements EntryPoint {
 	private EditorServiceAsync editorService;
 	private ReportServiceAsync reportService;
 	private LoginServiceAsync loginService;
-	
-
 	private final Button logOutButton = new Button("Logout");
 	private LogOutPopUp logOutPop = new LogOutPopUp();
 	public static String logOutUrl;
 
->>>>>>> refs/heads/Lukas
 	public void onModuleLoad() {
-<<<<<<< HEAD
-		
+
 		editorService = ClientSideSettings.getEditorService();
 		loginService = ClientSideSettings.getLoginService();
 		
-=======
-
-		editorService = GWT.create(EditorService.class);
-
->>>>>>> refs/heads/Lukas
 		RootPanel.get("Einstellungen").add(new SeedButton());
-<<<<<<< HEAD
 		loginService.login(GWT.getHostPageBaseURL() + "LGrotte.html",
-=======
-		ClientSideSettings.getLoginService().login(
-				GWT.getHostPageBaseURL() + "LGrotte.html",
->>>>>>> refs/heads/Lukas
 				new AsyncCallback<Profil>() {
 					public void onFailure(Throwable caught) {
 						RootPanel.get("Einstellungen").add(
