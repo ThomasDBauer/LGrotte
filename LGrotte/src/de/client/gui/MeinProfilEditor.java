@@ -1,5 +1,6 @@
 package de.client.gui;
 
+
 import java.util.Date;
 
 import com.google.gwt.core.client.GWT;
@@ -202,7 +203,11 @@ public class MeinProfilEditor extends VerticalPanel {
 			lNameTextBox.setText(result.getLname());
 			String koerper = String.valueOf(result.getKoerpergroesse());
 			koerpergroesseTextBox.setText(koerper);
-			
+			Date sqlDate = result.getGeburtsdatum();
+			String datumString = DateTimeFormat.getFormat("yyyy-MM-dd").format(sqlDate);
+			datumsinhalt.setText(datumString);
+			panel.add(datumsinhalt);
+
 		}
 		
 	}

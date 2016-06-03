@@ -39,6 +39,8 @@ public class SuchprofilEditor extends VerticalPanel {
 	// AnzeigenTable
 	private FlexTable anzeigenTable = new FlexTable();
 	private Label nameAnzeigenLabel = new Label("Name des Suchprofils:");
+	private HorizontalPanel groessenAnzeigenPanel = new HorizontalPanel();
+	private HorizontalPanel alterAnzeigenPanel = new HorizontalPanel();
 	
 	// Buttons, Labels und Table fürs Suchprofil hinzufügen
 	private FlexTable anlegenTable = new FlexTable();
@@ -193,6 +195,9 @@ public class SuchprofilEditor extends VerticalPanel {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			anzeigenTable.clear();
+			alterAnzeigenPanel.clear();
+			groessenAnzeigenPanel.clear();
 			// Hiermit merkt der Nutzer das sein Suchprofil hinzugefügt wurde
 			suchprofilPanel.add(new Label("Suchprofil angelegt"));
 		}
@@ -208,6 +213,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			anzeigenTable.clear();
+			alterAnzeigenPanel.clear();
+			groessenAnzeigenPanel.clear();
 			// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
 			suchprofilPanel.add(new Label("Suchprofil gelöscht"));
 		}
@@ -276,10 +284,10 @@ public class SuchprofilEditor extends VerticalPanel {
 				String minKoerperString = String.valueOf(result.elementAt(i).getMinGroesse());
 				String maxKoerperString = String.valueOf(result.elementAt(i).getMaxGroesse());
 				anzeigenTable.setWidget(4, 0, koerpergLabel);
-				groessenPanel.add(new Label("von "));
-				groessenPanel.add(new Label(minKoerperString));
-				groessenPanel.add(new Label(" bis "));
-				groessenPanel.add(new Label(maxKoerperString));
+				groessenAnzeigenPanel.add(new Label("von "));
+				groessenAnzeigenPanel.add(new Label(minKoerperString));
+				groessenAnzeigenPanel.add(new Label(" bis "));
+				groessenAnzeigenPanel.add(new Label(maxKoerperString));
 				anzeigenTable.setWidget(4, 1, groessenPanel);
 
 				anzeigenTable.setWidget(5, 0, religionLabel);
@@ -288,10 +296,10 @@ public class SuchprofilEditor extends VerticalPanel {
 				String minAlterString = String.valueOf(result.elementAt(i).getMinAlter());
 				String maxAlterString = String.valueOf(result.elementAt(i).getMaxAlter());
 				anzeigenTable.setWidget(6, 0, alterLabel);
-				alterPanel.add(new Label("von "));
-				alterPanel.add(new Label(minAlterString));
-				alterPanel.add(new Label(" bis "));
-				alterPanel.add(new Label(maxAlterString));
+				alterAnzeigenPanel.add(new Label("von "));
+				alterAnzeigenPanel.add(new Label(minAlterString));
+				alterAnzeigenPanel.add(new Label(" bis "));
+				alterAnzeigenPanel.add(new Label(maxAlterString));
 				anzeigenTable.setWidget(6, 1, alterPanel);
 				
 				komplettTable.setWidget(2, 0, anzeigenTable);
