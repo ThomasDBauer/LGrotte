@@ -7,9 +7,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.server.db.ProfilMapper;
 import de.shared.ReportService;
 import de.shared.BO.Profil;
-import de.shared.RO.Column;
 import de.shared.RO.ProfilReport;
-import de.shared.RO.Row;
 
 /**
  * The server-side implementation of the RPC service.
@@ -28,18 +26,6 @@ public ProfilReport getProfilReport(){
 		ProfilReport report = new ProfilReport();
 		
 		report.setTitle("Mein erster Report");
-		
-		report.setImprint("WhoTF needs an imprint");
-		
-		Row row = new Row();
-		Column c1 = new Column();
-		Column c2 = new Column();
-		c1.setValue("Profil: ");
-		c2.setValue("Sedat");
-		row.addColumn(c1);
-		row.addColumn(c2);
-		
-		report.addRow(row);
 		
 		return report;
 		
