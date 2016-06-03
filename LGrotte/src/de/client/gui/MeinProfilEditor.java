@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -23,6 +24,7 @@ import com.google.gwt.user.datepicker.client.DatePicker;
 import de.client.ClientSideSettings;
 import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
+import de.shared.BO.Profil;
 
 public class MeinProfilEditor extends VerticalPanel {
 	private VerticalPanel panel = this;
@@ -58,6 +60,15 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 	
 	public MeinProfilEditor(){
+		
+		Profil profilemail = new Profil();
+		try {
+			ClientSideSettings.getEditorService().getProfilEintraege(profilemail.getEmail() , new ProfilAuslesenCallback());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		flexTable.setWidget(0, 1, fNameTextBox);
 		flexTable.setWidget(0, 0, fNameLabel);
 		
@@ -179,6 +190,21 @@ public class MeinProfilEditor extends VerticalPanel {
 		}
 	}
 	
+	//Profil auslesen
 	
+	private class ProfilAuslesenCallback implements AsyncCallback<Profil>{
+		public void onFailure(Throwable caught) {
+			RootPanel.get().add(new Label(caught.toString()));
+		}
+
+		public void onSuccess(Profil result) {
+			fNameTextBox.setText(result.getFname());
+			lNameTextBox.setText(result.getLname());
+			String koerper = String.valueOf(result.getKoerpergroesse());
+			koerpergroesseTextBox.setText(koerper);
+			
+		}
+		
+	}
 	
 }
