@@ -40,7 +40,7 @@ public class LGrotte implements EntryPoint {
 	private ReportServiceAsync reportService;
 	private LoginServiceAsync loginService;
 	private final Button logOutButton = new Button("Logout");
-	private LogOutPopUp logOutPop = new LogOutPopUp();
+	public LogOutPopUp logOutPop = new LogOutPopUp();
 	public static String logOutUrl;
 
 	public void onModuleLoad() {
@@ -67,17 +67,18 @@ public class LGrotte implements EntryPoint {
 							logOutButton.setStylePrimaryName("navi-button");
 							logOutButton.addClickHandler(new ClickHandler() {
 								public void onClick(ClickEvent e) {
-									getLogOutPop()
-											.setPopupPositionAndShow(new PopupPanel.PositionCallback() {
+									getLogOutPop().setPopupPositionAndShow(
+											new PopupPanel.PositionCallback() {
 												public void setPosition(
 														int offsetWidth,
 														int offsetHeight) {
 													int left = logOutButton
-															.getAbsoluteLeft() -80;
+															.getAbsoluteLeft() - 80;
 													int top = logOutButton
 															.getAbsoluteTop() + 45;
-													getLogOutPop().setPopupPosition(
-															left, top);
+													getLogOutPop()
+															.setPopupPosition(
+																	left, top);
 													getLogOutPop().show();
 												}
 

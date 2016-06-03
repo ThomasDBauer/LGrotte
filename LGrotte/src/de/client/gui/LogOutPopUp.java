@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.client.LGrotte;
 
 public class LogOutPopUp extends PopupPanel {
@@ -18,24 +17,25 @@ public class LogOutPopUp extends PopupPanel {
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
 		public final Button jaButton = new Button(
 				"Ja", new LogOutClickHandler());
-		public final Button neinButton = new Button("Nein");
+		public final Button neinButton = new Button("Nein", new HideClickHandler());
 		private Label logOutText = new Label("Moechten Sie sich wirklich ausloggen?");
 
 		public LogOutPopUp() {
 			super(true);
 			jaButton.setStylePrimaryName("logout-ja");
 			neinButton.setStylePrimaryName("logout-nein");
-			neinButton.addClickHandler(new ClickHandler() {
-				public void onClick(ClickEvent e) {
-					LGrotte lgrotte = new LGrotte();
-					lgrotte.getLogOutPop().hide();
-				}
-			});
 			popupPanel.add(logOutText);
 			buttonPanel.add(jaButton);
 			buttonPanel.add(neinButton);
 			popupPanel.add(buttonPanel);
 			setWidget(popupPanel);
+		}
+		
+		public class HideClickHandler implements ClickHandler{
+			public void onClick(ClickEvent e) {
+				LGrotte lgrotte = new LGrotte();
+				lgrotte.logOutPop.hide();
+			}
 		}
 
 		private class LogOutClickHandler implements ClickHandler {
