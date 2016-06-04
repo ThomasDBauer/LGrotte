@@ -21,7 +21,7 @@ public interface ReportService extends RemoteService {
 
 	String showMyProfile(String email) throws Exception;
 	
-	ProfilReport getProfilReport();
+	ProfilReport getProfilReport(String email) throws Exception;
 
 //	public abstract AlleProfileReport createAlleProfileReport() throws Exception;
 
