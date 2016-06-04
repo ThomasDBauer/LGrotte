@@ -12,12 +12,14 @@ import de.shared.RO.ProfilReport;
 
 public class ReportEntry implements EntryPoint{
 	
+	private String email = "thdobauer@gmail.com";
+	
 	private ReportServiceAsync reportService;
 
 	public void onModuleLoad() {
 		reportService = ClientSideSettings.getReportService();
 		
-		reportService.getProfilReport(new AsyncCallback<ProfilReport>(){
+		reportService.getProfilReport( new AsyncCallback<ProfilReport>(){
 
 			public void onFailure(Throwable caught) {
 				
