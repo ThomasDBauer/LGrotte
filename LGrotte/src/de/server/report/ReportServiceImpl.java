@@ -3,6 +3,8 @@ package de.server.report;
 import java.util.Date;
 import java.util.Vector;
 
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.server.db.EigenschaftMapper;
@@ -34,12 +36,13 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return "Hallo, ich bin der ReportService";
 	}
 
-	public ProfilReport getProfilReport(String email) throws Exception{
+	public ProfilReport getProfilReport() throws Exception{
 
-		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
+		String email = "thdobauer@gmail.com";
+		
 		ProfilReport report = new ProfilReport();
 		
-		report.setTitle("Das ist Dein Report " + p.getFname());
+		report.setTitle("Das ist Dein Report " + email);
 
 		return report;
 
