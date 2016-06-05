@@ -62,6 +62,22 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			e.printStackTrace();
 		}
 	}
+	
+	// Profil bearbeiten
+	public void updateProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
+			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws Exception {
+		Profil neup = new Profil();
+		neup.setEmail(email);
+		neup.setFname(fname);
+		neup.setLname(lname);
+		neup.setKoerpergroesse(koerpergroesse);
+		neup.setGeschlecht(geschlecht);
+		neup.setReligion(religion);
+		neup.setHaarfarbe(haarfarbe);
+		neup.setGeburtsdatum(geburtsdatum);
+		neup.setRaucher(raucher);
+		ProfilMapper.profilMapper().updateProfil(neup);
+	}
 
 	// Profil löschen
 	public void deleteProfil(String email) throws IllegalArgumentException {
