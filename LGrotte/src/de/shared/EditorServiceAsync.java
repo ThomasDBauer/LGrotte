@@ -21,8 +21,8 @@ public interface EditorServiceAsync {
 	
 	void getProfilEintraege(String Email, AsyncCallback<Profil> callback) throws Exception;
 	
-	void updateProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
-			String religion, String haarfarbe, String raucher, Date geburtsdatum, AsyncCallback callback) throws Exception;
+	void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht,
+			String religion, String haarfarbe, String raucher, Date geburtsdatum, String email, AsyncCallback callback) throws Exception;
 	
 	void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, 
 			String religion, int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe, 

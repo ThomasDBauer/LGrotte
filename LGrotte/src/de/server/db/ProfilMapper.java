@@ -105,9 +105,9 @@ public class ProfilMapper {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement update = (PreparedStatement) conn.prepareStatement
 				("UPDATE PROFIL SET fname = '"+p.getFname()+"', lname = '"+ p.getLname()+"',"
-						+ "geburtsdatum = '"+p.getGeburtsdatum()+"', geschlecht = '"+p.getGeschlecht()+"',"
-						+ "haarfarbe ='"+p.getHaarfarbe()+"', religion = '"+p.getReligion()+"',"
-						+ "raucher = '"+p.getRaucher()+"', koerpergroesse = "+p.getKoerpergroesse()+" "
+						+ "koerpergroesse = "+p.getKoerpergroesse()+", geschlecht = '"+p.getGeschlecht()+"',"
+						+ "religion ='"+p.getReligion()+"', haarfarbe = '"+p.getHaarfarbe()+"',"
+						+ "geburtsdatum = '"+p.getGeburtsdatum()+"', raucher = '"+p.getRaucher()+"' "
 						+ "WHERE email='"+p.getEmail()+"'");								
 		update.execute();
 

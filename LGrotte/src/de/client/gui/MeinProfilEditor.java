@@ -172,9 +172,9 @@ public class MeinProfilEditor extends VerticalPanel {
 		public void onClick(ClickEvent event) {
 				Profil email = new Profil();
 				try {
-					ClientSideSettings.getEditorService().updateProfil(email.getEmail(), fNameTextBox.getText(), 
+					ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), 
 					lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
-					getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilUpdateCallback());
+					getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
