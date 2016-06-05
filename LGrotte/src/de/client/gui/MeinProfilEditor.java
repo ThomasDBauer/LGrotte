@@ -162,7 +162,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	// Profil updaten
 	private class ProfilUpdateCallback implements AsyncCallback{
 		public void onFailure(Throwable caught) {
-			panel.add(new Label(caught.toString()));
+			panel.add(new Label("Fehler!!" + caught.toString()));
 		}
 		public void onSuccess(Object result) {
 		}
@@ -170,18 +170,20 @@ public class MeinProfilEditor extends VerticalPanel {
 	}
 	private class ProfilUpdateClickHandler implements ClickHandler{
 		public void onClick(ClickEvent event) {
-			try {
-				Profil profilemail = new Profil();
-				ClientSideSettings.getEditorService().updateProfil(profilemail.getEmail(), fNameTextBox.getText(), 
-				lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
-				getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilUpdateCallback());
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				Profil email = new Profil();
+				try {
+					ClientSideSettings.getEditorService().updateProfil(email.getEmail(), fNameTextBox.getText(), 
+					lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
+					getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilUpdateCallback());
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				panel.add(new Label("Profil wurde geändert!"));
+			
 			
 		}
 	}

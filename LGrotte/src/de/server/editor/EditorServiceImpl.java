@@ -66,17 +66,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Profil bearbeiten
 	public void updateProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws Exception {
-		Profil neup = new Profil();
-		neup.setEmail(email);
-		neup.setFname(fname);
-		neup.setLname(lname);
-		neup.setKoerpergroesse(koerpergroesse);
-		neup.setGeschlecht(geschlecht);
-		neup.setReligion(religion);
-		neup.setHaarfarbe(haarfarbe);
-		neup.setGeburtsdatum(geburtsdatum);
-		neup.setRaucher(raucher);
-		ProfilMapper.profilMapper().updateProfil(neup);
+		Profil p = new Profil();
+		p.setEmail(user.getEmail());
+		p.setFname(fname);
+		p.setLname(lname);
+		p.setKoerpergroesse(koerpergroesse);
+		p.setGeschlecht(geschlecht);
+		p.setReligion(religion);
+		p.setHaarfarbe(haarfarbe);
+		p.setGeburtsdatum(geburtsdatum);
+		p.setRaucher(raucher);
+		ProfilMapper.profilMapper().updateProfil(p);
 	}
 
 	// Profil löschen

@@ -107,7 +107,7 @@ public class ProfilMapper {
 				("UPDATE PROFIL SET fname = '"+p.getFname()+"', lname = '"+ p.getLname()+"',"
 						+ "geburtsdatum = '"+p.getGeburtsdatum()+"', geschlecht = '"+p.getGeschlecht()+"',"
 						+ "haarfarbe ='"+p.getHaarfarbe()+"', religion = '"+p.getReligion()+"',"
-						+ "raucher = '"+p.getRaucher()+"', koerpergroesse = '"+p.getKoerpergroesse()+"' "
+						+ "raucher = '"+p.getRaucher()+"', koerpergroesse = "+p.getKoerpergroesse()+" "
 						+ "WHERE email='"+p.getEmail()+"'");								
 		update.execute();
 
