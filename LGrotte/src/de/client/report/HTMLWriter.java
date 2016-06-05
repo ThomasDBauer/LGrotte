@@ -32,10 +32,17 @@ public class HTMLWriter {
 		StringBuffer sb = new StringBuffer();
 
 		sb.append("<h2 style = \"font-size:16px\" color:\"grey\">" + report.getTitle() + "</h2>");
+		sb.append("<div style = \"border:1px solid black; margin: 10px; background-color: #f08080;\">");
 
-		sb.append("<br>");
-
-		sb.append("<br>");
+		sb.append("<b>" + "Email: " + "</b>" + "<br>");
+		sb.append("<b>" + "Raucher: " + "</b>" + "<br>");
+		sb.append("<b>" + "Religion: " + "</b>" + "<br>");
+		
+		//sb.append("<h2>" + p.getFname() + " " + p.getLname() + "<br/>" + "</h2>");
+//		sb.append("<b>" + "Email: " + "</b>" + p.getEmail() + " ");
+//		sb.append("<b>" + "Raucher: " + "</b>" + p.getRaucher() + " ");
+//		sb.append("<b>" + "Religion: " + "</b>" + p.getReligion());
+//		sb.append("</div>");
 
 		this.reportText = sb.toString();
 	}
