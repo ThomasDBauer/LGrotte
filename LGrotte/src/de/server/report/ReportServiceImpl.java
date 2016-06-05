@@ -39,10 +39,10 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public ProfilReport getProfilReport() throws Exception{
 
 		String email = "thdobauer@gmail.com";
-		
 		ProfilReport report = new ProfilReport();
 		
 		report.setTitle("Das ist Dein Report " + email);
+		
 
 		return report;
 
