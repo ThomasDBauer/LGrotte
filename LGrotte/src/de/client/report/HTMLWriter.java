@@ -29,20 +29,21 @@ public class HTMLWriter {
 	 * Erstellt HTML Code für ein einzelnes, detaillierte dargestelltes Profil
 	 */
 	public void process(ProfilReport report) {
+		
 		StringBuffer sb = new StringBuffer();
 
 		sb.append("<h2 style = \"font-size:16px\" color:\"grey\">" + report.getTitle() + "</h2>");
-		sb.append("<div style = \"border:1px solid black; margin: 10px; background-color: #f08080;\">");
+		sb.append("<div style = \"width:30%; margin: 10px; background-color:#fa8072;\">");
 
-		sb.append("<b>" + "Email: " + "</b>" + "<br>");
-		sb.append("<b>" + "Raucher: " + "</b>" + "<br>");
-		sb.append("<b>" + "Religion: " + "</b>" + "<br>");
+		sb.append("Email: " + "<br>");
+		sb.append("Raucher: "  + "<br>");
+		sb.append("Religion: " + "<br>");
+		sb.append("</div>");
 		
 		//sb.append("<h2>" + p.getFname() + " " + p.getLname() + "<br/>" + "</h2>");
 //		sb.append("<b>" + "Email: " + "</b>" + p.getEmail() + " ");
 //		sb.append("<b>" + "Raucher: " + "</b>" + p.getRaucher() + " ");
 //		sb.append("<b>" + "Religion: " + "</b>" + p.getReligion());
-//		sb.append("</div>");
 
 		this.reportText = sb.toString();
 	}
