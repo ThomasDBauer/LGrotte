@@ -33,7 +33,7 @@ public class HTMLWriter {
 		StringBuffer sb = new StringBuffer();
 
 		sb.append("<h2 style = \"font-size:16px\" color:\"grey\">" + report.getTitle() + "</h2>");
-		sb.append("<div style = \"width:30%; margin: 10px; background-color:#fa8072;\">");
+		sb.append("<div style = \"width:400px; border:1px solid silver; margin: 10px; background-color:#fa8072;\">");
 
 		sb.append("Email: " + "<br>");
 		sb.append("Raucher: "  + "<br>");
