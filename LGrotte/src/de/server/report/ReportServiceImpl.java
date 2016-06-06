@@ -36,16 +36,13 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return "Hallo, ich bin der ReportService";
 	}
 
-	public ProfilReport getProfilReport() throws Exception{
+	public ProfilReport getProfilReport(String email) throws Exception{
 
-		Profil p = ProfilMapper.profilMapper().getProfilByEmail("Lisa@LG");
-		String email = "thdobauer@gmail.com";
+		Profil p = ProfilMapper.profilMapper().getProfilByEmail("Anna@LG");
 		ProfilReport report = new ProfilReport();
 		
-		report.setTitle("Das ist Dein Report " + email);
+		report.setTitle("Das ist Dein Report " + p.getFname());
 		
-		
-
 		return report;
 
 	}

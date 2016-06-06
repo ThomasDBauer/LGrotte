@@ -18,7 +18,7 @@ public class ReportEntry implements EntryPoint {
 		reportService = ClientSideSettings.getReportService();
 
 		try {
-			reportService.getProfilReport(new AsyncCallback<ProfilReport>() {
+			reportService.getProfilReport("Anna@LG", new AsyncCallback<ProfilReport>() {
 
 				public void onFailure(Throwable caught) {
 
