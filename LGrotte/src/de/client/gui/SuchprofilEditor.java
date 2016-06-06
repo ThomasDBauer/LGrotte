@@ -40,37 +40,46 @@ public class SuchprofilEditor extends VerticalPanel {
 	
 	// AnzeigenTable
 	private FlexTable anzeigenTable = new FlexTable();
-	private Label nameAnzeigenLabel = new Label("Name des Suchprofils:");
+	private Label nameAnzeigenLabel = new Label("Name:");
 	private HorizontalPanel groessenAnzeigenPanel = new HorizontalPanel();
 	private HorizontalPanel alterAnzeigenPanel = new HorizontalPanel();
 	
 	// Buttons, Labels und Table fürs Suchprofil hinzufügen
 	private FlexTable anlegenTable = new FlexTable();
 
-	private Label spNameLabel = new Label("Benenne dein Suchprofil:");
+	private Label spNameLabel = new Label("Name:");
 	private TextBox spNameTextBox = new TextBox();
+	private TextBox spNameUpdateTextBox = new TextBox();
 
 	private Label geschlechtLabel = new Label("Geschlecht:");
 	private ListBox geschlechtListBox = new ListBox();
+	private ListBox spGeschlechtUpdateListBox = new ListBox();
 
 	private Label raucherLabel = new Label("Raucher:");
 	private ListBox raucherListBox = new ListBox();
+	private ListBox spRaucherUpdateListBox = new ListBox();
 
 	private Label haarfarbeLabel = new Label("Haarfarbe:");
 	private ListBox haarfarbeListBox = new ListBox();
+	private ListBox spHaarfarbeUpdateListBox = new ListBox();
 
 	private HorizontalPanel groessenPanel = new HorizontalPanel();
 	private Label koerpergLabel = new Label("Körpergröße:");
 	private TextBox minGroesse = new TextBox();
 	private TextBox maxGroesse= new TextBox();
+	private TextBox spMinGroesseUpdateTextBox = new TextBox();
+	private TextBox spMaxGroesseUpdateTextBox = new TextBox();
 
 	private Label religionLabel = new Label("Religion:");
 	private ListBox religionListBox = new ListBox();
+	private ListBox spReligionUpdateListBox = new ListBox();
 	
 	private HorizontalPanel alterPanel = new HorizontalPanel();
 	private Label alterLabel = new Label("Alter:");
 	private TextBox minAlter = new TextBox();
 	private TextBox maxAlter = new TextBox();
+	private TextBox spMinAlterUpdateTextBox = new TextBox();
+	private TextBox spMaxAlterUpdateTextBox = new TextBox();
 
 	private Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
 
@@ -89,13 +98,14 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 
 		// Anhängen der Panels
-		komplettTable.setWidget(0, 0, aussuchenLabel);
+		
+		komplettTable.setWidget(0, 0, spHinzufuegenButton);
+		komplettTable.setWidget(0, 1, anlegenButton);
+		komplettTable.setWidget(0, 2, anzeigenButton);
+		komplettTable.setWidget(0, 3, loeschenButton);
 		komplettTable.setWidget(1, 0, spListBox);
-		komplettTable.setWidget(1, 1, spHinzufuegenButton);
-		komplettTable.setWidget(1, 2, anlegenButton);
-		komplettTable.setWidget(1, 3, anzeigenButton);
-		komplettTable.setWidget(1, 4, loeschenButton);
-		this.add(komplettTable);
+		buttonPanel.add(komplettTable);
+		this.add(buttonPanel);
 	}
 	
 	// ClickHandler zum suchprofil hizufügen Funktion
@@ -104,6 +114,9 @@ public class SuchprofilEditor extends VerticalPanel {
 			anzeigenTable.clear();
 			alterAnzeigenPanel.clear();
 			groessenAnzeigenPanel.clear();
+			groessenPanel.clear();
+			alterPanel.clear();
+			
 			// Der FlexTable unsere Labels und Listboxen geben
 			anlegenTable.setWidget(0, 0, spNameLabel);
 			anlegenTable.setWidget(0, 1, spNameTextBox);
@@ -275,44 +288,73 @@ public class SuchprofilEditor extends VerticalPanel {
 
 		public void onSuccess(Vector<Suchprofil> result) {
 			for (int i = 0; i < result.size(); i++) {
-				anzeigenTable.clear();
+				anlegenTable.clear();
+				alterPanel.clear();
+				groessenPanel.clear();
 				alterAnzeigenPanel.clear();
 				groessenAnzeigenPanel.clear();
 				
 				anzeigenTable.setWidget(0, 0, nameAnzeigenLabel);
-				anzeigenTable.setWidget(0, 1, new Label(result.elementAt(i).getSuchprofilname()));
+				anzeigenTable.setWidget(0, 1, spNameUpdateTextBox);
 
 				anzeigenTable.setWidget(1, 0, geschlechtLabel);
-				anzeigenTable.setWidget(1, 1, new Label(result.elementAt(i).getGeschlecht()));
+				anzeigenTable.setWidget(1, 1, spGeschlechtUpdateListBox);
 
 				anzeigenTable.setWidget(2, 0, raucherLabel);
-				anzeigenTable.setWidget(2, 1, new Label(result.elementAt(i).getRaucher()));
+				anzeigenTable.setWidget(2, 1, spRaucherUpdateListBox);
 
 				anzeigenTable.setWidget(3, 0, haarfarbeLabel);
-				anzeigenTable.setWidget(3, 1, new Label(result.elementAt(i).getHaarfarbe()));
+				anzeigenTable.setWidget(3, 1, spHaarfarbeUpdateListBox);
 				
-				String minKoerperString = String.valueOf(result.elementAt(i).getMinGroesse());
-				String maxKoerperString = String.valueOf(result.elementAt(i).getMaxGroesse());
+				//String minKoerperString = String.valueOf(result.elementAt(i).getMinGroesse());
+				//String maxKoerperString = String.valueOf(result.elementAt(i).getMaxGroesse());
 				anzeigenTable.setWidget(4, 0, koerpergLabel);
 				groessenAnzeigenPanel.add(new Label("von "));
-				groessenAnzeigenPanel.add(new Label(minKoerperString));
+				groessenAnzeigenPanel.add(spMinGroesseUpdateTextBox);
 				groessenAnzeigenPanel.add(new Label(" bis "));
-				groessenAnzeigenPanel.add(new Label(maxKoerperString));
+				groessenAnzeigenPanel.add(spMaxGroesseUpdateTextBox);
 				anzeigenTable.setWidget(4, 1, groessenAnzeigenPanel);
 
 				anzeigenTable.setWidget(5, 0, religionLabel);
-				anzeigenTable.setWidget(5, 1, new Label(result.elementAt(i).getReligion()));
+				anzeigenTable.setWidget(5, 1, spReligionUpdateListBox);
 				
-				String minAlterString = String.valueOf(result.elementAt(i).getMinAlter());
-				String maxAlterString = String.valueOf(result.elementAt(i).getMaxAlter());
+				//String minAlterString = String.valueOf(result.elementAt(i).getMinAlter());
+				//String maxAlterString = String.valueOf(result.elementAt(i).getMaxAlter());
 				anzeigenTable.setWidget(6, 0, alterLabel);
 				alterAnzeigenPanel.add(new Label("von "));
-				alterAnzeigenPanel.add(new Label(minAlterString));
+				alterAnzeigenPanel.add(spMinAlterUpdateTextBox);
 				alterAnzeigenPanel.add(new Label(" bis "));
-				alterAnzeigenPanel.add(new Label(maxAlterString));
+				alterAnzeigenPanel.add(spMaxAlterUpdateTextBox);
 				anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
 				
-				komplettTable.setWidget(2, 0, anzeigenTable);
+				
+				// Anhängen der Items zur Auswahl
+				spGeschlechtUpdateListBox.addItem("männlich");
+				spGeschlechtUpdateListBox.addItem("weiblich");
+				spGeschlechtUpdateListBox.addItem("Andere");
+				
+				spHaarfarbeUpdateListBox.addItem("blond");
+				spHaarfarbeUpdateListBox.addItem("brunette");
+				spHaarfarbeUpdateListBox.addItem("schwarz");
+				spHaarfarbeUpdateListBox.addItem("rot");
+				spHaarfarbeUpdateListBox.addItem("grau");
+				spHaarfarbeUpdateListBox.addItem("egal");
+				
+				spReligionUpdateListBox.addItem("christlich");
+				spReligionUpdateListBox.addItem("muslimisch");
+				spReligionUpdateListBox.addItem("buddhistisch");
+				spReligionUpdateListBox.addItem("hinduitsisch");
+				spReligionUpdateListBox.addItem("jüdisch");
+				spReligionUpdateListBox.addItem("egal");
+				
+				spRaucherUpdateListBox.addItem("Ja");
+				spRaucherUpdateListBox.addItem("Nein");
+				spRaucherUpdateListBox.addItem("ab und an");
+				spRaucherUpdateListBox.addItem("egal");
+				
+				suchprofilPanel.add(anzeigenTable);
+				
+				
 				
 			}
 		}
