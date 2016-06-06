@@ -6,6 +6,7 @@ import org.eclipse.jdt.core.dom.ThisExpression;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -13,6 +14,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -26,6 +28,7 @@ public class SuchprofilEditor extends VerticalPanel {
 	private VerticalPanel suchprofilPanel = this;
 	private HorizontalPanel auswaehlenAnzeigenPanel = new HorizontalPanel();
 	private HorizontalPanel anlegenLoeschenPanel = new HorizontalPanel();
+	private  Window window;
 	
 	// Startseite Buttons und Labels
 	private Label aussuchenLabel = new Label("Wählen Sie ein Suchprofil aus:");
@@ -196,8 +199,8 @@ public class SuchprofilEditor extends VerticalPanel {
 				e.printStackTrace();
 			}
 			anzeigenTable.clear();
-			alterAnzeigenPanel.clear();
-			groessenAnzeigenPanel.clear();
+			alterPanel.clear();
+			groessenPanel.clear();
 			// Hiermit merkt der Nutzer das sein Suchprofil hinzugefügt wurde
 			suchprofilPanel.add(new Label("Suchprofil angelegt"));
 		}
@@ -206,6 +209,8 @@ public class SuchprofilEditor extends VerticalPanel {
 	// ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
 	private class DeleteSuchprofilClickHandler implements ClickHandler{
 		
+		private PopupPanel popup;
+
 		public void onClick(ClickEvent event) {
 			try {
 				ClientSideSettings.getEditorService().deleteSuchprofil(spListBox.getItemText(spListBox.getSelectedIndex()), new SPdeleteCallback());
@@ -214,10 +219,14 @@ public class SuchprofilEditor extends VerticalPanel {
 				e.printStackTrace();
 			}
 			anzeigenTable.clear();
-			alterAnzeigenPanel.clear();
-			groessenAnzeigenPanel.clear();
+			alterPanel.clear();
+			groessenPanel.clear();
 			// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
 			suchprofilPanel.add(new Label("Suchprofil gelöscht"));
+			this.popup = new PopupPanel(true,true);
+			this.popup.add(new Label("Suchprofil wurde angelegt "
+					+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
+			this.popup.center();
 		}
 		
 	}
