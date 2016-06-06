@@ -32,9 +32,20 @@ public class HTMLWriter {
 		
 		StringBuffer sb = new StringBuffer();
 
-		sb.append("<h2 style = \"font-size:16px\" color:\"grey\">" + report.getTitle() + "</h2>");
-		sb.append("<div style = \"width:400px; border:1px solid silver; margin: 10px; background-color:#fa8072;\">");
+		//Style der Überschrift
+		sb.append("<div style = \"height: auto; margin:10; padding-bottom: 0 auto;"
+				+ "padding-top: 0 auto; font:bold 150%/1em arial; color: #aeaeae"
+				+ "\">" + report.getTitle() + "</div>");
+		sb.append("<br/>");
+		
+		//Style der einzelnen Report-Elemente
+		sb.append("<div style = \"margin: 5; border-bottom: 4px solid #fff; padding: 10px; background: #B6E5FF; "
+				+ "text-align: left; font: bold 180%/1em arial, geneva, sans-serif; color: #000; width: 100%;"
+				+ "text-transform: uppercase; letter-spacing: 0.1em; width: auto;\">");
 
+		sb.append("Vorname: " + "<br>");
+		sb.append("Nachname: "  + "<br>");
+		sb.append("Geschlecht: " + "<br>");
 		sb.append("Email: " + "<br>");
 		sb.append("Raucher: "  + "<br>");
 		sb.append("Religion: " + "<br>");
