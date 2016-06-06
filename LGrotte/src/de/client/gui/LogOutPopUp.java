@@ -18,7 +18,7 @@ public class LogOutPopUp extends PopupPanel {
 		public final Button jaButton = new Button(
 				"Ja", new LogOutClickHandler());
 		public final Button neinButton = new Button("Nein", new HideClickHandler());
-		private Label logOutText = new Label("Moechten Sie sich wirklich ausloggen?");
+		private Label logOutText = new Label("Moechten Sie sich wirklich abmelden?");
 
 		public LogOutPopUp() {
 			super(true);

@@ -28,13 +28,13 @@ public class FindLove extends VerticalPanel {
 	 * TEST PEWPEW
 	 */
 		
-		private Button testButton = new Button("Test", new ClickHandler(){
-			public void onClick(ClickEvent e){
-				for(int i = 0; i < emailBuffer.size(); i++){
-					resultPanel.add(new Label(emailBuffer.elementAt(i)));
-				}
-			}
-		});
+//		private Button testButton = new Button("Test", new ClickHandler(){
+//			public void onClick(ClickEvent e){
+//				for(int i = 0; i < emailBuffer.size(); i++){
+//					resultPanel.add(new Label(emailBuffer.elementAt(i)));
+//				}
+//			}
+//		});
 	
 	/*
 	 * TEST PEWPEW ENDE
@@ -44,7 +44,7 @@ public class FindLove extends VerticalPanel {
 		HorizontalPanel controlPanel = new HorizontalPanel();
 		controlPanel.add(merkButton);
 		controlPanel.add(sperrButton);
-		controlPanel.add(testButton);
+//		controlPanel.add(testButton);
 		this.add(controlPanel);
 		this.add(resultPanel);
 		loadProfiles();

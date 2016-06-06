@@ -33,13 +33,14 @@ public class LGrotte implements EntryPoint {
 
 	private VerticalPanel loginPanel = new VerticalPanel();
 	private Label loginLabel = new Label(
-			"Please sign in to your Google Account to access the StockWatcher application.");
-	private Anchor signInLink = new Anchor("Sign In");
-	private final Anchor logOutLink = new Anchor("Logout");
+			"Melde dich jetzt mit deinem Google-Account an und finde deine neue Liebe!");
+	private Anchor signInLink = new Anchor("Anmelden");
+	private final Button loginButton = new Button("Anmelden");
+	private final Anchor logOutLink = new Anchor("Abmelden");
 	private EditorServiceAsync editorService;
 	private ReportServiceAsync reportService;
 	private LoginServiceAsync loginService;
-	private final Button logOutButton = new Button("Logout");
+	private Button logOutButton = new Button("Abmelden");
 	public LogOutPopUp logOutPop = new LogOutPopUp();
 	public static String logOutUrl;
 
@@ -93,9 +94,16 @@ public class LGrotte implements EntryPoint {
 							RootPanel.get("Fusszeile").add(new ImageFooter());
 						} else {
 							signInLink.setHref(result.getLoginUrl());
+							loginLabel.setStylePrimaryName("login-label");
 							loginPanel.add(loginLabel);
-							loginPanel.add(signInLink);
-							RootPanel.get("Inhalt_oben").add(loginPanel);
+							loginButton.addClickHandler(new ClickHandler(){
+								public void onClick(ClickEvent e) {
+								Window.open(signInLink.getHref(), "_self", "");
+								}
+							});
+							loginButton.setStylePrimaryName("login-button");
+							loginPanel.add(loginButton);
+							RootPanel.get("Inhalt_unten").add(loginPanel);
 						}
 					}
 
@@ -116,7 +124,7 @@ public class LGrotte implements EntryPoint {
 
 		public void onSuccess(Object result) {
 			try {
-				RootPanel.get().add(new FindLove());
+//				RootPanel.get().add(new FindLove());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
