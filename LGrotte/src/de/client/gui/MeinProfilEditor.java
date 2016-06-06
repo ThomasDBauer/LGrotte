@@ -57,7 +57,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 	
 	private Button profilLoeschenButton = new Button("Loeschen");
-	private Button profilAnlegenButton = new Button("Speichern");
+	private Button profilUpdateButton = new Button("Profil bearbeiten");
 	
 	
 	public MeinProfilEditor(){
@@ -132,9 +132,9 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 		this.add(flexTable);
 		
-		this.add(profilAnlegenButton);
+		this.add(profilUpdateButton);
 		this.add(profilLoeschenButton);
-		profilAnlegenButton.addClickHandler(new ProfilAnlegenClickHandler());
+		profilUpdateButton.addClickHandler(new ProfilUpdateClickHandler());
 		profilLoeschenButton.addClickHandler(new ProfilLoeschenClickHandler());
 	}
 	
@@ -159,20 +159,31 @@ public class MeinProfilEditor extends VerticalPanel {
 		java.sql.Date sqlDate = new java.sql.Date(geburtsdatum.getTime());
 		return sqlDate;
 	}
-	// Profil anlegen
-	private class ProfilAnlegenCallback implements AsyncCallback{
+	// Profil updaten
+	private class ProfilUpdateCallback implements AsyncCallback{
 		public void onFailure(Throwable caught) {
-			panel.add(new Label(caught.toString()));
+			panel.add(new Label("Fehler!!" + caught.toString()));
 		}
 		public void onSuccess(Object result) {
 		}
 		
 	}
-	private class ProfilAnlegenClickHandler implements ClickHandler{
+	private class ProfilUpdateClickHandler implements ClickHandler{
 		public void onClick(ClickEvent event) {
-	ClientSideSettings.getEditorService().insertProfil("fakemail", fNameTextBox.getText(), 
-			lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
-			getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), new ProfilAnlegenCallback());
+				Profil email = new Profil();
+				try {
+					ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), 
+					lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
+					getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				panel.add(new Label("Profil wurde geändert!"));
+			
 			
 		}
 	}

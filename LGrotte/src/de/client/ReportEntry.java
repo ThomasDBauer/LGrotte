@@ -10,27 +10,33 @@ import de.client.report.HTMLWriter;
 import de.shared.ReportServiceAsync;
 import de.shared.RO.ProfilReport;
 
-public class ReportEntry implements EntryPoint{
-	
+public class ReportEntry implements EntryPoint {
+
 	private ReportServiceAsync reportService;
 
 	public void onModuleLoad() {
 		reportService = ClientSideSettings.getReportService();
-		
-		reportService.getProfilReport(new AsyncCallback<ProfilReport>(){
 
-			public void onFailure(Throwable caught) {
-				
-			}
+		try {
+			reportService.getProfilReport(new AsyncCallback<ProfilReport>() {
 
-			@Override
-			public void onSuccess(ProfilReport result) {
-				HTMLWriter writer = new HTMLWriter();
-				writer.process(result);
-				RootPanel.get().add(new HTML(writer.getReportText()));
-			}
-			
-		});
+				public void onFailure(Throwable caught) {
+
+				}
+
+				@Override
+				public void onSuccess(ProfilReport result) {
+
+					HTMLWriter writer = new HTMLWriter();
+					writer.process(result);
+					RootPanel.get().add(new HTML(writer.getReportText()));
+				}
+
+			});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
