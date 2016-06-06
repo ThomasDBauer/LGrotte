@@ -116,6 +116,23 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		sp.setProfil(user.getEmail());
 		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
 	}
+	
+	// Suchprofil bearbeiten
+	public void updateSuchprofil(String geschlecht, String raucher, String religion,
+			int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe, String suchprofilname) throws Exception {
+		Suchprofil sp = new Suchprofil();
+		sp.setGeschlecht(geschlecht);
+		sp.setRaucher(raucher);
+		sp.setReligion(religion);
+		sp.setMinAlter(minAlter);
+		sp.setMaxAlter(maxAlter);
+		sp.setMinGroesse(minGroesse);
+		sp.setMaxGroesse(maxGroesse);
+		sp.setHaarfarbe(haarfarbe);
+		sp.setProfil(user.getEmail());
+		sp.setSuchprofilname(suchprofilname);
+		SuchprofilMapper.suchprofilMapper().updateSuchprofil(sp);
+	}
 
 	// Suchprofillöschen
 	public void deleteSuchprofil(String suchprofilname) throws Exception {
