@@ -28,15 +28,14 @@ public class SuchprofilEditor extends VerticalPanel {
 	private VerticalPanel suchprofilPanel = this;
 	private HorizontalPanel auswaehlenAnzeigenPanel = new HorizontalPanel();
 	private HorizontalPanel anlegenLoeschenPanel = new HorizontalPanel();
-	private  Window window;
+	private HorizontalPanel buttonPanel =  new HorizontalPanel();
 	
 	// Startseite Buttons und Labels
 	private Label aussuchenLabel = new Label("Wählen Sie ein Suchprofil aus:");
 	private ListBox spListBox = new ListBox();
 	private FlexTable komplettTable = new FlexTable(); 
 	private Button anzeigenButton = new Button("Anzeigen", new SuchProfilAnzeigenClickHandler());
-	private Button ausblendenButton= new Button ("Ausblenden");
-	private Button spHinzufuegenButton = new Button("Neues Suchprofil hinzufügen", new SuchprofilHinzufuegenClickHandler());
+	private Button spHinzufuegenButton = new Button("+", new SuchprofilHinzufuegenClickHandler());
 	private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
 	
 	// AnzeigenTable
@@ -75,7 +74,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 	private Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
 
-	private Button anlegenButton = new Button("Anlegen", new SuchProfilAnlegenClickHandler());
+	private Button anlegenButton = new Button("Speichern", new SuchProfilAnlegenClickHandler());
 
 
 	// Editor 
@@ -92,16 +91,19 @@ public class SuchprofilEditor extends VerticalPanel {
 		// Anhängen der Panels
 		komplettTable.setWidget(0, 0, aussuchenLabel);
 		komplettTable.setWidget(1, 0, spListBox);
-		komplettTable.setWidget(1, 1, anzeigenButton);
-		komplettTable.setWidget(3, 0, spHinzufuegenButton);
-		komplettTable.setWidget(3, 1, loeschenButton);
+		komplettTable.setWidget(1, 1, spHinzufuegenButton);
+		komplettTable.setWidget(1, 2, anlegenButton);
+		komplettTable.setWidget(1, 3, anzeigenButton);
+		komplettTable.setWidget(1, 4, loeschenButton);
 		this.add(komplettTable);
 	}
 	
 	// ClickHandler zum suchprofil hizufügen Funktion
 	private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			
+			anzeigenTable.clear();
+			alterAnzeigenPanel.clear();
+			groessenAnzeigenPanel.clear();
 			// Der FlexTable unsere Labels und Listboxen geben
 			anlegenTable.setWidget(0, 0, spNameLabel);
 			anlegenTable.setWidget(0, 1, spNameTextBox);
@@ -158,8 +160,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 			// Anheften an Panels
 			suchprofilPanel.add(anlegenTable);
-			suchprofilPanel.add(anlegenButton);
-			suchprofilPanel.add(ausblendenButton);
+			
 
 		}
 	}
@@ -199,8 +200,8 @@ public class SuchprofilEditor extends VerticalPanel {
 				e.printStackTrace();
 			}
 			anzeigenTable.clear();
-			alterPanel.clear();
-			groessenPanel.clear();
+			alterAnzeigenPanel.clear();
+			groessenAnzeigenPanel.clear();
 			// Hiermit merkt der Nutzer das sein Suchprofil hinzugefügt wurde
 			suchprofilPanel.add(new Label("Suchprofil angelegt"));
 		}
@@ -219,8 +220,8 @@ public class SuchprofilEditor extends VerticalPanel {
 				e.printStackTrace();
 			}
 			anzeigenTable.clear();
-			alterPanel.clear();
-			groessenPanel.clear();
+			alterAnzeigenPanel.clear();
+			groessenAnzeigenPanel.clear();
 			// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
 			suchprofilPanel.add(new Label("Suchprofil gelöscht"));
 			this.popup = new PopupPanel(true,true);
@@ -275,8 +276,8 @@ public class SuchprofilEditor extends VerticalPanel {
 		public void onSuccess(Vector<Suchprofil> result) {
 			for (int i = 0; i < result.size(); i++) {
 				anzeigenTable.clear();
-				alterPanel.clear();
-				groessenPanel.clear();
+				alterAnzeigenPanel.clear();
+				groessenAnzeigenPanel.clear();
 				
 				anzeigenTable.setWidget(0, 0, nameAnzeigenLabel);
 				anzeigenTable.setWidget(0, 1, new Label(result.elementAt(i).getSuchprofilname()));
@@ -297,7 +298,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				groessenAnzeigenPanel.add(new Label(minKoerperString));
 				groessenAnzeigenPanel.add(new Label(" bis "));
 				groessenAnzeigenPanel.add(new Label(maxKoerperString));
-				anzeigenTable.setWidget(4, 1, groessenPanel);
+				anzeigenTable.setWidget(4, 1, groessenAnzeigenPanel);
 
 				anzeigenTable.setWidget(5, 0, religionLabel);
 				anzeigenTable.setWidget(5, 1, new Label(result.elementAt(i).getReligion()));
@@ -309,7 +310,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				alterAnzeigenPanel.add(new Label(minAlterString));
 				alterAnzeigenPanel.add(new Label(" bis "));
 				alterAnzeigenPanel.add(new Label(maxAlterString));
-				anzeigenTable.setWidget(6, 1, alterPanel);
+				anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
 				
 				komplettTable.setWidget(2, 0, anzeigenTable);
 				
