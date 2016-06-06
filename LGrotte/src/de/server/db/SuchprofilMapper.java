@@ -114,8 +114,8 @@ public class SuchprofilMapper {
 					"UPDATE suchprofil SET geschlecht= '" + sp.getGeschlecht() + "', "
 					+ "minAlter=" + sp.getMinAlter() + ", maxAlter=" + sp.getMaxAlter() + ", "
 					+ "religion='" + sp.getReligion() + "', haarfarbe='" + sp.getHaarfarbe() + "', "
-					+ "profil='" + sp.getProfil() + "', raucher='" + sp.getRaucher() + "', "
-					+ "minGroesse=" + sp.getMinGroesse() + ", maxGroesse=" + sp.getMaxGroesse() + " WHERE "
+					+ "raucher='" + sp.getRaucher() + "', minGroesse=" + sp.getMinGroesse() + ", "
+					+ "maxGroesse=" + sp.getMaxGroesse() + " WHERE "
 					+ "suchprofilname='" + sp.getSuchprofilname() + "'");								
 			update.execute();
 		}

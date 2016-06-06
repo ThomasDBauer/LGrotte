@@ -129,7 +129,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		sp.setMinGroesse(minGroesse);
 		sp.setMaxGroesse(maxGroesse);
 		sp.setHaarfarbe(haarfarbe);
-		sp.setProfil(user.getEmail());
 		sp.setSuchprofilname(suchprofilname);
 		SuchprofilMapper.suchprofilMapper().updateSuchprofil(sp);
 	}
