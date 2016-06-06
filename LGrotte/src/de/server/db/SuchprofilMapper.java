@@ -61,7 +61,7 @@ public class SuchprofilMapper {
 		return suchprofile;
 	}
 	
-	// Suchprofil einfürgen
+	// Suchprofil einfügen
 	public void insertSuchprofil (Suchprofil sp) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertSuchprofil = (PreparedStatement)con.prepareStatement(
@@ -107,17 +107,16 @@ public class SuchprofilMapper {
 			return suchprofil;
 		}
 	
-
-//public void updateSuchprofil (Suchprofil sp){
-//	
-//}
-//
-//
-//public Suchprofil getSuchprofil(int profilID){
-//	return null;
-//}
-//
-//public Vector<Suchprofil> getSuchprofile(){
-//	return null;
-//}
+		//Suchprofil bearbeiten
+		public void updateSuchprofil(Suchprofil sp) throws Exception {
+			Connection conn = (Connection) DBConnection.connection();
+			PreparedStatement update = (PreparedStatement) conn.prepareStatement(
+					"UPDATE suchprofil SET geschlecht= '" + sp.getGeschlecht() + "', "
+					+ "minAlter=" + sp.getMinAlter() + ", maxAlter=" + sp.getMaxAlter() + ", "
+					+ "religion='" + sp.getReligion() + "', haarfarbe='" + sp.getHaarfarbe() + "', "
+					+ "raucher='" + sp.getRaucher() + "', minGroesse=" + sp.getMinGroesse() + ", "
+					+ "maxGroesse=" + sp.getMaxGroesse() + " WHERE "
+					+ "suchprofilname='" + sp.getSuchprofilname() + "'");								
+			update.execute();
+		}
 }
