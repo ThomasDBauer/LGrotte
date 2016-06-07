@@ -37,6 +37,7 @@ public class SuchprofilEditor extends VerticalPanel {
 	private Button anzeigenButton = new Button("Anzeigen", new SuchProfilAnzeigenClickHandler());
 	private Button spHinzufuegenButton = new Button("+", new SuchprofilHinzufuegenClickHandler());
 	private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
+	private Button updateButton = new Button ( "Update", new UpdateSuchprofilClickHandler());
 	
 	// AnzeigenTable
 	private FlexTable anzeigenTable = new FlexTable();
@@ -49,7 +50,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 	private Label spNameLabel = new Label("Name:");
 	private TextBox spNameTextBox = new TextBox();
-	private TextBox spNameUpdateTextBox = new TextBox();
+	private Label spNameUpdateLabel = new Label();
 
 	private Label geschlechtLabel = new Label("Geschlecht:");
 	private ListBox geschlechtListBox = new ListBox();
@@ -96,14 +97,14 @@ public class SuchprofilEditor extends VerticalPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		// Anhängen der Panels
 		
-		komplettTable.setWidget(0, 0, spHinzufuegenButton);
-		komplettTable.setWidget(0, 1, anlegenButton);
-		komplettTable.setWidget(0, 2, anzeigenButton);
-		komplettTable.setWidget(0, 3, loeschenButton);
+		komplettTable.setWidget(0, 0, anzeigenButton);
+		komplettTable.setWidget(0, 1, loeschenButton);
+		komplettTable.setWidget(0, 2, updateButton);
 		komplettTable.setWidget(1, 0, spListBox);
+		komplettTable.setWidget(1, 1, spHinzufuegenButton);
 		buttonPanel.add(komplettTable);
 		this.add(buttonPanel);
 	}
@@ -116,6 +117,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			groessenAnzeigenPanel.clear();
 			groessenPanel.clear();
 			alterPanel.clear();
+			komplettTable.setWidget(1, 2, anlegenButton);
 			
 			// Der FlexTable unsere Labels und Listboxen geben
 			anlegenTable.setWidget(0, 0, spNameLabel);
@@ -244,7 +246,29 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 		
 	}
-	
+	//Clickhandler zum Updaten des Suchprofils
+	private class UpdateSuchprofilClickHandler implements ClickHandler{
+
+		public void onClick(ClickEvent event) {
+			try {
+				ClientSideSettings.getEditorService().updateSuchprofil(spGeschlechtUpdateListBox.getItemText(spGeschlechtUpdateListBox.getSelectedIndex()),
+						spRaucherUpdateListBox.getItemText(spRaucherUpdateListBox.getSelectedIndex()), 
+						spReligionUpdateListBox.getItemText(spReligionUpdateListBox.getSelectedIndex()),
+						Integer.parseInt(spMinAlterUpdateTextBox.getText()), Integer.parseInt(spMaxAlterUpdateTextBox.getText()),
+						Integer.parseInt(spMinGroesseUpdateTextBox.getText()), Integer.parseInt(spMaxGroesseUpdateTextBox.getText()),
+						spHaarfarbeUpdateListBox.getItemText(spHaarfarbeUpdateListBox.getSelectedIndex()),
+						spListBox.getItemText(spListBox.getSelectedIndex()),
+						new GetUpdateCallback());
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
 	// Callback zum löschen des Suchprofils
 	private class SPdeleteCallback implements AsyncCallback{
 		public void onFailure(Throwable caught) {
@@ -273,11 +297,24 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 
 		public void onSuccess(Vector<Suchprofil> result) {
-			suchprofile = result;
+	
 			for (int i = 0; i < result.size(); i++) {
 				spListBox.addItem(result.elementAt(i).getSuchprofilname());
 			}
 		}
+	}
+	
+	//Callback zum Updaten des Suchprofils 
+	private class GetUpdateCallback implements AsyncCallback<Vector<Suchprofil>>{
+
+		public void onFailure(Throwable caught) {
+			
+		}
+
+		public void onSuccess(Vector<Suchprofil> result) {
+			
+		}
+		
 	}
 	
 	// Callback zum Anzeigen des kompletten Suchprofils
@@ -294,8 +331,10 @@ public class SuchprofilEditor extends VerticalPanel {
 				alterAnzeigenPanel.clear();
 				groessenAnzeigenPanel.clear();
 				
+				
+				Label spNameUpdate = new Label(result.elementAt(i).getSuchprofilname());
 				anzeigenTable.setWidget(0, 0, nameAnzeigenLabel);
-				anzeigenTable.setWidget(0, 1, spNameUpdateTextBox);
+				anzeigenTable.setWidget(0, 1, spNameUpdate);
 
 				anzeigenTable.setWidget(1, 0, geschlechtLabel);
 				anzeigenTable.setWidget(1, 1, spGeschlechtUpdateListBox);
