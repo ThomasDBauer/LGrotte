@@ -19,7 +19,7 @@ public class ProfilInformation implements Serializable {
 	/*
 	 * Das Attribut
 	 */
-	private String attribut;
+	private String name;
 
 	/*
 	 * Der Wert
@@ -35,20 +35,20 @@ public class ProfilInformation implements Serializable {
 	/*
 	 * Ein Konstruktor zum Setzen der beiden elementaren Werte
 	 */
-	public ProfilInformation(String attribut, String wert) {
-		this.attribut = attribut;
+	public ProfilInformation(String name, String wert) {
+		this.name = name;
 		this.wert = wert;
 	}
 
 	/*
 	 * Getter und Setter
 	 */
-	public String getAttribut() {
-		return attribut;
+	public String getName() {
+		return name;
 	}
 
-	public void setAttribut(String attribut) {
-		this.attribut = attribut;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getWert() {

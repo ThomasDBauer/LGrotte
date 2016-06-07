@@ -1,9 +1,9 @@
 package de.shared.RO;
 
-public class WeicheInformation extends ProfilInformation {
+public class ProfilEigenschaft extends ProfilInformation {
 
 	/**
-	 * @author Thomas Bauer
+	 * @author Thomas Bauer, Sedat
 	 * 
 	 *         Kombiniert als Report-Object die @class ProfilInfo. Trägt also
 	 *         eine Kombination aus @class Eigenschaft und @class Info, zugehörig

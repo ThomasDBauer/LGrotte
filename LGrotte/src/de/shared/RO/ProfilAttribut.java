@@ -1,9 +1,9 @@
 package de.shared.RO;
 
-public class HarteInformation extends ProfilInformation{
+public class ProfilAttribut extends ProfilInformation{
 
 	/**
-	 * @author Thomas Bauer
+	 * @author Thomas Bauer, Sedat Akar
 	 * 
 	 *         Zur Darstellung von Profilattributen, wie z.B.
 	 *         Alter, Raucher, Religion, Körpergröße

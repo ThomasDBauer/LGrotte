@@ -1,6 +1,8 @@
 package de.shared.RO;
 
-public class Match {
+import java.io.Serializable;
+
+public class Match implements Serializable{
 
 	/**
 	 * @author Thomas Bauer

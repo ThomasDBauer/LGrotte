@@ -11,6 +11,8 @@ import de.server.db.EigenschaftMapper;
 import de.server.db.ProfilMapper;
 import de.shared.ReportService;
 import de.shared.BO.Profil;
+import de.shared.RO.ProfilAttribut;
+import de.shared.RO.ProfilEigenschaft;
 import de.shared.RO.ProfilReport;
 
 /**
@@ -39,9 +41,21 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public ProfilReport getProfilReport(String email) throws Exception{
 
 		Profil p = ProfilMapper.profilMapper().getProfilByEmail("Anna@LG");
+		
 		ProfilReport report = new ProfilReport();
 		
-		report.setTitle("Das ist Dein Report " + p.getFname());
+		report.setHeader(p.getFname()+ " " + p.getLname());
+		
+		ProfilAttribut pa = new ProfilAttribut();
+		pa.setName("Geschlecht");
+		pa.setWert(p.getGeschlecht());
+		
+		report.addAttribut(pa);
+		
+		ProfilEigenschaft pe = new ProfilEigenschaft();
+		pe.setName("");
+		pe.getWert();
+	
 		
 		return report;
 
