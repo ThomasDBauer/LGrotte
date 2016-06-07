@@ -4,16 +4,16 @@ import java.util.Vector;
 
 import org.eclipse.jdt.core.dom.ThisExpression;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -26,15 +26,11 @@ public class SuchprofilEditor extends VerticalPanel {
 
 	// Verschiedene Panels
 	private VerticalPanel suchprofilPanel = this;
-	private HorizontalPanel auswaehlenAnzeigenPanel = new HorizontalPanel();
-	private HorizontalPanel anlegenLoeschenPanel = new HorizontalPanel();
 	private HorizontalPanel buttonPanel =  new HorizontalPanel();
 	
 	// Startseite Buttons und Labels
-	private Label aussuchenLabel = new Label("Wählen Sie ein Suchprofil aus:");
 	private ListBox spListBox = new ListBox();
 	private FlexTable komplettTable = new FlexTable(); 
-	private Button anzeigenButton = new Button("Anzeigen", new SuchProfilAnzeigenClickHandler());
 	private Button spHinzufuegenButton = new Button("+", new SuchprofilHinzufuegenClickHandler());
 	private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
 	private Button updateButton = new Button ( "Update", new UpdateSuchprofilClickHandler());
@@ -50,7 +46,6 @@ public class SuchprofilEditor extends VerticalPanel {
 
 	private Label spNameLabel = new Label("Name:");
 	private TextBox spNameTextBox = new TextBox();
-	private Label spNameUpdateLabel = new Label();
 
 	private Label geschlechtLabel = new Label("Geschlecht:");
 	private ListBox geschlechtListBox = new ListBox();
@@ -97,12 +92,18 @@ public class SuchprofilEditor extends VerticalPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
+		spListBox.addClickHandler(new SuchProfilAnzeigenClickHandler());
+		spListBox.addChangeHandler(new ChangeHandler(){
+			public void onChange(ChangeEvent event) {
+				spListBox.addClickHandler(new SuchProfilAnzeigenClickHandler());
+			}
+		});
 		
 		// Anhängen der Panels
 		
-		komplettTable.setWidget(0, 0, anzeigenButton);
-		komplettTable.setWidget(0, 1, loeschenButton);
-		komplettTable.setWidget(0, 2, updateButton);
+		komplettTable.setWidget(0, 0, loeschenButton);
+		komplettTable.setWidget(0, 1, updateButton);
 		komplettTable.setWidget(1, 0, spListBox);
 		komplettTable.setWidget(1, 1, spHinzufuegenButton);
 		buttonPanel.add(komplettTable);
