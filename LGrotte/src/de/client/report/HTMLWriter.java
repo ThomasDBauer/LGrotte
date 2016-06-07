@@ -35,7 +35,7 @@ public class HTMLWriter {
 		//Style der Überschrift
 		sb.append("<div style = \"height: auto; margin:10; padding-bottom: 0 auto;"
 				+ "padding-top: 0 auto; font:bold 150%/1em arial; color: #aeaeae"
-				+ "\">" + report.getTitle() + "</div>");
+				+ "\">" + report.getHeader() + "</div>");
 		sb.append("<br/>");
 		
 		//Style der einzelnen Report-Elemente
@@ -43,12 +43,15 @@ public class HTMLWriter {
 				+ "text-align: left; font: bold 180%/1em arial, geneva, sans-serif; color: #000; width: 100%;"
 				+ "text-transform: uppercase; letter-spacing: 0.1em; width: auto;\">");
 
-		sb.append("Vorname: " + "<br>");
-		sb.append("Nachname: "  + "<br>");
-		sb.append("Geschlecht: " + "<br>");
-		sb.append("Email: " + "<br>");
-		sb.append("Raucher: "  + "<br>");
-		sb.append("Religion: " + "<br>");
+		sb.append(report.getAttribute().elementAt(0).getName());
+		sb.append(": ");
+		sb.append(report.getAttribute().elementAt(0).getWert());
+//		sb.append(report.getHeader());
+//		sb.append("Nachname: "  + "<br>");
+//		sb.append("Geschlecht: " + "<br>");
+//		sb.append("Email: " + "<br>");
+//		sb.append("Raucher: "  + "<br>");
+//		sb.append("Religion: " + "<br>");
 		sb.append("</div>");
 		
 		//sb.append("<h2>" + p.getFname() + " " + p.getLname() + "<br/>" + "</h2>");

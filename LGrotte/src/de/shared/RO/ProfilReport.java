@@ -1,72 +1,95 @@
 package de.shared.RO;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public class ProfilReport extends Report {
+public class ProfilReport implements Serializable{
 
 	/**
-	 * @author Thomas Bauer
+	 * @author Thomas Bauer, Sedat Akar
 	 * 
-	 *         Jedes Report-Object rägt Informationen über ein einzelnes, detailliertes 
+	 *         Jedes Report-Object traegt Informationen ueber ein einzelnes, detailliertes 
 	 *         Profil, das zur Darstellung kommen soll. Es findet eine Unterscheidung
-	 *         statt zwischen @class WeicheInformation und @class HarteInformation, die
+	 *         statt zwischen @class ProfilEigenschaft und @class ProfilAttribut, die
 	 *         ProfilAttribute und ProfilInfos repräsentieren.
 	 *         
-	 *         Von der Superklasse @class Report erbt die Klasse einen Titel.
 	 *         
-	 *         Die Subklasse @class FremdesProfilReport erweitert diese Klasse
-	 *         um ein Matching-Ergebis.
-	 *         Die Subklasse @class MeinProfilReport dient der objektorientierten
-	 *         Vorgehensweise
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/*
-	 * Eine unbestimmte Anzahl an @class WeicheInformation und @class HarteInformation.
+	 * Das Matchobjekt traegt das Aehnlichkeitsmass  
+	 */
+	private Match match;
+	
+	
+	/*
+	 * Jedes Profil hat eine Ueberschrift
+	 */
+	private String header;
+	
+	/*
+	 * Eine unbestimmte Anzahl an @class ProfilEigenschaften und @class ProfilAttributen.
 	 * 
 	 */
-	private Vector<WeicheInformation> weicheInfos = new Vector<WeicheInformation>();
-	private Vector<HarteInformation> harteInfos = new Vector<HarteInformation>();
+	private Vector<ProfilEigenschaft> eigenschaften = new Vector<ProfilEigenschaft>();
+	private Vector<ProfilAttribut> attribute = new Vector<ProfilAttribut>();
 	
 	/*
-	 * Hinzufügen einzelner weicher Infos
+	 * Hinzufügen einzelner Eigenschaften
 	 */
-	public void addInfo(WeicheInformation info) {
-		weicheInfos.add(info);
+	public void addEigenschaft(ProfilEigenschaft pe) {
+		eigenschaften.add(pe);
 	}
 
 	/*
-	 * Entfernen von weichen Infos
+	 * Entfernen von Eigenschaften
 	 */
-	public void removeInfo(WeicheInformation info) {
-		weicheInfos.removeElement(info);
+	public void removeEigenschaft(ProfilEigenschaft pe) {
+		eigenschaften.removeElement(pe);
 	}
 
 	/*
-	 * get() Methode zum Auslesen aller weicher Infos
+	 * get() Methode zum Auslesen aller Eigenschaften
 	 */
-	public Vector<WeicheInformation> getWeicheInfos() {
-		return weicheInfos;
+	public Vector<ProfilEigenschaft> getEigenschaften() {
+		return eigenschaften;
 	}
 	
 	/*
-	 * Hinzufügen einzelner harter Infos
+	 * Hinzufügen einzelner Attribute
 	 */
-	public void addInfo(HarteInformation info) {
-		harteInfos.add(info);
+	public void addAttribut(ProfilAttribut pa) {
+		attribute.add(pa);
 	}
 
 	/*
-	 * Entfernen von weichen Infos
+	 * Entfernen von einzelnen Attributen
 	 */
-	public void removeInfo(HarteInformation info) {
-		harteInfos.removeElement(info);
+	public void removeAttribut(ProfilAttribut pa) {
+		attribute.removeElement(pa);
 	}
 
 	/*
-	 * get() Methode zum Auslesen aller weicher Infos
+	 * get() Methode zum Auslesen aller Attribute
 	 */
-	public Vector<HarteInformation> getHarteInfos() {
-		return harteInfos;
+	public Vector<ProfilAttribut> getAttribute() {
+		return attribute;
+	}
+
+	public Match getMatch() {
+		return match;
+	}
+
+	public void setMatch(Match match) {
+		this.match = match;
+	}
+
+	public String getHeader() {
+		return header;
+	}
+
+	public void setHeader(String header) {
+		this.header = header;
 	}
 }
