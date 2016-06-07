@@ -214,7 +214,10 @@ public class MeinProfilEditor extends VerticalPanel {
 		public void onSuccess(Profil result) {
 			fNameTextBox.setText(result.getFname());
 			lNameTextBox.setText(result.getLname());
-			koerpergroesseTextBox.setText(Integer.toString(result.getKoerpergroesse()));
+			final String koerperString = Integer.toString(result.getKoerpergroesse());
+			koerpergroesseTextBox.setText(koerperString);
+			geschlechtListBox.setTitle(result.getGeschlecht());
+			religionListBox.setTitle(result.getReligion());
 			Date sqlDate = result.getGeburtsdatum();
 			String datumString = DateTimeFormat.getFormat("yyyy-MM-dd").format(sqlDate);
 			datumsinhalt.setText(datumString);

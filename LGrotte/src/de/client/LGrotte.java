@@ -10,6 +10,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.InsertPanel.ForIsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -43,6 +44,7 @@ public class LGrotte implements EntryPoint {
 	private Button logOutButton = new Button("Abmelden");
 	public LogOutPopUp logOutPop = new LogOutPopUp();
 	public static String logOutUrl;
+	private HorizontalPanel naviPanel = new HorizontalPanel();
 
 	public void onModuleLoad() {
 
@@ -87,8 +89,10 @@ public class LGrotte implements EntryPoint {
 								}
 							});
 
-							RootPanel.get("Logout").add(logOutButton);
-							RootPanel.get("Navi").add(new Navigation());
+							naviPanel.add(new Navigation());
+							naviPanel.add(logOutButton);
+							naviPanel.addStyleName("navi-panel");
+							RootPanel.get("Navi").add(naviPanel);
 							RootPanel.get("Inhalt_unten").add(
 									new MeinProfilEditor());
 							RootPanel.get("Fusszeile").add(new ImageFooter());
