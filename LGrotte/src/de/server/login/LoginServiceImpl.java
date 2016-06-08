@@ -6,12 +6,18 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.client.ClientSideSettings;
+import de.server.ServersideSettings;
 import de.server.db.ProfilMapper;
 import de.shared.LoginService;
 import de.shared.BO.Profil;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
 
+	
+	public String hallo(){
+		return "Ich bin Lukes Server";
+	}
+	
 
 	public Profil login(String requestUri) throws Exception {
 		UserService userService = UserServiceFactory.getUserService();
@@ -25,7 +31,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 			p.setLoggedIn(true);
 				bestehendesProfil.setLoggedIn(true);
 				bestehendesProfil.setLogoutUrl(userService.createLogoutURL(requestUri));
-				p.setEmail(user.getEmail());
+				bestehendesProfil.setEmail(user.getEmail());
 				return bestehendesProfil;
 			}
 			//NO PROFILE

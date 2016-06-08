@@ -8,4 +8,6 @@ import de.shared.BO.Profil;
 @RemoteServiceRelativePath("login")
 public interface LoginService extends RemoteService{
 	Profil login(String requestUri) throws Exception;
+	
+	String hallo();
 }

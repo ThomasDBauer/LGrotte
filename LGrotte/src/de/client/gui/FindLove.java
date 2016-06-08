@@ -17,34 +17,18 @@ import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 
 public class FindLove extends VerticalPanel {
- //dieter
+
 	private FlexTable table = new FlexTable();
 	private Vector<String> emailBuffer = new Vector<String>();
 	private Button merkButton = new Button("Profile merken", new MerkHandler());
 	private Button sperrButton = new Button("Profile sperren", new SperrHandler());
 	private VerticalPanel resultPanel = new VerticalPanel();
 	
-	/*
-	 * TEST PEWPEW
-	 */
-		
-//		private Button testButton = new Button("Test", new ClickHandler(){
-//			public void onClick(ClickEvent e){
-//				for(int i = 0; i < emailBuffer.size(); i++){
-//					resultPanel.add(new Label(emailBuffer.elementAt(i)));
-//				}
-//			}
-//		});
-	
-	/*
-	 * TEST PEWPEW ENDE
-	 */
 
 	public FindLove() throws Exception {
 		HorizontalPanel controlPanel = new HorizontalPanel();
 		controlPanel.add(merkButton);
 		controlPanel.add(sperrButton);
-//		controlPanel.add(testButton);
 		this.add(controlPanel);
 		this.add(resultPanel);
 		loadProfiles();

@@ -2,8 +2,13 @@ package de.server.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import java.sql.ResultSet;
 
 import de.shared.BO.Info;
+import de.shared.BO.Kontaktsperre;
 
 public class InfoMapper {
 	//Klasse ist Singleton und das gewährleistet diese Funktion, es speichert die einzige Instanz dieser Klasse.
@@ -47,6 +52,20 @@ public class InfoMapper {
 		insertInfo.execute();
 		
 	}
+	
+	
+	public int getInfoIDByEigenschaftsIDAndValue(int eID, String value) throws Exception{
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) con.prepareStatement(
+				"SELECT id FROM INFOS WHERE value= '" + value + "' AND eigenschaft_id =" + eID);
+		ResultSet result = select.executeQuery();
+		int id = 0;
+		while(result.next()){
+			id = result.getInt("id");
+		}
+		return id;
+	}
+	
 	
 	public void deleteInfo (Info info) throws Exception {
 		
