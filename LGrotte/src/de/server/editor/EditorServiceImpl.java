@@ -12,6 +12,7 @@ import de.server.db.InfoMapper;
 import de.server.db.KontaktsperreMapper;
 import de.server.db.MerkzettelMapper;
 import de.server.db.ProfilMapper;
+import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.EditorService;
 import de.shared.BO.Eigenschaft;
@@ -19,6 +20,7 @@ import de.shared.BO.Info;
 import de.shared.BO.Kontaktsperre;
 import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
+import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
 
 /**
@@ -218,5 +220,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			KontaktsperreMapper.kontaktsperreMapper().insertKontaktsperre(k);
 		}
 	}
+	public void insertProfilInfo(String email, int infoID) throws Exception {
+		ProfilInfo pi = new ProfilInfo();
+		pi.setProfilEmail(user.getEmail());
+		pi.setInfoID(infoID);
+		ProfilinfoMapper.profilinfoMapper().insertProfilInfo(pi);
+	}
+	
 
 }

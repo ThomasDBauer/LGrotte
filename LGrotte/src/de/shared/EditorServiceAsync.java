@@ -50,4 +50,5 @@ public interface EditorServiceAsync {
 	
 	void getSuchprofileByName(String suchprofilname, AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
 	
+	void insertProfilInfo(String email, int infoID, AsyncCallback callback) throws Exception;
 }

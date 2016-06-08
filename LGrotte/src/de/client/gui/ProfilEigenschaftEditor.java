@@ -16,6 +16,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.client.ClientSideSettings;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
+import de.shared.BO.Profil;
+import de.shared.BO.ProfilInfo;
 
 public class ProfilEigenschaftEditor extends VerticalPanel {
 
@@ -89,6 +91,16 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
+				int infoID = 0;
+				
+				Profil profilEmail = new Profil();
+				// int profilinfoID = info.setId();
+				try {
+					// ClientSideSettings.getEditorService().insertProfilInfo(profilEmail.getEmail(), profilinfoID, new InsertProfilInfoCallback());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 	}
@@ -108,6 +120,13 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 		}
 		
+	}
+	
+	private class InsertProfilInfoCallback implements AsyncCallback {
+		public void onFailure(Throwable caught) {	
+		}
+		public void onSuccess(Object result) {	
+		}		
 	}
 	
 	private class InsertInfoCallback implements AsyncCallback {
