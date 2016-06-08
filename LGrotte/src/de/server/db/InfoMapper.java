@@ -32,7 +32,8 @@ public class InfoMapper {
 		PreparedStatement createInfo = (PreparedStatement) conn.prepareStatement(
 				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL AUTO_INCREMENT, "
 				+ "value varchar(50), eigenschaft_id int, PRIMARY KEY(id), "
-				+ "FOREIGN KEY(eigenschaft_id) REFERENCES eigenschaft(id) ON UPDATE CASCADE ON DELETE RESTRICT)"); // 
+				+ "FOREIGN KEY(eigenschaft_id) REFERENCES eigenschaft(id) "
+				+ "ON UPDATE CASCADE ON DELETE RESTRICT, UNIQUE(eigenschaft_id, value))"); // 
 		createInfo.execute();
 	}
 
