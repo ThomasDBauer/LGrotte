@@ -37,7 +37,7 @@ public class SuchprofilEditor extends VerticalPanel {
 	
 	// AnzeigenTable
 	private FlexTable anzeigenTable = new FlexTable();
-	private Label nameAnzeigenLabel = new Label("Name:");
+	private Label suchprofilNameLabel = new Label("Name:");
 	private HorizontalPanel groessenAnzeigenPanel = new HorizontalPanel();
 	private HorizontalPanel alterAnzeigenPanel = new HorizontalPanel();
 	
@@ -334,7 +334,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				
 				
 				Label spNameUpdate = new Label(result.elementAt(i).getSuchprofilname());
-				anzeigenTable.setWidget(0, 0, nameAnzeigenLabel);
+				anzeigenTable.setWidget(0, 0, suchprofilNameLabel);
 				anzeigenTable.setWidget(0, 1, spNameUpdate);
 
 				anzeigenTable.setWidget(1, 0, geschlechtLabel);
@@ -366,37 +366,33 @@ public class SuchprofilEditor extends VerticalPanel {
 				alterAnzeigenPanel.add(new Label(" bis "));
 				alterAnzeigenPanel.add(spMaxAlterUpdateTextBox);
 				anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
-				
-				
-				// Anhängen der Items zur Auswahl
-				spGeschlechtUpdateListBox.addItem("männlich");
-				spGeschlechtUpdateListBox.addItem("weiblich");
-				spGeschlechtUpdateListBox.addItem("Andere");
-				
-				spHaarfarbeUpdateListBox.addItem("blond");
-				spHaarfarbeUpdateListBox.addItem("brunette");
-				spHaarfarbeUpdateListBox.addItem("schwarz");
-				spHaarfarbeUpdateListBox.addItem("rot");
-				spHaarfarbeUpdateListBox.addItem("grau");
-				spHaarfarbeUpdateListBox.addItem("egal");
-				
-				spReligionUpdateListBox.addItem("christlich");
-				spReligionUpdateListBox.addItem("muslimisch");
-				spReligionUpdateListBox.addItem("buddhistisch");
-				spReligionUpdateListBox.addItem("hinduitsisch");
-				spReligionUpdateListBox.addItem("jüdisch");
-				spReligionUpdateListBox.addItem("egal");
-				
-				spRaucherUpdateListBox.addItem("Ja");
-				spRaucherUpdateListBox.addItem("Nein");
-				spRaucherUpdateListBox.addItem("ab und an");
-				spRaucherUpdateListBox.addItem("egal");
-				
-				suchprofilPanel.add(anzeigenTable);
-				
-				
-				
 			}
+			// Anhängen der Items zur Auswahl
+			spGeschlechtUpdateListBox.addItem("männlich");
+			spGeschlechtUpdateListBox.addItem("weiblich");
+			spGeschlechtUpdateListBox.addItem("Andere");
+			
+			spHaarfarbeUpdateListBox.addItem("blond");
+			spHaarfarbeUpdateListBox.addItem("brunette");
+			spHaarfarbeUpdateListBox.addItem("schwarz");
+			spHaarfarbeUpdateListBox.addItem("rot");
+			spHaarfarbeUpdateListBox.addItem("grau");
+			spHaarfarbeUpdateListBox.addItem("egal");
+			
+			spReligionUpdateListBox.addItem("christlich");
+			spReligionUpdateListBox.addItem("muslimisch");
+			spReligionUpdateListBox.addItem("buddhistisch");
+			spReligionUpdateListBox.addItem("hinduitsisch");
+			spReligionUpdateListBox.addItem("jüdisch");
+			spReligionUpdateListBox.addItem("egal");
+			
+			spRaucherUpdateListBox.addItem("Ja");
+			spRaucherUpdateListBox.addItem("Nein");
+			spRaucherUpdateListBox.addItem("ab und an");
+			spRaucherUpdateListBox.addItem("egal");
+			
+			suchprofilPanel.add(anzeigenTable);
+			
 		}
 		
 	}

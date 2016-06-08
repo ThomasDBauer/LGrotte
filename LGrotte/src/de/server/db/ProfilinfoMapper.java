@@ -36,7 +36,7 @@ public class ProfilinfoMapper {
 	public void insertProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
-				"INSERT INTO profil_info (profil, " + " Info_id) VALUES ('" 
+				"INSERT INTO profil_info (profil, info_id) VALUES ('" 
 						+ pi.getProfilEmail() + "'" + ", " + pi.getInfoID() + ")");
 		stmt.execute();
 	}
@@ -84,8 +84,12 @@ public class ProfilinfoMapper {
 			e2.printStackTrace();
 		}
 	}
+	
+//	public ProfilInfo getInfobyEmail() throws Exception{
+//		
+//	}
 
-	//
+	
 	// public ProfilInfo getProfilInfo(int profilID){
 	// //Eigentlich m�sste geProfilInfo ein Vetor oder einen Array mit der
 	// Anzahl aller Info-ID�s zur�ckgeben
