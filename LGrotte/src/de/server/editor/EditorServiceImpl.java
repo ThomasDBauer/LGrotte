@@ -220,10 +220,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			KontaktsperreMapper.kontaktsperreMapper().insertKontaktsperre(k);
 		}
 	}
-	public void insertProfilInfo(String email, int infoID) throws Exception {
-		ProfilInfo pi = new ProfilInfo();
-		pi.setProfilEmail(user.getEmail());
-		pi.setInfoID(infoID);
+	// ProfilInfos einfügen
+	public void insertProfilInfo(ProfilInfo pi) throws Exception {
 		ProfilinfoMapper.profilinfoMapper().insertProfilInfo(pi);
 	}
 	

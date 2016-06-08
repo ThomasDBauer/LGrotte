@@ -27,6 +27,8 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 	private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
 	private Vector<TextBox> eigenschaftenTextboxen = new Vector<TextBox>();
 	private Vector<Eigenschaft> eigenschaften;
+	private Vector<Info> infos;
+ 
 
 	public ProfilEigenschaftEditor() throws Exception {
 		this.add(addEigenschaftenButton);
@@ -41,13 +43,13 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 			// wir wollen eine listbox und eine textbox
 			ListBox listbox = new ListBox(false);
-			TextBox textbox = new TextBox();
+			TextBox infotextbox = new TextBox();
 			Button loeschenButton = new Button("x", new LoeschenClickHandler());
 
 			// um sie sp�ter auszulesen, werden sie au�erhalb der methode
 			// gespeichert
 			eigenschaftenListboxen.add(listbox);
-			eigenschaftenTextboxen.add(textbox);
+			eigenschaftenTextboxen.add(infotextbox);
 
 			// f�llen der listbox mit allen eigenschaften
 			for (int i = 0; i < eigenschaften.size(); i++) {
@@ -57,7 +59,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			// h�bsch anordnen
 			HorizontalPanel hpanel = new HorizontalPanel();
 			hpanel.add(listbox);
-			hpanel.add(textbox);
+			hpanel.add(infotextbox);
 			hpanel.add(loeschenButton);
 			editPanel.add(hpanel);
 		}
@@ -70,6 +72,14 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 		public void onSuccess(Vector<Eigenschaft> result) {
 			eigenschaften = result;
+		}
+	}
+	
+	private class GetInfosCallback implements AsyncCallback<Vector<Info>> {
+		public void onFailure(Throwable caught) {	
+		}
+		public void onSuccess(Vector<Info> result) {
+			infos = result;
 		}
 	}
 
@@ -91,16 +101,27 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				int infoID = 0;
-				
-				Profil profilEmail = new Profil();
-				// int profilinfoID = info.setId();
-				try {
-					// ClientSideSettings.getEditorService().insertProfilInfo(profilEmail.getEmail(), profilinfoID, new InsertProfilInfoCallback());
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+//				for (int pit = 0; pit < eigenschaftenTextboxen.size(); pit++) {
+//					// Schleife um zu erkennen um welche info es sich handelt
+//					TextBox tb = eigenschaftenTextboxen.elementAt(pit);
+//					int infoID = 0;
+//					for (int pi = 0; pi < infos.size(); pi++){
+//						if(tb.getText().equals(infos.elementAt(pi).getValue())){
+//							infoID = infos.elementAt(pi).getId();
+//						}
+//					}
+//					// Info Id in Tabelle "ProfilInfo" kicken
+//					ProfilInfo pi = new ProfilInfo();
+//					Profil profilEmail = new Profil();
+//					pi.setInfoID(infoID);
+//					pi.setProfilEmail(profilEmail.getEmail());
+//					try {
+//						ClientSideSettings.getEditorService().insertProfilInfo(pi, new InsertProfilInfoCallback());
+//					} catch (Exception e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//				}
 			}
 		}
 	}

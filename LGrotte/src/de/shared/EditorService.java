@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Profil;
+import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
 
 /**
@@ -52,5 +53,5 @@ public interface EditorService extends RemoteService {
 	
 	Vector<Suchprofil> getSuchprofileByName(String suchprofilname) throws Exception;
 	
-	void insertProfilInfo(String email, int infoID) throws Exception;
+	void insertProfilInfo(ProfilInfo pi) throws Exception;
 }
