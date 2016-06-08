@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Profil;
+import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
 
 public interface EditorServiceAsync {
@@ -50,5 +51,5 @@ public interface EditorServiceAsync {
 	
 	void getSuchprofileByName(String suchprofilname, AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
 	
-	void insertProfilInfo(String email, int infoID, AsyncCallback callback) throws Exception;
+	void insertProfilInfo(ProfilInfo pi, AsyncCallback callback) throws Exception;
 }
