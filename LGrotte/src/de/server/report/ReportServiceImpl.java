@@ -46,11 +46,22 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		
 		report.setHeader(p.getFname()+ " " + p.getLname());
 		
-		ProfilAttribut pa = new ProfilAttribut();
-		pa.setName("Geschlecht");
-		pa.setWert(p.getGeschlecht());
+		ProfilAttribut geschlecht = new ProfilAttribut();
+		geschlecht.setName("Geschlecht");
+		geschlecht.setWert(p.getGeschlecht());
 		
-		report.addAttribut(pa);
+		ProfilAttribut haarFarbe = new ProfilAttribut();
+		haarFarbe.setName("Haarfarbe");
+		haarFarbe.setWert(p.getHaarfarbe());
+		
+		ProfilAttribut religion = new ProfilAttribut();
+		religion.setName("Religion");
+		religion.setWert(p.getReligion());
+		
+		report.addAttribut(geschlecht);
+		report.addAttribut(haarFarbe);
+		report.addAttribut(religion);
+		
 		
 		ProfilEigenschaft pe = new ProfilEigenschaft();
 		pe.setName("");

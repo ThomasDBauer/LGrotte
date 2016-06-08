@@ -5,7 +5,7 @@ import de.shared.RO.ProfilReport;
 public class HTMLWriter {
 
 	/**
-	 * @author Thomas Bauer
+	 * @author Thomas Bauer, Sedat Akar
 	 * 
 	 *         Die Klasse nimmt Report-Objects und formatiert sie in die
 	 *         gewünschte HTML-Darstellung.
@@ -29,14 +29,14 @@ public class HTMLWriter {
 	 * Erstellt HTML Code für ein einzelnes, detaillierte dargestelltes Profil
 	 */
 	public void process(ProfilReport report) {
-		
+
 		StringBuffer sb = new StringBuffer();
 
 		/*
 		 * Der Header des Reports wird aufgerufen
 		 */
-		sb.append("Das ist Dein Love-Report " + report.getHeader());
-		
+		sb.append("Das ist Dein Liebes-Report " + report.getHeader());
+
 		/*
 		 * Style der einzelnen Report-Elemente
 		 */
@@ -44,12 +44,13 @@ public class HTMLWriter {
 				+ "text-align: left; font: bold 180%/1em arial, geneva, sans-serif; color: #000; width: 100%;"
 				+ "text-transform: uppercase; letter-spacing: 0.1em; width: auto;\">");
 		sb.append("<br>");
-		sb.append(report.getAttribute().elementAt(0).getName());
-		sb.append(": ");
-		sb.append(report.getAttribute().elementAt(0).getWert());
-		sb.append("</div>");
 
+		for (int i = 0; i < report.getAttribute().size(); i++) {
+			sb.append(report.getAttribute().elementAt(i).getName() + ": " +
+					report.getAttribute().elementAt(i).getWert() + "<br>");
+		}
+
+		sb.append("</div>");
 		this.reportText = sb.toString();
 	}
-
 }
