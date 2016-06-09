@@ -1,7 +1,11 @@
 package de.shared;
 
+import java.util.Vector;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.shared.BO.Profil;
+import de.shared.RO.ProfilInformation;
 import de.shared.RO.ProfilReport;
 
 public interface ReportServiceAsync {
@@ -17,6 +21,11 @@ public interface ReportServiceAsync {
 	public void showMyProfile(String email, AsyncCallback<String> callback) throws Exception;
 	
 	void getProfilReport(String email, AsyncCallback<ProfilReport>callback) throws Exception;
+	
+	
+	void setUser(Profil p, AsyncCallback callback);
+	
+	void getProfilInfos(AsyncCallback<Vector<ProfilInformation>>callback) throws Exception;
 	
 //	void createAlleProfileReport(AsyncCallback<AlleProfileReport> callback);
 }

@@ -9,10 +9,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.server.db.EigenschaftMapper;
 import de.server.db.ProfilMapper;
+import de.server.db.ProfilinfoMapper;
 import de.shared.ReportService;
 import de.shared.BO.Profil;
 import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
+import de.shared.RO.ProfilInformation;
 import de.shared.RO.ProfilReport;
 
 /**
@@ -28,6 +30,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public void setUser(Profil p) {
 		user = p;
 	}
+	
+	public Vector<ProfilInformation> getProfilInfos() throws Exception{
+		
+		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(user.getEmail());
+	}
 
 	public void init() throws IllegalArgumentException {
 		this.profilMapper = ProfilMapper.profilMapper();
@@ -40,7 +47,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	public ProfilReport getProfilReport(String email) throws Exception{
 
-		Profil p = ProfilMapper.profilMapper().getProfilByEmail("Anna@LG");
+		Profil p = ProfilMapper.profilMapper().getProfilByEmail(user.getEmail());
 		
 		ProfilReport report = new ProfilReport();
 		

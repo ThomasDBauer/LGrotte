@@ -1,8 +1,12 @@
 package de.shared;
 
+import java.util.Vector;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import de.shared.BO.Profil;
+import de.shared.RO.ProfilInformation;
 import de.shared.RO.ProfilReport;
 
 /**
@@ -22,6 +26,10 @@ public interface ReportService extends RemoteService {
 	String showMyProfile(String email) throws Exception;
 	
 	ProfilReport getProfilReport(String email) throws Exception;
+	
+	void setUser(Profil p);
+	
+	Vector<ProfilInformation> getProfilInfos() throws Exception;
 
 //	public abstract AlleProfileReport createAlleProfileReport() throws Exception;
 
