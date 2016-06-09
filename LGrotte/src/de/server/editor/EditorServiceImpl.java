@@ -155,6 +155,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		
 		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
 				info.getEigenschaft(), info.getValue());
+		
 		ProfilInfo pi = new ProfilInfo();
 		pi.setInfoID(infoID);
 		pi.setProfilEmail(user.getEmail());
