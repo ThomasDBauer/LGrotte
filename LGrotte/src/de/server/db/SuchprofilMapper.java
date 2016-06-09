@@ -88,10 +88,8 @@ public class SuchprofilMapper {
 			PreparedStatement select = (PreparedStatement) con.prepareStatement(
 					"SELECT * FROM suchprofil WHERE suchprofilname = '"+suchprofilname+"'");
 			ResultSet result = select.executeQuery();
-			
-			Suchprofil suchprofil = new Suchprofil();
-			
-				Suchprofil sp = new Suchprofil();
+			Suchprofil sp = new Suchprofil();
+			while(result.next()){
 				sp.setGeschlecht(result.getString("geschlecht"));
 				sp.setHaarfarbe(result.getString("haarfarbe"));
 				sp.setMaxGroesse(result.getInt("maxGroesse"));
@@ -101,8 +99,8 @@ public class SuchprofilMapper {
 				sp.setRaucher(result.getString("raucher"));
 				sp.setReligion(result.getString("religion"));
 				sp.setSuchprofilname(result.getString("suchprofilname"));
-			
-			return suchprofil;
+			}
+			return sp;
 		}
 	
 		//Suchprofil bearbeiten
