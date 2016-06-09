@@ -148,20 +148,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return this.eMapper.getEigenschaften();
 	}
 
-	// Infos einfürgen
-	public void insertInfo(Info info) throws Exception {
-		
-		InfoMapper.infoMapper().insertInfo(info);
-		
-		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
-				info.getEigenschaft(), info.getValue());
-		
-		ProfilInfo pi = new ProfilInfo();
-		pi.setInfoID(infoID);
-		pi.setProfilEmail(user.getEmail());
-		insertProfilInfo(pi);		
-	}
-	
 	
 	
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
@@ -231,6 +217,24 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			KontaktsperreMapper.kontaktsperreMapper().insertKontaktsperre(k);
 		}
 	}
+	// Infos einfürgen
+	public void insertInfo(Info info) throws Exception {
+		
+		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
+				info.getEigenschaft(), info.getValue());
+		
+		if(infoID == 0){
+			InfoMapper.infoMapper().insertInfo(info);
+			infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
+					info.getEigenschaft(), info.getValue());
+		}
+		
+		ProfilInfo pi = new ProfilInfo();
+		pi.setInfoID(infoID);
+		pi.setProfilEmail(user.getEmail());
+		insertProfilInfo(pi);		
+	}
+
 	// ProfilInfos einfügen
 	public void insertProfilInfo(ProfilInfo pi) throws Exception {
 		ProfilinfoMapper.profilinfoMapper().insertProfilInfo(pi);
@@ -238,3 +242,4 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 
 }
+
