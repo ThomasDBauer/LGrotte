@@ -26,6 +26,8 @@ public class SuchprofilEditor extends VerticalPanel {
 	// Verschiedene Panels
 		private VerticalPanel suchprofilPanel = this;
 		private HorizontalPanel buttonPanel =  new HorizontalPanel();
+		private HorizontalPanel speichernButtonPanel = new HorizontalPanel();
+		private HorizontalPanel listBoxPanel = new HorizontalPanel();
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
@@ -38,6 +40,10 @@ public class SuchprofilEditor extends VerticalPanel {
 		private Label suchprofilNameLabel = new Label("Name:");
 		private HorizontalPanel groessenAnzeigenPanel = new HorizontalPanel();
 		private HorizontalPanel alterAnzeigenPanel = new HorizontalPanel();
+		private TextBox minGroesseAnzeigenTextBox = new TextBox();
+		private TextBox maxGroesseAnzeigenTextBox= new TextBox();
+		private TextBox minAlterAnzeigenTextBox = new TextBox();
+		private TextBox maxAlterAnzeigenTextBox = new TextBox();
 		
 		// Buttons, Labels und Table fürs Suchprofil hinzufügen
 		private FlexTable anlegenTable = new FlexTable();
@@ -76,6 +82,10 @@ public class SuchprofilEditor extends VerticalPanel {
 
 		// Editor 
 		public SuchprofilEditor() throws Exception {
+			loadPage();
+		}
+		
+		public void loadPage(){
 			
 			try {
 				ClientSideSettings.getEditorService().getSuchprofile(
@@ -93,13 +103,13 @@ public class SuchprofilEditor extends VerticalPanel {
 			});
 			
 			// Anhängen der Panels
-			
-			komplettTable.setWidget(0, 0, loeschenButton);
-			komplettTable.setWidget(0, 1, updateButton);
-			komplettTable.setWidget(1, 0, spListBox);
-			komplettTable.setWidget(1, 1, spHinzufuegenButton);
-			buttonPanel.add(komplettTable);
+			buttonPanel.add(loeschenButton);
+			buttonPanel.add(updateButton);
+			buttonPanel.add(spHinzufuegenButton);
+			listBoxPanel.add(spListBox);
 			this.add(buttonPanel);
+			this.add(listBoxPanel);
+			
 			
 			// Anhängen der Items zur Auswahl
 			geschlechtListBox.addItem("männlich");
@@ -125,16 +135,14 @@ public class SuchprofilEditor extends VerticalPanel {
 			raucherListBox.addItem("ab und an");
 			raucherListBox.addItem("egal");
 		}
-
 		// ClickHandler zum suchprofil hizufügen Funktion
 		private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
 				anzeigenTable.clear();
-				alterAnzeigenPanel.clear();
-				groessenAnzeigenPanel.clear();
 				groessenPanel.clear();
 				alterPanel.clear();
-				komplettTable.setWidget(1, 2, anlegenButton);
+				buttonPanel.add(speichernButtonPanel);
+				speichernButtonPanel.add(anlegenButton);
 				
 				// Der FlexTable unsere Labels und Listboxen geben
 				anlegenTable.setWidget(0, 0, spNameLabel);
@@ -179,6 +187,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		// ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
 		private class SuchProfilAnlegenClickHandler implements ClickHandler {
 
+			private PopupPanel popup;
 			public void onClick(ClickEvent event) {
 				try {
 					ClientSideSettings.getEditorService().insertSuchprofil(spNameTextBox.getText(),
@@ -197,7 +206,16 @@ public class SuchprofilEditor extends VerticalPanel {
 				alterAnzeigenPanel.clear();
 				groessenAnzeigenPanel.clear();
 				// Hiermit merkt der Nutzer das sein Suchprofil hinzugefügt wurde
-				suchprofilPanel.add(new Label("Suchprofil angelegt"));
+				anlegenTable.clear();
+				alterPanel.clear();
+				groessenPanel.clear();
+				alterAnzeigenPanel.clear();
+				groessenAnzeigenPanel.clear();
+				speichernButtonPanel.clear();
+				this.popup = new PopupPanel(true,true);
+				this.popup.add(new Label("Suchprofil wurde angelegt "
+						+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
+				this.popup.center();
 			}
 		}
 		// Callback zum anlegen des Suchprofils
@@ -209,6 +227,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 			public void onSuccess(Object result) {
 				RootPanel.get().add(new Label(result.toString()));
+				loadPage();
 			}
 		}
 			// ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
@@ -227,7 +246,6 @@ public class SuchprofilEditor extends VerticalPanel {
 					alterAnzeigenPanel.clear();
 					groessenAnzeigenPanel.clear();
 					// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
-					suchprofilPanel.add(new Label("Suchprofil gelöscht"));
 					this.popup = new PopupPanel(true,true);
 					this.popup.add(new Label("Suchprofil wurde angelegt "
 							+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
@@ -248,6 +266,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		//Clickhandler zum Updaten des Suchprofils
 		private class UpdateSuchprofilClickHandler implements ClickHandler{
 
+			private PopupPanel popup;
 			public void onClick(ClickEvent event) {
 				try {
 					ClientSideSettings.getEditorService().updateSuchprofil(geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex()),
@@ -265,6 +284,10 @@ public class SuchprofilEditor extends VerticalPanel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				this.popup = new PopupPanel(true,true);
+				this.popup.add(new Label("Suchprofil wurde aktualisiert "
+						+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
+				this.popup.center();
 			}
 			
 		}
@@ -336,9 +359,6 @@ public class SuchprofilEditor extends VerticalPanel {
 					groessenAnzeigenPanel.clear();
 					
 					
-					anzeigenTable.setWidget(0, 0, suchprofilNameLabel);
-					anzeigenTable.setWidget(0, 1, new Label(result.getSuchprofilname()));
-
 					anzeigenTable.setWidget(1, 0, geschlechtLabel);
 					anzeigenTable.setWidget(1, 1, geschlechtListBox);
 					for (int g = 0; g < 2;g++) {
@@ -349,30 +369,48 @@ public class SuchprofilEditor extends VerticalPanel {
 
 					anzeigenTable.setWidget(2, 0, raucherLabel);
 					anzeigenTable.setWidget(2, 1, raucherListBox);
+					for (int g = 0; g < 4;g++) {
+						if(raucherListBox.getValue(g) == result.getRaucher()){
+							raucherListBox.setSelectedIndex(g);
+						}
+					}
+					
 
 					anzeigenTable.setWidget(3, 0, haarfarbeLabel);
 					anzeigenTable.setWidget(3, 1, haarfarbeListBox);
+					for (int g = 0; g < 5;g++) {
+						if(haarfarbeListBox.getValue(g) == result.getHaarfarbe()){
+							haarfarbeListBox.setSelectedIndex(g);
+						}
+					}
 					
-					//String minKoerperString = String.valueOf(result.elementAt(i).getMinGroesse());
-					//String maxKoerperString = String.valueOf(result.elementAt(i).getMaxGroesse());
-					anzeigenTable.setWidget(4, 0, koerpergLabel);
+					anzeigenTable.setWidget(4, 0, religionLabel);
+					anzeigenTable.setWidget(4, 1, religionListBox);
+					for (int g = 0; g < 6;g++) {
+						if(religionListBox.getValue(g) == result.getReligion()){
+							religionListBox.setSelectedIndex(g);
+						}
+					}
+					
+					
+					anzeigenTable.setWidget(5, 0, koerpergLabel);
 					groessenAnzeigenPanel.add(new Label("von "));
-					groessenAnzeigenPanel.add(minGroesseTextBox);
+					groessenAnzeigenPanel.add(minGroesseAnzeigenTextBox);
 					groessenAnzeigenPanel.add(new Label(" bis "));
-					groessenAnzeigenPanel.add(maxGroesseTextBox);
-					anzeigenTable.setWidget(4, 1, groessenAnzeigenPanel);
+					groessenAnzeigenPanel.add(maxGroesseAnzeigenTextBox);
+					anzeigenTable.setWidget(5, 1, groessenAnzeigenPanel);
+					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinAlter()));
+					maxGroesseAnzeigenTextBox.setText(Integer.toString(result.getMaxAlter()));
 
-					anzeigenTable.setWidget(5, 0, religionLabel);
-					anzeigenTable.setWidget(5, 1, religionListBox);
 					
-					//String minAlterString = String.valueOf(result.elementAt(i).getMinAlter());
-					//String maxAlterString = String.valueOf(result.elementAt(i).getMaxAlter());
 					anzeigenTable.setWidget(6, 0, alterLabel);
 					alterAnzeigenPanel.add(new Label("von "));
-					alterAnzeigenPanel.add(minAlterTextBox);
+					alterAnzeigenPanel.add(minAlterAnzeigenTextBox);
 					alterAnzeigenPanel.add(new Label(" bis "));
-					alterAnzeigenPanel.add(maxAlterTextBox);
+					alterAnzeigenPanel.add(maxAlterAnzeigenTextBox);
 					anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
+					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
+					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
 				
 				suchprofilPanel.add(anzeigenTable);
 				
