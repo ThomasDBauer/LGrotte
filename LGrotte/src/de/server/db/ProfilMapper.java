@@ -33,10 +33,12 @@ public class ProfilMapper {
 		while(rs.next()){
 			p.setFname(rs.getString("fname"));
 			p.setLname(rs.getString("lname"));
+			p.setKoerpergroesse(rs.getInt("koerpergroesse"));
 			p.setGeschlecht(rs.getString("geschlecht"));
 			p.setHaarfarbe(rs.getString("haarfarbe"));
 			p.setReligion(rs.getString("religion"));
 			p.setRaucher(rs.getString("raucher"));
+			p.setGeburtsdatum(rs.getDate("geburtsdatum"));
 			p.setEmail(email);	
 		}
 		return p;

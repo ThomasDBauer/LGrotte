@@ -176,7 +176,7 @@ public class MeinProfilEditor extends VerticalPanel {
 				try {
 					ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), 
 					lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
-					getGeschlecht(), getHaarfarbe(), getReligion(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
+					getGeschlecht(), getReligion(), getHaarfarbe(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -214,17 +214,30 @@ public class MeinProfilEditor extends VerticalPanel {
 		public void onSuccess(Profil result) {
 			fNameTextBox.setText(result.getFname());
 			lNameTextBox.setText(result.getLname());
-			final String koerperString = Integer.toString(result.getKoerpergroesse());
-			koerpergroesseTextBox.setText(koerperString);
-			geschlechtListBox.setTitle(result.getGeschlecht());
-			religionListBox.setTitle(result.getReligion());
-			Date sqlDate = result.getGeburtsdatum();
+			for (int g = 0; g < 3; g++) {
+				if (geschlechtListBox.getValue(g) == result.getGeschlecht()) {
+					geschlechtListBox.setSelectedIndex(g);
+				}
+			}
+			for (int hf = 0; hf < 5; hf++) {
+				if (haarfarbeListBox.getValue(hf) == result.getHaarfarbe()) {
+					haarfarbeListBox.setSelectedIndex(hf);
+				}
+			}
+			koerpergroesseTextBox.setText(Integer.toString(result.getKoerpergroesse()));
+			for (int re = 0; re < 5; re++) {
+				if (religionListBox.getValue(re) == result.getReligion()) {
+					religionListBox.setSelectedIndex(re);
+				}
+			}
+			for (int ra = 0; ra < 3; ra++) {
+				if (raucherListBox.getValue(ra) == result.getRaucher()) {
+					raucherListBox.setSelectedIndex(ra);
+				}
+			}
+			Date sqlDate = new java.sql.Date(result.getGeburtsdatum().getTime());
 			String datumString = DateTimeFormat.getFormat("yyyy-MM-dd").format(sqlDate);
 			datumsinhalt.setText(datumString);
-			panel.add(datumsinhalt);
-			
-		
-
 		}
 		
 	}
