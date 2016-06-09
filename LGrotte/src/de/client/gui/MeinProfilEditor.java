@@ -109,7 +109,7 @@ public class MeinProfilEditor extends VerticalPanel {
 		
 		datumsBox.setValue(new Date());
 		
-		geschlechtListBox.setVisibleItemCount(3);
+		
 		geschlechtListBox.addItem("männlich");
 		geschlechtListBox.addItem("weiblich");
 		geschlechtListBox.addItem("Andere");
