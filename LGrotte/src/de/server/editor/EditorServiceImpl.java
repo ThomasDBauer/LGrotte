@@ -210,7 +210,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}		
 	
 	// Suchprofil anzeigen by name
-		public Vector<Suchprofil> getSuchprofileByName(String suchprofilname) throws Exception{
+		public Suchprofil getSuchprofileByName(String suchprofilname) throws Exception{
 			return SuchprofilMapper.suchprofilMapper().getSuchprofiByName(suchprofilname);
 		}
 

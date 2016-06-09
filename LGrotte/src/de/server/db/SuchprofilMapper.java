@@ -83,15 +83,14 @@ public class SuchprofilMapper {
 	}
 	
 	// Komplettes Suchprofil anzeigen
-		public Vector<Suchprofil> getSuchprofiByName(String suchprofilname) throws Exception{
+		public Suchprofil getSuchprofiByName(String suchprofilname) throws Exception{
 			Connection con = (Connection) DBConnection.connection();
 			PreparedStatement select = (PreparedStatement) con.prepareStatement(
 					"SELECT * FROM suchprofil WHERE suchprofilname = '"+suchprofilname+"'");
 			ResultSet result = select.executeQuery();
 			
-			Vector<Suchprofil> suchprofil = new Vector<Suchprofil>();
+			Suchprofil suchprofil = new Suchprofil();
 			
-			while(result.next()){
 				Suchprofil sp = new Suchprofil();
 				sp.setGeschlecht(result.getString("geschlecht"));
 				sp.setHaarfarbe(result.getString("haarfarbe"));
@@ -102,8 +101,7 @@ public class SuchprofilMapper {
 				sp.setRaucher(result.getString("raucher"));
 				sp.setReligion(result.getString("religion"));
 				sp.setSuchprofilname(result.getString("suchprofilname"));
-				suchprofil.add(sp);
-			}
+			
 			return suchprofil;
 		}
 	

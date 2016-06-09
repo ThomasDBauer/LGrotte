@@ -49,7 +49,7 @@ public interface EditorServiceAsync {
 	
 	void insertKontaktsperren(Vector<String>emails, AsyncCallback callback) throws Exception;
 	
-	void getSuchprofileByName(String suchprofilname, AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
+	void getSuchprofileByName(String suchprofilname, AsyncCallback<Suchprofil> callback) throws Exception;
 	
 	void insertProfilInfo(ProfilInfo pi, AsyncCallback callback) throws Exception;
 }

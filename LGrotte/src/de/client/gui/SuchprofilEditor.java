@@ -319,13 +319,13 @@ public class SuchprofilEditor extends VerticalPanel {
 	}
 	
 	// Callback zum Anzeigen des kompletten Suchprofils
-	private class GetSuchprofileKomplettCallback implements AsyncCallback<Vector<Suchprofil>> {
+	private class GetSuchprofileKomplettCallback implements AsyncCallback<Suchprofil> {
 		public void onFailure(Throwable caught) {
 			RootPanel.get().add(new Label(caught.toString()));
 		}
 
-		public void onSuccess(Vector<Suchprofil> result) {
-			for (int i = 0; i < result.size(); i++) {
+		public void onSuccess(Suchprofil result) {
+			
 				anlegenTable.clear();
 				alterPanel.clear();
 				groessenPanel.clear();
@@ -333,14 +333,14 @@ public class SuchprofilEditor extends VerticalPanel {
 				groessenAnzeigenPanel.clear();
 				
 				
-				Label spNameUpdate = new Label(result.elementAt(i).getSuchprofilname());
+				Label spNameUpdate = new Label(result.getSuchprofilname());
 				anzeigenTable.setWidget(0, 0, suchprofilNameLabel);
 				anzeigenTable.setWidget(0, 1, spNameUpdate);
 
 				anzeigenTable.setWidget(1, 0, geschlechtLabel);
 				anzeigenTable.setWidget(1, 1, spGeschlechtUpdateListBox);
 				for (int g = 0; g < 2;g++) {
-					if(geschlechtListBox.getValue(g) == result.elementAt(i).getGeschlecht()){
+					if(geschlechtListBox.getValue(g) == result.getGeschlecht()){
 						spGeschlechtUpdateListBox.setSelectedIndex(g);
 					}
 				}
@@ -371,7 +371,6 @@ public class SuchprofilEditor extends VerticalPanel {
 				alterAnzeigenPanel.add(new Label(" bis "));
 				alterAnzeigenPanel.add(spMaxAlterUpdateTextBox);
 				anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
-			}
 			// Anhängen der Items zur Auswahl
 			spGeschlechtUpdateListBox.addItem("männlich");
 			spGeschlechtUpdateListBox.addItem("weiblich");
@@ -397,8 +396,9 @@ public class SuchprofilEditor extends VerticalPanel {
 			spRaucherUpdateListBox.addItem("egal");
 			
 			suchprofilPanel.add(anzeigenTable);
-			
 		}
+			
+		
 		
 	}
 	
