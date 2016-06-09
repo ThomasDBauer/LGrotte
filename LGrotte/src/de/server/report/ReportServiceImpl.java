@@ -37,7 +37,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	public void init() throws IllegalArgumentException {
-		this.profilMapper = ProfilMapper.profilMapper();
+		this.profilMapper = ProfilMapper.profilMapper();	
 		this.eigenschaftMapper = EigenschaftMapper.eigenschaftMapper();
 	}
 
