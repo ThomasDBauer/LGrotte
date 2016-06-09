@@ -30,14 +30,14 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public void setUser(Profil p) {
 		user = p;
 	}
-	
-	public Vector<ProfilInformation> getProfilInfos() throws Exception{
-		
+
+	public Vector<ProfilInformation> getProfilInfos() throws Exception {
+
 		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(user.getEmail());
 	}
 
 	public void init() throws IllegalArgumentException {
-		this.profilMapper = ProfilMapper.profilMapper();
+		this.profilMapper = ProfilMapper.profilMapper();	
 		this.eigenschaftMapper = EigenschaftMapper.eigenschaftMapper();
 	}
 
@@ -45,36 +45,76 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return "Hallo, ich bin der ReportService";
 	}
 
-	public ProfilReport getProfilReport(String email) throws Exception{
+	public ProfilReport getProfilReport(String email) throws Exception {
 
 		Profil p = ProfilMapper.profilMapper().getProfilByEmail(user.getEmail());
-		
+
 		ProfilReport report = new ProfilReport();
-		
-		report.setHeader(p.getFname()+ " " + p.getLname());
-		
+
+		report.setHeader(p.getFname() + " " + p.getLname());
+
 		ProfilAttribut geschlecht = new ProfilAttribut();
 		geschlecht.setName("Geschlecht");
 		geschlecht.setWert(p.getGeschlecht());
-		
+
 		ProfilAttribut haarFarbe = new ProfilAttribut();
 		haarFarbe.setName("Haarfarbe");
 		haarFarbe.setWert(p.getHaarfarbe());
-		
+
 		ProfilAttribut religion = new ProfilAttribut();
 		religion.setName("Religion");
 		religion.setWert(p.getReligion());
+
+		ProfilAttribut raucher = new ProfilAttribut();
+		raucher.setName("Raucher");
+		raucher.setWert(p.getRaucher());
+
+		// ProfilAttribut koerpergroesse = new ProfilAttribut();
+		// koerpergroesse.setName("Körpergröße");
+		// koerpergroesse.setWert(p.getKoerpergroesse());
+
+		// ProfilAttribut geburtsdatum = new ProfilAttribut();
+		// geburtsdatum.setName("Geburtsdatum");
+		// geburtsdatum.setWert(p.getGeburtsdatum().toString());
+
+		/*
+		 * Hinzufügen von ProfilEigenschaften
+		 */
 		
+		
+//		ProfilEigenschaft lieblingssport = new ProfilEigenschaft();
+//		lieblingssport.setName("Lieblingssport");
+//		lieblingssport.setWert(p.);
+//
+//		ProfilEigenschaft lieblingsfilm = new ProfilEigenschaft();
+//		lieblingsfilm.setName("Lieblingsfilm");
+//
+//		ProfilEigenschaft lieblingsmusik = new ProfilEigenschaft();
+//		lieblingsmusik.setName("Lieblingsmusik");
+
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
 		report.addAttribut(religion);
+		report.addAttribut(raucher);
 		
 		
-		ProfilEigenschaft pe = new ProfilEigenschaft();
-		pe.setName("");
-		pe.getWert();
+		Vector<ProfilInformation> profilinfos = getProfilInfos();
+		
+		for(int i = 0; i < profilinfos.size(); i++){
+			ProfilEigenschaft pe = new ProfilEigenschaft();
+			pe.setName(profilinfos.elementAt(i).getName());
+			pe.setWert(profilinfos.elementAt(i).getWert());
+			report.addEigenschaft(pe);
+		}
 	
 		
+		
+		// report.addAttribut(koerpergroesse);
+		// report.addAttribut(geburtsdatum);
+//		report.addEigenschaft(lieblingssport);
+//		report.addEigenschaft(lieblingsfilm);
+//		report.addEigenschaft(lieblingsmusik);
+
 		return report;
 
 	}

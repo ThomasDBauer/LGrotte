@@ -47,7 +47,10 @@ public class HTMLWriter {
 
 		for (int i = 0; i < report.getAttribute().size(); i++) {
 			sb.append(report.getAttribute().elementAt(i).getName() + ": " +
-					report.getAttribute().elementAt(i).getWert() + "<br>");
+					report.getAttribute().elementAt(i).getWert() + "<br>");  
+					sb.append(report.getEigenschaften().elementAt(i).getName() + ": " + 
+					report.getEigenschaften().elementAt(i).getWert() + "<br>");
+			
 		}
 
 		sb.append("</div>");
