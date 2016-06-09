@@ -66,7 +66,6 @@ public class LGrotte implements EntryPoint {
 
 					public void onSuccess(Profil result) {
 						editorService.setUser(result, new SetUserCallback());
-						testService.setUser(result, new SetUserCallback());
 						if (result.isLoggedIn()) {
 							RootPanel.get("Inhalt_oben").add(
 									new Label("Willkommen in der Grotte, "
@@ -122,24 +121,24 @@ public class LGrotte implements EntryPoint {
 		 * 		TEST START
 		 * **************************************************************************/
 		 
-		try {
-			testService.getProfilInfos(new AsyncCallback<Vector<ProfilInformation>>() {
-				public void onFailure(Throwable caught) {
-					
-				}
-				public void onSuccess(Vector<ProfilInformation> result) {
-					FlexTable table = new FlexTable();
-					for(int i = 0; i < result.size(); i++){
-						table.setWidget(i, 0, new Label(result.elementAt(i).getName()));
-						table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
-					}
-					RootPanel.get().add(table);
-				}
-			});
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			testService.getProfilInfos(new AsyncCallback<Vector<ProfilInformation>>() {
+//				public void onFailure(Throwable caught) {
+//					
+//				}
+//				public void onSuccess(Vector<ProfilInformation> result) {
+//					FlexTable table = new FlexTable();
+//					for(int i = 0; i < result.size(); i++){
+//						table.setWidget(i, 0, new Label(result.elementAt(i).getName()));
+//						table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
+//					}
+//					RootPanel.get().add(table);
+//				}
+//			});
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		/*****************************************************************************
 		 * 		TEST ENDE
