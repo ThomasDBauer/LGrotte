@@ -33,6 +33,16 @@
     <url-pattern>/lgrotte/editor</url-pattern>
   </servlet-mapping>  
   
+ <!--   <servlet-mapping>
+    <servlet-name>editorServlet</servlet-name>
+    <url-pattern>/reportgenerator/report</url-pattern>
+  </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>editorServlet</servlet-name> 
+    <url-pattern>/lgrotte/login</url-pattern>    
+  </servlet-mapping>   -->
+  
   <!-- Seed Ende -->
   
   <!-- Report Start -->
@@ -46,6 +56,15 @@
     <servlet-name>reportServlet</servlet-name>
     <url-pattern>/reportgenerator/report</url-pattern>
   </servlet-mapping>
+  
+ <!--     <servlet-mapping>
+    <servlet-name>reportServlet</servlet-name>
+    <url-pattern>/reportgenerator/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>reportServlet</servlet-name>
+    <url-pattern>/lgrotte/editor</url-pattern>
+  </servlet-mapping>    -->  
   
   <!-- Report Ende -->
   
@@ -61,6 +80,17 @@
     <servlet-name>loginServlet</servlet-name>
     <url-pattern>/lgrotte/login</url-pattern>
   </servlet-mapping>
+  
+<servlet-mapping>
+    <servlet-name>loginServlet</servlet-name>
+    <url-pattern>/reportgenerator/login</url-pattern>
+  </servlet-mapping>
+
+<!--     
+  <servlet-mapping>
+    <servlet-name>loginServlet</servlet-name>
+    <url-pattern>/lgrotte/editor</url-pattern>
+  </servlet-mapping>    -->  
   
   <!-- LOGIN Ende -->
   

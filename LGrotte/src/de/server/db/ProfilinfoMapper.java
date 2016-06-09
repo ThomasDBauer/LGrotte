@@ -36,8 +36,8 @@ public class ProfilinfoMapper {
 	public void insertProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
-				"INSERT INTO profil_info (profil, info_id) VALUES ('" 
-						+ pi.getProfilEmail() + "'" + ", " + pi.getInfoID() + ")");
+				"INSERT INTO profil_info (profil, info_id) VALUES "
+				+ "('" + pi.getProfilEmail() + "'," + pi.getInfoID() + ")");
 		stmt.execute();
 	}
 

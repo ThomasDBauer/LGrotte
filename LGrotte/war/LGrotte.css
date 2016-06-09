@@ -72,6 +72,47 @@ li a:hover {
 	padding-bottom: 0 auto;
 }
 
+.findLove-Table{
+
+}
+
+.findLove-Table td{
+	width: auto;
+	height: auto;
+}
+
+.findLove-Labelmid{
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	padding: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.findLove-Label{
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.findLove-Panel{
+	border-top: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+	min-width: 500px;
+	width: auto;
+	padding-left: 12px;
+}
+
+.findLove-HPaneltop{
+	margin-bottom: 4px;
+	padding-top: 3px;
+/* 	border-top: 1px solid #c0c0c0;*/
+}
+
+.findLove-HPanelbot{
+	padding-bottom: 3px;
+/*	border-bottom: 1px solid #c0c0c0;*/
+}
+
 .login-label{
 	text-algin: center;
 	font-size: 20px;

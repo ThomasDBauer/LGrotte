@@ -150,9 +150,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// Infos einfürgen
 	public void insertInfo(Info info) throws Exception {
+		
 		InfoMapper.infoMapper().insertInfo(info);
+		
+		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
+				info.getEigenschaft(), info.getValue());
+		
+		ProfilInfo pi = new ProfilInfo();
+		pi.setInfoID(infoID);
+		pi.setProfilEmail(user.getEmail());
+		insertProfilInfo(pi);		
 	}
-
+	
+	
+	
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
 		String email = user.getEmail();
 		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(email);
