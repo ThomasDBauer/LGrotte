@@ -68,6 +68,7 @@ public class FindLove extends VerticalPanel {
 				new GetProfileCallback());
 	}
 
+
 	// public void addProfilPanelToPanel(){
 	// this.
 	// }
