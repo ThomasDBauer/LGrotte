@@ -2,8 +2,6 @@ package de.client.gui;
 
 import java.util.Vector;
 
-import org.eclipse.jdt.core.dom.ThisExpression;
-
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
