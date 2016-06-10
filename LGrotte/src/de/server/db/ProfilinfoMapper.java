@@ -77,7 +77,7 @@ public class ProfilinfoMapper {
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
-				"DELETE FROM profil_info WHERE email = '" + pi.getProfilEmail() + "' AND info-id="
+				"DELETE FROM profil_info WHERE email = '" + pi.getProfilEmail() + "' AND info_id="
 							+ pi.getInfoID() + "");
 		stmt.execute();
 	}

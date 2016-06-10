@@ -70,7 +70,7 @@ public class InfoMapper {
 	public void deleteInfo (Info info) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteInfo =  (PreparedStatement) con.prepareStatement(
-				"DELETE FROM INFOS WHERE value='"+info.getId()+"'");
+				"DELETE FROM INFOS WHERE value='"+info.getValue() +"'");
 		deleteInfo.execute();
 	}
 	

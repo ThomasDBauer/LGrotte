@@ -22,18 +22,19 @@ import de.shared.BO.ProfilInfo;
 public class ProfilEigenschaftEditor extends VerticalPanel {
 
 	private VerticalPanel editPanel = new VerticalPanel();
+	private HorizontalPanel buttonPanel = new HorizontalPanel();
 	private Button addEigenschaftenButton = new Button("+", new AddEigenschaftenClickHandler());
 	private Button speicherButton = new Button("Speichern", new SpeicherClickHandler());
 	private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
 	private Vector<TextBox> eigenschaftenTextboxen = new Vector<TextBox>();
 	private Vector<Eigenschaft> eigenschaften;
-	private Vector<Info> infos;
  
 
 	public ProfilEigenschaftEditor() throws Exception {
-		this.add(addEigenschaftenButton);
+		buttonPanel.add(addEigenschaftenButton);
+		buttonPanel.add(speicherButton);
+		this.add(buttonPanel);
 		this.add(editPanel);
-		this.add(speicherButton);
 		ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
 
 	}
@@ -75,13 +76,6 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 	
-	private class GetInfosCallback implements AsyncCallback<Vector<Info>> {
-		public void onFailure(Throwable caught) {	
-		}
-		public void onSuccess(Vector<Info> result) {
-			infos = result;
-		}
-	}
 
 	private class SpeicherClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
@@ -101,35 +95,23 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-//				for (int pit = 0; pit < eigenschaftenTextboxen.size(); pit++) {
-//					// Schleife um zu erkennen um welche info es sich handelt
-//					TextBox tb = eigenschaftenTextboxen.elementAt(pit);
-//					int infoID = 0;
-//					for (int pi = 0; pi < infos.size(); pi++){
-//						if(tb.getText().equals(infos.elementAt(pi).getValue())){
-//							infoID = infos.elementAt(pi).getId();
-//						}
-//					}
-//					// Info Id in Tabelle "ProfilInfo" kicken
-//					ProfilInfo pi = new ProfilInfo();
-//					Profil profilEmail = new Profil();
-//					pi.setInfoID(infoID);
-//					pi.setProfilEmail(profilEmail.getEmail());
-//					try {
-//						ClientSideSettings.getEditorService().insertProfilInfo(pi, new InsertProfilInfoCallback());
-//					} catch (Exception e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//				}
 			}
 		}
 	}
-
+	
 	public class LoeschenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-		//Heir kommt die Deletedunktion die anhand der im TextFeld eingegebenen eigenschaft NICHT anhand der ID	
+			for (int i = 0; i < eigenschaftenTextboxen.size(); i++) {
+			Info info = new Info();
+			info.setValue(eigenschaftenTextboxen.elementAt(i).getText());
+			try {
+				ClientSideSettings.getEditorService().deleteInfo(info, new DeleteInfoCallback());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
+			}
 		}
 		
 	}
@@ -142,6 +124,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 		
 	}
+	
 	
 	private class InsertProfilInfoCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {	
