@@ -28,9 +28,9 @@ public class SuchprofilMapper {
 		PreparedStatement createSuchprofil = (PreparedStatement) con.prepareStatement(
 				"CREATE TABLE IF NOT EXISTS suchprofil(suchprofilname varchar(30), "
 				+ "geschlecht varchar(30), minAlter int(3), maxAlter int(3), "
-				+ "religion varchar(30), haarfarbe varchar(15), profil varchar(35),"
+				+ "religion varchar(30), haarfarbe varchar(15), email varchar(35),"
 				+ "raucher varchar(30), minGroesse int(3), maxGroesse int(3),"
-				+ "PRIMARY KEY(suchprofilname, profil), FOREIGN KEY (profil)"
+				+ "PRIMARY KEY(suchprofilname, email), FOREIGN KEY (email)"
 				+ "REFERENCES profil(email) ON UPDATE CASCADE ON DELETE RESTRICT)");
 		createSuchprofil.execute();
 	}
@@ -39,7 +39,7 @@ public class SuchprofilMapper {
 	public Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) con.prepareStatement(
-				"SELECT * FROM suchprofil WHERE profil = '"+email+"'");
+				"SELECT * FROM suchprofil WHERE email = '"+email+"'");
 		ResultSet result = select.executeQuery();
 		
 		Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
@@ -66,7 +66,7 @@ public class SuchprofilMapper {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertSuchprofil = (PreparedStatement)con.prepareStatement(
 				"INSERT INTO suchprofil(suchprofilname, geschlecht, raucher, religion, "
-				+ "minAlter, maxAlter, maxGroesse, minGroesse, haarfarbe, profil) VALUES ('"+ 
+				+ "minAlter, maxAlter, maxGroesse, minGroesse, haarfarbe, email) VALUES ('"+ 
 				sp.getSuchprofilname() +"','" + sp.getGeschlecht() +"', '"+ 
 				sp.getRaucher() + "', '" + sp.getReligion() + "', '" + sp.getMinAlter() + 
 				"', '" +sp.getMaxAlter()+"','"+ sp.getMinGroesse() + "','"+ sp.getMaxGroesse() + "', '" 
@@ -83,16 +83,13 @@ public class SuchprofilMapper {
 	}
 	
 	// Komplettes Suchprofil anzeigen
-		public Vector<Suchprofil> getSuchprofiByName(String suchprofilname) throws Exception{
+		public Suchprofil getSuchprofiByName(String suchprofilname) throws Exception{
 			Connection con = (Connection) DBConnection.connection();
 			PreparedStatement select = (PreparedStatement) con.prepareStatement(
 					"SELECT * FROM suchprofil WHERE suchprofilname = '"+suchprofilname+"'");
 			ResultSet result = select.executeQuery();
-			
-			Vector<Suchprofil> suchprofil = new Vector<Suchprofil>();
-			
+			Suchprofil sp = new Suchprofil();
 			while(result.next()){
-				Suchprofil sp = new Suchprofil();
 				sp.setGeschlecht(result.getString("geschlecht"));
 				sp.setHaarfarbe(result.getString("haarfarbe"));
 				sp.setMaxGroesse(result.getInt("maxGroesse"));
@@ -102,9 +99,8 @@ public class SuchprofilMapper {
 				sp.setRaucher(result.getString("raucher"));
 				sp.setReligion(result.getString("religion"));
 				sp.setSuchprofilname(result.getString("suchprofilname"));
-				suchprofil.add(sp);
 			}
-			return suchprofil;
+			return sp;
 		}
 	
 		//Suchprofil bearbeiten
@@ -116,7 +112,7 @@ public class SuchprofilMapper {
 					+ "religion='" + sp.getReligion() + "', haarfarbe='" + sp.getHaarfarbe() + "', "
 					+ "raucher='" + sp.getRaucher() + "', minGroesse=" + sp.getMinGroesse() + ", "
 					+ "maxGroesse=" + sp.getMaxGroesse() + " WHERE "
-					+ "suchprofilname='" + sp.getSuchprofilname() + "'");								
+					+ "suchprofilname='" + sp.getSuchprofilname() + "' AND email='" + sp.getProfil() + "'");								
 			update.execute();
 		}
 }

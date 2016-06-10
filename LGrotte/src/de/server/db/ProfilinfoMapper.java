@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import de.server.db.DBConnection;
 import de.shared.BO.ProfilInfo;
+import de.shared.RO.ProfilInformation;
 
 public class ProfilinfoMapper {
 
@@ -27,16 +28,16 @@ public class ProfilinfoMapper {
 	public void createProfilInfo() throws Exception {
 		Connection conn = DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement("CREATE TABLE IF NOT EXISTS profil_info "
-				+ "(profil varchar(35) NOT NULL, info_id INT NOT NULL, " + "PRIMARY KEY (profil, info_id), "
-				+ "FOREIGN KEY(profil) REFERENCES profil(email) " + "ON UPDATE CASCADE ON DELETE RESTRICT, "
-				+ "FOREIGN KEY(info_id) REFERENCES infos(id) " + "ON UPDATE CASCADE ON DELETE RESTRICT)");
+				+ "(email varchar(35) NOT NULL, info_id INT NOT NULL, " + "PRIMARY KEY (email, info_id), "
+				+ "FOREIGN KEY(email) REFERENCES profil(email) " + "ON UPDATE CASCADE ON DELETE RESTRICT, "
+				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) " + "ON UPDATE CASCADE ON DELETE RESTRICT)");
 		create.execute();
 	}
 
 	public void insertProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
-				"INSERT INTO profil_info (profil, info_id) VALUES "
+				"INSERT INTO profil_info (email, info_id) VALUES "
 				+ "('" + pi.getProfilEmail() + "'," + pi.getInfoID() + ")");
 		stmt.execute();
 	}
@@ -58,8 +59,8 @@ public class ProfilinfoMapper {
 		try {
 			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
 
-			stmt.executeUpdate("UPDATE profil_infos SET profil= '" + pi.getProfilEmail() + "'," + "info_id = "
-					+ pi.getInfoID() + "WHERE profil = " + pi.getProfilEmail());
+			stmt.executeUpdate("UPDATE profil_infos SET email= '" + pi.getProfilEmail() + "'," + "info_id = "
+					+ pi.getInfoID() + "WHERE email = " + pi.getProfilEmail());
 
 			/*
 			 * Wenn wir das ERM so lassen, muss man �ber das SQL-Statement
@@ -78,7 +79,7 @@ public class ProfilinfoMapper {
 
 		try {
 			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
-			stmt.executeUpdate("DELETE FROM profil_info WHERE profil = '" + pi.getProfilEmail() + "' AND info-id="
+			stmt.executeUpdate("DELETE FROM profil_info WHERE email = '" + pi.getProfilEmail() + "' AND info-id="
 					+ pi.getInfoID());
 		} catch (SQLException e2) {
 			e2.printStackTrace();
@@ -122,13 +123,13 @@ public class ProfilinfoMapper {
 
 		try {
 			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT profil, info_id FROM profil_info"
+			ResultSet rs = stmt.executeQuery("SELECT email, info_id FROM profil_info"
 					+ "Order BY id");
 
 			while (rs.next()) {
 				ProfilInfo pi = new ProfilInfo();
 				pi.setInfoID(Integer.parseInt(rs.getString("info_id")));
-				pi.setProfilEmail(rs.getString("profil"));
+				pi.setProfilEmail(rs.getString("email"));
 				profilInfos.addElement(pi);
 			}
 		} catch (Exception e2) {
@@ -137,4 +138,47 @@ public class ProfilinfoMapper {
 
 		return profilInfos;
 	}
+	
+	public Vector <ProfilInformation> getProfilInfosByEmail(String email) throws Exception{
+		
+		Connection conn = DBConnection.connection();
+		
+		PreparedStatement select = conn.prepareStatement("SELECT info_id FROM "
+				+ "profil_info WHERE email = '" + email + "'");
+		
+		Vector<ProfilInformation>profilinfos = new Vector<ProfilInformation>();
+		
+		ResultSet result = select.executeQuery();
+		
+		while(result.next()){
+			ProfilInformation pi = getInfosForProfil(result.getInt("info_id"));
+			profilinfos.add(pi);
+		}
+		
+		return profilinfos;
+		
+	}
+	
+	
+	public ProfilInformation getInfosForProfil(int infoID) throws Exception{
+		
+		Connection conn = DBConnection.connection();
+		
+		PreparedStatement select = conn.prepareStatement("SELECT infos.value, "
+				+ "eigenschaft.erlauterung FROM infos JOIN eigenschaft ON "
+				+ "infos.eigenschaft_id = eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
+		
+		ResultSet result = select.executeQuery();
+		
+		ProfilInformation pi = new ProfilInformation();
+
+		while(result.next()){
+			pi.setName(result.getString("erlauterung"));
+			pi.setWert(result.getString("value"));
+		}
+		
+		return pi;
+		
+	}
+	
 }

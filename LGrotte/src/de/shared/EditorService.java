@@ -51,7 +51,7 @@ public interface EditorService extends RemoteService {
 	
 	void insertKontaktsperren(Vector<String>emails) throws Exception;
 	
-	Vector<Suchprofil> getSuchprofileByName(String suchprofilname) throws Exception;
+	Suchprofil getSuchprofileByName(String suchprofilname) throws Exception;
 	
 	void insertProfilInfo(ProfilInfo pi) throws Exception;
 }

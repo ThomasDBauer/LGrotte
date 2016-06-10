@@ -35,9 +35,9 @@ public class InfoMapper {
 	public void createInfoTable() throws Exception{
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement createInfo = (PreparedStatement) conn.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS INFOS (id int NOT NULL AUTO_INCREMENT, "
-				+ "value varchar(50), eigenschaft_id int, PRIMARY KEY(id), "
-				+ "FOREIGN KEY(eigenschaft_id) REFERENCES eigenschaft(id) "
+				"CREATE TABLE IF NOT EXISTS INFOS (info_id int NOT NULL AUTO_INCREMENT, "
+				+ "value varchar(50), eigenschaft_id int, PRIMARY KEY(info_id), "
+				+ "FOREIGN KEY(eigenschaft_id) REFERENCES eigenschaft(eigenschaft_id) "
 				+ "ON UPDATE CASCADE ON DELETE RESTRICT, UNIQUE(eigenschaft_id, value))"); // 
 		createInfo.execute();
 	}
@@ -57,11 +57,11 @@ public class InfoMapper {
 	public int getInfoIDByEigenschaftsIDAndValue(int eID, String value) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) con.prepareStatement(
-				"SELECT id FROM INFOS WHERE value= '" + value + "' AND eigenschaft_id =" + eID);
+				"SELECT info_id FROM INFOS WHERE value= '" + value + "' AND eigenschaft_id =" + eID);
 		ResultSet result = select.executeQuery();
 		int id = 0;
 		while(result.next()){
-			id = result.getInt("id");
+			id = result.getInt("info_id");
 		}
 		return id;
 	}
@@ -71,7 +71,7 @@ public class InfoMapper {
 		
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteInfo =  (PreparedStatement) con.prepareStatement(
-				"DELETE FROM INFOS WHERE id='"+info.getId()+"'");
+				"DELETE FROM INFOS WHERE info_id='"+info.getId()+"'");
 		deleteInfo.execute();
 	}
 	
@@ -79,7 +79,7 @@ public class InfoMapper {
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement updateInfo = (PreparedStatement) con.prepareStatement(
-				"UPDATE INFOS (value) WHERE id='"+info.getId()+"' VALUES('"+info.getValue()+"')");
+				"UPDATE INFOS (value) WHERE info_id='"+info.getId()+"' VALUES('"+info.getValue()+"')");
 		updateInfo.execute();
 	}
 

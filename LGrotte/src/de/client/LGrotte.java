@@ -1,5 +1,7 @@
 package de.client;
 
+import java.util.Vector;
+
 import org.apache.bcel.generic.GOTO;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -10,6 +12,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.InsertPanel.ForIsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -29,6 +32,7 @@ import de.shared.LoginServiceAsync;
 import de.shared.ReportService;
 import de.shared.ReportServiceAsync;
 import de.shared.BO.Profil;
+import de.shared.RO.ProfilInformation;
 
 public class LGrotte implements EntryPoint {
 
@@ -40,6 +44,7 @@ public class LGrotte implements EntryPoint {
 	private final Anchor logOutLink = new Anchor("Abmelden");
 	private EditorServiceAsync editorService;
 	private ReportServiceAsync reportService;
+	private TestServiceAsync testService = GWT.create(TestService.class);
 	private LoginServiceAsync loginService;
 	private Button logOutButton = new Button("Abmelden");
 	public LogOutPopUp logOutPop = new LogOutPopUp();
@@ -47,7 +52,7 @@ public class LGrotte implements EntryPoint {
 	private HorizontalPanel naviPanel = new HorizontalPanel();
 
 	public void onModuleLoad() {
-
+		
 		editorService = ClientSideSettings.getEditorService();
 		loginService = ClientSideSettings.getLoginService();
 		
@@ -112,6 +117,32 @@ public class LGrotte implements EntryPoint {
 					}
 
 				});
+		/*****************************************************************************
+		 * 		TEST START
+		 * **************************************************************************/
+		 
+//		try {
+//			testService.getProfilInfos(new AsyncCallback<Vector<ProfilInformation>>() {
+//				public void onFailure(Throwable caught) {
+//					
+//				}
+//				public void onSuccess(Vector<ProfilInformation> result) {
+//					FlexTable table = new FlexTable();
+//					for(int i = 0; i < result.size(); i++){
+//						table.setWidget(i, 0, new Label(result.elementAt(i).getName()));
+//						table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
+//					}
+//					RootPanel.get().add(table);
+//				}
+//			});
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		/*****************************************************************************
+		 * 		TEST ENDE
+		 * **************************************************************************/
 	}
 
 	public LogOutPopUp getLogOutPop() {
