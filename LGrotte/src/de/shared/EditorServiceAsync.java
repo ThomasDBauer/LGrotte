@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
+import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
@@ -46,6 +47,8 @@ public interface EditorServiceAsync {
 	void getProfilesForEditor(AsyncCallback<Vector<Profil>>callback) throws Exception;
 	
 	void insertMerkzettel(Vector<String> emails, AsyncCallback callback) throws Exception;
+	
+	void getMerkzettelByOwner(AsyncCallback<Vector<Merkzettel>> callback) throws Exception;
 	
 	void insertKontaktsperren(Vector<String>emails, AsyncCallback callback) throws Exception;
 	
