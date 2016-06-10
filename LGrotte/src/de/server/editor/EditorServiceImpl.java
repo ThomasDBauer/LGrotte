@@ -223,6 +223,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 	}
 	
+	
 	public void insertKontaktsperren(Vector<String>emails) throws Exception {
 		for(int i = 0; i < emails.size(); i++){
 			Kontaktsperre k = new Kontaktsperre();

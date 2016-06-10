@@ -8,6 +8,8 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.client.ClientSideSettings;
+
 public class MerkzettelEditor extends VerticalPanel{
 	
 	private VerticalPanel vpanel = this; 
@@ -18,6 +20,10 @@ public class MerkzettelEditor extends VerticalPanel{
 	
 	private Label profilLabel = new Label("ProfilName    ");
 	private Label ueWertLabel = new Label("in %   ");
+	
+//	ClientSideSettings.getEditorService().getMerkzettelByOwner(
+//			new GetMerkzettelCallback());
+	
 	
 	
 	
