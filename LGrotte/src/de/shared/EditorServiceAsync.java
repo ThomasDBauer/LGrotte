@@ -52,4 +52,8 @@ public interface EditorServiceAsync {
 	void getSuchprofileByName(String suchprofilname, AsyncCallback<Suchprofil> callback) throws Exception;
 	
 	void insertProfilInfo(ProfilInfo pi, AsyncCallback callback) throws Exception;
+	
+	void deleteInfo(Info info, AsyncCallback callback) throws Exception;
+	
+	void deleteProfilInfo(ProfilInfo pi, AsyncCallback callback) throws Exception;
 }

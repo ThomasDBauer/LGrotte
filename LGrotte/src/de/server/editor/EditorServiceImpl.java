@@ -240,6 +240,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		ProfilinfoMapper.profilinfoMapper().insertProfilInfo(pi);
 	}
 	
+	public void deleteInfo(Info info) throws Exception {
+		InfoMapper.infoMapper().deleteInfo(info);
+	}
+	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
+		ProfilinfoMapper.profilinfoMapper().deleteProfilInfo(pi);
+	}
+	
 
 }
 

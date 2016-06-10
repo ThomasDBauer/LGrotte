@@ -76,14 +76,10 @@ public class ProfilinfoMapper {
 
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = DBConnection.connection();
-
-		try {
-			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
-			stmt.executeUpdate("DELETE FROM profil_info WHERE email = '" + pi.getProfilEmail() + "' AND info-id="
-					+ pi.getInfoID());
-		} catch (SQLException e2) {
-			e2.printStackTrace();
-		}
+		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
+				"DELETE FROM profil_info WHERE email = '" + pi.getProfilEmail() + "' AND info-id="
+							+ pi.getInfoID() + "");
+		stmt.execute();
 	}
 	
 //	public ProfilInfo getInfobyEmail() throws Exception{

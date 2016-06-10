@@ -54,4 +54,8 @@ public interface EditorService extends RemoteService {
 	Suchprofil getSuchprofileByName(String suchprofilname) throws Exception;
 	
 	void insertProfilInfo(ProfilInfo pi) throws Exception;
+	
+	void deleteInfo(Info info) throws Exception;
+	
+	void deleteProfilInfo(ProfilInfo pi) throws Exception;
 }
