@@ -57,7 +57,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 	
 	private Button profilLoeschenButton = new Button("Loeschen");
-	private Button profilUpdateButton = new Button("Profil bearbeiten");
+	private Button profilUpdateButton = new Button("Update");
 	
 	
 	public MeinProfilEditor(){
@@ -132,10 +132,10 @@ public class MeinProfilEditor extends VerticalPanel {
 		raucherListBox.addItem("ab und an");
 		
 	
-		this.add(flexTable);
 		
 		this.add(profilUpdateButton);
 		this.add(profilLoeschenButton);
+		this.add(flexTable);
 		profilUpdateButton.addClickHandler(new ProfilUpdateClickHandler());
 		profilLoeschenButton.addClickHandler(new ProfilLoeschenClickHandler());
 	}
@@ -235,9 +235,7 @@ public class MeinProfilEditor extends VerticalPanel {
 					raucherListBox.setSelectedIndex(ra);
 				}
 			}
-			Date sqlDate = new java.sql.Date(result.getGeburtsdatum().getTime());
-			String datumString = DateTimeFormat.getFormat("yyyy-MM-dd").format(sqlDate);
-			datumsinhalt.setText(datumString);
+			datumsBox.setValue(result.getGeburtsdatum());
 		}
 		
 	}
