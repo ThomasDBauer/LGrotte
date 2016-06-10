@@ -223,6 +223,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 	}
 	
+	public Vector<Merkzettel> getMerkzettelByOwner() throws Exception{
+			String email = user.getEmail();
+			return MerkzettelMapper.merkzettelMapper().getMerkzettelByOwner(email);
+	}
 	
 	public void insertKontaktsperren(Vector<String>emails) throws Exception {
 		for(int i = 0; i < emails.size(); i++){

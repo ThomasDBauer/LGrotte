@@ -94,7 +94,11 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Inhalt_oben")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Deine Merkliste</h2>"));
-				RootPanel.get("Inhalt_unten").add(new MerkzettelEditor());
+				try {
+					RootPanel.get("Inhalt_unten").add(new MerkzettelEditor());
+				} catch (Exception e1) {
+					RootPanel.get("Inhalt_unten").add(new Label("Fehler im Popup"));
+				}
 				break;
 			case "Kontaktsperre":
 				RootPanel.get("Inhalt_unten").clear();
