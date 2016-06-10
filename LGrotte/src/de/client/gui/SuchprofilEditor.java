@@ -26,6 +26,8 @@ public class SuchprofilEditor extends VerticalPanel {
 	// Verschiedene Panels
 		private VerticalPanel suchprofilPanel = this;
 		private HorizontalPanel buttonPanel =  new HorizontalPanel();
+		private HorizontalPanel loeschenPanel = new HorizontalPanel();
+		private HorizontalPanel updatePanel = new HorizontalPanel();
 		private HorizontalPanel speichernButtonPanel = new HorizontalPanel();
 		private HorizontalPanel listBoxPanel = new HorizontalPanel();
 		
@@ -103,8 +105,8 @@ public class SuchprofilEditor extends VerticalPanel {
 			});
 			
 			// Anhängen der Panels
-			buttonPanel.add(loeschenButton);
-			buttonPanel.add(updateButton);
+			buttonPanel.add(loeschenPanel);
+			loeschenPanel.add(loeschenButton);
 			buttonPanel.add(spHinzufuegenButton);
 			listBoxPanel.add(spListBox);
 			this.add(buttonPanel);
@@ -141,8 +143,10 @@ public class SuchprofilEditor extends VerticalPanel {
 				anzeigenTable.clear();
 				groessenPanel.clear();
 				alterPanel.clear();
+				updatePanel.clear();
 				buttonPanel.add(speichernButtonPanel);
 				speichernButtonPanel.add(anlegenButton);
+				
 				
 				// Der FlexTable unsere Labels und Listboxen geben
 				anlegenTable.setWidget(0, 0, spNameLabel);
@@ -205,12 +209,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				anzeigenTable.clear();
 				alterAnzeigenPanel.clear();
 				groessenAnzeigenPanel.clear();
-				// Hiermit merkt der Nutzer das sein Suchprofil hinzugefügt wurde
 				anlegenTable.clear();
 				alterPanel.clear();
 				groessenPanel.clear();
-				alterAnzeigenPanel.clear();
-				groessenAnzeigenPanel.clear();
 				speichernButtonPanel.clear();
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde angelegt "
@@ -284,6 +285,10 @@ public class SuchprofilEditor extends VerticalPanel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				updatePanel.clear();
+				anzeigenTable.clear();
+				alterAnzeigenPanel.clear();
+				groessenAnzeigenPanel.clear();
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde aktualisiert "
 						+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
@@ -357,7 +362,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					groessenPanel.clear();
 					alterAnzeigenPanel.clear();
 					groessenAnzeigenPanel.clear();
-					
+					speichernButtonPanel.clear();
 					
 					anzeigenTable.setWidget(1, 0, geschlechtLabel);
 					anzeigenTable.setWidget(1, 1, geschlechtListBox);
@@ -412,6 +417,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
 					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
 				
+				buttonPanel.add(updatePanel);
+				updatePanel.add(updateButton);
 				suchprofilPanel.add(anzeigenTable);
 				
 			}
