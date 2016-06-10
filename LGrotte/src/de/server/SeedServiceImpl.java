@@ -42,4 +42,6 @@ public class SeedServiceImpl extends RemoteServiceServlet implements TestService
 		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail("thdobauer@gmail.com");
 	}
 	
+	
+	
 } 
