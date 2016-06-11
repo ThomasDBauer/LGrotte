@@ -10,42 +10,46 @@ import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 
 public class MerkzettelMapper {
-		
-	private static MerkzettelMapper merkzettelMapper = null; 
-	
+
+	private static MerkzettelMapper merkzettelMapper = null;
+
 	protected MerkzettelMapper() {
 	}
-	
+
 	public static MerkzettelMapper merkzettelMapper() {
-	if(merkzettelMapper == null) {
-		merkzettelMapper = new MerkzettelMapper();
+		if (merkzettelMapper == null) {
+			merkzettelMapper = new MerkzettelMapper();
+		}
+		return merkzettelMapper;
 	}
-	return merkzettelMapper;
-	}
-	
+
 	public void createMerkzettelTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement createMerkzettel = (PreparedStatement) con.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS merkzettel(gemerktesProfil varchar(45), "
-				+ "merkendesProfil varchar(45), PRIMARY KEY("
-				+ "gemerktesProfil, merkendesProfil), FOREIGN KEY(gemerktesProfil) "
-				+ "REFERENCES profil(email), FOREIGN KEY (merkendesProfil) "
-				+ "REFERENCES profil(email))");
+		PreparedStatement createMerkzettel = (PreparedStatement) con
+				.prepareStatement("CREATE TABLE IF NOT EXISTS merkzettel(gemerktesProfil varchar(45), "
+						+ "merkendesProfil varchar(45), PRIMARY KEY("
+						+ "gemerktesProfil, merkendesProfil), FOREIGN KEY(gemerktesProfil) "
+						+ "REFERENCES profil(email), FOREIGN KEY (merkendesProfil) "
+						+ "REFERENCES profil(email))");
 		createMerkzettel.execute();
 	}
-	
+
 	public void insertMerkzettel(Merkzettel mz) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement insertMerkzettel = (PreparedStatement)con.prepareStatement(
-				"INSERT INTO merkzettel(gemerktesProfil, merkendesProfil) VALUES ("
-				+ "'" + mz.getGemerktesProfil() + "', '" + mz.getMerkendesProfil() + "')");
+		PreparedStatement insertMerkzettel = (PreparedStatement) con
+				.prepareStatement("INSERT INTO merkzettel(gemerktesProfil, merkendesProfil) VALUES ("
+						+ "'"
+						+ mz.getGemerktesProfil()
+						+ "', '"
+						+ mz.getMerkendesProfil() + "')");
 		insertMerkzettel.execute();
 	}
-	
-	public void deleteMerkzettel(Profil profil) throws Exception {
+
+	public void deleteMerkzettel(String email) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement(
-				"DELETE FROM merkzettel WHERE gemerkteProfile='" + profil.getEmail() + "'");
+		PreparedStatement deleteMerkzettel = (PreparedStatement) con
+				.prepareStatement("DELETE FROM merkzettel WHERE gemerkteProfile='"
+						+ email + "'");
 		deleteMerkzettel.execute();
 	}
 	
@@ -63,5 +67,22 @@ public class MerkzettelMapper {
 			merkzettel.add(m);
 		}
 		return merkzettel;
+	}
+	
+	public Vector<Profil> getMerkzettelProfileByOwner(String email)
+			throws Exception {
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) con
+		.prepareStatement("SELECT * FROM profil INNER JOIN merkzettel ON profil.email = merkzettel.gemerktesProfil WHERE merkzettel.merkendesProfil="
+						+ "'" + email + "'");
+		ResultSet result = select.executeQuery();
+		Vector<Profil> merkzettelProfile = new Vector<Profil>();
+		while (result.next()) {
+			Profil p = new Profil();
+			p.setFname(result.getString("fname"));
+			p.setLname(result.getString("lname"));
+			merkzettelProfile.add(p);
+		}
+		return merkzettelProfile;
 	}
 }

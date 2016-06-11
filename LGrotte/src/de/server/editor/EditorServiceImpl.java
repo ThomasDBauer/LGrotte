@@ -265,7 +265,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		ProfilinfoMapper.profilinfoMapper().deleteProfilInfo(pi);
 	}
 	
-	
 	/**
 	 * 
 	 * TODO: insertInfo() raus aus den Service-Klassen, damit
@@ -317,6 +316,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 
 	
+
+	public Vector<Profil> getMerktettelProfileByOwner() throws Exception {
+		String email = user.getEmail();
+		return MerkzettelMapper.merkzettelMapper().getMerkzettelProfileByOwner(email);
+	}
+
+	public void deleteMerkzettel(Vector<String> emails) throws Exception {
+		for (int i = 0; i < emails.size(); i++){
+			MerkzettelMapper.merkzettelMapper().deleteMerkzettel(emails.elementAt(i));
+		}
+	}
 
 }
 

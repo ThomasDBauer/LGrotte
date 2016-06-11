@@ -1,5 +1,7 @@
 package de.client.gui;
 
-public class ProfilAnzeigenEditor {
+import com.google.gwt.user.client.ui.VerticalPanel;
+
+public class ProfilAnzeigenEditor extends VerticalPanel{
 
 }

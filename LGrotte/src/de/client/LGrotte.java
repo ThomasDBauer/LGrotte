@@ -25,6 +25,7 @@ import de.client.gui.ImageFooter;
 import de.client.gui.LogOutPopUp;
 import de.client.gui.MeinProfilEditor;
 import de.client.gui.Navigation;
+import de.client.gui.ProfilAnzeigenEditor;
 import de.client.temp.SeedButton;
 import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
@@ -99,7 +100,7 @@ public class LGrotte implements EntryPoint {
 							naviPanel.addStyleName("navi-panel");
 							RootPanel.get("Navi").add(naviPanel);
 							RootPanel.get("Inhalt_unten").add(
-									new MeinProfilEditor());
+									new ProfilAnzeigenEditor());
 							RootPanel.get("Fusszeile").add(new ImageFooter());
 						} else {
 							signInLink.setHref(result.getLoginUrl());
