@@ -1,26 +1,26 @@
 package de.client.gui;
 	import java.util.Vector;
-	import com.google.gwt.dom.client.Style.Unit;
-	import com.google.gwt.event.dom.client.ClickEvent;
-	import com.google.gwt.event.dom.client.ClickHandler;
-	import com.google.gwt.user.client.rpc.AsyncCallback;
-	import com.google.gwt.user.client.ui.Button;
-	import com.google.gwt.user.client.ui.CheckBox;
-	import com.google.gwt.user.client.ui.FlexTable;
-	import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
-	import com.google.gwt.user.client.ui.HorizontalPanel;
-	import com.google.gwt.user.client.ui.Label;
-	import com.google.gwt.user.client.ui.RootPanel;
-	import com.google.gwt.user.client.ui.VerticalPanel;
-	import de.client.ClientSideSettings;
-	import de.shared.BO.Profil;
+
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+
+import de.client.ClientSideSettings;
+import de.shared.BO.Profil;
 
 	public class MerkzettelEditor extends VerticalPanel {
 		private FlexTable table = new FlexTable();
 		private Vector<String> emailBuffer = new Vector<String>();
 		private Button merkButton = new Button("Merklzettel loeschen", new MerkHandler());
-//		private Button sperrButton = new Button("Profile sperren",
-//				new SperrHandler());
 		private VerticalPanel resultPanel = new VerticalPanel();
 
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
@@ -90,7 +90,22 @@ package de.client.gui;
 					emailBuffer.remove(userEmail);
 				} else {
 					emailBuffer.add(userEmail);
+					try {
+						
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
+			}
+			
+			private class getProfilEintragCallback implements AsyncCallback<Profil>{
+				public void onFailure(Throwable caught) {
+					RootPanel.get().add(new Label ("Fehler in Callback"));
+				}
+				public void onSuccess(Profil result) {
+					emailBuffer.add(result.getEmail());
+				}
+				
 			}
 		}
 
@@ -102,6 +117,7 @@ package de.client.gui;
 							emailBuffer, new deleteCallback());
 				} catch (Exception e2) {
 					e2.printStackTrace();
+					RootPanel.get().add(new Label ("Fehler im deleteMerkzettel"));
 				}
 				emailBuffer.clear();
 			}
@@ -123,18 +139,6 @@ package de.client.gui;
 				}
 			}
 		}
-
-//		private class SperrHandler implements ClickHandler {
-//
-//			public void onClick(ClickEvent e) {
-//				merkButton.setEnabled(false);
-//				try {
-//					ClientSideSettings.getEditorService().deleteMerkzettel(
-//							emailBuffer, new deleteCallback());
-//				} catch (Exception e2) {
-//					e2.printStackTrace();
-//				}
-//			}
 		}
 
 		
