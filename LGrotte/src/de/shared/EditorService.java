@@ -34,8 +34,8 @@ public interface EditorService extends RemoteService {
 	void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion, int minAlter,
 			int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) throws Exception;
 	
-	void updateSuchprofil(String geschlecht, String raucher, String religion,
-			int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe, String suchprofilname) throws Exception;
+	void updateSuchprofil(String geschlecht, int minAlter, int maxAlter,
+			String religion, String haarfarbe, String raucher, int minGroesse, int maxGroesse, String suchprofilname) throws Exception;
 
 	void deleteSuchprofil(String suchprofilname) throws Exception;
 

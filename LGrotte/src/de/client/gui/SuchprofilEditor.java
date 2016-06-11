@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.ClientSideSettings;
+import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 
 public class SuchprofilEditor extends VerticalPanel {
@@ -276,12 +277,12 @@ public class SuchprofilEditor extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				try {
 					ClientSideSettings.getEditorService().updateSuchprofil(geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex()),
-							raucherListBox.getItemText(raucherListBox.getSelectedIndex()), 
-							religionListBox.getItemText(religionListBox.getSelectedIndex()),
 							Integer.parseInt(minAlterTextBox.getText()), Integer.parseInt(maxAlterTextBox.getText()),
-							Integer.parseInt(minGroesseTextBox.getText()), Integer.parseInt(maxGroesseTextBox.getText()),
+							religionListBox.getItemText(religionListBox.getSelectedIndex()),
 							haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex()),
-							spListBox.getItemText(spListBox.getSelectedIndex()),
+							raucherListBox.getItemText(raucherListBox.getSelectedIndex()), 
+							Integer.parseInt(minGroesseTextBox.getText()), Integer.parseInt(maxGroesseTextBox.getText()),
+							spListBox.getItemText(spListBox.getSelectedIndex()), 
 							new UpdateCallback());
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
