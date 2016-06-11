@@ -57,7 +57,7 @@ public interface EditorService extends RemoteService {
 	
 	Vector<Merkzettel> getMerkzettelByOwner() throws Exception;
 	
-	Vector<Profil> getMerktettelProfileByOwner() throws Exception;
+	Vector<Profil> getMerkzettelProfileByOwner() throws Exception;
 	
 	void insertKontaktsperren(Vector<String>emails) throws Exception;
 	

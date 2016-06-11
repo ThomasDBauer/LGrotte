@@ -54,10 +54,9 @@ public class MerkzettelMapper {
 
 	public void deleteMerkzettel(Merkzettel mz) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement("DELETE FROM merkzettel WHERE gemerktesProfil='"
-						+ mz.getGemerktesProfil()
-						+ "' AND merkendesProfil='"
-						+ mz.getMerkendesProfil() + "'");
+		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement(
+				"DELETE FROM merkzettel WHERE gemerktesProfil='" + mz.getGemerktesProfil()+ "'"
+				+ " AND merkendesProfil='" + mz.getMerkendesProfil() + "'");
 		deleteMerkzettel.execute();
 	}
 
@@ -88,6 +87,7 @@ public class MerkzettelMapper {
 		Vector<Profil> merkzettelProfile = new Vector<Profil>();
 		while (result.next()) {
 			Profil p = new Profil();
+			p.setEmail(result.getString("email"));
 			p.setFname(result.getString("fname"));
 			p.setLname(result.getString("lname"));
 			merkzettelProfile.add(p);

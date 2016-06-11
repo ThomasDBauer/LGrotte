@@ -109,8 +109,12 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Inhalt_oben")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Kontaktsperre</h2>"));
-				RootPanel.get("Inhalt_unten").add(
-						new Label("Hier kaeme die Kontaktsperre hin!"));
+				try {
+					RootPanel.get("Inhalt_unten").add(new KontaktsperreEditor());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				break;
 
 			}

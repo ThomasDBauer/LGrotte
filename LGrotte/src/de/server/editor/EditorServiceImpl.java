@@ -290,7 +290,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	
 
-	public Vector<Profil> getMerktettelProfileByOwner() throws Exception {
+	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
 		String email = user.getEmail();
 		return MerkzettelMapper.merkzettelMapper().getMerkzettelProfileByOwner(email);
 	}

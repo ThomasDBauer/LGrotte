@@ -63,7 +63,7 @@ public interface EditorServiceAsync {
 	
 	void getMerkzettelByOwner(AsyncCallback<Vector<Merkzettel>> callback) throws Exception;
 	
-	void getMerktettelProfileByOwner(AsyncCallback<Vector<Profil>> callback) throws Exception;
+	void getMerkzettelProfileByOwner(AsyncCallback<Vector<Profil>> callback) throws Exception;
 	
 	void insertKontaktsperren(Vector<String>emails, AsyncCallback callback) throws Exception;
 	

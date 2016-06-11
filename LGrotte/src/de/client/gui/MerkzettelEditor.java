@@ -20,7 +20,7 @@ import de.shared.BO.Profil;
 	public class MerkzettelEditor extends VerticalPanel {
 		private FlexTable table = new FlexTable();
 		private Vector<String> emailBuffer = new Vector<String>();
-		private Button merkButton = new Button("Merklzettel loeschen", new MerkHandler());
+		private Button merkButton = new Button("Merkzettel loeschen", new LoeschenHandler());
 		private VerticalPanel resultPanel = new VerticalPanel();
 
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
@@ -28,6 +28,7 @@ import de.shared.BO.Profil;
 		public MerkzettelEditor() throws Exception {
 			HorizontalPanel controlPanel = new HorizontalPanel();
 			controlPanel.add(merkButton);
+			
 //			controlPanel.add(sperrButton);
 			table.addStyleName("findLove-table");
 			table.setWidth("45em");
@@ -40,7 +41,7 @@ import de.shared.BO.Profil;
 			resultPanel.clear();
 			table.clear();
 			resultPanel.add(table);
-			ClientSideSettings.getEditorService().getMerktettelProfileByOwner(
+			ClientSideSettings.getEditorService().getMerkzettelProfileByOwner(
 					new GetMerkzettelProfileCallback());
 		}
 
@@ -64,7 +65,7 @@ import de.shared.BO.Profil;
 						cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 						HorizontalPanel mzProfile = new HorizontalPanel();
 						Label fName = new Label("Name: " + p.getFname() + " "
-								+ p.getLname());
+								+ p.getLname() + p.getEmail());
 						fName.addStyleName("findLove-Label");
 						mzProfile.add(fName);
 
@@ -97,46 +98,38 @@ import de.shared.BO.Profil;
 					}
 				}
 			}
-			
-			private class getProfilEintragCallback implements AsyncCallback<Profil>{
-				public void onFailure(Throwable caught) {
-					RootPanel.get().add(new Label ("Fehler in Callback"));
-				}
-				public void onSuccess(Profil result) {
-					emailBuffer.add(result.getEmail());
-				}
-				
-			}
 		}
 
-		private class MerkHandler implements ClickHandler {
+		private class LoeschenHandler implements ClickHandler {
 			public void onClick(ClickEvent e) {
 				merkButton.setEnabled(false);
 				try {
 					ClientSideSettings.getEditorService().deleteMerkzettel(
-							emailBuffer, new deleteCallback());
+							emailBuffer, new DeleteCallback());
 				} catch (Exception e2) {
 					e2.printStackTrace();
 					RootPanel.get().add(new Label ("Fehler im deleteMerkzettel"));
 				}
 				emailBuffer.clear();
-			}
+		}
+	}
 			
-			private class deleteCallback implements AsyncCallback {
-				public void onFailure(Throwable caught) {
-					RootPanel.get().add(
-							new Label(caught.toString() + " @FindLove.InsertCallback"));
-				}
+	private class DeleteCallback implements AsyncCallback {
+		public void onFailure(Throwable caught) {
+			RootPanel.get().add(new Label(caught.toString() + " @FindLove.InsertCallback"));
+		}
 
-				public void onSuccess(Object result) {
-					merkButton.setEnabled(true);
-					emailBuffer.clear();
-					try {
-						loadProfiles();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				}
+		public void onSuccess(Object result) {
+			merkButton.setEnabled(true);
+			emailBuffer.clear();
+			try {
+				loadProfiles();
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		}
-		}
+	}
+		
+		
+		
+}

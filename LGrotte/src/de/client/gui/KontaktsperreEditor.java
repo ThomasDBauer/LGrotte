@@ -17,22 +17,21 @@ import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 
-public class KontaktsperreEditor {
+public class KontaktsperreEditor extends VerticalPanel {
+
+	private VerticalPanel thisPanel = new VerticalPanel();
 	private FlexTable table = new FlexTable();
 	private Vector<String> emailBuffer = new Vector<String>();
-	private Button merkButton = new Button("Merklzettel loeschen", new MerkHandler());
+	private Button merkButton = new Button("Kontaktsperre aufheben", new AufhebenHandler());
 	private VerticalPanel resultPanel = new VerticalPanel();
 
-	 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
+	FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
 	public KontaktsperreEditor() throws Exception {
 		HorizontalPanel controlPanel = new HorizontalPanel();
 		controlPanel.add(merkButton);
-//		controlPanel.add(sperrButton);
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
-//		this.add(controlPanel);
-//		this.add(resultPanel);
 		loadProfiles();
 	}
 
@@ -40,16 +39,13 @@ public class KontaktsperreEditor {
 		resultPanel.clear();
 		table.clear();
 		resultPanel.add(table);
-//		ClientSideSettings.getEditorService().getKontakt(
-//				new GetMerkzettelProfileCallback());
+		ClientSideSettings.getEditorService().getKontaktsperrenByOwner(new GetKontaktsperreProfileCallback());
 	}
 
 	private class GetKontaktsperreProfileCallback implements AsyncCallback<Vector<Profil>> {
 
 		public void onFailure(Throwable caught) {
-			RootPanel.get().add(
-					new Label(caught.toString()
-							+ " @FindLove.GetProfileCallback"));
+			RootPanel.get().add(new Label(caught.toString() + " @FindLove.GetProfileCallback"));
 		}
 
 		public void onSuccess(Vector<Profil> result) {
@@ -63,8 +59,7 @@ public class KontaktsperreEditor {
 					CheckBox cb = new CheckBox();
 					cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 					HorizontalPanel mzProfile = new HorizontalPanel();
-					Label fName = new Label("Name: " + p.getFname() + " "
-							+ p.getLname());
+					Label fName = new Label("Name: " + p.getFname() + " " + p.getLname());
 					fName.addStyleName("findLove-Label");
 					mzProfile.add(fName);
 
@@ -97,24 +92,14 @@ public class KontaktsperreEditor {
 				}
 			}
 		}
-		
-		private class getProfilEintragCallback implements AsyncCallback<Profil>{
-			public void onFailure(Throwable caught) {
-				RootPanel.get().add(new Label ("Fehler in Callback"));
-			}
-			public void onSuccess(Profil result) {
-				emailBuffer.add(result.getEmail());
-			}
-			
-		}
 	}
 
-	private class MerkHandler implements ClickHandler {
+	private class AufhebenHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			merkButton.setEnabled(false);
 			try {
 				ClientSideSettings.getEditorService().deleteMerkzettel(
-						emailBuffer, new deleteCallback());
+						emailBuffer, new DeleteCallback());
 			} catch (Exception e2) {
 				e2.printStackTrace();
 				RootPanel.get().add(new Label ("Fehler im deleteMerkzettel"));
@@ -122,7 +107,7 @@ public class KontaktsperreEditor {
 			emailBuffer.clear();
 		}
 		
-		private class deleteCallback implements AsyncCallback {
+		private class DeleteCallback implements AsyncCallback {
 			public void onFailure(Throwable caught) {
 				RootPanel.get().add(
 						new Label(caught.toString() + " @FindLove.InsertCallback"));
