@@ -103,8 +103,6 @@ public class SuchprofilEditor extends VerticalPanel {
 			});
 			
 			// Anhängen der Panels
-			buttonPanel.add(loeschenPanel);
-			loeschenPanel.add(loeschenButton);
 			buttonPanel.add(spHinzufuegenButton);
 			listBoxPanel.add(spListBox);
 			this.add(buttonPanel);
@@ -142,6 +140,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				groessenPanel.clear();
 				alterPanel.clear();
 				updatePanel.clear();
+				loeschenPanel.clear();
 				buttonPanel.add(speichernButtonPanel);
 				speichernButtonPanel.add(anlegenButton);
 				
@@ -284,6 +283,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					e.printStackTrace();
 				}
 				updatePanel.clear();
+				loeschenPanel.clear();
 				anzeigenTable.clear();
 				alterAnzeigenPanel.clear();
 				groessenAnzeigenPanel.clear();
@@ -415,6 +415,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
 					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
 				
+				buttonPanel.add(loeschenPanel);
+				loeschenPanel.add(loeschenButton);
 				buttonPanel.add(updatePanel);
 				updatePanel.add(updateButton);
 				suchprofilPanel.add(anzeigenTable);
