@@ -52,14 +52,14 @@ public class ReportEntry implements EntryPoint {
 		});
 
 		try {
-			reportService.getProfilReport("Anna@LG", new AsyncCallback<ProfilReport>() {
+			reportService.getAllProfiles(new AsyncCallback<Vector<ProfilReport>>() {
 
 				public void onFailure(Throwable caught) {
 
 				}
 
 				@Override
-				public void onSuccess(ProfilReport result) {
+				public void onSuccess(Vector<ProfilReport> result) {
 
 					HTMLWriter writer = new HTMLWriter();
 					writer.process(result);

@@ -25,7 +25,9 @@ public interface ReportServiceAsync {
 	
 	void setUser(Profil p, AsyncCallback callback);
 	
-	void getProfilInfos(AsyncCallback<Vector<ProfilInformation>>callback) throws Exception;
+//	void getProfilInfos(AsyncCallback<Vector<ProfilInformation>>callback) throws Exception;
+
+	void getAllProfiles(AsyncCallback<Vector<ProfilReport>> callback) throws Exception;
 	
 //	void createAlleProfileReport(AsyncCallback<AlleProfileReport> callback);
 }

@@ -2,8 +2,6 @@ package de.client.report;
 
 import java.util.Vector;
 
-import de.server.db.ProfilMapper;
-import de.shared.BO.Profil;
 import de.shared.RO.ProfilReport;
 
 public class HTMLWriter {
@@ -80,10 +78,15 @@ public class HTMLWriter {
 //
 //	}
 	
-//	Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
-//	StringBuffer sb = new StringBuffer();
-//	for (int i = 0; i < profile.size(); i++) {
-//		sb.append(showProfilReport(profile.elementAt(i).getEmail()));
-//	}
-//	return sb.toString();
+	
+	public void process(Vector<ProfilReport>reports){
+		StringBuffer buffer = new StringBuffer();
+		for(int i = 0; i < reports.size(); i++){
+			process(reports.elementAt(i));
+			buffer.append(this.reportText);
+		}
+		this.reportText = buffer.toString();
+	}
+	
+	
 }

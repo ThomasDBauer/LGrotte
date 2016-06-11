@@ -29,7 +29,9 @@ public interface ReportService extends RemoteService {
 	
 	void setUser(Profil p);
 	
-	Vector<ProfilInformation> getProfilInfos() throws Exception;
+//	Vector<ProfilInformation> getProfilInfos() throws Exception;
+
+	Vector<ProfilReport> getAllProfiles() throws Exception;
 
 //	public abstract AlleProfileReport createAlleProfileReport() throws Exception;
 
