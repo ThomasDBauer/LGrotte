@@ -32,11 +32,14 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 	public ProfilEigenschaftEditor() throws Exception {
 		buttonPanel.add(addEigenschaftenButton);
-		buttonPanel.add(speicherButton);
 		this.add(buttonPanel);
 		this.add(editPanel);
 		ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
-
+		loadProfilEigenschaften();
+	}
+	
+	public void loadProfilEigenschaften(){
+		
 	}
 
 	private class AddEigenschaftenClickHandler implements ClickHandler {
@@ -45,6 +48,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			// wir wollen eine listbox und eine textbox
 			ListBox listbox = new ListBox(false);
 			TextBox infotextbox = new TextBox();
+			buttonPanel.add(speicherButton);
 			Button loeschenButton = new Button("x", new LoeschenClickHandler());
 
 			// um sie sp�ter auszulesen, werden sie au�erhalb der methode

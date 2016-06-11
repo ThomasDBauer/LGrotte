@@ -11,6 +11,7 @@ import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
+import de.shared.RO.ProfilEigenschaft;
 
 public interface EditorServiceAsync {
 	void init(AsyncCallback callback) throws IllegalArgumentException;
@@ -76,4 +77,6 @@ public interface EditorServiceAsync {
 			throws Exception;
 
 	void deleteMerkzettel(Vector<String> emails, AsyncCallback callback);
+	
+	void getProfilEigenschaften(AsyncCallback<Vector<ProfilEigenschaft>>callback) throws Exception;
 }

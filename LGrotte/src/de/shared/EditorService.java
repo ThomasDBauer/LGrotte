@@ -12,6 +12,7 @@ import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
+import de.shared.RO.ProfilEigenschaft;
 
 /**
  * The client-side stub for the RPC service.
@@ -67,4 +68,6 @@ public interface EditorService extends RemoteService {
 	void deleteInfo(Info info) throws Exception;
 	
 	void deleteProfilInfo(ProfilInfo pi) throws Exception;
+	
+	Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception;
 }

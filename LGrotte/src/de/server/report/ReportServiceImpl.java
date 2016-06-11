@@ -31,7 +31,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		user = p;
 	}
 
-	public Vector<ProfilInformation> getProfilInfos() throws Exception {
+	public Vector<ProfilEigenschaft> getProfilInfos() throws Exception {
 
 		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(user.getEmail());
 	}
@@ -83,7 +83,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		report.addAttribut(raucher);
 		
 		
-		Vector<ProfilInformation> profilinfos = getProfilInfos();
+		Vector<ProfilEigenschaft> profilinfos = getProfilInfos();
 		
 		for(int i = 0; i < profilinfos.size(); i++){
 			ProfilEigenschaft pe = new ProfilEigenschaft();

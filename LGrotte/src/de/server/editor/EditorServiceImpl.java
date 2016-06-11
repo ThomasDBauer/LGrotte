@@ -24,6 +24,7 @@ import de.shared.BO.Profil;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
 import de.shared.BO.SuchprofilInfo;
+import de.shared.RO.ProfilEigenschaft;
 
 /**
  * The server-side implementation of the RPC service.
@@ -226,32 +227,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	
-	//TODO wenn die selben Methode unten klappen: löschen
-//	// Infos einfÃ¼rgen
-//	public void insertInfo(Info info) throws Exception {
-//		
-//		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
-//				info.getEigenschaft(), info.getValue());
-//		
-//		if(infoID == 0){
-//			InfoMapper.infoMapper().insertInfo(info);
-//			infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
-//					info.getEigenschaft(), info.getValue());
-//		}
-//		
-//		ProfilInfo pi = new ProfilInfo();
-//		pi.setInfoID(infoID);
-//		pi.setProfilEmail(user.getEmail());
-//		insertProfilInfo(pi);		
-//	}
-//
-//	// ProfilInfos einfÃ¼gen
-//	public void insertProfilInfo(ProfilInfo pi) throws Exception {
-//		ProfilinfoMapper.profilinfoMapper().insertProfilInfo(pi);
-//	}
-//	
-	
-	
 	public void deleteInfo(Info info) throws Exception {
 		InfoMapper.infoMapper().deleteInfo(info);
 		ProfilInfo pi = new ProfilInfo();
@@ -265,13 +240,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		ProfilinfoMapper.profilinfoMapper().deleteProfilInfo(pi);
 	}
 	
-	/**
-	 * 
-	 * TODO: insertInfo() raus aus den Service-Klassen, damit
-	 * nur noch ProfilInfo und SuchprofilInfo aufgerufen werden können.
-	 * 
-	 */
-
 	// ProfilInfos Hauptmethode
 	public void insertProfilInfo(Info info) throws Exception {
 		// Verarbeitung der Info und Auslesen der ID
@@ -313,6 +281,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 		// zurückgeben der ID
 		return infoID;
+	}
+	
+	public Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception{
+		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
+				user.getEmail());
 	}
 
 	
