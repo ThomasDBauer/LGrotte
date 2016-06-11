@@ -13,7 +13,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.mysql.fabric.xmlrpc.Client;
 
 import de.client.ClientSideSettings;
 import de.shared.BO.Eigenschaft;
