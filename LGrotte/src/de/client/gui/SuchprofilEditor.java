@@ -2,6 +2,8 @@ package de.client.gui;
 
 import java.util.Vector;
 
+import org.apache.bcel.generic.LNEG;
+
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -82,19 +84,9 @@ public class SuchprofilEditor extends VerticalPanel {
 
 		// Editor 
 		public SuchprofilEditor() throws Exception {
-			loadPage();
-		}
-		
-		public void loadPage(){
-			
-			try {
-				ClientSideSettings.getEditorService().getSuchprofile(
-						new GetSuchprofileCallback());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 			// Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
+			anlegenTable.clear();
 			spListBox.addClickHandler(new SuchProfilAnzeigenClickHandler());
 			spListBox.addChangeHandler(new ChangeHandler(){
 				public void onChange(ChangeEvent event) {
@@ -132,6 +124,24 @@ public class SuchprofilEditor extends VerticalPanel {
 			raucherListBox.addItem("Nein");
 			raucherListBox.addItem("ab und an");
 			raucherListBox.addItem("egal");
+			
+			loadPage();
+		}
+		
+		public void loadPage(){
+			listBoxPanel.clear();
+			buttonPanel.clear();
+			spListBox.clear();
+			buttonPanel.add(spHinzufuegenButton);
+			listBoxPanel.add(spListBox);
+			
+			try {
+				ClientSideSettings.getEditorService().getSuchprofile(
+						new GetSuchprofileCallback());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		// ClickHandler zum suchprofil hizufügen Funktion
 		private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
@@ -218,14 +228,11 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 		// Callback zum anlegen des Suchprofils
 		private class SPAnlegenCallback implements AsyncCallback {
-
 			public void onFailure(Throwable caught) {
 				RootPanel.get().add(new Label("Fehler in SuchprofilAnlegenEditor.SPAnlegenCallback" + caught.toString()));
 			}
-
 			public void onSuccess(Object result) {
-				RootPanel.get().add(new Label(result.toString()));
-				loadPage();
+					loadPage();
 			}
 		}
 			// ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
@@ -257,6 +264,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					suchprofilPanel.add(new Label (caught.toString()));
 				}
 				public void onSuccess(Object result) {
+					loadPage();
 				}
 			}
 			
@@ -274,7 +282,7 @@ public class SuchprofilEditor extends VerticalPanel {
 							Integer.parseInt(minGroesseTextBox.getText()), Integer.parseInt(maxGroesseTextBox.getText()),
 							haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex()),
 							spListBox.getItemText(spListBox.getSelectedIndex()),
-							new GetUpdateCallback());
+							new UpdateCallback());
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -296,29 +304,12 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 
 		//Callback zum Updaten des Suchprofils 
-		private class GetUpdateCallback implements AsyncCallback<Vector<Suchprofil>>{
-
-			public void onFailure(Throwable caught) {
-				
+		private class UpdateCallback implements AsyncCallback {
+			public void onFailure(Throwable caught) {				
 			}
-
-			public void onSuccess(Vector<Suchprofil> result) {
-				
+			public void onSuccess(Object result) {
+				loadPage();
 			}
-			// Callback zum Anzeigen der neuen Suchprofile in unserer Listbox
-			private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {
-				public void onFailure(Throwable caught) {
-					RootPanel.get().add(new Label(caught.toString()));
-				}
-
-				public void onSuccess(Vector<Suchprofil> result) {
-			
-					for (int i = 0; i < result.size(); i++) {
-						spListBox.addItem(result.elementAt(i).getSuchprofilname());
-					}
-				}
-			}
-
 		}
 		// Callback zum Anzeigen der neuen Suchprofile in unserer Listbox
 		private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {

@@ -55,6 +55,9 @@ public class ProfilAnzeigenEditor extends VerticalPanel{
 			profilAnzeigenTable.setWidget(7, 0, new Label("Geburtsdatum"));
 			profilAnzeigenTable.setWidget(7, 1, bday);
 			
+			profilAnzeigenTable.addStyleName("findLove-table td");
+			profilAnzeigenTable.setWidth("45em");
+			
 			vpanel.add(profilAnzeigenTable);
 		}
 		
