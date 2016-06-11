@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import de.server.db.DBConnection;
 import de.shared.BO.ProfilInfo;
+import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilInformation;
 
 public class ProfilinfoMapper {
@@ -156,7 +157,7 @@ public class ProfilinfoMapper {
 	}
 	
 	
-	public ProfilInformation getInfosForProfil(int infoID) throws Exception{
+	public ProfilAttribut getInfosForProfil(int infoID) throws Exception{
 		
 		Connection conn = DBConnection.connection();
 		
@@ -166,14 +167,14 @@ public class ProfilinfoMapper {
 		
 		ResultSet result = select.executeQuery();
 		
-		ProfilInformation pi = new ProfilInformation();
+		ProfilAttribut pa = new ProfilAttribut();
 
 		while(result.next()){
-			pi.setName(result.getString("erlauterung"));
-			pi.setWert(result.getString("value"));
+			pa.setName(result.getString("erlauterung"));
+			pa.setWert(result.getString("value"));
 		}
 		
-		return pi;
+		return pa;
 		
 	}
 	

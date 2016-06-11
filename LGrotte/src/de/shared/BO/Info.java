@@ -7,13 +7,18 @@ public class Info extends BusinessObject{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//Der Primary Key
 	private int id;
 	
+	//Der Wert
 	private String value;
 	
+	//Der Foreign Key auf 
 	private int eigenschaft;
 	
 
+	
+	//Get und Set Methoden
 	public int getId() {
 		return id;
 	}

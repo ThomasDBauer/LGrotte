@@ -2,7 +2,7 @@ package de.shared.RO;
 
 import java.io.Serializable;
 
-public class ProfilInformation implements Serializable {
+public abstract class ProfilInformation implements Serializable {
 
 	/**
 	 * 

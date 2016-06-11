@@ -10,8 +10,8 @@ import de.shared.BO.Info;
 import de.shared.BO.Profil;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
+import de.shared.BO.SuchprofilInfo;
 import de.shared.RO.ProfilInformation;
-import de.shared.RO.SuchprofilInformation;
 
 import java.util.Vector;
 
@@ -69,7 +69,7 @@ public class SeedServiceImpl extends RemoteServiceServlet implements TestService
 		// Verarbeitung der Info und Auslesen der ID
 		int infoID = insertInfo(info);
 		// Aufbau des SuchprofilInfo-Objekts
-		SuchprofilInformation spi = new SuchprofilInformation();
+		SuchprofilInfo spi = new SuchprofilInfo();
 		spi.setInfo(infoID);
 		spi.setProfil(user.getEmail());
 		spi.setSp(sp.getSuchprofilname());

@@ -2,9 +2,12 @@ package de.server.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import de.shared.BO.ProfilInfo;
-import de.shared.RO.SuchprofilInformation;
+import de.shared.BO.SuchprofilInfo;
+import de.shared.RO.ProfilEigenschaft;
+import de.shared.RO.ProfilInformation;
 
 public class SuchprofilInfoMapper {
 
@@ -34,12 +37,34 @@ public class SuchprofilInfoMapper {
 		create.execute();
 	}
 	
-	public void insertSuchprofilInfo(SuchprofilInformation spi) throws Exception {
+	public void insertSuchprofilInfo(SuchprofilInfo spi) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
 				"INSERT INTO suchprofil_info (suchprofilname, email, info_id) VALUES "
 				+ "('" + spi.getProfil() + "','" + spi.getProfil() + "',"+spi.getInfo()+")");
 		stmt.execute();
+	}
+
+	
+	public ProfilEigenschaft getSPInfosByInfoID(int infoID) throws Exception{
+		
+		Connection conn = DBConnection.connection();
+		
+		PreparedStatement select = conn.prepareStatement("SELECT infos.value, "
+				+ "eigenschaft.erlauterung FROM infos JOIN eigenschaft ON "
+				+ "infos.eigenschaft_id = eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
+		
+		ResultSet result = select.executeQuery();
+		
+		ProfilEigenschaft pe = new ProfilEigenschaft();
+
+		while(result.next()){
+			pe.setName(result.getString("erlauterung"));
+			pe.setWert(result.getString("value"));
+		}
+		
+		return pe;
+		
 	}
 	
 }

@@ -115,11 +115,7 @@ function computeScriptBase() {
 
   // Compute some codeserver urls so as the user does not need bookmarklets
   var hostName = $wnd.location.hostname;
-<<<<<<< HEAD
-  var serverUrl = 'http://' + hostName + ':50372';
-=======
   var serverUrl = 'http://' + hostName + ':9876';
->>>>>>> branch 'master' of https://github.com/ThomasDBauer/LGrotte.git
   var nocacheUrl = serverUrl + '/lgrotte/lgrotte.nocache.js';
 
   // Save supder-devmode url in session
