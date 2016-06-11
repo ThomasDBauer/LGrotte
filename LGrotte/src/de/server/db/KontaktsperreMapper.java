@@ -61,6 +61,24 @@ public class KontaktsperreMapper {
 		}
 		return kontaktsperren;
 	}
+	
+	public Vector<Profil> getKontaktsperreProfileByOwner(String email)
+			throws Exception {
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) con
+				.prepareStatement("SELECT * FROM profil INNER JOIN kontaktsperre ON profil.email = kontaktsperre.gesperrtesProfil WHERE kontaktsperre.sperrendesProfil="
+						+ "'" + email + "'");
+		ResultSet result = select.executeQuery();
+		Vector<Profil> merkzettelProfile = new Vector<Profil>();
+		while (result.next()) {
+			Profil p = new Profil();
+			p.setFname(result.getString("fname"));
+			p.setLname(result.getString("lname"));
+			merkzettelProfile.add(p);
+		}
+		return merkzettelProfile;
+	}
+	
 //	
 //	public void deleteKontaktsperre(Profil profil) throws Exception {
 //		Connection con = (Connection) DBConnection.connection();
