@@ -37,9 +37,8 @@ public interface EditorServiceAsync {
 			int minGroesse, int maxGroesse, String haarfarbe,
 			AsyncCallback callback) throws Exception;
 
-	void updateSuchprofil(String geschlecht, String raucher, String religion,
-			int minAlter, int maxAlter, int minGroesse, int maxGroesse,
-			String haarfarbe, String suchprofilname, AsyncCallback callback)
+	void updateSuchprofil(String geschlecht, int minAlter, int maxAlter,
+			String religion, String haarfarbe, String raucher, int minGroesse, int maxGroesse, String suchprofilname, AsyncCallback callback)
 			throws Exception;
 
 	void deleteSuchprofil(String suchprofilname, AsyncCallback callback)

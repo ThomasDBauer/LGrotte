@@ -109,7 +109,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion,
 			int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) throws Exception {
 		Suchprofil sp = new Suchprofil();
-		sp.setSuchprofilname(suchprofilname);
 		sp.setGeschlecht(geschlecht);
 		sp.setRaucher(raucher);
 		sp.setReligion(religion);
@@ -118,22 +117,23 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		sp.setMinGroesse(minGroesse);
 		sp.setMaxGroesse(maxGroesse);
 		sp.setHaarfarbe(haarfarbe);
+		sp.setSuchprofilname(suchprofilname);
 		sp.setProfil(user.getEmail());
 		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
 	}
 	
 	// Suchprofil bearbeiten
-	public void updateSuchprofil(String geschlecht, String raucher, String religion,
-			int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe, String suchprofilname) throws Exception {
+	public void updateSuchprofil(String geschlecht, int minAlter, int maxAlter,
+			String religion, String haarfarbe, String raucher, int minGroesse, int maxGroesse, String suchprofilname) throws Exception {
 		Suchprofil sp = new Suchprofil();
 		sp.setGeschlecht(geschlecht);
-		sp.setRaucher(raucher);
-		sp.setReligion(religion);
 		sp.setMinAlter(minAlter);
 		sp.setMaxAlter(maxAlter);
+		sp.setReligion(religion);
+		sp.setHaarfarbe(haarfarbe);
+		sp.setRaucher(raucher);
 		sp.setMinGroesse(minGroesse);
 		sp.setMaxGroesse(maxGroesse);
-		sp.setHaarfarbe(haarfarbe);
 		sp.setSuchprofilname(suchprofilname);
 		sp.setProfil(user.getEmail());
 		SuchprofilMapper.suchprofilMapper().updateSuchprofil(sp);
