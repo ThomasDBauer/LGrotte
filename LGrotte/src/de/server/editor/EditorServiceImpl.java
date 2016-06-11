@@ -135,6 +135,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		sp.setMaxGroesse(maxGroesse);
 		sp.setHaarfarbe(haarfarbe);
 		sp.setSuchprofilname(suchprofilname);
+		sp.setProfil(user.getEmail());
 		SuchprofilMapper.suchprofilMapper().updateSuchprofil(sp);
 	}
 
@@ -265,10 +266,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		SuchprofilInfoMapper.suchprofilInfoMapper().insertSuchprofilInfo(spi);
 	}
 
-	// Hilfsmethode für insertSuchprofilInfo() und ProfilInfo()
+	// Hilfsmethode fï¿½r insertSuchprofilInfo() und ProfilInfo()
 	// Checkt, ob es die Info bereits gibt. Gibt in jedem Fall
-	// die InfoID zurück, damit die beiden n:m Tabellen damit
-	//bestückt werden können.
+	// die InfoID zurï¿½ck, damit die beiden n:m Tabellen damit
+	//bestï¿½ckt werden kï¿½nnen.
 	private int insertInfo(Info info) throws Exception {
 		// check, ob die Info bereits besteht und Auslesen der ID
 		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
@@ -279,7 +280,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
 					info.getEigenschaft(), info.getValue());
 		}
-		// zurückgeben der ID
+		// zurï¿½ckgeben der ID
 		return infoID;
 	}
 	
