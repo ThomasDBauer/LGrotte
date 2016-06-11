@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.shared.BO.Profil;
+import de.shared.RO.ProfilEigenschaft;
 import de.shared.RO.ProfilInformation;
 import de.shared.RO.ProfilReport;
 
@@ -29,7 +30,7 @@ public interface ReportService extends RemoteService {
 	
 	void setUser(Profil p);
 	
-	Vector<ProfilInformation> getProfilInfos() throws Exception;
+	Vector<ProfilEigenschaft> getProfilInfos() throws Exception;
 
 //	public abstract AlleProfileReport createAlleProfileReport() throws Exception;
 

@@ -42,7 +42,7 @@ public class SeedServiceImpl extends RemoteServiceServlet implements TestService
 
 	public Vector<ProfilInformation> getProfilInfos() throws Exception {
 
-		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail("thdobauer@gmail.com");
+		return null;
 	}
 	
 }
