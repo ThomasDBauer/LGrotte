@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import de.server.db.DBConnection;
+import de.shared.BO.Eigenschaft;
+import de.shared.BO.Info;
 import de.shared.BO.ProfilInfo;
 import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
@@ -163,16 +165,26 @@ public class ProfilinfoMapper {
 		Connection conn = DBConnection.connection();
 		
 		PreparedStatement select = conn.prepareStatement("SELECT infos.value, "
-				+ "eigenschaft.erlauterung FROM infos JOIN eigenschaft ON "
-				+ "infos.eigenschaft_id = eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
+				+ "infos.info_id, eigenschaft.erlauterung, eigenschaft.eigenschaft_id "
+				+ "FROM infos JOIN eigenschaft ON infos.eigenschaft_id = "
+				+ "eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
 		
 		ResultSet result = select.executeQuery();
 		
 		ProfilEigenschaft pa = new ProfilEigenschaft();
 
 		while(result.next()){
-			pa.setName(result.getString("erlauterung"));
-			pa.setWert(result.getString("value"));
+			Info info = new Info();
+			info.setEigenschaft(result.getInt("eigenschaft_id"));
+			info.setId(result.getInt("info_id"));
+			info.setValue(result.getString("value"));
+			
+			Eigenschaft eigenschaft = new Eigenschaft();
+			eigenschaft.setErlaeuterung(result.getString("erlauterung"));
+			eigenschaft.setId(result.getInt("eigenschaft_id"));
+
+			pa.setInfo(info);
+			pa.setEigenschaft(eigenschaft);
 		}
 		
 		return pa;
