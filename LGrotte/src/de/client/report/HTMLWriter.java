@@ -1,5 +1,9 @@
 package de.client.report;
 
+import java.util.Vector;
+
+import de.server.db.ProfilMapper;
+import de.shared.BO.Profil;
 import de.shared.RO.ProfilReport;
 
 public class HTMLWriter {
@@ -40,17 +44,20 @@ public class HTMLWriter {
 		/*
 		 * Style der einzelnen Report-Elemente
 		 */
-		sb.append("<div style = \"margin: 5; border-bottom: 4px solid #fff; padding: 10px; background: #B6E5FF; "
-				+ "text-align: left; font: bold 180%/1em arial, geneva, sans-serif; color: #000; width: 100%;"
-				+ "text-transform: uppercase; letter-spacing: 0.1em; width: auto;\">");
+		sb.append(
+				"<div style = \"border:1px solid black; margin: 5; border-bottom: 4px solid #fff; padding: 10px; background: #B6E5FF; "
+						+ "text-align: left; font: 120%/1em arial, geneva, sans-serif; color: #000; width: 100%;"
+						+ "text-transform: uppercase; letter-spacing: 0.1em; width: auto;\">");
 		sb.append("<br>");
 
 		for (int i = 0; i < report.getAttribute().size(); i++) {
 			sb.append(report.getAttribute().elementAt(i).getName() + ": " +
-					report.getAttribute().elementAt(i).getWert() + "<br>");  
+					report.getAttribute().elementAt(i).getWert()
+					+ "<br>");
 		}
-		
-		for(int i = 0; i < report.getEigenschaften().size(); i++){
+		sb.append("<br>");
+
+		for (int i = 0; i < report.getEigenschaften().size(); i++) {
 			sb.append(report.getEigenschaften().elementAt(i).getName());
 			sb.append(": ");
 			sb.append(report.getEigenschaften().elementAt(i).getWert());
@@ -58,6 +65,25 @@ public class HTMLWriter {
 		}
 
 		sb.append("</div>");
+
 		this.reportText = sb.toString();
 	}
+
+//	public void getAllProfiles(ProfilReport result) throws Exception {
+//		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
+//		StringBuffer sb = new StringBuffer();
+//		for (int i = 0; i < profile.size(); i++){
+//			sb.append((profile.elementAt(i).getEmail()));
+//		}
+//		
+//		this.reportText = sb.toString();
+//
+//	}
+	
+//	Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
+//	StringBuffer sb = new StringBuffer();
+//	for (int i = 0; i < profile.size(); i++) {
+//		sb.append(showProfilReport(profile.elementAt(i).getEmail()));
+//	}
+//	return sb.toString();
 }

@@ -77,21 +77,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		// geburtsdatum.setName("Geburtsdatum");
 		// geburtsdatum.setWert(p.getGeburtsdatum().toString());
 
-		/*
-		 * Hinzufügen von ProfilEigenschaften
-		 */
-		
-		
-//		ProfilEigenschaft lieblingssport = new ProfilEigenschaft();
-//		lieblingssport.setName("Lieblingssport");
-//		lieblingssport.setWert(p.);
-//
-//		ProfilEigenschaft lieblingsfilm = new ProfilEigenschaft();
-//		lieblingsfilm.setName("Lieblingsfilm");
-//
-//		ProfilEigenschaft lieblingsmusik = new ProfilEigenschaft();
-//		lieblingsmusik.setName("Lieblingsmusik");
-
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
 		report.addAttribut(religion);
@@ -107,14 +92,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			report.addEigenschaft(pe);
 		}
 	
-		
-		
-		// report.addAttribut(koerpergroesse);
-		// report.addAttribut(geburtsdatum);
-//		report.addEigenschaft(lieblingssport);
-//		report.addEigenschaft(lieblingsfilm);
-//		report.addEigenschaft(lieblingsmusik);
-
 		return report;
 
 	}
