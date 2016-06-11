@@ -84,6 +84,11 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 					public void onFailure(Throwable caught) {
 					}
 					public void onSuccess(Object result) {
+						try {
+							loadProfilEigenschaften();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
 				});
 			} catch (Exception e1) {
@@ -130,6 +135,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 	private class SpeicherClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
+			editPanel.clear();
 			for (int i = 0; i < eigenschaftenListboxen.size(); i++) {
 				ListBox lb = eigenschaftenListboxen.elementAt(i);
 				int eigenschaftsID = 0;
@@ -172,6 +178,11 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 
 		public void onSuccess(Object result) {
+			try {
+				loadProfilEigenschaften();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

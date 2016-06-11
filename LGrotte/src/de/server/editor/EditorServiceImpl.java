@@ -229,7 +229,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 	
 	public void deleteInfo(Info info) throws Exception {
-		InfoMapper.infoMapper().deleteInfo(info);
 		ProfilInfo pi = new ProfilInfo();
 		pi.setInfoID(info.getId());
 		pi.setProfilEmail(user.getEmail());

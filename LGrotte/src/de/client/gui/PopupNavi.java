@@ -59,12 +59,12 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Mitte").clear();
 				RootPanel.get("Einstellungen").clear();
 				RootPanel.get("Inhalt_oben").clear();
-				RootPanel.get("Inhalt_oben").add(new HTML(
-						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
+//				RootPanel.get("Inhalt_oben").add(new HTML(
+//						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
-				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
+//				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				try {
-					RootPanel.get("Mitte").add(new ProfilEigenschaftEditor());
+					RootPanel.get("Content").add(new ProfilEditor());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
