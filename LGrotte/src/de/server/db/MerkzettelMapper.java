@@ -6,6 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import com.google.api.server.spi.auth.common.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
+import de.client.LGrotte;
+import de.shared.LoginService;
 import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 
@@ -45,22 +52,24 @@ public class MerkzettelMapper {
 		insertMerkzettel.execute();
 	}
 
-	public void deleteMerkzettel(String email) throws Exception {
+	public void deleteMerkzettel(Merkzettel mz) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement deleteMerkzettel = (PreparedStatement) con
-				.prepareStatement("DELETE FROM merkzettel WHERE gemerkteProfile='"
-						+ email + "'");
+		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement("DELETE FROM merkzettel WHERE gemerktesProfil='"
+						+ mz.getGemerktesProfil()
+						+ "' AND merkendesProfil='"
+						+ mz.getMerkendesProfil() + "'");
 		deleteMerkzettel.execute();
 	}
-	
-	public Vector<Merkzettel> getMerkzettelByOwner(String email) throws Exception{
+
+	public Vector<Merkzettel> getMerkzettelByOwner(String email)
+			throws Exception {
 		Connection con = (Connection) DBConnection.connection();
-		PreparedStatement select = (PreparedStatement) con.prepareStatement(
-				"SELECT gemerktesProfil FROM merkzettel WHERE merkendesProfil="
-				+ "'" + email + "'");
+		PreparedStatement select = (PreparedStatement) con
+				.prepareStatement("SELECT gemerktesProfil FROM merkzettel WHERE merkendesProfil="
+						+ "'" + email + "'");
 		ResultSet result = select.executeQuery();
 		Vector<Merkzettel> merkzettel = new Vector<Merkzettel>();
-		while(result.next()){
+		while (result.next()) {
 			Merkzettel m = new Merkzettel();
 			m.setGemerktesProfil(result.getString("gemerktesProfil"));
 			m.setMerkendesProfil(email);
@@ -68,12 +77,12 @@ public class MerkzettelMapper {
 		}
 		return merkzettel;
 	}
-	
+
 	public Vector<Profil> getMerkzettelProfileByOwner(String email)
 			throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) con
-		.prepareStatement("SELECT * FROM profil INNER JOIN merkzettel ON profil.email = merkzettel.gemerktesProfil WHERE merkzettel.merkendesProfil="
+				.prepareStatement("SELECT * FROM profil INNER JOIN merkzettel ON profil.email = merkzettel.gemerktesProfil WHERE merkzettel.merkendesProfil="
 						+ "'" + email + "'");
 		ResultSet result = select.executeQuery();
 		Vector<Profil> merkzettelProfile = new Vector<Profil>();

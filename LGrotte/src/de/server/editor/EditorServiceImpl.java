@@ -297,7 +297,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	public void deleteMerkzettel(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++){
-			MerkzettelMapper.merkzettelMapper().deleteMerkzettel(emails.elementAt(i));
+			Merkzettel mz = new Merkzettel();
+			mz.setGemerktesProfil(emails.elementAt(i));
+			mz.setMerkendesProfil(user.getEmail());
+			MerkzettelMapper.merkzettelMapper().deleteMerkzettel(mz);
 		}
 	}
 
