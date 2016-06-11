@@ -5,6 +5,7 @@ import java.util.Vector;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
@@ -20,6 +21,10 @@ import de.shared.RO.ProfilReport;
 public class ReportEntry implements EntryPoint {
 
 	private ReportServiceAsync reportService;
+	private Button alleAnzeigenButton = new Button("Alle Profle");
+	private Button meinProfilButton = new Button("Mein Profil");
+	private Button gesperrteProfile = new Button("Gesperrte Profile");
+	private Button gemerkteProfile = new Button("Gemerkte Profile");
 
 	public void onModuleLoad() {
 		reportService = ClientSideSettings.getReportService();
@@ -31,6 +36,10 @@ public class ReportEntry implements EntryPoint {
 			}
 			public void onSuccess(Profil result) {
 				RootPanel.get().add(new Label("Eingeloggter User: " + result.getEmail()));
+				RootPanel.get().add(alleAnzeigenButton);
+				RootPanel.get().add(meinProfilButton);
+				RootPanel.get().add(gesperrteProfile);
+				RootPanel.get().add(gemerkteProfile);
 				
 				reportService.setUser(result, new AsyncCallback(){
 					public void onFailure(Throwable caught) {
