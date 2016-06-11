@@ -1,10 +1,7 @@
 package de.server.report;
 
-import java.util.Date;
 import java.util.Vector;
 
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.server.db.EigenschaftMapper;
@@ -31,9 +28,9 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		user = p;
 	}
 
-	public Vector<ProfilEigenschaft> getProfilInfos() throws Exception {
+	private Vector<ProfilInformation> getProfilInfos(String email) throws Exception {
 
-		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(user.getEmail());
+		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(email);
 	}
 
 	public void init() throws IllegalArgumentException {
@@ -47,7 +44,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	public ProfilReport getProfilReport(String email) throws Exception {
 
-		Profil p = ProfilMapper.profilMapper().getProfilByEmail(user.getEmail());
+		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
 
 		ProfilReport report = new ProfilReport();
 
@@ -82,8 +79,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		report.addAttribut(religion);
 		report.addAttribut(raucher);
 		
-		
-		Vector<ProfilEigenschaft> profilinfos = getProfilInfos();
+		Vector<ProfilInformation> profilinfos = getProfilInfos(email);
 		
 		for(int i = 0; i < profilinfos.size(); i++){
 			ProfilEigenschaft pe = new ProfilEigenschaft();
@@ -94,6 +90,16 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	
 		return report;
 
+	}
+	
+	public Vector<ProfilReport> getAllProfiles() throws Exception {
+		
+		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
+		Vector<ProfilReport> reports = new Vector<ProfilReport>();
+		for (int i = 0; i < profile.size(); i++) {
+			reports.add(getProfilReport(profile.elementAt(i).getEmail()));		
+		}
+		return reports;
 	}
 
 	@Override
