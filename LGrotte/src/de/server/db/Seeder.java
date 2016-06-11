@@ -5,6 +5,7 @@ import de.server.db.seeds.InfoSeeds;
 import de.server.db.seeds.MerkzettelSeeds;
 import de.server.db.seeds.ProfilInfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
+import de.server.db.seeds.SuchprofilInfoSeeds;
 
 public class Seeder {
 	/* !!Was ist das und warum?
@@ -55,30 +56,33 @@ public class Seeder {
 	/**Hier m�ssen die createTable() Methoden der Mapper eingef�gt werden 
 	 * @throws Exception */
 	private void migrate() throws Exception{
-		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
-		ProfilMapper.profilMapper().createProfilTable();
-		InfoMapper.infoMapper().createInfoTable();
-		ProfilinfoMapper.profilinfoMapper().createProfilInfo();
-		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
-		SuchprofilMapper.suchprofilMapper().createSuchprofilTable();
-		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
-		SuchprofilInfoMapper.suchprofilInfoMapper().createSuchProfilInfoTable();
+//		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
+//		ProfilMapper.profilMapper().createProfilTable();
+//		InfoMapper.infoMapper().createInfoTable();
+//		ProfilinfoMapper.profilinfoMapper().createProfilInfo();
+//		MerkzettelMapper.merkzettelMapper().createMerkzettelTable();
+//		SuchprofilMapper.suchprofilMapper().createSuchprofilTable();
+//		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
+//		SuchprofilInfoMapper.suchprofilInfoMapper().createSuchProfilInfoTable();
 //		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();    <-- brauch mer nimmer
 	}
 
 	private void seed() throws Exception{
-		//Profile
-		ProfilSeeds ps = new ProfilSeeds();
-		ps.seedProfilTable();
-		//Eigenschaften
-		EigenschaftSeeds es = new EigenschaftSeeds();
-		es.seedEigenschaftTable();
-		//Infos
-		InfoSeeds is = new InfoSeeds();
-		is.seedInfoTable();
-		//ProfilInfos
-		ProfilInfoSeeds pis = new ProfilInfoSeeds();
-		pis.seedProfilinfoTable();
+//		//Profile
+//		ProfilSeeds ps = new ProfilSeeds();
+//		ps.seedProfilTable();
+//		//Eigenschaften
+//		EigenschaftSeeds es = new EigenschaftSeeds();
+//		es.seedEigenschaftTable();
+//		//Infos
+//		InfoSeeds is = new InfoSeeds();
+//		is.seedInfoTable();
+//		//ProfilInfos
+//		ProfilInfoSeeds pis = new ProfilInfoSeeds();
+//		pis.seedProfilinfoTable();
+		SuchprofilInfoSeeds spis = new SuchprofilInfoSeeds();
+		spis.seedSuchprofilInfo();
+		
 		// MerkzettelSeeds
 		//MerkzettelSeeds mz = new MerkzettelSeeds();
 		//mz.seedMerkzettelTable();

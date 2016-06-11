@@ -26,7 +26,7 @@ public class SuchprofilMapper {
 	public void createSuchprofilTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createSuchprofil = (PreparedStatement) con.prepareStatement(
-				"CREATE TABLE IF NOT EXISTS suchprofil(suchprofilname varchar(30), "
+				"CREATE TABLE IF NOT EXISTS suchprofil(suchprofilname varchar(35), "
 				+ "geschlecht varchar(30), minAlter int(3), maxAlter int(3), "
 				+ "religion varchar(30), haarfarbe varchar(15), email varchar(35),"
 				+ "raucher varchar(30), minGroesse int(3), maxGroesse int(3),"

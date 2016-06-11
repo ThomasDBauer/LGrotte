@@ -41,7 +41,7 @@ public class SuchprofilInfoMapper {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
 				"INSERT INTO suchprofil_info (suchprofilname, email, info_id) VALUES "
-				+ "('" + spi.getProfil() + "','" + spi.getProfil() + "',"+spi.getInfo()+")");
+				+ "('" + spi.getSp() + "','" + spi.getProfil() + "',"+spi.getInfo()+")");
 		stmt.execute();
 	}
 
