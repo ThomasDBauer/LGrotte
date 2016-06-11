@@ -255,7 +255,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
 		ProfilinfoMapper.profilinfoMapper().deleteProfilInfo(pi);
 	}
-	
+
+	public Vector<Profil> getMerktettelProfileByOwner() throws Exception {
+		String email = user.getEmail();
+		return MerkzettelMapper.merkzettelMapper().getMerkzettelProfileByOwner(email);
+	}
+
+	public void deleteMerkzettel(Vector<String> emails) throws Exception {
+		for (int i = 0; i < emails.size(); i++){
+			MerkzettelMapper.merkzettelMapper().deleteMerkzettel(emails.elementAt(i));
+		}
+	}
 
 }
 
