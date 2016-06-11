@@ -5,6 +5,7 @@ import de.server.db.seeds.InfoSeeds;
 import de.server.db.seeds.MerkzettelSeeds;
 import de.server.db.seeds.ProfilInfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
+import de.server.db.seeds.SuchprofilInfoSeeds;
 
 public class Seeder {
 	/* !!Was ist das und warum?
@@ -67,7 +68,7 @@ public class Seeder {
 	}
 
 	private void seed() throws Exception{
-		//Profile
+//		//Profile
 		ProfilSeeds ps = new ProfilSeeds();
 		ps.seedProfilTable();
 		//Eigenschaften
@@ -79,6 +80,9 @@ public class Seeder {
 		//ProfilInfos
 		ProfilInfoSeeds pis = new ProfilInfoSeeds();
 		pis.seedProfilinfoTable();
+//		SuchprofilInfoSeeds spis = new SuchprofilInfoSeeds();
+//		spis.seedSuchprofilInfo();
+		
 		// MerkzettelSeeds
 		//MerkzettelSeeds mz = new MerkzettelSeeds();
 		//mz.seedMerkzettelTable();

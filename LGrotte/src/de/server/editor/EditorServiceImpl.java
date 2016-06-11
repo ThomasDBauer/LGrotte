@@ -13,6 +13,7 @@ import de.server.db.KontaktsperreMapper;
 import de.server.db.MerkzettelMapper;
 import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
+import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.EditorService;
 import de.shared.BO.Eigenschaft;
@@ -22,6 +23,8 @@ import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
+import de.shared.BO.SuchprofilInfo;
+import de.shared.RO.ProfilEigenschaft;
 
 /**
  * The server-side implementation of the RPC service.
@@ -222,28 +225,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			KontaktsperreMapper.kontaktsperreMapper().insertKontaktsperre(k);
 		}
 	}
-	// Infos einfÃ¼rgen
-	public void insertInfo(Info info) throws Exception {
-		
-		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
-				info.getEigenschaft(), info.getValue());
-		
-		if(infoID == 0){
-			InfoMapper.infoMapper().insertInfo(info);
-			infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
-					info.getEigenschaft(), info.getValue());
-		}
-		
-		ProfilInfo pi = new ProfilInfo();
-		pi.setInfoID(infoID);
-		pi.setProfilEmail(user.getEmail());
-		insertProfilInfo(pi);		
-	}
-
-	// ProfilInfos einfÃ¼gen
-	public void insertProfilInfo(ProfilInfo pi) throws Exception {
-		ProfilinfoMapper.profilinfoMapper().insertProfilInfo(pi);
-	}
+	
 	
 	public void deleteInfo(Info info) throws Exception {
 		InfoMapper.infoMapper().deleteInfo(info);
@@ -252,10 +234,72 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		pi.setProfilEmail(user.getEmail());
 		deleteProfilInfo(pi);
 	}
+	
+	
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
 		ProfilinfoMapper.profilinfoMapper().deleteProfilInfo(pi);
 	}
 	
+	// ProfilInfos Hauptmethode
+	public void insertProfilInfo(Info info) throws Exception {
+		// Verarbeitung der Info und Auslesen der ID
+		int infoID = insertInfo(info);
+		// Aufbau des ProfilInfo-Objekts
+		ProfilInfo pi = new ProfilInfo();
+		pi.setInfoID(infoID);
+		pi.setProfilEmail(user.getEmail());
+		// Eintrag in die Datenbank
+		ProfilinfoMapper.profilinfoMapper().insertProfilInfo(pi);
+	}
+
+	// SuchprofilInfos Hauptmethode
+	public void insertSuchprofilInfo(Suchprofil sp, Info info) throws Exception {
+		// Verarbeitung der Info und Auslesen der ID
+		int infoID = insertInfo(info);
+		// Aufbau des SuchprofilInfo-Objekts
+		SuchprofilInfo spi = new SuchprofilInfo();
+		spi.setInfo(infoID);
+		spi.setProfil(user.getEmail());
+		spi.setSp(sp.getSuchprofilname());
+		// Eintrag in die DB
+		SuchprofilInfoMapper.suchprofilInfoMapper().insertSuchprofilInfo(spi);
+	}
+
+	// Hilfsmethode für insertSuchprofilInfo() und ProfilInfo()
+	// Checkt, ob es die Info bereits gibt. Gibt in jedem Fall
+	// die InfoID zurück, damit die beiden n:m Tabellen damit
+	//bestückt werden können.
+	private int insertInfo(Info info) throws Exception {
+		// check, ob die Info bereits besteht und Auslesen der ID
+		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
+				info.getEigenschaft(), info.getValue());
+		// falls nicht, Schreiben der neuen Info und Auslesen der ID
+		if (infoID == 0) {
+			InfoMapper.infoMapper().insertInfo(info);
+			infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
+					info.getEigenschaft(), info.getValue());
+		}
+		// zurückgeben der ID
+		return infoID;
+	}
+	
+	public Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception{
+		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
+				user.getEmail());
+	}
+
+	
+
+	public Vector<Profil> getMerktettelProfileByOwner() throws Exception {
+		String email = user.getEmail();
+		return MerkzettelMapper.merkzettelMapper().getMerkzettelProfileByOwner(email);
+	}
+
+	public void deleteMerkzettel(Vector<String> emails) throws Exception {
+		for (int i = 0; i < emails.size(); i++){
+			MerkzettelMapper.merkzettelMapper().deleteMerkzettel(emails.elementAt(i));
+		}
+	}
 
 }
 

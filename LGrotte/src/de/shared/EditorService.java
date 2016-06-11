@@ -12,6 +12,7 @@ import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
+import de.shared.RO.ProfilEigenschaft;
 
 /**
  * The client-side stub for the RPC service.
@@ -40,7 +41,9 @@ public interface EditorService extends RemoteService {
 
 	Vector<Eigenschaft> getEigenschaften() throws Exception;
 
-	void insertInfo(Info info) throws Exception;
+	void insertProfilInfo(Info info) throws Exception;
+	
+	void insertSuchprofilInfo(Suchprofil sp, Info info) throws Exception;
 
 	Vector<Suchprofil> getSuchprofile() throws Exception;
 
@@ -50,15 +53,21 @@ public interface EditorService extends RemoteService {
 	
 	void insertMerkzettel(Vector<String> emails) throws Exception;
 	
+	void deleteMerkzettel(Vector<String> emails) throws Exception;
+	
 	Vector<Merkzettel> getMerkzettelByOwner() throws Exception;
+	
+	Vector<Profil> getMerktettelProfileByOwner() throws Exception;
 	
 	void insertKontaktsperren(Vector<String>emails) throws Exception;
 	
 	Suchprofil getSuchprofileByName(String suchprofilname) throws Exception;
 	
-	void insertProfilInfo(ProfilInfo pi) throws Exception;
+//	void insertProfilInfo(ProfilInfo pi) throws Exception;
 	
 	void deleteInfo(Info info) throws Exception;
 	
 	void deleteProfilInfo(ProfilInfo pi) throws Exception;
+	
+	Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception;
 }

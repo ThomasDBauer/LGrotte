@@ -8,6 +8,8 @@ import java.util.Vector;
 
 import de.server.db.DBConnection;
 import de.shared.BO.ProfilInfo;
+import de.shared.RO.ProfilAttribut;
+import de.shared.RO.ProfilEigenschaft;
 import de.shared.RO.ProfilInformation;
 
 public class ProfilinfoMapper {
@@ -135,19 +137,19 @@ public class ProfilinfoMapper {
 		return profilInfos;
 	}
 	
-	public Vector <ProfilInformation> getProfilInfosByEmail(String email) throws Exception{
+	public Vector <ProfilEigenschaft> getProfilInfosByEmail(String email) throws Exception{
 		
 		Connection conn = DBConnection.connection();
 		
 		PreparedStatement select = conn.prepareStatement("SELECT info_id FROM "
 				+ "profil_info WHERE email = '" + email + "'");
 		
-		Vector<ProfilInformation>profilinfos = new Vector<ProfilInformation>();
+		Vector<ProfilEigenschaft>profilinfos = new Vector<ProfilEigenschaft>();
 		
 		ResultSet result = select.executeQuery();
 		
 		while(result.next()){
-			ProfilInformation pi = getInfosForProfil(result.getInt("info_id"));
+			ProfilEigenschaft pi = getInfosForProfil(result.getInt("info_id"));
 			profilinfos.add(pi);
 		}
 		
@@ -156,7 +158,7 @@ public class ProfilinfoMapper {
 	}
 	
 	
-	public ProfilInformation getInfosForProfil(int infoID) throws Exception{
+	private ProfilEigenschaft getInfosForProfil(int infoID) throws Exception{
 		
 		Connection conn = DBConnection.connection();
 		
@@ -166,14 +168,14 @@ public class ProfilinfoMapper {
 		
 		ResultSet result = select.executeQuery();
 		
-		ProfilInformation pi = new ProfilInformation();
+		ProfilEigenschaft pa = new ProfilEigenschaft();
 
 		while(result.next()){
-			pi.setName(result.getString("erlauterung"));
-			pi.setWert(result.getString("value"));
+			pa.setName(result.getString("erlauterung"));
+			pa.setWert(result.getString("value"));
 		}
 		
-		return pi;
+		return pa;
 		
 	}
 	

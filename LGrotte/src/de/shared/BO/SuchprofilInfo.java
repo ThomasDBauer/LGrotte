@@ -1,10 +1,6 @@
-package de.shared.RO;
+package de.shared.BO;
 
-import de.shared.BO.Info;
-import de.shared.BO.Profil;
-import de.shared.BO.Suchprofil;
-
-public class SuchprofilInformation {
+public class SuchprofilInfo {
 	
 	//Das Name des Suchprofils
 	private String sp;

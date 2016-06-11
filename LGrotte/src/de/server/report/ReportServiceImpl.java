@@ -101,6 +101,16 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 		return reports;
 	}
+	
+	public Vector<ProfilReport> getAllProfiles() throws Exception {
+		
+		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
+		Vector<ProfilReport> reports = new Vector<ProfilReport>();
+		for (int i = 0; i < profile.size(); i++) {
+			reports.add(getProfilReport(profile.elementAt(i).getEmail()));		
+		}
+		return reports;
+	}
 
 	@Override
 	public String showProfilReport(String email) throws Exception {

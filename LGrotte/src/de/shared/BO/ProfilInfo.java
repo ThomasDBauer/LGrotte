@@ -4,10 +4,15 @@ public class ProfilInfo extends BusinessObject{
 
 	private static final long serialVersionUID = 1L;
 
+	//Foreign Key auf das zugehörige Profil
 	private String profilEmail;
+	
+	//Foreign Key auf die Info. Siehe @class Info
 	private int infoID;
 	
 	
+	
+	//Get und Set Methoden
 	public String getProfilEmail() {
 		return profilEmail;
 	}
