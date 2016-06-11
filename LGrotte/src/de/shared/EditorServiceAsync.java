@@ -38,7 +38,9 @@ public interface EditorServiceAsync {
 	
 	void getEigenschaften(AsyncCallback<Vector<Eigenschaft>> callback) throws Exception;
 	
-	void insertInfo(Info info, AsyncCallback callback) throws Exception;
+	void insertProfilInfo(Info info, AsyncCallback callback) throws Exception;
+	
+	void insertSuchprofilInfo(Suchprofil sp, Info info, AsyncCallback callback) throws Exception;
 	
 	void getSuchprofile(AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
 	
@@ -54,7 +56,7 @@ public interface EditorServiceAsync {
 	
 	void getSuchprofileByName(String suchprofilname, AsyncCallback<Suchprofil> callback) throws Exception;
 	
-	void insertProfilInfo(ProfilInfo pi, AsyncCallback callback) throws Exception;
+//	void insertProfilInfo(ProfilInfo pi, AsyncCallback callback) throws Exception;
 	
 	void deleteInfo(Info info, AsyncCallback callback) throws Exception;
 	

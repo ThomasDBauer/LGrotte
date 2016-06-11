@@ -40,7 +40,9 @@ public interface EditorService extends RemoteService {
 
 	Vector<Eigenschaft> getEigenschaften() throws Exception;
 
-	void insertInfo(Info info) throws Exception;
+	void insertProfilInfo(Info info) throws Exception;
+	
+	void insertSuchprofilInfo(Suchprofil sp, Info info) throws Exception;
 
 	Vector<Suchprofil> getSuchprofile() throws Exception;
 
@@ -56,7 +58,7 @@ public interface EditorService extends RemoteService {
 	
 	Suchprofil getSuchprofileByName(String suchprofilname) throws Exception;
 	
-	void insertProfilInfo(ProfilInfo pi) throws Exception;
+//	void insertProfilInfo(ProfilInfo pi) throws Exception;
 	
 	void deleteInfo(Info info) throws Exception;
 	

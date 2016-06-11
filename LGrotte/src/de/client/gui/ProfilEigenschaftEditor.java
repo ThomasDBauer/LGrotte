@@ -91,7 +91,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 				info.setEigenschaft(eigenschaftsID);
 				info.setValue(eigenschaftenTextboxen.elementAt(i).getText());
 				try {
-					ClientSideSettings.getEditorService().insertInfo(info, new InsertInfoCallback());
+					ClientSideSettings.getEditorService().insertProfilInfo(info, new InsertInfoCallback());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
