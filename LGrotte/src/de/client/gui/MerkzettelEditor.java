@@ -27,9 +27,7 @@ public class MerkzettelEditor extends VerticalPanel {
 	private VerticalPanel resultPanel = new VerticalPanel();
 	private Vector<String> getProfil = new Vector<String>();
 	private Vector<String> emailBuffer = new Vector<String>();
-	private boolean asyncBack = false;
-	private int row;
-
+	// private Vector<Profil> gemerkteProfile = new Vector<Profil>();
 	// FlexCellFormatter = table.getCellFormatter();
 
 	private Label profilLabel = new Label("ProfilName    ");
@@ -42,20 +40,28 @@ public class MerkzettelEditor extends VerticalPanel {
 		this.add(controlPanel);
 		this.add(resultPanel);
 		loadMerkzettel();
+		MerkzettelProfile mzP = new MerkzettelProfile(getProfil);
+		for (int i = 0; i < mzP.merkzettelProfileV.size(); i++) {
+			Profil p = new Profil();
+			CheckBox cb = new CheckBox();
+			cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
+			Label name = new Label("Name: " + p.getFname() + " " + p.getLname());
+			flexTable.setWidget(i, 0, cb);
+			flexTable.setWidget(i, 1, name);
+		}
+		resultPanel.clear();
+		flexTable.clear();
+		resultPanel.add(flexTable);
+		getProfil.clear();
 	}
 
 	public void loadMerkzettel() throws Exception {
-		// resultPanel.clear();
-		// flexTable.clear();
-		// resultPanel.add(flexTable);
-		// getProfil.clear();
-		// loadProfil();
+		resultPanel.clear();
+		flexTable.clear();
+		resultPanel.add(flexTable);
+		getProfil.clear();
 		ClientSideSettings.getEditorService().getMerkzettelByOwner(
 				new GetMerkzettelByOwnerCallback());
-		
-		if(getProfil.size() == row){
-			loadProfil();
-		}
 	}
 
 	private class GetMerkzettelByOwnerCallback implements
@@ -74,90 +80,27 @@ public class MerkzettelEditor extends VerticalPanel {
 
 				for (int i = 0; i < result.size(); i++) {
 					Merkzettel mz = result.elementAt(i);
-					row = i;
 					getProfil.addElement(mz.getGemerktesProfil());
 				}
-				
-				asyncBack = true;
+
 			}
 		}
 	}
 
-	public void loadProfil() throws Exception {
-		resultPanel.clear();
-		flexTable.clear();
-		resultPanel.add(flexTable);
-		getProfil.clear();
-		for (int i = 0; i < getProfil.size(); i++) {
-			String mail = getProfil.elementAt(i);
-			ClientSideSettings.getEditorService().getProfilEintraege(mail,
-					new getProfileMerkzettelCallback());
-		}
-	}
+	private class CheckProfilHandler implements ClickHandler {
+		private String userEmail;
 
-	private class getProfileMerkzettelCallback implements AsyncCallback<Profil> {
-
-		public void onFailure(Throwable caught) {
-			RootPanel.get().add(
-					new Label(caught.toString()
-							+ " @FindLove.GetProfileCallback GetPr"));
+		public CheckProfilHandler(String email) {
+			this.userEmail = email;
 		}
 
-		public void onSuccess(Profil result) {
-			CheckBox cb = new CheckBox();
-			cb.addClickHandler(new CheckProfilHandler(result.getEmail()));
-			Label name = new Label("Name: " + result.getFname() + " "
-					+ result.getLname());
-			flexTable.setWidget(row, 0, cb);
-			flexTable.setWidget(row, 1, name);
-		}
-
-		// try {
-		// ClientSideSettings.getEditorService().getProfilEintraege(
-		// mz.getGemerktesProfil(),
-		// new getProfileMerkzettelCallback());
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// RootPanel.get("Inhalt_unten").add(new
-		// Label("GetProilEintraeg Fail"));
-		// }
-		// private class getProfileMerkzettelCallback implements
-		// AsyncCallback<Profil> {
-		//
-		// public void onFailure(Throwable caught) {
-		// RootPanel.get().add(
-		// new Label(caught.toString()
-		// + " @FindLove.GetProfileCallback GetPr"));
-		// }
-		//
-		// public void onSuccess(Profil result) {
-		// CheckBox cb = new CheckBox();
-		// cb.addClickHandler(new CheckProfilHandler(result.getEmail()));
-		// Label name = new Label("Name: " + result.getFname() + " "
-		// + result.getLname());
-		// flexTable.setWidget(row, 0, cb);
-		// flexTable.setWidget(row, 1, name);
-		// }
-
-		// }
-
-		private class CheckProfilHandler implements ClickHandler {
-			private String userEmail;
-
-			public CheckProfilHandler(String email) {
-				this.userEmail = email;
-			}
-
-			public void onClick(ClickEvent e) {
-				CheckBox cb = (CheckBox) e.getSource();
-				if (!cb.getValue()) {
-					emailBuffer.remove(userEmail);
-				} else {
-					emailBuffer.add(userEmail);
-				}
+		public void onClick(ClickEvent e) {
+			CheckBox cb = (CheckBox) e.getSource();
+			if (!cb.getValue()) {
+				emailBuffer.remove(userEmail);
+			} else {
+				emailBuffer.add(userEmail);
 			}
 		}
-
 	}
-
 }
