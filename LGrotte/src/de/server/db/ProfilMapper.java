@@ -87,10 +87,9 @@ public class ProfilMapper {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
 				("INSERT INTO PROFIL (email, fname, lname, koerpergroesse, geschlecht, religion,"
-						+ "haarfarbe, geburtsdatum, raucher) VALUES ('"+p.getEmail()+"','"+p.getFname()+"','"+
+						+ "haarfarbe, raucher) VALUES ('"+p.getEmail()+"','"+p.getFname()+"','"+
 						p.getLname()+"',"+p.getKoerpergroesse()+",'"+p.getGeschlecht()+"','"+
-						p.getReligion()+"','"+p.getHaarfarbe()+"','"+p.getGeburtsdatum()+"','"+
-						p.getRaucher()+"')");
+						p.getReligion()+"','"+p.getHaarfarbe()+"','"+ p.getRaucher()+"')");
 		insert.execute();
 		
 	}	

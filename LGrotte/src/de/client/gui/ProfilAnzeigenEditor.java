@@ -23,9 +23,9 @@ public class ProfilAnzeigenEditor extends VerticalPanel{
 		private Label bday = new Label();
 		
 		public ProfilAnzeigenEditor() {
-			Profil mail = new Profil();
 			try {
-				ClientSideSettings.getEditorService().getProfilEintraege(mail.getEmail(), new ProfilAnzeigenCallback());
+				ClientSideSettings.getEditorService().getProfilEintraege(
+						new ProfilAnzeigenCallback());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

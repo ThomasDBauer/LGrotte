@@ -38,7 +38,6 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 			}
 			//if (bestehendesProfil == null && user != null)
 			p.setLoggedIn(true);
-			p.setGeburtsdatum(new Date(1, 1, 1));
 			p.setEmail(user.getEmail());
 			p.setLogoutUrl(userService.createLogoutURL(requestUri));
 			ProfilMapper.profilMapper().insertProfil(p);
