@@ -5,10 +5,13 @@ import java.util.Vector;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -131,10 +134,14 @@ public class FindLove extends VerticalPanel {
 					findLovePanel.addStyleName("findLove-Panel");
 					table.setWidget(i, 0, cb);
 					table.setWidget(i, 1, findLovePanel);
+					Button anzeigen = new Button("Test");
+					findLovePanel.add(anzeigen);
+					anzeigen.addDoubleClickHandler(new FremdesPAClickHandler());
 
 					// in einem VerticalPanel zwei Horizontal
 
 				}
+				
 
 				// for (int i = 0; i < result.size(); i++) {
 				// Profil p = result.elementAt(i);
@@ -155,6 +162,24 @@ public class FindLove extends VerticalPanel {
 		}
 	}
 
+	private class FremdesPAClickHandler implements DoubleClickHandler {
+		public void onDoubleClick(DoubleClickEvent event) {
+			RootPanel.get("Inhalt_unten").clear();
+			RootPanel.get("Mitte").clear();
+			RootPanel.get("Einstellungen").clear();
+			RootPanel.get("Inhalt_oben").clear();
+			RootPanel.get("Inhalt_oben")
+			.add(new HTML(
+					"<h2 style = \"color: #c0c0c0\">Fremd Profil</h2>"));
+			try{
+			RootPanel.get("Inhalt_unten").add(new FremdesProfilAnzeigenEditor());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}	
+	}
+	
 	private class CheckProfilHandler implements ClickHandler {
 		private String userEmail;
 
