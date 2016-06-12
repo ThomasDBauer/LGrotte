@@ -291,8 +291,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 
 	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
-		String email = user.getEmail();
-		return MerkzettelMapper.merkzettelMapper().getMerkzettelProfileByOwner(email);
+		return MerkzettelMapper.merkzettelMapper().
+				getMerkzettelProfileByOwner(user.getEmail());
 	}
 
 	public void deleteMerkzettel(Vector<String> emails) throws Exception {
@@ -302,6 +302,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			mz.setMerkendesProfil(user.getEmail());
 			MerkzettelMapper.merkzettelMapper().deleteMerkzettel(mz);
 		}
+	}
+	
+	public void deleteKontaktsperre(Vector<String> emails) throws Exception {
+		for (int i = 0; i < emails.size(); i++){
+			Kontaktsperre ks = new Kontaktsperre();
+			ks.setGesperrtesProfil(emails.elementAt(i));
+			ks.setSperrendesProfil(user.getEmail());;
+			KontaktsperreMapper.kontaktsperreMapper().deleteKontaktsperre(ks);
+		}
+	}
+	
+	public Vector<Profil> getKontaktsperrenByOwner() throws Exception {
+		return KontaktsperreMapper.kontaktsperreMapper().
+				getKontaktsperreProfileByOwner(user.getEmail());
 	}
 
 }

@@ -72,6 +72,7 @@ public class KontaktsperreMapper {
 		Vector<Profil> merkzettelProfile = new Vector<Profil>();
 		while (result.next()) {
 			Profil p = new Profil();
+			p.setEmail(result.getString("email"));
 			p.setFname(result.getString("fname"));
 			p.setLname(result.getString("lname"));
 			merkzettelProfile.add(p);
@@ -79,13 +80,12 @@ public class KontaktsperreMapper {
 		return merkzettelProfile;
 	}
 	
-//	
-//	public void deleteKontaktsperre(Profil profil) throws Exception {
-//		Connection con = (Connection) DBConnection.connection();
-//		PreparedStatement deleteKontaktsperre = (PreparedStatement) con.prepareStatement(
-//				"DELETE FROM kontaktsperre WHERE gesperrtesProfil='" + profil.getId() + "'");
-//		deleteKontaktsperre.execute();
-//	}
-	
+	public void deleteKontaktsperre(Kontaktsperre ks) throws Exception {
+		Connection con = (Connection) DBConnection.connection();
+		PreparedStatement deleteKontaktsperre = (PreparedStatement) con.prepareStatement(
+				"DELETE FROM kontaktsperre WHERE gesperrtesProfil='" + ks.getGesperrtesProfil()+ "'"
+				+ " AND sperrendesProfil='" + ks.getSperrendesProfil() + "'");
+		deleteKontaktsperre.execute();
+	}
 	
 }

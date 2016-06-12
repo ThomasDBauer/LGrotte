@@ -19,7 +19,7 @@ import de.shared.BO.Profil;
 
 public class KontaktsperreEditor extends VerticalPanel {
 
-	private VerticalPanel thisPanel = new VerticalPanel();
+	private VerticalPanel thisPanel = this;
 	private FlexTable table = new FlexTable();
 	private Vector<String> emailBuffer = new Vector<String>();
 	private Button merkButton = new Button("Kontaktsperre aufheben", new AufhebenHandler());
@@ -33,6 +33,8 @@ public class KontaktsperreEditor extends VerticalPanel {
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
 		loadProfiles();
+		this.add(controlPanel);
+		this.add(resultPanel);
 	}
 
 	public void loadProfiles() throws Exception {
@@ -98,7 +100,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 		public void onClick(ClickEvent e) {
 			merkButton.setEnabled(false);
 			try {
-				ClientSideSettings.getEditorService().deleteMerkzettel(
+				ClientSideSettings.getEditorService().deleteKontaktsperre(
 						emailBuffer, new DeleteCallback());
 			} catch (Exception e2) {
 				e2.printStackTrace();
