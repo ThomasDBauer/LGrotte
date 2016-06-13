@@ -18,6 +18,9 @@ import de.shared.BO.Profil;
 
 public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 	
+		
+		private Profil p;
+	
 		private VerticalPanel vpanel = this;
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
 		private Vector<String> emailBuffer = new Vector<String>();
@@ -34,16 +37,29 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		private Label raucherLabel = new Label();
 		private Label bdayLabel = new Label();
 		
-		public FremdesProfilAnzeigenEditor() {
+		
+		public FremdesProfilAnzeigenEditor(Profil profil) {
+			this.p = profil;
 			
-			try {
-				ClientSideSettings.getEditorService().getProfilesForEditor(
-						new ProfilAnzeigenCallback());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				ClientSideSettings.getEditorService().getProfilesForEditor(
+//						new ProfilAnzeigenCallback());
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 	
+			CheckBox cb = new CheckBox();
+			cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
+			fnameLabel.setText(p.getFname());
+			lnameLabel.setText(p.getLname());
+			geschlechtLabel.setText(p.getGeschlecht());
+			haarfarbeLabel.setText(p.getHaarfarbe());
+			koerperLabel.setText(Integer.toString(p.getKoerpergroesse()));
+			religionLabel.setText(p.getReligion());
+			raucherLabel.setText(p.getRaucher());
+			bdayLabel.setText(String.valueOf(p.getGeburtsdatum()));	
+			
 			profilAnzeigenTable.setWidget(0, 0, buttonPanel);
 			
 			profilAnzeigenTable.setWidget(1, 0, new Label("Vorname"));
@@ -86,16 +102,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 
 					Profil p = result.elementAt(i);
 
-					CheckBox cb = new CheckBox();
-					cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
-					fnameLabel.setText(p.getFname());
-					lnameLabel.setText(p.getLname());
-					geschlechtLabel.setText(p.getGeschlecht());
-					haarfarbeLabel.setText(p.getHaarfarbe());
-					koerperLabel.setText(Integer.toString(p.getKoerpergroesse()));
-					religionLabel.setText(p.getReligion());
-					raucherLabel.setText(p.getRaucher());
-					bdayLabel.setText(String.valueOf(p.getGeburtsdatum()));	
+					
 				}
 			}	
 		}

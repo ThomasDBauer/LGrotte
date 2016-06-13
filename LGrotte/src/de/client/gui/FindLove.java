@@ -136,7 +136,7 @@ public class FindLove extends VerticalPanel {
 					table.setWidget(i, 1, findLovePanel);
 					Button anzeigen = new Button("Test");
 					findLovePanel.add(anzeigen);
-					anzeigen.addClickHandler(new FremdesPAClickHandler());
+					anzeigen.addClickHandler(new FremdesPAClickHandler(p));
 
 					// in einem VerticalPanel zwei Horizontal
 
@@ -163,6 +163,13 @@ public class FindLove extends VerticalPanel {
 	}
 
 	private class FremdesPAClickHandler implements ClickHandler {
+		
+		private Profil profil;
+		
+		public FremdesPAClickHandler(Profil profil){
+			this.profil = profil;
+		}
+		
 		public void onClick(ClickEvent event) {
 			RootPanel.get("Inhalt_unten").clear();
 			RootPanel.get("Mitte").clear();
@@ -172,7 +179,7 @@ public class FindLove extends VerticalPanel {
 			.add(new HTML(
 					"<h2 style = \"color: #c0c0c0\">Fremd Profil</h2>"));
 			try{
-			RootPanel.get("Inhalt_unten").add(new FremdesProfilAnzeigenEditor());
+			RootPanel.get("Inhalt_unten").add(new FremdesProfilAnzeigenEditor(profil));
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
