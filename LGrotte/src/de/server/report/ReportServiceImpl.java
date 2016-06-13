@@ -7,11 +7,14 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.server.db.EigenschaftMapper;
 import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
+import de.server.db.SuchprofilMapper;
 import de.shared.ReportService;
+import de.shared.BO.Aehnlichkeitsmass;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
+import de.shared.RO.Match;
 import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
 import de.shared.RO.ProfilInformation;
@@ -78,6 +81,10 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			report.addEigenschaft(profilinfos.elementAt(i));
 		}
 		
+		Match m = new Match(aehnlichkeitBerechnen(p));
+		
+		report.setMatch(m);
+		
 		return report;
 
 	}
@@ -94,13 +101,19 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 
 	
-	public int aehnlichkeitBerechnen(Suchprofil suchprofil, Profil vergleich){
+	public int aehnlichkeitBerechnen(Profil vergleich) throws Exception{
 		
 		int aehnlichkeit = 0;
 		
-//		if(suchprofil.g)
+		Suchprofil suchprofil = SuchprofilMapper.suchprofilMapper().getSuchprofiByName("DickeFrauen");
 		
-		return 0;
+		if(suchprofil.getRaucher().equals(vergleich.getRaucher())) aehnlichkeit += 10;
+		if(suchprofil.getMinGroesse() < vergleich.getKoerpergroesse() &&
+				suchprofil.getMaxGroesse() > vergleich.getKoerpergroesse())aehnlichkeit += 10;
+		if(suchprofil.getReligion().equals(vergleich.getReligion()))aehnlichkeit += 10;
+//		if(suchprofil.getMinAlter())
+		
+		return aehnlichkeit;
 	}
 	
 	
