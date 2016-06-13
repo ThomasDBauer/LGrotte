@@ -1,5 +1,7 @@
 package de.shared.RO;
 
+import de.shared.BO.Info;
+
 public class ProfilAttribut extends ProfilInformation{
 
 	/**
@@ -12,6 +14,31 @@ public class ProfilAttribut extends ProfilInformation{
 	 *         
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Info info;
+
+	@Override
+	public String getName() {
+		return super.getName();
+	}
+
+	@Override
+	public void setName(String name) {
+		super.setName(name);
+	}
+
+	@Override
+	public String getWert() {
+		return info.getValue();
+	}
+
+	public Info getInfo() {
+		return info;
+	}
+
+	public void setInfo(Info info) {
+		this.info = info;
+	}
 	
 	
 	
