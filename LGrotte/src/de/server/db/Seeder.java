@@ -64,6 +64,7 @@ public class Seeder {
 		SuchprofilMapper.suchprofilMapper().createSuchprofilTable();
 		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
 		SuchprofilInfoMapper.suchprofilInfoMapper().createSuchProfilInfoTable();
+		BesucheMapper.besucheMapper().createBesucheTable();
 //		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();    <-- brauch mer nimmer
 	}
 
