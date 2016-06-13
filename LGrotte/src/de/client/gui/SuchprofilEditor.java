@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -175,6 +176,11 @@ public class SuchprofilEditor extends VerticalPanel {
 				groessenPanel.add(new Label(" bis "));
 				groessenPanel.add(maxGroesseTextBox);
 				anlegenTable.setWidget(4, 1, groessenPanel);
+				
+				minGroesseTextBox.setVisibleLength(3);
+				minGroesseTextBox.setMaxLength(3);
+				maxGroesseTextBox.setVisibleLength(3);
+				maxGroesseTextBox.setMaxLength(3);
 
 				anlegenTable.setWidget(5, 0, religionLabel);
 				anlegenTable.setWidget(5, 1, religionListBox);
@@ -185,6 +191,11 @@ public class SuchprofilEditor extends VerticalPanel {
 				alterPanel.add(new Label(" bis "));
 				alterPanel.add(maxAlterTextBox);
 				anlegenTable.setWidget(6, 1, alterPanel);
+				
+				minAlterTextBox.setVisibleLength(3);
+				minAlterTextBox.setMaxLength(3);
+				maxAlterTextBox.setVisibleLength(3);
+				maxAlterTextBox.setMaxLength(3);
 
 
 				// Anheften an Panels
@@ -221,6 +232,27 @@ public class SuchprofilEditor extends VerticalPanel {
 				alterPanel.clear();
 				groessenPanel.clear();
 				speichernButtonPanel.clear();
+				
+					String input = minAlterTextBox.getText();
+					if (!input.matches("[0-9]*")) {
+						Window.alert("'"+ minAlterTextBox.getText() + "'hat keine gültiges Symbol");
+						return;
+					}
+					String input2 = maxAlterTextBox.getText();
+					if (!input2.matches("[0-9]*")) {
+						Window.alert("'"+ maxAlterTextBox.getText() + "'hat keine gültiges Symbol");
+						return;
+					}
+					String input3 = minGroesseTextBox.getText();
+					if (!input3.matches("[0-9]*")) {
+						Window.alert("'"+ minGroesseTextBox.getText() + "'hat keine gültiges Symbol");
+						return;
+					}
+					String input4 = maxGroesseTextBox.getText();
+					if (!input4.matches("[0-9]*")) {
+						Window.alert("'"+ maxGroesseTextBox.getText() + "'hat keine gültiges Symbol");
+						return;
+					}
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde angelegt "
 						+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
@@ -277,11 +309,11 @@ public class SuchprofilEditor extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				try {
 					ClientSideSettings.getEditorService().updateSuchprofil(geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex()),
-							Integer.parseInt(minAlterTextBox.getText()), Integer.parseInt(maxAlterTextBox.getText()),
+							Integer.parseInt(minAlterAnzeigenTextBox.getText()), Integer.parseInt(maxAlterAnzeigenTextBox.getText()),
 							religionListBox.getItemText(religionListBox.getSelectedIndex()),
 							haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex()),
 							raucherListBox.getItemText(raucherListBox.getSelectedIndex()), 
-							Integer.parseInt(minGroesseTextBox.getText()), Integer.parseInt(maxGroesseTextBox.getText()),
+							Integer.parseInt(minGroesseAnzeigenTextBox.getText()), Integer.parseInt(maxGroesseAnzeigenTextBox.getText()),
 							spListBox.getItemText(spListBox.getSelectedIndex()), 
 							new UpdateCallback());
 				} catch (NumberFormatException e) {
@@ -296,10 +328,33 @@ public class SuchprofilEditor extends VerticalPanel {
 				anzeigenTable.clear();
 				alterAnzeigenPanel.clear();
 				groessenAnzeigenPanel.clear();
+				
+				String input = minAlterAnzeigenTextBox.getText();
+				if (!input.matches("[0-9]*")) {
+					Window.alert("'"+ minAlterAnzeigenTextBox.getText() + "'hat keine gültiges Symbol");
+					return;
+				}
+				String input2 = maxAlterAnzeigenTextBox.getText();
+				if (!input2.matches("[0-9]*")) {
+					Window.alert("'"+ maxAlterAnzeigenTextBox.getText() + "'hat keine gültiges Symbol");
+					return;
+				}
+				String input3 = minGroesseAnzeigenTextBox.getText();
+				if (!input3.matches("[0-9]*")) {
+					Window.alert("'"+ minGroesseAnzeigenTextBox.getText() + "'hat keine gültiges Symbol");
+					return;
+				}
+				String input4 = maxGroesseAnzeigenTextBox.getText();
+				if (!input4.matches("[0-9]*")) {
+					Window.alert("'"+ maxGroesseAnzeigenTextBox.getText() + "'hat keine gültiges Symbol");
+					return;
+				}
+				
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde aktualisiert "
 						+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
 				this.popup.center();
+			
 			}
 			
 		}
@@ -396,6 +451,11 @@ public class SuchprofilEditor extends VerticalPanel {
 					anzeigenTable.setWidget(5, 1, groessenAnzeigenPanel);
 					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinAlter()));
 					maxGroesseAnzeigenTextBox.setText(Integer.toString(result.getMaxAlter()));
+					
+					minGroesseAnzeigenTextBox.setVisibleLength(3);
+					minGroesseAnzeigenTextBox.setMaxLength(3);
+					maxGroesseAnzeigenTextBox.setVisibleLength(3);
+					maxGroesseAnzeigenTextBox.setMaxLength(3);
 
 					
 					anzeigenTable.setWidget(6, 0, alterLabel);
@@ -406,6 +466,11 @@ public class SuchprofilEditor extends VerticalPanel {
 					anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
 					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
 					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
+					
+					minAlterAnzeigenTextBox.setVisibleLength(3);
+					minAlterAnzeigenTextBox.setMaxLength(3);
+					maxAlterAnzeigenTextBox.setVisibleLength(3);
+					maxAlterAnzeigenTextBox.setMaxLength(3);
 				
 				buttonPanel.add(loeschenPanel);
 				loeschenPanel.add(loeschenButton);
