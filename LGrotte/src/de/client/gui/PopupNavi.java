@@ -80,6 +80,7 @@ public class PopupNavi extends PopupPanel {
 						"<h2 style = \"color: #c0c0c0\">Deine Suchprofile</h2>"));
 				try {
 					RootPanel.get("Inhalt_unten").add(new SuchprofilEditor());
+					RootPanel.get("Inhalt_unten").add(new SuchprofilInfoEditor());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
