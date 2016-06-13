@@ -64,7 +64,7 @@ public class PopupNavi extends PopupPanel {
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 //				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				try {
-					RootPanel.get("Content").add(new ProfilEditor());
+					RootPanel.get("Inhalt_unten").add(new ProfilEditor());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
