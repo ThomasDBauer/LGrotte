@@ -11,6 +11,7 @@ import de.shared.ReportService;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Profil;
+import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
 import de.shared.RO.ProfilInformation;
@@ -63,14 +64,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		raucher.setName("Raucher");
 		raucher.setWert(p.getRaucher());
 
-		// ProfilAttribut koerpergroesse = new ProfilAttribut();
-		// koerpergroesse.setName("Körpergröße");
-		// koerpergroesse.setWert(p.getKoerpergroesse());
-
-		// ProfilAttribut geburtsdatum = new ProfilAttribut();
-		// geburtsdatum.setName("Geburtsdatum");
-		// geburtsdatum.setWert(p.getGeburtsdatum().toString());
-
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
 		report.addAttribut(religion);
@@ -85,22 +78,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			report.addEigenschaft(profilinfos.elementAt(i));
 		}
 		
-//		
-//		
-//		if(profilinfos != null){
-//			for(int i = 0; i < profilinfos.size(); i++){
-//				ProfilEigenschaft pe = new ProfilEigenschaft();
-//				Info info = new Info();
-//				info.setValue(profilinfos.elementAt(i).getWert());
-//				Eigenschaft e = new Eigenschaft();
-//				e.setErlaeuterung(profilinfos.elementAt(i).getName());
-//				pe.setEigenschaft(e);
-//				pe.setInfo(info);
-//				report.addEigenschaft(pe);
-//			}
-//		}
-		
-	
 		return report;
 
 	}
@@ -114,4 +91,18 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 		return reports;
 	}
+
+
+	
+	public int aehnlichkeitBerechnen(Suchprofil suchprofil, Profil vergleich){
+		
+		int aehnlichkeit = 0;
+		
+//		if(suchprofil.g)
+		
+		return 0;
+	}
+	
+	
+	
 }

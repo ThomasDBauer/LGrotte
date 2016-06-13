@@ -1,6 +1,9 @@
 package de.shared.BO;
 
 import java.util.Date;
+import java.util.Vector;
+
+import de.shared.RO.ProfilEigenschaft;
 
 public class Suchprofil extends BusinessObject{
 	
@@ -11,6 +14,8 @@ public class Suchprofil extends BusinessObject{
 	
 	private String suchprofilname, profil, haarfarbe, religion, raucher, geschlecht;
 	private int minGroesse, maxGroesse, minAlter, maxAlter;
+	private Vector<ProfilEigenschaft> profileigenschaften = new Vector<ProfilEigenschaft>();
+	
 	
 	
 	public String getSuchprofilname() {
@@ -72,6 +77,12 @@ public class Suchprofil extends BusinessObject{
 	}
 	public void setMaxGroesse(int maxGroesse) {
 		this.maxGroesse = maxGroesse;
+	}
+	public Vector<ProfilEigenschaft> getProfileigenschaften() {
+		return profileigenschaften;
+	}
+	public void setProfileigenschaften(Vector<ProfilEigenschaft> profileigenschaften) {
+		this.profileigenschaften = profileigenschaften;
 	}
 	
 	
