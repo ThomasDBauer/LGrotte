@@ -80,6 +80,8 @@ public interface EditorServiceAsync {
 	
 	void getProfilEigenschaften(AsyncCallback<Vector<ProfilEigenschaft>>callback) throws Exception;
 	
+	void getProfilEigenschaften(String email, AsyncCallback<Vector<ProfilEigenschaft>>callback) throws Exception;
+	
 	void getKontaktsperrenByOwner(AsyncCallback<Vector<Profil>>callback) throws Exception;
 	
 	void deleteKontaktsperre(Vector<String> emails, AsyncCallback callback);
