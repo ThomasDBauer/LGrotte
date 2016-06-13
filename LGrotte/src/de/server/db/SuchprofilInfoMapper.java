@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
+import de.shared.BO.Eigenschaft;
+import de.shared.BO.Info;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
 import de.shared.BO.SuchprofilInfo;
@@ -53,8 +55,9 @@ public class SuchprofilInfoMapper {
 		Connection conn = DBConnection.connection();
 		
 		PreparedStatement select = conn.prepareStatement("SELECT infos.value, "
-				+ "eigenschaft.erlauterung FROM infos JOIN eigenschaft ON "
-				+ "infos.eigenschaft_id = eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
+				+ "infos.info_id, eigenschaft.erlauterung, eigenschaft.eigenschaft_id "
+				+ "FROM infos JOIN eigenschaft ON infos.eigenschaft_id = "
+				+ "eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
 		
 		ResultSet result = select.executeQuery();
 		
@@ -63,6 +66,18 @@ public class SuchprofilInfoMapper {
 		while(result.next()){
 			pe.setName(result.getString("erlauterung"));
 			pe.setWert(result.getString("value"));
+			
+			Info info = new Info();
+			info.setEigenschaft(result.getInt("eigenschaft_id"));
+			info.setId(result.getInt("info_id"));
+			info.setValue(result.getString("value"));
+			
+			Eigenschaft eigenschaft = new Eigenschaft();
+			eigenschaft.setErlaeuterung(result.getString("erlauterung"));
+			eigenschaft.setId(result.getInt("eigenschaft_id"));
+
+			pe.setInfo(info);
+			pe.setEigenschaft(eigenschaft);
 		}
 		
 		return pe;
@@ -73,7 +88,9 @@ public class SuchprofilInfoMapper {
 		Connection conn = DBConnection.connection();
 		PreparedStatement select = conn.prepareStatement("SELECT info_id FROM "
 				+ "suchprofil_info WHERE email = '" + email + "' AND suchprofilname = '" + spname + "'");
+		
 		Vector<ProfilEigenschaft> suchprofilinfos = new Vector<ProfilEigenschaft>();
+		
 		ResultSet result = select.executeQuery();
 		while(result.next()){
 			ProfilEigenschaft pi = getSPInfosByInfoID(result.getInt("info_id"));

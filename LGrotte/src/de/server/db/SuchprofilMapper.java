@@ -115,4 +115,6 @@ public class SuchprofilMapper {
 					+ "suchprofilname='" + sp.getSuchprofilname() + "' AND email='" + sp.getProfil() + "'");								
 			update.execute();
 		}
+		
+		
 }

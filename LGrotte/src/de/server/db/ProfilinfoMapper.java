@@ -86,55 +86,6 @@ public class ProfilinfoMapper {
 		stmt.execute();
 	}
 	
-//	public ProfilInfo getInfobyEmail() throws Exception{
-//		
-//	}
-
-	
-	// public ProfilInfo getProfilInfo(int profilID){
-	// //Eigentlich m�sste geProfilInfo ein Vetor oder einen Array mit der
-	// Anzahl aller Info-ID�s zur�ckgeben
-	// Connection connection = DBConnection.connection();
-	//
-	// try{
-	// Statement stmt = connection.createStatement();
-	// ResultSet rs =
-	// stmt.executeQuery("SELECT `Eigenschaft-id` FROM `profilinfo` WHERE
-	// `Profil-id`='"
-	// + profilID + "'");
-	//
-	// while(rs.next()){
-	// ProfilInfo pi = new ProfilInfo();
-	// pi.setProfilID(profilID);
-	// }
-	//
-	// }
-	// catch(Exception e2){
-	// e2.printStackTrace();
-	// }
-	//
-	//
-	// return null;
-	// }
-
-//	public Vector<ProfilEigenschaft> getProfilInfos() throws Exception {
-//		Connection conn = DBConnection.connection();
-//		Vector<ProfilEigenschaft> profilInfos = new Vector<ProfilEigenschaft>();
-//
-//		try {
-//			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
-//			ResultSet rs = stmt.executeQuery("SELECT email, info_id FROM profil_info"
-//					+ "Order BY id");
-//
-//			while (rs.next()) {
-//				profilInfos.add(getInfosForProfil(rs.getInt("info_id")));
-//			}
-//		} catch (Exception e2) {
-//			e2.printStackTrace();
-//		}
-//
-//		return profilInfos;
-//	}
 	
 	public Vector <ProfilEigenschaft> getProfilInfosByEmail(String email) throws Exception{
 		
