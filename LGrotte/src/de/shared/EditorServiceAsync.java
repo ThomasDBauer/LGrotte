@@ -83,4 +83,6 @@ public interface EditorServiceAsync {
 	void getKontaktsperrenByOwner(AsyncCallback<Vector<Profil>>callback) throws Exception;
 	
 	void deleteKontaktsperre(Vector<String> emails, AsyncCallback callback);
+	
+	void insertBesuch(Profil besuchtesProfil, AsyncCallback callback) throws Exception;
 }

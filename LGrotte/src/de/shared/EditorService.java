@@ -76,4 +76,6 @@ public interface EditorService extends RemoteService {
 	Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception;
 	
 	Vector<Profil> getKontaktsperrenByOwner() throws Exception;
+	
+	void insertBesuch(Profil besuchtesProfil) throws Exception;
 }

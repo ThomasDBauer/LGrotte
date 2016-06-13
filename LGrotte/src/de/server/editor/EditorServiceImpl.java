@@ -7,6 +7,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.client.ClientSideSettings;
 import de.client.TestService;
+import de.server.db.BesucheMapper;
 import de.server.db.EigenschaftMapper;
 import de.server.db.InfoMapper;
 import de.server.db.KontaktsperreMapper;
@@ -16,6 +17,7 @@ import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.EditorService;
+import de.shared.BO.Besuch;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Kontaktsperre;
@@ -320,6 +322,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public Vector<Profil> getKontaktsperrenByOwner() throws Exception {
 		return KontaktsperreMapper.kontaktsperreMapper().
 				getKontaktsperreProfileByOwner(user.getEmail());
+	}
+	
+	public void insertBesuch(Profil besuchtesProfil) throws Exception{
+		Besuch b = new Besuch();
+		b.setBesuchendesProfil(user);
+		b.setBesuchtesProfil(besuchtesProfil);
+		BesucheMapper.besucheMapper().insertBesuch(b);
 	}
 
 }

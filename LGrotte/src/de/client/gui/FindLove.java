@@ -180,6 +180,19 @@ public class FindLove extends VerticalPanel {
 					"<h2 style = \"color: #c0c0c0\">Fremd Profil</h2>"));
 			try{
 			RootPanel.get("Inhalt_unten").add(new FremdesProfilAnzeigenEditor(profil));
+			ClientSideSettings.getEditorService().insertBesuch(profil, new AsyncCallback(){
+				public void onFailure(Throwable caught) {
+					RootPanel.get().add(new Label(
+							"FindLove.FremdesPAClickHandler " + caught.toString()));
+				}
+
+				@Override
+				public void onSuccess(Object result) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
