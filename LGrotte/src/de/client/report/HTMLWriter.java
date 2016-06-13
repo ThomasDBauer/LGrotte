@@ -37,7 +37,7 @@ public class HTMLWriter {
 		/*
 		 * Der Header des Reports wird aufgerufen
 		 */
-		sb.append("Das ist Dein Liebes-Report " + report.getHeader());
+		sb.append("Profil von " + report.getHeader());
 
 		/*
 		 * Style der einzelnen Report-Elemente
@@ -55,12 +55,12 @@ public class HTMLWriter {
 		}
 		sb.append("<br>");
 
-		for (int i = 0; i < report.getEigenschaften().size(); i++) {
-			sb.append(report.getEigenschaften().elementAt(i).getName());
-			sb.append(": ");
-			sb.append(report.getEigenschaften().elementAt(i).getWert());
-			sb.append("<br>");
-		}
+//		for (int i = 0; i < report.getEigenschaften().size(); i++) {
+//			sb.append(report.getEigenschaften().elementAt(i).getName());
+//			sb.append(": ");
+//			sb.append(report.getEigenschaften().elementAt(i).getWert());
+//			sb.append("<br>");
+//		}
 
 		sb.append("</div>");
 

@@ -52,15 +52,15 @@ public class ReportEntry implements EntryPoint {
 		});
 
 		try {
-			reportService.getAllProfiles(new AsyncCallback<Vector<ProfilReport>>() {
+			reportService.getAllReports(new AsyncCallback<Vector<ProfilReport>>() {
 
 				public void onFailure(Throwable caught) {
-
+					RootPanel.get().add(new Label("ReportEntry.getAllProfilesCallback "
+							+caught.toString() ));
 				}
 
 				@Override
 				public void onSuccess(Vector<ProfilReport> result) {
-
 					HTMLWriter writer = new HTMLWriter();
 					writer.process(result);
 					RootPanel.get().add(new HTML(writer.getReportText()));
@@ -71,26 +71,7 @@ public class ReportEntry implements EntryPoint {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-//		try {
-//			reportService.getProfilInfos(new AsyncCallback<Vector<ProfilInformation>>() {
-//				public void onFailure(Throwable caught) {
-//					
-//				}
-//				public void onSuccess(Vector<ProfilInformation> result) {
-//					FlexTable table = new FlexTable();
-//					for(int i = 0; i < result.size(); i++){
-//						table.setWidget(i, 0, new Label(result.elementAt(i).getName()));
-//						table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
-//					}
-//					RootPanel.get().add(table);
-//				}
-//			});
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	
 	}
 
 }

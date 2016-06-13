@@ -8,6 +8,8 @@ import de.server.db.EigenschaftMapper;
 import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
 import de.shared.ReportService;
+import de.shared.BO.Eigenschaft;
+import de.shared.BO.Info;
 import de.shared.BO.Profil;
 import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
@@ -28,11 +30,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		user = p;
 	}
 
-	private Vector<ProfilEigenschaft> getProfilInfos(String email) throws Exception {
-
-		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(email);
-	}
-
 	public void init() throws IllegalArgumentException {
 		this.profilMapper = ProfilMapper.profilMapper();	
 		this.eigenschaftMapper = EigenschaftMapper.eigenschaftMapper();
@@ -41,7 +38,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public String hallo() {
 		return "Hallo, ich bin der ReportService";
 	}
-
+	
 	public ProfilReport getProfilReport(String email) throws Exception {
 
 		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
@@ -79,20 +76,30 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		report.addAttribut(religion);
 		report.addAttribut(raucher);
 		
-		Vector<ProfilEigenschaft> profilinfos = getProfilInfos(email);
 		
-		for(int i = 0; i < profilinfos.size(); i++){
-			ProfilEigenschaft pe = new ProfilEigenschaft();
-			pe.setName(profilinfos.elementAt(i).getName());
-			pe.setWert(profilinfos.elementAt(i).getWert());
-			report.addEigenschaft(pe);
-		}
+//		Vector<ProfilEigenschaft> profilinfos = ProfilinfoMapper.profilinfoMapper().
+//				getProfilInfosByEmail(email);
+//		
+//		
+//		if(profilinfos != null){
+//			for(int i = 0; i < profilinfos.size(); i++){
+//				ProfilEigenschaft pe = new ProfilEigenschaft();
+//				Info info = new Info();
+//				info.setValue(profilinfos.elementAt(i).getWert());
+//				Eigenschaft e = new Eigenschaft();
+//				e.setErlaeuterung(profilinfos.elementAt(i).getName());
+//				pe.setEigenschaft(e);
+//				pe.setInfo(info);
+//				report.addEigenschaft(pe);
+//			}
+//		}
+		
 	
 		return report;
 
 	}
 	
-	public Vector<ProfilReport> getAllProfiles() throws Exception {
+	public Vector<ProfilReport> getAllReports() throws Exception {
 		
 		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
 		Vector<ProfilReport> reports = new Vector<ProfilReport>();
@@ -100,48 +107,5 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			reports.add(getProfilReport(profile.elementAt(i).getEmail()));		
 		}
 		return reports;
-	}
-
-	@Override
-	public String showProfilReport(String email) throws Exception {
-		Profil p = ProfilMapper.profilMapper().getProfilByEmail(email);
-		StringBuffer sb = new StringBuffer();
-		sb.append("<div style = \"border:1px solid black; margin: 10px; background-color: #F6CED8;\">");
-		sb.append("<h2>" + p.getFname() + " " + p.getLname() + "<br/>" + "</h2>");
-		sb.append("<b>" + "Email: " + "</b>" + p.getEmail() + " ");
-		sb.append("<b>" + "Raucher: " + "</b>" + p.getRaucher() + " ");
-		sb.append("<b>" + "Religion: " + "</b>" + p.getReligion());
-		sb.append("</div>");
-		return sb.toString();
-	}
-
-	public String showAllProfiles() throws Exception {
-
-		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < profile.size(); i++) {
-			sb.append(showProfilReport(profile.elementAt(i).getEmail()));
-		}
-		return sb.toString();
-	}
-
-	public String showImpressum() throws Exception {
-		StringBuffer sb = new StringBuffer();
-		sb.append("<div style = \"color: black\">");
-		// sb.append("<h2 style = \"color: black\">Impressum</h2>");
-		sb.append("<div class>" + "<b>Angaben gem‰ﬂ ß5 TMG:</b>" + "<p>LiebesGrotte<br />" + "Nobelstraﬂe 10<br />"
-				+ "70569 Stuttgart" + "</p>" + "<b>Kontakt:</b>" + "<table><tr>" + "<td>Telefon:</td>"
-				+ "<td>+49 711 8923 10</td></tr>" + "<tr><td>E-Mail:</td>" + "<td>LG(at)hdm-stuttgart.de</td>"
-				+ "</tr></table><p></div>");
-		return sb.toString();
-
-	}
-
-	@Override
-	public String showMyProfile(String email) throws Exception {
-		Profil profil = ProfilMapper.profilMapper().getProfilByEmail(email);
-		StringBuffer sb = new StringBuffer();
-		sb.append(showProfilReport(profil.getEmail()));
-		return sb.toString();
 	}
 }

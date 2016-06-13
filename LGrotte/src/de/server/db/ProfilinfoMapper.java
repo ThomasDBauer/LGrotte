@@ -117,27 +117,24 @@ public class ProfilinfoMapper {
 	// return null;
 	// }
 
-	public Vector<ProfilInfo> getProfilInfos() throws Exception {
-		Connection conn = DBConnection.connection();
-		Vector<ProfilInfo> profilInfos = new Vector<ProfilInfo>();
-
-		try {
-			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT email, info_id FROM profil_info"
-					+ "Order BY id");
-
-			while (rs.next()) {
-				ProfilInfo pi = new ProfilInfo();
-				pi.setInfoID(Integer.parseInt(rs.getString("info_id")));
-				pi.setProfilEmail(rs.getString("email"));
-				profilInfos.addElement(pi);
-			}
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-
-		return profilInfos;
-	}
+//	public Vector<ProfilEigenschaft> getProfilInfos() throws Exception {
+//		Connection conn = DBConnection.connection();
+//		Vector<ProfilEigenschaft> profilInfos = new Vector<ProfilEigenschaft>();
+//
+//		try {
+//			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
+//			ResultSet rs = stmt.executeQuery("SELECT email, info_id FROM profil_info"
+//					+ "Order BY id");
+//
+//			while (rs.next()) {
+//				profilInfos.add(getInfosForProfil(rs.getInt("info_id")));
+//			}
+//		} catch (Exception e2) {
+//			e2.printStackTrace();
+//		}
+//
+//		return profilInfos;
+//	}
 	
 	public Vector <ProfilEigenschaft> getProfilInfosByEmail(String email) throws Exception{
 		
@@ -171,7 +168,7 @@ public class ProfilinfoMapper {
 		
 		ResultSet result = select.executeQuery();
 		
-		ProfilEigenschaft pa = new ProfilEigenschaft();
+		ProfilEigenschaft pe = new ProfilEigenschaft();
 
 		while(result.next()){
 			Info info = new Info();
@@ -183,11 +180,11 @@ public class ProfilinfoMapper {
 			eigenschaft.setErlaeuterung(result.getString("erlauterung"));
 			eigenschaft.setId(result.getInt("eigenschaft_id"));
 
-			pa.setInfo(info);
-			pa.setEigenschaft(eigenschaft);
+			pe.setInfo(info);
+			pe.setEigenschaft(eigenschaft);
 		}
 		
-		return pa;
+		return pe;
 		
 	}
 	

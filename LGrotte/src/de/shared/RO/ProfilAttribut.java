@@ -15,8 +15,6 @@ public class ProfilAttribut extends ProfilInformation{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Info info;
-
 	@Override
 	public String getName() {
 		return super.getName();
@@ -29,17 +27,12 @@ public class ProfilAttribut extends ProfilInformation{
 
 	@Override
 	public String getWert() {
-		return info.getValue();
+		return super.getWert();
 	}
 
-	public Info getInfo() {
-		return info;
+	public void setWert(String wert){
+		super.setWert(wert);
 	}
-
-	public void setInfo(Info info) {
-		this.info = info;
-	}
-	
 	
 	
 }

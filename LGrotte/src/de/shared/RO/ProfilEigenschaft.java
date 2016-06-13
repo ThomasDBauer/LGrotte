@@ -6,7 +6,7 @@ import de.shared.BO.Info;
 public class ProfilEigenschaft extends ProfilInformation {
 
 	/**
-	 * @author Thomas Bauer, Sedat
+	 * @author Thomas Bauer, Sedat Akar
 	 * 
 	 *         Kombiniert als Report-Object die @class ProfilInfo. Trägt also
 	 *         eine Kombination aus @class Eigenschaft und @class Info, zugehörig
@@ -43,6 +43,7 @@ public class ProfilEigenschaft extends ProfilInformation {
 	}
 
 	public String getWert() {
+		//null check
 		return info.getValue();
 	}
 
