@@ -6,16 +6,20 @@ import java.util.Date;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -68,6 +72,8 @@ public class MeinProfilEditor extends VerticalPanel {
 			e.printStackTrace();
 		}
 		
+		
+		
 		flexTable.setWidget(0, 1, fNameTextBox);
 		flexTable.setWidget(0, 0, fNameLabel);
 		
@@ -82,6 +88,10 @@ public class MeinProfilEditor extends VerticalPanel {
 		
 		flexTable.setWidget(4, 1, koerpergroesseTextBox);
 		flexTable.setWidget(4, 0, koerpergroesseLabel);
+		koerpergroesseTextBox.setVisibleLength(3);
+		koerpergroesseTextBox.setMaxLength(3);
+		
+	
 		
 		flexTable.setWidget(5, 1, religionListBox);
 		flexTable.setWidget(5, 0, religionLabel);
@@ -169,25 +179,42 @@ public class MeinProfilEditor extends VerticalPanel {
 		
 	}
 	private class ProfilUpdateClickHandler implements ClickHandler{
+		
+		private PopupPanel popup;
+		
 		public void onClick(ClickEvent event) {
-				Profil email = new Profil();
-				try {
-					ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), 
-					lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
-					getGeschlecht(), getReligion(), getHaarfarbe(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			Profil email = new Profil();
+				 
+			
+			try {
+				ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), 
+						lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
+						getGeschlecht(), getReligion(), getHaarfarbe(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+				
+				
+				String input = koerpergroesseTextBox.getText();
+				if (!input.matches("[0-9]*")) {
+					Window.alert("'"+ koerpergroesseTextBox.getText() + "'hat keine gültiges Symbol");
+					return;
 				}
-				panel.add(new Label("Profil wurde geändert!"));
-			
-			
-		}
-	}
-	
+				this.popup = new PopupPanel(true,true);
+				this.popup.add(new Label("Profil wurde aktualisiert "
+						+ "zum Ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
+				this.popup.center();
+				
+						
+					}
+					
+				}
+				  
 	// Profil löschen
 	private class ProfilLoeschenCallback implements AsyncCallback{
 		public void onFailure(Throwable caught) {
@@ -234,8 +261,12 @@ public class MeinProfilEditor extends VerticalPanel {
 				}
 			}
 			datumsBox.setValue(result.getGeburtsdatum());
+			
 		}
 		
 	}
 	
+	
+	
 }
+
