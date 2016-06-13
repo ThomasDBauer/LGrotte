@@ -19,6 +19,7 @@ public class HTMLWriter {
 	 * gibt es eine get() aber keine set() Methode.
 	 */
 	private String reportText;
+	private int report;
 
 	/*
 	 * Zum Auslesen des HTML Codes.
@@ -37,45 +38,48 @@ public class HTMLWriter {
 		/*
 		 * Der Header des Reports wird aufgerufen
 		 */
-		sb.append("Profil von " + report.getHeader());
 
 		/*
 		 * Style der einzelnen Report-Elemente
 		 */
-		sb.append("<br>");
 
-		for (int i = 0; i < report.getAttribute().size(); i++) {
-			sb.append("<div class = \"Report-Container\">");
-			sb.append(report.getAttribute().elementAt(i).getName() + ": " +
-					report.getAttribute().elementAt(i).getWert()
-					+ "<br>");
-			sb.append("</div>");
+		sb.append("<div class =\"Report-Container\">");
 
-		}
-		sb.append("<br>");
+		sb.append("<div class =\"Report-Aehnlichkeit\">");
+//		sb.append(report.getMatch().getMatchResult());
+		sb.append("</div>");
 
+		sb.append("<div class = \"Report-Eigenschaft\">");
 		for (int i = 0; i < report.getEigenschaften().size(); i++) {
 			sb.append(report.getEigenschaften().elementAt(i).getName());
 			sb.append(": ");
 			sb.append(report.getEigenschaften().elementAt(i).getWert());
-			sb.append("<br>");
+			sb.append("</br>");
 		}
-		
-		sb.append(Integer.toString(report.getMatch().getMatchResult()));
+		sb.append("</div>");
+
+		sb.append("<div class = \"Report-Attribut\">");
+		sb.append("Profil von " + report.getHeader());
+		sb.append("</br>");
+		for (int i = 0; i < report.getAttribute().size(); i++) {
+			sb.append(
+					report.getAttribute().elementAt(i).getName() + ": " + report.getAttribute().elementAt(i).getWert());
+			sb.append("</br>");
+		}
+		sb.append("</div>");
 
 		sb.append("</div>");
 
 		this.reportText = sb.toString();
 	}
 
-	public void process(Vector<ProfilReport>reports){
+	public void process(Vector<ProfilReport> reports) {
 		StringBuffer buffer = new StringBuffer();
-		for(int i = 0; i < reports.size(); i++){
+		for (int i = 0; i < reports.size(); i++) {
 			process(reports.elementAt(i));
 			buffer.append(this.reportText);
 		}
 		this.reportText = buffer.toString();
 	}
-	
-	
+
 }

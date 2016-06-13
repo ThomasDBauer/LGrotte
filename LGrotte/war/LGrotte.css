@@ -66,20 +66,41 @@ li a:hover {
 }
 
 .Report-Container {
-	background-color: red;
+	background-color: #ce1717;
+	height: 120px;
+	max-widht: 700px;
+	color: #fff;
 }
 
-.Report-Aehnilichkeit{
-	
+.Report-Aehnlichkeit{
+	float: left;
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	border: 1px solid #fff;
+	background-color: #f18585;
+ 	margin-bottom: 25px;
+	margin-top: 25px;
+	margin-left:40px;
 }
 
-.Report-Attribute{
-	
+.Report-Attribut{
+	margin-top: 25px;
+	margin-bottom: 10px;
+	margin-right: 33%;
+	margin-left: 15%;	
+/* 	background-color: #971111;
+ */	
 }
 
-.Report-Eigenschaften{
-	
-	
+.Report-Eigenschaft{
+	margin-top: 25px;
+	margin: 10px;
+	border-left: 1px solid black;
+	width: 30%;
+/* 	background-color: #971111;
+ */	float: right;
 }
 
 #Headline {
