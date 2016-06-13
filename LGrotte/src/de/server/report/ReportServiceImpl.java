@@ -77,8 +77,14 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		report.addAttribut(raucher);
 		
 		
-//		Vector<ProfilEigenschaft> profilinfos = ProfilinfoMapper.profilinfoMapper().
-//				getProfilInfosByEmail(email);
+		Vector<ProfilEigenschaft> profilinfos = ProfilinfoMapper.profilinfoMapper().
+				getProfilInfosByEmail(email);
+		
+		
+		for(int i = 0; i < profilinfos.size(); i++){
+			report.addEigenschaft(profilinfos.elementAt(i));
+		}
+		
 //		
 //		
 //		if(profilinfos != null){

@@ -55,30 +55,18 @@ public class HTMLWriter {
 		}
 		sb.append("<br>");
 
-//		for (int i = 0; i < report.getEigenschaften().size(); i++) {
-//			sb.append(report.getEigenschaften().elementAt(i).getName());
-//			sb.append(": ");
-//			sb.append(report.getEigenschaften().elementAt(i).getWert());
-//			sb.append("<br>");
-//		}
+		for (int i = 0; i < report.getEigenschaften().size(); i++) {
+			sb.append(report.getEigenschaften().elementAt(i).getName());
+			sb.append(": ");
+			sb.append(report.getEigenschaften().elementAt(i).getWert());
+			sb.append("<br>");
+		}
 
 		sb.append("</div>");
 
 		this.reportText = sb.toString();
 	}
 
-//	public void getAllProfiles(ProfilReport result) throws Exception {
-//		Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
-//		StringBuffer sb = new StringBuffer();
-//		for (int i = 0; i < profile.size(); i++){
-//			sb.append((profile.elementAt(i).getEmail()));
-//		}
-//		
-//		this.reportText = sb.toString();
-//
-//	}
-	
-	
 	public void process(Vector<ProfilReport>reports){
 		StringBuffer buffer = new StringBuffer();
 		for(int i = 0; i < reports.size(); i++){
