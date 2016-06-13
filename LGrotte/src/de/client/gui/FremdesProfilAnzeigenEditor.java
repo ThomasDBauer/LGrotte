@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
+import de.shared.RO.ProfilEigenschaft;
 
 public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 	
@@ -36,7 +37,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		private Label bdayLabel = new Label();
 		
 		
-		public FremdesProfilAnzeigenEditor(Profil profil) {
+		public FremdesProfilAnzeigenEditor(Profil profil) throws Exception {
 			this.p = profil;
 	
 			fnameLabel.setText(p.getFname());
@@ -77,9 +78,30 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			profilAnzeigenTable.addStyleName("findLove-table td");
 			profilAnzeigenTable.setWidth("45em");
 			
+			ClientSideSettings.getEditorService().getProfilEigenschaften(
+					profil.getEmail(), new ProfilEigenschaftenCallback());
+			
 			buttonPanel.add(merkenButton);
 			buttonPanel.add(sperrenButton);
 			this.add(profilAnzeigenTable);
+		}
+		
+		private class ProfilEigenschaftenCallback implements
+			AsyncCallback<Vector<ProfilEigenschaft>>{
+			public void onFailure(Throwable caught) {
+				RootPanel.get().add(new Label("FremdesProfilAnzeigen."
+						+ "ProfilEigenschaftenCallback " + caught.toString()));
+			}
+			public void onSuccess(Vector<ProfilEigenschaft> result) {
+				profilAnzeigenTable.setWidget(9, 0, new Label("------------------------------"));
+				profilAnzeigenTable.setWidget(10, 0, new Label("Eigenschaften"));
+				for(int i = 0; i < result.size(); i++){
+					profilAnzeigenTable.setWidget(11+i, 0, new Label(
+							result.elementAt(i).getName()));
+					profilAnzeigenTable.setWidget(11+i, 1, new Label(
+							result.elementAt(i).getWert()));
+				}
+			}
 		}
 		
 		private class MerkHandler implements ClickHandler {
