@@ -42,16 +42,15 @@ public class HTMLWriter {
 		/*
 		 * Style der einzelnen Report-Elemente
 		 */
-		sb.append(
-				"<div style = \"border:1px solid black; margin: 5; border-bottom: 4px solid #fff; padding: 10px; background: #B6E5FF; "
-						+ "text-align: left; font: 120%/1em arial, geneva, sans-serif; color: #000; width: 100%;"
-						+ "text-transform: uppercase; letter-spacing: 0.1em; width: auto;\">");
 		sb.append("<br>");
 
 		for (int i = 0; i < report.getAttribute().size(); i++) {
+			sb.append("<div class = \"Report-Container\">");
 			sb.append(report.getAttribute().elementAt(i).getName() + ": " +
 					report.getAttribute().elementAt(i).getWert()
 					+ "<br>");
+			sb.append("</div>");
+
 		}
 		sb.append("<br>");
 
@@ -61,6 +60,8 @@ public class HTMLWriter {
 			sb.append(report.getEigenschaften().elementAt(i).getWert());
 			sb.append("<br>");
 		}
+		
+		sb.append(Integer.toString(report.getMatch().getMatchResult()));
 
 		sb.append("</div>");
 
