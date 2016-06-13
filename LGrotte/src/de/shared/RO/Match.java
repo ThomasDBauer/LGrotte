@@ -18,6 +18,14 @@ public class Match implements Serializable{
 	 * ausgelesen.
 	 */
 	private int matchResult;
+	
+	public Match(){
+		
+	}
+	
+	public Match(int m){
+		matchResult = m;
+	}
 
 	public int getMatchResult() {
 		return matchResult;
