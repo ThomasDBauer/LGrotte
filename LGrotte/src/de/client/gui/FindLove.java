@@ -136,7 +136,7 @@ public class FindLove extends VerticalPanel {
 					table.setWidget(i, 1, findLovePanel);
 					Button anzeigen = new Button("Test");
 					findLovePanel.add(anzeigen);
-					anzeigen.addDoubleClickHandler(new FremdesPAClickHandler());
+					anzeigen.addClickHandler(new FremdesPAClickHandler());
 
 					// in einem VerticalPanel zwei Horizontal
 
@@ -162,8 +162,8 @@ public class FindLove extends VerticalPanel {
 		}
 	}
 
-	private class FremdesPAClickHandler implements DoubleClickHandler {
-		public void onDoubleClick(DoubleClickEvent event) {
+	private class FremdesPAClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
 			RootPanel.get("Inhalt_unten").clear();
 			RootPanel.get("Mitte").clear();
 			RootPanel.get("Einstellungen").clear();

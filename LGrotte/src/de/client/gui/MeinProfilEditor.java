@@ -62,7 +62,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 	public MeinProfilEditor(){
 		try {
-			ClientSideSettings.getEditorService().getProfilEintraege(new ProfilAuslesenCallback());
+			ClientSideSettings.getEditorService().getProfil(new ProfilAuslesenCallback());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

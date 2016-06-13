@@ -24,7 +24,7 @@ public class ProfilAnzeigenEditor extends VerticalPanel{
 		
 		public ProfilAnzeigenEditor() {
 			try {
-				ClientSideSettings.getEditorService().getProfilEintraege(
+				ClientSideSettings.getEditorService().getProfil(
 						new ProfilAnzeigenCallback());
 			} catch (Exception e) {
 				e.printStackTrace();

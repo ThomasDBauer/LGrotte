@@ -24,7 +24,9 @@ public interface EditorService extends RemoteService {
 	void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht, String religion,
 			String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException;
 	
-	Profil getProfilEintraege() throws Exception;
+	Profil getProfil() throws Exception;
+	
+	Profil getProfil(String email) throws Exception;
 	
 	void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum, String email) throws Exception;
