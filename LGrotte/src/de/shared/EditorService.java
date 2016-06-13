@@ -3,6 +3,7 @@ package de.shared;
 import java.util.Date;
 import java.util.Vector;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -74,6 +75,8 @@ public interface EditorService extends RemoteService {
 	void deleteProfilInfo(ProfilInfo pi) throws Exception;
 	
 	Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception;
+	
+	Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception;
 	
 	Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception;
 	
