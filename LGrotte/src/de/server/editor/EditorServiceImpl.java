@@ -233,6 +233,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 	}
 	
+	public void insertKontaktsperre(String email) throws Exception {
+			Kontaktsperre k = new Kontaktsperre();
+			k.setGesperrtesProfil(email);
+			k.setSperrendesProfil(user.getEmail());
+			KontaktsperreMapper.kontaktsperreMapper().insertKontaktsperre(k);
+	}
+	
+	public void insertMerkzettel(String email) throws Exception {
+			Merkzettel mz = new Merkzettel();
+			mz.setGemerktesProfil(email);
+			mz.setMerkendesProfil(user.getEmail());
+			MerkzettelMapper.merkzettelMapper().insertMerkzettel(mz);
+	}
+	
 	
 	public void deleteInfo(Info info) throws Exception {
 		ProfilInfo pi = new ProfilInfo();

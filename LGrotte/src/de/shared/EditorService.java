@@ -78,4 +78,8 @@ public interface EditorService extends RemoteService {
 	Vector<Profil> getKontaktsperrenByOwner() throws Exception;
 	
 	void insertBesuch(Profil besuchtesProfil) throws Exception;
+	
+	void insertMerkzettel(String email) throws Exception;
+	
+	void insertKontaktsperre(String email) throws Exception;
 }

@@ -21,13 +21,11 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		
 		private Profil p;
 	
-		private VerticalPanel vpanel = this;
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
-		private Vector<String> emailBuffer = new Vector<String>();
 		private FlexTable profilAnzeigenTable = new FlexTable();
 		
-		private Button merkenButton = new Button("Profil merken");
-		private Button sperrenButton = new Button("Profil sperren");
+		private Button merkenButton = new Button("Profil merken", new MerkHandler());
+		private Button sperrenButton = new Button("Profil sperren", new SperrHandler());
 		private Label fnameLabel = new Label();
 		private Label lnameLabel = new Label();
 		private Label geschlechtLabel = new Label();
@@ -40,17 +38,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		
 		public FremdesProfilAnzeigenEditor(Profil profil) {
 			this.p = profil;
-			
-//			try {
-//				ClientSideSettings.getEditorService().getProfilesForEditor(
-//						new ProfilAnzeigenCallback());
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 	
-			CheckBox cb = new CheckBox();
-			cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 			fnameLabel.setText(p.getFname());
 			lnameLabel.setText(p.getLname());
 			geschlechtLabel.setText(p.getGeschlecht());
@@ -94,46 +82,15 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			this.add(profilAnzeigenTable);
 		}
 		
-		private class ProfilAnzeigenCallback implements AsyncCallback<Vector<Profil>> {
-			public void onFailure(Throwable caught) {
-			}
-			public void onSuccess(Vector<Profil> result) {
-				for (int i = 0; i < result.size(); i++) {
-
-					Profil p = result.elementAt(i);
-
-					
-				}
-			}	
-		}
-		
-		private class CheckProfilHandler implements ClickHandler {
-			private String userEmail;
-
-			public CheckProfilHandler(String email) {
-				this.userEmail = email;
-			}
-
-			public void onClick(ClickEvent e) {
-				CheckBox cb = (CheckBox) e.getSource();
-				if (!cb.getValue()) {
-					emailBuffer.remove(userEmail);
-				} else {
-					emailBuffer.add(userEmail);
-				}
-			}
-		}
-		
 		private class MerkHandler implements ClickHandler {
 			public void onClick(ClickEvent e) {
 				merkenButton.setEnabled(false);
 				try {
 					ClientSideSettings.getEditorService().insertMerkzettel(
-							emailBuffer, new InsertCallback());
+							p.getEmail(), new InsertCallback());
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
-				emailBuffer.clear();
 			}
 		}
 		
@@ -142,8 +99,8 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			public void onClick(ClickEvent e) {
 				sperrenButton.setEnabled(false);
 				try {
-					ClientSideSettings.getEditorService().insertKontaktsperren(
-							emailBuffer, new InsertCallback());
+					ClientSideSettings.getEditorService().insertKontaktsperre(
+							p.getEmail(), new InsertCallback());
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -159,7 +116,6 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			public void onSuccess(Object result) {
 				sperrenButton.setEnabled(true);
 				merkenButton.setEnabled(true);
-				emailBuffer.clear();
 			}
 		}
 		

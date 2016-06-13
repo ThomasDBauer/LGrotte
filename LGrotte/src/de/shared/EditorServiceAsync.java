@@ -85,4 +85,8 @@ public interface EditorServiceAsync {
 	void deleteKontaktsperre(Vector<String> emails, AsyncCallback callback);
 	
 	void insertBesuch(Profil besuchtesProfil, AsyncCallback callback) throws Exception;
+	
+	void insertMerkzettel(String email, AsyncCallback callback) throws Exception;
+	
+	void insertKontaktsperre(String email, AsyncCallback callback) throws Exception;
 }
