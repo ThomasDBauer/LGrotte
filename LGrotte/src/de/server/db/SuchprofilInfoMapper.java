@@ -3,8 +3,10 @@ package de.server.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 import de.shared.BO.ProfilInfo;
+import de.shared.BO.Suchprofil;
 import de.shared.BO.SuchprofilInfo;
 import de.shared.RO.ProfilEigenschaft;
 import de.shared.RO.ProfilInformation;
@@ -64,6 +66,20 @@ public class SuchprofilInfoMapper {
 		}
 		
 		return pe;
+		
+	}
+	
+	public Vector <ProfilEigenschaft> getSuchprofilInfosByEmail(String email, String spname) throws Exception{
+		Connection conn = DBConnection.connection();
+		PreparedStatement select = conn.prepareStatement("SELECT info_id FROM "
+				+ "suchprofil_info WHERE email = '" + email + "' AND suchprofilname = '" + spname + "'");
+		Vector<ProfilEigenschaft> suchprofilinfos = new Vector<ProfilEigenschaft>();
+		ResultSet result = select.executeQuery();
+		while(result.next()){
+			ProfilEigenschaft pi = getSPInfosByInfoID(result.getInt("info_id"));
+			suchprofilinfos.add(pi);
+		}
+		return suchprofilinfos;
 		
 	}
 	

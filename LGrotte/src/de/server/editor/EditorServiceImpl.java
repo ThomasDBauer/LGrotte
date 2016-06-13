@@ -312,6 +312,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				email);
 	}
+	
+	public Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception{
+		return SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(user.getEmail(), spname);
+	}
 
 	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
 		return MerkzettelMapper.merkzettelMapper().
