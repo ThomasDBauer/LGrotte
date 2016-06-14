@@ -1,20 +1,43 @@
 package de.server.db.seeds;
 
-public class SuchprofilSeeds {
+import de.server.db.SuchprofilMapper;
+import de.shared.BO.Suchprofil;
 
-	private void seedSuchprofilTable(){
-		for(int i = 0; i < someValues.length; i++){
-			// Profil p = new Profil();
-			//ProfilMapper.profilMapper().insert(p);
-		}
+public class SuchprofilSeeds {
+	
+	
+
+	public void seedSuchprofilTable() throws Exception{
+		
+		Suchprofil sp = new Suchprofil();
+		sp.setGeschlecht("weiblich");
+		sp.setHaarfarbe("brunette");
+		sp.setMaxAlter(99);
+		sp.setMinAlter(18);
+		sp.setMinGroesse(140);
+		sp.setMaxGroesse(190);
+		sp.setProfil("thdobauer@gmail.com");
+		sp.setRaucher("Raucher");
+		sp.setReligion("Christlich");
+		sp.setSuchprofilname("DickeFrauen");
+		
+		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
+		
+		Suchprofil sp1 = new Suchprofil();
+		sp1.setGeschlecht("männlich");
+		sp1.setHaarfarbe("Glatze");
+		sp1.setMaxAlter(99);
+		sp1.setMinAlter(18);
+		sp1.setMinGroesse(140);
+		sp1.setMaxGroesse(190);
+		sp1.setProfil("thdobauer@gmail.com");
+		sp1.setRaucher("Raucher");
+		sp1.setRaucher("andere");
+		sp1.setSuchprofilname("RauchendeGlatzen");
+		
+		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp1);
+		
+		
 	}
 	
-	private int[]someValues = {
-		5, 6, 7, 12, 54, 2, 98, 1, 54, 90
-	};
-	
-	private String[]someOtherValues = {
-		"Thomas", "Hanna", "Dieter", "Gerd", "Mike",
-		"Kerstin", "Anna", "Peter", "Martin", "Tim"	
-	};
 }

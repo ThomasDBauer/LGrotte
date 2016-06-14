@@ -6,6 +6,7 @@ import de.server.db.seeds.MerkzettelSeeds;
 import de.server.db.seeds.ProfilInfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
 import de.server.db.seeds.SuchprofilInfoSeeds;
+import de.server.db.seeds.SuchprofilSeeds;
 
 public class Seeder {
 	/* !!Was ist das und warum?
@@ -83,6 +84,9 @@ public class Seeder {
 		pis.seedProfilinfoTable();
 //		SuchprofilInfoSeeds spis = new SuchprofilInfoSeeds();
 //		spis.seedSuchprofilInfo();
+		
+		SuchprofilSeeds sps = new SuchprofilSeeds();
+		sps.seedSuchprofilTable();
 		
 		// MerkzettelSeeds
 		//MerkzettelSeeds mz = new MerkzettelSeeds();
