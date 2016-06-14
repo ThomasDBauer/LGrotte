@@ -225,33 +225,36 @@ public class SuchprofilEditor extends VerticalPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				anzeigenTable.clear();
-				alterAnzeigenPanel.clear();
-				groessenAnzeigenPanel.clear();
-				anlegenTable.clear();
-				alterPanel.clear();
-				groessenPanel.clear();
-				speichernButtonPanel.clear();
 				
 					String input = minAlterTextBox.getText();
 					if (!input.matches("[0-9]*")) {
-						Window.alert("'"+ minAlterTextBox.getText() + "'hat keine gültiges Symbol");
+						Window.alert("'"+ minAlterTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
-					}
+					}else{
 					String input2 = maxAlterTextBox.getText();
 					if (!input2.matches("[0-9]*")) {
-						Window.alert("'"+ maxAlterTextBox.getText() + "'hat keine gültiges Symbol");
+						Window.alert("'"+ maxAlterTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 					String input3 = minGroesseTextBox.getText();
 					if (!input3.matches("[0-9]*")) {
-						Window.alert("'"+ minGroesseTextBox.getText() + "'hat keine gültiges Symbol");
+						Window.alert("'"+ minGroesseTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 					String input4 = maxGroesseTextBox.getText();
 					if (!input4.matches("[0-9]*")) {
-						Window.alert("'"+ maxGroesseTextBox.getText() + "'hat keine gültiges Symbol");
+						Window.alert("'"+ maxGroesseTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
+					}else {
+						
+						anzeigenTable.clear();
+						alterAnzeigenPanel.clear();
+						groessenAnzeigenPanel.clear();
+						anlegenTable.clear();
+						alterPanel.clear();
+						groessenPanel.clear();
+						speichernButtonPanel.clear();
+					}
 					}
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde angelegt "
@@ -286,7 +289,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
 					this.popup = new PopupPanel(true,true);
 					this.popup.add(new Label("Suchprofil wurde angelegt "
-							+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
+							+ "zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
 					this.popup.center();
 				}
 				
@@ -323,36 +326,40 @@ public class SuchprofilEditor extends VerticalPanel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				updatePanel.clear();
-				loeschenPanel.clear();
-				anzeigenTable.clear();
-				alterAnzeigenPanel.clear();
-				groessenAnzeigenPanel.clear();
 				
 				String input = minAlterAnzeigenTextBox.getText();
 				if (!input.matches("[0-9]*")) {
-					Window.alert("'"+ minAlterAnzeigenTextBox.getText() + "'hat keine gültiges Symbol");
+					Window.alert("'"+ minAlterAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 					return;
-				}
-				String input2 = maxAlterAnzeigenTextBox.getText();
-				if (!input2.matches("[0-9]*")) {
-					Window.alert("'"+ maxAlterAnzeigenTextBox.getText() + "'hat keine gültiges Symbol");
-					return;
-				}
-				String input3 = minGroesseAnzeigenTextBox.getText();
-				if (!input3.matches("[0-9]*")) {
-					Window.alert("'"+ minGroesseAnzeigenTextBox.getText() + "'hat keine gültiges Symbol");
-					return;
-				}
-				String input4 = maxGroesseAnzeigenTextBox.getText();
-				if (!input4.matches("[0-9]*")) {
-					Window.alert("'"+ maxGroesseAnzeigenTextBox.getText() + "'hat keine gültiges Symbol");
-					return;
+				} else {
+					String input2 = maxAlterAnzeigenTextBox.getText();
+					if (!input2.matches("[0-9]*")) {
+						Window.alert("'"+ maxAlterAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						return;
+					}
+				
+					String input3 = minGroesseAnzeigenTextBox.getText();
+					if (!input3.matches("[0-9]*")) {
+						Window.alert("'"+ minGroesseAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						return;
+					}
+					String input4 = maxGroesseAnzeigenTextBox.getText();
+					if (!input4.matches("[0-9]*")) {
+						Window.alert("'"+ maxGroesseAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						return;
+					
+				} else {			
+					updatePanel.clear();
+					loeschenPanel.clear();
+					anzeigenTable.clear();
+					alterAnzeigenPanel.clear();
+					groessenAnzeigenPanel.clear();
+					}
 				}
 				
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde aktualisiert "
-						+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
+						+ "zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
 				this.popup.center();
 			
 			}

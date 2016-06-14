@@ -202,12 +202,12 @@ public class MeinProfilEditor extends VerticalPanel {
 				
 					String input = koerpergroesseTextBox.getText();
 					if (!input.matches("[0-9]*")) {
-						Window.alert("'"+ koerpergroesseTextBox.getText() + "'hat keine gültiges Symbol");
+						Window.alert("'"+ koerpergroesseTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Profil wurde aktualisiert "
-						+ "zum Ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
+						+ "zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
 				this.popup.center();
 				
 						
