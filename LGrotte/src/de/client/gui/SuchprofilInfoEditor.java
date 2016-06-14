@@ -34,6 +34,21 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 		private ListBox spListBox = new ListBox();
 		
 		public SuchprofilInfoEditor() throws Exception {
+			
+			
+			ClientSideSettings.getEditorService().getSuchprofilEigenschaften("DickeFrauen", 
+					new AsyncCallback<Vector<ProfilEigenschaft>>(){
+
+						@Override
+						public void onFailure(Throwable caught) {
+							
+						}
+						public void onSuccess(Vector<ProfilEigenschaft> result) {
+							RootPanel.get().add(new Label(result.elementAt(0).getName()));
+							RootPanel.get().add(new Label(result.elementAt(0).getWert()));
+						}
+			});
+			
 			buttonPanel.add(addEigenschaftenButton);
 			listBoxPanel.add(spListBox);
 			this.add(listBoxPanel);
@@ -42,7 +57,7 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 			this.add(eigenschaftenPanel);
 			ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileCallback());
 			ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
-			//loadSuchprofilEigenschaften();
+//			loadSuchprofilEigenschaften();
 		}
 		
 		private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {
