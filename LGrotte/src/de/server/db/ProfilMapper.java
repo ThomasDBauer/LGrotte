@@ -68,10 +68,31 @@ public class ProfilMapper {
 			p.setEmail(rs.getString("email"));
 			profile.add(p);
 		}
-		
 		return profile;
-		
 	}
+	
+	public Vector<Profil> getProfileNachGeschlecht(String geschlecht) throws Exception {
+		Vector<Profil>profile = new Vector<Profil>();
+		Connection conn = (Connection) DBConnection.connection();
+		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
+				"SELECT * FROM PROFIL WHERE geschlecht = '"+geschlecht+"'");
+		ResultSet rs = select.executeQuery();
+		while(rs.next()){
+			Profil p = new Profil();
+			p.setFname(rs.getString("fname"));
+			p.setLname(rs.getString("lname"));
+			p.setGeschlecht(rs.getString("geschlecht"));
+			p.setHaarfarbe(rs.getString("haarfarbe"));
+			p.setKoerpergroesse(rs.getInt("koerpergroesse"));
+			p.setReligion(rs.getString("religion"));
+			p.setRaucher(rs.getString("raucher"));
+			p.setEmail(rs.getString("email"));
+			profile.add(p);
+		}
+		return profile;
+	}
+	
+	
 
 	public void createProfilTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
