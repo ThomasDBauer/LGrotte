@@ -46,7 +46,9 @@ public class HTMLWriter {
 		sb.append("<div class =\"Report-Container\">");
 
 		sb.append("<div class =\"Report-Aehnlichkeit\">");
-		sb.append(report.getMatch().getMatchResult());
+		sb.append("<div class =\"Report-Aehnlichkeit-Font\">");
+		sb.append(report.getMatch().getMatchResult() + " %");
+		sb.append("</div>");
 		sb.append("</div>");
 
 		sb.append("<div class = \"Report-Eigenschaft\">");

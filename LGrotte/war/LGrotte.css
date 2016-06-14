@@ -74,15 +74,25 @@ li a:hover {
 
 .Report-Aehnlichkeit{
 	float: left;
-	height: 70px;
-	width: 70px;
+	height: 80px;
+	width: 80px;
 	border-radius: 50%;
 	-moz-border-radius: 50%;
 	border: 1px solid #fff;
 	background-color: #f18585;
  	margin-bottom: 25px;
-	margin-top: 25px;
+	margin-top: 20px;
 	margin-left:40px;
+}
+
+.Report-Aehnlichkeit-Font{
+	font-size: 24px;
+	float: left;
+	height: 60px;
+	width: 60px;
+	margin-top: 20px;
+	margin-left:15px;
+	
 }
 
 .Report-Attribut{
