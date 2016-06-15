@@ -134,7 +134,7 @@ public class FindLove extends VerticalPanel {
 					findLovePanel.addStyleName("findLove-Panel");
 					table.setWidget(i, 0, cb);
 					table.setWidget(i, 1, findLovePanel);
-					Button anzeigen = new Button("Test");
+					Button anzeigen = new Button("Profil anzeigen");
 					findLovePanel.add(anzeigen);
 					anzeigen.addClickHandler(new FremdesPAClickHandler(p));
 

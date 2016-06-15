@@ -24,7 +24,7 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 
 		private VerticalPanel editPanel = new VerticalPanel();
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
-		private Button addEigenschaftenButton = new Button("+", new AddEigenschaftenClickHandler());
+		private Button addEigenschaftenButton = new Button("Wunsch-Eigenschaft hinzufügen", new AddEigenschaftenClickHandler());
 		private Button speicherButton = new Button("Speichern", new SpeichernClickHandler());
 		private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
 		private Vector<TextBox> infoTextboxen = new Vector<TextBox>();

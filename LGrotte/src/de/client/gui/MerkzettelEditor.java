@@ -20,7 +20,7 @@ import de.shared.BO.Profil;
 	public class MerkzettelEditor extends VerticalPanel {
 		private FlexTable table = new FlexTable();
 		private Vector<String> emailBuffer = new Vector<String>();
-		private Button merkButton = new Button("Merkzettel loeschen", new LoeschenHandler());
+		private Button merkButton = new Button("Profil löschen", new LoeschenHandler());
 		private VerticalPanel resultPanel = new VerticalPanel();
 
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
