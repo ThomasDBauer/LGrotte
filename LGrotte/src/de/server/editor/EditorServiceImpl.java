@@ -314,7 +314,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	public Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception{
-		return SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(user.getEmail(), spname);
+		return SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(user.getEmail(), "DickeFrauen");
 	}
 
 	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {

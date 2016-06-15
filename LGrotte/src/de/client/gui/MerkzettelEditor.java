@@ -18,16 +18,16 @@ import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 
 	public class MerkzettelEditor extends VerticalPanel {
+		private VerticalPanel thisPanel = this;
 		private FlexTable table = new FlexTable();
 		private Vector<String> emailBuffer = new Vector<String>();
 		private Button merkButton = new Button("Profil löschen", new LoeschenHandler());
 		private VerticalPanel resultPanel = new VerticalPanel();
+		private HorizontalPanel controlPanel = new HorizontalPanel();
 
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
 		public MerkzettelEditor() throws Exception {
-			HorizontalPanel controlPanel = new HorizontalPanel();
-			controlPanel.add(merkButton);
 			
 //			controlPanel.add(sperrButton);
 			table.addStyleName("findLove-table");
@@ -56,8 +56,9 @@ import de.shared.BO.Profil;
 			public void onSuccess(Vector<Profil> result) {
 				if (result.size() == 0) {
 					resultPanel.add(new Label("Keine Ergebnisse"));
+					merkButton.removeFromParent();
 				} else {
-
+					controlPanel.add(merkButton);
 					for (int i = 0; i < result.size(); i++) {
 
 						Profil p = result.elementAt(i);

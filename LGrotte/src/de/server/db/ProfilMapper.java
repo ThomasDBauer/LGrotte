@@ -44,11 +44,6 @@ public class ProfilMapper {
 		return p;
 	}
 
-	
-	public Vector<Profil> getBySuchprofil(Suchprofil sp) {
-		// select profil.eigenschaften WHERE values = sp
-		return null;
-	}
 
 	public Vector<Profil> getAll() throws Exception {
 		Vector<Profil>profile = new Vector<Profil>();

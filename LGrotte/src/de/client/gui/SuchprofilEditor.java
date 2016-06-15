@@ -35,13 +35,11 @@ public class SuchprofilEditor extends VerticalPanel {
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
-		private FlexTable komplettTable = new FlexTable(); 
 		private Button spHinzufuegenButton = new Button("SuchProfil hinzufügen", new SuchprofilHinzufuegenClickHandler());
 		private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
 		private Button updateButton = new Button("Update", new UpdateSuchprofilClickHandler());
 		// AnzeigenTable
 		private FlexTable anzeigenTable = new FlexTable();
-		private Label suchprofilNameLabel = new Label("Name:");
 		private HorizontalPanel groessenAnzeigenPanel = new HorizontalPanel();
 		private HorizontalPanel alterAnzeigenPanel = new HorizontalPanel();
 		private TextBox minGroesseAnzeigenTextBox = new TextBox();

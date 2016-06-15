@@ -24,12 +24,11 @@ public class KontaktsperreEditor extends VerticalPanel {
 	private Vector<String> emailBuffer = new Vector<String>();
 	private Button merkButton = new Button("Kontaktsperre aufheben", new AufhebenHandler());
 	private VerticalPanel resultPanel = new VerticalPanel();
+	private HorizontalPanel controlPanel = new HorizontalPanel();
 
 	FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
 	public KontaktsperreEditor() throws Exception {
-		HorizontalPanel controlPanel = new HorizontalPanel();
-		controlPanel.add(merkButton);
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
 		loadProfiles();
@@ -53,7 +52,9 @@ public class KontaktsperreEditor extends VerticalPanel {
 		public void onSuccess(Vector<Profil> result) {
 			if (result.size() == 0) {
 				resultPanel.add(new Label("Keine Ergebnisse"));
+				merkButton.removeFromParent();
 			} else {
+				controlPanel.add(merkButton);
 
 				for (int i = 0; i < result.size(); i++) {
 
