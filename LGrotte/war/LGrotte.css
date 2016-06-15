@@ -65,6 +65,16 @@ li a:hover {
 	height: auto;
 }
 
+#Body-left{
+	margin-left: 20px;
+	
+}
+
+#Body-right{
+	margin-right: 20px;
+	margin-left: 800px;
+}
+
 .Report-Container {
 	background-color: #ce1717;
 	height: 120px;
