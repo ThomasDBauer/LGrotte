@@ -64,9 +64,7 @@ public class SuchprofilInfoMapper {
 		ProfilEigenschaft pe = new ProfilEigenschaft();
 
 		while(result.next()){
-			pe.setName(result.getString("erlauterung"));
-			pe.setWert(result.getString("value"));
-			
+
 			Info info = new Info();
 			info.setEigenschaft(result.getInt("eigenschaft_id"));
 			info.setId(result.getInt("info_id"));

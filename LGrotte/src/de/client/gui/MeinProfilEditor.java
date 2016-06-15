@@ -61,7 +61,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 	
 	private Button profilLoeschenButton = new Button("Loeschen");
-	private Button profilUpdateButton = new Button("Update");
+	private Button profilUpdateButton = new Button("Speichern");
 	
 	
 	public MeinProfilEditor(){
@@ -142,7 +142,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 		
 		this.add(profilUpdateButton);
-		this.add(profilLoeschenButton);
+//		this.add(profilLoeschenButton);
 		this.add(flexTable);
 		profilUpdateButton.addClickHandler(new ProfilUpdateClickHandler());
 		profilLoeschenButton.addClickHandler(new ProfilLoeschenClickHandler());

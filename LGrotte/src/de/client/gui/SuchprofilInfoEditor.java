@@ -20,11 +20,13 @@ import de.shared.BO.Info;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilEigenschaft;
 
-public class SuchprofilInfoEditor extends VerticalPanel{
-
+public class SuchprofilInfoEditor extends HorizontalPanel{
+		
+		
 		private VerticalPanel editPanel = new VerticalPanel();
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
-		private Button addEigenschaftenButton = new Button("Wunsch-Eigenschaft hinzufügen", new AddEigenschaftenClickHandler());
+		private Button addEigenschaftenButton = new Button("Wunsch-Eigenschaft hinzufügen", 
+				new AddEigenschaftenClickHandler());
 		private Button speicherButton = new Button("Speichern", new SpeichernClickHandler());
 		private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
 		private Vector<TextBox> infoTextboxen = new Vector<TextBox>();
@@ -57,7 +59,7 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 			this.add(eigenschaftenPanel);
 			ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileCallback());
 			ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
-//			loadSuchprofilEigenschaften();
+			loadSuchprofilEigenschaften();
 		}
 		
 		private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {
@@ -73,7 +75,8 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 		
 		public void loadSuchprofilEigenschaften() throws Exception {
 			eigenschaftenPanel.clear();
-			ClientSideSettings.getEditorService().getSuchprofilEigenschaften(spListBox.getItemText(spListBox.getSelectedIndex()), new LoadSuchprofileCallback());
+			ClientSideSettings.getEditorService().getSuchprofilEigenschaften(
+					"DickeFrauen", new LoadSuchprofileCallback());
 		}
 		
 		private class LoadSuchprofileCallback implements AsyncCallback<Vector<ProfilEigenschaft>> {
@@ -156,7 +159,8 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 					ListBox lb = eigenschaftenListboxen.elementAt(i);
 					int eigenschaftsID = 0;
 					for (int o = 0; o < eigenschaften.size(); o++) {
-						if (lb.getItemText(lb.getSelectedIndex()).equals(eigenschaften.elementAt(o).getErlaeuterung())) {
+						if (lb.getItemText(lb.getSelectedIndex()).equals(
+								eigenschaften.elementAt(o).getErlaeuterung())) {
 							eigenschaftsID = eigenschaften.elementAt(o).getId();
 						}
 					}
@@ -166,7 +170,8 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 					Suchprofil sp = new Suchprofil();
 					sp.setSuchprofilname(spListBox.getItemText(spListBox.getSelectedIndex())); 
 					try {
-						ClientSideSettings.getEditorService().insertSuchprofilInfo(sp, info, new InsertSuchprofilInfoCallback());
+						ClientSideSettings.getEditorService().insertSuchprofilInfo(
+								sp, info, new InsertSuchprofilInfoCallback());
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
