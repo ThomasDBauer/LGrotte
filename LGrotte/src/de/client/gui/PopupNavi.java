@@ -34,7 +34,8 @@ public class PopupNavi extends PopupPanel {
 			new PopupClickHandler());
 	public final Button loeschenjaButton = new Button("Ja", 
 			new ProfilLoeschenClickHandler());
-	public final Button loeschenneinButton = new Button("Nein");
+	public final Button loeschenneinButton = new Button("Nein", 
+			new LoeschenNeinClickHandler());
 	public final Label loeschenLabel = new Label("Wollen Sie Ihr Profil wirklich löschen");
 
 	public PopupNavi() {
@@ -69,6 +70,12 @@ public class PopupNavi extends PopupPanel {
 				e.printStackTrace();
 			}
 			Window.open(LGrotte.logOutUrl, "_self", "");
+		}	
+	}
+	
+	private class LoeschenNeinClickHandler implements ClickHandler {
+		public void onClick(ClickEvent event) {
+			loeschenLabelPanel.clear();
 		}	
 	}
 
@@ -161,7 +168,6 @@ public class PopupNavi extends PopupPanel {
 				loeschenLabelPanel.add(loeschenLabel);
 				loeschenLabelPanel.add(loeschenButtonPanel);
 				setWidget(loeschenLabelPanel);
-				
 				break;
 			}
 		}

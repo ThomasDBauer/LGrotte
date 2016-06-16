@@ -33,8 +33,8 @@ public class LogOutPopUp extends PopupPanel {
 		
 		public class HideClickHandler implements ClickHandler{
 			public void onClick(ClickEvent e) {
-				LGrotte lgrotte = new LGrotte();
-				lgrotte.logOutPop.hide();
+				buttonPanel.clear();
+				logOutText.removeFromParent();
 			}
 		}
 
