@@ -170,30 +170,38 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 				getMerkzettelByOwner(user.getEmail());
 		Vector<Kontaktsperre> sperren = KontaktsperreMapper.kontaktsperreMapper().
 				getKontaktsperreByOwner(user.getEmail());
-
+		
+		Vector<Profil>results = new Vector<Profil>();
 		for(int i = 0; i < profile.size(); i++){
-			
+			boolean ok = true;
 			//User aussortieren
-//			if(profile.elementAt(i).getEmail().equals(user.getEmail())){
+			if(profile.elementAt(i).getEmail().equals(user.getEmail())){
+				ok = false;
+				continue;
 //				profile.remove(i);
-//			}
+			}
 			
 			//Merkzettel aussortieren
 			for(int o = 0; o < merkzettel.size(); o++){
 				if(profile.elementAt(i).getEmail().equals(
 						merkzettel.elementAt(o).getGemerktesProfil())){
-					profile.remove(i);
+					ok = false;
+					break;
+//					profile.remove(i);
 				};
 			}
 			//Kontaktsperren aussortieren
 			for(int o = 0; o < sperren.size(); o++){
 				if(profile.elementAt(i).getEmail().equals(
 						sperren.elementAt(o).getGesperrtesProfil())){
-					profile.remove(i);
+					ok = false;
+					break;
+//					profile.remove(i);
 				};
 			}
+			if(ok)results.add(profile.elementAt(i));
 		}
-			return profile;
+		return results;
 	}		
 	
 	// Suchprofil anzeigen by name
