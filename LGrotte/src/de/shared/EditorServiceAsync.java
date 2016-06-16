@@ -21,8 +21,7 @@ public interface EditorServiceAsync {
 			String haarfarbe, String raucher, Date geburtsdatum,
 			AsyncCallback callback) throws IllegalArgumentException;
 
-	void deleteProfil(String email, AsyncCallback callback)
-			throws IllegalArgumentException;
+	void deleteProfil(AsyncCallback callback) throws Exception;
 
 	void getProfil(AsyncCallback<Profil> callback) throws Exception;
 	
