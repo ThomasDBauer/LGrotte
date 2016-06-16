@@ -225,7 +225,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	}
 	private class ProfilLoeschenClickHandler implements ClickHandler{
 		public void onClick(ClickEvent event) {
-			ClientSideSettings.getEditorService().deleteProfil("fakemail", new ProfilLoeschenCallback());	
+//			ClientSideSettings.getEditorService().deleteProfil("fakemail", new ProfilLoeschenCallback());	
 		}
 	}
 	

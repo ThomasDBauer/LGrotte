@@ -110,10 +110,10 @@ public class ProfilMapper {
 		
 	}	
 	
-	public void deleteProfil(Profil p) throws Exception {
+	public void deleteProfil(String email) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
-				("DELETE FROM PROFIL WHERE email ='" + p.getEmail()+"'");
+				("DELETE FROM PROFIL WHERE email ='" + email +"'");
 		delete.execute();
 
 	}

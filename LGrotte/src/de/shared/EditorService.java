@@ -32,7 +32,7 @@ public interface EditorService extends RemoteService {
 	void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum, String email) throws Exception;
 
-	void deleteProfil(String email) throws IllegalArgumentException;
+	void deleteProfil() throws Exception;
 
 	void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion, int minAlter,
 			int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) throws Exception;
