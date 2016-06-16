@@ -43,10 +43,9 @@ public class ReportEntry implements EntryPoint {
 	 * onModuleLoad()
 	 */
 	public void onModuleLoad() {
-		RootPanel.get().add(navPanel);
-		RootPanel.get().add(mainPanel);
-		mainPanel.add(links);
-		mainPanel.add(rechts);
+		RootPanel.get("Navi").add(navPanel);
+		RootPanel.get("Body-left").add(links);
+		RootPanel.get("Body-right").add(rechts);
 		reportService = ClientSideSettings.getReportService();
 		LoginServiceAsync loginService = ClientSideSettings.getLoginService();
 		loginService.login(GWT.getHostPageBaseURL() + "LGrotte.html", new AsyncCallback<Profil>() {
@@ -81,16 +80,12 @@ public class ReportEntry implements EntryPoint {
 				public void onSuccess(Vector<Suchprofil> result) {
 					for (int i = 0; i < result.size(); i++) {
 						// ChangeHandler
-						suchprofilListbox.addChangeHandler(new SucheChangeHandler(result.elementAt(i)));
+						suchprofilListbox.addClickHandler(new SucheChangeHandler(result.elementAt(i)));
 						// ListBox-Text
 						suchprofilListbox.addItem(result.elementAt(i).getSuchprofilname());
 					}
-					// Hinzufügen zum GUI
-					rechts.add(suchprofilListbox);
 					try {
-						// Anzeigen des ersten Suchprofils TODO lieber alle
-						// Reports laden.
-						loadReportBySuchprofil(result.elementAt(0));
+						loadAll();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -141,12 +136,12 @@ public class ReportEntry implements EntryPoint {
 	/*
 	 * Der ChangeHandler der Suchprofil-ListBox
 	 */
-	private class SucheChangeHandler implements ChangeHandler {
+	private class SucheChangeHandler implements ClickHandler {
 		private Suchprofil sp;
 		public SucheChangeHandler(Suchprofil sp) {
 			this.sp = sp;
 		}
-		public void onChange(ChangeEvent event) {
+		public void onClick(ClickEvent event) {
 			try {
 				loadReportBySuchprofil(sp);
 			} catch (Exception e) {
