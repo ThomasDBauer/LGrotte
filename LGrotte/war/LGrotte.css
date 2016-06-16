@@ -55,8 +55,8 @@ li a:hover {
 	max-width: 1200px;
 	min-width: 960px;
 	margin-top: 0px;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 40px;;
+	margin-right: 40px;;
 	margin-bottom: 10px auto;
 	padding: 10 px;
 /* 	background-color: #b61414;*/	
@@ -66,13 +66,23 @@ li a:hover {
 }
 
 #Body-left{
-	margin-left: 20px;
+	float: left;
+	border: 1px solid #000000;
+	width: 800px;
+	margin-top: 0px;
+	margin-left: 40px;
+	margin-right: auto;
+	margin-bottom: 10px auto;
 	
 }
 
 #Body-right{
-	margin-right: 20px;
-	margin-left: 800px;
+	float: right;
+	border: 1px solid #000000;
+	width: 380px;
+	margin-top: 0px;
+	margin-right: 100px;
+	margin-bottom: 10px auto;
 }
 
 .Report-Container {
