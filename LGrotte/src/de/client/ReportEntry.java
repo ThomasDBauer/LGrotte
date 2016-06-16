@@ -30,11 +30,10 @@ public class ReportEntry implements EntryPoint {
 	private ReportServiceAsync reportService;
 	private Button alleAnzeigenButton = new Button("Alle Profile", new AlleProfileHandler());
 	private ListBox suchprofilListbox = new ListBox();
+	private Vector<Suchprofil> suchprofile;
 
 	// Buttons
 	private HorizontalPanel navPanel = new HorizontalPanel();
-	// Hauptfenster
-	private HorizontalPanel mainPanel = new HorizontalPanel();
 	// Reports + Suchprofil-Details
 	private VerticalPanel links = new VerticalPanel();
 	private VerticalPanel rechts = new VerticalPanel();
@@ -46,6 +45,7 @@ public class ReportEntry implements EntryPoint {
 		RootPanel.get("Navi").add(navPanel);
 		RootPanel.get("Body-left").add(links);
 		RootPanel.get("Body-right").add(rechts);
+		suchprofilListbox.addChangeHandler(new SucheChangeHandler());
 		reportService = ClientSideSettings.getReportService();
 		LoginServiceAsync loginService = ClientSideSettings.getLoginService();
 		loginService.login(GWT.getHostPageBaseURL() + "LGrotte.html", new AsyncCallback<Profil>() {
@@ -78,10 +78,8 @@ public class ReportEntry implements EntryPoint {
 					Window.alert("getSuchprofileCallback " + caught.toString());
 				}
 				public void onSuccess(Vector<Suchprofil> result) {
+					suchprofile = result;
 					for (int i = 0; i < result.size(); i++) {
-						// ChangeHandler
-						suchprofilListbox.addClickHandler(new SucheChangeHandler(result.elementAt(i)));
-						// ListBox-Text
 						suchprofilListbox.addItem(result.elementAt(i).getSuchprofilname());
 					}
 					try {
@@ -136,18 +134,30 @@ public class ReportEntry implements EntryPoint {
 	/*
 	 * Der ChangeHandler der Suchprofil-ListBox
 	 */
-	private class SucheChangeHandler implements ClickHandler {
-		private Suchprofil sp;
-		public SucheChangeHandler(Suchprofil sp) {
-			this.sp = sp;
-		}
-		public void onClick(ClickEvent event) {
+	private class SucheChangeHandler implements ChangeHandler {
+		public void onChange(ChangeEvent event) {
 			try {
-				loadReportBySuchprofil(sp);
+				loadReportBySuchprofil(getSuchprofil());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/*
+	 * Weil wir leider nicht mit einem DataListProvider arbeiten,
+	 * müssen wir die Strings der ListBox mit den Suchprofilen abgleichen.
+	 */
+	public Suchprofil getSuchprofil(){
+		Suchprofil sp = null;
+		for(int i = 0; i < suchprofile.size(); i++){
+			if(suchprofile.elementAt(i).getSuchprofilname().equals(
+					suchprofilListbox.getItemText(suchprofilListbox.getSelectedIndex()))){
+				sp = suchprofile.elementAt(i);
+				break;
+			}
+		}
+		return sp;
 	}
 	
 	/*
