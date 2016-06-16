@@ -25,7 +25,7 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 		
 		private VerticalPanel editPanel = new VerticalPanel();
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
-		private Button addEigenschaftenButton = new Button("Wunsch-Eigenschaft hinzufügen", 
+		private Button addEigenschaftenButton = new Button("Eigenschaft hinzufï¿½gen", 
 				new AddEigenschaftenClickHandler());
 		private Button speicherButton = new Button("Speichern", new SpeichernClickHandler());
 		private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
@@ -37,29 +37,30 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 		
 		public SuchprofilInfoEditor() throws Exception {
 			
+//			ClientSideSettings.getEditorService().getSuchprofilEigenschaften(
+//					spListBox.getItemText(spListBox.getSelectedIndex()), 
+//					new AsyncCallback<Vector<ProfilEigenschaft>>(){
+//
+//						@Override
+//						public void onFailure(Throwable caught) {
+//							
+//						}
+//						public void onSuccess(Vector<ProfilEigenschaft> result) {
+//							RootPanel.get().add(new Label(result.elementAt(0).getName()));
+//							RootPanel.get().add(new Label(result.elementAt(0).getWert()));
+//						}
+//			});
 			
-			ClientSideSettings.getEditorService().getSuchprofilEigenschaften("DickeFrauen", 
-					new AsyncCallback<Vector<ProfilEigenschaft>>(){
-
-						@Override
-						public void onFailure(Throwable caught) {
-							
-						}
-						public void onSuccess(Vector<ProfilEigenschaft> result) {
-							RootPanel.get().add(new Label(result.elementAt(0).getName()));
-							RootPanel.get().add(new Label(result.elementAt(0).getWert()));
-						}
-			});
 			
 			buttonPanel.add(addEigenschaftenButton);
 			listBoxPanel.add(spListBox);
-			this.add(listBoxPanel);
-			this.add(buttonPanel);
+			editPanel.add(buttonPanel);
+			editPanel.add(listBoxPanel);
 			this.add(editPanel);
 			this.add(eigenschaftenPanel);
 			ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileCallback());
 			ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
-			loadSuchprofilEigenschaften();
+//			loadSuchprofilEigenschaften();
 		}
 		
 		private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {
@@ -76,7 +77,7 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 		public void loadSuchprofilEigenschaften() throws Exception {
 			eigenschaftenPanel.clear();
 			ClientSideSettings.getEditorService().getSuchprofilEigenschaften(
-					"DickeFrauen", new LoadSuchprofileCallback());
+					spListBox.getItemText(spListBox.getSelectedIndex()), new LoadSuchprofileCallback());
 		}
 		
 		private class LoadSuchprofileCallback implements AsyncCallback<Vector<ProfilEigenschaft>> {
@@ -85,7 +86,7 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 			}
 			public void onSuccess(Vector<ProfilEigenschaft> result) {
 				if (result.size() == 0)
-					eigenschaftenPanel.add(new Label("Erzï¿½hle etwas ï¿½ber ich!"));
+					editPanel.add(new Label("Lass uns noch genauer suchen"));
 				FlexTable table = new FlexTable();
 				for (int i = 0; i < result.size(); i++) {
 					table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
@@ -154,7 +155,7 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 
 		private class SpeichernClickHandler implements ClickHandler {
 			public void onClick(ClickEvent e) {
-				editPanel.clear();
+				eigenschaftenPanel.clear();
 				for (int i = 0; i < eigenschaftenListboxen.size(); i++) {
 					ListBox lb = eigenschaftenListboxen.elementAt(i);
 					int eigenschaftsID = 0;
