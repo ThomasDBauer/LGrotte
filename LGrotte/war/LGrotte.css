@@ -55,10 +55,24 @@ li a:hover {
 	max-width: 1200px;
 	min-width: 960px;
 	margin-top: 0px;
-	margin-left: 40px;
-	margin-right: 40px;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 10px auto;
 	padding: 10 px;
+/* 	background-color: #b61414;*/	
+	background-image:  radial-gradient(circle farthest-corner at 350px 400px, #b61414, #eb4949);
+	border: 1px solid #c0c0c0;
+	height: auto;
+}
+
+#Container_Report{
+	max-width: 1200px;
+	min-width: 960px;
+	margin-top: 0px;
+	margin-left: 40px;;
+	margin-right: 40px;;
+	margin-bottom: 10px auto;
+	padding: 10px;
 /* 	background-color: #b61414;*/	
 	background-image:  radial-gradient(circle farthest-corner at 350px 400px, #b61414, #eb4949);
 	border: 1px solid #c0c0c0;
@@ -434,6 +448,15 @@ li a:hover {
 	min-width: 860px;
 	width: auto;
 	background-color: #FFF;
+}
+
+.logo_grotte{
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	/* float: right; */
 }
 
 .bild_links {
