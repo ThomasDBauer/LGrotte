@@ -13,13 +13,15 @@ public interface ReportServiceAsync {
 	
 	void hallo(AsyncCallback<String>callback);
 
-	void getProfilReport(String email, AsyncCallback<ProfilReport>callback) throws Exception;
+	void getProfilReport(Profil p, AsyncCallback<ProfilReport>callback) throws Exception;
 	
 	void setUser(Profil p, AsyncCallback callback);
 	
 //	void getProfilInfos(AsyncCallback<Vector<ProfilInformation>>callback) throws Exception;
 
-	void getAllReports(AsyncCallback<Vector<ProfilReport>> callback) throws Exception;
+	void getReports(AsyncCallback<Vector<ProfilReport>> callback) throws Exception;
+	
+	void getReports(Suchprofil sp, AsyncCallback<Vector<ProfilReport>> callback) throws Exception;
 	
 //	void createAlleProfileReport(AsyncCallback<AlleProfileReport> callback);
 	

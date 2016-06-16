@@ -18,13 +18,15 @@ public interface ReportService extends RemoteService {
 	
 	String hallo();
 
-	ProfilReport getProfilReport(String email) throws Exception;
+	ProfilReport getProfilReport(Profil p) throws Exception;
 	
 	void setUser(Profil p);
 	
 //	Vector<ProfilInformation> getProfilInfos() throws Exception;
 
-	Vector<ProfilReport> getAllReports() throws Exception;
+	Vector<ProfilReport> getReports() throws Exception;
+	
+	Vector<ProfilReport> getReports(Suchprofil sp) throws Exception;
 
 //	public abstract AlleProfileReport createAlleProfileReport() throws Exception;
 	
