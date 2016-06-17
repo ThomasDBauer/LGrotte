@@ -29,4 +29,7 @@ public interface ReportServiceAsync {
 	
 	void getSuchprofile(AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
 	
+	
+	void getNotVisitedReports(AsyncCallback<Vector<ProfilReport>>callback) throws Exception;
+	
 }

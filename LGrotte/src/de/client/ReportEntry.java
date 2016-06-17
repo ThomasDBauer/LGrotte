@@ -28,13 +28,16 @@ import de.shared.RO.ProfilReport;
 public class ReportEntry implements EntryPoint {
 
 	private ReportServiceAsync reportService;
-	private Button alleAnzeigenButton = new Button("Alle Profile", new AlleProfileHandler());
+	private Button alleAnzeigenButton = new Button("Alle Profile", 
+			new AlleProfileHandler());
+	private Button nichtBesuchteButton = new Button("Nicht besuchte Profile", 
+			new NichtBesuchteHandler());
+	private Label suchProfileAnzeigenLabel = new Label("Nach Suchprofil:");
 	private ListBox suchprofilListbox = new ListBox();
+	private Vector<Suchprofil> suchprofile;
 
 	// Buttons
 	private HorizontalPanel navPanel = new HorizontalPanel();
-	// Hauptfenster
-	private HorizontalPanel mainPanel = new HorizontalPanel();
 	// Reports + Suchprofil-Details
 	private VerticalPanel links = new VerticalPanel();
 	private VerticalPanel rechts = new VerticalPanel();
@@ -46,6 +49,7 @@ public class ReportEntry implements EntryPoint {
 		RootPanel.get("Navi").add(navPanel);
 		RootPanel.get("Body-left").add(links);
 		RootPanel.get("Body-right").add(rechts);
+		suchprofilListbox.addClickHandler(new SucheChangeHandler());
 		reportService = ClientSideSettings.getReportService();
 		LoginServiceAsync loginService = ClientSideSettings.getLoginService();
 		loginService.login(GWT.getHostPageBaseURL() + "LGrotte.html", new AsyncCallback<Profil>() {
@@ -54,6 +58,8 @@ public class ReportEntry implements EntryPoint {
 			}
 			public void onSuccess(Profil result) {
 				navPanel.add(alleAnzeigenButton);
+				navPanel.add(nichtBesuchteButton);
+				navPanel.add(suchProfileAnzeigenLabel);
 				navPanel.add(suchprofilListbox);
 				reportService.setUser(result, new AsyncCallback() {
 					public void onFailure(Throwable caught) {
@@ -78,14 +84,12 @@ public class ReportEntry implements EntryPoint {
 					Window.alert("getSuchprofileCallback " + caught.toString());
 				}
 				public void onSuccess(Vector<Suchprofil> result) {
+					suchprofile = result;
 					for (int i = 0; i < result.size(); i++) {
-						// ChangeHandler
-						suchprofilListbox.addClickHandler(new SucheChangeHandler(result.elementAt(i)));
-						// ListBox-Text
 						suchprofilListbox.addItem(result.elementAt(i).getSuchprofilname());
 					}
 					try {
-						loadAll();
+						loadAllReports();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -96,8 +100,17 @@ public class ReportEntry implements EntryPoint {
 		}
 	}
 	
+	//HtML Reports erstellen lassen für Report-Listen
+	public void loadHtmlReports(Vector<ProfilReport> reports){
+		links.clear();
+		if(reports.size()==0)links.add(new Label("Keine Ergebnisse"));
+		HTMLWriter writer = new HTMLWriter();
+		writer.process(reports);
+		links.add(new HTML(writer.getReportText()));
+	}
+	
 	//Alle Profile laden
-	public void loadAll() throws Exception{
+	public void loadAllReports() throws Exception{
 		reportService.getReports(new AsyncCallback<Vector<ProfilReport>>()
 		{
 			public void onFailure(Throwable caught) {
@@ -105,10 +118,7 @@ public class ReportEntry implements EntryPoint {
 						+caught.toString() ));
 			}
 			public void onSuccess(Vector<ProfilReport> result) {
-				links.clear();
-				HTMLWriter writer = new HTMLWriter();
-				writer.process(result);
-				links.add(new HTML(writer.getReportText()));
+				loadHtmlReports(result);
 			}
 		});
 	}
@@ -124,30 +134,55 @@ public class ReportEntry implements EntryPoint {
 				RootPanel.get().add(new Label("ReportEntry.getAllProfilesCallback " + caught.toString()));
 			}
 			public void onSuccess(Vector<ProfilReport> result) {
-				links.clear();
-				if(result.size()==0)links.add(new Label("Keine Ergebnisse"));
-				HTMLWriter writer = new HTMLWriter();
-				writer.process(result);
-				links.add(new HTML(writer.getReportText()));
+				loadHtmlReports(result);
 			}
 		}));
 	}
+	
+	/*
+	 * Baut Reports für nicht besuchte Profile auf
+	 */
+	public void loadReportsForNotVisited() throws Exception {
+		reportService.getNotVisitedReports(new AsyncCallback<Vector<ProfilReport>>(){
+			public void onFailure(Throwable caught) {
+				Window.alert("Entry.loadReportsForNotVisited " + caught.toString());
+			}
+			public void onSuccess(Vector<ProfilReport> result) {
+				loadHtmlReports(result);
+			}
+		});
+	}
 
+	
+	
+	
 	/*
 	 * Der ChangeHandler der Suchprofil-ListBox
 	 */
 	private class SucheChangeHandler implements ClickHandler {
-		private Suchprofil sp;
-		public SucheChangeHandler(Suchprofil sp) {
-			this.sp = sp;
-		}
 		public void onClick(ClickEvent event) {
 			try {
-				loadReportBySuchprofil(sp);
+				loadReportBySuchprofil(getSuchprofil());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/*
+	 * Weil wir leider nicht mit einem DataListProvider arbeiten,
+	 * müssen wir die Strings der ListBox mit den Suchprofilen abgleichen.
+	 */
+	public Suchprofil getSuchprofil(){
+		Suchprofil sp = null;
+		for(int i = 0; i < suchprofile.size(); i++){
+			if(suchprofile.elementAt(i).getSuchprofilname().equals(
+					suchprofilListbox.getItemText(suchprofilListbox.getSelectedIndex()))){
+				sp = suchprofile.elementAt(i);
+				break;
+			}
+		}
+		return sp;
 	}
 	
 	/*
@@ -156,11 +191,26 @@ public class ReportEntry implements EntryPoint {
 	public class AlleProfileHandler implements ClickHandler{
 		public void onClick(ClickEvent e){
 			try {
-				loadAll();
+				loadAllReports();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
 	}
+	
+	/*
+	 * ClickHandler für Nicht besuchte Profile-Button
+	 */
+	public class NichtBesuchteHandler implements ClickHandler{
+		public void onClick(ClickEvent e){
+			try {
+				loadReportsForNotVisited();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	
 	
 }

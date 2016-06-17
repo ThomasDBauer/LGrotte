@@ -22,7 +22,7 @@ import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 
 public class FindLove extends VerticalPanel {
-	// dieter
+
 	private FlexTable table = new FlexTable();
 	private Vector<String> emailBuffer = new Vector<String>();
 	private Button merkButton = new Button("Profile merken", new MerkHandler());
@@ -32,32 +32,12 @@ public class FindLove extends VerticalPanel {
 
 	 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
-	/*
-	 * TEST PEWPEW
-	 */
-
-	// private Button testButton = new Button("Test", new ClickHandler(){
-	// public void onClick(ClickEvent e){
-	// for(int i = 0; i < emailBuffer.size(); i++){
-	// resultPanel.add(new Label(emailBuffer.elementAt(i)));
-	// }
-	// }
-	// });
-
-	/*
-	 * TEST PEWPEW ENDE
-	 */
-
 	public FindLove() throws Exception {
 		HorizontalPanel controlPanel = new HorizontalPanel();
 		controlPanel.add(merkButton);
 		controlPanel.add(sperrButton);
-		// controlPanel.add(testButton);
 		table.addStyleName("findLove-table");
-//		table.setCellSpacing(3);
-//		table.setCellPadding(15);
 		table.setWidth("45em");
-//		table.setWidth("35em");
 		this.add(controlPanel);
 		this.add(resultPanel);
 		loadProfiles();
@@ -71,11 +51,6 @@ public class FindLove extends VerticalPanel {
 				new GetProfileCallback());
 	}
 
-
-	// public void addProfilPanelToPanel(){
-	// this.
-	// }
-
 	private class GetProfileCallback implements AsyncCallback<Vector<Profil>> {
 
 		public void onFailure(Throwable caught) {
@@ -88,11 +63,8 @@ public class FindLove extends VerticalPanel {
 			if (result.size() == 0) {
 				resultPanel.add(new Label("Keine Ergebnisse"));
 			} else {
-
 				for (int i = 0; i < result.size(); i++) {
-
 					Profil p = result.elementAt(i);
-
 					CheckBox cb = new CheckBox();
 					cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 					VerticalPanel findLovePanel = new VerticalPanel();
@@ -116,16 +88,12 @@ public class FindLove extends VerticalPanel {
 					religion.addStyleName("findLove-Labelmid");
 					raucher.addStyleName("findLove-Label");
 					
-					// Label gDatum = new
-					// Label(Date.toString(p.getGeburtsdatum()));
-					
 					nameGeschlechtGroesse.add(fName);
 					nameGeschlechtGroesse.add(geschlecht);
 					nameGeschlechtGroesse.add(kGroesse);
 					haareReligionRaucher.add(haarfarbe);
 					haareReligionRaucher.add(religion);
 					haareReligionRaucher.add(raucher);
-					// findLovePanel.add(gDatum);
 					nameGeschlechtGroesse.addStyleName("findLove-HPaneltop");
 					haareReligionRaucher.addStyleName("findLove-HPanelbot");
 					findLovePanel.add(nameGeschlechtGroesse);
@@ -137,27 +105,7 @@ public class FindLove extends VerticalPanel {
 					Button anzeigen = new Button("Profil anzeigen");
 					findLovePanel.add(anzeigen);
 					anzeigen.addClickHandler(new FremdesPAClickHandler(p));
-
-					// in einem VerticalPanel zwei Horizontal
-
 				}
-				
-
-				// for (int i = 0; i < result.size(); i++) {
-				// Profil p = result.elementAt(i);
-				//
-				// CheckBox cb = new CheckBox();
-				// cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
-				//
-				// table.setWidget(i, 0, cb);
-				//
-				// table.setWidget(i, 1, new Label("Name"));
-				// table.setWidget(i, 2, new Label(p.getFname() + " " +
-				// p.getLname()));
-				// table.setWidget(i, 3, new Label("Email"));
-				// table.setWidget(i, 4, new Label(p.getEmail()));
-				// }
-
 			}
 		}
 	}
@@ -165,7 +113,6 @@ public class FindLove extends VerticalPanel {
 	private class FremdesPAClickHandler implements ClickHandler {
 		
 		private Profil profil;
-		
 		public FremdesPAClickHandler(Profil profil){
 			this.profil = profil;
 		}
@@ -185,16 +132,10 @@ public class FindLove extends VerticalPanel {
 					RootPanel.get().add(new Label(
 							"FindLove.FremdesPAClickHandler " + caught.toString()));
 				}
-
-				@Override
 				public void onSuccess(Object result) {
-					// TODO Auto-generated method stub
-					
 				}
-				
 			});
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}	
@@ -202,11 +143,9 @@ public class FindLove extends VerticalPanel {
 	
 	private class CheckProfilHandler implements ClickHandler {
 		private String userEmail;
-
 		public CheckProfilHandler(String email) {
 			this.userEmail = email;
 		}
-
 		public void onClick(ClickEvent e) {
 			CheckBox cb = (CheckBox) e.getSource();
 			if (!cb.getValue()) {
@@ -231,7 +170,6 @@ public class FindLove extends VerticalPanel {
 	}
 
 	private class SperrHandler implements ClickHandler {
-
 		public void onClick(ClickEvent e) {
 			sperrButton.setEnabled(false);
 			try {
