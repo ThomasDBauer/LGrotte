@@ -254,6 +254,14 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		deleteProfilInfo(pi);
 	}
 	
+	public void deleteSuchprofilInfo(Suchprofil sp, Info info) throws Exception{
+		SuchprofilInfo spi = new SuchprofilInfo();
+		spi.setInfo(info);
+		spi.setProfil(user);
+		spi.setSp(sp);
+		SuchprofilInfoMapper.suchprofilInfoMapper().deleteSuchprofilInfo(spi);
+	}
+	
 	
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
 		ProfilinfoMapper.profilinfoMapper().deleteProfilInfo(pi);
@@ -274,12 +282,12 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// SuchprofilInfos Hauptmethode
 	public void insertSuchprofilInfo(Suchprofil sp, Info info) throws Exception {
 		// Verarbeitung der Info und Auslesen der ID
-		int infoID = insertInfo(info);
+		info.setId(insertInfo(info));
 		// Aufbau des SuchprofilInfo-Objekts
 		SuchprofilInfo spi = new SuchprofilInfo();
-		spi.setInfo(infoID);
-		spi.setProfil(user.getEmail());
-		spi.setSp(sp.getSuchprofilname());
+		spi.setInfo(info);
+		spi.setProfil(user);
+		spi.setSp(sp);
 		// Eintrag in die DB
 		SuchprofilInfoMapper.suchprofilInfoMapper().insertSuchprofilInfo(spi);
 	}

@@ -87,4 +87,6 @@ public interface EditorService extends RemoteService {
 	void insertMerkzettel(String email) throws Exception;
 	
 	void insertKontaktsperre(String email) throws Exception;
+	
+	void deleteSuchprofilInfo(Suchprofil sp, Info info) throws Exception;
 }

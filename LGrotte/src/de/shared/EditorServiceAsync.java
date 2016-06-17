@@ -92,4 +92,6 @@ public interface EditorServiceAsync {
 	void insertMerkzettel(String email, AsyncCallback callback) throws Exception;
 	
 	void insertKontaktsperre(String email, AsyncCallback callback) throws Exception;
+	
+	void deleteSuchprofilInfo(Suchprofil sp, Info info, AsyncCallback callback) throws Exception;
 }
