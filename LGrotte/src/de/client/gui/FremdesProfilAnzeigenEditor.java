@@ -35,6 +35,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		private Label religionLabel = new Label();
 		private Label raucherLabel = new Label();
 		private Label bdayLabel = new Label();
+		private Label eMail = new Label();
 		
 		
 		public FremdesProfilAnzeigenEditor(Profil profil) throws Exception {
@@ -48,6 +49,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			religionLabel.setText(p.getReligion());
 			raucherLabel.setText(p.getRaucher());
 			bdayLabel.setText(String.valueOf(p.getGeburtsdatum()));	
+			eMail.setText(p.getEmail());
 			
 			profilAnzeigenTable.setWidget(0, 0, buttonPanel);
 			
@@ -75,6 +77,9 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			profilAnzeigenTable.setWidget(8, 0, new Label("Geburtsdatum"));
 			profilAnzeigenTable.setWidget(8, 1, bdayLabel);
 			
+			profilAnzeigenTable.setWidget(9, 0, new Label("e-Mail"));
+			profilAnzeigenTable.setWidget(9, 1, eMail);
+			
 			profilAnzeigenTable.addStyleName("findLove-table td");
 			profilAnzeigenTable.setWidth("45em");
 			
@@ -93,8 +98,8 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 						+ "ProfilEigenschaftenCallback " + caught.toString()));
 			}
 			public void onSuccess(Vector<ProfilEigenschaft> result) {
-				profilAnzeigenTable.setWidget(9, 0, new Label("------------------------------"));
-				profilAnzeigenTable.setWidget(10, 0, new Label("Eigenschaften"));
+				profilAnzeigenTable.setWidget(10, 0, new Label("------------------------------"));
+				profilAnzeigenTable.setWidget(11, 0, new Label("Eigenschaften"));
 				for(int i = 0; i < result.size(); i++){
 					profilAnzeigenTable.setWidget(11+i, 0, new Label(
 							result.elementAt(i).getName()));
