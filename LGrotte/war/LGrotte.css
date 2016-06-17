@@ -69,10 +69,10 @@ li a:hover {
 	max-width: 1200px;
 	min-width: 960px;
 	margin-top: 0px;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 40px;;
+	margin-right: 40px;;
 	margin-bottom: 10px auto;
-	padding: 10 px;
+	padding: 10px;
 /* 	background-color: #b61414;*/	
 	background-image:  radial-gradient(circle farthest-corner at 350px 400px, #b61414, #eb4949);
 	border: 1px solid #c0c0c0;
@@ -132,7 +132,7 @@ li a:hover {
 .Report-Attribut{
 	margin-top: 25px;
 	margin-bottom: 10px;
-	margin-right: 33%;
+	margin-right: 40%;
 	margin-left: 15%;	
 /* 	background-color: #971111;
  */	
@@ -141,6 +141,7 @@ li a:hover {
 .Report-Eigenschaft{
 	margin-top: 25px;
 	margin: 10px;
+	margin-right: 20%;
 	border-left: 1px solid black;
 	width: 30%;
 /* 	background-color: #971111;
