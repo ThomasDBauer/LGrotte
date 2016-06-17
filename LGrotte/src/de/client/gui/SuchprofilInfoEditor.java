@@ -20,7 +20,7 @@ import de.shared.BO.Info;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilEigenschaft;
 
-public class SuchprofilInfoEditor extends HorizontalPanel{
+public class SuchprofilInfoEditor extends VerticalPanel{
 		
 		
 		private VerticalPanel editPanel = new VerticalPanel();
@@ -32,53 +32,38 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 		private Vector<TextBox> infoTextboxen = new Vector<TextBox>();
 		private Vector<Eigenschaft> eigenschaften;
 		private VerticalPanel eigenschaftenPanel = new VerticalPanel();
-		private HorizontalPanel listBoxPanel = new HorizontalPanel();
-		private ListBox spListBox = new ListBox();
+		private FlexTable table = new FlexTable();
+		private Label nochkeinInfosLabel = new Label("Lass uns noch genauer suchen");
 		
-		public SuchprofilInfoEditor() throws Exception {
-			
-//			ClientSideSettings.getEditorService().getSuchprofilEigenschaften(
-//					spListBox.getItemText(spListBox.getSelectedIndex()), 
-//					new AsyncCallback<Vector<ProfilEigenschaft>>(){
-//
-//						@Override
-//						public void onFailure(Throwable caught) {
-//							
-//						}
-//						public void onSuccess(Vector<ProfilEigenschaft> result) {
-//							
-//							editPanel.add(new Label(result.elementAt(0).getName()));
-//							editPanel.add(new Label(result.elementAt(0).getWert()));
-//						}
-//			});
-			
-			
+
+		
+		
+		/**
+		 * Das mega fancy Suchprofil:
+		 */
+		private Suchprofil suchprofil;
+		public void setSuchprofil(Suchprofil suchprofil){
+			this.suchprofil = suchprofil;
+			loadSuchprofilEigenschaften();
+		}
+		
+		
+		public SuchprofilInfoEditor() throws Exception {	
 			buttonPanel.add(addEigenschaftenButton);
-			listBoxPanel.add(spListBox);
 			editPanel.add(buttonPanel);
-			editPanel.add(listBoxPanel);
 			this.add(editPanel);
 			this.add(eigenschaftenPanel);
-			ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileCallback());
 			ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
 		}
 		
-		private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {
-			public void onFailure(Throwable caught) {
-				RootPanel.get().add(new Label(caught.toString()));
-			}
-			public void onSuccess(Vector<Suchprofil> result) {
-				for (int i = 0; i < result.size(); i++) {
-					spListBox.addItem(result.elementAt(i).getSuchprofilname());
-				}
-			}
-		}
 		
 		public void loadSuchprofilEigenschaften() {
 			eigenschaftenPanel.clear();
+			table.removeFromParent();
+			nochkeinInfosLabel.removeFromParent();
 			try {
 				ClientSideSettings.getEditorService().getSuchprofilEigenschaften(
-						spListBox.getItemText(spListBox.getSelectedIndex()), new LoadSuchprofileCallback());
+						suchprofil.getSuchprofilname(), new LoadSuchprofileCallback());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -91,9 +76,8 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 			}
 			public void onSuccess(Vector<ProfilEigenschaft> result) {
 				if (result.size() == 0) {
-					eigenschaftenPanel.add(new Label("Lass uns noch genauer suchen"));
+					eigenschaftenPanel.add(nochkeinInfosLabel);
 				}
-				FlexTable table = new FlexTable();
 				for (int i = 0; i < result.size(); i++) {
 					table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
 					table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
@@ -175,7 +159,7 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 					info.setEigenschaft(eigenschaftsID);
 					info.setValue(infoTextboxen.elementAt(i).getText());
 					Suchprofil sp = new Suchprofil();
-					sp.setSuchprofilname(spListBox.getItemText(spListBox.getSelectedIndex())); 
+					sp.setSuchprofilname(suchprofil.getSuchprofilname()); 
 					try {
 						ClientSideSettings.getEditorService().insertSuchprofilInfo(
 								sp, info, new InsertSuchprofilInfoCallback());

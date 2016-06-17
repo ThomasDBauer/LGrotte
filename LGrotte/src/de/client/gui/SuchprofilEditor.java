@@ -35,9 +35,10 @@ public class SuchprofilEditor extends VerticalPanel {
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
-		private Button spHinzufuegenButton = new Button("SuchProfil hinzufügen", new SuchprofilHinzufuegenClickHandler());
-		private Button loeschenButton = new Button("Löschen", new DeleteSuchprofilClickHandler());
+		private Button spHinzufuegenButton = new Button("SuchProfil hinzufï¿½gen", new SuchprofilHinzufuegenClickHandler());
+		private Button loeschenButton = new Button("Lï¿½schen", new DeleteSuchprofilClickHandler());
 		private Button updateButton = new Button("Update", new UpdateSuchprofilClickHandler());
+		private Label keinSPLabel = new Label("Hey erstell doch ein Suchprofil!");
 		// AnzeigenTable
 		private FlexTable anzeigenTable = new FlexTable();
 		private HorizontalPanel groessenAnzeigenPanel = new HorizontalPanel();
@@ -76,15 +77,20 @@ public class SuchprofilEditor extends VerticalPanel {
 		private Label alterLabel = new Label("Alter:");
 		private TextBox minAlterTextBox = new TextBox();
 		private TextBox maxAlterTextBox = new TextBox();
+		
 	
 
 		private Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
 
 		private Button anlegenButton = new Button("Speichern", new SuchProfilAnlegenClickHandler());
 
+		private SuchprofilInfoEditor eigenschaftenEditor = new SuchprofilInfoEditor();
+		
 		// Editor 
-		public SuchprofilEditor() throws Exception {
-
+		public SuchprofilEditor(SuchprofilInfoEditor spie) throws Exception {
+			this.eigenschaftenEditor = spie;
+			
+			
 			// Click- und ChangeHandler fÃ¼r ListBox damit wir keinen Anzeigen Button brauchen
 			anlegenTable.clear();
 			spListBox.addClickHandler(new SuchProfilAnzeigenClickHandler());
@@ -99,7 +105,6 @@ public class SuchprofilEditor extends VerticalPanel {
 			listBoxPanel.add(spListBox);
 			this.add(buttonPanel);
 			this.add(listBoxPanel);
-			
 			
 			// AnhÃ¤ngen der Items zur Auswahl
 			geschlechtListBox.addItem("mÃ¤nnlich");
@@ -127,6 +132,8 @@ public class SuchprofilEditor extends VerticalPanel {
 			
 			loadPage();
 		}
+		
+	
 		
 		public void loadPage(){
 			listBoxPanel.clear();
@@ -379,7 +386,13 @@ public class SuchprofilEditor extends VerticalPanel {
 			}
 
 			public void onSuccess(Vector<Suchprofil> result) {
-		
+				if (result.size() == 0) {
+					spListBox.removeFromParent();
+					suchprofilPanel.add(keinSPLabel);
+				}
+				if (result.size() != 0) {
+				keinSPLabel.removeFromParent();
+				}
 				for (int i = 0; i < result.size(); i++) {
 					spListBox.addItem(result.elementAt(i).getSuchprofilname());
 				}
@@ -406,6 +419,8 @@ public class SuchprofilEditor extends VerticalPanel {
 			}
 
 			public void onSuccess(Suchprofil result) {
+				
+					eigenschaftenEditor.setSuchprofil(result);
 				
 					anlegenTable.clear();
 					alterPanel.clear();

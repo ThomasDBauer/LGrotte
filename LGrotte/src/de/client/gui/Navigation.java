@@ -81,7 +81,6 @@ public class Navigation extends HorizontalPanel {
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Deine Partnervorschlaege</h2>"));
 				try {
-					RootPanel.get("Einstellungen").add(new SuchprofilEditor());
 					RootPanel.get("Inhalt_unten").add(new FindLove());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
