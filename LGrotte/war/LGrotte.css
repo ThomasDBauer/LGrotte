@@ -47,6 +47,20 @@ li a:hover {
 	background-color: #e2e2e2;
 }
 
+.gwt-Button{
+	background-color: #FFF;
+	color: #000000;
+	font-size: 15px;
+	padding: 5px 15px 5px 15px;
+	text-decoration: none;
+	outline-color: #000000;
+	cursor: pointer;
+	cursor: hand;
+	border: 1px solid #c0c0c0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
 .active {
 	background-color: #4CAF50;
 }
@@ -214,11 +228,11 @@ li a:hover {
 	background-color: #00c431;
 }
 
-#Navi_Conatiner{
+#Navi_Container{
 	width: auto;
 	height: 160px;
 	margin-top: 30px;
-	margin-bottom: 10px;
+	margin-bottom: 4px;
 	border: 1px solid transparent;
 }
 
@@ -279,24 +293,11 @@ li a:hover {
 .navi-button:hover {
 	background: #e72525;
 	color: #FFF;
-	/* background-image: -webkit-linear-gradient(top, #fc3c3c, #d93434);
-  background-image: -moz-linear-gradient(top, #fc3c3c, #d93434);
-  background-image: -ms-linear-gradient(top, #fc3c3c, #d93434);
-  background-image: -o-linear-gradient(top, #fc3c3c, #d93434);
-  background-image: linear-gradient(to bottom, #fc3c3c, #d93434); */
 	text-decoration: none;
 }
 
 .navi-button.aktiv {
 	background: #c0c0c0;
-	/* background-image: -webkit-linear-gradient(top, #d93434, #b82b2b);
-  background-image: -moz-linear-gradient(top, #d93434, #b82b2b);
-  background-image: -ms-linear-gradient(top, #d93434, #b82b2b);
-  background-image: -o-linear-gradient(top, #d93434, #b82b2b);
-  background-image: linear-gradient(to bottom, #d93434, #b82b2b);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px; */
 	color: #000000;
 	font-size: 15px;
 	padding: 5px 15px 5px 15px;
@@ -305,17 +306,20 @@ li a:hover {
 	margin-right: 15px;
 }
 
-#Content {
+#Content_Container{
 	Padding: 3%;
 	heigth: auto;
 	overflow: hidden;
+	border-top: 1px solid white;
 }
 
-#Spalte_links {
-	float: left;
-	position: relative;
+#Content{
 	background-color: #FFF;
-	width: 73%;
+	margin: 5px;
+	height: auto;
+	min-height: 250px;
+	border: 1px solid white;
+	overflow: hidden;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -327,54 +331,23 @@ li a:hover {
 	background-color: #FFF;
 	padding: 20px 0px 20px 20px;
 	min-height: 600px;
-	/* 	margin-rigth: 300px; */
 	width: 47%;
 	border-rigth: 1px solid #808080;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 25px;
-}
-
-#Inhalt_oben {
-	/* 	border: 2px solid black; */
-	width: inhert;
-	margin-bottom: 5px;
-	margin-left: 0 auto;
-	margin-right: 0 auto;
-}
-
-#Inhalt_unten {
-	/* 	border: 2px solid black; */
-	min-height: 300px;
-	width: inhert;
-	margin-left: 0 auto;
-	margin-right: 0 auto;
-}
-
-#Mitte {
-	background-color: #FFF;
-	padding: 20px 20px 20px 0px;
-	/* margin-top: 20px;
-	margin-bottom: 20px; */
-	height: auto;
-	min-height: 600px;
-	/* margin-left: 37%;
-	margin-right: 27%; */
-	float: right;
-	width: 47%;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
 
-#Einstellungen {
+#Zusatz {
+	background-color: #FFF;
 	float: right;
-	width: 20%;
+	padding: 20px 20px 20px 0px;
 	height: auto;
-	padding: 20px;
-	background-color: #fff;
 	min-height: 600px;
+	float: right;
+	width: 47%;
 	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
 

@@ -62,7 +62,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 					CheckBox cb = new CheckBox();
 					cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 					HorizontalPanel mzProfile = new HorizontalPanel();
-					Label fName = new Label("Name: " + p.getFname() + " " + p.getLname());
+					Label fName = new Label(p.getFname() + " " + p.getLname());
 					fName.addStyleName("findLove-Label");
 					mzProfile.add(fName);
 

@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.thirdparty.javascript.jscomp.Result;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -23,15 +24,21 @@ import de.shared.RO.ProfilEigenschaft;
 
 public class ProfilEigenschaftEditor extends VerticalPanel {
 
+	// GUI Elemente
 	private VerticalPanel editPanel = new VerticalPanel();
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
+	private VerticalPanel eigenschaftenPanel = new VerticalPanel();
 	private Button addEigenschaftenButton = new Button("Eigenschaft hinzufügen", new AddEigenschaftenClickHandler());
 	private Button speicherButton = new Button("Speichern", new SpeicherClickHandler());
+	private Button loeschenButton = new Button("Löschen", new DeleteInfosHandler());
+
+	// Daten und Zwischenspeicher
 	private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
 	private Vector<TextBox> eigenschaftenTextboxen = new Vector<TextBox>();
 	private Vector<Eigenschaft> eigenschaften;
-	private VerticalPanel eigenschaftenPanel = new VerticalPanel();
+	private Vector<Info> infosToDelete = new Vector<Info>();
 
+	// Konstruktor
 	public ProfilEigenschaftEditor() throws Exception {
 		buttonPanel.add(addEigenschaftenButton);
 		this.add(buttonPanel);
@@ -41,91 +48,130 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		loadProfilEigenschaften();
 	}
 
+	// Eigenschaften laden +
 	public void loadProfilEigenschaften() throws Exception {
 		eigenschaftenPanel.clear();
 		ClientSideSettings.getEditorService().getProfilEigenschaften(new LoadProfileCallback());
 	}
 
+	// + Callback
 	private class LoadProfileCallback implements AsyncCallback<Vector<ProfilEigenschaft>> {
 		public void onFailure(Throwable caught) {
 			eigenschaftenPanel.add(new Label("LoadProfileCallback " + caught.toString()));
-
 		}
 
 		public void onSuccess(Vector<ProfilEigenschaft> result) {
 			if (result.size() == 0)
 				eigenschaftenPanel.add(new Label("Erzähle etwas über ich!"));
-
 			FlexTable table = new FlexTable();
-
 			for (int i = 0; i < result.size(); i++) {
-
 				table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
 				table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
-				table.setWidget(i, 2, new Button("X", new LoeschenClickHandler(
-						result.elementAt(i).getInfo())));
-						//result.elementAt(i).getName(), result.elementAt(i).getWert())));
+				CheckBox cb = new CheckBox();
+				cb.addClickHandler(new AddToDeleteHandler(result.elementAt(i).getInfo()));
+				table.setWidget(i, 2, cb);
 			}
+			eigenschaftenPanel.clear();
 			eigenschaftenPanel.add(table);
 		}
 	}
-	
-	private class LoeschenClickHandler implements ClickHandler {
-		
+
+	// Add To Delete ClickHandler
+	private class AddToDeleteHandler implements ClickHandler {
 		private Info info;
-		
-		public LoeschenClickHandler(Info info){
+		public AddToDeleteHandler(Info info) {
 			this.info = info;
 		}
-		
-		public void onClick(ClickEvent e){
-			try {
-				ClientSideSettings.getEditorService().deleteInfo(info, new AsyncCallback(){
-					public void onFailure(Throwable caught) {
-					}
-					public void onSuccess(Object result) {
-						try {
-							loadProfilEigenschaften();
-						} catch (Exception e) {
-							e.printStackTrace();
+		public void onClick(ClickEvent e) {
+			CheckBox cb = (CheckBox) e.getSource();
+			if (cb.getValue()) {
+				infosToDelete.add(info);
+			} else {
+				infosToDelete.remove(info);
+			}
+			if(infosToDelete.size()!=0){
+				buttonPanel.add(loeschenButton);
+			}else{
+				loeschenButton.removeFromParent();
+			}
+		}
+	}
+	
+	// Delete Handler
+	private class DeleteInfosHandler implements ClickHandler {
+		public void onClick(ClickEvent e) {
+			for (int i = 0; i < infosToDelete.size(); i++) {
+				try {
+					ClientSideSettings.getEditorService().deleteInfo(infosToDelete.elementAt(i), 
+							new AsyncCallback() {
+						public void onFailure(Throwable caught) {
 						}
-					}
-				});
-			} catch (Exception e1) {
-				e1.printStackTrace();
+
+						public void onSuccess(Object result) {
+							loeschenButton.removeFromParent();
+							infosToDelete.clear();
+							try {
+								loadProfilEigenschaften();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 	}
 
+	// Hinzufügen ClickHandler
 	private class AddEigenschaftenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-
 			// wir wollen eine listbox und eine textbox
 			ListBox listbox = new ListBox(false);
 			TextBox infotextbox = new TextBox();
 			buttonPanel.add(speicherButton);
-
 			// um sie spï¿½ter auszulesen, werden sie auï¿½erhalb der methode
 			// gespeichert
 			eigenschaftenListboxen.add(listbox);
 			eigenschaftenTextboxen.add(infotextbox);
-
 			// fï¿½llen der listbox mit allen eigenschaften
 			for (int i = 0; i < eigenschaften.size(); i++) {
 				listbox.addItem(eigenschaften.elementAt(i).getErlaeuterung());
 			}
-
 			// hï¿½bsch anordnen
 			HorizontalPanel hpanel = new HorizontalPanel();
+			Button abbrechenButton = new Button("abbrechen", new AbbrechenHandler(listbox, infotextbox));
 			hpanel.add(listbox);
 			hpanel.add(infotextbox);
+			hpanel.add(abbrechenButton);
 			editPanel.add(hpanel);
 		}
 	}
 
+	// Wenn doch keine Eigenschaften eingegeben werden.
+	private class AbbrechenHandler implements ClickHandler {
+		private ListBox listbox;
+		private TextBox textbox;
+
+		public AbbrechenHandler(ListBox lb, TextBox tb) {
+			this.listbox = lb;
+			this.textbox = tb;
+		}
+
+		public void onClick(ClickEvent e) {
+			listbox.removeFromParent();
+			textbox.removeFromParent();
+			Button b = (Button) e.getSource();
+			b.removeFromParent();
+			speicherButton.removeFromParent();
+		}
+	}
+
+	// Callback zum Laden der Eigenschaften. Aufruf im Konstruktor
 	private class GetEigenschaftenCallback implements AsyncCallback<Vector<Eigenschaft>> {
 		public void onFailure(Throwable caught) {
-
 		}
 
 		public void onSuccess(Vector<Eigenschaft> result) {
@@ -133,6 +179,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
+	// Speichern ClickHandler
 	private class SpeicherClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			editPanel.clear();
@@ -153,26 +200,14 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 					e1.printStackTrace();
 				}
 			}
+			// Löschen der Zwischenspeicher
+			eigenschaftenListboxen.clear();
+			eigenschaftenTextboxen.clear();
+			speicherButton.removeFromParent();
 		}
 	}
 
-//	public class LoeschenClickHandler implements ClickHandler {
-//		public void onClick(ClickEvent event) {
-//			for (int i = 0; i < eigenschaftenTextboxen.size(); i++) {
-//				Info info = new Info();
-//				info.setValue(eigenschaftenTextboxen.elementAt(i).getText());
-//				try {
-//					ClientSideSettings.getEditorService().deleteInfo(info, new DeleteInfoCallback());
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//
-//			}
-//		}
-//
-//	}
-
+	// Speichern Callback - tut nix, außer das GUI neu laden
 	private class InsertInfoCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 		}
