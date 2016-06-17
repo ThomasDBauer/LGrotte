@@ -96,15 +96,14 @@ public class FindLove extends VerticalPanel {
 		}
 		
 		public void onClick(ClickEvent event) {
-			RootPanel.get("Inhalt_unten").clear();
-			RootPanel.get("Mitte").clear();
-			RootPanel.get("Einstellungen").clear();
-			RootPanel.get("Inhalt_oben").clear();
-			RootPanel.get("Inhalt_oben")
+			RootPanel.get("Inhalt").clear();
+			RootPanel.get("Zusatz").clear();
+			RootPanel.get("Content").clear();
+			RootPanel.get("Inhalt")
 			.add(new HTML(
 					"<h2 style = \"color: #c0c0c0\">Fremd Profil</h2>"));
 			try{
-			RootPanel.get("Inhalt_unten").add(new FremdesProfilAnzeigenEditor(profil));
+			RootPanel.get("Inhalt").add(new FremdesProfilAnzeigenEditor(profil));
 			ClientSideSettings.getEditorService().insertBesuch(profil, new AsyncCallback(){
 				public void onFailure(Throwable caught) {
 					RootPanel.get().add(new Label(
@@ -161,7 +160,7 @@ public class FindLove extends VerticalPanel {
 
 	private class InsertCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
-			RootPanel.get().add(
+			RootPanel.get("Inhalt").add(
 					new Label(caught.toString() + " @FindLove.InsertCallback"));
 		}
 

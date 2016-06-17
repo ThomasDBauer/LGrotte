@@ -21,7 +21,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.gui.FindLove;
-import de.client.gui.ImageFooter;
 import de.client.gui.LogOutPopUp;
 import de.client.gui.MeinProfilEditor;
 import de.client.gui.Navigation;
@@ -57,18 +56,18 @@ public class LGrotte implements EntryPoint {
 		editorService = ClientSideSettings.getEditorService();
 		loginService = ClientSideSettings.getLoginService();
 		
-		RootPanel.get("Einstellungen").add(new SeedButton());
+		RootPanel.get("Zusatz").add(new SeedButton());
 		loginService.login(GWT.getHostPageBaseURL() + "LGrotte.html",
 				new AsyncCallback<Profil>() {
 					public void onFailure(Throwable caught) {
-						RootPanel.get("Einstellungen").add(
+						RootPanel.get("Zusatz").add(
 								new Label(caught.toString()));
 					}
 
 					public void onSuccess(Profil result) {
 						editorService.setUser(result, new SetUserCallback());
 						if (result.isLoggedIn()) {
-							RootPanel.get("Inhalt_oben").add(
+							RootPanel.get("Inhalt").add(
 									new Label("Willkommen in der Grotte, "
 											+ result.getFname()));
 							logOutLink.setHref(result.getLogoutUrl());
@@ -99,9 +98,8 @@ public class LGrotte implements EntryPoint {
 							naviPanel.add(logOutButton);
 							naviPanel.addStyleName("navi-panel");
 							RootPanel.get("Navi").add(naviPanel);
-							RootPanel.get("Inhalt_unten").add(
+							RootPanel.get("Inhalt").add(
 									new ProfilAnzeigenEditor());
-							RootPanel.get("Fusszeile").add(new ImageFooter());
 						} else {
 							signInLink.setHref(result.getLoginUrl());
 							loginLabel.setStylePrimaryName("login-label");
@@ -113,7 +111,7 @@ public class LGrotte implements EntryPoint {
 							});
 							loginButton.setStylePrimaryName("login-button");
 							loginPanel.add(loginButton);
-							RootPanel.get("Inhalt_unten").add(loginPanel);
+							RootPanel.get("Inhalt").add(loginPanel);
 						}
 					}
 

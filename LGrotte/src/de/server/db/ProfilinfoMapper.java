@@ -40,10 +40,17 @@ public class ProfilinfoMapper {
 
 	public void insertProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
-		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
-				"INSERT INTO profil_info (email, info_id) VALUES "
-				+ "('" + pi.getProfilEmail() + "'," + pi.getInfoID() + ")");
-		stmt.execute();
+		
+		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
+				"SELECT * FROM profil_info WHERE email = '"+pi.getProfilEmail()+"' AND"
+						+ " info_id ="+pi.getInfoID());
+		ResultSet result = select.executeQuery();
+		if(!result.next()){
+			PreparedStatement insert = (PreparedStatement) conn.prepareStatement(
+					"INSERT INTO profil_info (email, info_id) VALUES "
+							+ "('" + pi.getProfilEmail() + "'," + pi.getInfoID() + ")");
+			insert.execute();
+		}
 	}
 
 	// onnection conn = (Connection) DBConnection.connection();

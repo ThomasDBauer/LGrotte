@@ -99,62 +99,58 @@ public class PopupNavi extends PopupPanel {
 
 			switch (popClick.getText()) {
 			case "Profil bearbeiten":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Mitte").clear();
-				RootPanel.get("Einstellungen").clear();
-				RootPanel.get("Inhalt_oben").clear();
-//				RootPanel.get("Inhalt_oben").add(new HTML(
-//						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
+				RootPanel.get("Inhalt").clear();
+				RootPanel.get("Zusatz").clear();
+				RootPanel.get("Content").clear();
+				RootPanel.get("Inhalt").add(new HTML(
+						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 //				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				try {
-					RootPanel.get("Inhalt_unten").add(new ProfilEditor());
+					RootPanel.get("Inhalt").add(new ProfilEditor());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				break;
 			case "Suchprofil":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Mitte").clear();
-				RootPanel.get("Einstellungen").clear();
-				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Inhalt").clear();
+				RootPanel.get("Zusatz").clear();
+				RootPanel.get("Content").clear();
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
-				RootPanel.get("Inhalt_oben")
+				RootPanel.get("Inhalt")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Deine Suchprofile</h2>"));
 				try {
-					RootPanel.get("Inhalt_unten").add(new SuchprofilMainFrame());
+					RootPanel.get("Inhalt").add(new SuchprofilMainFrame());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				break;
 			case "Merkliste":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Mitte").clear();
-				RootPanel.get("Einstellungen").clear();
-				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Inhalt").clear();
+				RootPanel.get("Zusatz").clear();
+				RootPanel.get("Content").clear();
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
-				RootPanel.get("Inhalt_oben")
+				RootPanel.get("Inhalt")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Deine Merkliste</h2>"));
 				try {
-					RootPanel.get("Inhalt_unten").add(new MerkzettelEditor());
+					RootPanel.get("Inhalt").add(new MerkzettelEditor());
 				} catch (Exception e1) {
-					RootPanel.get("Inhalt_unten").add(new Label("Fehler im Popup"));
+					RootPanel.get("Inhalt").add(new Label("Fehler im Popup"));
 				}
 				break;
 			case "Kontaktsperre":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Mitte").clear();
-				RootPanel.get("Einstellungen").clear();
-				RootPanel.get("Inhalt_oben").clear();
+				RootPanel.get("Zusatz").clear();
+				RootPanel.get("Content").clear();
+				RootPanel.get("Inhalt").clear();
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
-				RootPanel.get("Inhalt_oben")
+				RootPanel.get("Inhalt")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Kontaktsperre</h2>"));
 				try {
-					RootPanel.get("Inhalt_unten").add(new KontaktsperreEditor());
+					RootPanel.get("Inhalt").add(new KontaktsperreEditor());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
