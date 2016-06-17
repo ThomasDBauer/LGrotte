@@ -46,8 +46,9 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 //							
 //						}
 //						public void onSuccess(Vector<ProfilEigenschaft> result) {
-//							RootPanel.get().add(new Label(result.elementAt(0).getName()));
-//							RootPanel.get().add(new Label(result.elementAt(0).getWert()));
+//							
+//							editPanel.add(new Label(result.elementAt(0).getName()));
+//							editPanel.add(new Label(result.elementAt(0).getWert()));
 //						}
 //			});
 			
@@ -60,7 +61,6 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 			this.add(eigenschaftenPanel);
 			ClientSideSettings.getEditorService().getSuchprofile(new GetSuchprofileCallback());
 			ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
-//			loadSuchprofilEigenschaften();
 		}
 		
 		private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {
@@ -74,10 +74,15 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 			}
 		}
 		
-		public void loadSuchprofilEigenschaften() throws Exception {
+		public void loadSuchprofilEigenschaften() {
 			eigenschaftenPanel.clear();
-			ClientSideSettings.getEditorService().getSuchprofilEigenschaften(
-					spListBox.getItemText(spListBox.getSelectedIndex()), new LoadSuchprofileCallback());
+			try {
+				ClientSideSettings.getEditorService().getSuchprofilEigenschaften(
+						spListBox.getItemText(spListBox.getSelectedIndex()), new LoadSuchprofileCallback());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		private class LoadSuchprofileCallback implements AsyncCallback<Vector<ProfilEigenschaft>> {
@@ -85,8 +90,9 @@ public class SuchprofilInfoEditor extends HorizontalPanel{
 				eigenschaftenPanel.add(new Label("LoadProfileCallback " + caught.toString()));
 			}
 			public void onSuccess(Vector<ProfilEigenschaft> result) {
-				if (result.size() == 0)
-					editPanel.add(new Label("Lass uns noch genauer suchen"));
+				if (result.size() == 0) {
+					eigenschaftenPanel.add(new Label("Lass uns noch genauer suchen"));
+				}
 				FlexTable table = new FlexTable();
 				for (int i = 0; i < result.size(); i++) {
 					table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
