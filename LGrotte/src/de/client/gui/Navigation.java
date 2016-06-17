@@ -45,6 +45,10 @@ public class Navigation extends HorizontalPanel {
 				profilButton.removeStyleName("aktiv");
 				impressumButton.removeStyleName("aktiv");
 				active.addStyleName("aktiv");
+				RootPanel.get("Zusatz").clear();
+				RootPanel.get("Inhalt").clear();
+				RootPanel.get("Content").clear();
+				RootPanel.get("Inhalt").add(new ProfilAnzeigenEditor());
 
 				popup.setPopupPositionAndShow(new PopupPanel.PositionCallback() {
 					public void setPosition(int offsetWidth, int offsetHeight) {
@@ -53,6 +57,8 @@ public class Navigation extends HorizontalPanel {
 						popup.setPopupPosition(left, top);
 						popup.show();
 					}
+					
+					
 
 				});
 			}
@@ -73,16 +79,15 @@ public class Navigation extends HorizontalPanel {
 
 			switch (active.getText()) {
 			case "Find Love":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Mitte").clear();
-				RootPanel.get("Einstellungen").clear();
-				RootPanel.get("Inhalt_oben").clear();
-				RootPanel.get("Inhalt_oben")
+				RootPanel.get("Zusatz").clear();
+				RootPanel.get("Inhalt").clear();
+				RootPanel.get("Content").clear();
+				RootPanel.get("Inhalt")
 				.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Deine Partnervorschlaege</h2>"));
 				try {
-					RootPanel.get("Einstellungen").add(new SuchprofilEditor());
-					RootPanel.get("Inhalt_unten").add(new FindLove());
+					RootPanel.get("Zusatz").add(new SuchprofilEditor());
+					RootPanel.get("Inhalt").add(new FindLove());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -90,11 +95,10 @@ public class Navigation extends HorizontalPanel {
 				popup.hide();
 				break;
 			case "Impressum":
-				RootPanel.get("Inhalt_unten").clear();
-				RootPanel.get("Mitte").clear();
-				RootPanel.get("Einstellungen").clear();
-				RootPanel.get("Inhalt_oben").clear();
-				RootPanel.get("Inhalt_oben")
+				RootPanel.get("Zusatz").clear();
+				RootPanel.get("Inhalt").clear();
+				RootPanel.get("Content").clear();
+				RootPanel.get("Content")
 						.add(new HTML(
 								"<h2 style = \"color: #c0c0c0\">Impressum</h2>"));
 //				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
