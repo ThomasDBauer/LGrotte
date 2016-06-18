@@ -28,15 +28,16 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 	private VerticalPanel editPanel = new VerticalPanel();
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
 	private VerticalPanel eigenschaftenPanel = new VerticalPanel();
-	private Button addEigenschaftenButton = new Button("Eigenschaft hinzufügen", new AddEigenschaftenClickHandler());
+	private Button addEigenschaftenButton = new Button("Eigenschaft hinzufï¿½gen", new AddEigenschaftenClickHandler());
 	private Button speicherButton = new Button("Speichern", new SpeicherClickHandler());
-	private Button loeschenButton = new Button("Löschen", new DeleteInfosHandler());
+	private Button loeschenButton = new Button("Lï¿½schen", new DeleteInfosHandler());
 
 	// Daten und Zwischenspeicher
 	private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
 	private Vector<TextBox> eigenschaftenTextboxen = new Vector<TextBox>();
 	private Vector<Eigenschaft> eigenschaften;
 	private Vector<Info> infosToDelete = new Vector<Info>();
+	private int aktiveEigenschaftenCounter = 1;
 
 	// Konstruktor
 	public ProfilEigenschaftEditor() throws Exception {
@@ -65,7 +66,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 		public void onSuccess(Vector<ProfilEigenschaft> result) {
 			if (result.size() == 0)
-				eigenschaftenPanel.add(new Label("Erzähle etwas über ich!"));
+				eigenschaftenPanel.add(new Label("Erzï¿½hle etwas ï¿½ber ich!"));
 			FlexTable table = new FlexTable();
 			for (int i = 0; i < result.size(); i++) {
 				table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
@@ -128,13 +129,14 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
-	// Hinzufügen ClickHandler
+	// Hinzufï¿½gen ClickHandler
 	private class AddEigenschaftenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			// wir wollen eine listbox und eine textbox
 			ListBox listbox = new ListBox(false);
 			TextBox infotextbox = new TextBox();
 			buttonPanel.add(speicherButton);
+			aktiveEigenschaftenCounter = aktiveEigenschaftenCounter + 1;
 			// um sie spï¿½ter auszulesen, werden sie auï¿½erhalb der methode
 			// gespeichert
 			eigenschaftenListboxen.add(listbox);
@@ -164,11 +166,14 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 
 		public void onClick(ClickEvent e) {
+			aktiveEigenschaftenCounter = aktiveEigenschaftenCounter - 1;
 			listbox.removeFromParent();
 			textbox.removeFromParent();
 			Button b = (Button) e.getSource();
 			b.removeFromParent();
-			speicherButton.removeFromParent();
+			if(aktiveEigenschaftenCounter==1){
+				speicherButton.removeFromParent();
+			}
 		}
 	}
 
@@ -203,14 +208,15 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 					e1.printStackTrace();
 				}
 			}
-			// Löschen der Zwischenspeicher
+			// Lï¿½schen der Zwischenspeicher
 			eigenschaftenListboxen.clear();
 			eigenschaftenTextboxen.clear();
 			speicherButton.removeFromParent();
+			aktiveEigenschaftenCounter = 0;
 		}
 	}
 
-	// Speichern Callback - tut nix, außer das GUI neu laden
+	// Speichern Callback - tut nix, auï¿½er das GUI neu laden
 	private class InsertInfoCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 		}

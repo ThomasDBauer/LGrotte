@@ -78,7 +78,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			profilAnzeigenTable.setWidget(8, 0, new Label("Geburtsdatum"));
 			profilAnzeigenTable.setWidget(8, 1, bdayLabel);
 			
-			profilAnzeigenTable.setWidget(9, 0, new Label("e-Mail"));
+			profilAnzeigenTable.setWidget(9, 0, new Label("E-Mail"));
 			profilAnzeigenTable.setWidget(9, 1, eMail);
 			
 			profilAnzeigenTable.addStyleName("findLove-table td");
