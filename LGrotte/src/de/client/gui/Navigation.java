@@ -39,16 +39,17 @@ public class Navigation extends HorizontalPanel {
 	class ProfilPopupClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			Button active = (Button) e.getSource();
-
+				
+			RootPanel.get("Zusatz").clear();
+			RootPanel.get("Inhalt").clear();
+			RootPanel.get("Content").clear();
+			RootPanel.get("Inhalt").add(new ProfilAnzeigenEditor());
+			
 			if (!active.getStyleName().equals("aktiv")) {
 				findLoveButton.removeStyleName("aktiv");
 				profilButton.removeStyleName("aktiv");
 				impressumButton.removeStyleName("aktiv");
 				active.addStyleName("aktiv");
-				RootPanel.get("Zusatz").clear();
-				RootPanel.get("Inhalt").clear();
-				RootPanel.get("Content").clear();
-				RootPanel.get("Inhalt").add(new ProfilAnzeigenEditor());
 
 				popup.setPopupPositionAndShow(new PopupPanel.PositionCallback() {
 					public void setPosition(int offsetWidth, int offsetHeight) {
@@ -82,7 +83,7 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Content").clear();
 				RootPanel.get("Inhalt")
 				.add(new HTML(
-						"<h2 style = \"color: #c0c0c0\">Deine Partnervorschlaege</h2>"));
+						"<h2>Deine Partnervorschlaege</h2>"));
 				try {
 					RootPanel.get("Inhalt").add(new FindLove());
 				} catch (Exception e1) {
@@ -97,7 +98,7 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Content").clear();
 				RootPanel.get("Content")
 						.add(new HTML(
-								"<h2 style = \"color: #c0c0c0\">Impressum</h2>"));
+								"<h2>Impressum</h2>"));
 //				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
 				popup.hide();
 				break;

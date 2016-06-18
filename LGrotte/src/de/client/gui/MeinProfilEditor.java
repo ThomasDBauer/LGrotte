@@ -65,6 +65,9 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 	
 	public MeinProfilEditor(){
+		profilLoeschenButton.setStylePrimaryName("grotte-Button");
+		profilUpdateButton.setStylePrimaryName("grotte-Button");
+		
 		try {
 			ClientSideSettings.getEditorService().getProfil(new ProfilAuslesenCallback());
 		} catch (Exception e) {
@@ -237,8 +240,15 @@ public class MeinProfilEditor extends VerticalPanel {
 		}
 
 		public void onSuccess(Profil result) {
-			fNameTextBox.setText(result.getFname());
-			lNameTextBox.setText(result.getLname());
+			
+			if (result.getFname() == "null") {
+				fNameTextBox.setText("");
+				lNameTextBox.setText("");
+			} else {
+				fNameTextBox.setText(result.getFname());
+				lNameTextBox.setText(result.getLname());
+			}
+			
 			for (int g = 0; g < 3; g++) {
 				if (geschlechtListBox.getValue(g) == result.getGeschlecht()) {
 					geschlechtListBox.setSelectedIndex(g);
@@ -249,7 +259,11 @@ public class MeinProfilEditor extends VerticalPanel {
 					haarfarbeListBox.setSelectedIndex(hf);
 				}
 			}
-			koerpergroesseTextBox.setText(Integer.toString(result.getKoerpergroesse()));
+			if (result.getKoerpergroesse() == 0) {
+				koerpergroesseTextBox.setText("");
+			} else {
+				koerpergroesseTextBox.setText(Integer.toString(result.getKoerpergroesse()));
+			}
 			for (int re = 0; re < 5; re++) {
 				if (religionListBox.getValue(re) == result.getReligion()) {
 					religionListBox.setSelectedIndex(re);

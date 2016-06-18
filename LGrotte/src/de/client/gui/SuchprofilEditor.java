@@ -89,7 +89,10 @@ public class SuchprofilEditor extends VerticalPanel {
 		// Editor 
 		public SuchprofilEditor(SuchprofilInfoEditor spie) throws Exception {
 			this.eigenschaftenEditor = spie;
-			
+			spHinzufuegenButton.setStylePrimaryName("grotte-Button");
+			loeschenButton.setStylePrimaryName("grotte-Button");
+			updateButton.setStylePrimaryName("grotte-Button");
+			anlegenButton.setStylePrimaryName("grotte-Button");
 			
 			// Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
 			anlegenTable.clear();
