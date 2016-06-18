@@ -40,6 +40,7 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 		private VerticalPanel editPanel = new VerticalPanel();
 		private VerticalPanel eigenschaftenPanel = new VerticalPanel();
 		private Label nochkeinInfosLabel = new Label("Lass uns noch genauer suchen");
+		private int aktiveEigenschaftenCounter = 0;
 
 		//Speicher
 		private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
@@ -159,6 +160,7 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 				ListBox listbox = new ListBox(false);
 				TextBox infotextbox = new TextBox();
 				buttonPanel.add(speicherButton);
+				aktiveEigenschaftenCounter = aktiveEigenschaftenCounter + 1;
 				// um sie sp�ter auszulesen, werden sie au�erhalb der methode
 				// gespeichert
 				eigenschaftenListboxen.add(listbox);
@@ -186,11 +188,15 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 				this.textbox = tb;
 			}
 			public void onClick(ClickEvent e){
+				aktiveEigenschaftenCounter = aktiveEigenschaftenCounter - 1;
 				listbox.removeFromParent();
 				textbox.removeFromParent();
 				Button b = (Button)e.getSource();
 				b.removeFromParent();
-				speicherButton.removeFromParent();
+				if(aktiveEigenschaftenCounter==0){
+					speicherButton.removeFromParent();
+				}
+				
 			}
 		}
 		

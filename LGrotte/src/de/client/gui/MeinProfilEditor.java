@@ -123,7 +123,7 @@ public class MeinProfilEditor extends VerticalPanel {
 		
 		geschlechtListBox.addItem("männlich");
 		geschlechtListBox.addItem("weiblich");
-		geschlechtListBox.addItem("Andere");
+		geschlechtListBox.addItem("andere");
 		
 		
 		haarfarbeListBox.addItem("blond");
@@ -131,12 +131,15 @@ public class MeinProfilEditor extends VerticalPanel {
 		haarfarbeListBox.addItem("schwarz");
 		haarfarbeListBox.addItem("rot");
 		haarfarbeListBox.addItem("grau");
+		haarfarbeListBox.addItem("andere");
 		
 		religionListBox.addItem("christlich");
 		religionListBox.addItem("muslimisch");
 		religionListBox.addItem("buddhistisch");
 		religionListBox.addItem("hinduitsisch");
 		religionListBox.addItem("jüdisch");
+		religionListBox.addItem("keine");
+		religionListBox.addItem("andere");
 		
 		raucherListBox.addItem("Ja");
 		raucherListBox.addItem("Nein");
