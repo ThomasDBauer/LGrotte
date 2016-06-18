@@ -82,8 +82,8 @@ public class ReportEntry implements EntryPoint {
 	}
 	
 	/*
-	 * Lädt initial alle Suchprofile. --> Baut die ListBox zum Selektieren auf
-	 * --> Übergibt dem ListBox ChangeHandler das Suchprofil.
+	 * Lï¿½dt initial alle Suchprofile. --> Baut die ListBox zum Selektieren auf
+	 * --> ï¿½bergibt dem ListBox ChangeHandler das Suchprofil.
 	 */
 	public void loadSuchprofile() {
 		try {
@@ -109,7 +109,7 @@ public class ReportEntry implements EntryPoint {
 		}
 	}
 	
-	//HtML Reports erstellen lassen für Report-Listen
+	//HtML Reports erstellen lassen fï¿½r Report-Listen
 	public void loadHtmlReports(Vector<ProfilReport> reports){
 		links.clear();
 		if(reports.size()==0)links.add(new Label("Keine Ergebnisse"));
@@ -149,7 +149,7 @@ public class ReportEntry implements EntryPoint {
 	}
 	
 	/*
-	 * Baut Reports für nicht besuchte Profile auf
+	 * Baut Reports fï¿½r nicht besuchte Profile auf
 	 */
 	public void loadReportsForNotVisited() throws Exception {
 		reportService.getNotVisitedReports(new AsyncCallback<Vector<ProfilReport>>(){
@@ -170,6 +170,8 @@ public class ReportEntry implements EntryPoint {
 	 */
 	private class SucheChangeHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
+			SelectElement selectElement = suchprofilListbox.getElement().cast();
+            selectElement.getOptions().getItem(0).setDisabled(true);
 			Suchprofil sp = getSuchprofil();
 			if(sp != null){
 				updateSuchprofilPanel(sp);
@@ -183,8 +185,15 @@ public class ReportEntry implements EntryPoint {
 	}
 	
 	public void updateSuchprofilPanel(Suchprofil sp){
+		suchprofilPanel.setStylePrimaryName("suchprofil-filter");
 		suchprofilPanel.clear();
-		suchprofilPanel.add(new Label("Haarfarbe: "+sp.getHaarfarbe()));
+		suchprofilPanel.add(new Label("Geschlecht: " + sp.getHaarfarbe()));
+		suchprofilPanel.add(new Label("Raucher: " + sp.getRaucher()));
+		suchprofilPanel.add(new Label("Haarfarbe: " + sp.getHaarfarbe()));
+		suchprofilPanel.add(new Label("Religion: " + sp.getReligion()));
+//		suchprofilPanel.add(new Label("KÃ¶rpergrÃ¶ÃŸe: " + sp));
+//		suchprofilPanel.add(new Label("Alter: " + sp));
+		
 		
 		for(int i = 0; i < sp.getProfileigenschaften().size(); i++){
 			ProfilEigenschaft pe = sp.getProfileigenschaften().elementAt(i);
@@ -194,7 +203,7 @@ public class ReportEntry implements EntryPoint {
 	
 	/*
 	 * Weil wir leider nicht mit einem DataListProvider arbeiten,
-	 * müssen wir die Strings der ListBox mit den Suchprofilen abgleichen.
+	 * mï¿½ssen wir die Strings der ListBox mit den Suchprofilen abgleichen.
 	 */
 	public Suchprofil getSuchprofil(){
 		Suchprofil sp = null;
@@ -210,7 +219,7 @@ public class ReportEntry implements EntryPoint {
 	}
 	
 	/*
-	 * ClickHandler für AlleProfile-Button
+	 * ClickHandler fï¿½r AlleProfile-Button
 	 */
 	public class AlleProfileHandler implements ClickHandler{
 		public void onClick(ClickEvent e){
@@ -223,7 +232,7 @@ public class ReportEntry implements EntryPoint {
 	}
 	
 	/*
-	 * ClickHandler für Nicht besuchte Profile-Button
+	 * ClickHandler fï¿½r Nicht besuchte Profile-Button
 	 */
 	public class NichtBesuchteHandler implements ClickHandler{
 		public void onClick(ClickEvent e){

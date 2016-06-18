@@ -314,6 +314,11 @@ li a:hover {
 	margin-left: 60px;
 }
 
+.suchprofil-filter{
+	margin: 10px;
+	margin-left: 20px;
+}
+
 .textlabel{
 	font-weight: bold;
 	margin-left: 20px;
