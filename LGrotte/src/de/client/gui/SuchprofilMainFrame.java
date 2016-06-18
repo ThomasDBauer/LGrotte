@@ -10,7 +10,7 @@ public class SuchprofilMainFrame extends HorizontalPanel{
 //		this.add(spie);	
 	}
 
-	private void sie() {
-		this.add(spie);	
-	}
+//	private void sie() {
+//		this.add(spie);	
+//	}
 }

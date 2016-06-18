@@ -32,7 +32,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		private HorizontalPanel updatePanel = new HorizontalPanel();
 		private HorizontalPanel speichernButtonPanel = new HorizontalPanel();
 		private HorizontalPanel listBoxPanel = new HorizontalPanel();
-		SuchprofilMainFrame smf = new SuchprofilMainFrame();
+//		SuchprofilMainFrame smf = new SuchprofilMainFrame();
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
@@ -422,11 +422,11 @@ public class SuchprofilEditor extends VerticalPanel {
 					e.printStackTrace();
 				}
 				// Editor erscheinen lassen per Click
-				RootPanel.get("Zusatz").clear();
-				try {
-					RootPanel.get("Zusatz").add(smf.spie);
-				} catch (Exception e) {
-				}
+//				RootPanel.get("Zusatz").clear();
+//				try {
+//					RootPanel.get("Zusatz").add(smf.spie);
+//				} catch (Exception e) {
+//				}
 			}
 		}	
 		// Callback zum Anzeigen des kompletten Suchprofils
