@@ -17,8 +17,7 @@ import de.client.LGrotte;
 import de.client.gui.Navigation;
 import de.shared.BO.Profil;
 
-public class PopupNavi extends PopupPanel {
-	private HorizontalPanel popupPanel = new HorizontalPanel();
+public class PopupNavi extends HorizontalPanel {
 	public final Button profilBearbeitenButton = new Button(
 			"Profil bearbeiten", new PopupClickHandler());
 	public final Button suchprofilButton = new Button("Suchprofil",
@@ -39,7 +38,7 @@ public class PopupNavi extends PopupPanel {
 	public final Label loeschenLabel = new Label("Wollen Sie Ihr Profil wirklich löschen");
 
 	public PopupNavi() {
-		super(true);
+//		super(true);
 		profilBearbeitenButton.setStylePrimaryName("navi-button");
 		suchprofilButton.setStylePrimaryName("navi-button");
 		merklisteButton.setStylePrimaryName("navi-button");
@@ -47,12 +46,14 @@ public class PopupNavi extends PopupPanel {
 		profilloeschenButton.setStylePrimaryName("navi-button");
 		loeschenjaButton.setStylePrimaryName("loeschen-ja");
 		loeschenneinButton.setStylePrimaryName("loeschen-nein");
-		popupPanel.add(profilBearbeitenButton);
-		popupPanel.add(suchprofilButton);
-		popupPanel.add(merklisteButton);
-		popupPanel.add(kontaktsperreButton);
-		popupPanel.add(profilloeschenButton);
-		setWidget(popupPanel);
+		profilBearbeitenButton.setStyleName("navi-button-big", true);
+		profilloeschenButton.setStyleName("navi-button-big", true);
+		this.addStyleName("Navi-Pop-Panel");
+		this.add(profilBearbeitenButton);
+		this.add(suchprofilButton);
+		this.add(merklisteButton);
+		this.add(kontaktsperreButton);
+		this.add(profilloeschenButton);
 	}
 	
 	private class ProfilLoeschenCallback implements AsyncCallback {
@@ -162,7 +163,7 @@ public class PopupNavi extends PopupPanel {
 				loeschenButtonPanel.add(loeschenneinButton);
 				loeschenLabelPanel.add(loeschenLabel);
 				loeschenLabelPanel.add(loeschenButtonPanel);
-				setWidget(loeschenLabelPanel);
+//				setWidth(loeschenLabelPanel);
 				break;
 			}
 		}

@@ -4,14 +4,15 @@ import com.google.api.server.spi.Constant;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-
 
 public class Navigation extends HorizontalPanel {
 
@@ -23,7 +24,7 @@ public class Navigation extends HorizontalPanel {
 			new ProfilPopupClickHandler());
 	private final Button impressumButton = new Button("Impressum",
 			new NavigationsButtonHandler());
-	public static final PopupNavi popup = new PopupNavi();
+	public PopupNavi popup = new PopupNavi();
 
 	public Navigation() {
 		findLoveButton.setStylePrimaryName("navi-button");
@@ -34,33 +35,27 @@ public class Navigation extends HorizontalPanel {
 
 		impressumButton.setStylePrimaryName("navi-button");
 		this.add(impressumButton);
+
 	}
 
-	class ProfilPopupClickHandler implements ClickHandler {
+	private class ProfilPopupClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			Button active = (Button) e.getSource();
-				
+
 			RootPanel.get("Zusatz").clear();
 			RootPanel.get("Inhalt").clear();
 			RootPanel.get("Content").clear();
-			RootPanel.get("Inhalt").add(new ProfilAnzeigenEditor());
 			
+			RootPanel.get("Inhalt").add(new ProfilAnzeigenEditor());
+
 			if (!active.getStyleName().equals("aktiv")) {
 				findLoveButton.removeStyleName("aktiv");
 				profilButton.removeStyleName("aktiv");
 				impressumButton.removeStyleName("aktiv");
 				active.addStyleName("aktiv");
-
-				popup.setPopupPositionAndShow(new PopupPanel.PositionCallback() {
-					public void setPosition(int offsetWidth, int offsetHeight) {
-						int left = findLoveButton.getAbsoluteLeft();
-						int top = profilButton.getAbsoluteTop() + 45;
-						popup.setPopupPosition(left, top);
-						popup.show();
-					}
-
-				});
-			}
+//				RootPanel.get("Navi-Pop-Container").add(new HTML("<div id=\"Navi-Pop\"></div>"));
+				RootPanel.get("Navi-Pop").add(popup);
+				}
 		}
 	}
 
@@ -81,28 +76,25 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Zusatz").clear();
 				RootPanel.get("Inhalt").clear();
 				RootPanel.get("Content").clear();
-				RootPanel.get("Inhalt")
-				.add(new HTML(
-						"<h2>Deine Partnervorschlaege</h2>"));
+				RootPanel.get("Navi-Pop").clear();
+				RootPanel.get("Inhalt").add(
+						new HTML("<h2>Deine Partnervorschlaege</h2>"));
 				try {
 					RootPanel.get("Inhalt").add(new FindLove());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				popup.hide();
 				break;
 			case "Impressum":
 				RootPanel.get("Zusatz").clear();
 				RootPanel.get("Inhalt").clear();
 				RootPanel.get("Content").clear();
-				RootPanel.get("Content")
-						.add(new HTML(
-								"<h2>Impressum</h2>"));
-//				RootPanel.get("Inhalt_unten").add(new ImpressumReport());
-				popup.hide();
+				RootPanel.get("Navi-Pop").clear();
+				RootPanel.get("Content").add(new HTML("<h2>Impressum</h2>"));
+				// RootPanel.get("Inhalt_unten").add(new ImpressumReport());
 				break;
 			}
 		};
-	};
+	}
 }
