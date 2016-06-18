@@ -37,7 +37,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 	private Vector<TextBox> eigenschaftenTextboxen = new Vector<TextBox>();
 	private Vector<Eigenschaft> eigenschaften;
 	private Vector<Info> infosToDelete = new Vector<Info>();
-	private int aktiveEigenschaftenCounter = 1;
+	private int aktiveEigenschaftenCounter = 0;
 
 	// Konstruktor
 	public ProfilEigenschaftEditor() throws Exception {
@@ -171,7 +171,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			textbox.removeFromParent();
 			Button b = (Button) e.getSource();
 			b.removeFromParent();
-			if(aktiveEigenschaftenCounter==1){
+			if(aktiveEigenschaftenCounter==0){
 				speicherButton.removeFromParent();
 			}
 		}
