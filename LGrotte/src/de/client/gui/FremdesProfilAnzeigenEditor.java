@@ -40,7 +40,8 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		
 		public FremdesProfilAnzeigenEditor(Profil profil) throws Exception {
 			this.p = profil;
-	
+			merkenButton.setStylePrimaryName("grotte-Button");
+			sperrenButton.setStylePrimaryName("grotte-Button");
 			fnameLabel.setText(p.getFname());
 			lnameLabel.setText(p.getLname());
 			geschlechtLabel.setText(p.getGeschlecht());

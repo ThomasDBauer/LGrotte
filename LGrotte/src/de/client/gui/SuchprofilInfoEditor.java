@@ -58,6 +58,8 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 		//Konstruktor
 		public SuchprofilInfoEditor() throws Exception {	
 			buttonPanel.add(addEigenschaftenButton);
+			speicherButton.setStylePrimaryName("grotte-Button");
+			addEigenschaftenButton.setStylePrimaryName("grotte-Button");
 			this.add(buttonPanel);
 			this.add(editPanel);
 			this.add(eigenschaftenPanel);
@@ -171,6 +173,7 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 				hpanel.add(listbox);
 				hpanel.add(infotextbox);
 				hpanel.add(abbrechenButton);
+				abbrechenButton.setStylePrimaryName("grotte-Button");
 				editPanel.add(hpanel);
 			}
 		}

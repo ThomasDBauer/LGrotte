@@ -40,6 +40,9 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 	// Konstruktor
 	public ProfilEigenschaftEditor() throws Exception {
+		addEigenschaftenButton.setStylePrimaryName("grotte-Button");
+		speicherButton.setStylePrimaryName("grotte-Button");
+		loeschenButton.setStylePrimaryName("grotte-Button");
 		buttonPanel.add(addEigenschaftenButton);
 		this.add(buttonPanel);
 		this.add(editPanel);

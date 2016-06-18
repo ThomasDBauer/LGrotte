@@ -103,7 +103,7 @@ public class PopupNavi extends PopupPanel {
 				RootPanel.get("Zusatz").clear();
 				RootPanel.get("Content").clear();
 				RootPanel.get("Inhalt").add(new HTML(
-						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
+						"<h2>Dein Profil bearbeiten</h2>"));
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 //				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				try {
@@ -119,7 +119,7 @@ public class PopupNavi extends PopupPanel {
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 				RootPanel.get("Inhalt")
 				.add(new HTML(
-						"<h2 style = \"color: #c0c0c0\">Deine Suchprofile</h2>"));
+						"<h2>Deine Suchprofile</h2>"));
 				try {
 					RootPanel.get("Inhalt").add(new SuchprofilMainFrame());
 				} catch (Exception e1) {
@@ -134,7 +134,7 @@ public class PopupNavi extends PopupPanel {
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 				RootPanel.get("Inhalt")
 				.add(new HTML(
-						"<h2 style = \"color: #c0c0c0\">Deine Merkliste</h2>"));
+						"<h2>Deine Merkliste</h2>"));
 				try {
 					RootPanel.get("Inhalt").add(new MerkzettelEditor());
 				} catch (Exception e1) {
@@ -148,7 +148,7 @@ public class PopupNavi extends PopupPanel {
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 				RootPanel.get("Inhalt")
 				.add(new HTML(
-						"<h2 style = \"color: #c0c0c0\">Kontaktsperre</h2>"));
+						"<h2>Kontaktsperre</h2>"));
 				try {
 					RootPanel.get("Inhalt").add(new KontaktsperreEditor());
 				} catch (Exception e1) {

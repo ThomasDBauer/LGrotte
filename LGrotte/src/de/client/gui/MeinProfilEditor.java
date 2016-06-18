@@ -65,6 +65,9 @@ public class MeinProfilEditor extends VerticalPanel {
 	
 	
 	public MeinProfilEditor(){
+		profilLoeschenButton.setStylePrimaryName("grotte-Button");
+		profilUpdateButton.setStylePrimaryName("grotte-Button");
+		
 		try {
 			ClientSideSettings.getEditorService().getProfil(new ProfilAuslesenCallback());
 		} catch (Exception e) {
