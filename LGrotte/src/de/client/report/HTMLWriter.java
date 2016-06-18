@@ -61,7 +61,7 @@ public class HTMLWriter {
 		sb.append("</div>");
 
 		sb.append("<div class = \"Report-Attribut\">");
-		sb.append("Profil von " + report.getHeader());
+		sb.append("<b>" + report.getHeader() + "</b>");
 		sb.append("</br>");
 		for (int i = 0; i < report.getAttribute().size(); i++) {
 			sb.append(

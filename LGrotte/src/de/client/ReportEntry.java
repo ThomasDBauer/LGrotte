@@ -58,7 +58,9 @@ public class ReportEntry implements EntryPoint {
 			}
 			public void onSuccess(Profil result) {
 				navPanel.add(alleAnzeigenButton);
+				alleAnzeigenButton.setStylePrimaryName("navi-button");
 				navPanel.add(nichtBesuchteButton);
+				nichtBesuchteButton.setStylePrimaryName("navi-button");
 				navPanel.add(suchProfileAnzeigenLabel);
 				navPanel.add(suchprofilListbox);
 				reportService.setUser(result, new AsyncCallback() {
