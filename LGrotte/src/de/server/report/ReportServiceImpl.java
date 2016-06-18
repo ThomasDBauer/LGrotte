@@ -59,7 +59,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/*
-	 * Erzeugt den ProfilReport für ein einzelnes Profil
+	 * Erzeugt den ProfilReport fï¿½r ein einzelnes Profil
 	 */
 	public ProfilReport getProfilReport(Profil p) throws Exception {
 		// Auslesen des Profils aus der DB
@@ -109,7 +109,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			}
 		}
 		// ProfilReports erstellen
-		// Speicher für ProfilReports
+		// Speicher fÃ¼r ProfilReports
 		Vector<ProfilReport> reports = new Vector<ProfilReport>();
 		for (int i = 0; i < results.size(); i++) {
 			ProfilReport report = getProfilReport(results.elementAt(i));
@@ -118,7 +118,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			Match m = new Match(aehnlichkeitBerechnen(profile.elementAt(i), sp));
 			report.setMatch(m);
 
-			// final den ProfilReport zu den Ergebnissen hinzufügen
+			// final den ProfilReport zu den Ergebnissen hinzufï¿½gen
 			reports.add(report);
 		}
 		return reports;
@@ -137,7 +137,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			// Suchprofil!)
 			Match m = new Match(aehnlichkeitBerechnen(profile.elementAt(i)));
 			report.setMatch(m);
-			// Hinzufügen
+			// Hinzufï¿½gen
 			reports.add(report);
 		}
 		return reports;
@@ -168,7 +168,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			// Suchprofil!)
 			Match m = new Match(aehnlichkeitBerechnen(results.elementAt(i)));
 			report.setMatch(m);
-			// Hinzufügen
+			// Hinzufï¿½gen
 			reports.add(report);
 		}
 		return reports;
@@ -190,7 +190,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/*
-	 * Ähnlichkeit: Profil vs.Profile
+	 * ï¿½hnlichkeit: Profil vs.Profile
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich) throws Exception {
 		int aehnlichkeit = 0;
@@ -207,7 +207,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/*
-	 * Ähnlichkeit: Suchprofil vs. Profile
+	 * Ã„hnlichkeit: Suchprofil vs. Profile
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich, Suchprofil suchprofil) throws Exception {
 		int aehnlichkeit = 0;
