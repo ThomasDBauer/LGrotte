@@ -67,9 +67,15 @@ public class LGrotte implements EntryPoint {
 					public void onSuccess(Profil result) {
 						editorService.setUser(result, new SetUserCallback());
 						if (result.isLoggedIn()) {
+							if (result.getFname() == "null") {
+								RootPanel.get("Inhalt").add(new MeinProfilEditor());
+							} else {
 							RootPanel.get("Inhalt").add(
 									new Label("Willkommen in der Grotte, "
 											+ result.getFname()));
+							RootPanel.get("Inhalt").add(
+									new ProfilAnzeigenEditor());
+							}
 							logOutLink.setHref(result.getLogoutUrl());
 							logOutUrl = logOutLink.getHref();
 							logOutButton.setStylePrimaryName("navi-button");
@@ -98,8 +104,6 @@ public class LGrotte implements EntryPoint {
 							naviPanel.add(logOutButton);
 							naviPanel.addStyleName("navi-panel");
 							RootPanel.get("Navi").add(naviPanel);
-							RootPanel.get("Inhalt").add(
-									new ProfilAnzeigenEditor());
 						} else {
 							signInLink.setHref(result.getLoginUrl());
 							loginLabel.setStylePrimaryName("login-label");
