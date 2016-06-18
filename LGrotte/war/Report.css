@@ -51,7 +51,7 @@ li a:hover {
 	background-color: #4CAF50;
 }
 
-#Container_Report{
+#Container_Report {
 	max-width: 1200px;
 	min-width: 960px;
 	margin-top: 0px;
@@ -59,13 +59,13 @@ li a:hover {
 	margin-right: auto;
 	margin-bottom: 10px auto;
 	padding: 10 px;
-/* 	background-color: #b61414;*/	
-	background-image:  radial-gradient(circle farthest-corner at 350px 400px, #b61414, #eb4949);
+	/* 	background-color: #b61414;*/
+	background-image: radial-gradient(circle farthest-corner at 350px 400px, #b61414, #eb4949);
 	border: 1px solid #c0c0c0;
 	height: auto;
 }
 
-#Body-left{
+#Body-left {
 	float: left;
 	position: relative;
 	background-color: #FFF;
@@ -76,10 +76,9 @@ li a:hover {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	
 }
 
-#Body-right{
+#Body-right {
 	background-color: #FFF;
 	float: right;
 	padding: 20px 20px 20px 0px;
@@ -102,53 +101,51 @@ li a:hover {
 	border-radius: 5px;
 }
 
-.Report-Aehnlichkeit{
+.Report-Aehnlichkeit {
 	float: left;
 	height: 80px;
 	border-radius: 50%;
 	-moz-border-radius: 50%;
 	border: 1px solid #fff;
 	background-color: #f18585;
- 	margin-bottom: 25px;
+	margin-bottom: 25px;
 	margin-top: 20px;
-	margin-left:10px;
+	margin-left: 10px;
 }
 
-.Report-Aehnlichkeit-Font{
+.Report-Aehnlichkeit-Font {
 	font-size: 24px;
 	float: left;
 	height: 60px;
 	width: 60px;
 	margin-top: 20px;
-	margin-left:15px;
-	
+	margin-left: 15px;
 }
 
-.Report-Attribut{
-	width: 180px;
+.Report-Attribut {
+	width: 220px;
 	margin-top: 25px;
 	margin-bottom: 10%;
 	margin-left: 20%;
-
 }
 
-.Report-Eigenschaft{
+.Report-Eigenschaft {
 	float: right;
 	width: 30%;
 	margin-top: 25px;
 	margin: 10px;
 }
 
-.findLove-Table{
-
+.findLove-Table {
+	
 }
 
-.findLove-Table td{
+.findLove-Table td {
 	width: auto;
 	height: auto;
 }
 
-.findLove-Labelmid{
+.findLove-Labelmid {
 	border-left: 1px solid #c0c0c0;
 	border-right: 1px solid #c0c0c0;
 	padding: 3px;
@@ -156,12 +153,12 @@ li a:hover {
 	margin-right: 5px;
 }
 
-.findLove-Label{
+.findLove-Label {
 	padding-top: 3px;
 	padding-bottom: 3px;
 }
 
-.findLove-Panel{
+.findLove-Panel {
 	border-top: 1px solid #c0c0c0;
 	border-bottom: 1px solid #c0c0c0;
 	min-width: 500px;
@@ -169,23 +166,23 @@ li a:hover {
 	padding-left: 12px;
 }
 
-.findLove-HPaneltop{
+.findLove-HPaneltop {
 	margin-bottom: 4px;
 	padding-top: 3px;
-/* 	border-top: 1px solid #c0c0c0;*/
+	/* 	border-top: 1px solid #c0c0c0;*/
 }
 
-.findLove-HPanelbot{
+.findLove-HPanelbot {
 	padding-bottom: 3px;
-/*	border-bottom: 1px solid #c0c0c0;*/
+	/*	border-bottom: 1px solid #c0c0c0;*/
 }
 
-.login-label{
+.login-label {
 	text-algin: center;
 	font-size: 20px;
 }
 
-.login-button{
+.login-button {
 	background-color: #FFF;
 	color: #000000;
 	font-size: 20px;
@@ -201,7 +198,7 @@ li a:hover {
 	-moz-border-radius: 5px;
 }
 
-.login-panel{
+.login-panel {
 	margin-left: 0 auto;
 	margin-right: 0 auto;
 	position: absolute;
@@ -239,7 +236,7 @@ li a:hover {
 	-moz-border-radius: 5px;
 }
 
-.logout-ja{
+.logout-ja {
 	background-color: #FFF;
 	color: #000000;
 	font-size: 15px;
@@ -259,11 +256,11 @@ li a:hover {
 	-moz-border-radius: 5px;
 }
 
-.logout-ja:hover{
+.logout-ja:hover {
 	background-color: #ff5151;
 }
 
-.logout-nein{
+.logout-nein {
 	background-color: #FFF;
 	color: #000000;
 	font-size: 15px;
@@ -283,14 +280,15 @@ li a:hover {
 	-moz-border-radius: 5px;
 }
 
-.logout-nein:hover{
+.logout-nein:hover {
 	background-color: #00c431;
 }
 
-#Navi{
+#Navi {
+	
 	min-width: 650px;
 	width: auto;
-	padding: 6px; 
+	padding: 6px;
 	margin-left: 320px;
 	background-color: #971111;
 	margin-bottom: 56px;
@@ -301,7 +299,7 @@ li a:hover {
 	border-left: 1px solid #ffffff;
 }
 
-#Navi_Container{
+#Navi_Container {
 	width: auto;
 	height: 160px;
 	margin-top: 30px;
@@ -309,15 +307,36 @@ li a:hover {
 	border: 1px solid transparent;
 }
 
-#Logo{
+#Logo {
 	float: left;
 	height: 160px;
 	width: 200px;
 	margin-left: 60px;
- 	
 }
 
-.navi-panel{
+.textlabel{
+	font-weight: bold;
+	margin-left: 20px;
+	
+}
+
+.listbox {
+	width: 100%;
+	border: 1px solid #bbb;
+	padding: .75em 1em .5em 1em;
+	box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2);
+	background-color: white;
+	background-position: right;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+
+.listbox-hover {
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.navi-panel {
 	float: right;
 }
 
@@ -369,7 +388,7 @@ li a:hover {
 	margin-right: 15px;
 }
 
-#Content{
+#Content {
 	background-color: #FFF;
 	margin: 5px;
 	height: auto;
@@ -381,7 +400,7 @@ li a:hover {
 	border-radius: 5px;
 }
 
-#Content_Container{
+#Content_Container {
 	Padding: 3%;
 	heigth: auto;
 	overflow: hidden;
@@ -478,7 +497,7 @@ li a:hover {
 	background-color: #FFF;
 }
 
-.logo_grotte{
+.logo_grotte {
 	display: block;
 	margin-top: 10px;
 	margin-bottom: 10px;

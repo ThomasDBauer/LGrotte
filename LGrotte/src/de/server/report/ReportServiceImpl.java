@@ -8,6 +8,7 @@ import de.server.db.BesucheMapper;
 import de.server.db.EigenschaftMapper;
 import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
+import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.ReportService;
 import de.shared.BO.Aehnlichkeitsmass;
@@ -48,7 +49,13 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * Alle Suchprofile auslesen
 	 */
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
-		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(user.getEmail());
+		Vector<Suchprofil> suchprofile = SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(user.getEmail());
+		for(Suchprofil sp : suchprofile){
+			sp.setProfileigenschaften(
+					SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(
+							user.getEmail(), sp.getSuchprofilname()));
+		}
+		return suchprofile;
 	}
 
 	/*

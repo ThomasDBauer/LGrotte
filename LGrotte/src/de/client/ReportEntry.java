@@ -4,8 +4,7 @@ import java.util.Vector;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.dom.client.SelectElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
@@ -19,10 +18,12 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.report.HTMLWriter;
+import de.server.db.SuchprofilMapper;
 import de.shared.LoginServiceAsync;
 import de.shared.ReportServiceAsync;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
+import de.shared.RO.ProfilEigenschaft;
 import de.shared.RO.ProfilReport;
 
 public class ReportEntry implements EntryPoint {
@@ -32,9 +33,11 @@ public class ReportEntry implements EntryPoint {
 			new AlleProfileHandler());
 	private Button nichtBesuchteButton = new Button("Nicht besuchte Profile", 
 			new NichtBesuchteHandler());
-	private Label suchProfileAnzeigenLabel = new Label("Nach Suchprofil:");
+	private Label suchProfileAnzeigenLabel = new Label("Erstelle Deinen Suchprofil-Report");
 	private ListBox suchprofilListbox = new ListBox();
 	private Vector<Suchprofil> suchprofile;
+	private Suchprofil p = new Suchprofil();
+	private VerticalPanel suchprofilPanel = new VerticalPanel();
 
 	// Buttons
 	private HorizontalPanel navPanel = new HorizontalPanel();
@@ -61,8 +64,11 @@ public class ReportEntry implements EntryPoint {
 				alleAnzeigenButton.setStylePrimaryName("navi-button");
 				navPanel.add(nichtBesuchteButton);
 				nichtBesuchteButton.setStylePrimaryName("navi-button");
-				navPanel.add(suchProfileAnzeigenLabel);
-				navPanel.add(suchprofilListbox);
+				rechts.add(suchProfileAnzeigenLabel);
+				suchProfileAnzeigenLabel.setStylePrimaryName("textlabel");
+				rechts.add(suchprofilListbox);
+				rechts.add(suchprofilPanel);
+				suchprofilListbox.setStylePrimaryName("listbox");
 				reportService.setUser(result, new AsyncCallback() {
 					public void onFailure(Throwable caught) {
 						RootPanel.get().add(new Label("SetUserCallback " + caught.toString()));
@@ -87,6 +93,7 @@ public class ReportEntry implements EntryPoint {
 				}
 				public void onSuccess(Vector<Suchprofil> result) {
 					suchprofile = result;
+					suchprofilListbox.addItem("Waehle Dein Suchprofil aus");
 					for (int i = 0; i < result.size(); i++) {
 						suchprofilListbox.addItem(result.elementAt(i).getSuchprofilname());
 					}
@@ -133,7 +140,7 @@ public class ReportEntry implements EntryPoint {
 	public void loadReportBySuchprofil(Suchprofil sp) throws Exception {
 		reportService.getReports(sp, (new AsyncCallback<Vector<ProfilReport>>() {
 			public void onFailure(Throwable caught) {
-				RootPanel.get().add(new Label("ReportEntry.getAllProfilesCallback " + caught.toString()));
+				RootPanel.get().add(new Label("ReportEntry.loadReportBySuchprofil() " + caught.toString()));
 			}
 			public void onSuccess(Vector<ProfilReport> result) {
 				loadHtmlReports(result);
@@ -163,11 +170,25 @@ public class ReportEntry implements EntryPoint {
 	 */
 	private class SucheChangeHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-			try {
-				loadReportBySuchprofil(getSuchprofil());
-			} catch (Exception e) {
-				e.printStackTrace();
+			Suchprofil sp = getSuchprofil();
+			if(sp != null){
+				updateSuchprofilPanel(sp);
+				try {
+					loadReportBySuchprofil(sp);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+		}
+	}
+	
+	public void updateSuchprofilPanel(Suchprofil sp){
+		suchprofilPanel.clear();
+		suchprofilPanel.add(new Label("Haarfarbe: "+sp.getHaarfarbe()));
+		
+		for(int i = 0; i < sp.getProfileigenschaften().size(); i++){
+			ProfilEigenschaft pe = sp.getProfileigenschaften().elementAt(i);
+			suchprofilPanel.add(new Label(pe.getName() + ": " + pe.getWert()));
 		}
 	}
 	
@@ -181,6 +202,7 @@ public class ReportEntry implements EntryPoint {
 			if(suchprofile.elementAt(i).getSuchprofilname().equals(
 					suchprofilListbox.getItemText(suchprofilListbox.getSelectedIndex()))){
 				sp = suchprofile.elementAt(i);
+				
 				break;
 			}
 		}
