@@ -51,6 +51,8 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 		public SuchprofilInfoEditor() throws Exception {	
 			buttonPanel.add(addEigenschaftenButton);
 			editPanel.add(buttonPanel);
+			speicherButton.setStylePrimaryName("grotte-Button");
+			addEigenschaftenButton.setStylePrimaryName("grotte-Button");
 			this.add(editPanel);
 			this.add(eigenschaftenPanel);
 			ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
@@ -81,8 +83,11 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 				for (int i = 0; i < result.size(); i++) {
 					table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
 					table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
-					table.setWidget(i, 2, new Button("X", new LoeschenClickHandler(
-							result.elementAt(i).getInfo())));
+					Button loeschenButton = new Button("X", new LoeschenClickHandler(
+							result.elementAt(i).getInfo()));
+					loeschenButton.addStyleName("grotte-Button");
+					table.setWidget(i, 2, loeschenButton);
+							
 				}
 				eigenschaftenPanel.add(table);
 			}

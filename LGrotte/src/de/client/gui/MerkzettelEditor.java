@@ -28,7 +28,7 @@ import de.shared.BO.Profil;
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
 		public MerkzettelEditor() throws Exception {
-			
+			merkButton.setStylePrimaryName("grotte-Button");
 //			controlPanel.add(sperrButton);
 			table.addStyleName("findLove-table");
 			table.setWidth("45em");

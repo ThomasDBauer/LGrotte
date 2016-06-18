@@ -31,6 +31,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 	public KontaktsperreEditor() throws Exception {
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
+		merkButton.setStylePrimaryName("grotte-Button");
 		loadProfiles();
 		this.add(controlPanel);
 		this.add(resultPanel);

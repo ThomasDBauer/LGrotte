@@ -36,6 +36,8 @@ public class FindLove extends VerticalPanel {
 		HorizontalPanel controlPanel = new HorizontalPanel();
 		controlPanel.add(merkButton);
 		controlPanel.add(sperrButton);
+		merkButton.setStylePrimaryName("grotte-Button");
+		sperrButton.setStylePrimaryName("grotte-Button");
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
 		this.add(controlPanel);
@@ -103,6 +105,7 @@ public class FindLove extends VerticalPanel {
 					table.setWidget(i, 0, cb);
 					table.setWidget(i, 1, findLovePanel);
 					Button anzeigen = new Button("Profil anzeigen");
+					anzeigen.setStylePrimaryName("grotte-Button");
 					findLovePanel.add(anzeigen);
 					anzeigen.addClickHandler(new FremdesPAClickHandler(p));
 				}
