@@ -32,6 +32,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		private HorizontalPanel updatePanel = new HorizontalPanel();
 		private HorizontalPanel speichernButtonPanel = new HorizontalPanel();
 		private HorizontalPanel listBoxPanel = new HorizontalPanel();
+		SuchprofilMainFrame smf = new SuchprofilMainFrame();
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
@@ -164,6 +165,11 @@ public class SuchprofilEditor extends VerticalPanel {
 				buttonPanel.add(speichernButtonPanel);
 				speichernButtonPanel.add(anlegenButton);
 				
+				// Editor erscheinen lassen per Click
+				try {
+					RootPanel.get("Zusatz").add(new SuchprofilInfoEditor());
+				} catch (Exception e) {
+				}
 				
 				// Der FlexTable unsere Labels und Listboxen geben
 				anlegenTable.setWidget(0, 0, spNameLabel);
@@ -262,6 +268,7 @@ public class SuchprofilEditor extends VerticalPanel {
 						alterPanel.clear();
 						groessenPanel.clear();
 						speichernButtonPanel.clear();
+						RootPanel.get("Zusatz").clear();
 					}
 					}
 				this.popup = new PopupPanel(true,true);
@@ -294,6 +301,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					anzeigenTable.clear();
 					alterAnzeigenPanel.clear();
 					groessenAnzeigenPanel.clear();
+					RootPanel.get("Zusatz").clear();
 					// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
 					this.popup = new PopupPanel(true,true);
 					this.popup.add(new Label("Suchprofil wurde angelegt "
@@ -362,6 +370,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					anzeigenTable.clear();
 					alterAnzeigenPanel.clear();
 					groessenAnzeigenPanel.clear();
+					RootPanel.get("Zusatz").clear();
 					}
 				}
 				
@@ -408,10 +417,15 @@ public class SuchprofilEditor extends VerticalPanel {
 					ClientSideSettings.getEditorService().getSuchprofileByName(
 							spListBox.getItemText(spListBox.getSelectedIndex()), 
 							new GetSuchprofileKomplettCallback());
-
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				// Editor erscheinen lassen per Click
+				RootPanel.get("Zusatz").clear();
+				try {
+					RootPanel.get("Zusatz").add(smf.spie);
+				} catch (Exception e) {
 				}
 			}
 		}	
