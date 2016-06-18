@@ -111,7 +111,7 @@ public class ProfilErstellenEditor {
 		
 	
 		panel.add(flexTable);
-		
+		profilAnlegenButton.setStylePrimaryName("grotte-Button");
 		panel.add(profilAnlegenButton);
 		profilAnlegenButton.addClickHandler(new ProfilAnlegenClickHandler());
 		

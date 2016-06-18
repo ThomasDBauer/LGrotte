@@ -3,10 +3,12 @@ package de.server.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
+import de.shared.BO.Profil;
 import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
 import de.shared.BO.SuchprofilInfo;
@@ -36,8 +38,8 @@ public class SuchprofilInfoMapper {
 				"CREATE TABLE IF NOT EXISTS suchprofil_info (suchprofilname varchar(35) NOT NULL, "
 				+ "email varchar(35) NOT NULL, info_id int NOT NULL, PRIMARY KEY (suchprofilname, email, info_id), "
 				+ "FOREIGN KEY(email) REFERENCES profil(email) ON UPDATE CASCADE ON DELETE RESTRICT, "
-				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) ON UPDATE CASCADE ON DELETE RESTRICT,"
-				+ "FOREIGN KEY (suchprofilname) REFERENCES suchprofil(suchprofilname) ON UPDATE CASCADE ON DELETE RESTRICT)");
+				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) ON DELETE RESTRICT,"
+				+ "FOREIGN KEY (suchprofilname) REFERENCES suchprofil(suchprofilname) ON DELETE RESTRICT)");
 		create.execute();
 	}
 	
@@ -45,7 +47,7 @@ public class SuchprofilInfoMapper {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
 				"INSERT INTO suchprofil_info (suchprofilname, email, info_id) VALUES "
-				+ "('" + spi.getSp() + "','" + spi.getProfil() + "',"+spi.getInfo()+")");
+				+ "('" + spi.getSp().getSuchprofilname() + "','" + spi.getProfil().getEmail() + "',"+spi.getInfo().getId()+")");
 		stmt.execute();
 	}
 
@@ -79,7 +81,15 @@ public class SuchprofilInfoMapper {
 		}
 		
 		return pe;
-		
+	}
+	
+	public void deleteSuchprofilInfo(SuchprofilInfo spi) throws Exception{
+		Connection conn = DBConnection.connection();
+		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
+				"DELETE FROM suchprofil_info WHERE email = '" + spi.getProfil().getEmail() + 
+				"' AND info_id="+ spi.getInfo().getId() + " "
+						+ "AND suchprofilname='" +spi.getSp().getSuchprofilname()+"'");
+		stmt.execute();
 	}
 	
 	public Vector <ProfilEigenschaft> getSuchprofilInfosByEmail(String email, String spname) throws Exception{

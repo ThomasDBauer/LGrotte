@@ -15,6 +15,22 @@ h1 {
 	margin: 20px 15px;
 }
 
+h2 {
+	color: #c0c0c0;
+	margin-bottom: 10px;
+	padding-bottom: 4px;
+	badding-left: 2px;
+	border-bottom-width: 1px;
+	border-top-width: 0px;
+	border-rigth-width: 0px;
+	border-style: solid;
+/* 	 -webkit-border-image: -webkit-gradient(linear, left top, left bottom, from(#00abeb), to(#fff), color-stop(0.5, #fff), color-stop(0.5, #66cc00)) 21 30 30 21 repeat repeat; 
+     -webkit-border-image: -webkit-linear-gradient(90deg, #c0c0c0 0%, #fff 50%); 
+	 -moz-border-image: -moz-linear-gradient(90deg, #c0c0c0 0%, #fff 50%); 
+	 -o-border-image: -o-linear-gradient(90deg, #c0c0c0 0%, #fff 50%); 
+	 border-image: linear-gradient(90deg, #c0c0c0 0%, #fff 50%); */
+}
+
 a {
 	text-decoration: none;
 	color: black;
@@ -45,20 +61,6 @@ li a {
 
 li a:hover {
 	background-color: #e2e2e2;
-}
-
-.gwt-Button{
-	background-color: #FFF;
-	color: #000000;
-	font-size: 15px;
-	padding: 5px 15px 5px 15px;
-	text-decoration: none;
-	outline-color: #000000;
-	cursor: pointer;
-	cursor: hand;
-	border: 1px solid #c0c0c0;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
 }
 
 .active {
@@ -273,9 +275,6 @@ li a:hover {
 
 .navi-button {
 	background-color: #FFF;
-	/*-webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px; */
 	color: #000000;
 	font-size: 15px;
 	padding: 5px 15px 5px 15px;
@@ -285,25 +284,34 @@ li a:hover {
 	margin-right: 15px;
 	cursor: pointer;
 	cursor: hand;
-	border: 1px solid #c0c0c0;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
+	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	-moz-box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	border: 0px solid #c7c7c7;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
 }
 
 .navi-button:hover {
-	background: #e72525;
-	color: #FFF;
+	background: #f9f9f9;
+	color: #000;
+	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	-moz-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
 	text-decoration: none;
 }
 
 .navi-button.aktiv {
-	background: #c0c0c0;
+	background: #e1e1e1;
 	color: #000000;
 	font-size: 15px;
 	padding: 5px 15px 5px 15px;
 	text-decoration: none;
 	margin-left: 15px;
 	margin-right: 15px;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
 }
 
 #Content_Container{
@@ -323,6 +331,52 @@ li a:hover {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+}
+
+.gwt-Button{
+	background: none;
+	color: #000000;
+	font-size: 15px;
+	padding: 5px 15px 5px 15px;
+	text-decoration: none;
+	outline-color: #000000;
+	margin-left: 15px;
+	margin-right: 15px;
+	cursor: pointer;
+	cursor: hand;
+	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	-moz-box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	border: 0px solid #c7c7c7;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.grotte-Button {
+	background-color: #FFF;
+	color: #000000;
+	font-size: 15px;
+	padding: 5px 15px 5px 15px;
+	text-decoration: none;
+	outline-color: #000000;
+	margin-right: 15px;
+	cursor: pointer;
+	cursor: hand;
+	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	-moz-box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	box-shadow: inset 0px 0px 5px 3px rgba(215,215,215,0.85);
+	border: 0px solid #c7c7c7;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.grotte-Button:hover {
+	background: #f9f9f9;
+	color: #000;
+	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	-moz-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	text-decoration: none;
 }
 
 #Inhalt {

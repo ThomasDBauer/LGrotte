@@ -3,38 +3,37 @@ package de.shared.BO;
 public class SuchprofilInfo {
 	
 	//Das Name des Suchprofils
-	private String sp;
+	private Suchprofil sp;
 	
 	//Die Information
-	private int info;
+	private Info info;
 	
-	//Der Primary Key des zugehörigen Profils
-	private String email;
+	//Das Profil
+	private Profil profil;
 
-	public String getSp() {
+	public Suchprofil getSp() {
 		return sp;
 	}
 
-	public void setSp(String sp) {
+	public void setSp(Suchprofil sp) {
 		this.sp = sp;
 	}
 
-	public int getInfo() {
+	public Info getInfo() {
 		return info;
 	}
 
-	public void setInfo(int info) {
+	public void setInfo(Info info) {
 		this.info = info;
 	}
 
-	public String getProfil() {
-		return email;
+	public Profil getProfil() {
+		return profil;
 	}
 
-	public void setProfil(String email) {
-		this.email = email;
+	public void setProfil(Profil profil) {
+		this.profil = profil;
 	}
-	
 	
 	
 	

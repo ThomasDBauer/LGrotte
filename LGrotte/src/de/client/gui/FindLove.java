@@ -5,8 +5,6 @@ import java.util.Vector;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.DoubleClickEvent;
-import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -36,6 +34,8 @@ public class FindLove extends VerticalPanel {
 		HorizontalPanel controlPanel = new HorizontalPanel();
 		controlPanel.add(merkButton);
 		controlPanel.add(sperrButton);
+		merkButton.setStylePrimaryName("grotte-Button");
+		sperrButton.setStylePrimaryName("grotte-Button");
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
 		this.add(controlPanel);
@@ -68,42 +68,23 @@ public class FindLove extends VerticalPanel {
 					CheckBox cb = new CheckBox();
 					cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 					VerticalPanel findLovePanel = new VerticalPanel();
-					HorizontalPanel nameGeschlechtGroesse = new HorizontalPanel();
-					HorizontalPanel haareReligionRaucher = new HorizontalPanel();
-					Label fName = new Label("Name: " + p.getFname() + " "
+					HorizontalPanel nameMatchingAnzeigen = new HorizontalPanel();
+					Label name = new Label(p.getFname() + " "
 							+ p.getLname());
-					Label geschlecht = new Label("Geschlecht: "
-							+ p.getGeschlecht());
-					Label kGroesse = new Label("Koerpergroesse(cm): "
-							+ Integer.toString(p.getKoerpergroesse()));
-					Label haarfarbe = new Label("Haarfrabe: "
-							+ p.getHaarfarbe());
-					Label religion = new Label("Religion: " + p.getReligion());
-					Label raucher = new Label("Raucher: " + p.getRaucher());
-					
-					fName.addStyleName("findLove-Label");
-					geschlecht.addStyleName("findLove-Labelmid");
-					kGroesse.addStyleName("findLove-Label");
-					haarfarbe.addStyleName("findLove-Label");
-					religion.addStyleName("findLove-Labelmid");
-					raucher.addStyleName("findLove-Label");
-					
-					nameGeschlechtGroesse.add(fName);
-					nameGeschlechtGroesse.add(geschlecht);
-					nameGeschlechtGroesse.add(kGroesse);
-					haareReligionRaucher.add(haarfarbe);
-					haareReligionRaucher.add(religion);
-					haareReligionRaucher.add(raucher);
-					nameGeschlechtGroesse.addStyleName("findLove-HPaneltop");
-					haareReligionRaucher.addStyleName("findLove-HPanelbot");
-					findLovePanel.add(nameGeschlechtGroesse);
-					findLovePanel.add(haareReligionRaucher);
+					Label match = new Label("Hier kommt % noch hin");
+					match.addStyleName("findLove-Label");
+					name.addStyleName("findLove-Label");
+					nameMatchingAnzeigen.add(name);
+					nameMatchingAnzeigen.add(match);
+					nameMatchingAnzeigen.addStyleName("findLove-HPaneltop");
+					findLovePanel.add(nameMatchingAnzeigen);
 					findLovePanel.getElement().getStyle().setMargin(10, Unit.PX);
 					findLovePanel.addStyleName("findLove-Panel");
 					table.setWidget(i, 0, cb);
 					table.setWidget(i, 1, findLovePanel);
 					Button anzeigen = new Button("Profil anzeigen");
-					findLovePanel.add(anzeigen);
+					anzeigen.setStylePrimaryName("grotte-Button");
+					nameMatchingAnzeigen.add(anzeigen);
 					anzeigen.addClickHandler(new FremdesPAClickHandler(p));
 				}
 			}

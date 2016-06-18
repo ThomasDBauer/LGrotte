@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.shared.BO.Info;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilInformation;

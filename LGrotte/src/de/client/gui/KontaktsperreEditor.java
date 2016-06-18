@@ -31,6 +31,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 	public KontaktsperreEditor() throws Exception {
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
+		merkButton.setStylePrimaryName("grotte-Button");
 		loadProfiles();
 		this.add(controlPanel);
 		this.add(resultPanel);
@@ -62,7 +63,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 					CheckBox cb = new CheckBox();
 					cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 					HorizontalPanel mzProfile = new HorizontalPanel();
-					Label fName = new Label("Name: " + p.getFname() + " " + p.getLname());
+					Label fName = new Label(p.getFname() + " " + p.getLname());
 					fName.addStyleName("findLove-Label");
 					mzProfile.add(fName);
 

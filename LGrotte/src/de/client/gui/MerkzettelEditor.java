@@ -21,14 +21,14 @@ import de.shared.BO.Profil;
 		private VerticalPanel thisPanel = this;
 		private FlexTable table = new FlexTable();
 		private Vector<String> emailBuffer = new Vector<String>();
-		private Button merkButton = new Button("Profil löschen", new LoeschenHandler());
+		private Button merkButton = new Button("Profil lï¿½schen", new LoeschenHandler());
 		private VerticalPanel resultPanel = new VerticalPanel();
 		private HorizontalPanel controlPanel = new HorizontalPanel();
 
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
 		public MerkzettelEditor() throws Exception {
-			
+			merkButton.setStylePrimaryName("grotte-Button");
 //			controlPanel.add(sperrButton);
 			table.addStyleName("findLove-table");
 			table.setWidth("45em");
@@ -65,8 +65,8 @@ import de.shared.BO.Profil;
 						CheckBox cb = new CheckBox();
 						cb.addClickHandler(new CheckProfilHandler(p.getEmail()));
 						HorizontalPanel mzProfile = new HorizontalPanel();
-						Label fName = new Label("Name: " + p.getFname() + " "
-								+ p.getLname() + p.getEmail());
+						Label fName = new Label(p.getFname() + " "
+								+ p.getLname() + " " + p.getEmail());
 						fName.addStyleName("findLove-Label");
 						mzProfile.add(fName);
 

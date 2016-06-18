@@ -5,6 +5,7 @@ import java.util.Vector;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import de.shared.BO.Info;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilInformation;
@@ -35,6 +36,6 @@ public interface ReportService extends RemoteService {
 	Vector<Suchprofil> getSuchprofile() throws Exception;
 	
 	Vector<ProfilReport> getNotVisitedReports() throws Exception;
-
+	
 	
 }

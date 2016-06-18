@@ -30,6 +30,7 @@ public class FindLoveEditor extends VerticalPanel {
 	
 	
 	public FindLoveEditor(){
+		sucheStartenButton.addStyleName("grotte-Button");
 		anzeigeTabelle.setWidget(0, 0, matchFaktorLabel);
 		anzeigeTabelle.setWidget(0, 1, profilNameLabel);
 		anzeigeTabelle.setWidget(0, 2, goLabel);
