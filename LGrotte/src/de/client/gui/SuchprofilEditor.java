@@ -32,7 +32,6 @@ public class SuchprofilEditor extends VerticalPanel {
 		private HorizontalPanel updatePanel = new HorizontalPanel();
 		private HorizontalPanel speichernButtonPanel = new HorizontalPanel();
 		private HorizontalPanel listBoxPanel = new HorizontalPanel();
-//		SuchprofilMainFrame smf = new SuchprofilMainFrame();
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
@@ -165,11 +164,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				buttonPanel.add(speichernButtonPanel);
 				speichernButtonPanel.add(anlegenButton);
 				
-				// Editor erscheinen lassen per Click
-				try {
-					RootPanel.get("Zusatz").add(new SuchprofilInfoEditor());
-				} catch (Exception e) {
-				}
+				RootPanel.get("Zusatz").clear();
 				
 				// Der FlexTable unsere Labels und Listboxen geben
 				anlegenTable.setWidget(0, 0, spNameLabel);
@@ -421,12 +416,12 @@ public class SuchprofilEditor extends VerticalPanel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				// Editor erscheinen lassen per Click
-//				RootPanel.get("Zusatz").clear();
-//				try {
-//					RootPanel.get("Zusatz").add(smf.spie);
-//				} catch (Exception e) {
-//				}
+//				 Editor erscheinen lassen per Click
+				RootPanel.get("Zusatz").clear();
+				try {
+					RootPanel.get("Zusatz").add(eigenschaftenEditor);
+				} catch (Exception e) {
+				}
 			}
 		}	
 		// Callback zum Anzeigen des kompletten Suchprofils
