@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -71,8 +72,11 @@ public class FindLove extends VerticalPanel {
 					HorizontalPanel nameMatchingAnzeigen = new HorizontalPanel();
 					Label name = new Label(p.getFname() + " "
 							+ p.getLname());
-					Label match = new Label("Hier kommt % noch hin");
+					name.setStyleName("findLove-Name", true);
+					Label match = new Label("Ähnlichkeit zu dir: " + "%");
+					match.setStyleName("findLove-Aehnlichkeit", true);
 					match.addStyleName("findLove-Label");
+					Image img = new Image("besuchen.png");
 					name.addStyleName("findLove-Label");
 					nameMatchingAnzeigen.add(name);
 					nameMatchingAnzeigen.add(match);
@@ -82,8 +86,8 @@ public class FindLove extends VerticalPanel {
 					findLovePanel.addStyleName("findLove-Panel");
 					table.setWidget(i, 0, cb);
 					table.setWidget(i, 1, findLovePanel);
-					Button anzeigen = new Button("Profil anzeigen");
-					anzeigen.setStylePrimaryName("grotte-Button");
+					Button anzeigen = new Button("");
+					anzeigen.setStylePrimaryName("findLove-Button");
 					nameMatchingAnzeigen.add(anzeigen);
 					anzeigen.addClickHandler(new FremdesPAClickHandler(p));
 				}

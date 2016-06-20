@@ -20,6 +20,7 @@ h2 {
 	margin-bottom: 10px;
 	padding-bottom: 3px;
 	padding-left: 7px;
+	margin-bottom: 25px;
 	border-bottom-width: 1px;
 	border-top-width: 0px;
 	border-right-width: 0px;
@@ -80,13 +81,47 @@ li a:hover {
 }
 
 
-.findLove-Table{
+.findLove-Button{
+	background-color: #FFF;
+	color: #000000;
+	font-size: small;
+	padding: 3px 7px 3px 7px;
+	text-decoration: none;
+	outline-color: #000000;
+	margin-right: 15px;
+/* 	background-image: url (C:\Users\Luke\git\LGrotte\LGrotte\war\besuchen.png);
+ */	margin-left: 15px;
+	cursor: pointer;
+	cursor: hand;
+	/* -webkit-box-shadow: inset 0px 0px 3px 2px rgba(225,225,225,0.85);
+	-moz-box-shadow: inset 0px 0px 3px 2px rgba(225,225,225,0.85);
+	box-shadow: inset 0px 0px 3px 2px rgba(225,225,225,0.85); */
+	border: 1px solid #8b8b8b;
+	border-radius: 1.5px;
+	-moz-border-radius: 1.5px;
+}
 
+.findLove-Button:hover {
+	background: #e8e8e8;
+	color: #000;
+	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	-moz-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	text-decoration: none;
 }
 
 .findLove-Table td{
 	width: auto;
 	height: auto;
+}
+
+.findLove-Name{
+	min-width: 140px;
+}
+
+.findLove-Aehnlichkeit{
+	min-width: 140px;
+	margin-right: 30px;
 }
 
 .findLove-Labelmid{
@@ -98,8 +133,9 @@ li a:hover {
 }
 
 .findLove-Label{
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top: 5.5px;
+	padding-bottom: 5.5px;
+	margin-right: 5px;
 }
 
 .findLove-Panel{
@@ -314,16 +350,16 @@ li a:hover {
 }
 
 .navi-button:hover {
-	background: #f9f9f9;
+	background: #d7d7d7;
 	color: #000;
-	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
-	-moz-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
-	box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
+	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(200,200,200,0.85);
+	-moz-box-shadow: inset 0px 0px 5px 3px rgba(200,200,200,0.85);
+	box-shadow: inset 0px 0px 5px 3px rgba(200,200,200,0.85);
 	text-decoration: none;
 }
 
 .navi-button.aktiv {
-	background: #e1e1e1;
+	background: #d7d7d7;
 	color: #000000;
 	font-size: 15px;
 	padding: 5px 15px 5px 15px;
@@ -359,7 +395,9 @@ li a:hover {
 }
 
 .gwt-TextBox{
-	
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 .gwt-FlexTable{
@@ -384,13 +422,14 @@ li a:hover {
 	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(225,225,225,0.85);
 	-moz-box-shadow: inset 0px 0px 5px 3px rgba(225,225,225,0.85);
 	box-shadow: inset 0px 0px 5px 3px rgba(225,225,225,0.85);
-	border: 0px solid #c7c7c7;
+	border: 1px solid #8b8b8b;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 .grotte-Button:hover {
-	background: #f9f9f9;
+	background: #e8e8e8;
 	color: #000;
 	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
 	-moz-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
