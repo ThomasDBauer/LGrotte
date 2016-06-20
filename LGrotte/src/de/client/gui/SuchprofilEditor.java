@@ -35,10 +35,15 @@ public class SuchprofilEditor extends VerticalPanel {
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
-		private Button spHinzufuegenButton = new Button("SuchProfil hinzuf�gen", new SuchprofilHinzufuegenClickHandler());
-		private Button loeschenButton = new Button("L�schen", new DeleteSuchprofilClickHandler());
-		private Button updateButton = new Button("Update", new UpdateSuchprofilClickHandler());
+		private Button spHinzufuegenButton = new Button("SuchProfil hinzuf�gen", 
+				new SuchprofilHinzufuegenClickHandler());
+		private Button loeschenButton = new Button("L�schen", 
+				new DeleteSuchprofilClickHandler());
+		private Button updateButton = new Button("Update", 
+				new UpdateSuchprofilClickHandler());
 		private Label keinSPLabel = new Label("Hey erstell doch ein Suchprofil!");
+		private Button abbrechenButton = new Button("Abbrechen", 
+				new SuchProfilAbbrechenClickHandler());
 		// AnzeigenTable
 		private FlexTable anzeigenTable = new FlexTable();
 		private HorizontalPanel groessenAnzeigenPanel = new HorizontalPanel();
@@ -93,6 +98,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			loeschenButton.setStylePrimaryName("grotte-Button");
 			updateButton.setStylePrimaryName("grotte-Button");
 			anlegenButton.setStylePrimaryName("grotte-Button");
+			abbrechenButton.setStyleName("grotte-Button");
 			
 			// Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
 			anlegenTable.clear();
@@ -137,7 +143,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 		
 	
-		
+		// loadPage Methode die unseren Browser automatisch aktualisiert
 		public void loadPage(){
 			listBoxPanel.clear();
 			buttonPanel.clear();
@@ -153,6 +159,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				e.printStackTrace();
 			}
 		}
+		
 		// ClickHandler zum suchprofil hizufügen Funktion
 		private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
@@ -161,7 +168,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				alterPanel.clear();
 				updatePanel.clear();
 				loeschenPanel.clear();
+				listBoxPanel.clear();
 				buttonPanel.add(speichernButtonPanel);
+				speichernButtonPanel.add(abbrechenButton);
 				speichernButtonPanel.add(anlegenButton);
 				
 				RootPanel.get("Zusatz").clear();
@@ -214,6 +223,14 @@ public class SuchprofilEditor extends VerticalPanel {
 			}
 		}
 		
+		// ClickHandler um das hinzufügen eines Suchprofil abzubrechen
+		private class SuchProfilAbbrechenClickHandler implements ClickHandler {
+			public void onClick(ClickEvent event) {
+				anlegenTable.clear();
+				speichernButtonPanel.clear();
+				listBoxPanel.add(spListBox);
+			}		
+		}
 		
 		
 		// ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
@@ -263,6 +280,11 @@ public class SuchprofilEditor extends VerticalPanel {
 						alterPanel.clear();
 						groessenPanel.clear();
 						speichernButtonPanel.clear();
+						spNameTextBox.setText("");
+						minAlterTextBox.setText("");
+						minGroesseTextBox.setText("");
+						maxAlterTextBox.setText("");
+						maxGroesseTextBox.setText("");
 						RootPanel.get("Zusatz").clear();
 					}
 					}
