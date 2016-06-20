@@ -8,6 +8,7 @@ import de.server.db.BesucheMapper;
 import de.server.db.EigenschaftMapper;
 import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
+import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.ReportService;
 import de.shared.BO.Aehnlichkeitsmass;
@@ -48,11 +49,17 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * Alle Suchprofile auslesen
 	 */
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
-		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(user.getEmail());
+		Vector<Suchprofil> suchprofile = SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(user.getEmail());
+		for(Suchprofil sp : suchprofile){
+			sp.setProfileigenschaften(
+					SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(
+							user.getEmail(), sp.getSuchprofilname()));
+		}
+		return suchprofile;
 	}
 
 	/*
-	 * Erzeugt den ProfilReport für ein einzelnes Profil
+	 * Erzeugt den ProfilReport fï¿½r ein einzelnes Profil
 	 */
 	public ProfilReport getProfilReport(Profil p) throws Exception {
 		// Auslesen des Profils aus der DB
@@ -102,7 +109,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			}
 		}
 		// ProfilReports erstellen
-		// Speicher für ProfilReports
+		// Speicher fÃ¼r ProfilReports
 		Vector<ProfilReport> reports = new Vector<ProfilReport>();
 		for (int i = 0; i < results.size(); i++) {
 			ProfilReport report = getProfilReport(results.elementAt(i));
@@ -111,7 +118,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			Match m = new Match(aehnlichkeitBerechnen(profile.elementAt(i), sp));
 			report.setMatch(m);
 
-			// final den ProfilReport zu den Ergebnissen hinzufügen
+			// final den ProfilReport zu den Ergebnissen hinzufï¿½gen
 			reports.add(report);
 		}
 		return reports;
@@ -130,7 +137,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			// Suchprofil!)
 			Match m = new Match(aehnlichkeitBerechnen(profile.elementAt(i)));
 			report.setMatch(m);
-			// Hinzufügen
+			// Hinzufï¿½gen
 			reports.add(report);
 		}
 		return reports;
@@ -161,7 +168,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			// Suchprofil!)
 			Match m = new Match(aehnlichkeitBerechnen(results.elementAt(i)));
 			report.setMatch(m);
-			// Hinzufügen
+			// Hinzufï¿½gen
 			reports.add(report);
 		}
 		return reports;
@@ -183,7 +190,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/*
-	 * Ähnlichkeit: Profil vs.Profile
+	 * ï¿½hnlichkeit: Profil vs.Profile
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich) throws Exception {
 		int aehnlichkeit = 0;
@@ -200,7 +207,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/*
-	 * Ähnlichkeit: Suchprofil vs. Profile
+	 * Ã„hnlichkeit: Suchprofil vs. Profile
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich, Suchprofil suchprofil) throws Exception {
 		int aehnlichkeit = 0;
