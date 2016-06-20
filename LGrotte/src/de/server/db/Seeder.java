@@ -70,6 +70,7 @@ public class Seeder {
 		KontaktsperreMapper.kontaktsperreMapper().createKontaktsperreTable();
 		SuchprofilInfoMapper.suchprofilInfoMapper().createSuchProfilInfoTable();
 		BesucheMapper.besucheMapper().createBesucheTable();
+		AuswahlMapper.auswahlMapper().createAuswahlTable();
 //		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();    <-- brauch mer nimmer
 	}
 

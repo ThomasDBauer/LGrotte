@@ -17,7 +17,7 @@ public class Profil extends BusinessObject{
 	private Info[] profilInformation;
 	private Merkzettel merkzettel;
 	private Kontaktsperre[] sperrliste;
-	private Aehnlichkeitsmass[]aehnlichkeitsmasse;
+	private Auswahl[]aehnlichkeitsmasse;
 	
 	private boolean loggedIn;
 	private String loginUrl, logoutUrl;
@@ -65,10 +65,10 @@ public class Profil extends BusinessObject{
 	public void setSperrliste(Kontaktsperre[] sperrliste) {
 		this.sperrliste = sperrliste;
 	}
-	public Aehnlichkeitsmass[] getAehnlichkeitsmasse() {
+	public Auswahl[] getAehnlichkeitsmasse() {
 		return aehnlichkeitsmasse;
 	}
-	public void setAehnlichkeitsmasse(Aehnlichkeitsmass[] aehnlichkeitsmasse) {
+	public void setAehnlichkeitsmasse(Auswahl[] aehnlichkeitsmasse) {
 		this.aehnlichkeitsmasse = aehnlichkeitsmasse;
 	}
 	public String getHaarfarbe() {

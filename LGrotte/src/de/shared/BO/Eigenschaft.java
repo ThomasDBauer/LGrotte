@@ -11,6 +11,10 @@ public class Eigenschaft extends BusinessObject{
 	
 	private String erlaeuterung;
 	
+	private int auswahl;
+	
+	
+	
 
 	public int getId() {
 		return id;
@@ -26,6 +30,14 @@ public class Eigenschaft extends BusinessObject{
 
 	public void setErlaeuterung(String name) {
 		this.erlaeuterung = name;
+	}
+
+	public int getAuswahl() {
+		return auswahl;
+	}
+
+	public void setAuswahl(int auswahl) {
+		this.auswahl = auswahl;
 	}
 	
 	
