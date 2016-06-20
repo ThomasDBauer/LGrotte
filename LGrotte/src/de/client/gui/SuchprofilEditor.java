@@ -2,8 +2,6 @@ package de.client.gui;
 
 import java.util.Vector;
 
-import org.apache.bcel.generic.LNEG;
-
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -21,7 +19,6 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.ClientSideSettings;
-import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 
 public class SuchprofilEditor extends VerticalPanel {
@@ -35,9 +32,9 @@ public class SuchprofilEditor extends VerticalPanel {
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
-		private Button spHinzufuegenButton = new Button("SuchProfil hinzuf�gen", 
+		private Button spHinzufuegenButton = new Button("SuchProfil hinzuf&uumlgen", 
 				new SuchprofilHinzufuegenClickHandler());
-		private Button loeschenButton = new Button("L�schen", 
+		private Button loeschenButton = new Button("L&oumlschen", 
 				new DeleteSuchprofilClickHandler());
 		private Button updateButton = new Button("Update", 
 				new UpdateSuchprofilClickHandler());
@@ -82,8 +79,6 @@ public class SuchprofilEditor extends VerticalPanel {
 		private Label alterLabel = new Label("Alter:");
 		private TextBox minAlterTextBox = new TextBox();
 		private TextBox maxAlterTextBox = new TextBox();
-		
-		private Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
 
 		private Button anlegenButton = new Button("Speichern", new SuchProfilAnlegenClickHandler());
 
@@ -252,7 +247,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				
 					String input = minAlterTextBox.getText();
 					if (!input.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ minAlterTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						Window.alert("'"+ minAlterTextBox.getText() + "'Beinhaltet ein ungültiges Symbol");
 						return;
 					}else{
 					String input2 = maxAlterTextBox.getText();
@@ -262,7 +257,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					}
 					String input3 = minGroesseTextBox.getText();
 					if (!input3.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ minGroesseTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						Window.alert("'"+ minGroesseTextBox.getText() + "'beinhaltet ein ung&uumlltiges Symbol");
 						return;
 					}
 					String input4 = maxGroesseTextBox.getText();
