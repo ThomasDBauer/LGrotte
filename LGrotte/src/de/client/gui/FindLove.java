@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -86,8 +87,9 @@ public class FindLove extends VerticalPanel {
 					findLovePanel.addStyleName("findLove-Panel");
 					table.setWidget(i, 0, cb);
 					table.setWidget(i, 1, findLovePanel);
-					Button anzeigen = new Button("");
-					anzeigen.setStylePrimaryName("findLove-Button");
+					PushButton anzeigen = new PushButton(new Image("besuchen.png"));
+//					Button anzeigen = new Button("Anzeigen");
+					anzeigen.setStylePrimaryName("findLove-Button-img");
 					nameMatchingAnzeigen.add(anzeigen);
 					anzeigen.addClickHandler(new FremdesPAClickHandler(p));
 				}
