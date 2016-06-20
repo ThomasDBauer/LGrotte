@@ -78,8 +78,6 @@ public class SuchprofilEditor extends VerticalPanel {
 		private TextBox minAlterTextBox = new TextBox();
 		private TextBox maxAlterTextBox = new TextBox();
 		
-	
-
 		private Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
 
 		private Button anlegenButton = new Button("Speichern", new SuchProfilAnlegenClickHandler());

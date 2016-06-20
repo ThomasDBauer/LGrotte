@@ -120,49 +120,35 @@ public class ReportEntry implements EntryPoint {
 	
 	//Alle Profile laden
 	public void loadAllReports() throws Exception{
-		reportService.getReports(new AsyncCallback<Vector<ProfilReport>>()
-		{
-			public void onFailure(Throwable caught) {
-				RootPanel.get().add(new Label("ReportEntry.getAllProfilesCallback "
-						+caught.toString() ));
-			}
-			public void onSuccess(Vector<ProfilReport> result) {
-				loadHtmlReports(result);
-			}
-		});
+		reportService.getReports(new ReportCallback());
 	}
-	
 
 	/*
 	 * Baut Reports nach Suchprofil auf. --> Wird vom ListBox-ChangeHandler
 	 * aufgerufen
 	 */
 	public void loadReportBySuchprofil(Suchprofil sp) throws Exception {
-		reportService.getReports(sp, (new AsyncCallback<Vector<ProfilReport>>() {
-			public void onFailure(Throwable caught) {
-				RootPanel.get().add(new Label("ReportEntry.loadReportBySuchprofil() " + caught.toString()));
-			}
-			public void onSuccess(Vector<ProfilReport> result) {
-				loadHtmlReports(result);
-			}
-		}));
+		reportService.getReports(sp,new ReportCallback());
 	}
 	
 	/*
 	 * Baut Reports f�r nicht besuchte Profile auf
 	 */
 	public void loadReportsForNotVisited() throws Exception {
-		reportService.getNotVisitedReports(new AsyncCallback<Vector<ProfilReport>>(){
-			public void onFailure(Throwable caught) {
-				Window.alert("Entry.loadReportsForNotVisited " + caught.toString());
-			}
-			public void onSuccess(Vector<ProfilReport> result) {
-				loadHtmlReports(result);
-			}
-		});
+		reportService.getNotVisitedReports(new ReportCallback());
 	}
 
-	
+	/*
+	 * Callback der LoadReport() Methoden
+	 */
+	private class ReportCallback implements AsyncCallback<Vector<ProfilReport>>{
+		public void onFailure(Throwable caught) {
+			Window.alert("Entry.loadReportsForNotVisited " + caught.toString());
+		}
+		public void onSuccess(Vector<ProfilReport> result) {
+			loadHtmlReports(result);
+		}
+	}
 	
 	
 	/*
@@ -243,7 +229,5 @@ public class ReportEntry implements EntryPoint {
 			}
 		}
 	}
-	
-	
 	
 }
