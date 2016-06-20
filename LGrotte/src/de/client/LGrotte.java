@@ -56,12 +56,12 @@ public class LGrotte implements EntryPoint {
 		editorService = ClientSideSettings.getEditorService();
 		loginService = ClientSideSettings.getLoginService();
 		
-		RootPanel.get("Zusatz").add(new SeedButton());
+//		RootPanel.get("Zusatz").add(new SeedButton());
 		loginService.login(GWT.getHostPageBaseURL() + "LGrotte.html",
 				new AsyncCallback<Profil>() {
 					public void onFailure(Throwable caught) {
 						RootPanel.get("Zusatz").add(
-								new Label(caught.toString()));
+								new Label("Entry.login " + caught.toString()));
 					}
 
 					public void onSuccess(Profil result) {

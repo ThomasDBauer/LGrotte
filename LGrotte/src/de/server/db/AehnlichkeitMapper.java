@@ -1,6 +1,6 @@
 package de.server.db;
 
-import com.google.cloud.sql.jdbc.Connection;
+import java.sql.Connection;
 import com.google.cloud.sql.jdbc.PreparedStatement;
 
 import de.shared.BO.Profil;

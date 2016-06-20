@@ -1,18 +1,19 @@
 package de.server.db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+
+
+
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
 
-import com.google.api.server.spi.auth.common.User;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-
-import de.client.LGrotte;
-import de.shared.LoginService;
 import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 

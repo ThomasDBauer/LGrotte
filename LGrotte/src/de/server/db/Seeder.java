@@ -57,6 +57,10 @@ public class Seeder {
 	/**Hier m�ssen die createTable() Methoden der Mapper eingef�gt werden 
 	 * @throws Exception */
 	private void migrate() throws Exception{
+//		Migrations m = new Migrations();
+//		m.migrate();
+		
+		
 		EigenschaftMapper.eigenschaftMapper().createEigenschaftTable();
 		ProfilMapper.profilMapper().createProfilTable();
 		InfoMapper.infoMapper().createInfoTable();

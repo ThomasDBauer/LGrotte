@@ -1,9 +1,16 @@
 package de.server.db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.Connection;
+
+
 import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.Vector;
 
 import de.server.db.DBConnection;
@@ -80,7 +87,7 @@ public class ProfilinfoMapper {
 			 * l�schen --> das Problem liegt im zusammengesetzten Primary-Key,
 			 * der nur in Kombi beider Attribute Eindeutig ist
 			 */
-		} catch (SQLException e2) {
+		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
 	}
@@ -98,7 +105,7 @@ public class ProfilinfoMapper {
 		
 		Connection conn = DBConnection.connection();
 		
-		PreparedStatement select = conn.prepareStatement("SELECT info_id FROM "
+		PreparedStatement select = (PreparedStatement) conn.prepareStatement("SELECT info_id FROM "
 				+ "profil_info WHERE email = '" + email + "'");
 		
 		Vector<ProfilEigenschaft>profilinfos = new Vector<ProfilEigenschaft>();
@@ -119,7 +126,7 @@ public class ProfilinfoMapper {
 		
 		Connection conn = DBConnection.connection();
 		
-		PreparedStatement select = conn.prepareStatement("SELECT infos.value, "
+		PreparedStatement select = (PreparedStatement) conn.prepareStatement("SELECT infos.value, "
 				+ "infos.info_id, eigenschaft.erlauterung, eigenschaft.eigenschaft_id "
 				+ "FROM infos JOIN eigenschaft ON infos.eigenschaft_id = "
 				+ "eigenschaft.eigenschaft_id WHERE info_id = " + infoID);

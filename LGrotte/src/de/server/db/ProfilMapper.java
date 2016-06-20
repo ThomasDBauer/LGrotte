@@ -1,11 +1,15 @@
 package de.server.db;
 
-import java.sql.PreparedStatement;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Vector;
-import java.sql.Connection;
 import de.shared.BO.Profil;
-import de.shared.BO.Suchprofil;
 
 public class ProfilMapper {
 	
@@ -27,7 +31,7 @@ public class ProfilMapper {
 	public Profil getProfilByEmail(String email) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
-				"SELECT * FROM PROFIL WHERE email = '"+email+"'");
+				"SELECT * FROM profil WHERE email = '"+email+"'");
 		ResultSet rs = select.executeQuery();
 		Profil p = new Profil();
 		while(rs.next()){
@@ -49,7 +53,7 @@ public class ProfilMapper {
 		Vector<Profil>profile = new Vector<Profil>();
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
-				"SELECT * FROM PROFIL");
+				"SELECT * FROM profil");
 		ResultSet rs = select.executeQuery();
 		while(rs.next()){
 			Profil p = new Profil();
@@ -70,7 +74,7 @@ public class ProfilMapper {
 		Vector<Profil>profile = new Vector<Profil>();
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
-				"SELECT * FROM PROFIL WHERE geschlecht = '"+geschlecht+"'");
+				"SELECT * FROM profil WHERE geschlecht = '"+geschlecht+"'");
 		ResultSet rs = select.executeQuery();
 		while(rs.next()){
 			Profil p = new Profil();
@@ -92,7 +96,7 @@ public class ProfilMapper {
 	public void createProfilTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
-				("CREATE TABLE IF NOT EXISTS PROFIL (email varchar(35),fname varchar(35), lname varchar(35), "
+				("CREATE TABLE IF NOT EXISTS profil (email varchar(35),fname varchar(35), lname varchar(35), "
 						+ "koerpergroesse int(3), geschlecht varchar(35), religion varchar(35), "
 						+ "haarfarbe varchar(35), geburtsdatum date, raucher varchar(35), "
 						+ "PRIMARY KEY(email))");
@@ -102,7 +106,7 @@ public class ProfilMapper {
 	public void insertProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
-				("INSERT INTO PROFIL (email, fname, lname, koerpergroesse, geschlecht, religion,"
+				("INSERT INTO profil (email, fname, lname, koerpergroesse, geschlecht, religion,"
 						+ "haarfarbe, raucher) VALUES ('"+p.getEmail()+"','"+p.getFname()+"','"+
 						p.getLname()+"',"+p.getKoerpergroesse()+",'"+p.getGeschlecht()+"','"+
 						p.getReligion()+"','"+p.getHaarfarbe()+"','"+ p.getRaucher()+"')");
@@ -113,7 +117,7 @@ public class ProfilMapper {
 	public void deleteProfil(String email) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
-				("DELETE FROM PROFIL WHERE email ='" + email +"'");
+				("DELETE FROM profil WHERE email ='" + email +"'");
 		delete.execute();
 
 	}
@@ -121,7 +125,7 @@ public class ProfilMapper {
 	public void updateProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement update = (PreparedStatement) conn.prepareStatement
-				("UPDATE PROFIL SET fname = '"+p.getFname()+"', lname = '"+ p.getLname()+"',"
+				("UPDATE profil SET fname = '"+p.getFname()+"', lname = '"+ p.getLname()+"',"
 						+ "koerpergroesse = "+p.getKoerpergroesse()+", geschlecht = '"+p.getGeschlecht()+"',"
 						+ "religion ='"+p.getReligion()+"', haarfarbe = '"+p.getHaarfarbe()+"',"
 						+ "geburtsdatum = '"+p.getGeburtsdatum()+"', raucher = '"+p.getRaucher()+"' "
