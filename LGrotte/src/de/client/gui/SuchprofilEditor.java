@@ -251,22 +251,22 @@ public class SuchprofilEditor extends VerticalPanel {
 				}
 				
 					String input = minAlterTextBox.getText();
-					if (!input.matches("[0-9]*")) {
+					if (!input.matches("[0-9]*") || input.matches("")) {
 						Window.alert("'"+ minAlterTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}else{
 					String input2 = maxAlterTextBox.getText();
-					if (!input2.matches("[0-9]*")) {
+					if (!input2.matches("[0-9]*") || input.matches("")) {
 						Window.alert("'"+ maxAlterTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 					String input3 = minGroesseTextBox.getText();
-					if (!input3.matches("[0-9]*")) {
+					if (!input3.matches("[0-9]*") || input.matches("")) {
 						Window.alert("'"+ minGroesseTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 					String input4 = maxGroesseTextBox.getText();
-					if (!input4.matches("[0-9]*")) {
+					if (!input4.matches("[0-9]*") || input.matches("")) {
 						Window.alert("'"+ maxGroesseTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}else {
@@ -359,23 +359,23 @@ public class SuchprofilEditor extends VerticalPanel {
 				}
 				
 				String input = minAlterAnzeigenTextBox.getText();
-				if (!input.matches("[0-9]*")) {
+				if (!input.matches("[0-9]*") || input.matches("")) {
 					Window.alert("'"+ minAlterAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 					return;
 				} else {
 					String input2 = maxAlterAnzeigenTextBox.getText();
-					if (!input2.matches("[0-9]*")) {
+					if (!input2.matches("[0-9]*") || input.matches("")) {
 						Window.alert("'"+ maxAlterAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 				
 					String input3 = minGroesseAnzeigenTextBox.getText();
-					if (!input3.matches("[0-9]*")) {
+					if (!input3.matches("[0-9]*") || input.matches("")) {
 						Window.alert("'"+ minGroesseAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 					String input4 = maxGroesseAnzeigenTextBox.getText();
-					if (!input4.matches("[0-9]*")) {
+					if (!input4.matches("[0-9]*") || input.matches("")) {
 						Window.alert("'"+ maxGroesseAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
 						return;
 					
