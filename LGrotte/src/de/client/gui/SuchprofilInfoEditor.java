@@ -61,6 +61,7 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 			buttonPanel.add(addEigenschaftenButton);
 			speicherButton.setStylePrimaryName("grotte-Button");
 			addEigenschaftenButton.setStylePrimaryName("grotte-Button");
+			loeschenButton.setStylePrimaryName("grotte-Button");
 			this.add(buttonPanel);
 			this.add(editPanel);
 			this.add(eigenschaftenPanel);
@@ -168,6 +169,7 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 				// f�llen der listbox mit allen eigenschaften
 				for (int i = 0; i < eigenschaften.size(); i++) {
 					listbox.addItem(eigenschaften.elementAt(i).getErlaeuterung());
+					
 				}
 				// h�bsch anordnen
 				HorizontalPanel hpanel = new HorizontalPanel();
@@ -214,16 +216,22 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 		//Speichern ClickHandler
 		private class SpeichernClickHandler implements ClickHandler {
 			public void onClick(ClickEvent e) {
-				editPanel.clear();
 				for (int i = 0; i < eigenschaftenListboxen.size(); i++) {
 					ListBox lb = eigenschaftenListboxen.elementAt(i);
 					int eigenschaftsID = 0;
+					String input = infoTextboxen.elementAt(i).getText();
+					if (input.matches("")) {
+						Window.alert("Bitte machen Sie in jedem Feld eine Angabe");
+						return;
+					}else{
+						editPanel.clear();
 					for (int o = 0; o < eigenschaften.size(); o++) {
-						if (lb.getItemText(lb.getSelectedIndex()).equals(
-								eigenschaften.elementAt(o).getErlaeuterung())) {
-							eigenschaftsID = eigenschaften.elementAt(o).getId();
+							if (lb.getItemText(lb.getSelectedIndex()).equals(
+									eigenschaften.elementAt(o).getErlaeuterung())) {
+								eigenschaftsID = eigenschaften.elementAt(o).getId();
+							}
 						}
-					}
+					
 					Info info = new Info();
 					info.setEigenschaft(eigenschaftsID);
 					info.setValue(infoTextboxen.elementAt(i).getText());
@@ -233,6 +241,8 @@ public class SuchprofilInfoEditor extends VerticalPanel{
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
+					
+				} 
 				}
 				//Löschen der Zwischenspeicher
 				eigenschaftenListboxen.clear();

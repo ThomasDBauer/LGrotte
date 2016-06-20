@@ -1,6 +1,5 @@
 package de.client.gui;
 
-
 import java.util.Date;
 
 import com.google.gwt.core.client.GWT;
@@ -34,17 +33,16 @@ import de.shared.BO.Profil;
 public class MeinProfilEditor extends VerticalPanel {
 	private VerticalPanel panel = this;
 	private FlexTable flexTable = new FlexTable();
-	
+
 	private TextBox fNameTextBox = new TextBox();
 	private TextBox lNameTextBox = new TextBox();
-	private TextBox koerpergroesseTextBox= new TextBox();
+	private TextBox koerpergroesseTextBox = new TextBox();
 
-	
 	private ListBox geschlechtListBox = new ListBox();
 	private ListBox haarfarbeListBox = new ListBox();
 	private ListBox religionListBox = new ListBox();
 	private ListBox raucherListBox = new ListBox();
-	
+
 	private Label koerpergroesseLabel = new Label("Körpergröße");
 	private Label geschlechtLabel = new Label("Geschlecht");
 	private Label haarfarbeLabel = new Label("Haarfarbe");
@@ -52,63 +50,55 @@ public class MeinProfilEditor extends VerticalPanel {
 	private Label raucherLabel = new Label("Raucher");
 	private DateTimeFormat datumsFormat = DateTimeFormat.getFormat("yyyy-MM-dd");
 	private Label datumsinhalt = new Label();
-	private Label geburtsdatumLabel = new Label ("Geburtsdatum");
-	
+	private Label geburtsdatumLabel = new Label("Geburtsdatum");
+
 	private Label fNameLabel = new Label("Vorname");
 	private Label lNameLabel = new Label("Nachname");
-	
+
 	private DateBox datumsBox = new DateBox();
-	
-	
+
 	private Button profilLoeschenButton = new Button("Loeschen");
 	private Button profilUpdateButton = new Button("Speichern");
-	
-	
-	public MeinProfilEditor(){
+
+	public MeinProfilEditor() {
 		profilLoeschenButton.setStylePrimaryName("grotte-Button");
 		profilUpdateButton.setStylePrimaryName("grotte-Button");
-		
+
 		try {
 			ClientSideSettings.getEditorService().getProfil(new ProfilAuslesenCallback());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		flexTable.setWidget(0, 1, fNameTextBox);
 		flexTable.setWidget(0, 0, fNameLabel);
-		
+
 		flexTable.setWidget(1, 1, lNameTextBox);
 		flexTable.setWidget(1, 0, lNameLabel);
-		
+
 		flexTable.setWidget(2, 1, geschlechtListBox);
 		flexTable.setWidget(2, 0, geschlechtLabel);
-		
+
 		flexTable.setWidget(3, 1, haarfarbeListBox);
 		flexTable.setWidget(3, 0, haarfarbeLabel);
-		
+
 		flexTable.setWidget(4, 1, koerpergroesseTextBox);
 		flexTable.setWidget(4, 0, koerpergroesseLabel);
 		koerpergroesseTextBox.setVisibleLength(3);
 		koerpergroesseTextBox.setMaxLength(3);
-		
-	
-		
+
 		flexTable.setWidget(5, 1, religionListBox);
 		flexTable.setWidget(5, 0, religionLabel);
-		
+
 		flexTable.setWidget(6, 1, raucherListBox);
 		flexTable.setWidget(6, 0, raucherLabel);
-		
-		
+
 		flexTable.setWidget(7, 1, datumsBox);
 		flexTable.setWidget(7, 0, geburtsdatumLabel);
-	
-		
+
 		datumsBox.setFormat(new DateBox.DefaultFormat(datumsFormat));
-	    datumsBox.getDatePicker().setYearAndMonthDropdownVisible(true);
+		datumsBox.getDatePicker().setYearAndMonthDropdownVisible(true);
 		datumsBox.getDatePicker().setVisibleYearCount(20);
 		datumsBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
 			public void onValueChange(ValueChangeEvent<Date> event) {
@@ -117,22 +107,20 @@ public class MeinProfilEditor extends VerticalPanel {
 				datumsinhalt.setText(datumsString);
 			}
 		});
-		
+
 		datumsBox.setValue(new Date());
-		
-		
+
 		geschlechtListBox.addItem("männlich");
 		geschlechtListBox.addItem("weiblich");
 		geschlechtListBox.addItem("andere");
-		
-		
+
 		haarfarbeListBox.addItem("blond");
 		haarfarbeListBox.addItem("brunette");
 		haarfarbeListBox.addItem("schwarz");
 		haarfarbeListBox.addItem("rot");
 		haarfarbeListBox.addItem("grau");
 		haarfarbeListBox.addItem("andere");
-		
+
 		religionListBox.addItem("christlich");
 		religionListBox.addItem("muslimisch");
 		religionListBox.addItem("buddhistisch");
@@ -140,62 +128,66 @@ public class MeinProfilEditor extends VerticalPanel {
 		religionListBox.addItem("jüdisch");
 		religionListBox.addItem("keine");
 		religionListBox.addItem("andere");
-		
+
 		raucherListBox.addItem("Ja");
 		raucherListBox.addItem("Nein");
 		raucherListBox.addItem("ab und an");
-		
-	
-		
+
 		this.add(profilUpdateButton);
-//		this.add(profilLoeschenButton);
+		// this.add(profilLoeschenButton);
 		this.add(flexTable);
 		profilUpdateButton.addClickHandler(new ProfilUpdateClickHandler());
 		profilLoeschenButton.addClickHandler(new ProfilLoeschenClickHandler());
 	}
-	
-	String getGeschlecht(){
-	String geschlecht = geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex());
-	return geschlecht;
+
+	String getGeschlecht() {
+		String geschlecht = geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex());
+		return geschlecht;
 	}
+
 	String getHaarfarbe() {
-	String haarfarbe = haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex());
-	return haarfarbe;
+		String haarfarbe = haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex());
+		return haarfarbe;
 	}
+
 	String getReligion() {
-	String religion = religionListBox.getItemText(religionListBox.getSelectedIndex());
-	return religion;
+		String religion = religionListBox.getItemText(religionListBox.getSelectedIndex());
+		return religion;
 	}
+
 	String getRaucher() {
-	String raucher = raucherListBox.getItemText(raucherListBox.getSelectedIndex());
-	return raucher;
+		String raucher = raucherListBox.getItemText(raucherListBox.getSelectedIndex());
+		return raucher;
 	}
-	Date getGeburtsdatum(){
+
+	Date getGeburtsdatum() {
 		Date geburtsdatum = datumsFormat.parse(datumsinhalt.getText());
 		java.sql.Date sqlDate = new java.sql.Date(geburtsdatum.getTime());
 		return sqlDate;
 	}
+
 	// Profil updaten
-	private class ProfilUpdateCallback implements AsyncCallback{
+	private class ProfilUpdateCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 			panel.add(new Label("Fehler!!" + caught.toString()));
 		}
+
 		public void onSuccess(Object result) {
 		}
-		
+
 	}
-	private class ProfilUpdateClickHandler implements ClickHandler{
-		
+
+	private class ProfilUpdateClickHandler implements ClickHandler {
+
 		private PopupPanel popup;
-		
+
 		public void onClick(ClickEvent event) {
 			Profil email = new Profil();
-				 
-			
+
 			try {
-				ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), 
-						lNameTextBox.getText(), Integer.parseInt(koerpergroesseTextBox.getText()), 
-						getGeschlecht(), getReligion(), getHaarfarbe(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
+				ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), lNameTextBox.getText(),
+						Integer.parseInt(koerpergroesseTextBox.getText()), getGeschlecht(), getReligion(),
+						getHaarfarbe(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -203,47 +195,62 @@ public class MeinProfilEditor extends VerticalPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-					
-				
-				
-					String input = koerpergroesseTextBox.getText();
-					if (!input.matches("[0-9]*")) {
-						Window.alert("'"+ koerpergroesseTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
-						return;
-					}
-				this.popup = new PopupPanel(true,true);
-				this.popup.add(new Label("Profil wurde aktualisiert "
-						+ "zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
-				this.popup.center();
-				
-						
-					}
-					
-				}
-				  
+
+			String input = fNameTextBox.getText();
+			if (input.matches("")) {
+				Window.alert("'" + fNameTextBox.getText() + 
+						"'beinhaltet ein ungültiges Symbol oder kein Symbol");
+				return;
+			}
+			String input1 = lNameTextBox.getText();
+			if (input1.matches("")) {
+				Window.alert("'" + lNameTextBox.getText() + 
+						"'beinhaltet ein ungültiges Symbol oder kein Symbol");
+				return;
+			}
+			String input2 = koerpergroesseTextBox.getText();
+			if (!input2.matches("[0-9]*") || input2.matches("")) {
+				Window.alert(
+						"'" + koerpergroesseTextBox.getText() +
+						"'beinhaltet ein ungültiges Symbol oder kein Symbol");
+				return;
+			}
+			this.popup = new PopupPanel(true, true);
+			this.popup.add(new Label(
+					"Profil wurde aktualisiert " +
+			"zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
+			this.popup.center();
+
+		}
+
+	}
+
 	// Profil löschen
-	private class ProfilLoeschenCallback implements AsyncCallback{
+	private class ProfilLoeschenCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 			panel.add(new Label(caught.toString()));
 		}
+
 		public void onSuccess(Object result) {
 		}
 	}
-	private class ProfilLoeschenClickHandler implements ClickHandler{
+
+	private class ProfilLoeschenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent event) {
-//			ClientSideSettings.getEditorService().deleteProfil("fakemail", new ProfilLoeschenCallback());	
+			// ClientSideSettings.getEditorService().deleteProfil("fakemail",
+			// new ProfilLoeschenCallback());
 		}
 	}
-	
-	//Profil auslesen
-	
-	private class ProfilAuslesenCallback implements AsyncCallback<Profil>{
+
+	// Profil auslesen
+
+	private class ProfilAuslesenCallback implements AsyncCallback<Profil> {
 		public void onFailure(Throwable caught) {
 			RootPanel.get().add(new Label(caught.toString()));
 		}
 
 		public void onSuccess(Profil result) {
-			
+
 			if (result.getFname() == "null") {
 				fNameTextBox.setText("");
 				lNameTextBox.setText("");
@@ -251,7 +258,7 @@ public class MeinProfilEditor extends VerticalPanel {
 				fNameTextBox.setText(result.getFname());
 				lNameTextBox.setText(result.getLname());
 			}
-			
+
 			for (int g = 0; g < 3; g++) {
 				if (geschlechtListBox.getValue(g) == result.getGeschlecht()) {
 					geschlechtListBox.setSelectedIndex(g);
@@ -278,12 +285,9 @@ public class MeinProfilEditor extends VerticalPanel {
 				}
 			}
 			datumsBox.setValue(result.getGeburtsdatum());
-			
-		}
-		
-	}
-	
-	
-	
-}
 
+		}
+
+	}
+
+}
