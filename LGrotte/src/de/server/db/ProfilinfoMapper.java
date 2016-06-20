@@ -37,7 +37,7 @@ public class ProfilinfoMapper {
 	}
 
 	public void createProfilInfo() throws Exception {
-		Connection conn = DBConnection.connection();
+		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement("CREATE TABLE IF NOT EXISTS profil_info "
 				+ "(email varchar(35) NOT NULL, info_id INT NOT NULL, " + "PRIMARY KEY (email, info_id), "
 				+ "FOREIGN KEY(email) REFERENCES profil(email) " + "ON UPDATE CASCADE ON DELETE RESTRICT, "
@@ -72,7 +72,7 @@ public class ProfilinfoMapper {
 	// insert.execute();
 
 	public void updateProfilInfo(ProfilInfo pi) throws Exception {
-		Connection conn = DBConnection.connection();
+		Connection conn = (Connection)DBConnection.connection();
 
 		try {
 			PreparedStatement stmt = (PreparedStatement) conn.createStatement();
@@ -93,7 +93,7 @@ public class ProfilinfoMapper {
 	}
 
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
-		Connection conn = DBConnection.connection();
+		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
 				"DELETE FROM profil_info WHERE email = '" + pi.getProfilEmail() + "' AND info_id="
 							+ pi.getInfoID() + "");
@@ -103,7 +103,7 @@ public class ProfilinfoMapper {
 	
 	public Vector <ProfilEigenschaft> getProfilInfosByEmail(String email) throws Exception{
 		
-		Connection conn = DBConnection.connection();
+		Connection conn = (Connection)DBConnection.connection();
 		
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement("SELECT info_id FROM "
 				+ "profil_info WHERE email = '" + email + "'");
@@ -124,7 +124,7 @@ public class ProfilinfoMapper {
 	
 	private ProfilEigenschaft getInfosForProfil(int infoID) throws Exception{
 		
-		Connection conn = DBConnection.connection();
+		Connection conn = (Connection)DBConnection.connection();
 		
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement("SELECT infos.value, "
 				+ "infos.info_id, eigenschaft.erlauterung, eigenschaft.eigenschaft_id "
