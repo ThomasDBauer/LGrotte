@@ -11,7 +11,7 @@ import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.ReportService;
-import de.shared.BO.Aehnlichkeitsmass;
+import de.shared.BO.Auswahl;
 import de.shared.BO.Besuch;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;

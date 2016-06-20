@@ -31,7 +31,8 @@ public class EigenschaftMapper {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
 				("CREATE TABLE IF NOT EXISTS eigenschaft (erlauterung varchar(255), "
-						+ "eigenschaft_id int NOT NULL AUTO_INCREMENT, PRIMARY KEY(eigenschaft_id))");
+						+ "eigenschaft_id int NOT NULL AUTO_INCREMENT, auswahl int (1), "
+						+ "PRIMARY KEY(eigenschaft_id))");
 		create.execute();
 
 	}
@@ -39,8 +40,8 @@ public class EigenschaftMapper {
 	public void insertEigenschaft(Eigenschaft eigenschaft) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
-				("INSERT INTO eigenschaft(erlauterung) VALUES ('" + 
-						eigenschaft.getErlaeuterung() + "')");
+				("INSERT INTO eigenschaft(erlauterung, auswahl) VALUES ('" + 
+						eigenschaft.getErlaeuterung() + "', "+eigenschaft.getAuswahl()+")");
 		insert.execute();
 
 	}
