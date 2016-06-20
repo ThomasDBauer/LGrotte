@@ -34,15 +34,16 @@ public class MeinProfilEditor extends VerticalPanel {
 	private VerticalPanel panel = this;
 	private FlexTable flexTable = new FlexTable();
 
+	//Erstellen von TextBoxen
 	private TextBox fNameTextBox = new TextBox();
 	private TextBox lNameTextBox = new TextBox();
 	private TextBox koerpergroesseTextBox = new TextBox();
-
 	private ListBox geschlechtListBox = new ListBox();
 	private ListBox haarfarbeListBox = new ListBox();
 	private ListBox religionListBox = new ListBox();
 	private ListBox raucherListBox = new ListBox();
 
+	//Erstellen von Labeln
 	private Label koerpergroesseLabel = new Label("Körpergröße");
 	private Label geschlechtLabel = new Label("Geschlecht");
 	private Label haarfarbeLabel = new Label("Haarfarbe");
@@ -51,17 +52,17 @@ public class MeinProfilEditor extends VerticalPanel {
 	private DateTimeFormat datumsFormat = DateTimeFormat.getFormat("yyyy-MM-dd");
 	private Label datumsinhalt = new Label();
 	private Label geburtsdatumLabel = new Label("Geburtsdatum");
-
 	private Label fNameLabel = new Label("Vorname");
 	private Label lNameLabel = new Label("Nachname");
 
+	//Erstellen der DateBox
 	private DateBox datumsBox = new DateBox();
-
-	private Button profilLoeschenButton = new Button("Loeschen");
+	
+	//Erstellen des Buttons
 	private Button profilUpdateButton = new Button("Speichern");
 
+	//Konstruktor
 	public MeinProfilEditor() {
-		profilLoeschenButton.setStylePrimaryName("grotte-Button");
 		profilUpdateButton.setStylePrimaryName("grotte-Button");
 
 		try {
@@ -110,6 +111,7 @@ public class MeinProfilEditor extends VerticalPanel {
 
 		datumsBox.setValue(new Date());
 
+		//Befüllen der List Box
 		geschlechtListBox.addItem("männlich");
 		geschlechtListBox.addItem("weiblich");
 		geschlechtListBox.addItem("andere");
@@ -133,18 +135,18 @@ public class MeinProfilEditor extends VerticalPanel {
 		raucherListBox.addItem("Nein");
 		raucherListBox.addItem("ab und an");
 
+		//Anfügen der FlexTable und Buttons an das Panel
 		this.add(profilUpdateButton);
-		// this.add(profilLoeschenButton);
 		this.add(flexTable);
 		profilUpdateButton.addClickHandler(new ProfilUpdateClickHandler());
-		profilLoeschenButton.addClickHandler(new ProfilLoeschenClickHandler());
 	}
 
+	//Getter für Attribute
 	String getGeschlecht() {
 		String geschlecht = geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex());
 		return geschlecht;
 	}
-
+	
 	String getHaarfarbe() {
 		String haarfarbe = haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex());
 		return haarfarbe;
@@ -224,26 +226,8 @@ public class MeinProfilEditor extends VerticalPanel {
 		}
 
 	}
-
-	// Profil löschen
-	private class ProfilLoeschenCallback implements AsyncCallback {
-		public void onFailure(Throwable caught) {
-			panel.add(new Label(caught.toString()));
-		}
-
-		public void onSuccess(Object result) {
-		}
-	}
-
-	private class ProfilLoeschenClickHandler implements ClickHandler {
-		public void onClick(ClickEvent event) {
-			// ClientSideSettings.getEditorService().deleteProfil("fakemail",
-			// new ProfilLoeschenCallback());
-		}
-	}
-
+	
 	// Profil auslesen
-
 	private class ProfilAuslesenCallback implements AsyncCallback<Profil> {
 		public void onFailure(Throwable caught) {
 			RootPanel.get().add(new Label(caught.toString()));
