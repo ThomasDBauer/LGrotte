@@ -173,12 +173,12 @@ public class ReportEntry implements EntryPoint {
 	public void updateSuchprofilPanel(Suchprofil sp){
 		suchprofilPanel.setStylePrimaryName("suchprofil-filter");
 		suchprofilPanel.clear();
-		suchprofilPanel.add(new Label("Geschlecht: " + sp.getHaarfarbe()));
+		suchprofilPanel.add(new Label("Geschlecht: " + sp.getGeschlecht()));
 		suchprofilPanel.add(new Label("Raucher: " + sp.getRaucher()));
 		suchprofilPanel.add(new Label("Haarfarbe: " + sp.getHaarfarbe()));
 		suchprofilPanel.add(new Label("Religion: " + sp.getReligion()));
-//		suchprofilPanel.add(new Label("Körpergröße: " + sp));
-//		suchprofilPanel.add(new Label("Alter: " + sp.));
+		suchprofilPanel.add(new Label("Körpergröße von " + sp.getMinGroesse()+ " bis " + sp.getMaxGroesse()));
+		suchprofilPanel.add(new Label("Alter von  " + sp.getMinAlter() + "bis " + sp.getMaxAlter()));
 		
 		
 		for(int i = 0; i < sp.getProfileigenschaften().size(); i++){
