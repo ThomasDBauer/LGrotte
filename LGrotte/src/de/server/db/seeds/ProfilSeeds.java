@@ -35,15 +35,15 @@ public class ProfilSeeds {
 		"Kerstin", "Anna", "Hanna", "Lina", "Sarah"	
 	};
 	private String[]nachnamen = {
-			"Bauer", "Müller", "Pracht", "Engstler", "Friedrichsen",
-			"Schmidt", "Albrecht", "Züblin", "Weiß", "Schwarz"	
+			"Bauer", "M&uumlller", "Pracht", "Engstler", "Friedrichsen",
+			"Schmidt", "Albrecht", "Z&uumlblin", "Wei&szlig", "Schwarz"	
 	};
 	private int[]koerpergroesse = {
 		189, 181, 176, 162, 151,
 		165, 157, 155, 174, 172
 	};
 	private String[]religion = {
-			"Jüdisch", "Muslimisch", "Christlich", "Buddhistish",
+			"J&uumldisch", "Muslimisch", "Christlich", "Buddhistish",
 			"Atheist", "Hinduistisch", "andere"
 	};
 	private String[]haarfarbe = {
@@ -55,6 +55,6 @@ public class ProfilSeeds {
 		"Strikter Nichtraucher", "Nichtraucher"
 	};
 	private String[]geschlecht = {
-		"männlich", "weiblich"
+		"m&aumlnnlich", "weiblich"
 	};
 }
