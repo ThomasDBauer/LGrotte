@@ -178,7 +178,7 @@ public class ReportEntry implements EntryPoint {
 		suchprofilPanel.add(new Label("Haarfarbe: " + sp.getHaarfarbe()));
 		suchprofilPanel.add(new Label("Religion: " + sp.getReligion()));
 		suchprofilPanel.add(new Label("Körpergröße von " + sp.getMinGroesse()+ " bis " + sp.getMaxGroesse()));
-		suchprofilPanel.add(new Label("Alter von  " + sp.getMinAlter() + "bis " + sp.getMaxAlter()));
+		suchprofilPanel.add(new Label("Alter von  " + sp.getMinAlter() + " bis " + sp.getMaxAlter()));
 		
 		
 		for(int i = 0; i < sp.getProfileigenschaften().size(); i++){

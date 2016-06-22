@@ -79,10 +79,18 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		ProfilAttribut raucher = new ProfilAttribut();
 		raucher.setName("Raucher");
 		raucher.setWert(p.getRaucher());
+//		ProfilAttribut koerpergroesse = new ProfilAttribut();
+//		koerpergroesse.setName("K&oumlrpergr&oumlsse");
+//		koerpergroesse.setWert(Integer.toString(p.getKoerpergroesse()));
+//		ProfilAttribut geburtsdatum = new ProfilAttribut();
+//		geburtsdatum.setName("Geburtsdatum");
+//		geburtsdatum.setWert(p.getGeburtsdatum().toString());
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
 		report.addAttribut(religion);
 		report.addAttribut(raucher);
+//		report.addAttribut(koerpergroesse);
+//		report.addAttribut(geburtsdatum);
 
 		// 2. Eigenschaften
 		Vector<ProfilEigenschaft> profilinfos = 
