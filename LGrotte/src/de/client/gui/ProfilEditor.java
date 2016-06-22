@@ -7,8 +7,8 @@ public class ProfilEditor extends HorizontalPanel{
 
 	
 	public ProfilEditor() throws Exception{
-		HorizontalPanel hpanel = new HorizontalPanel();
-		hpanel.add(new HTML(
+		
+		this.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
 		this.add(new MeinProfilEditor());
 		this.add(new ProfilEigenschaftEditor());

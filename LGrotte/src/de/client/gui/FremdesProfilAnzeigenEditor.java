@@ -8,7 +8,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -25,8 +27,9 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
 		private FlexTable profilAnzeigenTable = new FlexTable();
 		
-		private Button merkenButton = new Button("Profil merken", new MerkHandler());
-		private Button sperrenButton = new Button("Profil sperren", new SperrHandler());
+		private Button merkButton = new Button("Profil merken", new MerkHandler());
+		private Button sperrButton = new Button("Profil sperren", new SperrHandler());
+		private Button zurueckButton = new Button("Zurueck", new ZurueckHandler());
 		private Label fnameLabel = new Label();
 		private Label lnameLabel = new Label();
 		private Label geschlechtLabel = new Label();
@@ -40,8 +43,18 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		
 		public FremdesProfilAnzeigenEditor(Profil profil) throws Exception {
 			this.p = profil;
-			merkenButton.setStylePrimaryName("grotte-Button");
-			sperrenButton.setStylePrimaryName("grotte-Button");
+			merkButton.setStylePrimaryName("Button-img");
+			sperrButton.setStylePrimaryName("Button-img");
+			zurueckButton.setStylePrimaryName("Button-img");
+			Image merkImage = new Image("merken.png"); 
+			Image sperrImage = new Image("sperren.png");
+			Image zurueckImage = new Image("zurueck.png");
+			merkImage.setStylePrimaryName("Button-img-Image");
+			sperrImage.setStylePrimaryName("Button-img-Image");
+			zurueckImage.setStylePrimaryName("Button-img-Image");
+			merkButton.getElement().appendChild(merkImage.getElement());
+			sperrButton.getElement().appendChild(sperrImage.getElement());
+			zurueckButton.getElement().appendChild(zurueckImage.getElement());
 			fnameLabel.setText(p.getFname());
 			lnameLabel.setText(p.getLname());
 			geschlechtLabel.setText(p.getGeschlecht());
@@ -87,8 +100,9 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			ClientSideSettings.getEditorService().getProfilEigenschaften(
 					profil.getEmail(), new ProfilEigenschaftenCallback());
 			
-			buttonPanel.add(merkenButton);
-			buttonPanel.add(sperrenButton);
+			buttonPanel.add(merkButton);
+			buttonPanel.add(sperrButton);
+			buttonPanel.add(zurueckButton);
 			this.add(profilAnzeigenTable);
 		}
 		
@@ -112,7 +126,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		
 		private class MerkHandler implements ClickHandler {
 			public void onClick(ClickEvent e) {
-				merkenButton.setEnabled(false);
+				merkButton.setEnabled(false);
 				try {
 					ClientSideSettings.getEditorService().insertMerkzettel(
 							p.getEmail(), new InsertCallback());
@@ -125,12 +139,29 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		private class SperrHandler implements ClickHandler {
 
 			public void onClick(ClickEvent e) {
-				sperrenButton.setEnabled(false);
+				sperrButton.setEnabled(false);
 				try {
 					ClientSideSettings.getEditorService().insertKontaktsperre(
 							p.getEmail(), new InsertCallback());
 				} catch (Exception e2) {
 					e2.printStackTrace();
+				}
+			}
+		}
+		
+		private class ZurueckHandler implements ClickHandler {
+			public void onClick (ClickEvent e) {
+				RootPanel.get("Zusatz").clear();
+				RootPanel.get("Inhalt").clear();
+				RootPanel.get("Content").clear();
+				RootPanel.get("Navi-Pop").clear();
+				RootPanel.get("Inhalt").add(
+						new HTML("<h2>Deine Partnervorschlaege</h2>"));
+				try {
+					RootPanel.get("Inhalt").add(new FindLove());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		}
@@ -142,8 +173,8 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			}
 
 			public void onSuccess(Object result) {
-				sperrenButton.setEnabled(true);
-				merkenButton.setEnabled(true);
+				sperrButton.setEnabled(true);
+				merkButton.setEnabled(true);
 			}
 		}
 		

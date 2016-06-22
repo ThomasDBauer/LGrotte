@@ -16,6 +16,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -63,8 +64,28 @@ public class MeinProfilEditor extends VerticalPanel {
 
 	//Konstruktor
 	public MeinProfilEditor() {
+		this.addStyleName("Attribute-bearbeiten");
 		profilUpdateButton.setStylePrimaryName("grotte-Button");
-
+		geschlechtListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
+		haarfarbeListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
+		religionListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
+		raucherListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
+		koerpergroesseLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		geschlechtLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		religionLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		raucherLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		geburtsdatumLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		datumsinhalt.setStyleName("Profilbearbeiten-Boxen", true);
+		fNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		lNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		flexTable.setStylePrimaryName("Table-Margin");
+		
+		Image speicherImage = new Image("speichern.png");
+		speicherImage.setStylePrimaryName("Button-img-Image");
+		profilUpdateButton.getElement().appendChild(speicherImage.getElement());
+		profilUpdateButton.setStylePrimaryName("Button-img");
+		
 		try {
 			ClientSideSettings.getEditorService().getProfil(new ProfilAuslesenCallback());
 		} catch (Exception e) {

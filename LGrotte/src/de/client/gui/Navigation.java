@@ -45,7 +45,8 @@ public class Navigation extends HorizontalPanel {
 			RootPanel.get("Zusatz").clear();
 			RootPanel.get("Inhalt").clear();
 			RootPanel.get("Content").clear();
-			
+			RootPanel.get("Inhalt").add(new HTML(
+					"<h2>Dein Profil</h2>"));
 			RootPanel.get("Inhalt").add(new ProfilAnzeigenEditor());
 
 			if (!active.getStyleName().equals("aktiv")) {

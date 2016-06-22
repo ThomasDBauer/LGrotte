@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -41,9 +42,23 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 	// Konstruktor
 	public ProfilEigenschaftEditor() throws Exception {
+		this.addStyleName("Eigenschaft-bearbeiten");
 		addEigenschaftenButton.setStylePrimaryName("grotte-Button");
+		addEigenschaftenButton.setStyleName("Margin-Bottom", true);
+		Image addImage = new Image("hinzufuegen.png");
+		addImage.setStylePrimaryName("Button-img-Image");
+		addEigenschaftenButton.getElement().appendChild(addImage.getElement());
+		addEigenschaftenButton.setStylePrimaryName("Button-img");
 		speicherButton.setStylePrimaryName("grotte-Button");
+		Image saveImage = new Image("speichern.png");
+		saveImage.setStylePrimaryName("Button-img-Image");
+		speicherButton.getElement().appendChild(saveImage.getElement());
+		speicherButton.setStylePrimaryName("Button-img");
 		loeschenButton.setStylePrimaryName("grotte-Button");
+		Image deleteImage = new Image("loeschen.png");
+		deleteImage.setStylePrimaryName("Button-img-Image");
+		loeschenButton.getElement().appendChild(deleteImage.getElement());
+		loeschenButton.setStylePrimaryName("Button-img");
 		buttonPanel.add(addEigenschaftenButton);
 		this.add(buttonPanel);
 		this.add(editPanel);
@@ -68,6 +83,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			if (result.size() == 0)
 				eigenschaftenPanel.add(new Label("Erz�hle etwas �ber ich!"));
 			FlexTable table = new FlexTable();
+			table.setStylePrimaryName("Eigenschaften-Table");
 			for (int i = 0; i < result.size(); i++) {
 				table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
 				table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
@@ -148,6 +164,10 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			// h�bsch anordnen
 			HorizontalPanel hpanel = new HorizontalPanel();
 			Button abbrechenButton = new Button("abbrechen", new AbbrechenHandler(listbox, infotextbox));
+			Image breakImage = new Image("abbrechen.png");
+			breakImage.setStylePrimaryName("Button-img-Image");
+			abbrechenButton.getElement().appendChild(breakImage.getElement());
+			abbrechenButton.setStylePrimaryName("Button-img");
 			hpanel.add(listbox);
 			hpanel.add(infotextbox);
 			hpanel.add(abbrechenButton);
