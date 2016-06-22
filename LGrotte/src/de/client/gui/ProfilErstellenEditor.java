@@ -19,7 +19,7 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import de.client.ClientSideSettings;
 
 
-public class ProfilErstellenEditor {
+public class ProfilErstellenEditor extends VerticalPanel{
 	private VerticalPanel panel = new VerticalPanel();
 	private FlexTable flexTable = new FlexTable();
 	

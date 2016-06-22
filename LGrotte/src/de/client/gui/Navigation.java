@@ -54,7 +54,7 @@ public class Navigation extends HorizontalPanel {
 				profilButton.removeStyleName("aktiv");
 				impressumButton.removeStyleName("aktiv");
 				active.addStyleName("aktiv");
-//				RootPanel.get("Navi-Pop-Container").add(new HTML("<div id=\"Navi-Pop\"></div>"));
+				RootPanel.get("Navi-Pop-Container").add(new HTML("<div id=\"Navi-Pop\"></div>"));
 				RootPanel.get("Navi-Pop").add(popup);
 				}
 		}
@@ -93,7 +93,7 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Content").clear();
 				RootPanel.get("Navi-Pop").clear();
 				RootPanel.get("Inhalt").add(new HTML("<h2>Impressum</h2>"));
-				RootPanel.get("Inhalt").add(imp.getImpressum());
+//				RootPanel.get("Inhalt").add(imp.getImpressum());
 				break;
 			}
 		};
