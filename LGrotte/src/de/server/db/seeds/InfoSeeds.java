@@ -16,11 +16,12 @@ public class InfoSeeds {
 	
 	private String[]values = {
 		"Fu�ball", "Fussball", "Schwimmen",
-		"Titanic", "Django", "Lucky#Slevin",
-		"HipHop", "Hip-Hop", "Schlager", "Jazz"
+		"Liebesfilme", "Django", "Lucky#Slevin",
+		"HipHop", "Hip-Hop", "Schlager", "Jazz",
+		"Handball", "Titanic", "Pizza", "Frühling", "Elekro"
 	};
 	
 	private int[]eigenschaften = {
-		1, 1, 1, 2, 2, 2, 3, 3, 3, 3
+		1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 1, 2, 3, 4, 5
 	};
 }
