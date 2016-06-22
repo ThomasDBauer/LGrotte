@@ -7,6 +7,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.client.ClientSideSettings;
 import de.client.TestService;
+import de.server.db.AuswahlMapper;
 import de.server.db.BesucheMapper;
 import de.server.db.EigenschaftMapper;
 import de.server.db.InfoMapper;
@@ -17,6 +18,7 @@ import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.EditorService;
+import de.shared.BO.Auswahl;
 import de.shared.BO.Besuch;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
@@ -204,6 +206,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return results;
 	}		
 	
+	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception{
+		return AuswahlMapper.auswahlMapper().getAuswahlForEigenschaft(e);
+	}
 	// Suchprofil anzeigen by name
 		public Suchprofil getSuchprofileByName(String suchprofilname) throws Exception{
 			return SuchprofilMapper.suchprofilMapper().getSuchprofiByName(suchprofilname);
@@ -311,8 +316,40 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	public Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception{
-		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
+		Vector<ProfilEigenschaft>results = ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				user.getEmail());
+		Vector<Eigenschaft> eigenschaften = EigenschaftMapper.eigenschaftMapper().getEigenschaften();
+		if(results.size() < eigenschaften.size()){
+			return fillEigenschaften(results, eigenschaften);
+		}
+		return results;
+	}
+	private Vector<ProfilEigenschaft> fillEigenschaften(Vector<ProfilEigenschaft> peigenschaften, 
+			Vector<Eigenschaft> eigenschaften){
+		Vector<ProfilEigenschaft> results = new Vector<ProfilEigenschaft>();
+		for(int i = 0; i < eigenschaften.size(); i++){
+			boolean found = false;
+			for(int o = 0; o < peigenschaften.size(); o++){
+				if(peigenschaften.elementAt(o).getEigenschaft().getId() == eigenschaften.elementAt(i).getId()){
+					results.add(peigenschaften.elementAt(o));
+					found = true;
+				}
+			}
+			if(!found){
+				ProfilEigenschaft pe = new ProfilEigenschaft();
+				pe.setEigenschaft(eigenschaften.elementAt(i));
+				Info info = new Info();
+				info.setEigenschaft(eigenschaften.elementAt(i).getId());
+				info.setValue("Keine Angabe");
+				pe.setInfo(info);
+				results.add(pe);
+			}
+		}
+		return results;
+	}
+	
+	public void deleteProfilInfosForUser() throws Exception{
+		ProfilinfoMapper.profilinfoMapper().deleteAllInfos(user.getEmail());
 	}
 	
 	public Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception{

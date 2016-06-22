@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import de.shared.BO.Auswahl;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Merkzettel;
@@ -26,6 +27,8 @@ public interface EditorService extends RemoteService {
 			String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException;
 	
 	Profil getProfil() throws Exception;
+	
+	Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception;
 	
 	Profil getProfil(String email) throws Exception;
 	
@@ -51,6 +54,8 @@ public interface EditorService extends RemoteService {
 	Vector<Suchprofil> getSuchprofile() throws Exception;
 
 	void setUser(Profil p);
+	
+	void deleteProfilInfosForUser() throws Exception;
 	
 	Vector<Profil> getProfilesForEditor() throws Exception;
 	
