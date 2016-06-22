@@ -15,7 +15,7 @@ public class InfoSeeds {
 	}
 	
 	private String[]values = {
-		"Fu&szligball", "Fussball", "Schwimmen",
+		"Fu�ball", "Fussball", "Schwimmen",
 		"Titanic", "Django", "Lucky#Slevin",
 		"HipHop", "Hip-Hop", "Schlager", "Jazz"
 	};
