@@ -10,7 +10,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 
 import java.sql.ResultSet;
-
+import java.sql.SQLException;
 import java.util.Vector;
 
 import de.server.db.DBConnection;
@@ -100,6 +100,13 @@ public class ProfilinfoMapper {
 		stmt.execute();
 	}
 	
+	public void deleteAllInfos(String usermail) throws Exception{
+		Connection conn = (Connection)DBConnection.connection();
+		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
+				"DELETE FROM profil_info WHERE email = '" + usermail + "'");
+		stmt.execute();
+	}
+	
 	
 	public Vector <ProfilEigenschaft> getProfilInfosByEmail(String email) throws Exception{
 		
@@ -127,7 +134,7 @@ public class ProfilinfoMapper {
 		Connection conn = (Connection)DBConnection.connection();
 		
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement("SELECT infos.value, "
-				+ "infos.info_id, eigenschaft.erlauterung, eigenschaft.eigenschaft_id "
+				+ "infos.info_id, eigenschaft.erlauterung, eigenschaft.auswahl, eigenschaft.eigenschaft_id "
 				+ "FROM infos JOIN eigenschaft ON infos.eigenschaft_id = "
 				+ "eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
 		
@@ -144,6 +151,7 @@ public class ProfilinfoMapper {
 			Eigenschaft eigenschaft = new Eigenschaft();
 			eigenschaft.setErlaeuterung(result.getString("erlauterung"));
 			eigenschaft.setId(result.getInt("eigenschaft_id"));
+			eigenschaft.setAuswahl(result.getInt("auswahl"));
 
 			pe.setInfo(info);
 			pe.setEigenschaft(eigenschaft);

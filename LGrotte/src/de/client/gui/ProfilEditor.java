@@ -11,8 +11,9 @@ public class ProfilEditor extends HorizontalPanel{
 		hpanel.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
 		this.add(new MeinProfilEditor());
-		this.add(new ProfilEigenschaftEditor());
-		
+//		this.add(new ProfilEigenschaftEditor());
+//		this.add(new ProfilEigAuswahlEditor());
+		this.add(new MeinProfilEditor());
 	}
 	
 }
