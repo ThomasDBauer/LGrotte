@@ -25,6 +25,7 @@ public class Navigation extends HorizontalPanel {
 	private final Button impressumButton = new Button("Impressum",
 			new NavigationsButtonHandler());
 	public PopupNavi popup = new PopupNavi();
+	public Impressum imp = new Impressum();
 
 	public Navigation() {
 		findLoveButton.setStylePrimaryName("navi-button");
@@ -91,8 +92,8 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Inhalt").clear();
 				RootPanel.get("Content").clear();
 				RootPanel.get("Navi-Pop").clear();
-				RootPanel.get("Content").add(new HTML("<h2>Impressum</h2>"));
-				// RootPanel.get("Inhalt_unten").add(new ImpressumReport());
+				RootPanel.get("Inhalt").add(new HTML("<h2>Impressum</h2>"));
+				RootPanel.get("Inhalt").add(imp.getImpressum());
 				break;
 			}
 		};
