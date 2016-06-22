@@ -108,7 +108,8 @@ public class PopupNavi extends HorizontalPanel {
 //				RootPanel.get("Einstellungen").add(new MeinProfilReport());
 //				RootPanel.get("Inhalt_unten").add(new MeinProfilEditor());
 				try {
-					RootPanel.get("Inhalt").add(new ProfilEditor());
+			RootPanel.get("Inhalt").add(new MeinProfilEditor());
+			RootPanel.get("Zusatz").add(new ProfilEigenschaftEditor());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

@@ -36,8 +36,14 @@ public class FindLove extends VerticalPanel {
 		HorizontalPanel controlPanel = new HorizontalPanel();
 		controlPanel.add(merkButton);
 		controlPanel.add(sperrButton);
-		merkButton.setStylePrimaryName("grotte-Button");
-		sperrButton.setStylePrimaryName("grotte-Button");
+		Image merkImage = new Image("merken.png"); 
+		Image sperrImage = new Image("sperren.png");
+		merkImage.setStylePrimaryName("Button-img-Image");
+		sperrImage.setStylePrimaryName("Button-img-Image");
+		merkButton.getElement().appendChild(merkImage.getElement());
+		sperrButton.getElement().appendChild(sperrImage.getElement());
+		merkButton.setStylePrimaryName("Button-img");
+		sperrButton.setStylePrimaryName("Button-img");
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
 		this.add(controlPanel);
@@ -77,7 +83,6 @@ public class FindLove extends VerticalPanel {
 					Label match = new Label("Ähnlichkeit zu dir: " + "%");
 					match.setStyleName("findLove-Aehnlichkeit", true);
 					match.addStyleName("findLove-Label");
-					Image img = new Image("besuchen.png");
 					name.addStyleName("findLove-Label");
 					nameMatchingAnzeigen.add(name);
 					nameMatchingAnzeigen.add(match);
@@ -87,9 +92,13 @@ public class FindLove extends VerticalPanel {
 					findLovePanel.addStyleName("findLove-Panel");
 					table.setWidget(i, 0, cb);
 					table.setWidget(i, 1, findLovePanel);
-					PushButton anzeigen = new PushButton(new Image("besuchen.png"));
+//					PushButton anzeigen = new PushButton(new Image("besuchen.png"));
+					Button anzeigen = new Button("Anzeigen");
+					Image img = new Image("besuchen.png");
+					img.setStylePrimaryName("Button-img-Image");
+					anzeigen.getElement().appendChild(img.getElement());
 //					Button anzeigen = new Button("Anzeigen");
-					anzeigen.setStylePrimaryName("findLove-Button-img");
+					anzeigen.setStylePrimaryName("Button-img");
 					nameMatchingAnzeigen.add(anzeigen);
 					anzeigen.addClickHandler(new FremdesPAClickHandler(p));
 				}

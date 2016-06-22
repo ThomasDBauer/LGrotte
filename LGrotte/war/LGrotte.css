@@ -80,10 +80,16 @@ li a:hover {
 	height: auto;
 }
 
+.Table-Margin{
+	margin-top: 20px;
+	vertical-align: center;
+	}
+
 
 .findLove-Button{
 	background-color: #FFF;
 	color: #000000;
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 	font-size: small;
 	padding: 3px 7px 3px 7px;
 	text-decoration: none;
@@ -100,17 +106,26 @@ li a:hover {
 	-moz-border-radius: 1.5px;
 }
 
-.findLove-Button-img{
+.Button-img-Image{
+	float: left;
+	margin-right: 5px;
+	margin-top: 2.5px;
+
+}
+
+.Button-img{
 	background-color: #FFF;
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 	color: #000000;
 	font-size: small;
-	/* padding: 1px 3px 1px 3px; */
 	padding-left: 3px;
-	padding-right: 3px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+	line-height: 29px;  
 	text-decoration: none;
+	text-align: rigth;
 	outline-color: #000000;
-	margin-right: 15px;
-	margin-left: 15px;
+	margin-right: 30px;
 	cursor: pointer;
 	cursor: hand;
 	-webkit-box-shadow: inset 0px 0px 3px 2px rgba(225,225,225,0.85);
@@ -121,7 +136,7 @@ li a:hover {
 	-moz-border-radius: 1.5px;
 }
 
-.findLove-Button-img:hover {
+.Button-img:hover {
 	background: #e8e8e8;
 	color: #000;
 	-webkit-box-shadow: inset 0px 0px 5px 3px rgba(205,205,205,0.85);
@@ -162,8 +177,8 @@ li a:hover {
 }
 
 .findLove-Label{
-	padding-top: 5.5px;
-	padding-bottom: 5.5px;
+	padding-top: 8.75px;
+	padding-bottom: 8.75px;
 	margin-right: 5px;
 }
 
@@ -211,6 +226,14 @@ li a:hover {
 	margin-left: 0 auto;
 	margin-right: 0 auto;
 	position: absolute;
+}
+
+.Attribute-bearbeiten{
+	margin-top: 20px;
+}
+
+.Eigenschaft-bearbeiten{
+	margin-top: 20px;
 }
 
 .logout-button {
@@ -412,6 +435,7 @@ li a:hover {
 	margin: 5px;
 	height: auto;
 	min-height: 250px;
+	min-width: 515px;
 	border: 1px solid white;
 	overflow: hidden;
 	-webkit-border-radius: 5px;
@@ -420,23 +444,52 @@ li a:hover {
 }
 
 .gwt-Label{
-	
 }
 
 .gwt-TextBox{
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
 }
 
 .gwt-FlexTable{
-	
 }
 
 .gwt-ListBox{
-	
 }
 
+.gwt-ListBox option:checked {
+	background-color: #b61414 !important;
+  	color: white !important;
+}
+
+
+
+.Profilbearbeiten-Boxen{
+	height: 30px;
+	padding-top: 8.5px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 7px;
+}
+
+.Profilbearbeiten-ListBoxen{
+	height: 30px;
+	padding-top: auto;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 7px;
+}
+
+.Profilbearbeiten-ListBoxen option:checked {
+  background-color: #b61414 !important;
+  color: white !important;
+}
+
+.Margin-Bottom{
+	margin-bottom: 20px;
+}
+
+.Eigenschaften-Table{
+	
+}
 
 .grotte-Button {
 	background-color: #FFF;
@@ -471,7 +524,7 @@ li a:hover {
 	position: relative;
 	background-color: #FFF;
 	padding: 20px 0px 20px 20px;
-	min-height: 600px;
+	min-height: 300px;
 	width: 47%;
 	border-rigth: 1px solid #808080;
 	-webkit-border-radius: 5px;
@@ -482,9 +535,9 @@ li a:hover {
 #Zusatz {
 	background-color: #FFF;
 	float: right;
-	padding: 64px 20px 20px 0px;
+	padding: 75px 20px 20px 0px;
 	height: auto;
-	min-height: 600px;
+	min-height: 300px;
 	float: right;
 	width: 47%;
 	-webkit-border-radius: 5px;
