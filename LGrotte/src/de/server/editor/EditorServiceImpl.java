@@ -286,6 +286,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// SuchprofilInfos Hauptmethode
 	public void insertSuchprofilInfo(Suchprofil sp, Info info) throws Exception {
+		System.out.println("Speichere " + info.getValue() + " für " + sp.getSuchprofilname());
 		// Verarbeitung der Info und Auslesen der ID
 		info.setId(insertInfo(info));
 		// Aufbau des SuchprofilInfo-Objekts
@@ -294,6 +295,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		spi.setProfil(user);
 		spi.setSp(sp);
 		// Eintrag in die DB
+		System.out.println("Eintrag für " + spi.getSp().getSuchprofilname() + " Info ID: " + info.getId() + " Eigenschaft: " + info.getEigenschaft() );
 		SuchprofilInfoMapper.suchprofilInfoMapper().insertSuchprofilInfo(spi);
 	}
 
@@ -319,11 +321,14 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		Vector<ProfilEigenschaft> results = SuchprofilInfoMapper.suchprofilInfoMapper().
 				getSuchprofilInfosByEmail(user.getEmail(), spname);
 		Vector<Eigenschaft> eigenschaften = EigenschaftMapper.eigenschaftMapper().getEigenschaften();
+		System.out.println(results.size() + " Einträge aus der DB gelesen.");
 		if(results.size()== 0){
-			return fillEigenschaften(new Vector<ProfilEigenschaft>(), eigenschaften);
+			System.out.println("results ist 0");
+			return  fillEigenschaften(results, eigenschaften);
 		}
 		if(results.size()<eigenschaften.size()){
-			return fillEigenschaften(results, eigenschaften);
+			System.out.println("results < eigenschaften");
+			return  fillEigenschaften(results, eigenschaften);
 		}
 		return results;
 	}
@@ -366,6 +371,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	public void deleteSuchprofilInfosForUser(Suchprofil sp) throws Exception{
+		System.out.println("Lösche Einträge für: " + sp.getSuchprofilname());
 		SuchprofilInfoMapper.suchprofilInfoMapper().deleteAllSuchprofilInfos(sp, user);
 	}
 	
