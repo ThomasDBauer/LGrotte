@@ -30,6 +30,8 @@ public interface EditorServiceAsync {
 	
 	void getProfil(String email, AsyncCallback<Profil> callback) throws Exception;
 	
+	void deleteSuchprofilInfosForUser(Suchprofil sp, AsyncCallback callback) throws Exception;
+	
 	void deleteProfilInfosForUser(AsyncCallback callback) throws Exception;
 
 	void updateProfil(String fname, String lname, int koerpergroesse,

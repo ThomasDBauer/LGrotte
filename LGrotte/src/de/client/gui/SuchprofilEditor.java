@@ -448,7 +448,11 @@ public class SuchprofilEditor extends VerticalPanel {
 
 			public void onSuccess(Suchprofil result) {
 				
-					eigenschaftenEditor.setSuchprofil(result);
+					try {
+						eigenschaftenEditor.setSuchprofil(result);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				
 					anlegenTable.clear();
 					alterPanel.clear();

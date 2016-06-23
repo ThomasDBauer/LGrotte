@@ -30,6 +30,8 @@ public interface EditorService extends RemoteService {
 	
 	Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception;
 	
+	void deleteSuchprofilInfosForUser(Suchprofil sp) throws Exception;
+	
 	Profil getProfil(String email) throws Exception;
 	
 	void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht,

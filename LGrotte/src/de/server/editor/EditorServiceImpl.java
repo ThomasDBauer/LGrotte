@@ -314,13 +314,23 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		// zur�ckgeben der ID
 		return infoID;
 	}
+
+	public Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception{
+		Vector<ProfilEigenschaft> results = SuchprofilInfoMapper.suchprofilInfoMapper().
+				getSuchprofilInfosByEmail(user.getEmail(), spname);
+		Vector<Eigenschaft> eigenschaften = EigenschaftMapper.eigenschaftMapper().getEigenschaften();
+		if(results.size()== 0){
+			return fillEigenschaften(new Vector<ProfilEigenschaft>(), eigenschaften);
+		}
+		if(results.size()<eigenschaften.size()){
+			return fillEigenschaften(results, eigenschaften);
+		}
+		return results;
+	}
 	
 	public Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception{
 		Vector<ProfilEigenschaft>results = ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				user.getEmail());
-		for(int i = 0; i < results.size(); i++){
-			System.out.println(results.elementAt(i).getEigenschaft().getAuswahl());
-		}
 		Vector<Eigenschaft> eigenschaften = EigenschaftMapper.eigenschaftMapper().getEigenschaften();
 		if(results.size() < eigenschaften.size()){
 			return fillEigenschaften(results, eigenschaften);
@@ -355,14 +365,15 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		ProfilinfoMapper.profilinfoMapper().deleteAllInfos(user.getEmail());
 	}
 	
+	public void deleteSuchprofilInfosForUser(Suchprofil sp) throws Exception{
+		SuchprofilInfoMapper.suchprofilInfoMapper().deleteAllSuchprofilInfos(sp, user);
+	}
+	
 	public Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception{
 		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				email);
 	}
 	
-	public Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception{
-		return SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(user.getEmail(), spname);
-	}
 
 	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
 		return MerkzettelMapper.merkzettelMapper().
