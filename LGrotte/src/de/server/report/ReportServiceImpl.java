@@ -109,24 +109,53 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		// Alle Profile
 		Vector<Profil> profile = profilMapper.getAll();
 		Vector<Profil> results = new Vector<Profil>();
+		
+		//Aussortieren nach Suchprofil
+		//Check von jedem Profil:
 		for (int i = 0; i < profile.size(); i++) {
+			boolean ok = true;
 			Profil p = profile.elementAt(i);
-			// Einziges No-Go Kriterium: Geschlecht
-			if (!p.getGeschlecht().equals(sp.getGeschlecht())) {
-			} else {
-				results.add(p);
+			//Eigene Identität
+			if(user.getEmail().equals(p.getEmail())){
+				ok = false;
 			}
+			//Geschlecht
+			if(!sp.getGeschlecht().equals("egal")){
+				if(!sp.getGeschlecht().equals(p.getGeschlecht())
+						|| p.getGeschlecht() == null){
+					ok = false;
+				}
+			}
+			//Raucher
+			if(!sp.getRaucher().equals("egal")){
+				if(!sp.getRaucher().equals(p.getRaucher()) 
+						|| p.getRaucher() == null){
+					ok = false;
+				}
+			}
+			//Religion
+			if(!sp.getReligion().equals("egal")){
+				if(!sp.getReligion().equals(p.getReligion())){
+					profile.remove(p);
+				}
+			}
+			//Haarfarbe
+			if(!sp.getHaarfarbe().equals("egal")){
+				if(!sp.getHaarfarbe().equals(p.getHaarfarbe())){
+					profile.remove(p);
+				}
+			}
+			//TODO Größe und Alter
+			if (ok)results.add(p);
 		}
 		// ProfilReports erstellen
 		// Speicher für ProfilReports
 		Vector<ProfilReport> reports = new Vector<ProfilReport>();
 		for (int i = 0; i < results.size(); i++) {
 			ProfilReport report = getProfilReport(results.elementAt(i));
-
 			// Das Match anhand des Suchprofils errechnen
-			Match m = new Match(aehnlichkeitBerechnen(profile.elementAt(i), sp));
+			Match m = new Match(aehnlichkeitBerechnen(results.elementAt(i)));
 			report.setMatch(m);
-
 			// final den ProfilReport zu den Ergebnissen hinzuf�gen
 			reports.add(report);
 		}
@@ -183,53 +212,39 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return reports;
 	}
 
-
-	
-	// nach Suchprofil suchen
-	public Vector<ProfilReport> getReportsBySuchprofil(Suchprofil sp) throws Exception {
-		// //Aussortieren
-		// Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
-		// }
-		// //ProfilReports erzeugen
-		Vector<ProfilReport> reports = new Vector<ProfilReport>();
-		// for (int i = 0; i < results.size(); i++) {
-		// reports.add(getReports(sp));
-		// }
-		return reports;
-	}
-
 	/*
 	 * �hnlichkeit: Profil vs.Profile
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich) throws Exception {
+		//Die Ähnlichkeit
 		int aehnlichkeit = 0;
+		
+		//sinnvolle und vergleichbare Attribute
 		if (user.getRaucher().equals(vergleich.getRaucher()))
 			aehnlichkeit += 10;
-		// if(user.getMinGroesse() < vergleich.getKoerpergroesse() &&
-		// suchprofil.getMaxGroesse() >
-		// vergleich.getKoerpergroesse())aehnlichkeit += 10;
 		if (user.getReligion().equals(vergleich.getReligion()))
 			aehnlichkeit += 10;
-		// if(suchprofil.getMinAlter())
-
+		//TODO Alter mit Sedats getAlter()
+		
+		//ProfilInfos
+		Vector<ProfilEigenschaft> vergleichinfos = 
+				profilInfoMapper.getProfilInfosByEmail(vergleich.getEmail());
+		Vector<ProfilEigenschaft> userinfos =
+				profilInfoMapper.getProfilInfosByEmail(user.getEmail());
+		if(vergleichinfos != null && userinfos != null){
+			for(int i = 0; i < vergleichinfos.size(); i++){
+				for(int u = 0; u < userinfos.size(); u++){
+					ProfilEigenschaft userPE = userinfos.elementAt(u);
+					ProfilEigenschaft vergleichPE = vergleichinfos.elementAt(i);
+					if(userPE.getEigenschaft().getId() == 
+							vergleichPE.getEigenschaft().getId()){
+						if(userPE.getWert().equals(vergleichPE.getWert())){
+							aehnlichkeit += 10;
+						}
+					}
+				}
+			}
+		}
 		return aehnlichkeit;
 	}
-
-	/*
-	 * Ähnlichkeit: Suchprofil vs. Profile
-	 */
-	public int aehnlichkeitBerechnen(Profil vergleich, Suchprofil suchprofil) throws Exception {
-		int aehnlichkeit = 0;
-		if (suchprofil.getRaucher().equals(vergleich.getRaucher()))
-			aehnlichkeit += 10;
-		if (suchprofil.getMinGroesse() < vergleich.getKoerpergroesse()
-				&& suchprofil.getMaxGroesse() > vergleich.getKoerpergroesse())
-			aehnlichkeit += 10;
-		if (suchprofil.getReligion().equals(vergleich.getReligion()))
-			aehnlichkeit += 10;
-		// if(suchprofil.getMinAlter())
-
-		return aehnlichkeit;
-	}
-
 }

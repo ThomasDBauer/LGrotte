@@ -26,7 +26,7 @@ public interface ReportServiceAsync {
 	
 //	void createAlleProfileReport(AsyncCallback<AlleProfileReport> callback);
 	
-	void getReportsBySuchprofil(Suchprofil sp, AsyncCallback<Vector<ProfilReport>>callback) throws Exception;
+//	void getReportsBySuchprofil(Suchprofil sp, AsyncCallback<Vector<ProfilReport>>callback) throws Exception;
 	
 	void getSuchprofile(AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
 	

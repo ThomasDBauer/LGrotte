@@ -52,7 +52,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Methoden rund um das Profil
 	// Profil erstellen
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
-			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException {
+			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws Exception {
 		Profil p = new Profil();
 		p.setFname(fname);
 		p.setLname(lname);
@@ -64,12 +64,24 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		p.setRaucher(raucher);
 		p.setEmail(email);
 
-		try {
 			ProfilMapper.profilMapper().insertProfil(p);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//			wait(1000);   //TODO delete this schwachsinn
+//			Vector<ProfilEigenschaft> profileigenschaften = 
+//					ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(email);
+//			Vector<Eigenschaft>eigenschaften = 
+//					EigenschaftMapper.eigenschaftMapper().getEigenschaften();
+//		if(profileigenschaften.size()== 0){
+//			profileigenschaften = fillEigenschaften(profileigenschaften, eigenschaften);
+//		}
+//		if(profileigenschaften.size()<eigenschaften.size()){
+//			profileigenschaften = fillEigenschaften(profileigenschaften, eigenschaften);
+//		}
+//		for(int i = 0; i < profileigenschaften.size();i++){
+//			Info info = new Info();
+//			info.setEigenschaft(profileigenschaften.elementAt(i).getEigenschaft().getId());
+//			info.setValue(profileigenschaften.elementAt(i).getWert());
+//			insertProfilInfo(info);
+//		}
 	}
 	
 	// Profil bearbeiten

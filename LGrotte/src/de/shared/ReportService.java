@@ -31,7 +31,7 @@ public interface ReportService extends RemoteService {
 
 //	public abstract AlleProfileReport createAlleProfileReport() throws Exception;
 	
-	Vector<ProfilReport> getReportsBySuchprofil(Suchprofil sp) throws Exception;
+//	Vector<ProfilReport> getReportsBySuchprofil(Suchprofil sp) throws Exception;
 	
 	Vector<Suchprofil> getSuchprofile() throws Exception;
 	
