@@ -136,25 +136,24 @@ public class ReportEntry implements EntryPoint {
 	public void loadAllReports() throws Exception{
 		reportService.getReports(new ReportCallback());
 	}
-
-	/*
-	 * Baut Reports f�r nicht besuchte Profile auf
-	 */
-	public void loadReportsForNotVisited() throws Exception {
-		reportService.getNotVisitedReports(new ReportCallback());
-	}
 	/*
 	 * Alle Profile nach Suchprofil gefiltert
 	 */
 	public void loadAllReports(Suchprofil sp) throws Exception {
 		reportService.getReports(sp,new ReportCallback());
 	}
+	/*
+	 * Baut Reports f�r nicht besuchte Profile auf
+	 */
+	public void loadReportsForNotVisited() throws Exception {
+		reportService.getNotVisitedReports(new ReportCallback());
+	}
 	
 	/*
 	 * Alle nicht besuchten Profile nach Suchprofil gefiltert
 	 */
 	public void loadReportsForNotVisited(Suchprofil sp) throws Exception {
-//		reportService.getNotVisitedReports(sp,new ReportCallback());
+		reportService.getNotVisitedReports(sp,new ReportCallback());
 	}
 	
 
@@ -246,17 +245,18 @@ public class ReportEntry implements EntryPoint {
 	 */
 	public class NichtBesuchteHandler implements ClickHandler{
 		public void onClick(ClickEvent e){
-			if(!suchprofilCheckbox.getValue()){
+			if(suchprofilCheckbox.getValue()){
 				try {
 					loadReportsForNotVisited(aktivesSP);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-			}
-			try {
-				loadReportsForNotVisited();
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			}else{
+				try {
+					loadReportsForNotVisited();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 	}

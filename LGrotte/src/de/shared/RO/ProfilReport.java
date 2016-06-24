@@ -3,7 +3,7 @@ package de.shared.RO;
 import java.io.Serializable;
 import java.util.Vector;
 
-public class ProfilReport implements Serializable{
+public class ProfilReport implements Serializable, Comparable<ProfilReport>{
 
 	/**
 	 * @author Thomas Bauer, Sedat Akar
@@ -11,7 +11,7 @@ public class ProfilReport implements Serializable{
 	 *         Jedes Report-Object traegt Informationen ueber ein einzelnes, detailliertes 
 	 *         Profil, das zur Darstellung kommen soll. Es findet eine Unterscheidung
 	 *         statt zwischen @class ProfilEigenschaft und @class ProfilAttribut, die
-	 *         ProfilAttribute und ProfilInfos repräsentieren.
+	 *         ProfilAttribute und ProfilInfos reprï¿½sentieren.
 	 *         
 	 *         
 	 */
@@ -36,7 +36,7 @@ public class ProfilReport implements Serializable{
 	private Vector<ProfilAttribut> attribute = new Vector<ProfilAttribut>();
 	
 	/*
-	 * Hinzufügen einzelner Eigenschaften
+	 * Hinzufï¿½gen einzelner Eigenschaften
 	 */
 	public void addEigenschaft(ProfilEigenschaft pe) {
 		eigenschaften.add(pe);
@@ -57,7 +57,7 @@ public class ProfilReport implements Serializable{
 	}
 	
 	/*
-	 * Hinzufügen einzelner Attribute
+	 * Hinzufï¿½gen einzelner Attribute
 	 */
 	public void addAttribut(ProfilAttribut pa) {
 		attribute.add(pa);
@@ -91,5 +91,11 @@ public class ProfilReport implements Serializable{
 
 	public void setHeader(String header) {
 		this.header = header;
+	}
+
+	public int compareTo(ProfilReport other) {
+		int thisMatch = this.getMatch().getMatchResult();
+		int otherMatch = other.getMatch().getMatchResult();
+		return Integer.compare(otherMatch,thisMatch);
 	}
 }

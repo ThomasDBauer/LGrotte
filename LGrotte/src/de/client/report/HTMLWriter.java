@@ -1,5 +1,6 @@
 package de.client.report;
 
+import java.util.Arrays;
 import java.util.Vector;
 
 import de.shared.RO.ProfilReport;
@@ -10,7 +11,7 @@ public class HTMLWriter {
 	 * @author Thomas Bauer, Sedat Akar
 	 * 
 	 *         Die Klasse nimmt Report-Objects und formatiert sie in die
-	 *         gewünschte HTML-Darstellung.
+	 *         gewï¿½nschte HTML-Darstellung.
 	 * 
 	 */
 
@@ -29,7 +30,7 @@ public class HTMLWriter {
 	}
 
 	/*
-	 * Erstellt HTML Code für ein einzelnes, detaillierte dargestelltes Profil
+	 * Erstellt HTML Code fï¿½r ein einzelnes, detaillierte dargestelltes Profil
 	 */
 	public void process(ProfilReport report) {
 
@@ -77,8 +78,17 @@ public class HTMLWriter {
 
 	public void process(Vector<ProfilReport> reports) {
 		StringBuffer buffer = new StringBuffer();
+		ProfilReport[]array = new ProfilReport[reports.size()];
+		 for(int i = 0; i < reports.size(); i++){
+			 array[i] = reports.elementAt(i);
+		 }
+		 Arrays.sort(array);
+		 reports.clear();
+		 for(int i = 0; i < array.length; i++){
+			 reports.add(array[i]);
+		 }
 		for (int i = 0; i < reports.size(); i++) {
-			process(reports.elementAt(i));
+			process(array[i]);
 			buffer.append(this.reportText);
 		}
 		this.reportText = buffer.toString();

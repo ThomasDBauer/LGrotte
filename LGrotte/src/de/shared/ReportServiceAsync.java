@@ -33,4 +33,5 @@ public interface ReportServiceAsync {
 	
 	void getNotVisitedReports(AsyncCallback<Vector<ProfilReport>>callback) throws Exception;
 	
+	void getNotVisitedReports(Suchprofil sp, AsyncCallback<Vector<ProfilReport>>callback) throws Exception;
 }

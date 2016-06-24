@@ -1,6 +1,8 @@
 package de.server.report;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -12,16 +14,12 @@ import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.ReportService;
-import de.shared.BO.Auswahl;
 import de.shared.BO.Besuch;
-import de.shared.BO.Eigenschaft;
-import de.shared.BO.Info;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.Match;
 import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
-import de.shared.RO.ProfilInformation;
 import de.shared.RO.ProfilReport;
 
 /**
@@ -31,10 +29,10 @@ import de.shared.RO.ProfilReport;
 public class ReportServiceImpl extends RemoteServiceServlet implements ReportService {
 
 	private ProfilMapper profilMapper = ProfilMapper.profilMapper();
-	private EigenschaftMapper eigenschaftMapper = EigenschaftMapper.eigenschaftMapper();
 	private ProfilinfoMapper profilInfoMapper = ProfilinfoMapper.profilinfoMapper();
 	private BesucheMapper besucheMapper = BesucheMapper.besucheMapper();
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
+	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.suchprofilInfoMapper();
 	
 	private Profil user;
 
@@ -50,10 +48,10 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * Alle Suchprofile auslesen
 	 */
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
-		Vector<Suchprofil> suchprofile = SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(user.getEmail());
+		Vector<Suchprofil> suchprofile = spMapper.getSuchprofileByEmail(user.getEmail());
 		for(Suchprofil sp : suchprofile){
 			sp.setProfileigenschaften(
-					SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(
+					spiMapper.getSuchprofilInfosByEmail(
 							user.getEmail(), sp.getSuchprofilname()));
 		}
 		return suchprofile;
@@ -92,7 +90,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		report.addAttribut(raucher);
 		report.addAttribut(koerpergroesse);
 		report.addAttribut(geburtsdatum);
-
 		// 2. Eigenschaften
 		Vector<ProfilEigenschaft> profilinfos = 
 				profilInfoMapper.getProfilInfosByEmail(p.getEmail());
@@ -101,13 +98,104 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 		return report;
 	}
-
+	
 	/*
+	 * Reports zusammensetzen
+	 */
+	public Vector<ProfilReport> reportErstellen(Vector<Profil> results) throws Exception{
+		// ProfilReports erstellen
+		// Speicher für ProfilReports
+		Vector<ProfilReport> reports = new Vector<ProfilReport>(); 
+		for (int i = 0; i < results.size(); i++) {
+			ProfilReport report = getProfilReport(results.elementAt(i));
+			// Das Match anhand des Suchprofils errechnen
+			Match m = new Match(aehnlichkeitBerechnen(results.elementAt(i)));
+			report.setMatch(m);
+			// final den ProfilReport zu den Ergebnissen hinzuf�gen
+			reports.add(report);
+		}
+		return reports;
+	}
+
+	/**
+	 * Alle Reports
+	 */
+	public Vector<ProfilReport> getReports() throws Exception {
+		Vector<Profil> profile = profilMapper.getAll();
+		userAussortieren(profile);
+		return reportErstellen(profile);
+	}
+
+	/**
 	 * Alle Reports nach Suchprofil
 	 */
 	public Vector<ProfilReport> getReports(Suchprofil sp) throws Exception {
-		// Alle Profile
 		Vector<Profil> profile = profilMapper.getAll();
+		userAussortieren(profile);
+		profile = aussortierenNachSP(profile, sp);
+		return reportErstellen(profile);
+	}
+	
+	
+	/**
+	 * nicht besuchte Profile
+	 * nach Suchprofil
+	 */
+
+	public Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception{
+		Vector<Profil> profiles = profilMapper.getAll();
+		System.out.println("Z 146: " + profiles.size());
+		userAussortieren(profiles);
+		System.out.println("Z 148: " + profiles.size());
+		profiles = aussortierenNachSP(profiles, sp);
+		System.out.println("Z 150: " + profiles.size());
+		profiles = besucheAussortieren(profiles);
+		System.out.println("Z 152: " + profiles.size());
+		return reportErstellen(profiles);
+		
+	}
+	/**
+	 * ohne Filter
+	 */
+	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
+		Vector<Profil> profiles = profilMapper.getAll();
+		System.out.println("Z 161: " + profiles.size());
+		userAussortieren(profiles);
+		System.out.println("Z 163: " + profiles.size());
+		profiles = besucheAussortieren(profiles);
+		System.out.println("Z 165: " + profiles.size());
+		return reportErstellen(profiles);
+	}
+	
+	/*
+	 * Hilfsmethode
+	 * Besuche aussortieren
+	 */
+	public Vector<Profil> besucheAussortieren(Vector<Profil> profiles) throws Exception{
+	Vector<Profil> results = new Vector<Profil>();
+	Vector<Besuch> visits = besucheMapper.getBesuche(user);
+	// Aussortieren
+	for (int i = 0; i < profiles.size(); i++) {
+		boolean ok = true;
+		for (int o = 0; o < visits.size(); o++) {
+			if (profiles.elementAt(i).getEmail().equals(
+					visits.elementAt(o).getBesuchtesProfil().getEmail())) {
+				ok = false;
+				break;
+			}
+		}
+		if (ok) results.add(profiles.elementAt(i));
+		}
+	return results;
+	}
+	
+	
+	
+	/*
+	 * Hilfsmethode
+	 * Aussortieren nach Suchprofil
+	 */
+	public Vector<Profil> aussortierenNachSP(Vector<Profil> profile, Suchprofil sp){
 		Vector<Profil> results = new Vector<Profil>();
 		
 		//Aussortieren nach Suchprofil
@@ -148,72 +236,23 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			//TODO Größe und Alter
 			if (ok)results.add(p);
 		}
-		// ProfilReports erstellen
-		// Speicher für ProfilReports
-		Vector<ProfilReport> reports = new Vector<ProfilReport>();
-		for (int i = 0; i < results.size(); i++) {
-			ProfilReport report = getProfilReport(results.elementAt(i));
-			// Das Match anhand des Suchprofils errechnen
-			Match m = new Match(aehnlichkeitBerechnen(results.elementAt(i)));
-			report.setMatch(m);
-			// final den ProfilReport zu den Ergebnissen hinzuf�gen
-			reports.add(report);
-		}
-		return reports;
+	return results;
 	}
-
+	
 	/*
-	 * Alle Reports
+	 * Hilfsmethode
+	 * User aussortieren Hilfsmethode
 	 */
-	public Vector<ProfilReport> getReports() throws Exception {
-		Vector<Profil> profile = profilMapper.getAll();
-		Vector<ProfilReport> reports = new Vector<ProfilReport>();
-		for (int i = 0; i < profile.size(); i++) {
-			ProfilReport report = getProfilReport(profile.elementAt(i));
-
-			// Das Match; im Vergleich zw. dem Profil des Users (nicht
-			// Suchprofil!)
-			Match m = new Match(aehnlichkeitBerechnen(profile.elementAt(i)));
-			report.setMatch(m);
-			// Hinzuf�gen
-			reports.add(report);
+	public void userAussortieren(Vector<Profil> profiles){
+		for(int i = 0; i < profiles.size(); i++){
+			Profil p = profiles.elementAt(i);
+			if(p.getEmail().equals(user.getEmail())) profiles.remove(p);
 		}
-		return reports;
-	}
-
-	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
-		Vector<Profil> profiles = profilMapper.getAll();
-		Vector<Profil> results = new Vector<Profil>();
-		Vector<Besuch> visits = besucheMapper.getBesuche(user);
-		// Aussortieren
-		for (int i = 0; i < profiles.size(); i++) {
-			boolean ok = true;
-			for (int o = 0; o < visits.size(); o++) {
-				if (profiles.elementAt(i).getEmail().equals(
-						visits.elementAt(o).getBesuchtesProfil().getEmail())) {
-					ok = false;
-					break;
-				}
-			}
-			if (ok) results.add(profiles.elementAt(i));
-		}
-		// Reports erstellen
-		Vector<ProfilReport> reports = new Vector<ProfilReport>();
-		for (int i = 0; i < results.size(); i++) {
-			ProfilReport report = getProfilReport(results.elementAt(i));
-
-			// Das Match; im Vergleich zw. dem Profil des Users (nicht
-			// Suchprofil!)
-			Match m = new Match(aehnlichkeitBerechnen(results.elementAt(i)));
-			report.setMatch(m);
-			// Hinzuf�gen
-			reports.add(report);
-		}
-		return reports;
 	}
 
 	/*
-	 * �hnlichkeit: Profil vs.Profile
+	 * Hilfsmethode
+	 * Ähnlichkeit: Profil vs.Profile
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich) throws Exception {
 		//Die Ähnlichkeit
@@ -247,4 +286,19 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 		return aehnlichkeit;
 	}
+	
+	public Vector<ProfilReport> sortierenNachAehn(Vector<ProfilReport>reports){
+		
+	 ProfilReport[]array = new ProfilReport[reports.size()];
+	 for(int i = 0; i < reports.size(); i++){
+		 array[i] = reports.elementAt(i);
+	 }
+	 Arrays.sort(array);
+	 reports.clear();
+	 for(int i = 0; i < array.length; i++){
+		 reports.add(array[i]);
+	 }
+	 return reports;
+	 }
+	
 }

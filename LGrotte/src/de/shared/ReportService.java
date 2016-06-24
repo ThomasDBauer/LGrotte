@@ -36,6 +36,7 @@ public interface ReportService extends RemoteService {
 	Vector<Suchprofil> getSuchprofile() throws Exception;
 	
 	Vector<ProfilReport> getNotVisitedReports() throws Exception;
+	Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception;
 	
 	
 }
