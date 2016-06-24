@@ -49,9 +49,9 @@ public class EigenschaftSeeds {
 	
 	private String[][]auswahlOptionen = {
 			//Jahreszeiten
-			{"Frühling", "Sommer", "Herbst", "Winter"},
+			{"Frühling", "Sommer", "Herbst", "Winter", "Keine Angabe"},
 			//Lieblingsmusik
-			{"HipHop", "Schlager", "Elektro", "Rock", "Pop", "Klassik"}
+			{"HipHop", "Schlager", "Elektro", "Rock", "Pop", "Klassik", "Keine Angabe"}
 	};
 	
 }

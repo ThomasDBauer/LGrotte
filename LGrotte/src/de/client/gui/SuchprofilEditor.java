@@ -157,6 +157,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		// ClickHandler zum suchprofil hizufügen Funktion
 		private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
+				spHinzufuegenButton.setVisible(false);
 				anzeigenTable.clear();
 				groessenPanel.clear();
 				alterPanel.clear();
@@ -220,6 +221,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		// ClickHandler um das hinzufügen eines Suchprofil abzubrechen
 		private class SuchProfilAbbrechenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
+				spHinzufuegenButton.setVisible(true);
 				anlegenTable.clear();
 				speichernButtonPanel.clear();
 				listBoxPanel.add(spListBox);
@@ -232,6 +234,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 			private PopupPanel popup;
 			public void onClick(ClickEvent event) {
+				spHinzufuegenButton.setVisible(true);
 				try {
 					ClientSideSettings.getEditorService().insertSuchprofil(spNameTextBox.getText(),
 							geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex()),
