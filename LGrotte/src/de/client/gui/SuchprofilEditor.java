@@ -112,7 +112,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			// Anhängen der Items zur Auswahl
 			geschlechtListBox.addItem("männlich");
 			geschlechtListBox.addItem("weiblich");
-			geschlechtListBox.addItem("Andere");
+			geschlechtListBox.addItem("egal");
 			
 			haarfarbeListBox.addItem("blond");
 			haarfarbeListBox.addItem("brunette");
