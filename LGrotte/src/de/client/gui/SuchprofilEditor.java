@@ -466,7 +466,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					
 					anzeigenTable.setWidget(1, 0, geschlechtLabel);
 					anzeigenTable.setWidget(1, 1, geschlechtListBox);
-					for (int g = 0; g < 2;g++) {
+					for (int g = 0; g < 3;g++) {
 						if(geschlechtListBox.getValue(g) == result.getGeschlecht()){
 							geschlechtListBox.setSelectedIndex(g);
 						}
