@@ -144,13 +144,9 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	public Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception{
 		Vector<Profil> profiles = profilMapper.getAll();
-		System.out.println("Z 146: " + profiles.size());
 		userAussortieren(profiles);
-		System.out.println("Z 148: " + profiles.size());
 		profiles = aussortierenNachSP(profiles, sp);
-		System.out.println("Z 150: " + profiles.size());
 		profiles = besucheAussortieren(profiles);
-		System.out.println("Z 152: " + profiles.size());
 		return reportErstellen(profiles);
 		
 	}
@@ -159,11 +155,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 */
 	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
-		System.out.println("Z 161: " + profiles.size());
 		userAussortieren(profiles);
-		System.out.println("Z 163: " + profiles.size());
 		profiles = besucheAussortieren(profiles);
-		System.out.println("Z 165: " + profiles.size());
 		return reportErstellen(profiles);
 	}
 	

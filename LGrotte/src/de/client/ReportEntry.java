@@ -198,7 +198,9 @@ public class ReportEntry implements EntryPoint {
 		
 		for(int i = 0; i < sp.getProfileigenschaften().size(); i++){
 			ProfilEigenschaft pe = sp.getProfileigenschaften().elementAt(i);
-			suchprofilPanel.add(new Label(pe.getName() + ": " + pe.getWert()));
+			if(!pe.getWert().equals("Keine Angabe")){
+				suchprofilPanel.add(new Label(pe.getName() + ": " + pe.getWert()));
+			}
 		}
 	}
 	
