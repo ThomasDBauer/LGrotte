@@ -1,6 +1,10 @@
 package de.server.report;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -26,13 +30,15 @@ import de.shared.RO.ProfilReport;
  * The server-side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class ReportServiceImpl extends RemoteServiceServlet implements ReportService {
+public class ReportServiceImpl extends RemoteServiceServlet implements ReportService{
 
 	private ProfilMapper profilMapper = ProfilMapper.profilMapper();
 	private ProfilinfoMapper profilInfoMapper = ProfilinfoMapper.profilinfoMapper();
 	private BesucheMapper besucheMapper = BesucheMapper.besucheMapper();
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
 	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.suchprofilInfoMapper();
+	
+	
 	
 	private Profil user;
 
@@ -43,7 +49,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public String hallo() {
 		return "Hallo, ich bin der ReportService";
 	}
-
+	
+	
 	/*
 	 * Alle Suchprofile auslesen
 	 */
@@ -84,12 +91,16 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		ProfilAttribut geburtsdatum = new ProfilAttribut();
 		geburtsdatum.setName("Geburtsdatum");
 		geburtsdatum.setWert(String.valueOf(p.getGeburtsdatum()));
+		ProfilAttribut alter = new ProfilAttribut();
+		alter.setName("Alter");
+		alter.getWert();
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
 		report.addAttribut(religion);
 		report.addAttribut(raucher);
 		report.addAttribut(koerpergroesse);
 		report.addAttribut(geburtsdatum);
+		report.addAttribut(alter);
 		// 2. Eigenschaften
 		Vector<ProfilEigenschaft> profilinfos = 
 				profilInfoMapper.getProfilInfosByEmail(p.getEmail());
@@ -300,5 +311,20 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 }
 	 return reports;
 	 }
+	
+	public int alterBerechnen(Date geburtsDatum) throws ParseException {
+		Profil p = new Profil();
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date geburtstag = (Date) formatter.parse(String.valueOf(p.getGeburtsdatum()));
+		int alterAktuell = alterBerechnen(geburtstag);
+		
+		Calendar birthDay = Calendar.getInstance();
+		birthDay.setTime(geburtsDatum);
+		
+		Calendar datumAktuell = Calendar.getInstance();
+		datumAktuell.setTime(new Date());
+
+		return datumAktuell.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
+	}
 	
 }
