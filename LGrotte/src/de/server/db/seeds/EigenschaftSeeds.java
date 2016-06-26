@@ -21,7 +21,7 @@ public class EigenschaftSeeds {
 	public void seedEigenschaftAuswahlTable() throws Exception{
 		for(int i = 0; i < erlaeuterungenAuswahl.length; i++){
 			Eigenschaft e = new Eigenschaft();
-			e.setErlaeuterung(erlaeuterungen[i]);
+			e.setErlaeuterung(erlaeuterungenAuswahl[i]);
 			e.setAuswahl(1);
 			EigenschaftMapper.eigenschaftMapper().insertEigenschaft(e);
 		}
