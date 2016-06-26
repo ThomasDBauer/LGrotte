@@ -188,7 +188,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * Hilfsmethode
 	 * Aussortieren nach Suchprofil
 	 */
-	public Vector<Profil> aussortierenNachSP(Vector<Profil> profile, Suchprofil sp){
+	public Vector<Profil> aussortierenNachSP(Vector<Profil> profile, Suchprofil sp) throws Exception{
 		Vector<Profil> results = new Vector<Profil>();
 		
 		//Aussortieren nach Suchprofil
@@ -226,6 +226,32 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 					profile.remove(p);
 				}
 			}
+			
+			
+			//ProfilEigenschaften aussortieren
+			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(
+					user.getEmail(), sp.getSuchprofilname());
+			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(
+					p.getEmail());
+			if(suchPEs != null){
+				boolean peOK = false;
+				for(int u = 0; u < suchPEs.size(); u++){
+					if(fremdPEs != null){
+						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
+						for(int z = 0; z < fremdPEs.size(); z++){
+							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
+							if(suchPE.getEigenschaft().getId() == 
+									fremdPE.getEigenschaft().getId()){
+								if(fremdPE.getWert().equals(suchPE.getWert())){
+									peOK = true;
+								}
+							}
+						}
+					}
+				}
+				if(peOK == false) ok = false;
+			}
+			
 			//TODO Größe und Alter
 			if (ok)results.add(p);
 		}
