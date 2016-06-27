@@ -504,8 +504,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					groessenAnzeigenPanel.add(new Label(" bis "));
 					groessenAnzeigenPanel.add(maxGroesseAnzeigenTextBox);
 					anzeigenTable.setWidget(5, 1, groessenAnzeigenPanel);
-					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinAlter()));
-					maxGroesseAnzeigenTextBox.setText(Integer.toString(result.getMaxAlter()));
+					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
+					maxGroesseAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
 					
 					minGroesseAnzeigenTextBox.setVisibleLength(3);
 					minGroesseAnzeigenTextBox.setMaxLength(3);
@@ -519,8 +519,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					alterAnzeigenPanel.add(new Label(" bis "));
 					alterAnzeigenPanel.add(maxAlterAnzeigenTextBox);
 					anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
-					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
-					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
+					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinAlter()));
+					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxAlter()));
 					
 					minAlterAnzeigenTextBox.setVisibleLength(3);
 					minAlterAnzeigenTextBox.setMaxLength(3);
