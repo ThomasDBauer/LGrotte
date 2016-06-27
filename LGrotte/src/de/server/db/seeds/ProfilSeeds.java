@@ -44,17 +44,16 @@ public class ProfilSeeds {
 	};
 	private String[]religion = {
 			"Jüdisch", "Muslimisch", "Christlich", "Buddhistish",
-			"Atheist", "Hinduistisch", "andere"
+			"Hinduistisch", "Andere"
 	};
 	private String[]haarfarbe = {
-		"brunette", "blond", "rothaarig", "schwarz", "bunt", "grau",
-		"Glatze"
+		"Brunette", "Blond", "Rot", "Schwarz", "Grau",
+		"Andere"
 	};
 	private String[]raucher = {
-		"Kettenraucher", "Raucher", "Gelegenheitsraucher", "Partyraucher",
-		"Strikter Nichtraucher", "Nichtraucher"
+		"Ja", "Nein", "Ab und an"
 	};
 	private String[]geschlecht = {
-		"männlich", "weiblich"
+		"Männlich", "Weiblich", "Andere"
 	};
 }
