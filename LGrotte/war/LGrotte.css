@@ -321,7 +321,8 @@ li a:hover {
 	height: 160px;
 	margin-top: 30px;
 	margin-bottom: 4px;
-	border: 1px solid transparent;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
 }
 
 #Logo{
@@ -434,7 +435,7 @@ li a:hover {
 	margin: 5px;
 	height: auto;
 	min-height: 250px;
-	min-width: 1200px;
+	/* min-width: 1200px; */
 	border: 1px solid white;
 	overflow: hidden;
 	-webkit-border-radius: 5px;
@@ -446,24 +447,50 @@ li a:hover {
 }
 
 .gwt-TextBox{
-}
-
-.gwt-DateBox{
 	width: 130px;
+	height: 20px;
 	padding-left: 4px;
 	padding-right: 4px;
-	padding-top: 8.5px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-right: 7px;
 }
 
 .gwt-ListBox{
+	height: 32px;
+	width: 142px;;
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+	padding-top: auto;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 7px;
+}
+
+.gwt-ListBox option{
+	padding: 4px ;
+	background-color: #b61414 !important;
+	color: white !important;
+}
+
+.gwt-ListBox option:hover{
+	padding: 4px ;
+	background-color: red !important;
+	color: white !important;
 }
 
 .gwt-ListBox option:checked {
-	background-color: #b61414 !important;
-  	color: white !important;
+  background-color: #FFF !important;
+  color: #b61414 !important;
+}
+
+.gwt-DateBox{
+	width: 130px;
+	padding: 6px 4px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 7px;
 }
 
 .Profil-Anzeigen-Label{
@@ -477,30 +504,13 @@ li a:hover {
 	border-top: 1px solid #c0c0c0;
 }
 
-.Profilbearbeiten-Label{
-	height: 30px;
-	width: 140px;
-	padding-left: 4px;
-	padding-right: 4px;
-	padding-top: 8.5px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-right: 7px;
+.Profilbearbeiten-Boxen{
+	height: 13px;
+	padding-bottom: 5%;
+	width: 115px;
 }
 
-.Profilbearbeiten-TextBox{
-	width: 130px;
-	height: 20px;
-	padding-left: 4px;
-	padding-right: 4px;
-	padding-top: 4px;
-	padding-bottom: 4px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-right: 7px;
-}
-
-.Profilbearbeiten-ListBoxen{
+.Suchprofi-List{
 	height: 30px;
 	width: 142px;;
 	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
@@ -510,23 +520,23 @@ li a:hover {
 	margin-right: 7px;
 }
 
-.Profilbearbeiten-ListBoxen option{
+.Suchprofil-List option{
 	padding: 4px ;
 	background-color: #b61414 !important;
 	color: white !important;
 }
 
-.Profilbearbeiten-ListBoxen option:hover{
+.Suchprofil-List option:hover{
 	padding: 4px ;
 	background-color: red !important;
 	color: white !important;
 }
 
-.Profilbearbeiten-ListBoxen option:checked {
-  background-color: #FFF !important;
-  color: #b61414 !important;
+.Suchprofil-List option:checked{
+	padding: 4px ;
+	background-color: red !important;
+	color: white !important;
 }
-
 .Margin-Bottom{
 	margin-bottom: 20px;
 }
@@ -592,7 +602,6 @@ li a:hover {
 }
 
 #Fusszeile {
-	margin-top: 20px;
 	clear: both;
 	border-top: 1px solid black;
 	min-height: 115px;

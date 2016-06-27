@@ -54,30 +54,30 @@ public class SuchprofilEditor extends VerticalPanel {
 		// Buttons, Labels und Table fürs Suchprofil hinzufügen
 		private FlexTable anlegenTable = new FlexTable();
 
-		private Label spNameLabel = new Label("Name:");
+		private Label spNameLabel = new Label("Name");
 		private TextBox spNameTextBox = new TextBox();
 
-		private Label geschlechtLabel = new Label("Geschlecht:");
+		private Label geschlechtLabel = new Label("Geschlecht");
 		private ListBox geschlechtListBox = new ListBox();
 
-		private Label raucherLabel = new Label("Raucher:");
+		private Label raucherLabel = new Label("Raucher");
 		private ListBox raucherListBox = new ListBox();
 
 		private Label haarfarbeLabel = new Label("Haarfarbe:");
 		private ListBox haarfarbeListBox = new ListBox();
 
 		private HorizontalPanel groessenPanel = new HorizontalPanel();
-		private Label koerpergLabel = new Label("Körpergröße:");
+		private Label koerpergLabel = new Label("Körpergröße(cm)");
 		private TextBox minGroesseTextBox = new TextBox();
 		private TextBox maxGroesseTextBox= new TextBox();
 	
 
-		private Label religionLabel = new Label("Religion:");
+		private Label religionLabel = new Label("Religion");
 		private ListBox religionListBox = new ListBox();
 	
 		
 		private HorizontalPanel alterPanel = new HorizontalPanel();
-		private Label alterLabel = new Label("Alter:");
+		private Label alterLabel = new Label("Alter");
 		private TextBox minAlterTextBox = new TextBox();
 		private TextBox maxAlterTextBox = new TextBox();
 
@@ -88,11 +88,47 @@ public class SuchprofilEditor extends VerticalPanel {
 		// Editor 
 		public SuchprofilEditor(SuchprofilInfoEditor spie) throws Exception {
 			this.eigenschaftenEditor = spie;
-			spHinzufuegenButton.setStylePrimaryName("grotte-Button");
-			loeschenButton.setStylePrimaryName("grotte-Button");
+			
+			//CSS-Style der Button und Lables
+			Image hinzImage = new Image("hinzufuegen.png"); 
+			hinzImage.setStylePrimaryName("Button-img-Image");
+			spHinzufuegenButton.getElement().appendChild(hinzImage.getElement());
+			spHinzufuegenButton.setStylePrimaryName("Button-img");
+			spHinzufuegenButton.setStyleName("Margin-Bottom", true);
+			
+			Image loeschenImage = new Image("loeschen.png"); 
+			loeschenImage.setStylePrimaryName("Button-img-Image");
+			loeschenButton.getElement().appendChild(loeschenImage.getElement());
+			loeschenButton.setStylePrimaryName("Button-img");
+			loeschenButton.setStyleName("Margin-Bottom", true);
+			
 			updateButton.setStylePrimaryName("grotte-Button");
+			Image updateImage = new Image("update.png");
+			updateImage.setStylePrimaryName("Button-img-Image");
+			updateButton.getElement().appendChild(updateImage.getElement());
+			updateButton.setStylePrimaryName("Button-img");
+			updateButton.setStyleName("Margin-Bottom", true);
+			
 			anlegenButton.setStylePrimaryName("grotte-Button");
+			Image speicherImage = new Image("speichern.png"); 
+			speicherImage.setStylePrimaryName("Button-img-Image");
+			anlegenButton.getElement().appendChild(speicherImage.getElement());
+			anlegenButton.setStylePrimaryName("Button-img");
+			anlegenButton.setStyleName("Margin-Bottom", true);
+			
 			abbrechenButton.setStyleName("grotte-Button");
+			Image abbrImage = new Image("abbrechen.png");
+			abbrImage.setStylePrimaryName("Button-img-Image");
+			abbrechenButton.getElement().appendChild(abbrImage.getElement());
+			abbrechenButton.setStylePrimaryName("Button-img");
+			abbrechenButton.setStyleName("Margin-Bottom", true);
+			
+			spNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
+			geschlechtLabel.setStyleName("Profilbearbeiten-Boxen", true);
+			raucherLabel.setStyleName("Profilbearbeiten-Boxen", true);
+			haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
+			koerpergLabel.setStyleName("Profilbearbeiten-Boxen", true);
+
 			
 			// Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
 			anlegenTable.clear();
@@ -177,7 +213,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 				anlegenTable.setWidget(1, 0, geschlechtLabel);
 				anlegenTable.setWidget(1, 1, geschlechtListBox);
-
+				
 				anlegenTable.setWidget(2, 0, raucherLabel);
 				anlegenTable.setWidget(2, 1, raucherListBox);
 

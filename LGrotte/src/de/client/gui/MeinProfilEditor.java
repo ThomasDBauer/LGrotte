@@ -51,29 +51,7 @@ public class MeinProfilEditor extends VerticalPanel {
 		eigenschaftenPanel.add(table);
 		
 		this.addStyleName("Attribute-bearbeiten");
-//		profilUpdateButton.setStylePrimaryName("grotte-Button");
-//		geschlechtListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
-//		haarfarbeListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
-//		religionListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
-//		raucherListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
-//		koerpergroesseLabel.setStyleName("Profilbearbeiten-Label", true);
-//		geschlechtLabel.setStyleName("Profilbearbeiten-Label", true);
-//		haarfarbeLabel.setStyleName("Profilbearbeiten-Label", true);
-//		religionLabel.setStyleName("Profilbearbeiten-Label", true);
-//		raucherLabel.setStyleName("Profilbearbeiten-Label", true);
-//		geburtsdatumLabel.setStyleName("Profilbearbeiten-Label", true);
-//		datumsinhalt.setStyleName("Profilbearbeiten-Label", true);
-//		fNameLabel.setStyleName("Profilbearbeiten-Label", true);
-//		lNameLabel.setStyleName("Profilbearbeiten-Label", true);
-//		fNameTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
-//		lNameTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
-//		koerpergroesseTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
-//		flexTable.setStylePrimaryName("Table-Margin");
 		
-		Image speicherImage = new Image("speichern.png");
-		speicherImage.setStylePrimaryName("Button-img-Image");
-//		profilUpdateButton.getElement().appendChild(speicherImage.getElement());
-//		profilUpdateButton.setStylePrimaryName("Button-img");
 		
 	}
 	
@@ -91,14 +69,18 @@ public class MeinProfilEditor extends VerticalPanel {
 				Eigenschaft e = result.elementAt(i).getEigenschaft();
 				eigenschaften.add(e);
 				Info info = result.elementAt(i).getInfo();
-				table.setWidget(i, 0, new Label(e.getErlaeuterung()));
+				Label l = new Label(e.getErlaeuterung());
+				l.setStyleName("Profilbearbeiten-Label", true);
+				table.setWidget(i, 0, l);
 				if(e.getAuswahl()==0){
 					TextBox tb = new TextBox();
 					tb.setText(info.getValue());
+					tb.setStylePrimaryName("Profilbearbeiten-TextBox");
 					table.setWidget(i, 1, tb);
 					hashmap.put(e, tb);
 				}else{
 					ListBox lb = new ListBox();
+//					lb.setStylePrimaryName("Profilbearbeiten-ListBoxen");
 					try {
 						ClientSideSettings.getEditorService().getAuswahlForEigenschaft(e,
 								new GetAuswahlCallback(lb, info.getValue()));
