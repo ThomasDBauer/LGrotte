@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.client.ClientSideSettings;
 import de.shared.BO.Auswahl;
@@ -36,7 +37,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	private HashMap<Eigenschaft, Widget> hashmap = new HashMap<Eigenschaft, Widget>();
 	private Vector<Eigenschaft> eigenschaften = new Vector<Eigenschaft>();
 
-	// Konstruktor
+	//Konstruktor
 	public MeinProfilEditor() throws Exception {
 		this.add(speicherButton);
 		addEigenschaftenButton.setStylePrimaryName("grotte-Button");
@@ -48,6 +49,31 @@ public class MeinProfilEditor extends VerticalPanel {
 		this.add(eigenschaftenPanel);
 		loadProfilEigenschaften();
 		eigenschaftenPanel.add(table);
+		
+		this.addStyleName("Attribute-bearbeiten");
+//		profilUpdateButton.setStylePrimaryName("grotte-Button");
+//		geschlechtListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
+//		haarfarbeListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
+//		religionListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
+//		raucherListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
+//		koerpergroesseLabel.setStyleName("Profilbearbeiten-Label", true);
+//		geschlechtLabel.setStyleName("Profilbearbeiten-Label", true);
+//		haarfarbeLabel.setStyleName("Profilbearbeiten-Label", true);
+//		religionLabel.setStyleName("Profilbearbeiten-Label", true);
+//		raucherLabel.setStyleName("Profilbearbeiten-Label", true);
+//		geburtsdatumLabel.setStyleName("Profilbearbeiten-Label", true);
+//		datumsinhalt.setStyleName("Profilbearbeiten-Label", true);
+//		fNameLabel.setStyleName("Profilbearbeiten-Label", true);
+//		lNameLabel.setStyleName("Profilbearbeiten-Label", true);
+//		fNameTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
+//		lNameTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
+//		koerpergroesseTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
+//		flexTable.setStylePrimaryName("Table-Margin");
+		
+		Image speicherImage = new Image("speichern.png");
+		speicherImage.setStylePrimaryName("Button-img-Image");
+//		profilUpdateButton.getElement().appendChild(speicherImage.getElement());
+//		profilUpdateButton.setStylePrimaryName("Button-img");
 		
 	}
 	
