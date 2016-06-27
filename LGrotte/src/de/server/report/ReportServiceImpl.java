@@ -1,5 +1,12 @@
 package de.server.report;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -11,29 +18,27 @@ import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.ReportService;
-import de.shared.BO.Auswahl;
 import de.shared.BO.Besuch;
-import de.shared.BO.Eigenschaft;
-import de.shared.BO.Info;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.Match;
 import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
-import de.shared.RO.ProfilInformation;
 import de.shared.RO.ProfilReport;
 
 /**
  * The server-side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class ReportServiceImpl extends RemoteServiceServlet implements ReportService {
+public class ReportServiceImpl extends RemoteServiceServlet implements ReportService{
 
 	private ProfilMapper profilMapper = ProfilMapper.profilMapper();
-	private EigenschaftMapper eigenschaftMapper = EigenschaftMapper.eigenschaftMapper();
 	private ProfilinfoMapper profilInfoMapper = ProfilinfoMapper.profilinfoMapper();
 	private BesucheMapper besucheMapper = BesucheMapper.besucheMapper();
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
+	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.suchprofilInfoMapper();
+	
+	
 	
 	private Profil user;
 
@@ -44,15 +49,16 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public String hallo() {
 		return "Hallo, ich bin der ReportService";
 	}
-
+	
+	
 	/*
 	 * Alle Suchprofile auslesen
 	 */
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
-		Vector<Suchprofil> suchprofile = SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(user.getEmail());
+		Vector<Suchprofil> suchprofile = spMapper.getSuchprofileByEmail(user.getEmail());
 		for(Suchprofil sp : suchprofile){
 			sp.setProfileigenschaften(
-					SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(
+					spiMapper.getSuchprofilInfosByEmail(
 							user.getEmail(), sp.getSuchprofilname()));
 		}
 		return suchprofile;
@@ -79,11 +85,22 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		ProfilAttribut raucher = new ProfilAttribut();
 		raucher.setName("Raucher");
 		raucher.setWert(p.getRaucher());
+		ProfilAttribut koerpergroesse = new ProfilAttribut();
+		koerpergroesse.setName("K&oumlrpergr&oumlsse");
+		koerpergroesse.setWert(Integer.toString(p.getKoerpergroesse()));
+		ProfilAttribut geburtsdatum = new ProfilAttribut();
+		geburtsdatum.setName("Geburtsdatum");
+		geburtsdatum.setWert(String.valueOf(p.getGeburtsdatum()));
+		ProfilAttribut alter = new ProfilAttribut();
+		alter.setName("Alter");
+		alter.getWert();
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
 		report.addAttribut(religion);
 		report.addAttribut(raucher);
-
+		report.addAttribut(koerpergroesse);
+		report.addAttribut(geburtsdatum);
+		report.addAttribut(alter);
 		// 2. Eigenschaften
 		Vector<ProfilEigenschaft> profilinfos = 
 				profilInfoMapper.getProfilInfosByEmail(p.getEmail());
@@ -92,135 +109,241 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 		return report;
 	}
-
+	
 	/*
-	 * Alle Reports nach Suchprofil
+	 * Reports zusammensetzen
 	 */
-	public Vector<ProfilReport> getReports(Suchprofil sp) throws Exception {
-		// Alle Profile
-		Vector<Profil> profile = profilMapper.getAll();
-		Vector<Profil> results = new Vector<Profil>();
-		for (int i = 0; i < profile.size(); i++) {
-			Profil p = profile.elementAt(i);
-			// Einziges No-Go Kriterium: Geschlecht
-			if (!p.getGeschlecht().equals(sp.getGeschlecht())) {
-			} else {
-				results.add(p);
-			}
-		}
+	public Vector<ProfilReport> reportErstellen(Vector<Profil> results) throws Exception{
 		// ProfilReports erstellen
 		// Speicher für ProfilReports
-		Vector<ProfilReport> reports = new Vector<ProfilReport>();
+		Vector<ProfilReport> reports = new Vector<ProfilReport>(); 
 		for (int i = 0; i < results.size(); i++) {
 			ProfilReport report = getProfilReport(results.elementAt(i));
-
 			// Das Match anhand des Suchprofils errechnen
-			Match m = new Match(aehnlichkeitBerechnen(profile.elementAt(i), sp));
+			Match m = new Match(aehnlichkeitBerechnen(results.elementAt(i)));
 			report.setMatch(m);
-
 			// final den ProfilReport zu den Ergebnissen hinzuf�gen
 			reports.add(report);
 		}
 		return reports;
 	}
 
-	/*
+	/**
 	 * Alle Reports
 	 */
 	public Vector<ProfilReport> getReports() throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
-		Vector<ProfilReport> reports = new Vector<ProfilReport>();
-		for (int i = 0; i < profile.size(); i++) {
-			ProfilReport report = getProfilReport(profile.elementAt(i));
-
-			// Das Match; im Vergleich zw. dem Profil des Users (nicht
-			// Suchprofil!)
-			Match m = new Match(aehnlichkeitBerechnen(profile.elementAt(i)));
-			report.setMatch(m);
-			// Hinzuf�gen
-			reports.add(report);
-		}
-		return reports;
+		userAussortieren(profile);
+		return reportErstellen(profile);
 	}
 
+	/**
+	 * Alle Reports nach Suchprofil
+	 */
+	public Vector<ProfilReport> getReports(Suchprofil sp) throws Exception {
+		Vector<Profil> profile = profilMapper.getAll();
+		userAussortieren(profile);
+		profile = aussortierenNachSP(profile, sp);
+		return reportErstellen(profile);
+	}
+	
+	
+	/**
+	 * nicht besuchte Profile
+	 * nach Suchprofil
+	 */
+
+	public Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception{
+		Vector<Profil> profiles = profilMapper.getAll();
+		userAussortieren(profiles);
+		profiles = aussortierenNachSP(profiles, sp);
+		profiles = besucheAussortieren(profiles);
+		return reportErstellen(profiles);
+		
+	}
+	/**
+	 * ohne Filter
+	 */
 	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
+		userAussortieren(profiles);
+		profiles = besucheAussortieren(profiles);
+		return reportErstellen(profiles);
+	}
+	
+	/*
+	 * Hilfsmethode
+	 * Besuche aussortieren
+	 */
+	public Vector<Profil> besucheAussortieren(Vector<Profil> profiles) throws Exception{
+	Vector<Profil> results = new Vector<Profil>();
+	Vector<Besuch> visits = besucheMapper.getBesuche(user);
+	// Aussortieren
+	for (int i = 0; i < profiles.size(); i++) {
+		boolean ok = true;
+		for (int o = 0; o < visits.size(); o++) {
+			if (profiles.elementAt(i).getEmail().equals(
+					visits.elementAt(o).getBesuchtesProfil().getEmail())) {
+				ok = false;
+				break;
+			}
+		}
+		if (ok) results.add(profiles.elementAt(i));
+		}
+	return results;
+	}
+	
+	
+	
+	/*
+	 * Hilfsmethode
+	 * Aussortieren nach Suchprofil
+	 */
+	public Vector<Profil> aussortierenNachSP(Vector<Profil> profile, Suchprofil sp) throws Exception{
 		Vector<Profil> results = new Vector<Profil>();
-		Vector<Besuch> visits = besucheMapper.getBesuche(user);
-		// Aussortieren
-		for (int i = 0; i < profiles.size(); i++) {
+		
+		//Aussortieren nach Suchprofil
+		//Check von jedem Profil:
+		for (int i = 0; i < profile.size(); i++) {
 			boolean ok = true;
-			for (int o = 0; o < visits.size(); o++) {
-				if (profiles.elementAt(i).getEmail().equals(
-						visits.elementAt(o).getBesuchtesProfil().getEmail())) {
+			Profil p = profile.elementAt(i);
+			//Eigene Identität
+			if(user.getEmail().equals(p.getEmail())){
+				ok = false;
+			}
+			//Geschlecht
+			if(!sp.getGeschlecht().equals("egal")){
+				if(!sp.getGeschlecht().equals(p.getGeschlecht())
+						|| p.getGeschlecht() == null){
 					ok = false;
-					break;
 				}
 			}
-			if (ok) results.add(profiles.elementAt(i));
+			//Raucher
+			if(!sp.getRaucher().equals("egal")){
+				if(!sp.getRaucher().equals(p.getRaucher()) 
+						|| p.getRaucher() == null){
+					ok = false;
+				}
+			}
+			//Religion
+			if(!sp.getReligion().equals("egal")){
+				if(!sp.getReligion().equals(p.getReligion())){
+					profile.remove(p);
+				}
+			}
+			//Haarfarbe
+			if(!sp.getHaarfarbe().equals("egal")){
+				if(!sp.getHaarfarbe().equals(p.getHaarfarbe())){
+					profile.remove(p);
+				}
+			}
+			
+			
+			//ProfilEigenschaften aussortieren
+			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(
+					user.getEmail(), sp.getSuchprofilname());
+			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(
+					p.getEmail());
+			if(suchPEs != null){
+				boolean peOK = false;
+				for(int u = 0; u < suchPEs.size(); u++){
+					if(fremdPEs != null){
+						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
+						for(int z = 0; z < fremdPEs.size(); z++){
+							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
+							if(suchPE.getEigenschaft().getId() == 
+									fremdPE.getEigenschaft().getId()){
+								if(fremdPE.getWert().equals(suchPE.getWert())){
+									peOK = true;
+								}
+							}
+						}
+					}
+				}
+				if(peOK == false) ok = false;
+			}
+			
+			//TODO Größe und Alter
+			if (ok)results.add(p);
 		}
-		// Reports erstellen
-		Vector<ProfilReport> reports = new Vector<ProfilReport>();
-		for (int i = 0; i < results.size(); i++) {
-			ProfilReport report = getProfilReport(results.elementAt(i));
-
-			// Das Match; im Vergleich zw. dem Profil des Users (nicht
-			// Suchprofil!)
-			Match m = new Match(aehnlichkeitBerechnen(results.elementAt(i)));
-			report.setMatch(m);
-			// Hinzuf�gen
-			reports.add(report);
-		}
-		return reports;
+	return results;
 	}
-
-
 	
-	// nach Suchprofil suchen
-	public Vector<ProfilReport> getReportsBySuchprofil(Suchprofil sp) throws Exception {
-		// //Aussortieren
-		// Vector<Profil> profile = ProfilMapper.profilMapper().getAll();
-		// }
-		// //ProfilReports erzeugen
-		Vector<ProfilReport> reports = new Vector<ProfilReport>();
-		// for (int i = 0; i < results.size(); i++) {
-		// reports.add(getReports(sp));
-		// }
-		return reports;
+	/*
+	 * Hilfsmethode
+	 * User aussortieren Hilfsmethode
+	 */
+	public void userAussortieren(Vector<Profil> profiles){
+		for(int i = 0; i < profiles.size(); i++){
+			Profil p = profiles.elementAt(i);
+			if(p.getEmail().equals(user.getEmail())) profiles.remove(p);
+		}
 	}
 
 	/*
-	 * �hnlichkeit: Profil vs.Profile
+	 * Hilfsmethode
+	 * Ähnlichkeit: Profil vs.Profile
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich) throws Exception {
+		//Die Ähnlichkeit
 		int aehnlichkeit = 0;
+		
+		//sinnvolle und vergleichbare Attribute
 		if (user.getRaucher().equals(vergleich.getRaucher()))
 			aehnlichkeit += 10;
-		// if(user.getMinGroesse() < vergleich.getKoerpergroesse() &&
-		// suchprofil.getMaxGroesse() >
-		// vergleich.getKoerpergroesse())aehnlichkeit += 10;
 		if (user.getReligion().equals(vergleich.getReligion()))
 			aehnlichkeit += 10;
-		// if(suchprofil.getMinAlter())
-
+		//TODO Alter mit Sedats getAlter()
+		
+		//ProfilInfos
+		Vector<ProfilEigenschaft> vergleichinfos = 
+				profilInfoMapper.getProfilInfosByEmail(vergleich.getEmail());
+		Vector<ProfilEigenschaft> userinfos =
+				profilInfoMapper.getProfilInfosByEmail(user.getEmail());
+		if(vergleichinfos != null && userinfos != null){
+			for(int i = 0; i < vergleichinfos.size(); i++){
+				for(int u = 0; u < userinfos.size(); u++){
+					ProfilEigenschaft userPE = userinfos.elementAt(u);
+					ProfilEigenschaft vergleichPE = vergleichinfos.elementAt(i);
+					if(userPE.getEigenschaft().getId() == 
+							vergleichPE.getEigenschaft().getId()){
+						if(userPE.getWert().equals(vergleichPE.getWert())){
+							aehnlichkeit += 10;
+						}
+					}
+				}
+			}
+		}
 		return aehnlichkeit;
 	}
+	
+	public Vector<ProfilReport> sortierenNachAehn(Vector<ProfilReport>reports){
+		
+	 ProfilReport[]array = new ProfilReport[reports.size()];
+	 for(int i = 0; i < reports.size(); i++){
+		 array[i] = reports.elementAt(i);
+	 }
+	 Arrays.sort(array);
+	 reports.clear();
+	 for(int i = 0; i < array.length; i++){
+		 reports.add(array[i]);
+	 }
+	 return reports;
+	 }
+	
+	public int alterBerechnen(Date geburtsDatum) throws ParseException {
+		Profil p = new Profil();
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date geburtstag = (Date) formatter.parse(String.valueOf(p.getGeburtsdatum()));
+		int alterAktuell = alterBerechnen(geburtstag);
+		
+		Calendar birthDay = Calendar.getInstance();
+		birthDay.setTime(geburtsDatum);
+		
+		Calendar datumAktuell = Calendar.getInstance();
+		datumAktuell.setTime(new Date());
 
-	/*
-	 * Ähnlichkeit: Suchprofil vs. Profile
-	 */
-	public int aehnlichkeitBerechnen(Profil vergleich, Suchprofil suchprofil) throws Exception {
-		int aehnlichkeit = 0;
-		if (suchprofil.getRaucher().equals(vergleich.getRaucher()))
-			aehnlichkeit += 10;
-		if (suchprofil.getMinGroesse() < vergleich.getKoerpergroesse()
-				&& suchprofil.getMaxGroesse() > vergleich.getKoerpergroesse())
-			aehnlichkeit += 10;
-		if (suchprofil.getReligion().equals(vergleich.getReligion()))
-			aehnlichkeit += 10;
-		// if(suchprofil.getMinAlter())
-
-		return aehnlichkeit;
+		return datumAktuell.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
 	}
-
+	
 }

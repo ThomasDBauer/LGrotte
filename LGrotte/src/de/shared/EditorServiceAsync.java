@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.shared.BO.Auswahl;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Merkzettel;
@@ -14,7 +15,7 @@ import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilEigenschaft;
 
 public interface EditorServiceAsync {
-	void init(AsyncCallback callback) throws IllegalArgumentException;
+	void init(AsyncCallback callback) throws Exception;
 
 	void insertProfil(String email, String fname, String lname,
 			int koerpergroesse, String geschlecht, String religion,
@@ -25,7 +26,13 @@ public interface EditorServiceAsync {
 
 	void getProfil(AsyncCallback<Profil> callback) throws Exception;
 	
+	void getAuswahlForEigenschaft(Eigenschaft e, AsyncCallback<Vector<Auswahl>>callback) throws Exception;
+	
 	void getProfil(String email, AsyncCallback<Profil> callback) throws Exception;
+	
+	void deleteSuchprofilInfosForUser(Suchprofil sp, AsyncCallback callback) throws Exception;
+	
+	void deleteProfilInfosForUser(AsyncCallback callback) throws Exception;
 
 	void updateProfil(String fname, String lname, int koerpergroesse,
 			String geschlecht, String religion, String haarfarbe,

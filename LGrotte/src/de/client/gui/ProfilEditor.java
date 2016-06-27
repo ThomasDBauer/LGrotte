@@ -10,9 +10,10 @@ public class ProfilEditor extends HorizontalPanel{
 		
 		this.add(new HTML(
 						"<h2 style = \"color: #c0c0c0\">Dein Profil bearbeiten</h2>"));
+//		this.add(new MeinProfilEditor());
+//		this.add(new ProfilErstellenEditor());
+//		this.add(new ProfilEigAuswahlEditor());
 		this.add(new MeinProfilEditor());
-		this.add(new ProfilEigenschaftEditor());
-		
 	}
 	
 }

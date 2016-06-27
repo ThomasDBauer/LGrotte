@@ -17,13 +17,15 @@ public class ProfilInfoSeeds {
 		
 	
 	private String[]profilId = {
-			"Anna@LG", "Daniel@LG", "Daniel@LG", "Daniel@LG", "thdobauer@gmail.com", 
-			"thdobauer@gmail.com", "thdobauer@gmail.com", "thdobauer@gmail.com", 
-			"thdobauer@gmail.com", "Lina@LG", "Lina@LG", "Lina@LG", "Lina@LG"
+			"Anna@LG", "Daniel@LG", "Daniel@LG", "Daniel@LG", "Anna@LG", 
+			"Anna@LG", "Anna@LG", "Anna@LG", 
+			"Anna@LG", "Lina@LG", "Lina@LG", "Lina@LG", "Lina@LG",
+			"thdobauer@gmail.com", "thdobauer@gmail.com", "thdobauer@gmail.com",
+			"thdobauer@gmail.com", "thdobauer@gmail.com"
 	};
 	
 	private int[]infoId = {
-			1, 9, 10, 1, 2, 3, 8, 7, 4, 5, 6, 7, 8,
+			1, 9, 10, 1, 2, 3, 8, 7, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15
 	};
 
 }

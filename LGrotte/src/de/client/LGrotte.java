@@ -25,6 +25,8 @@ import de.client.gui.LogOutPopUp;
 import de.client.gui.MeinProfilEditor;
 import de.client.gui.Navigation;
 import de.client.gui.ProfilAnzeigenEditor;
+import de.client.gui.ProfilEditor;
+import de.client.gui.ProfilErstellenEditor;
 import de.client.temp.SeedButton;
 import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
@@ -67,8 +69,12 @@ public class LGrotte implements EntryPoint {
 					public void onSuccess(Profil result) {
 						editorService.setUser(result, new SetUserCallback());
 						if (result.isLoggedIn()) {
-							if (result.getFname() == "null") {
-								RootPanel.get("Inhalt").add(new MeinProfilEditor());
+							if (result.getFname() == null) {
+								try {
+									RootPanel.get("Inhalt").add(new ProfilErstellenEditor());
+								} catch (Exception e1) {
+									e1.printStackTrace();
+								}
 							} else {
 							RootPanel.get("Inhalt").add(
 									new Label("Willkommen in der Grotte, "

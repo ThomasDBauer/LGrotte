@@ -77,6 +77,7 @@ public class EigenschaftMapper {
 			Eigenschaft e = new Eigenschaft();
 			e.setErlaeuterung(rs.getString("erlauterung"));
 			e.setId(rs.getInt("eigenschaft_id"));
+			e.setAuswahl(rs.getInt("auswahl"));
 			eigenschaften.add(e);
 		}
 		return eigenschaften;

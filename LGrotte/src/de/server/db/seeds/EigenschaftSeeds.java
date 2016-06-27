@@ -21,7 +21,7 @@ public class EigenschaftSeeds {
 	public void seedEigenschaftAuswahlTable() throws Exception{
 		for(int i = 0; i < erlaeuterungenAuswahl.length; i++){
 			Eigenschaft e = new Eigenschaft();
-			e.setErlaeuterung(erlaeuterungen[i]);
+			e.setErlaeuterung(erlaeuterungenAuswahl[i]);
 			e.setAuswahl(1);
 			EigenschaftMapper.eigenschaftMapper().insertEigenschaft(e);
 		}
@@ -49,9 +49,9 @@ public class EigenschaftSeeds {
 	
 	private String[][]auswahlOptionen = {
 			//Jahreszeiten
-			{"Frühling", "Sommer", "Herbst", "Winter"},
+			{"Frühling", "Sommer", "Herbst", "Winter", "Keine Angabe"},
 			//Lieblingsmusik
-			{"HipHop", "Schlager", "Elektro", "Rock", "Pop", "Klassik"}
+			{"HipHop", "Schlager", "Elektro", "Rock", "Pop", "Klassik", "Keine Angabe"}
 	};
 	
 }

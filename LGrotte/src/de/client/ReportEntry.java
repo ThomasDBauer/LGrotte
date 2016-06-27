@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -29,25 +30,31 @@ import de.shared.RO.ProfilReport;
 public class ReportEntry implements EntryPoint {
 
 	private ReportServiceAsync reportService;
+	
+	//Die beiden Buttons + Panel
 	private Button alleAnzeigenButton = new Button("Alle Profile", 
 			new AlleProfileHandler());
 	private Button nichtBesuchteButton = new Button("Nicht besuchte Profile", 
 			new NichtBesuchteHandler());
-	private Label suchProfileAnzeigenLabel = new Label("Erstelle Deinen Suchprofil-Report");
-	private ListBox suchprofilListbox = new ListBox();
-	private Vector<Suchprofil> suchprofile;
-	private Suchprofil p = new Suchprofil();
-	private VerticalPanel suchprofilPanel = new VerticalPanel();
-
-	// Buttons
 	private HorizontalPanel navPanel = new HorizontalPanel();
-	// Reports + Suchprofil-Details
+	
+	//Suchprofil
+	private VerticalPanel suchprofilPanel = new VerticalPanel();
+	private Label suchProfileAnzeigenLabel = new Label("Filtere nach Suchprofil");
+	private HorizontalPanel filterPanel = new HorizontalPanel();
+	private ListBox suchprofilListbox = new ListBox();
+	private CheckBox suchprofilCheckbox = new CheckBox();
+	
+	//Speicher
+	private Vector<Suchprofil> suchprofile;
+	private Suchprofil aktivesSP;
+	
+	//Main Panels
 	private VerticalPanel links = new VerticalPanel();
 	private VerticalPanel rechts = new VerticalPanel();
 
-	/*
-	 * onModuleLoad()
-	 */
+	
+	
 	public void onModuleLoad() {
 		RootPanel.get("Navi").add(navPanel);
 		RootPanel.get("Body-left").add(links);
@@ -60,15 +67,20 @@ public class ReportEntry implements EntryPoint {
 				RootPanel.get().add(new Label("login callback" + caught.toString()));
 			}
 			public void onSuccess(Profil result) {
-				navPanel.add(alleAnzeigenButton);
+				//Style
 				alleAnzeigenButton.setStylePrimaryName("navi-button");
-				navPanel.add(nichtBesuchteButton);
 				nichtBesuchteButton.setStylePrimaryName("navi-button");
-				rechts.add(suchProfileAnzeigenLabel);
 				suchProfileAnzeigenLabel.setStylePrimaryName("textlabel");
+				suchprofilListbox.setStylePrimaryName("listbox");
+				
+				//Zusammenfügen der Buttons
+				navPanel.add(alleAnzeigenButton);
+				navPanel.add(nichtBesuchteButton);
+				filterPanel.add(suchProfileAnzeigenLabel);
+				filterPanel.add(suchprofilCheckbox);
+				rechts.add(filterPanel);
 				rechts.add(suchprofilListbox);
 				rechts.add(suchprofilPanel);
-				suchprofilListbox.setStylePrimaryName("listbox");
 				reportService.setUser(result, new AsyncCallback() {
 					public void onFailure(Throwable caught) {
 						RootPanel.get().add(new Label("SetUserCallback " + caught.toString()));
@@ -93,7 +105,7 @@ public class ReportEntry implements EntryPoint {
 				}
 				public void onSuccess(Vector<Suchprofil> result) {
 					suchprofile = result;
-					suchprofilListbox.addItem("Waehle Dein Suchprofil aus");
+					suchprofilListbox.addItem("Wähle Dein Suchprofil aus");
 					for (int i = 0; i < result.size(); i++) {
 						suchprofilListbox.addItem(result.elementAt(i).getSuchprofilname());
 					}
@@ -118,25 +130,32 @@ public class ReportEntry implements EntryPoint {
 		links.add(new HTML(writer.getReportText()));
 	}
 	
-	//Alle Profile laden
+	/*
+	 * Alle Profile laden
+	 */
 	public void loadAllReports() throws Exception{
 		reportService.getReports(new ReportCallback());
 	}
-
 	/*
-	 * Baut Reports nach Suchprofil auf. --> Wird vom ListBox-ChangeHandler
-	 * aufgerufen
+	 * Alle Profile nach Suchprofil gefiltert
 	 */
-	public void loadReportBySuchprofil(Suchprofil sp) throws Exception {
+	public void loadAllReports(Suchprofil sp) throws Exception {
 		reportService.getReports(sp,new ReportCallback());
 	}
-	
 	/*
 	 * Baut Reports f�r nicht besuchte Profile auf
 	 */
 	public void loadReportsForNotVisited() throws Exception {
 		reportService.getNotVisitedReports(new ReportCallback());
 	}
+	
+	/*
+	 * Alle nicht besuchten Profile nach Suchprofil gefiltert
+	 */
+	public void loadReportsForNotVisited(Suchprofil sp) throws Exception {
+		reportService.getNotVisitedReports(sp,new ReportCallback());
+	}
+	
 
 	/*
 	 * Callback der LoadReport() Methoden
@@ -161,11 +180,7 @@ public class ReportEntry implements EntryPoint {
 			Suchprofil sp = getSuchprofil();
 			if(sp != null){
 				updateSuchprofilPanel(sp);
-				try {
-					loadReportBySuchprofil(sp);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				aktivesSP = sp;
 			}
 		}
 	}
@@ -173,17 +188,19 @@ public class ReportEntry implements EntryPoint {
 	public void updateSuchprofilPanel(Suchprofil sp){
 		suchprofilPanel.setStylePrimaryName("suchprofil-filter");
 		suchprofilPanel.clear();
-		suchprofilPanel.add(new Label("Geschlecht: " + sp.getHaarfarbe()));
+		suchprofilPanel.add(new Label("Geschlecht: " + sp.getGeschlecht()));
 		suchprofilPanel.add(new Label("Raucher: " + sp.getRaucher()));
 		suchprofilPanel.add(new Label("Haarfarbe: " + sp.getHaarfarbe()));
 		suchprofilPanel.add(new Label("Religion: " + sp.getReligion()));
-//		suchprofilPanel.add(new Label("Körpergröße: " + sp));
-//		suchprofilPanel.add(new Label("Alter: " + sp.));
+		suchprofilPanel.add(new Label("Körpergröße von " + sp.getMinGroesse()+ " bis " + sp.getMaxGroesse()));
+		suchprofilPanel.add(new Label("Alter von  " + sp.getMinAlter() + " bis " + sp.getMaxAlter()));
 		
 		
 		for(int i = 0; i < sp.getProfileigenschaften().size(); i++){
 			ProfilEigenschaft pe = sp.getProfileigenschaften().elementAt(i);
-			suchprofilPanel.add(new Label(pe.getName() + ": " + pe.getWert()));
+			if(!pe.getWert().equals("Keine Angabe")){
+				suchprofilPanel.add(new Label(pe.getName() + ": " + pe.getWert()));
+			}
 		}
 	}
 	
@@ -209,10 +226,18 @@ public class ReportEntry implements EntryPoint {
 	 */
 	public class AlleProfileHandler implements ClickHandler{
 		public void onClick(ClickEvent e){
-			try {
-				loadAllReports();
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			if(suchprofilCheckbox.getValue()){
+				try {
+					loadAllReports(aktivesSP);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}else{
+				try {
+					loadAllReports();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 	}
@@ -222,10 +247,18 @@ public class ReportEntry implements EntryPoint {
 	 */
 	public class NichtBesuchteHandler implements ClickHandler{
 		public void onClick(ClickEvent e){
-			try {
-				loadReportsForNotVisited();
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			if(suchprofilCheckbox.getValue()){
+				try {
+					loadReportsForNotVisited(aktivesSP);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}else{
+				try {
+					loadReportsForNotVisited();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 	}

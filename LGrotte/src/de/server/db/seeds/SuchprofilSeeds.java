@@ -24,7 +24,7 @@ public class SuchprofilSeeds {
 		SuchprofilMapper.suchprofilMapper().insertSuchprofil(sp);
 		
 		Suchprofil sp1 = new Suchprofil();
-		sp1.setGeschlecht("männlich");
+		sp1.setGeschlecht("m&aumlnnlich");
 		sp1.setHaarfarbe("Glatze");
 		sp1.setMaxAlter(99);
 		sp1.setMinAlter(18);

@@ -57,7 +57,7 @@ public class SuchprofilInfoMapper {
 		Connection conn = DBConnection.connection();
 		
 		PreparedStatement select = conn.prepareStatement("SELECT infos.value, "
-				+ "infos.info_id, eigenschaft.erlauterung, eigenschaft.eigenschaft_id "
+				+ "infos.info_id, eigenschaft.auswahl, eigenschaft.erlauterung, eigenschaft.eigenschaft_id "
 				+ "FROM infos JOIN eigenschaft ON infos.eigenschaft_id = "
 				+ "eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
 		
@@ -75,6 +75,7 @@ public class SuchprofilInfoMapper {
 			Eigenschaft eigenschaft = new Eigenschaft();
 			eigenschaft.setErlaeuterung(result.getString("erlauterung"));
 			eigenschaft.setId(result.getInt("eigenschaft_id"));
+			eigenschaft.setAuswahl(result.getInt("auswahl"));
 
 			pe.setInfo(info);
 			pe.setEigenschaft(eigenschaft);
@@ -89,6 +90,14 @@ public class SuchprofilInfoMapper {
 				"DELETE FROM suchprofil_info WHERE email = '" + spi.getProfil().getEmail() + 
 				"' AND info_id="+ spi.getInfo().getId() + " "
 						+ "AND suchprofilname='" +spi.getSp().getSuchprofilname()+"'");
+		stmt.execute();
+	}
+	
+	public void deleteAllSuchprofilInfos(Suchprofil sp, Profil user) throws Exception{
+		Connection conn = DBConnection.connection();
+		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
+				"DELETE FROM suchprofil_info WHERE suchprofilname = '" + sp.getSuchprofilname() + "' "
+						+ "AND email = '" + user.getEmail() + "'");
 		stmt.execute();
 	}
 	

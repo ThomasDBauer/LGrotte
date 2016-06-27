@@ -21,7 +21,7 @@ import de.shared.BO.Profil;
 		private VerticalPanel thisPanel = this;
 		private FlexTable table = new FlexTable();
 		private Vector<String> emailBuffer = new Vector<String>();
-		private Button merkButton = new Button("Profil l�schen", new LoeschenHandler());
+		private Button merkButton = new Button("Profil l&oumlschen", new LoeschenHandler());
 		private VerticalPanel resultPanel = new VerticalPanel();
 		private HorizontalPanel controlPanel = new HorizontalPanel();
 

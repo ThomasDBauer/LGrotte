@@ -110,28 +110,29 @@ public class SuchprofilEditor extends VerticalPanel {
 			this.add(listBoxPanel);
 			
 			// Anhängen der Items zur Auswahl
-			geschlechtListBox.addItem("männlich");
-			geschlechtListBox.addItem("weiblich");
+			geschlechtListBox.addItem("Männlich");
+			geschlechtListBox.addItem("Weiblich");
 			geschlechtListBox.addItem("Andere");
+			geschlechtListBox.addItem("Egal");
 			
-			haarfarbeListBox.addItem("blond");
-			haarfarbeListBox.addItem("brunette");
-			haarfarbeListBox.addItem("schwarz");
-			haarfarbeListBox.addItem("rot");
-			haarfarbeListBox.addItem("grau");
-			haarfarbeListBox.addItem("egal");
+			haarfarbeListBox.addItem("Blond");
+			haarfarbeListBox.addItem("Brunette");
+			haarfarbeListBox.addItem("Schwarz");
+			haarfarbeListBox.addItem("Rot");
+			haarfarbeListBox.addItem("Grau");
+			haarfarbeListBox.addItem("Egal");
 			
-			religionListBox.addItem("christlich");
-			religionListBox.addItem("muslimisch");
-			religionListBox.addItem("buddhistisch");
-			religionListBox.addItem("hinduitsisch");
-			religionListBox.addItem("jüdisch");
-			religionListBox.addItem("egal");
+			religionListBox.addItem("Christlich");
+			religionListBox.addItem("Muslimisch");
+			religionListBox.addItem("Buddhistisch");
+			religionListBox.addItem("Hinduistisch");
+			religionListBox.addItem("Jüdisch");
+			religionListBox.addItem("Egal");
 			
 			raucherListBox.addItem("Ja");
 			raucherListBox.addItem("Nein");
-			raucherListBox.addItem("ab und an");
-			raucherListBox.addItem("egal");
+			raucherListBox.addItem("Ab und an");
+			raucherListBox.addItem("Egal");
 			
 			loadPage();
 		}
@@ -157,6 +158,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		// ClickHandler zum suchprofil hizufügen Funktion
 		private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
+				spHinzufuegenButton.setVisible(false);
 				anzeigenTable.clear();
 				groessenPanel.clear();
 				alterPanel.clear();
@@ -220,6 +222,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		// ClickHandler um das hinzufügen eines Suchprofil abzubrechen
 		private class SuchProfilAbbrechenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
+				spHinzufuegenButton.setVisible(true);
 				anlegenTable.clear();
 				speichernButtonPanel.clear();
 				listBoxPanel.add(spListBox);
@@ -232,6 +235,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 			private PopupPanel popup;
 			public void onClick(ClickEvent event) {
+				spHinzufuegenButton.setVisible(true);
 				try {
 					ClientSideSettings.getEditorService().insertSuchprofil(spNameTextBox.getText(),
 							geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex()),
@@ -448,7 +452,11 @@ public class SuchprofilEditor extends VerticalPanel {
 
 			public void onSuccess(Suchprofil result) {
 				
-					eigenschaftenEditor.setSuchprofil(result);
+					try {
+						eigenschaftenEditor.setSuchprofil(result);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				
 					anlegenTable.clear();
 					alterPanel.clear();
@@ -459,7 +467,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					
 					anzeigenTable.setWidget(1, 0, geschlechtLabel);
 					anzeigenTable.setWidget(1, 1, geschlechtListBox);
-					for (int g = 0; g < 2;g++) {
+					for (int g = 0; g < 4;g++) {
 						if(geschlechtListBox.getValue(g) == result.getGeschlecht()){
 							geschlechtListBox.setSelectedIndex(g);
 						}
@@ -497,8 +505,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					groessenAnzeigenPanel.add(new Label(" bis "));
 					groessenAnzeigenPanel.add(maxGroesseAnzeigenTextBox);
 					anzeigenTable.setWidget(5, 1, groessenAnzeigenPanel);
-					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinAlter()));
-					maxGroesseAnzeigenTextBox.setText(Integer.toString(result.getMaxAlter()));
+					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
+					maxGroesseAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
 					
 					minGroesseAnzeigenTextBox.setVisibleLength(3);
 					minGroesseAnzeigenTextBox.setMaxLength(3);
@@ -512,8 +520,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					alterAnzeigenPanel.add(new Label(" bis "));
 					alterAnzeigenPanel.add(maxAlterAnzeigenTextBox);
 					anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
-					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
-					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
+					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinAlter()));
+					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxAlter()));
 					
 					minAlterAnzeigenTextBox.setVisibleLength(3);
 					minAlterAnzeigenTextBox.setMaxLength(3);

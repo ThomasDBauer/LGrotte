@@ -29,9 +29,9 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 	private VerticalPanel editPanel = new VerticalPanel();
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
 	private VerticalPanel eigenschaftenPanel = new VerticalPanel();
-	private Button addEigenschaftenButton = new Button("Eigenschaft hinzuf�gen", new AddEigenschaftenClickHandler());
+	private Button addEigenschaftenButton = new Button("Eigenschaft hinzufügen", new AddEigenschaftenClickHandler());
 	private Button speicherButton = new Button("Speichern", new SpeicherClickHandler());
-	private Button loeschenButton = new Button("L�schen", new DeleteInfosHandler());
+	private Button loeschenButton = new Button("Löschen", new DeleteInfosHandler());
 
 	// Daten und Zwischenspeicher
 	private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
@@ -81,15 +81,17 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 
 		public void onSuccess(Vector<ProfilEigenschaft> result) {
 			if (result.size() == 0)
-				eigenschaftenPanel.add(new Label("Erz�hle etwas �ber ich!"));
+				eigenschaftenPanel.add(new Label("Erz&aumlhle etwas &uumlber ich!"));
 			FlexTable table = new FlexTable();
 			table.setStylePrimaryName("Eigenschaften-Table");
 			for (int i = 0; i < result.size(); i++) {
-				table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
-				table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
-				CheckBox cb = new CheckBox();
-				cb.addClickHandler(new AddToDeleteHandler(result.elementAt(i).getInfo()));
-				table.setWidget(i, 2, cb);
+				if(result.elementAt(i).getEigenschaft().getAuswahl() == 0){
+					table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
+					table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
+					CheckBox cb = new CheckBox();
+					cb.addClickHandler(new AddToDeleteHandler(result.elementAt(i).getInfo()));
+					table.setWidget(i, 2, cb);
+				}
 			}
 			eigenschaftenPanel.clear();
 			eigenschaftenPanel.add(table);
@@ -159,7 +161,10 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			eigenschaftenTextboxen.add(infotextbox);
 			// f�llen der listbox mit allen eigenschaften
 			for (int i = 0; i < eigenschaften.size(); i++) {
-				listbox.addItem(eigenschaften.elementAt(i).getErlaeuterung());
+				Eigenschaft eigenschaft = eigenschaften.elementAt(i);
+				if(eigenschaft.getAuswahl()==0){
+					listbox.addItem(eigenschaft.getErlaeuterung());
+				}
 			}
 			// h�bsch anordnen
 			HorizontalPanel hpanel = new HorizontalPanel();

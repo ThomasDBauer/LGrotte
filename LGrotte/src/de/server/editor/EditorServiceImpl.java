@@ -7,6 +7,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.client.ClientSideSettings;
 import de.client.TestService;
+import de.server.db.AuswahlMapper;
 import de.server.db.BesucheMapper;
 import de.server.db.EigenschaftMapper;
 import de.server.db.InfoMapper;
@@ -17,6 +18,7 @@ import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
 import de.shared.EditorService;
+import de.shared.BO.Auswahl;
 import de.shared.BO.Besuch;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
@@ -50,7 +52,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Methoden rund um das Profil
 	// Profil erstellen
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
-			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws IllegalArgumentException {
+			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws Exception {
 		Profil p = new Profil();
 		p.setFname(fname);
 		p.setLname(lname);
@@ -62,12 +64,24 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		p.setRaucher(raucher);
 		p.setEmail(email);
 
-		try {
 			ProfilMapper.profilMapper().insertProfil(p);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//			wait(1000);   //TODO delete this schwachsinn
+//			Vector<ProfilEigenschaft> profileigenschaften = 
+//					ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(email);
+//			Vector<Eigenschaft>eigenschaften = 
+//					EigenschaftMapper.eigenschaftMapper().getEigenschaften();
+//		if(profileigenschaften.size()== 0){
+//			profileigenschaften = fillEigenschaften(profileigenschaften, eigenschaften);
+//		}
+//		if(profileigenschaften.size()<eigenschaften.size()){
+//			profileigenschaften = fillEigenschaften(profileigenschaften, eigenschaften);
+//		}
+//		for(int i = 0; i < profileigenschaften.size();i++){
+//			Info info = new Info();
+//			info.setEigenschaft(profileigenschaften.elementAt(i).getEigenschaft().getId());
+//			info.setValue(profileigenschaften.elementAt(i).getWert());
+//			insertProfilInfo(info);
+//		}
 	}
 	
 	// Profil bearbeiten
@@ -204,6 +218,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return results;
 	}		
 	
+	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception{
+		return AuswahlMapper.auswahlMapper().getAuswahlForEigenschaft(e);
+	}
 	// Suchprofil anzeigen by name
 		public Suchprofil getSuchprofileByName(String suchprofilname) throws Exception{
 			return SuchprofilMapper.suchprofilMapper().getSuchprofiByName(suchprofilname);
@@ -281,6 +298,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// SuchprofilInfos Hauptmethode
 	public void insertSuchprofilInfo(Suchprofil sp, Info info) throws Exception {
+		System.out.println("Speichere " + info.getValue() + " für " + sp.getSuchprofilname());
 		// Verarbeitung der Info und Auslesen der ID
 		info.setId(insertInfo(info));
 		// Aufbau des SuchprofilInfo-Objekts
@@ -289,6 +307,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		spi.setProfil(user);
 		spi.setSp(sp);
 		// Eintrag in die DB
+		System.out.println("Eintrag für " + spi.getSp().getSuchprofilname() + " Info ID: " + info.getId() + " Eigenschaft: " + info.getEigenschaft() );
 		SuchprofilInfoMapper.suchprofilInfoMapper().insertSuchprofilInfo(spi);
 	}
 
@@ -309,10 +328,63 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		// zur�ckgeben der ID
 		return infoID;
 	}
+
+	public Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception{
+		Vector<ProfilEigenschaft> results = SuchprofilInfoMapper.suchprofilInfoMapper().
+				getSuchprofilInfosByEmail(user.getEmail(), spname);
+		Vector<Eigenschaft> eigenschaften = EigenschaftMapper.eigenschaftMapper().getEigenschaften();
+		System.out.println(results.size() + " Einträge aus der DB gelesen.");
+		if(results.size()== 0){
+			System.out.println("results ist 0");
+			return  fillEigenschaften(results, eigenschaften);
+		}
+		if(results.size()<eigenschaften.size()){
+			System.out.println("results < eigenschaften");
+			return  fillEigenschaften(results, eigenschaften);
+		}
+		return results;
+	}
 	
 	public Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception{
-		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
+		Vector<ProfilEigenschaft>results = ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				user.getEmail());
+		Vector<Eigenschaft> eigenschaften = EigenschaftMapper.eigenschaftMapper().getEigenschaften();
+		if(results.size() < eigenschaften.size()){
+			return fillEigenschaften(results, eigenschaften);
+		}
+		return results;
+	}
+	private Vector<ProfilEigenschaft> fillEigenschaften(Vector<ProfilEigenschaft> peigenschaften, 
+			Vector<Eigenschaft> eigenschaften){
+		Vector<ProfilEigenschaft> results = new Vector<ProfilEigenschaft>();
+		for(int i = 0; i < eigenschaften.size(); i++){
+			boolean found = false;
+			for(int o = 0; o < peigenschaften.size(); o++){
+				if(peigenschaften.elementAt(o).getEigenschaft().getId() == eigenschaften.elementAt(i).getId()){
+					results.add(peigenschaften.elementAt(o));
+					found = true;
+				}
+			}
+			if(!found){
+				ProfilEigenschaft pe = new ProfilEigenschaft();
+				pe.setEigenschaft(eigenschaften.elementAt(i));
+				Info info = new Info();
+				info.setEigenschaft(eigenschaften.elementAt(i).getId());
+				info.setValue("Keine Angabe");
+				pe.setInfo(info);
+				results.add(pe);
+			}
+		}
+		return results;
+	}
+	
+	public void deleteProfilInfosForUser() throws Exception{
+		ProfilinfoMapper.profilinfoMapper().deleteAllInfos(user.getEmail());
+	}
+	
+	public void deleteSuchprofilInfosForUser(Suchprofil sp) throws Exception{
+		System.out.println("Lösche Einträge für: " + sp.getSuchprofilname());
+		SuchprofilInfoMapper.suchprofilInfoMapper().deleteAllSuchprofilInfos(sp, user);
 	}
 	
 	public Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception{
@@ -320,9 +392,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 				email);
 	}
 	
-	public Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception{
-		return SuchprofilInfoMapper.suchprofilInfoMapper().getSuchprofilInfosByEmail(user.getEmail(), spname);
-	}
 
 	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
 		return MerkzettelMapper.merkzettelMapper().

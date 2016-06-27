@@ -11,28 +11,28 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 
-public class ProfilAnzeigenEditor extends VerticalPanel{
+public class ProfilAnzeigenEditor extends VerticalPanel {
 
-		private VerticalPanel vpanel = this;
-		private FlexTable profilAnzeigenTable = new FlexTable();
-		
-		private Label fname = new Label();
-		private Label lname = new Label();
-		private Label geschlecht = new Label();
-		private Label haarfarbe = new Label();
-		private Label koerper = new Label();
-		private Label religion = new Label();
-		private Label raucher = new Label();
-		private Label bday = new Label();
-		private Label vorname = new Label("Vorname");
-		private Label nachname = new Label ("Nachname");
-		private Label geschlecht1 = new Label("Geschlecht");
-		private Label haarfarbe1 = new Label("Haarfarbe");
-		private Label koerpergroesse = new Label("Körpergröße");
-		private Label religion1 = new Label("Religion");
-		private Label raucher1 = new Label("Raucher");
-		private Label geburtstag = new Label("Geburtsdatum");
-		private Vector<Label> labels = new Vector<Label>();
+	private VerticalPanel vpanel = this;
+	private FlexTable profilAnzeigenTable = new FlexTable();
+
+	private Label fname = new Label();
+	private Label lname = new Label();
+	private Label geschlecht = new Label();
+	private Label haarfarbe = new Label();
+	private Label koerper = new Label();
+	private Label religion = new Label();
+	private Label raucher = new Label();
+	private Label bday = new Label();
+	private Label vorname = new Label("Vorname");
+	private Label nachname = new Label ("Nachname");
+	private Label geschlecht1 = new Label("Geschlecht");
+	private Label haarfarbe1 = new Label("Haarfarbe");
+	private Label koerpergroesse = new Label("Körpergröße");
+	private Label religion1 = new Label("Religion");
+	private Label raucher1 = new Label("Raucher");
+	private Label geburtstag = new Label("Geburtsdatum");
+	private Vector<Label> labels = new Vector<Label>();
 		
 		public ProfilAnzeigenEditor() {
 			try {
@@ -98,4 +98,5 @@ public class ProfilAnzeigenEditor extends VerticalPanel{
 		
 		
 		
+
 }
