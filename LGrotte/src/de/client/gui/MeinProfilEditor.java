@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -112,6 +113,9 @@ public class MeinProfilEditor extends VerticalPanel {
 	}
 	
 	private class InsertHandler implements ClickHandler{
+		
+		private PopupPanel popup;
+		
 		public void onClick(ClickEvent e){
 			try {
 				ClientSideSettings.getEditorService().deleteProfilInfosForUser(new AsyncCallback(){
@@ -146,6 +150,11 @@ public class MeinProfilEditor extends VerticalPanel {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
+			this.popup = new PopupPanel(true, true);
+			this.popup.add(new Label(
+					"Profilinfos wurden gespeichert " +
+					"zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
+			this.popup.center();
 		}
 	}
 }

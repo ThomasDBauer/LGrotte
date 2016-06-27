@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -123,6 +124,9 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 	}
 
 	private class InsertHandler implements ClickHandler {
+		
+		private PopupPanel popup;
+		
 		public void onClick(ClickEvent e) {
 			try {
 				ClientSideSettings.getEditorService().deleteSuchprofilInfosForUser(suchprofil, new AsyncCallback() {
@@ -159,6 +163,11 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
+			this.popup = new PopupPanel(true, true);
+			this.popup.add(new Label(
+					"Suchprofilinfos wurde aktualisiert " +
+					"zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
+			this.popup.center();
 		}
 	}
 }
