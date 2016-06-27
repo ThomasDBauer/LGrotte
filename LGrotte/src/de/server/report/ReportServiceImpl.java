@@ -93,7 +93,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		geburtsdatum.setWert(String.valueOf(p.getGeburtsdatum()));
 		ProfilAttribut alter = new ProfilAttribut();
 		alter.setName("Alter");
-		alter.getWert();
+		alter.setWert(String.valueOf(alterBerechnen(p.getGeburtsdatum())));
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
 		report.addAttribut(religion);
