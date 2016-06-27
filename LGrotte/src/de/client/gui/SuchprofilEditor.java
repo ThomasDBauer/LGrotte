@@ -33,7 +33,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
-		private Button spHinzufuegenButton = new Button("SuchProfil hinzuf&uumlgen", 
+		private Button spHinzufuegenButton = new Button("Suchprofil hinzuf&uumlgen", 
 				new SuchprofilHinzufuegenClickHandler());
 		private Button loeschenButton = new Button("L&oumlschen", 
 				new DeleteSuchprofilClickHandler());

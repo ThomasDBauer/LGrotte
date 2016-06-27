@@ -9,6 +9,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -48,6 +49,10 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 	public SuchprofilInfoEditor() throws Exception {
 		addEigenschaftenButton.setStylePrimaryName("grotte-Button");
 		speicherButton.setStylePrimaryName("grotte-Button");
+		Image saveImage = new Image("speichern.png");
+		saveImage.setStylePrimaryName("Button-img-Image");
+		speicherButton.getElement().appendChild(saveImage.getElement());
+		speicherButton.setStylePrimaryName("Button-img");
 		loeschenButton.setStylePrimaryName("grotte-Button");
 	}
 
