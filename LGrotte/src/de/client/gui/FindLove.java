@@ -80,12 +80,8 @@ public class FindLove extends VerticalPanel {
 					Label name = new Label(p.getFname() + " "
 							+ p.getLname());
 					name.setStyleName("findLove-Name", true);
-					Label match = new Label("Ähnlichkeit zu dir: " + "%");
-					match.setStyleName("findLove-Aehnlichkeit", true);
-					match.addStyleName("findLove-Label");
 					name.addStyleName("findLove-Label");
 					nameMatchingAnzeigen.add(name);
-					nameMatchingAnzeigen.add(match);
 					nameMatchingAnzeigen.addStyleName("findLove-HPaneltop");
 					findLovePanel.add(nameMatchingAnzeigen);
 					findLovePanel.getElement().getStyle().setMargin(10, Unit.PX);
