@@ -133,28 +133,28 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		datumsBox.setValue(new Date());
 
 		//Befüllen der List Box
-		geschlechtListBox.addItem("männlich");
-		geschlechtListBox.addItem("weiblich");
-		geschlechtListBox.addItem("andere");
+		geschlechtListBox.addItem("Männlich");
+		geschlechtListBox.addItem("Weiblich");
+		geschlechtListBox.addItem("Andere");
 
-		haarfarbeListBox.addItem("blond");
-		haarfarbeListBox.addItem("brunette");
-		haarfarbeListBox.addItem("schwarz");
-		haarfarbeListBox.addItem("rot");
-		haarfarbeListBox.addItem("grau");
-		haarfarbeListBox.addItem("andere");
+		haarfarbeListBox.addItem("Blond");
+		haarfarbeListBox.addItem("Brunette");
+		haarfarbeListBox.addItem("Schwarz");
+		haarfarbeListBox.addItem("Rot");
+		haarfarbeListBox.addItem("Grau");
+		haarfarbeListBox.addItem("Andere");
 
-		religionListBox.addItem("christlich");
-		religionListBox.addItem("muslimisch");
-		religionListBox.addItem("buddhistisch");
-		religionListBox.addItem("hinduitsisch");
-		religionListBox.addItem("jüdisch");
-		religionListBox.addItem("keine");
-		religionListBox.addItem("andere");
+		religionListBox.addItem("Christlich");
+		religionListBox.addItem("Muslimisch");
+		religionListBox.addItem("Buddhistisch");
+		religionListBox.addItem("Hinduistisch");
+		religionListBox.addItem("Jüdisch");
+		religionListBox.addItem("Keine");
+		religionListBox.addItem("Andere");
 
 		raucherListBox.addItem("Ja");
 		raucherListBox.addItem("Nein");
-		raucherListBox.addItem("ab und an");
+		raucherListBox.addItem("Ab und an");
 
 		//Anfügen der FlexTable und Buttons an das Panel
 		this.add(profilUpdateButton);
