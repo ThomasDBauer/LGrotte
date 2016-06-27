@@ -371,20 +371,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	public Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception{
-		Vector<ProfilEigenschaft> profilInfos = ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
+		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				email);
-		Vector<ProfilEigenschaft> result = new Vector<ProfilEigenschaft>();
-		for(int i = 0; i < profilInfos.size();i++){
-			if(profilInfos.elementAt(i).getEigenschaft().getAuswahl() == 0){
-				result.add(profilInfos.elementAt(i));
-			}
-		}
-		for(int i = 0; i < profilInfos.size(); i++){
-			if(profilInfos.elementAt(i).getEigenschaft().getAuswahl() == 1){
-				result.add(profilInfos.elementAt(i));
-			}
-		}
-		return result;
 	}
 	
 
