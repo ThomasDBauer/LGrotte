@@ -39,7 +39,7 @@ public class SuchprofilInfoMapper {
 				+ "email varchar(35) NOT NULL, info_id int NOT NULL, PRIMARY KEY (suchprofilname, email, info_id), "
 				+ "FOREIGN KEY(email) REFERENCES profil(email) ON UPDATE CASCADE ON DELETE RESTRICT, "
 				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) ON DELETE RESTRICT,"
-				+ "FOREIGN KEY (suchprofilname) REFERENCES suchprofil(suchprofilname) ON UPDATE RESTRICT)");
+				+ "FOREIGN KEY (suchprofilname) REFERENCES suchprofil(suchprofilname) ON UPDATE RESTRICT ON DELETE CASCADE)");
 		create.execute();
 	}
 	

@@ -17,8 +17,10 @@ import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
+import de.server.db.seeds.EigenschaftSeeds;
 import de.shared.ReportService;
 import de.shared.BO.Besuch;
+import de.shared.BO.Eigenschaft;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.Match;
@@ -37,7 +39,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	private BesucheMapper besucheMapper = BesucheMapper.besucheMapper();
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
 	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.suchprofilInfoMapper();
-	
+	private EigenschaftMapper eMapper = EigenschaftMapper.eigenschaftMapper();
 	
 	
 	private Profil user;
@@ -314,7 +316,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 				}
 			}
 		}
-		return aehnlichkeit;
+		/*
+		 * die Rechnung lautet:
+		 * Punkte / (zwei Attribute + Eigenschaften)
+		 */
+		Vector<Eigenschaft>eigenschaften = eMapper.getEigenschaften();
+		return (aehnlichkeit * 10) / (eigenschaften.size() + 2);
 	}
 	
 	public Vector<ProfilReport> sortierenNachAehn(Vector<ProfilReport>reports){

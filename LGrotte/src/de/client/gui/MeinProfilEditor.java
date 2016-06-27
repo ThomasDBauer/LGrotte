@@ -40,8 +40,11 @@ public class MeinProfilEditor extends VerticalPanel {
 	public MeinProfilEditor() throws Exception {
 		this.add(speicherButton);
 		addEigenschaftenButton.setStylePrimaryName("grotte-Button");
-		speicherButton.setStylePrimaryName("grotte-Button");
 		loeschenButton.setStylePrimaryName("grotte-Button");
+		Image saveImage = new Image("speichern.png");
+		saveImage.setStylePrimaryName("Button-img-Image");
+		speicherButton.getElement().appendChild(saveImage.getElement());
+		speicherButton.setStylePrimaryName("Button-img");
 		this.add(eigenschaftenPanel);
 		loadProfilEigenschaften();
 		eigenschaftenPanel.add(table);
