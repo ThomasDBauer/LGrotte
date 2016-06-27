@@ -319,13 +319,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		Vector<ProfilEigenschaft> results = SuchprofilInfoMapper.suchprofilInfoMapper().
 				getSuchprofilInfosByEmail(user.getEmail(), spname);
 		Vector<Eigenschaft> eigenschaften = EigenschaftMapper.eigenschaftMapper().getEigenschaften();
-		System.out.println(results.size() + " Einträge aus der DB gelesen.");
 		if(results.size()== 0){
-			System.out.println("results ist 0");
 			return  fillEigenschaften(results, eigenschaften);
 		}
 		if(results.size()<eigenschaften.size()){
-			System.out.println("results < eigenschaften");
 			return  fillEigenschaften(results, eigenschaften);
 		}
 		return results;
@@ -374,8 +371,20 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	public Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception{
-		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
+		Vector<ProfilEigenschaft> profilInfos = ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				email);
+		Vector<ProfilEigenschaft> result = new Vector<ProfilEigenschaft>();
+		for(int i = 0; i < profilInfos.size();i++){
+			if(profilInfos.elementAt(i).getEigenschaft().getAuswahl() == 0){
+				result.add(profilInfos.elementAt(i));
+			}
+		}
+		for(int i = 0; i < profilInfos.size(); i++){
+			if(profilInfos.elementAt(i).getEigenschaft().getAuswahl() == 1){
+				result.add(profilInfos.elementAt(i));
+			}
+		}
+		return result;
 	}
 	
 
