@@ -70,15 +70,18 @@ public class MeinProfilEditor extends VerticalPanel {
 		haarfarbeListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
 		religionListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
 		raucherListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
-		koerpergroesseLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		geschlechtLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		religionLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		raucherLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		geburtsdatumLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		datumsinhalt.setStyleName("Profilbearbeiten-Boxen", true);
-		fNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		lNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
+		koerpergroesseLabel.setStyleName("Profilbearbeiten-Label", true);
+		geschlechtLabel.setStyleName("Profilbearbeiten-Label", true);
+		haarfarbeLabel.setStyleName("Profilbearbeiten-Label", true);
+		religionLabel.setStyleName("Profilbearbeiten-Label", true);
+		raucherLabel.setStyleName("Profilbearbeiten-Label", true);
+		geburtsdatumLabel.setStyleName("Profilbearbeiten-Label", true);
+		datumsinhalt.setStyleName("Profilbearbeiten-Label", true);
+		fNameLabel.setStyleName("Profilbearbeiten-Label", true);
+		lNameLabel.setStyleName("Profilbearbeiten-Label", true);
+		fNameTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
+		lNameTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
+		koerpergroesseTextBox.setStylePrimaryName("Profilbearbeiten-TextBox");
 		flexTable.setStylePrimaryName("Table-Margin");
 		
 		Image speicherImage = new Image("speichern.png");
