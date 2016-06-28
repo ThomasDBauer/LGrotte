@@ -48,9 +48,10 @@ public class MeinProfilEditor extends VerticalPanel {
 		speicherButton.setStylePrimaryName("Button-img");
 		this.add(eigenschaftenPanel);
 		loadProfilEigenschaften();
+		table.setStylePrimaryName("Table-Margin");
 		eigenschaftenPanel.add(table);
 		
-		this.addStyleName("Attribute-bearbeiten");
+//		this.addStyleName("Attribute-bearbeiten");
 		
 		
 	}
@@ -70,12 +71,12 @@ public class MeinProfilEditor extends VerticalPanel {
 				eigenschaften.add(e);
 				Info info = result.elementAt(i).getInfo();
 				Label l = new Label(e.getErlaeuterung());
-				l.setStyleName("Profilbearbeiten-Label", true);
+				l.setStyleName("Profilbearbeiten-Boxen", true);
 				table.setWidget(i, 0, l);
 				if(e.getAuswahl()==0){
 					TextBox tb = new TextBox();
 					tb.setText(info.getValue());
-					tb.setStylePrimaryName("Profilbearbeiten-TextBox");
+//					tb.setStylePrimaryName("Profilbearbeiten-TextBox");
 					table.setWidget(i, 1, tb);
 					hashmap.put(e, tb);
 				}else{

@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -21,14 +22,19 @@ import de.shared.BO.Profil;
 		private VerticalPanel thisPanel = this;
 		private FlexTable table = new FlexTable();
 		private Vector<String> emailBuffer = new Vector<String>();
-		private Button merkButton = new Button("Profil l&oumlschen", new LoeschenHandler());
+		private Button aufhebenButton = new Button("Profil l&oumlschen", new LoeschenHandler());
 		private VerticalPanel resultPanel = new VerticalPanel();
 		private HorizontalPanel controlPanel = new HorizontalPanel();
 
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
 		public MerkzettelEditor() throws Exception {
-			merkButton.setStylePrimaryName("grotte-Button");
+			aufhebenButton.setStylePrimaryName("grotte-Button");
+			aufhebenButton.setStyleName("Margin-Bottom", true);
+			Image aufhebenImage = new Image("update.png");
+			aufhebenImage.setStylePrimaryName("Button-img-Image");
+			aufhebenButton.getElement().appendChild(aufhebenImage.getElement());
+			aufhebenButton.setStylePrimaryName("Button-img");
 //			controlPanel.add(sperrButton);
 			table.addStyleName("findLove-table");
 			table.setWidth("45em");
@@ -56,9 +62,9 @@ import de.shared.BO.Profil;
 			public void onSuccess(Vector<Profil> result) {
 				if (result.size() == 0) {
 					resultPanel.add(new Label("Keine Ergebnisse"));
-					merkButton.removeFromParent();
+					aufhebenButton.removeFromParent();
 				} else {
-					controlPanel.add(merkButton);
+					controlPanel.add(aufhebenButton);
 					for (int i = 0; i < result.size(); i++) {
 
 						Profil p = result.elementAt(i);
@@ -103,7 +109,7 @@ import de.shared.BO.Profil;
 
 		private class LoeschenHandler implements ClickHandler {
 			public void onClick(ClickEvent e) {
-				merkButton.setEnabled(false);
+				aufhebenButton.setEnabled(false);
 				try {
 					ClientSideSettings.getEditorService().deleteMerkzettel(
 							emailBuffer, new DeleteCallback());
@@ -121,7 +127,7 @@ import de.shared.BO.Profil;
 		}
 
 		public void onSuccess(Object result) {
-			merkButton.setEnabled(true);
+			aufhebenButton.setEnabled(true);
 			emailBuffer.clear();
 			try {
 				loadProfiles();

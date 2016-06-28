@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -22,7 +23,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 	private VerticalPanel thisPanel = this;
 	private FlexTable table = new FlexTable();
 	private Vector<String> emailBuffer = new Vector<String>();
-	private Button merkButton = new Button("Kontaktsperre aufheben", new AufhebenHandler());
+	private Button aufhebenButton = new Button("Kontaktsperre aufheben", new AufhebenHandler());
 	private VerticalPanel resultPanel = new VerticalPanel();
 	private HorizontalPanel controlPanel = new HorizontalPanel();
 
@@ -31,7 +32,12 @@ public class KontaktsperreEditor extends VerticalPanel {
 	public KontaktsperreEditor() throws Exception {
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
-		merkButton.setStylePrimaryName("grotte-Button");
+		aufhebenButton.setStylePrimaryName("grotte-Button");
+		aufhebenButton.setStyleName("Margin-Bottom", true);
+		Image aufhebenImage = new Image("update.png");
+		aufhebenImage.setStylePrimaryName("Button-img-Image");
+		aufhebenButton.getElement().appendChild(aufhebenImage.getElement());
+		aufhebenButton.setStylePrimaryName("Button-img");
 		loadProfiles();
 		this.add(controlPanel);
 		this.add(resultPanel);
@@ -53,9 +59,9 @@ public class KontaktsperreEditor extends VerticalPanel {
 		public void onSuccess(Vector<Profil> result) {
 			if (result.size() == 0) {
 				resultPanel.add(new Label("Keine Ergebnisse"));
-				merkButton.removeFromParent();
+				aufhebenButton.removeFromParent();
 			} else {
-				controlPanel.add(merkButton);
+				controlPanel.add(aufhebenButton);
 
 				for (int i = 0; i < result.size(); i++) {
 
@@ -100,7 +106,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 
 	private class AufhebenHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-			merkButton.setEnabled(false);
+			aufhebenButton.setEnabled(false);
 			try {
 				ClientSideSettings.getEditorService().deleteKontaktsperre(
 						emailBuffer, new DeleteCallback());
@@ -118,7 +124,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 			}
 
 			public void onSuccess(Object result) {
-				merkButton.setEnabled(true);
+				aufhebenButton.setEnabled(true);
 				emailBuffer.clear();
 				try {
 					loadProfiles();

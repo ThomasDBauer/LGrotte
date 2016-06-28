@@ -41,13 +41,12 @@ public class Navigation extends HorizontalPanel {
 
 	private class ProfilPopupClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-//			Button active = (Button) e.getSource();
-//
+			// Button active = (Button) e.getSource();
+			//
 			RootPanel.get("Zusatz").clear();
 			RootPanel.get("Inhalt").clear();
 			RootPanel.get("Content").clear();
-			RootPanel.get("Inhalt").add(new HTML(
-					"<h2>Dein Profil</h2>"));
+			RootPanel.get("Inhalt").add(new HTML("<h2>Dein Profil</h2>"));
 			RootPanel.get("Inhalt").add(new ProfilAnzeigenEditor());
 			RootPanel.get("Navi-Pop").add(popup);
 		}
@@ -86,7 +85,7 @@ public class Navigation extends HorizontalPanel {
 				RootPanel.get("Content").clear();
 				RootPanel.get("Navi-Pop").clear();
 				RootPanel.get("Inhalt").add(new HTML("<h2>Impressum</h2>"));
-//				RootPanel.get("Inhalt").add(imp.getImpressum());
+				RootPanel.get("Inhalt").add(new Impressum());
 				break;
 			}
 		};
