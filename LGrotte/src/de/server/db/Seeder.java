@@ -2,10 +2,8 @@ package de.server.db;
 
 import de.server.db.seeds.EigenschaftSeeds;
 import de.server.db.seeds.InfoSeeds;
-import de.server.db.seeds.MerkzettelSeeds;
 import de.server.db.seeds.ProfilInfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
-import de.server.db.seeds.SuchprofilInfoSeeds;
 import de.server.db.seeds.SuchprofilSeeds;
 
 public class Seeder {
@@ -71,7 +69,6 @@ public class Seeder {
 		SuchprofilInfoMapper.suchprofilInfoMapper().createSuchProfilInfoTable();
 		BesucheMapper.besucheMapper().createBesucheTable();
 		AuswahlMapper.auswahlMapper().createAuswahlTable();
-//		AehnlichkeitMapper.aehnlichkeitMapper().createAehnlichkeitTable();    <-- brauch mer nimmer
 	}
 
 	private void seed() throws Exception{
@@ -87,14 +84,8 @@ public class Seeder {
 		//ProfilInfos
 		ProfilInfoSeeds pis = new ProfilInfoSeeds();
 		pis.seedProfilinfoTable();
-//		SuchprofilInfoSeeds spis = new SuchprofilInfoSeeds();
-//		spis.seedSuchprofilInfo();
 		
 		SuchprofilSeeds sps = new SuchprofilSeeds();
 		sps.seedSuchprofilTable();
-		
-		// MerkzettelSeeds
-		//MerkzettelSeeds mz = new MerkzettelSeeds();
-		//mz.seedMerkzettelTable();
 	}
 }
