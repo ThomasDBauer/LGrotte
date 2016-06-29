@@ -80,7 +80,7 @@ public class LGrotte implements EntryPoint {
 									new Label("Willkommen in der Grotte, "
 											+ result.getFname()));
 							RootPanel.get("Inhalt").add(
-									new ProfilAnzeigenEditor(result));
+									new ProfilAnzeigenEditor());
 							}
 							logOutLink.setHref(result.getLogoutUrl());
 							logOutUrl = logOutLink.getHref();

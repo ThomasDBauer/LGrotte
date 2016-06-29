@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.client.ClientSideSettings;
 import de.shared.BO.Auswahl;
@@ -36,7 +37,7 @@ public class MeinProfilEditor extends VerticalPanel {
 	private HashMap<Eigenschaft, Widget> hashmap = new HashMap<Eigenschaft, Widget>();
 	private Vector<Eigenschaft> eigenschaften = new Vector<Eigenschaft>();
 
-	// Konstruktor
+	//Konstruktor
 	public MeinProfilEditor() throws Exception {
 		this.add(speicherButton);
 		addEigenschaftenButton.setStylePrimaryName("grotte-Button");
@@ -47,7 +48,11 @@ public class MeinProfilEditor extends VerticalPanel {
 		speicherButton.setStylePrimaryName("Button-img");
 		this.add(eigenschaftenPanel);
 		loadProfilEigenschaften();
+		table.setStylePrimaryName("Table-Margin");
 		eigenschaftenPanel.add(table);
+		
+//		this.addStyleName("Attribute-bearbeiten");
+		
 		
 	}
 	
@@ -65,14 +70,18 @@ public class MeinProfilEditor extends VerticalPanel {
 				Eigenschaft e = result.elementAt(i).getEigenschaft();
 				eigenschaften.add(e);
 				Info info = result.elementAt(i).getInfo();
-				table.setWidget(i, 0, new Label(e.getErlaeuterung()));
+				Label l = new Label(e.getErlaeuterung());
+				l.setStyleName("Profilbearbeiten-Boxen", true);
+				table.setWidget(i, 0, l);
 				if(e.getAuswahl()==0){
 					TextBox tb = new TextBox();
 					tb.setText(info.getValue());
+//					tb.setStylePrimaryName("Profilbearbeiten-TextBox");
 					table.setWidget(i, 1, tb);
 					hashmap.put(e, tb);
 				}else{
 					ListBox lb = new ListBox();
+//					lb.setStylePrimaryName("Profilbearbeiten-ListBoxen");
 					try {
 						ClientSideSettings.getEditorService().getAuswahlForEigenschaft(e,
 								new GetAuswahlCallback(lb, info.getValue()));

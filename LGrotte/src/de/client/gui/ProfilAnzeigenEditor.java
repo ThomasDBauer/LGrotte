@@ -1,7 +1,10 @@
 package de.client.gui;
 
+import java.util.Vector;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -21,47 +24,79 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 	private Label religion = new Label();
 	private Label raucher = new Label();
 	private Label bday = new Label();
-
-	public ProfilAnzeigenEditor(Profil result) {
+	private Label vorname = new Label("Vorname");
+	private Label nachname = new Label ("Nachname");
+	private Label geschlecht1 = new Label("Geschlecht");
+	private Label haarfarbe1 = new Label("Haarfarbe");
+	private Label koerpergroesse = new Label("Körpergröße");
+	private Label religion1 = new Label("Religion");
+	private Label raucher1 = new Label("Raucher");
+	private Label geburtstag = new Label("Geburtsdatum");
+	private Vector<Label> labels = new Vector<Label>();
 		
-		vpanel.add(profilAnzeigenTable);
-
-		fname.setText(result.getFname());
-		lname.setText(result.getLname());
-		geschlecht.setText(result.getGeschlecht());
-		haarfarbe.setText(result.getHaarfarbe());
-		koerper.setText(Integer.toString(result.getKoerpergroesse()));
-		religion.setText(result.getReligion());
-		raucher.setText(result.getRaucher());
-		bday.setText(String.valueOf(result.getGeburtsdatum()));
-
-		profilAnzeigenTable.setWidget(0, 0, new Label("Vorname"));
-		profilAnzeigenTable.setWidget(0, 1, fname);
-
-		profilAnzeigenTable.setWidget(1, 0, new Label("Nachname"));
-		profilAnzeigenTable.setWidget(1, 1, lname);
-
-		profilAnzeigenTable.setWidget(2, 0, new Label("Geschlecht"));
-		profilAnzeigenTable.setWidget(2, 1, geschlecht);
-
-		profilAnzeigenTable.setWidget(3, 0, new Label("Haarfarbe"));
-		profilAnzeigenTable.setWidget(3, 1, haarfarbe);
-
-		profilAnzeigenTable.setWidget(4, 0, new Label("Körpergröße"));
-		profilAnzeigenTable.setWidget(4, 1, koerper);
-
-		profilAnzeigenTable.setWidget(5, 0, new Label("Religion"));
-		profilAnzeigenTable.setWidget(5, 1, religion);
-
-		profilAnzeigenTable.setWidget(6, 0, new Label("Raucher"));
-		profilAnzeigenTable.setWidget(6, 1, raucher);
-
-		profilAnzeigenTable.setWidget(7, 0, new Label("Geburtsdatum"));
-		profilAnzeigenTable.setWidget(7, 1, bday);
-
-		profilAnzeigenTable.addStyleName("findLove-table td");
-		profilAnzeigenTable.setWidth("45em");
-
-	}
+		public ProfilAnzeigenEditor() {
+			try {
+				ClientSideSettings.getEditorService().getProfil(
+						new ProfilAnzeigenCallback());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			labels.addElement(fname);
+			labels.addElement(vorname);
+			labels.addElement(lname);
+			labels.addElement(nachname);
+			labels.addElement(geschlecht);
+			labels.addElement(geschlecht1);
+			labels.addElement(haarfarbe);
+			labels.addElement(haarfarbe1);
+			labels.addElement(koerper);
+			labels.addElement(koerpergroesse);
+			labels.addElement(religion);
+			labels.addElement(religion1);
+			labels.addElement(raucher);
+			labels.addElement(raucher1);
+			labels.addElement(bday);
+			labels.addElement(geburtstag);
+			
+			for (int i = 0; i < labels.size(); i++){
+				
+				labels.get(i).setStylePrimaryName("Profil-Anzeigen-Label");
+			}
+			
+			for (int i = 0; i < labels.size(); i++){
+				if(i%2 == 0){
+					HorizontalPanel panel = new HorizontalPanel();
+					panel.add(labels.get(i+1));
+					panel.add(labels.get(i));
+					profilAnzeigenTable.setWidget(i/2, 0, panel);
+				}else{
+				}
+			}
+			
+			profilAnzeigenTable.addStyleName("findLove-table td");
+			profilAnzeigenTable.setWidth("25em");
+			
+			vpanel.add(profilAnzeigenTable);
+		}
+		
+		private class ProfilAnzeigenCallback implements AsyncCallback<Profil> {
+			public void onFailure(Throwable caught) {
+			}
+			public void onSuccess(Profil result) {
+				fname.setText(result.getFname());
+				lname.setText(result.getLname());
+				geschlecht.setText(result.getGeschlecht());
+				haarfarbe.setText(result.getHaarfarbe());
+				koerper.setText(Integer.toString(result.getKoerpergroesse()));
+				religion.setText(result.getReligion());
+				raucher.setText(result.getRaucher());
+				bday.setText(String.valueOf(result.getGeburtsdatum()));	
+			}
+			
+		}
+		
+		
+		
+		
 
 }

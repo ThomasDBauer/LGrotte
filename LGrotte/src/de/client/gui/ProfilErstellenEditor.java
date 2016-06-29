@@ -66,10 +66,6 @@ public class ProfilErstellenEditor extends VerticalPanel {
 	public ProfilErstellenEditor() {
 		this.addStyleName("Attribute-bearbeiten");
 		profilUpdateButton.setStylePrimaryName("grotte-Button");
-		geschlechtListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
-		haarfarbeListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
-		religionListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
-		raucherListBox.setStylePrimaryName("Profilbearbeiten-ListBoxen");
 		koerpergroesseLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		geschlechtLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
