@@ -1,9 +1,5 @@
 package de.client;
 
-import java.util.Vector;
-
-import org.apache.bcel.generic.GOTO;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -12,30 +8,22 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.InsertPanel.ForIsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.client.gui.FindLove;
 import de.client.gui.LogOutPopUp;
-import de.client.gui.MeinProfilEditor;
 import de.client.gui.Navigation;
 import de.client.gui.ProfilAnzeigenEditor;
-import de.client.gui.ProfilEditor;
 import de.client.gui.ProfilErstellenEditor;
 import de.client.temp.SeedButton;
-import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
 import de.shared.LoginServiceAsync;
-import de.shared.ReportService;
 import de.shared.ReportServiceAsync;
 import de.shared.BO.Profil;
-import de.shared.RO.ProfilInformation;
 
 public class LGrotte implements EntryPoint {
 
@@ -46,8 +34,6 @@ public class LGrotte implements EntryPoint {
 	private final Button loginButton = new Button("Anmelden");
 	private final Anchor logOutLink = new Anchor("Abmelden");
 	private EditorServiceAsync editorService;
-	private ReportServiceAsync reportService;
-	private TestServiceAsync testService = GWT.create(TestService.class);
 	private LoginServiceAsync loginService;
 	private Button logOutButton = new Button("Abmelden");
 	public static LogOutPopUp logOutPop = new LogOutPopUp();

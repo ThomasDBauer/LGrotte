@@ -19,7 +19,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.report.HTMLWriter;
-import de.server.db.SuchprofilMapper;
 import de.shared.LoginServiceAsync;
 import de.shared.ReportServiceAsync;
 import de.shared.BO.Profil;
