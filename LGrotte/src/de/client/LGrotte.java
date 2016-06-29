@@ -49,7 +49,7 @@ public class LGrotte implements EntryPoint {
 	private TestServiceAsync testService = GWT.create(TestService.class);
 	private LoginServiceAsync loginService;
 	private Button logOutButton = new Button("Abmelden");
-	public LogOutPopUp logOutPop = new LogOutPopUp();
+	public static LogOutPopUp logOutPop = new LogOutPopUp();
 	public static String logOutUrl;
 	private HorizontalPanel naviPanel = new HorizontalPanel();
 
@@ -128,12 +128,12 @@ public class LGrotte implements EntryPoint {
 				});
 	}
 
-	public LogOutPopUp getLogOutPop() {
+	public static LogOutPopUp getLogOutPop() {
 		return logOutPop;
 	}
 
-	public void setLogOutPop(LogOutPopUp logOutPop) {
-		this.logOutPop = logOutPop;
+	public static void setLogOutPop(LogOutPopUp hideIt) {
+		logOutPop = hideIt;
 	}
 
 	private class SetUserCallback implements AsyncCallback {
@@ -142,7 +142,6 @@ public class LGrotte implements EntryPoint {
 
 		public void onSuccess(Object result) {
 			try {
-//				RootPanel.get().add(new FindLove());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

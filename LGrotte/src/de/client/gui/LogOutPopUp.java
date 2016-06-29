@@ -18,12 +18,13 @@ public class LogOutPopUp extends PopupPanel {
 		public final Button jaButton = new Button(
 				"Ja", new LogOutClickHandler());
 		public final Button neinButton = new Button("Nein", new HideClickHandler());
-		private Label logOutText = new Label("Moechten Sie sich wirklich abmelden?");
+		private Label logOutText = new Label("Möchtest du dich wirklich abmelden?");
 
 		public LogOutPopUp() {
 			super(true);
 			jaButton.setStylePrimaryName("logout-ja");
 			neinButton.setStylePrimaryName("logout-nein");
+			logOutText.setStylePrimaryName("logout-Text");
 			popupPanel.add(logOutText);
 			buttonPanel.add(jaButton);
 			buttonPanel.add(neinButton);
@@ -33,8 +34,10 @@ public class LogOutPopUp extends PopupPanel {
 		
 		public class HideClickHandler implements ClickHandler{
 			public void onClick(ClickEvent e) {
-				buttonPanel.clear();
-				logOutText.removeFromParent();
+				
+				LogOutPopUp hideIt= LGrotte.getLogOutPop();
+				hideIt.hide();
+				LGrotte.setLogOutPop(hideIt);
 			}
 		}
 
@@ -43,4 +46,6 @@ public class LogOutPopUp extends PopupPanel {
 				Window.open(LGrotte.logOutUrl, "_self", "");
 			}
 		}
+
+		
 }
