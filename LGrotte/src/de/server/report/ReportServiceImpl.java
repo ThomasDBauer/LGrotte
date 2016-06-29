@@ -1,16 +1,9 @@
 package de.server.report;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Vector;
 
-import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.server.db.BesucheMapper;
@@ -19,7 +12,6 @@ import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
-import de.server.db.seeds.EigenschaftSeeds;
 import de.shared.ReportService;
 import de.shared.BO.Besuch;
 import de.shared.BO.Eigenschaft;
