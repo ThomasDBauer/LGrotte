@@ -1,20 +1,17 @@
 package de.shared.RO;
 
-import de.shared.BO.Info;
-
-public class ProfilAttribut extends ProfilInformation{
+public class ProfilAttribut extends ProfilInformation {
 
 	/**
 	 * @author Thomas Bauer, Sedat Akar
 	 * 
-	 *         Zur Darstellung von Profilattributen, wie z.B.
-	 *         Alter, Raucher, Religion, Körpergröße
-	 *         Folgt dem Muster der Superklasse:
+	 *         Zur Darstellung von Profilattributen, wie z.B. Alter, Raucher,
+	 *         Religion, Kï¿½rpergrï¿½ï¿½e Folgt dem Muster der Superklasse:
 	 *         Eigenschaft : Info
-	 *         
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	public String getName() {
 		return super.getName();
@@ -30,9 +27,8 @@ public class ProfilAttribut extends ProfilInformation{
 		return super.getWert();
 	}
 
-	public void setWert(String wert){
+	public void setWert(String wert) {
 		super.setWert(wert);
 	}
-	
-	
+
 }
