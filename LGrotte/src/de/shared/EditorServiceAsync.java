@@ -15,7 +15,6 @@ import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilEigenschaft;
 
 public interface EditorServiceAsync {
-	void init(AsyncCallback callback) throws Exception;
 
 	void insertProfil(String email, String fname, String lname,
 			int koerpergroesse, String geschlecht, String religion,
