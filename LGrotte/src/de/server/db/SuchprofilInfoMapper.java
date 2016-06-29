@@ -3,17 +3,14 @@ package de.server.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
 
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Profil;
-import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
 import de.shared.BO.SuchprofilInfo;
 import de.shared.RO.ProfilEigenschaft;
-import de.shared.RO.ProfilInformation;
 
 public class SuchprofilInfoMapper {
 

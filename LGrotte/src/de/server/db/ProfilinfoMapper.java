@@ -10,16 +10,13 @@ import com.mysql.jdbc.PreparedStatement;
 
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
 
 import de.server.db.DBConnection;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.ProfilInfo;
-import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
-import de.shared.RO.ProfilInformation;
 
 public class ProfilinfoMapper {
 
