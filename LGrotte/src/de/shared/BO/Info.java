@@ -1,24 +1,19 @@
 package de.shared.BO;
 
-public class Info extends BusinessObject{
-	
-	/**
-	 * 
-	 */
+public class Info extends BusinessObject {
+
 	private static final long serialVersionUID = 1L;
 
-	//Der Primary Key
+	// Der Primary Key
 	private int id;
-	
-	//Der Wert
-	private String value;
-	
-	//Der Foreign Key auf 
-	private int eigenschaft;
-	
 
-	
-	//Get und Set Methoden
+	// Der Wert
+	private String value;
+
+	// Der Foreign Key auf
+	private int eigenschaft;
+
+	// Get und Set Methoden
 	public int getId() {
 		return id;
 	}
@@ -42,7 +37,5 @@ public class Info extends BusinessObject{
 	public void setEigenschaft(int eigenschaft) {
 		this.eigenschaft = eigenschaft;
 	}
-	
-	
-	
+
 }
