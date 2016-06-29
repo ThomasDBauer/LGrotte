@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import de.shared.BO.Kontaktsperre;
-import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 
 

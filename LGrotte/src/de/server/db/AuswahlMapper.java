@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.util.Vector;
 import de.shared.BO.Auswahl;
 import de.shared.BO.Eigenschaft;
-import de.shared.BO.Profil;
 
 public class AuswahlMapper {
 	private static AuswahlMapper auswahlmapper = null;
