@@ -21,7 +21,6 @@ import de.shared.RO.ProfilEigenschaft;
  */
 @RemoteServiceRelativePath("editor")
 public interface EditorService extends RemoteService {
-	void init() throws IllegalArgumentException;
 
 	void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht, String religion,
 			String haarfarbe, String raucher, Date geburtsdatum) throws Exception;
@@ -74,8 +73,6 @@ public interface EditorService extends RemoteService {
 	void deleteKontaktsperre(Vector<String> emails) throws Exception;
 	
 	Suchprofil getSuchprofileByName(String suchprofilname) throws Exception;
-	
-//	void insertProfilInfo(ProfilInfo pi) throws Exception;
 	
 	void deleteInfo(Info info) throws Exception;
 	

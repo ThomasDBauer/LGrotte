@@ -1,6 +1,5 @@
 package de.server.login;
 
-import java.sql.Date;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -13,13 +12,7 @@ import de.shared.BO.Profil;
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
 
 	private static final long serialVersionUID = 1L;
-
-
-	public String hallo(){
-		return "Ich bin Lukes Server";
-	}
 	
-
 	@SuppressWarnings("deprecation")
 	public Profil login(String requestUri) throws Exception {
 		UserService userService = UserServiceFactory.getUserService();

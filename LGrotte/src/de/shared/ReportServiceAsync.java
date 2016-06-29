@@ -18,18 +18,11 @@ public interface ReportServiceAsync {
 	
 	void setUser(Profil p, AsyncCallback callback);
 	
-//	void getProfilInfos(AsyncCallback<Vector<ProfilInformation>>callback) throws Exception;
-
 	void getReports(AsyncCallback<Vector<ProfilReport>> callback) throws Exception;
 	
 	void getReports(Suchprofil sp, AsyncCallback<Vector<ProfilReport>> callback) throws Exception;
 	
-//	void createAlleProfileReport(AsyncCallback<AlleProfileReport> callback);
-	
-//	void getReportsBySuchprofil(Suchprofil sp, AsyncCallback<Vector<ProfilReport>>callback) throws Exception;
-	
 	void getSuchprofile(AsyncCallback<Vector<Suchprofil>>callback) throws Exception;
-	
 	
 	void getNotVisitedReports(AsyncCallback<Vector<ProfilReport>>callback) throws Exception;
 	

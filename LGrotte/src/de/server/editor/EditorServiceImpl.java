@@ -44,11 +44,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		user = p;
 	}
 
-	public void init() throws IllegalArgumentException {
-		this.pMapper = ProfilMapper.profilMapper();
-		this.eMapper = EigenschaftMapper.eigenschaftMapper();
-	}
-
 	// Methoden rund um das Profil
 	// Profil erstellen
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
