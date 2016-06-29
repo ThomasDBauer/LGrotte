@@ -1,12 +1,7 @@
 package de.server.report;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -17,7 +12,6 @@ import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
 import de.server.db.SuchprofilMapper;
-import de.server.db.seeds.EigenschaftSeeds;
 import de.shared.ReportService;
 import de.shared.BO.Besuch;
 import de.shared.BO.Eigenschaft;
@@ -65,6 +59,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	/*
 	 * Erzeugt den ProfilReport f�r ein einzelnes Profil
 	 */
+	@SuppressWarnings("deprecation")
 	public ProfilReport getProfilReport(Profil p) throws Exception {
 		// Auslesen des Profils aus der DB
 		// Erstellen des Reports
@@ -90,19 +85,9 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		geburtsdatum.setName("Geburtsdatum");
 		geburtsdatum.setWert(String.valueOf(p.getGeburtsdatum()));
 
-//		ProfilAttribut alter = new ProfilAttribut();
-//		alter.setName("Alter");
-//
-//		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//		Date geburtsDatum = (Date) formatter.parse(String.valueOf(p.getGeburtsdatum()));
-//		
-//		Calendar birthDay = Calendar.getInstance();
-//		birthDay.setTime(geburtsDatum);
-//
-//		Calendar datumAktuell = Calendar.getInstance();
-//		datumAktuell.setTime(new Date());
-//
-//		alter.setWert(String.valueOf(datumAktuell.get(Calendar.YEAR)- birthDay.get(Calendar.YEAR)));
+		ProfilAttribut alter = new ProfilAttribut();
+		alter.setName("Alter");
+		alter.setWert(Integer.toString(getAlter(p.getGeburtsdatum())));
 
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
@@ -110,7 +95,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		report.addAttribut(raucher);
 		report.addAttribut(koerpergroesse);
 		report.addAttribut(geburtsdatum);
-//		report.addAttribut(alter);
+		report.addAttribut(alter);
 		// 2. Eigenschaften
 		Vector<ProfilEigenschaft> profilinfos = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
 		for (int i = 0; i < profilinfos.size(); i++) {
@@ -211,6 +196,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		for (int i = 0; i < profile.size(); i++) {
 			boolean ok = true;
 			Profil p = profile.elementAt(i);
+			System.out.println(p.getFname() + ": ");
 			// Eigene Identität
 			if (user.getEmail().equals(p.getEmail())) {
 				ok = false;
@@ -218,50 +204,62 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			// Geschlecht
 			if (!sp.getGeschlecht().equals("Egal")) {
 				if (!sp.getGeschlecht().equals(p.getGeschlecht()) || p.getGeschlecht() == null) {
+					System.out.println("Geschl");
 					ok = false;
 				}
 			}
 			// Raucher
 			if (!sp.getRaucher().equals("Egal")) {
 				if (!sp.getRaucher().equals(p.getRaucher()) || p.getRaucher() == null) {
+					System.out.println("Raucher");
 					ok = false;
 				}
 			}
 			// Religion
 			if (!sp.getReligion().equals("Egal")) {
 				if (!sp.getReligion().equals(p.getReligion())) {
-					profile.remove(p);
+					ok = false;
 				}
 			}
 			// Haarfarbe
 			if (!sp.getHaarfarbe().equals("Egal")) {
 				if (!sp.getHaarfarbe().equals(p.getHaarfarbe())) {
-					profile.remove(p);
+					ok = false;
 				}
+			}
+			//Alter
+			if(sp.getMinAlter() > getAlter(p.getGeburtsdatum()) || 
+					sp.getMaxAlter() < getAlter(p.getGeburtsdatum())){
+				ok = false;
+			}
+			//Koerpergroesse
+			if(sp.getMinGroesse() > p.getKoerpergroesse() ||
+					sp.getMaxGroesse() < p.getKoerpergroesse()){
+				ok = false;
 			}
 
 			// ProfilEigenschaften aussortieren
-			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
-					sp.getSuchprofilname());
-			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
-			if (suchPEs != null) {
-				boolean peOK = false;
-				for (int u = 0; u < suchPEs.size(); u++) {
-					if (fremdPEs != null) {
-						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
-						for (int z = 0; z < fremdPEs.size(); z++) {
-							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
-							if (suchPE.getEigenschaft().getId() == fremdPE.getEigenschaft().getId()) {
-								if (fremdPE.getWert().equals(suchPE.getWert())) {
-									peOK = true;
-								}
-							}
-						}
-					}
-				}
-				if (peOK == false)
-					ok = false;
-			}
+//			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
+//					sp.getSuchprofilname());
+//			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
+//			if (suchPEs != null) {
+//				boolean peOK = false;
+//				for (int u = 0; u < suchPEs.size(); u++) {
+//					if (fremdPEs != null) {
+//						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
+//						for (int z = 0; z < fremdPEs.size(); z++) {
+//							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
+//							if (suchPE.getEigenschaft().getId() == fremdPE.getEigenschaft().getId()) {
+//								if (fremdPE.getWert().equals(suchPE.getWert())) {
+//									peOK = true;
+//								}
+//							}
+//						}
+//					}
+//				}
+//				if (peOK == false)
+//					ok = false;
+//			}
 
 			// TODO Größe und Alter
 			if (ok)
@@ -293,7 +291,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			aehnlichkeit += 10;
 		if (user.getReligion().equals(vergleich.getReligion()))
 			aehnlichkeit += 10;
-		// TODO Alter mit Sedats getAlter()
 
 		// ProfilInfos
 		Vector<ProfilEigenschaft> vergleichinfos = profilInfoMapper.getProfilInfosByEmail(vergleich.getEmail());
@@ -331,5 +328,31 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 		return reports;
 	}
+	/*
+	 * Hier wird das Alter anhand des Geburtsdatums berechnet.
+	 */
+	 public int getAlter(Date geburtsdatum) {
+		 String s = geburtsdatum.toString();
+		    String[] gebDaten = s.split("-");
+		    Date now = new Date();
+		    int nowMonth = now.getMonth() + 1;
+		    int nowYear = now.getYear() + 1900;
+		    int year = Integer.valueOf(gebDaten[0]);
+		    int month = Integer.valueOf(gebDaten[1]);
+		    int day = Integer.valueOf(gebDaten[2]);
+
+		    int result = nowYear - year;
+
+		    if (month > nowMonth) {
+		      result--;
+		    } else if (month == nowMonth) {
+		      int nowDay = now.getDate();
+
+		      if (day > nowDay) {
+		        result--;
+		      }
+		    }
+		    return result;
+		}
 
 }
