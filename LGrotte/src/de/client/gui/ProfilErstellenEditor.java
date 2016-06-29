@@ -72,8 +72,8 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		religionLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		raucherLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		geburtsdatumLabel.setStyleName("Profilbearbeiten-Boxen", true);
-		datumsinhalt.setStyleName("Profilbearbeiten-Boxen", true);
+//		geburtsdatumLabel.setStyleName("Profilbearbeiten-Boxen", true);
+//		datumsinhalt.setStyleName("Profilbearbeiten-Boxen", true);
 		fNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		lNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		flexTable.setStylePrimaryName("Table-Margin");
@@ -256,7 +256,7 @@ public class ProfilErstellenEditor extends VerticalPanel {
 					geschlechtListBox.setSelectedIndex(g);
 				}
 			}
-			for (int hf = 0; hf < 5; hf++) {
+			for (int hf = 0; hf < 6; hf++) {
 				if (haarfarbeListBox.getValue(hf) == result.getHaarfarbe()) {
 					haarfarbeListBox.setSelectedIndex(hf);
 				}

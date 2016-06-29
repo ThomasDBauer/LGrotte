@@ -210,6 +210,11 @@ public class SuchprofilEditor extends VerticalPanel {
 				buttonPanel.add(speichernButtonPanel);
 				speichernButtonPanel.add(abbrechenButton);
 				speichernButtonPanel.add(anlegenButton);
+				geschlechtListBox.setSelectedIndex(0);
+				raucherListBox.setSelectedIndex(0);
+				haarfarbeListBox.setSelectedIndex(0);
+				religionListBox.setSelectedIndex(0);
+				
 				
 				RootPanel.get("Zusatz").clear();
 				
@@ -226,21 +231,21 @@ public class SuchprofilEditor extends VerticalPanel {
 				anlegenTable.setWidget(3, 0, haarfarbeLabel);
 				anlegenTable.setWidget(3, 1, haarfarbeListBox);
 
-				anlegenTable.setWidget(4, 0, koerpergLabel);
+				anlegenTable.setWidget(5, 0, koerpergLabel);
 				
 				groessenPanel.add(von);
 				groessenPanel.add(minGroesseTextBox);
 				groessenPanel.add(bis);
 				groessenPanel.add(maxGroesseTextBox);
-				anlegenTable.setWidget(4, 1, groessenPanel);
+				anlegenTable.setWidget(5, 1, groessenPanel);
+				
+				anlegenTable.setWidget(4, 0, religionLabel);
+				anlegenTable.setWidget(4, 1, religionListBox);
 				
 				minGroesseTextBox.setVisibleLength(3);
 				minGroesseTextBox.setMaxLength(3);
 				maxGroesseTextBox.setVisibleLength(3);
 				maxGroesseTextBox.setMaxLength(3);
-
-				anlegenTable.setWidget(5, 0, religionLabel);
-				anlegenTable.setWidget(5, 1, religionListBox);
 
 				anlegenTable.setWidget(6, 0, alterLabel);
 				alterPanel.add(von);
@@ -283,7 +288,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					ClientSideSettings.getEditorService().insertSuchprofil(spNameTextBox.getText(),
 							geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex()),
 							raucherListBox.getItemText(raucherListBox.getSelectedIndex()),
-							religionListBox.getItemText(raucherListBox.getSelectedIndex()),
+							religionListBox.getItemText(religionListBox.getSelectedIndex()),
 							Integer.parseInt(minAlterTextBox.getText()), Integer.parseInt(maxAlterTextBox.getText()),
 							Integer.parseInt(minGroesseTextBox.getText()), Integer.parseInt(maxGroesseTextBox.getText()),
 							haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex()), new SPAnlegenCallback());
@@ -523,7 +528,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 					anzeigenTable.setWidget(3, 0, haarfarbeLabel);
 					anzeigenTable.setWidget(3, 1, haarfarbeListBox);
-					for (int g = 0; g < 6;g++) {
+					for (int g = 0; g < 7;g++) {
 						if(haarfarbeListBox.getValue(g) == result.getHaarfarbe()){
 							haarfarbeListBox.setSelectedIndex(g);
 						}
