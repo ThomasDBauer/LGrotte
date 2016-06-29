@@ -6,9 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Vector;
 
+import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.server.db.BesucheMapper;
@@ -65,6 +67,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	/*
 	 * Erzeugt den ProfilReport f�r ein einzelnes Profil
 	 */
+	@SuppressWarnings("deprecation")
 	public ProfilReport getProfilReport(Profil p) throws Exception {
 		// Auslesen des Profils aus der DB
 		// Erstellen des Reports
@@ -90,19 +93,9 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		geburtsdatum.setName("Geburtsdatum");
 		geburtsdatum.setWert(String.valueOf(p.getGeburtsdatum()));
 
-//		ProfilAttribut alter = new ProfilAttribut();
-//		alter.setName("Alter");
-//
-//		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//		Date geburtsDatum = (Date) formatter.parse(String.valueOf(p.getGeburtsdatum()));
-//		
-//		Calendar birthDay = Calendar.getInstance();
-//		birthDay.setTime(geburtsDatum);
-//
-//		Calendar datumAktuell = Calendar.getInstance();
-//		datumAktuell.setTime(new Date());
-//
-//		alter.setWert(String.valueOf(datumAktuell.get(Calendar.YEAR)- birthDay.get(Calendar.YEAR)));
+		ProfilAttribut alter = new ProfilAttribut();
+		alter.setName("Alter");
+		alter.setWert(Integer.toString(getAlter(p.getGeburtsdatum())));
 
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
@@ -110,7 +103,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		report.addAttribut(raucher);
 		report.addAttribut(koerpergroesse);
 		report.addAttribut(geburtsdatum);
-//		report.addAttribut(alter);
+		report.addAttribut(alter);
 		// 2. Eigenschaften
 		Vector<ProfilEigenschaft> profilinfos = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
 		for (int i = 0; i < profilinfos.size(); i++) {
@@ -331,5 +324,31 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 		return reports;
 	}
+	/*
+	 * Hier wird das Alter anhand des Geburtsdatums berechnet.
+	 */
+	 public int getAlter(Date geburtsdatum) {
+		    String dateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(geburtsdatum);
+		    String[] gebDaten = dateString.split("-");
+		    Date now = new Date();
+		    int nowMonth = now.getMonth() + 1;
+		    int nowYear = now.getYear() + 1900;
+		    int year = Integer.valueOf(gebDaten[0]);
+		    int month = Integer.valueOf(gebDaten[1]);
+		    int day = Integer.valueOf(gebDaten[2]);
+
+		    int result = nowYear - year;
+
+		    if (month > nowMonth) {
+		      result--;
+		    } else if (month == nowMonth) {
+		      int nowDay = now.getDate();
+
+		      if (day > nowDay) {
+		        result--;
+		      }
+		    }
+		    return result;
+		}
 
 }
