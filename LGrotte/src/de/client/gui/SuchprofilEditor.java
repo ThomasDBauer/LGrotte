@@ -37,7 +37,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				new SuchprofilHinzufuegenClickHandler());
 		private Button loeschenButton = new Button("L&oumlschen", 
 				new DeleteSuchprofilClickHandler());
-		private Button updateButton = new Button("Update", 
+		private Button speichernButton = new Button("Speichern", 
 				new UpdateSuchprofilClickHandler());
 		private Label keinSPLabel = new Label("Hey erstell doch ein Suchprofil!");
 		private Button abbrechenButton = new Button("Abbrechen", 
@@ -54,33 +54,35 @@ public class SuchprofilEditor extends VerticalPanel {
 		// Buttons, Labels und Table fürs Suchprofil hinzufügen
 		private FlexTable anlegenTable = new FlexTable();
 
-		private Label spNameLabel = new Label("Name:");
+		private Label spNameLabel = new Label("Name");
 		private TextBox spNameTextBox = new TextBox();
 
-		private Label geschlechtLabel = new Label("Geschlecht:");
+		private Label geschlechtLabel = new Label("Geschlecht");
 		private ListBox geschlechtListBox = new ListBox();
 
-		private Label raucherLabel = new Label("Raucher:");
+		private Label raucherLabel = new Label("Raucher");
 		private ListBox raucherListBox = new ListBox();
 
 		private Label haarfarbeLabel = new Label("Haarfarbe:");
 		private ListBox haarfarbeListBox = new ListBox();
 
 		private HorizontalPanel groessenPanel = new HorizontalPanel();
-		private Label koerpergLabel = new Label("Körpergröße:");
+		private Label koerpergLabel = new Label("Körpergröße(cm)");
 		private TextBox minGroesseTextBox = new TextBox();
 		private TextBox maxGroesseTextBox= new TextBox();
 	
 
-		private Label religionLabel = new Label("Religion:");
+		private Label religionLabel = new Label("Religion");
 		private ListBox religionListBox = new ListBox();
 	
 		
 		private HorizontalPanel alterPanel = new HorizontalPanel();
-		private Label alterLabel = new Label("Alter:");
+		private Label alterLabel = new Label("Alter");
 		private TextBox minAlterTextBox = new TextBox();
 		private TextBox maxAlterTextBox = new TextBox();
-
+		private Label von = new Label("von");
+		private Label bis = new Label("bis");
+		
 		private Button anlegenButton = new Button("Speichern", new SuchProfilAnlegenClickHandler());
 
 		private SuchprofilInfoEditor eigenschaftenEditor = new SuchprofilInfoEditor();
@@ -88,11 +90,49 @@ public class SuchprofilEditor extends VerticalPanel {
 		// Editor 
 		public SuchprofilEditor(SuchprofilInfoEditor spie) throws Exception {
 			this.eigenschaftenEditor = spie;
-			spHinzufuegenButton.setStylePrimaryName("grotte-Button");
-			loeschenButton.setStylePrimaryName("grotte-Button");
-			updateButton.setStylePrimaryName("grotte-Button");
+			
+			//CSS-Style der Button und Lables
+			Image hinzImage = new Image("hinzufuegen.png"); 
+			hinzImage.setStylePrimaryName("Button-img-Image");
+			spHinzufuegenButton.getElement().appendChild(hinzImage.getElement());
+			spHinzufuegenButton.setStylePrimaryName("Button-img");
+			spHinzufuegenButton.setStyleName("Margin-Bottom", true);
+			
+			Image loeschenImage = new Image("loeschen.png"); 
+			loeschenImage.setStylePrimaryName("Button-img-Image");
+			loeschenButton.getElement().appendChild(loeschenImage.getElement());
+			loeschenButton.setStylePrimaryName("Button-img");
+			loeschenButton.setStyleName("Margin-Bottom", true);
+			
+			speichernButton.setStylePrimaryName("grotte-Button");
+			Image updateImage = new Image("speichern.png");
+			updateImage.setStylePrimaryName("Button-img-Image");
+			speichernButton.getElement().appendChild(updateImage.getElement());
+			speichernButton.setStylePrimaryName("Button-img");
+			speichernButton.setStyleName("Margin-Bottom", true);
+			
 			anlegenButton.setStylePrimaryName("grotte-Button");
+			Image speicherImage = new Image("speichern.png"); 
+			speicherImage.setStylePrimaryName("Button-img-Image");
+			anlegenButton.getElement().appendChild(speicherImage.getElement());
+			anlegenButton.setStylePrimaryName("Button-img");
+			anlegenButton.setStyleName("Margin-Bottom", true);
+			
 			abbrechenButton.setStyleName("grotte-Button");
+			Image abbrImage = new Image("abbrechen.png");
+			abbrImage.setStylePrimaryName("Button-img-Image");
+			abbrechenButton.getElement().appendChild(abbrImage.getElement());
+			abbrechenButton.setStylePrimaryName("Button-img");
+			abbrechenButton.setStyleName("Margin-Bottom", true);
+			
+			von.setStylePrimaryName("Text-Box-Connector");
+			bis.setStylePrimaryName("Text-Box-Connector");
+			RootPanel.get().add(von);
+			spNameLabel.setStyleName("Profilbearbeiten-Boxen", true); 
+			geschlechtLabel.setStyleName("Profilbearbeiten-Boxen", true);
+			raucherLabel.setStyleName("Profilbearbeiten-Boxen", true);
+			haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
+			koerpergLabel.setStyleName("Profilbearbeiten-Boxen", true);
 			
 			// Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
 			anlegenTable.clear();
@@ -180,7 +220,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 				anlegenTable.setWidget(1, 0, geschlechtLabel);
 				anlegenTable.setWidget(1, 1, geschlechtListBox);
-
+				
 				anlegenTable.setWidget(2, 0, raucherLabel);
 				anlegenTable.setWidget(2, 1, raucherListBox);
 
@@ -188,9 +228,10 @@ public class SuchprofilEditor extends VerticalPanel {
 				anlegenTable.setWidget(3, 1, haarfarbeListBox);
 
 				anlegenTable.setWidget(4, 0, koerpergLabel);
-				groessenPanel.add(new Label("von "));
+				
+				groessenPanel.add(von);
 				groessenPanel.add(minGroesseTextBox);
-				groessenPanel.add(new Label(" bis "));
+				groessenPanel.add(bis);
 				groessenPanel.add(maxGroesseTextBox);
 				anlegenTable.setWidget(4, 1, groessenPanel);
 				
@@ -203,9 +244,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				anlegenTable.setWidget(5, 1, religionListBox);
 
 				anlegenTable.setWidget(6, 0, alterLabel);
-				alterPanel.add(new Label("von "));
+				alterPanel.add(von);
 				alterPanel.add(minAlterTextBox);
-				alterPanel.add(new Label(" bis "));
+				alterPanel.add(bis);
 				alterPanel.add(maxAlterTextBox);
 				anlegenTable.setWidget(6, 1, alterPanel);
 				
@@ -503,9 +544,9 @@ public class SuchprofilEditor extends VerticalPanel {
 					
 					
 					anzeigenTable.setWidget(5, 0, koerpergLabel);
-					groessenAnzeigenPanel.add(new Label("von "));
+					groessenAnzeigenPanel.add(von);
 					groessenAnzeigenPanel.add(minGroesseAnzeigenTextBox);
-					groessenAnzeigenPanel.add(new Label(" bis "));
+					groessenAnzeigenPanel.add(bis);
 					groessenAnzeigenPanel.add(maxGroesseAnzeigenTextBox);
 					anzeigenTable.setWidget(5, 1, groessenAnzeigenPanel);
 					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
@@ -518,9 +559,9 @@ public class SuchprofilEditor extends VerticalPanel {
 
 					
 					anzeigenTable.setWidget(6, 0, alterLabel);
-					alterAnzeigenPanel.add(new Label("von "));
+					alterAnzeigenPanel.add(von);
 					alterAnzeigenPanel.add(minAlterAnzeigenTextBox);
-					alterAnzeigenPanel.add(new Label(" bis "));
+					alterAnzeigenPanel.add(bis);
 					alterAnzeigenPanel.add(maxAlterAnzeigenTextBox);
 					anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
 					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinAlter()));
@@ -534,7 +575,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				buttonPanel.add(loeschenPanel);
 				loeschenPanel.add(loeschenButton);
 				buttonPanel.add(updatePanel);
-				updatePanel.add(updateButton);
+				updatePanel.add(speichernButton);
 				suchprofilPanel.add(anzeigenTable);
 				
 			}

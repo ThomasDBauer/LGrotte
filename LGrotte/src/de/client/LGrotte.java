@@ -13,6 +13,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.InsertPanel.ForIsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -49,7 +50,7 @@ public class LGrotte implements EntryPoint {
 	private TestServiceAsync testService = GWT.create(TestService.class);
 	private LoginServiceAsync loginService;
 	private Button logOutButton = new Button("Abmelden");
-	public LogOutPopUp logOutPop = new LogOutPopUp();
+	public static LogOutPopUp logOutPop = new LogOutPopUp();
 	public static String logOutUrl;
 	private HorizontalPanel naviPanel = new HorizontalPanel();
 
@@ -77,10 +78,10 @@ public class LGrotte implements EntryPoint {
 								}
 							} else {
 							RootPanel.get("Inhalt").add(
-									new Label("Willkommen in der Grotte, "
-											+ result.getFname()));
+									new HTML("<h2>Willkommen in der Grotte, "
+											+ result.getFname() + "</h2>"));
 							RootPanel.get("Inhalt").add(
-									new ProfilAnzeigenEditor(result));
+									new ProfilAnzeigenEditor());
 							}
 							logOutLink.setHref(result.getLogoutUrl());
 							logOutUrl = logOutLink.getHref();
@@ -128,12 +129,12 @@ public class LGrotte implements EntryPoint {
 				});
 	}
 
-	public LogOutPopUp getLogOutPop() {
+	public static LogOutPopUp getLogOutPop() {
 		return logOutPop;
 	}
 
-	public void setLogOutPop(LogOutPopUp logOutPop) {
-		this.logOutPop = logOutPop;
+	public static void setLogOutPop(LogOutPopUp hideIt) {
+		logOutPop = hideIt;
 	}
 
 	private class SetUserCallback implements AsyncCallback {
@@ -142,7 +143,6 @@ public class LGrotte implements EntryPoint {
 
 		public void onSuccess(Object result) {
 			try {
-//				RootPanel.get().add(new FindLove());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

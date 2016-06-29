@@ -65,29 +65,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		p.setEmail(email);
 
 			ProfilMapper.profilMapper().insertProfil(p);
-//			wait(1000);   //TODO delete this schwachsinn
-//			Vector<ProfilEigenschaft> profileigenschaften = 
-//					ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(email);
-//			Vector<Eigenschaft>eigenschaften = 
-//					EigenschaftMapper.eigenschaftMapper().getEigenschaften();
-//		if(profileigenschaften.size()== 0){
-//			profileigenschaften = fillEigenschaften(profileigenschaften, eigenschaften);
-//		}
-//		if(profileigenschaften.size()<eigenschaften.size()){
-//			profileigenschaften = fillEigenschaften(profileigenschaften, eigenschaften);
-//		}
-//		for(int i = 0; i < profileigenschaften.size();i++){
-//			Info info = new Info();
-//			info.setEigenschaft(profileigenschaften.elementAt(i).getEigenschaft().getId());
-//			info.setValue(profileigenschaften.elementAt(i).getWert());
-//			insertProfilInfo(info);
-//		}
 	}
 	
 	// Profil bearbeiten
 	public void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum, String email) throws Exception {
 		Profil p = new Profil();
+		System.out.println("Der neue coole Name ist : " + fname);
 		p.setFname(fname);
 		p.setLname(lname);
 		p.setKoerpergroesse(koerpergroesse);
@@ -307,7 +291,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		spi.setProfil(user);
 		spi.setSp(sp);
 		// Eintrag in die DB
-		System.out.println("Eintrag für " + spi.getSp().getSuchprofilname() + " Info ID: " + info.getId() + " Eigenschaft: " + info.getEigenschaft() );
 		SuchprofilInfoMapper.suchprofilInfoMapper().insertSuchprofilInfo(spi);
 	}
 
@@ -316,6 +299,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// die InfoID zur�ck, damit die beiden n:m Tabellen damit
 	//best�ckt werden k�nnen.
 	private int insertInfo(Info info) throws Exception {
+		if(info.getValue().equals("")){
+			info.setValue("Keine Angabe");
+		}
 		// check, ob die Info bereits besteht und Auslesen der ID
 		int infoID = InfoMapper.infoMapper().getInfoIDByEigenschaftsIDAndValue(
 				info.getEigenschaft(), info.getValue());
@@ -333,13 +319,10 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		Vector<ProfilEigenschaft> results = SuchprofilInfoMapper.suchprofilInfoMapper().
 				getSuchprofilInfosByEmail(user.getEmail(), spname);
 		Vector<Eigenschaft> eigenschaften = EigenschaftMapper.eigenschaftMapper().getEigenschaften();
-		System.out.println(results.size() + " Einträge aus der DB gelesen.");
 		if(results.size()== 0){
-			System.out.println("results ist 0");
 			return  fillEigenschaften(results, eigenschaften);
 		}
 		if(results.size()<eigenschaften.size()){
-			System.out.println("results < eigenschaften");
 			return  fillEigenschaften(results, eigenschaften);
 		}
 		return results;

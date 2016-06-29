@@ -236,48 +236,15 @@ li a:hover {
 	margin-top: 20px;
 }
 
-.logout-button {
-	background-color: #FFF;
-	color: #000000;
-	float: right;
-	font-size: 15px;
-	margin-left: 0 auto;
-	margin-right: 0 auto;
-	padding: 5px 15px 5px 15px;
-	text-decoration: none;
-	outline-color: #000000;
-	cursor: pointer;
-	cursor: hand;
-	border: 1px solid #c0c0c0;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-
-.logout-button:hover {
-	background-color: #e72525;
-	color: #FFF;
-	font-size: 15px;
-	padding: 5px 15px 5px 15px;
-	text-decoration: none;
-	outline-color: #000000;
-	margin: 15px;
-	cursor: pointer;
-	cursor: hand;
-	border: 1px solid #c0c0c0;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-}
 
 .logout-ja{
 	background-color: #FFF;
 	color: #000000;
-	font-size: 15px;
-	margin-left: 25px;
-	margin-right: 25px;
+	font-size: small;
+	margin-left: 32.766675px;
+	margin-right: 32.766675px;
 	margin-top: 10px;
 	margin-bottom: 5px;
-	width: 70px;
-	height: 40px;
 	padding: 5px 15px 5px 15px;
 	text-decoration: none;
 	outline-color: #000000;
@@ -295,12 +262,10 @@ li a:hover {
 .logout-nein{
 	background-color: #FFF;
 	color: #000000;
-	font-size: 15px;
-	width: 70px;
-	height: 40px;
+	font-size: small;
 	margin-top: 10px;
-	margin-left: 25px;
-	margin-right: 25px;
+	margin-left: 32.766675px;
+	margin-right: 32.766675px;
 	margin-bottom: 5px;
 	padding: 5px 15px 5px 15px;
 	text-decoration: none;
@@ -316,12 +281,45 @@ li a:hover {
 	background-color: #00c431;
 }
 
+.logout-Text{
+	margin: 5px;
+}
+
+.loeschen-button {
+	background-color: #FFF;
+	color: #000000;
+	float: right;
+	font-size: small;
+	margin-top: 10px;
+	margin-left: 34.76275px;
+	margin-right: 34.76275px;
+	margin-bottom: 5px;
+	padding: 5px 15px 5px 15px;
+	text-decoration: none;
+	outline-color: #000000;
+	cursor: pointer;
+	cursor: hand;
+	border: 1px solid #c0c0c0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+
+.loeschen-ja:hover{
+	background-color: #ff5151;;
+}
+
+.loeschen-nein:hover{
+	background-color: #00c431;
+}
+
 #Navi_Container{
 	width: auto;
 	height: 160px;
 	margin-top: 30px;
 	margin-bottom: 4px;
-	border: 1px solid transparent;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
 }
 
 #Logo{
@@ -329,7 +327,6 @@ li a:hover {
 	height: 160px;
 	width: 200px;
 	margin-left: 60px;
- 	
 }
 
 .logo_grotte{
@@ -435,7 +432,7 @@ li a:hover {
 	margin: 5px;
 	height: auto;
 	min-height: 250px;
-	min-width: 1200px;
+	/* min-width: 1200px; */
 	border: 1px solid white;
 	overflow: hidden;
 	-webkit-border-radius: 5px;
@@ -447,40 +444,101 @@ li a:hover {
 }
 
 .gwt-TextBox{
-}
-
-.gwt-FlexTable{
-}
-
-.gwt-ListBox{
-}
-
-.gwt-ListBox option:checked {
-	background-color: #b61414 !important;
-  	color: white !important;
-}
-
-
-
-.Profilbearbeiten-Boxen{
-	height: 30px;
-	padding-top: 8.5px;
+	width: 130px;
+	height: 20px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-right: 7px;
 }
 
-.Profilbearbeiten-ListBoxen{
-	height: 30px;
+.gwt-ListBox{
+	height: 32px;
+	width: 142px;;
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 	padding-top: auto;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-right: 7px;
 }
 
-.Profilbearbeiten-ListBoxen option:checked {
-  background-color: #b61414 !important;
-  color: white !important;
+.gwt-ListBox option{
+	padding: 4px ;
+	background-color: #b61414 !important;
+	color: white !important;
+}
+
+.gwt-ListBox option:hover{
+	padding: 4px ;
+	background-color: red !important;
+	color: white !important;
+}
+
+.gwt-ListBox option:checked {
+  background-color: #FFF !important;
+  color: #b61414 !important;
+}
+
+.gwt-DateBox{
+	width: 130px;
+	padding: 6px 4px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 7px;
+}
+
+.Profil-Anzeigen-Label{
+	width: 130px;
+	padding-right: 20px;
+	padding-top: 4px;
+	margin-bottom: 2px;
+	padding-left: 5px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+}
+
+.Profilbearbeiten-Boxen{
+	height: 13px;
+	padding-bottom: 5%;
+	width: 115px;
+}
+
+.Suchprofi-List{
+	height: 30px;
+	width: 142px;;
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+	padding-top: auto;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 7px;
+}
+
+.Suchprofil-List option{
+	padding: 4px ;
+	background-color: #b61414 !important;
+	color: white !important;
+}
+
+.Suchprofil-List option:hover{
+	padding: 4px ;
+	background-color: red !important;
+	color: white !important;
+}
+
+.Suchprofil-List option:checked{
+	padding: 4px ;
+	background-color: red !important;
+	color: white !important;
+}
+
+.Text-Box-Connector{
+	margin-left: 5px;
+	margin-right: 5px;
+	color: blue;
 }
 
 .Margin-Bottom{
@@ -525,6 +583,7 @@ li a:hover {
 	background-color: #FFF;
 	padding: 20px 0px 20px 20px;
 	min-height: 300px;
+	min-width: 460px;
 	width: 47%;
 	border-rigth: 1px solid #808080;
 	-webkit-border-radius: 5px;
@@ -538,6 +597,7 @@ li a:hover {
 	padding: 75px 20px 20px 0px;
 	height: auto;
 	min-height: 300px;
+	min-width: 460px;
 	float: right;
 	width: 47%;
 	-webkit-border-radius: 5px;
@@ -546,7 +606,6 @@ li a:hover {
 }
 
 #Fusszeile {
-	margin-top: 20px;
 	clear: both;
 	border-top: 1px solid black;
 	min-height: 115px;

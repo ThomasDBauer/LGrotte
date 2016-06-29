@@ -40,8 +40,8 @@ public class ProfilinfoMapper {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement("CREATE TABLE IF NOT EXISTS profil_info "
 				+ "(email varchar(35) NOT NULL, info_id INT NOT NULL, " + "PRIMARY KEY (email, info_id), "
-				+ "FOREIGN KEY(email) REFERENCES profil(email) " + "ON UPDATE CASCADE ON DELETE RESTRICT, "
-				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) " + "ON UPDATE CASCADE ON DELETE RESTRICT)");
+				+ "FOREIGN KEY(email) REFERENCES profil(email) " + "ON DELETE CASCADE, "
+				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) " + "ON DELETE CASCADE)");
 		create.execute();
 	}
 

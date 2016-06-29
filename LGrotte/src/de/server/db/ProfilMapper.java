@@ -65,6 +65,7 @@ public class ProfilMapper {
 			p.setReligion(rs.getString("religion"));
 			p.setRaucher(rs.getString("raucher"));
 			p.setEmail(rs.getString("email"));
+			p.setGeburtsdatum(rs.getDate("geburtsdatum"));
 			profile.add(p);
 		}
 		return profile;

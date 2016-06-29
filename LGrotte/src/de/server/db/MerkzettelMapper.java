@@ -37,8 +37,8 @@ public class MerkzettelMapper {
 				.prepareStatement("CREATE TABLE IF NOT EXISTS merkzettel(gemerktesProfil varchar(45), "
 						+ "merkendesProfil varchar(45), PRIMARY KEY("
 						+ "gemerktesProfil, merkendesProfil), FOREIGN KEY(gemerktesProfil) "
-						+ "REFERENCES profil(email), FOREIGN KEY (merkendesProfil) "
-						+ "REFERENCES profil(email))");
+						+ "REFERENCES profil(email) ON DELETE CASCADE, FOREIGN KEY (merkendesProfil) "
+						+ "REFERENCES profil(email) ON DELETE CASCADE)");
 		createMerkzettel.execute();
 	}
 
