@@ -2,28 +2,27 @@ package de.shared.RO;
 
 import java.io.Serializable;
 
-public class Match implements Serializable{
+public class Match implements Serializable {
 
 	/**
 	 * @author Thomas Bauer
 	 * 
-	 *         Trägt Informationen über das Matching-Ergebnis, das in Reports
+	 *         Trï¿½gt Informationen ï¿½ber das Matching-Ergebnis, das in Reports
 	 *         dargestellt wird.
 	 */
 
 	/*
-	 * Das Ergebnis eines Matches wird repräsentiert durch eine Zahl.
-	 * In den Servlets wird das Objekt beschrieben. In den Writer-Klassen, 
-	 * die aus den Report-Objects HTML-Code generieren, wird das Ergebnis
-	 * ausgelesen.
+	 * Das Ergebnis eines Matches wird reprï¿½sentiert durch eine Zahl. In den
+	 * Servlets wird das Objekt beschrieben. In den Writer-Klassen, die aus den
+	 * Report-Objects HTML-Code generieren, wird das Ergebnis ausgelesen.
 	 */
 	private int matchResult;
-	
-	public Match(){
-		
+
+	public Match() {
+
 	}
-	
-	public Match(int m){
+
+	public Match(int m) {
 		matchResult = m;
 	}
 

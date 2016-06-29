@@ -1,9 +1,9 @@
 package de.shared.BO;
 
 public class Besuch {
-	
+
 	private Profil besuchtesProfil;
-	
+
 	private Profil besuchendesProfil;
 
 	public Profil getBesuchtesProfil() {
@@ -21,7 +21,5 @@ public class Besuch {
 	public void setBesuchendesProfil(Profil besuchendesProfil) {
 		this.besuchendesProfil = besuchendesProfil;
 	}
-	
-	
-	
+
 }
