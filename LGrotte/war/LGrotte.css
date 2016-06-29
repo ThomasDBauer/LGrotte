@@ -236,48 +236,15 @@ li a:hover {
 	margin-top: 20px;
 }
 
-.logout-button {
-	background-color: #FFF;
-	color: #000000;
-	float: right;
-	font-size: 15px;
-	margin-left: 0 auto;
-	margin-right: 0 auto;
-	padding: 5px 15px 5px 15px;
-	text-decoration: none;
-	outline-color: #000000;
-	cursor: pointer;
-	cursor: hand;
-	border: 1px solid #c0c0c0;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-
-.logout-button:hover {
-	background-color: #e72525;
-	color: #FFF;
-	font-size: 15px;
-	padding: 5px 15px 5px 15px;
-	text-decoration: none;
-	outline-color: #000000;
-	margin: 15px;
-	cursor: pointer;
-	cursor: hand;
-	border: 1px solid #c0c0c0;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-}
 
 .logout-ja{
 	background-color: #FFF;
 	color: #000000;
-	font-size: 15px;
-	margin-left: 25px;
-	margin-right: 25px;
+	font-size: small;
+	margin-left: 32.766675px;
+	margin-right: 32.766675px;
 	margin-top: 10px;
 	margin-bottom: 5px;
-	width: 70px;
-	height: 40px;
 	padding: 5px 15px 5px 15px;
 	text-decoration: none;
 	outline-color: #000000;
@@ -295,12 +262,10 @@ li a:hover {
 .logout-nein{
 	background-color: #FFF;
 	color: #000000;
-	font-size: 15px;
-	width: 70px;
-	height: 40px;
+	font-size: small;
 	margin-top: 10px;
-	margin-left: 25px;
-	margin-right: 25px;
+	margin-left: 32.766675px;
+	margin-right: 32.766675px;
 	margin-bottom: 5px;
 	padding: 5px 15px 5px 15px;
 	text-decoration: none;
@@ -313,6 +278,38 @@ li a:hover {
 }
 
 .logout-nein:hover{
+	background-color: #00c431;
+}
+
+.logout-Text{
+	margin: 5px;
+}
+
+.loeschen-button {
+	background-color: #FFF;
+	color: #000000;
+	float: right;
+	font-size: small;
+	margin-top: 10px;
+	margin-left: 34.76275px;
+	margin-right: 34.76275px;
+	margin-bottom: 5px;
+	padding: 5px 15px 5px 15px;
+	text-decoration: none;
+	outline-color: #000000;
+	cursor: pointer;
+	cursor: hand;
+	border: 1px solid #c0c0c0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+
+.loeschen-ja:hover{
+	background-color: #ff5151;;
+}
+
+.loeschen-nein:hover{
 	background-color: #00c431;
 }
 
@@ -537,6 +534,13 @@ li a:hover {
 	background-color: red !important;
 	color: white !important;
 }
+
+.Text-Box-Connector{
+	margin-left: 5px;
+	margin-right: 5px;
+	color: blue;
+}
+
 .Margin-Bottom{
 	margin-bottom: 20px;
 }
