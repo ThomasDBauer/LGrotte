@@ -13,6 +13,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.InsertPanel.ForIsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -77,8 +78,8 @@ public class LGrotte implements EntryPoint {
 								}
 							} else {
 							RootPanel.get("Inhalt").add(
-									new Label("Willkommen in der Grotte, "
-											+ result.getFname()));
+									new HTML("<h2>Willkommen in der Grotte, "
+											+ result.getFname() + "</h2>"));
 							RootPanel.get("Inhalt").add(
 									new ProfilAnzeigenEditor());
 							}

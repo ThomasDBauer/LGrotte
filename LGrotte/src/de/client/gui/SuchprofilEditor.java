@@ -37,7 +37,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				new SuchprofilHinzufuegenClickHandler());
 		private Button loeschenButton = new Button("L&oumlschen", 
 				new DeleteSuchprofilClickHandler());
-		private Button updateButton = new Button("Update", 
+		private Button speichernButton = new Button("Speichern", 
 				new UpdateSuchprofilClickHandler());
 		private Label keinSPLabel = new Label("Hey erstell doch ein Suchprofil!");
 		private Button abbrechenButton = new Button("Abbrechen", 
@@ -104,12 +104,12 @@ public class SuchprofilEditor extends VerticalPanel {
 			loeschenButton.setStylePrimaryName("Button-img");
 			loeschenButton.setStyleName("Margin-Bottom", true);
 			
-			updateButton.setStylePrimaryName("grotte-Button");
-			Image updateImage = new Image("update.png");
+			speichernButton.setStylePrimaryName("grotte-Button");
+			Image updateImage = new Image("speichern.png");
 			updateImage.setStylePrimaryName("Button-img-Image");
-			updateButton.getElement().appendChild(updateImage.getElement());
-			updateButton.setStylePrimaryName("Button-img");
-			updateButton.setStyleName("Margin-Bottom", true);
+			speichernButton.getElement().appendChild(updateImage.getElement());
+			speichernButton.setStylePrimaryName("Button-img");
+			speichernButton.setStyleName("Margin-Bottom", true);
 			
 			anlegenButton.setStylePrimaryName("grotte-Button");
 			Image speicherImage = new Image("speichern.png"); 
@@ -572,7 +572,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				buttonPanel.add(loeschenPanel);
 				loeschenPanel.add(loeschenButton);
 				buttonPanel.add(updatePanel);
-				updatePanel.add(updateButton);
+				updatePanel.add(speichernButton);
 				suchprofilPanel.add(anzeigenTable);
 				
 			}

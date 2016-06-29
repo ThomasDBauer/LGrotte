@@ -36,7 +36,7 @@ public class SuchprofilMapper {
 				+ "religion varchar(30), haarfarbe varchar(15), email varchar(35),"
 				+ "raucher varchar(30), minGroesse int(3), maxGroesse int(3),"
 				+ "PRIMARY KEY(suchprofilname, email), FOREIGN KEY (email)"
-				+ "REFERENCES profil(email) ON UPDATE CASCADE ON DELETE RESTRICT)");
+				+ "REFERENCES profil(email) ON DELETE CASCADE)");
 		createSuchprofil.execute();
 	}
 	

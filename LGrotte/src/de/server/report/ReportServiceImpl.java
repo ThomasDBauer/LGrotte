@@ -216,25 +216,25 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 				ok = false;
 			}
 			// Geschlecht
-			if (!sp.getGeschlecht().equals("egal")) {
+			if (!sp.getGeschlecht().equals("Egal")) {
 				if (!sp.getGeschlecht().equals(p.getGeschlecht()) || p.getGeschlecht() == null) {
 					ok = false;
 				}
 			}
 			// Raucher
-			if (!sp.getRaucher().equals("egal")) {
+			if (!sp.getRaucher().equals("Egal")) {
 				if (!sp.getRaucher().equals(p.getRaucher()) || p.getRaucher() == null) {
 					ok = false;
 				}
 			}
 			// Religion
-			if (!sp.getReligion().equals("egal")) {
+			if (!sp.getReligion().equals("Egal")) {
 				if (!sp.getReligion().equals(p.getReligion())) {
 					profile.remove(p);
 				}
 			}
 			// Haarfarbe
-			if (!sp.getHaarfarbe().equals("egal")) {
+			if (!sp.getHaarfarbe().equals("Egal")) {
 				if (!sp.getHaarfarbe().equals(p.getHaarfarbe())) {
 					profile.remove(p);
 				}

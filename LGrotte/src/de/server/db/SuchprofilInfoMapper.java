@@ -37,8 +37,8 @@ public class SuchprofilInfoMapper {
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement(
 				"CREATE TABLE IF NOT EXISTS suchprofil_info (suchprofilname varchar(35) NOT NULL, "
 				+ "email varchar(35) NOT NULL, info_id int NOT NULL, PRIMARY KEY (suchprofilname, email, info_id), "
-				+ "FOREIGN KEY(email) REFERENCES profil(email) ON UPDATE CASCADE ON DELETE RESTRICT, "
-				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) ON DELETE RESTRICT,"
+				+ "FOREIGN KEY(email) REFERENCES profil(email) ON DELETE CASCADE, "
+				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) ON DELETE CASCADE,"
 				+ "FOREIGN KEY (suchprofilname) REFERENCES suchprofil(suchprofilname) ON UPDATE RESTRICT ON DELETE CASCADE)");
 		create.execute();
 	}
