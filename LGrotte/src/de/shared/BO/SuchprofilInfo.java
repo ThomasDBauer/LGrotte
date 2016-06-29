@@ -1,14 +1,14 @@
 package de.shared.BO;
 
 public class SuchprofilInfo {
-	
-	//Das Name des Suchprofils
+
+	// Das Name des Suchprofils
 	private Suchprofil sp;
-	
-	//Die Information
+
+	// Die Information
 	private Info info;
-	
-	//Das Profil
+
+	// Das Profil
 	private Profil profil;
 
 	public Suchprofil getSp() {
@@ -34,7 +34,5 @@ public class SuchprofilInfo {
 	public void setProfil(Profil profil) {
 		this.profil = profil;
 	}
-	
-	
-	
+
 }

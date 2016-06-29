@@ -1,20 +1,14 @@
 package de.shared.BO;
 
-public class Eigenschaft extends BusinessObject{
-	
-	/**
-	 * 
-	 */
+public class Eigenschaft extends BusinessObject {
+
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-	
+
 	private String erlaeuterung;
-	
+
 	private int auswahl;
-	
-	
-	
 
 	public int getId() {
 		return id;
@@ -39,7 +33,5 @@ public class Eigenschaft extends BusinessObject{
 	public void setAuswahl(int auswahl) {
 		this.auswahl = auswahl;
 	}
-	
-	
-	
+
 }

@@ -1,19 +1,15 @@
 package de.shared.BO;
 
-public class EigenschaftAuswahl extends Eigenschaft{
-	
+public class EigenschaftAuswahl extends Eigenschaft {
+
 	public EigenschaftAuswahl(int id) {
 		super.setId(id);
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String[] values;
 
-	
 	public String[] getValues() {
 		return values;
 	}
@@ -21,7 +17,5 @@ public class EigenschaftAuswahl extends Eigenschaft{
 	public void setValues(String[] values) {
 		this.values = values;
 	}
-	
-	
-	
+
 }

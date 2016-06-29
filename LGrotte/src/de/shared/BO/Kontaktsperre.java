@@ -1,14 +1,11 @@
 package de.shared.BO;
 
-public class Kontaktsperre extends BusinessObject{
-	
-	/**
-	 * 
-	 */
+public class Kontaktsperre extends BusinessObject {
+
 	private static final long serialVersionUID = 1L;
 
 	private String sperrendesProfil;
-	
+
 	private String gesperrtesProfil;
 
 	public String getSperrendesProfil() {
@@ -27,6 +24,4 @@ public class Kontaktsperre extends BusinessObject{
 		this.gesperrtesProfil = gesperrtesProfil;
 	}
 
-	
-	
 }

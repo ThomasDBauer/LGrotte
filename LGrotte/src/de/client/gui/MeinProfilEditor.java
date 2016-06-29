@@ -16,8 +16,6 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.datepicker.client.DateBox;
-
 import de.client.ClientSideSettings;
 import de.shared.BO.Auswahl;
 import de.shared.BO.Eigenschaft;
@@ -76,12 +74,10 @@ public class MeinProfilEditor extends VerticalPanel {
 				if(e.getAuswahl()==0){
 					TextBox tb = new TextBox();
 					tb.setText(info.getValue());
-//					tb.setStylePrimaryName("Profilbearbeiten-TextBox");
 					table.setWidget(i, 1, tb);
 					hashmap.put(e, tb);
 				}else{
 					ListBox lb = new ListBox();
-//					lb.setStylePrimaryName("Profilbearbeiten-ListBoxen");
 					try {
 						ClientSideSettings.getEditorService().getAuswahlForEigenschaft(e,
 								new GetAuswahlCallback(lb, info.getValue()));
@@ -99,9 +95,6 @@ public class MeinProfilEditor extends VerticalPanel {
 		private ListBox lb;
 		private String value;
 		
-		public GetAuswahlCallback(ListBox lb){
-			this.lb = lb;
-		}
 		public GetAuswahlCallback(ListBox lb, String value){
 			this.lb = lb;
 			this.value = value;

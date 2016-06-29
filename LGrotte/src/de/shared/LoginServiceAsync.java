@@ -7,5 +7,4 @@ import de.shared.BO.Profil;
 public interface LoginServiceAsync {
 	void login(String requestUri, AsyncCallback<Profil>callback);
 	
-	void hallo(AsyncCallback<String>callback);
 }

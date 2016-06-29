@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import de.shared.BO.Kontaktsperre;
-import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 
 
@@ -33,8 +32,8 @@ public class KontaktsperreMapper {
 		PreparedStatement createKontaktsperre = (PreparedStatement) con.prepareStatement(
 				"CREATE TABLE IF NOT EXISTS kontaktsperre(gesperrtesProfil varchar(45), "
 				+ "sperrendesProfil varchar(45), PRIMARY KEY(gesperrtesProfil, sperrendesProfil),"
-				+ "FOREIGN KEY(gesperrtesProfil) REFERENCES profil(email), "
-				+ "FOREIGN KEY (sperrendesProfil) REFERENCES profil(email))");
+				+ "FOREIGN KEY(gesperrtesProfil) REFERENCES profil(email) ON DELETE CASCADE, "
+				+ "FOREIGN KEY (sperrendesProfil) REFERENCES profil(email) ON DELETE CASCADE)");
 		createKontaktsperre.execute();
 	}
 	

@@ -44,11 +44,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		user = p;
 	}
 
-	public void init() throws IllegalArgumentException {
-		this.pMapper = ProfilMapper.profilMapper();
-		this.eMapper = EigenschaftMapper.eigenschaftMapper();
-	}
-
 	// Methoden rund um das Profil
 	// Profil erstellen
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
@@ -71,6 +66,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum, String email) throws Exception {
 		Profil p = new Profil();
+		System.out.println("Der neue coole Name ist : " + fname);
 		p.setFname(fname);
 		p.setLname(lname);
 		p.setKoerpergroesse(koerpergroesse);
@@ -290,7 +286,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		spi.setProfil(user);
 		spi.setSp(sp);
 		// Eintrag in die DB
-		System.out.println("Eintrag für " + spi.getSp().getSuchprofilname() + " Info ID: " + info.getId() + " Eigenschaft: " + info.getEigenschaft() );
 		SuchprofilInfoMapper.suchprofilInfoMapper().insertSuchprofilInfo(spi);
 	}
 

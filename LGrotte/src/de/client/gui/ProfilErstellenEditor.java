@@ -15,6 +15,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -85,7 +86,6 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		try {
 			ClientSideSettings.getEditorService().getProfil(new ProfilAuslesenCallback());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -192,29 +192,27 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		}
 
 		public void onSuccess(Object result) {
+			RootPanel.get("Zusatz").clear();
+			RootPanel.get("Inhalt").clear();
+			RootPanel.get("Content").clear();
+			RootPanel.get("Inhalt").add(new HTML("<h2>Dein Profil</h2>"));
+			RootPanel.get("Inhalt").add(new ProfilAnzeigenEditor());
 		}
 
 	}
 
 	private class ProfilUpdateClickHandler implements ClickHandler {
 
-		private PopupPanel popup;
-
 		public void onClick(ClickEvent event) {
 			Profil email = new Profil();
-
-			try {
-				ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), lNameTextBox.getText(),
-						Integer.parseInt(koerpergroesseTextBox.getText()), getGeschlecht(), getReligion(),
-						getHaarfarbe(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+				try {
+					ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), lNameTextBox.getText(),
+							Integer.parseInt(koerpergroesseTextBox.getText()), getGeschlecht(), getReligion(),
+							getHaarfarbe(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
+				} catch (Exception e) {
+					Window.alert("catch " + e.toString());
+					e.printStackTrace();
+				}
 			String input = fNameTextBox.getText();
 			if (input.matches("")) {
 				Window.alert("'" + fNameTextBox.getText() + 
@@ -234,14 +232,7 @@ public class ProfilErstellenEditor extends VerticalPanel {
 						"'beinhaltet ein ungültiges Symbol oder kein Symbol");
 				return;
 			}
-			this.popup = new PopupPanel(true, true);
-			this.popup.add(new Label(
-					"Profil wurde aktualisiert " +
-			"zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
-			this.popup.center();
-
 		}
-
 	}
 	
 	// Profil auslesen

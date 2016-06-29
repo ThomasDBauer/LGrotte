@@ -22,17 +22,11 @@ public interface ReportService extends RemoteService {
 	ProfilReport getProfilReport(Profil p) throws Exception;
 	
 	void setUser(Profil p);
-	
-//	Vector<ProfilInformation> getProfilInfos() throws Exception;
 
 	Vector<ProfilReport> getReports() throws Exception;
 	
 	Vector<ProfilReport> getReports(Suchprofil sp) throws Exception;
 
-//	public abstract AlleProfileReport createAlleProfileReport() throws Exception;
-	
-//	Vector<ProfilReport> getReportsBySuchprofil(Suchprofil sp) throws Exception;
-	
 	Vector<Suchprofil> getSuchprofile() throws Exception;
 	
 	Vector<ProfilReport> getNotVisitedReports() throws Exception;

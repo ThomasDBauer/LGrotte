@@ -10,16 +10,13 @@ import com.mysql.jdbc.PreparedStatement;
 
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
 
 import de.server.db.DBConnection;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.ProfilInfo;
-import de.shared.RO.ProfilAttribut;
 import de.shared.RO.ProfilEigenschaft;
-import de.shared.RO.ProfilInformation;
 
 public class ProfilinfoMapper {
 
@@ -40,8 +37,8 @@ public class ProfilinfoMapper {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement("CREATE TABLE IF NOT EXISTS profil_info "
 				+ "(email varchar(35) NOT NULL, info_id INT NOT NULL, " + "PRIMARY KEY (email, info_id), "
-				+ "FOREIGN KEY(email) REFERENCES profil(email) " + "ON UPDATE CASCADE ON DELETE RESTRICT, "
-				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) " + "ON UPDATE CASCADE ON DELETE RESTRICT)");
+				+ "FOREIGN KEY(email) REFERENCES profil(email) " + "ON DELETE CASCADE, "
+				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) " + "ON DELETE CASCADE)");
 		create.execute();
 	}
 

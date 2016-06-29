@@ -3,38 +3,38 @@ package de.shared.RO;
 import java.io.Serializable;
 import java.util.Vector;
 
-public class ProfilReport implements Serializable, Comparable<ProfilReport>{
+public class ProfilReport implements Serializable, Comparable<ProfilReport> {
 
 	/**
 	 * @author Thomas Bauer, Sedat Akar
 	 * 
-	 *         Jedes Report-Object traegt Informationen ueber ein einzelnes, detailliertes 
-	 *         Profil, das zur Darstellung kommen soll. Es findet eine Unterscheidung
-	 *         statt zwischen @class ProfilEigenschaft und @class ProfilAttribut, die
-	 *         ProfilAttribute und ProfilInfos repr�sentieren.
-	 *         
-	 *         
+	 *         Jedes Report-Object traegt Informationen ueber ein einzelnes,
+	 *         detailliertes Profil, das zur Darstellung kommen soll. Es findet
+	 *         eine Unterscheidung statt zwischen @class ProfilEigenschaft und @class
+	 *         ProfilAttribut, die ProfilAttribute und ProfilInfos
+	 *         repr�sentieren.
+	 * 
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/*
-	 * Das Matchobjekt traegt das Aehnlichkeitsmass  
+	 * Das Matchobjekt traegt das Aehnlichkeitsmass
 	 */
 	private Match match;
-	
-	
+
 	/*
 	 * Jedes Profil hat eine Ueberschrift
 	 */
 	private String header;
-	
+
 	/*
-	 * Eine unbestimmte Anzahl an @class ProfilEigenschaften und @class ProfilAttributen.
-	 * 
+	 * Eine unbestimmte Anzahl an @class ProfilEigenschaften und @class
+	 * ProfilAttributen.
 	 */
 	private Vector<ProfilEigenschaft> eigenschaften = new Vector<ProfilEigenschaft>();
 	private Vector<ProfilAttribut> attribute = new Vector<ProfilAttribut>();
-	
+
 	/*
 	 * Hinzuf�gen einzelner Eigenschaften
 	 */
@@ -55,7 +55,7 @@ public class ProfilReport implements Serializable, Comparable<ProfilReport>{
 	public Vector<ProfilEigenschaft> getEigenschaften() {
 		return eigenschaften;
 	}
-	
+
 	/*
 	 * Hinzuf�gen einzelner Attribute
 	 */
@@ -96,6 +96,6 @@ public class ProfilReport implements Serializable, Comparable<ProfilReport>{
 	public int compareTo(ProfilReport other) {
 		int thisMatch = this.getMatch().getMatchResult();
 		int otherMatch = other.getMatch().getMatchResult();
-		return Integer.compare(otherMatch,thisMatch);
+		return Integer.compare(otherMatch, thisMatch);
 	}
 }

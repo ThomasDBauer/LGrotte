@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.thirdparty.javascript.jscomp.Result;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -19,8 +18,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.client.ClientSideSettings;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
-import de.shared.BO.Profil;
-import de.shared.BO.ProfilInfo;
 import de.shared.RO.ProfilEigenschaft;
 
 public class ProfilEigenschaftEditor extends VerticalPanel {
@@ -140,14 +137,13 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 						}
 					});
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		}
 	}
 
-	// Hinzuf�gen ClickHandler
+	// Hinzufügen ClickHandler
 	private class AddEigenschaftenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			// wir wollen eine listbox und eine textbox
@@ -155,18 +151,18 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			TextBox infotextbox = new TextBox();
 			buttonPanel.add(speicherButton);
 			aktiveEigenschaftenCounter = aktiveEigenschaftenCounter + 1;
-			// um sie sp�ter auszulesen, werden sie au�erhalb der methode
+			// um sie später auszulesen, werden sie außerhalb der methode
 			// gespeichert
 			eigenschaftenListboxen.add(listbox);
 			eigenschaftenTextboxen.add(infotextbox);
-			// f�llen der listbox mit allen eigenschaften
+			// füllen der listbox mit allen eigenschaften
 			for (int i = 0; i < eigenschaften.size(); i++) {
 				Eigenschaft eigenschaft = eigenschaften.elementAt(i);
 				if(eigenschaft.getAuswahl()==0){
 					listbox.addItem(eigenschaft.getErlaeuterung());
 				}
 			}
-			// h�bsch anordnen
+			// hübsch anordnen
 			HorizontalPanel hpanel = new HorizontalPanel();
 			Button abbrechenButton = new Button("abbrechen", new AbbrechenHandler(listbox, infotextbox));
 			Image breakImage = new Image("abbrechen.png");
@@ -233,7 +229,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 					e1.printStackTrace();
 				}
 			}
-			// L�schen der Zwischenspeicher
+			// Löschen der Zwischenspeicher
 			eigenschaftenListboxen.clear();
 			eigenschaftenTextboxen.clear();
 			speicherButton.removeFromParent();
@@ -241,7 +237,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
-	// Speichern Callback - tut nix, au�er das GUI neu laden
+	// Speichern Callback - tut nix, außer das GUI neu laden
 	private class InsertInfoCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 		}

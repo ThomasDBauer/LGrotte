@@ -1,17 +1,11 @@
 package de.client.gui;
 
-import com.google.api.server.spi.Constant;
-import com.google.gwt.core.client.GWT;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class Navigation extends HorizontalPanel {
@@ -41,8 +35,6 @@ public class Navigation extends HorizontalPanel {
 
 	private class ProfilPopupClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-			// Button active = (Button) e.getSource();
-			//
 			RootPanel.get("Zusatz").clear();
 			RootPanel.get("Inhalt").clear();
 			RootPanel.get("Content").clear();
@@ -75,7 +67,6 @@ public class Navigation extends HorizontalPanel {
 				try {
 					RootPanel.get("Inhalt").add(new FindLove());
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				break;

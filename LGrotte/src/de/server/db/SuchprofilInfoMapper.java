@@ -3,17 +3,14 @@ package de.server.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
 
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.BO.Profil;
-import de.shared.BO.ProfilInfo;
 import de.shared.BO.Suchprofil;
 import de.shared.BO.SuchprofilInfo;
 import de.shared.RO.ProfilEigenschaft;
-import de.shared.RO.ProfilInformation;
 
 public class SuchprofilInfoMapper {
 
@@ -37,8 +34,8 @@ public class SuchprofilInfoMapper {
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement(
 				"CREATE TABLE IF NOT EXISTS suchprofil_info (suchprofilname varchar(35) NOT NULL, "
 				+ "email varchar(35) NOT NULL, info_id int NOT NULL, PRIMARY KEY (suchprofilname, email, info_id), "
-				+ "FOREIGN KEY(email) REFERENCES profil(email) ON UPDATE CASCADE ON DELETE RESTRICT, "
-				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) ON DELETE RESTRICT,"
+				+ "FOREIGN KEY(email) REFERENCES profil(email) ON DELETE CASCADE, "
+				+ "FOREIGN KEY(info_id) REFERENCES infos(info_id) ON DELETE CASCADE,"
 				+ "FOREIGN KEY (suchprofilname) REFERENCES suchprofil(suchprofilname) ON UPDATE RESTRICT ON DELETE CASCADE)");
 		create.execute();
 	}
