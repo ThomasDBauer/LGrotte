@@ -120,6 +120,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			haarfarbeListBox.addItem("Schwarz");
 			haarfarbeListBox.addItem("Rot");
 			haarfarbeListBox.addItem("Grau");
+			haarfarbeListBox.addItem("Andere");
 			haarfarbeListBox.addItem("Egal");
 			
 			religionListBox.addItem("Christlich");
@@ -127,6 +128,8 @@ public class SuchprofilEditor extends VerticalPanel {
 			religionListBox.addItem("Buddhistisch");
 			religionListBox.addItem("Hinduistisch");
 			religionListBox.addItem("Jüdisch");
+			religionListBox.addItem("Andere");
+			religionListBox.addItem("Keine");
 			religionListBox.addItem("Egal");
 			
 			raucherListBox.addItem("Ja");
@@ -484,7 +487,7 @@ public class SuchprofilEditor extends VerticalPanel {
 
 					anzeigenTable.setWidget(3, 0, haarfarbeLabel);
 					anzeigenTable.setWidget(3, 1, haarfarbeListBox);
-					for (int g = 0; g < 5;g++) {
+					for (int g = 0; g < 6;g++) {
 						if(haarfarbeListBox.getValue(g) == result.getHaarfarbe()){
 							haarfarbeListBox.setSelectedIndex(g);
 						}
@@ -492,7 +495,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					
 					anzeigenTable.setWidget(4, 0, religionLabel);
 					anzeigenTable.setWidget(4, 1, religionListBox);
-					for (int g = 0; g < 6;g++) {
+					for (int g = 0; g < 8;g++) {
 						if(religionListBox.getValue(g) == result.getReligion()){
 							religionListBox.setSelectedIndex(g);
 						}

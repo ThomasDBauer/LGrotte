@@ -173,6 +173,12 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 					"Suchprofilinfos wurde aktualisiert " +
 					"zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
 			this.popup.center();
+			try {
+				loadProfilEigenschaften();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 }
