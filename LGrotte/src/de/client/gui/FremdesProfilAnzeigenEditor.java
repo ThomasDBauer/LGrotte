@@ -26,8 +26,6 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
 		private FlexTable profilAnzeigenTable = new FlexTable();
 		
-		private Button merkButton = new Button("Profil merken", new MerkHandler());
-		private Button sperrButton = new Button("Profil sperren", new SperrHandler());
 		private Button zurueckButton = new Button("Zurueck", new ZurueckHandler());
 		private Label fnameLabel = new Label();
 		private Label lnameLabel = new Label();
@@ -42,17 +40,9 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		
 		public FremdesProfilAnzeigenEditor(Profil profil) throws Exception {
 			this.p = profil;
-			merkButton.setStylePrimaryName("Button-img");
-			sperrButton.setStylePrimaryName("Button-img");
 			zurueckButton.setStylePrimaryName("Button-img");
-			Image merkImage = new Image("merken.png"); 
-			Image sperrImage = new Image("sperren.png");
 			Image zurueckImage = new Image("zurueck.png");
-			merkImage.setStylePrimaryName("Button-img-Image");
-			sperrImage.setStylePrimaryName("Button-img-Image");
 			zurueckImage.setStylePrimaryName("Button-img-Image");
-			merkButton.getElement().appendChild(merkImage.getElement());
-			sperrButton.getElement().appendChild(sperrImage.getElement());
 			zurueckButton.getElement().appendChild(zurueckImage.getElement());
 			fnameLabel.setText(p.getFname());
 			lnameLabel.setText(p.getLname());
@@ -99,8 +89,6 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			ClientSideSettings.getEditorService().getProfilEigenschaften(
 					profil.getEmail(), new ProfilEigenschaftenCallback());
 			
-			buttonPanel.add(merkButton);
-			buttonPanel.add(sperrButton);
 			buttonPanel.add(zurueckButton);
 			this.add(profilAnzeigenTable);
 		}
@@ -123,30 +111,9 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			}
 		}
 		
-		private class MerkHandler implements ClickHandler {
-			public void onClick(ClickEvent e) {
-				merkButton.setEnabled(false);
-				try {
-					ClientSideSettings.getEditorService().insertMerkzettel(
-							p.getEmail(), new InsertCallback());
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-			}
-		}
 		
-		private class SperrHandler implements ClickHandler {
-
-			public void onClick(ClickEvent e) {
-				sperrButton.setEnabled(false);
-				try {
-					ClientSideSettings.getEditorService().insertKontaktsperre(
-							p.getEmail(), new InsertCallback());
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-			}
-		}
+		
+		
 		
 		private class ZurueckHandler implements ClickHandler {
 			public void onClick (ClickEvent e) {
@@ -172,8 +139,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			}
 
 			public void onSuccess(Object result) {
-				sperrButton.setEnabled(true);
-				merkButton.setEnabled(true);
+				
 			}
 		}
 		
