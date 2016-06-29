@@ -193,7 +193,6 @@ public class SuchprofilEditor extends VerticalPanel {
 				ClientSideSettings.getEditorService().getSuchprofile(
 						new GetSuchprofileCallback());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -354,7 +353,6 @@ public class SuchprofilEditor extends VerticalPanel {
 					try {
 						ClientSideSettings.getEditorService().deleteSuchprofil(spListBox.getItemText(spListBox.getSelectedIndex()), new SPdeleteCallback());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					anzeigenTable.clear();
@@ -395,10 +393,8 @@ public class SuchprofilEditor extends VerticalPanel {
 							spListBox.getItemText(spListBox.getSelectedIndex()), 
 							new UpdateCallback());
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -477,7 +473,6 @@ public class SuchprofilEditor extends VerticalPanel {
 							spListBox.getItemText(spListBox.getSelectedIndex()), 
 							new GetSuchprofileKomplettCallback());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 //				 Editor erscheinen lassen per Click

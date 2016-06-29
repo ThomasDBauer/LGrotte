@@ -20,7 +20,6 @@ import de.shared.BO.Profil;
 
 public class KontaktsperreEditor extends VerticalPanel {
 
-	private VerticalPanel thisPanel = this;
 	private FlexTable table = new FlexTable();
 	private Vector<String> emailBuffer = new Vector<String>();
 	private Button aufhebenButton = new Button("Kontaktsperre aufheben", new AufhebenHandler());

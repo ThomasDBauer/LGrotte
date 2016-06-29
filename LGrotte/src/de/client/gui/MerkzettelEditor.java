@@ -1,7 +1,6 @@
 package de.client.gui;
 	import java.util.Vector;
 
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -19,7 +18,6 @@ import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 
 	public class MerkzettelEditor extends VerticalPanel {
-		private VerticalPanel thisPanel = this;
 		private FlexTable table = new FlexTable();
 		private Vector<String> emailBuffer = new Vector<String>();
 		private Button aufhebenButton = new Button("Profil l&oumlschen", new LoeschenHandler());
@@ -35,7 +33,6 @@ import de.shared.BO.Profil;
 			aufhebenImage.setStylePrimaryName("Button-img-Image");
 			aufhebenButton.getElement().appendChild(aufhebenImage.getElement());
 			aufhebenButton.setStylePrimaryName("Button-img");
-//			controlPanel.add(sperrButton);
 			table.addStyleName("findLove-table");
 			table.setWidth("45em");
 			this.add(controlPanel);

@@ -2,20 +2,12 @@ package de.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
-
-import de.client.ClientSideSettings;
-import de.client.LGrotte;
-import de.client.gui.Navigation;
-import de.shared.BO.Profil;
 
 public class PopupNavi extends HorizontalPanel {
 	public final Button profilBearbeitenButton = new Button(
@@ -31,7 +23,6 @@ public class PopupNavi extends HorizontalPanel {
 	public final static ProfilLoeschenPopup profilLoeschenPopup = new ProfilLoeschenPopup();
 
 	public PopupNavi() {
-		// super(true);
 		profilBearbeitenButton.setStylePrimaryName("navi-button");
 		suchprofilButton.setStylePrimaryName("navi-button");
 		merklisteButton.setStylePrimaryName("navi-button");
@@ -102,7 +93,6 @@ public class PopupNavi extends HorizontalPanel {
 				try {
 					RootPanel.get("Inhalt").add(new SuchprofilMainFrame());
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				break;
@@ -126,7 +116,6 @@ public class PopupNavi extends HorizontalPanel {
 				try {
 					RootPanel.get("Inhalt").add(new KontaktsperreEditor());
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				break;
