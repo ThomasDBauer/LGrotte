@@ -240,6 +240,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 					sp.getMaxAlter() < getAlter(p.getGeburtsdatum())){
 				ok = false;
 			}
+			//Koerpergroesse
+			if(sp.getMinGroesse() > p.getKoerpergroesse() ||
+					sp.getMaxGroesse() < p.getKoerpergroesse()){
+				ok = false;
+			}
 
 			// ProfilEigenschaften aussortieren
 //			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
