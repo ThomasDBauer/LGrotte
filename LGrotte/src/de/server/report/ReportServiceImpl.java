@@ -204,6 +204,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		for (int i = 0; i < profile.size(); i++) {
 			boolean ok = true;
 			Profil p = profile.elementAt(i);
+			System.out.println(p.getFname() + ": ");
 			// Eigene Identität
 			if (user.getEmail().equals(p.getEmail())) {
 				ok = false;
@@ -211,50 +212,57 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			// Geschlecht
 			if (!sp.getGeschlecht().equals("Egal")) {
 				if (!sp.getGeschlecht().equals(p.getGeschlecht()) || p.getGeschlecht() == null) {
+					System.out.println("Geschl");
 					ok = false;
 				}
 			}
 			// Raucher
 			if (!sp.getRaucher().equals("Egal")) {
 				if (!sp.getRaucher().equals(p.getRaucher()) || p.getRaucher() == null) {
+					System.out.println("Raucher");
 					ok = false;
 				}
 			}
 			// Religion
 			if (!sp.getReligion().equals("Egal")) {
 				if (!sp.getReligion().equals(p.getReligion())) {
-					profile.remove(p);
+					ok = false;
 				}
 			}
 			// Haarfarbe
 			if (!sp.getHaarfarbe().equals("Egal")) {
 				if (!sp.getHaarfarbe().equals(p.getHaarfarbe())) {
-					profile.remove(p);
+					ok = false;
 				}
+			}
+			//Alter
+			if(sp.getMinAlter() > getAlter(p.getGeburtsdatum()) || 
+					sp.getMaxAlter() < getAlter(p.getGeburtsdatum())){
+				ok = false;
 			}
 
 			// ProfilEigenschaften aussortieren
-			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
-					sp.getSuchprofilname());
-			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
-			if (suchPEs != null) {
-				boolean peOK = false;
-				for (int u = 0; u < suchPEs.size(); u++) {
-					if (fremdPEs != null) {
-						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
-						for (int z = 0; z < fremdPEs.size(); z++) {
-							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
-							if (suchPE.getEigenschaft().getId() == fremdPE.getEigenschaft().getId()) {
-								if (fremdPE.getWert().equals(suchPE.getWert())) {
-									peOK = true;
-								}
-							}
-						}
-					}
-				}
-				if (peOK == false)
-					ok = false;
-			}
+//			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
+//					sp.getSuchprofilname());
+//			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
+//			if (suchPEs != null) {
+//				boolean peOK = false;
+//				for (int u = 0; u < suchPEs.size(); u++) {
+//					if (fremdPEs != null) {
+//						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
+//						for (int z = 0; z < fremdPEs.size(); z++) {
+//							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
+//							if (suchPE.getEigenschaft().getId() == fremdPE.getEigenschaft().getId()) {
+//								if (fremdPE.getWert().equals(suchPE.getWert())) {
+//									peOK = true;
+//								}
+//							}
+//						}
+//					}
+//				}
+//				if (peOK == false)
+//					ok = false;
+//			}
 
 			// TODO Größe und Alter
 			if (ok)
@@ -286,7 +294,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			aehnlichkeit += 10;
 		if (user.getReligion().equals(vergleich.getReligion()))
 			aehnlichkeit += 10;
-		// TODO Alter mit Sedats getAlter()
 
 		// ProfilInfos
 		Vector<ProfilEigenschaft> vergleichinfos = profilInfoMapper.getProfilInfosByEmail(vergleich.getEmail());
@@ -328,8 +335,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * Hier wird das Alter anhand des Geburtsdatums berechnet.
 	 */
 	 public int getAlter(Date geburtsdatum) {
-		    String dateString = DateTimeFormat.getFormat("yyyy-MM-dd").format(geburtsdatum);
-		    String[] gebDaten = dateString.split("-");
+		 String s = geburtsdatum.toString();
+		    String[] gebDaten = s.split("-");
 		    Date now = new Date();
 		    int nowMonth = now.getMonth() + 1;
 		    int nowYear = now.getYear() + 1900;
