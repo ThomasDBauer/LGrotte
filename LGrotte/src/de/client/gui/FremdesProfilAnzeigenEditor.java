@@ -101,7 +101,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			this.add(buttonPanel);
 			
 			name.add(namenLabel);
-			nameZus.setText(fnameLabel.getText() + lnameLabel.getText());
+			nameZus.setText(fnameLabel.getText() + " " + lnameLabel.getText());
 			name.add(nameZus);
 			name.setStyleName("Fremd-Profil-Panel", true);
 			this.add(name);
@@ -151,7 +151,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 						+ "ProfilEigenschaftenCallback " + caught.toString()));
 			}
 			public void onSuccess(Vector<ProfilEigenschaft> result) {
-				RootPanel.get("Inhalt").add(new HTML("<h3>Eigenschaften</h3>"));
+				RootPanel.get("Zusatz").add(new HTML("<h3>Eigenschaften</h3>"));
 				for(int i = 0; i < result.size(); i++){
 					HorizontalPanel eigenschaft = new HorizontalPanel();
 					eigenschaft.add(new Label(result.elementAt(i).getName()));
@@ -159,7 +159,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 					eigenschaft.add(new Label(result.elementAt(i).getWert()));
 					eigenschaft.getWidget(1).setStyleName("Fremd-Profil-Label2", true);
 					eigenschaft.setStyleName("Fremd-Profil-Panel", true);
-					RootPanel.get("Inhalt").add(eigenschaft);
+					RootPanel.get("Zusatz").add(eigenschaft);
 				}			}
 		}
 		

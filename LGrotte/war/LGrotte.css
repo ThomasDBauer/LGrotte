@@ -31,8 +31,7 @@ h2 {
 h3 {
 	color: #c0c0c0;
 	font-size: 16px;
-	margin-top: 17px;
-	margin-bottom: 10px;
+	margin-bottom: 32px;
 	padding-bottom: 3px;
 	padding-left: 7px;
 	border-bottom-width: 1px;
@@ -457,10 +456,8 @@ li a:hover {
 	border-radius: 5px;
 }
 
-.gwt-Label{
-}
-
 .gwt-TextBox{
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 	width: 130px;
 	height: 20px;
 	padding-left: 4px;
@@ -483,6 +480,7 @@ li a:hover {
 }
 
 .gwt-ListBox option{
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 	padding: 4px ;
 	background-color: #b61414 !important;
 	color: white !important;
