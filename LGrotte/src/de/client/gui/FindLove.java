@@ -44,7 +44,6 @@ public class FindLove extends VerticalPanel {
 		merkButton.setStylePrimaryName("Button-img");
 		sperrButton.setStylePrimaryName("Button-img");
 		table.addStyleName("findLove-table");
-		table.setWidth("45em");
 		this.add(controlPanel);
 		this.add(resultPanel);
 		loadProfiles();
@@ -114,7 +113,7 @@ public class FindLove extends VerticalPanel {
 			RootPanel.get("Content").clear();
 			RootPanel.get("Inhalt")
 			.add(new HTML(
-					"<h2 style = \"color: #c0c0c0\">Fremd Profil</h2>"));
+					"<h2 style = \"color: #c0c0c0\">" + profil.getFname() + "s Profil</h2>"));
 			try{
 			RootPanel.get("Inhalt").add(new FremdesProfilAnzeigenEditor(profil));
 			ClientSideSettings.getEditorService().insertBesuch(profil, new AsyncCallback(){

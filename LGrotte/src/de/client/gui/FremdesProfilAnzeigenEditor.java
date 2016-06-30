@@ -29,13 +29,30 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		private Button zurueckButton = new Button("Zurueck", new ZurueckHandler());
 		private Label fnameLabel = new Label();
 		private Label lnameLabel = new Label();
+		private Label namenLabel = new Label("Name: ");
+		private HorizontalPanel name = new HorizontalPanel();
 		private Label geschlechtLabel = new Label();
+		private Label geschlechtLabel1 = new Label("Geschlecht: ");
+		private HorizontalPanel geschlecht = new HorizontalPanel();
 		private Label haarfarbeLabel = new Label();
+		private Label haarfarbeLabel1 = new Label("Haarfarbe: ");
+		private HorizontalPanel haarfarbe = new HorizontalPanel();
 		private Label koerperLabel = new Label();
+		private Label koerperLabel1 = new Label("Körpergröße: ");
+		private HorizontalPanel koerpergroesse = new HorizontalPanel();
 		private Label religionLabel = new Label();
+		private Label religionLabel1 = new Label("Religion: ");
+		private HorizontalPanel religion = new HorizontalPanel();
 		private Label raucherLabel = new Label();
+		private Label raucherLabel1 = new Label("Raucher: ");
+		private HorizontalPanel raucher = new HorizontalPanel();
 		private Label bdayLabel = new Label();
+		private Label bdayLabel1 = new Label("Geburtsdatum: ");
+		private HorizontalPanel bday = new HorizontalPanel();
 		private Label eMail = new Label();
+		private Label mail = new Label("E-Mail: ");
+		private HorizontalPanel emailPanel = new HorizontalPanel();
+		private Vector<HorizontalPanel> eigenschaftPanel = new Vector<HorizontalPanel>();
 		
 		
 		public FremdesProfilAnzeigenEditor(Profil profil) throws Exception {
@@ -44,7 +61,27 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			Image zurueckImage = new Image("zurueck.png");
 			zurueckImage.setStylePrimaryName("Button-img-Image");
 			zurueckButton.getElement().appendChild(zurueckImage.getElement());
+			namenLabel.setStyleName("Fremd-Profil-Label", true);
+			Label nameZus = new Label();
+			nameZus.setStyleName("Fremd-Profil-Label2", true);
+			geschlechtLabel1.setStyleName("Fremd-Profil-Label", true);
+			geschlechtLabel.setStyleName("Fremd-Profil-Label2", true);
+			geschlechtLabel.setStyleName("Frem-Profil-Label2", true);
+			haarfarbeLabel1.setStyleName("Fremd-Profil-Label", true);
+			haarfarbeLabel.setStyleName("Fremd-Profil-Label2", true);
+			koerperLabel1.setStyleName("Fremd-Profil-Label", true);
+			koerperLabel.setStyleName("Fremd-Profil-Label2", true);
+			religionLabel1.setStyleName("Fremd-Profil-Label", true);
+			religionLabel.setStyleName("Fremd-Profil-Label2", true);
+			raucherLabel1.setStyleName("Fremd-Profil-Label", true);
+			raucherLabel.setStyleName("Fremd-Profil-Label2", true);
+			bdayLabel1.setStyleName("Fremd-Profil-Label", true);
+			bdayLabel.setStyleName("Fremd-Profil-Label2", true);
+			mail.setStyleName("Fremd-Profil-Label", true);
+			eMail.setStyleName("Fremd-Profil-Label2", true);
+			zurueckButton.setStyleName("Margin-Bottom", true);
 			fnameLabel.setText(p.getFname());
+			fnameLabel.setStyleName("Fremd-Profil-Name", true);
 			lnameLabel.setText(p.getLname());
 			geschlechtLabel.setText(p.getGeschlecht());
 			haarfarbeLabel.setText(p.getHaarfarbe());
@@ -54,43 +91,57 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			bdayLabel.setText(String.valueOf(p.getGeburtsdatum()));	
 			eMail.setText(p.getEmail());
 			
-			profilAnzeigenTable.setWidget(0, 0, buttonPanel);
 			
-			profilAnzeigenTable.setWidget(1, 0, new Label("Vorname"));
-			profilAnzeigenTable.setWidget(1, 1, fnameLabel);
-			
-			profilAnzeigenTable.setWidget(2, 0, new Label("Nachname"));
-			profilAnzeigenTable.setWidget(2, 1, lnameLabel);
-			
-			profilAnzeigenTable.setWidget(3, 0, new Label("Geschlecht"));
-			profilAnzeigenTable.setWidget(3, 1, geschlechtLabel);
-			
-			profilAnzeigenTable.setWidget(4, 0, new Label("Haarfarbe"));
-			profilAnzeigenTable.setWidget(4, 1, haarfarbeLabel);
-			
-			profilAnzeigenTable.setWidget(5, 0, new Label("Körpergröße"));
-			profilAnzeigenTable.setWidget(5, 1, koerperLabel);
-			
-			profilAnzeigenTable.setWidget(6, 0, new Label("Religion"));
-			profilAnzeigenTable.setWidget(6, 1, religionLabel);
-			
-			profilAnzeigenTable.setWidget(7, 0, new Label("Raucher"));
-			profilAnzeigenTable.setWidget(7, 1, raucherLabel);
-			
-			profilAnzeigenTable.setWidget(8, 0, new Label("Geburtsdatum"));
-			profilAnzeigenTable.setWidget(8, 1, bdayLabel);
-			
-			profilAnzeigenTable.setWidget(9, 0, new Label("E-Mail"));
-			profilAnzeigenTable.setWidget(9, 1, eMail);
-			
-			profilAnzeigenTable.addStyleName("findLove-table td");
-			profilAnzeigenTable.setWidth("45em");
+//			profilAnzeigenTable.addStyleName("findLove-table td");
 			
 			ClientSideSettings.getEditorService().getProfilEigenschaften(
 					profil.getEmail(), new ProfilEigenschaftenCallback());
 			
 			buttonPanel.add(zurueckButton);
-			this.add(profilAnzeigenTable);
+			this.add(buttonPanel);
+			
+			name.add(namenLabel);
+			nameZus.setText(fnameLabel.getText() + lnameLabel.getText());
+			name.add(nameZus);
+			name.setStyleName("Fremd-Profil-Panel", true);
+			this.add(name);
+			
+			geschlecht.add(geschlechtLabel1);
+			geschlecht.add(geschlechtLabel);
+			geschlecht.setStyleName("Fremd-Profil-Panel", true);
+			this.add(geschlecht);
+			
+			haarfarbe.add(haarfarbeLabel1);
+			haarfarbe.add(haarfarbeLabel);
+			haarfarbe.setStyleName("Fremd-Profil-Panel", true);
+			this.add(haarfarbe);
+			
+			koerpergroesse.add(koerperLabel1);
+			koerpergroesse.add(koerperLabel);
+			koerpergroesse.setStyleName("Fremd-Profil-Panel", true);
+			this.add(koerpergroesse);
+			
+			religion.add(religionLabel1);
+			religion.add(religionLabel);
+			religion.setStyleName("Fremd-Profil-Panel", true);
+			this.add(religion);
+			
+			raucher.add(raucherLabel1);
+			raucher.add(raucherLabel);
+			raucher.setStyleName("Fremd-Profil-Panel", true);
+			this.add(raucher);
+			
+			bday.add(bdayLabel1);
+			bday.add(bdayLabel);
+			bday.setStyleName("Fremd-Profil-Panel", true);
+			this.add(bday);
+			
+			emailPanel.add(mail);
+			emailPanel.add(eMail);
+			emailPanel.setStyleName("Fremd-Profil-Panel", true);
+			this.add(emailPanel);
+			
+			
 		}
 		
 		private class ProfilEigenschaftenCallback implements
@@ -100,15 +151,16 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 						+ "ProfilEigenschaftenCallback " + caught.toString()));
 			}
 			public void onSuccess(Vector<ProfilEigenschaft> result) {
-				profilAnzeigenTable.setWidget(10, 0, new Label("------------------------------"));
-				profilAnzeigenTable.setWidget(11, 0, new Label("Eigenschaften"));
+				RootPanel.get("Inhalt").add(new HTML("<h3>Eigenschaften</h3>"));
 				for(int i = 0; i < result.size(); i++){
-					profilAnzeigenTable.setWidget(11+i, 0, new Label(
-							result.elementAt(i).getName()));
-					profilAnzeigenTable.setWidget(11+i, 1, new Label(
-							result.elementAt(i).getWert()));
-				}
-			}
+					HorizontalPanel eigenschaft = new HorizontalPanel();
+					eigenschaft.add(new Label(result.elementAt(i).getName()));
+					eigenschaft.getWidget(0).setStyleName("Fremd-Profil-Label",true);
+					eigenschaft.add(new Label(result.elementAt(i).getWert()));
+					eigenschaft.getWidget(1).setStyleName("Fremd-Profil-Label2", true);
+					eigenschaft.setStyleName("Fremd-Profil-Panel", true);
+					RootPanel.get("Inhalt").add(eigenschaft);
+				}			}
 		}
 		
 		

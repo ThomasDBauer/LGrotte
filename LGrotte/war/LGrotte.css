@@ -28,6 +28,19 @@ h2 {
 
 }
 
+h3 {
+	color: #c0c0c0;
+	font-size: 16px;
+	margin-top: 17px;
+	margin-bottom: 10px;
+	padding-bottom: 3px;
+	padding-left: 7px;
+	border-bottom-width: 1px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-style: solid;
+}
+
 a {
 	text-decoration: none;
 	color: black;
@@ -236,6 +249,11 @@ li a:hover {
 	margin-top: 20px;
 }
 
+.Eigenschaft-Border{
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #c0c0c0; 
+}
 
 .logout-ja{
 	background-color: #FFF;
@@ -432,7 +450,6 @@ li a:hover {
 	margin: 5px;
 	height: auto;
 	min-height: 250px;
-	/* min-width: 1200px; */
 	border: 1px solid white;
 	overflow: hidden;
 	-webkit-border-radius: 5px;
@@ -488,7 +505,7 @@ li a:hover {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-right: 7px;
-}
+} 
 
 .Profil-Anzeigen-Label{
 	width: 130px;
@@ -505,6 +522,28 @@ li a:hover {
 	height: 13px;
 	padding-bottom: 5%;
 	width: 115px;
+}
+
+.Fremd-Profil-Panel{
+	min-width: 250px;
+	padding-top: 4px;
+	margin-bottom: 2px;
+	padding-left: 5px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+}
+
+.Fremd-Profil-Label{
+	width: 130px;
+}
+
+.Fremd-Profil-Label2{
+	width: 80px;
+}
+
+.Fremd-Profil-Name{
+	margin-right: 5px;
 }
 
 .Suchprofi-List{
@@ -543,6 +582,10 @@ li a:hover {
 
 .Margin-Bottom{
 	margin-bottom: 20px;
+}
+
+.Margin-Top{
+	margin-top: 20px;
 }
 
 .Eigenschaften-Table{
@@ -585,7 +628,6 @@ li a:hover {
 	min-height: 300px;
 	min-width: 460px;
 	width: 47%;
-	border-rigth: 1px solid #808080;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
