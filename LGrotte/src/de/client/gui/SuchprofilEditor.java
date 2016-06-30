@@ -200,6 +200,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		// ClickHandler zum suchprofil hizufügen Funktion
 		private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
+				keinSPLabel.setText("");
 				spHinzufuegenButton.setVisible(false);
 				anzeigenTable.clear();
 				groessenPanel.clear();
@@ -233,9 +234,11 @@ public class SuchprofilEditor extends VerticalPanel {
 
 				anlegenTable.setWidget(5, 0, koerpergLabel);
 				
-				groessenPanel.add(von);
+				groessenPanel.add(new Label("von"));
+				groessenPanel.getWidget(0).setStylePrimaryName("Text-Box-Connector");
 				groessenPanel.add(minGroesseTextBox);
-				groessenPanel.add(bis);
+				groessenPanel.add(new Label("bis"));
+				groessenPanel.getWidget(2).setStylePrimaryName("Text-Box-Connector");
 				groessenPanel.add(maxGroesseTextBox);
 				anlegenTable.setWidget(5, 1, groessenPanel);
 				
@@ -351,7 +354,6 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 			// ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
 			private class DeleteSuchprofilClickHandler implements ClickHandler{
-				
 				private PopupPanel popup;
 
 				public void onClick(ClickEvent event) {
@@ -361,6 +363,7 @@ public class SuchprofilEditor extends VerticalPanel {
 						e.printStackTrace();
 					}
 					anzeigenTable.clear();
+					keinSPLabel.setText("");
 					alterAnzeigenPanel.clear();
 					groessenAnzeigenPanel.clear();
 					RootPanel.get("Zusatz").clear();
@@ -402,7 +405,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+				keinSPLabel.setText("");
 				String input = minAlterAnzeigenTextBox.getText();
 				if (!input.matches("[0-9]*") || input.matches("")) {
 					Window.alert("'"+ minAlterAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
@@ -482,6 +485,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				}
 //				 Editor erscheinen lassen per Click
 				RootPanel.get("Zusatz").clear();
+				keinSPLabel.setText("");
 				try {
 					RootPanel.get("Zusatz").add(eigenschaftenEditor);
 				} catch (Exception e) {
@@ -544,9 +548,11 @@ public class SuchprofilEditor extends VerticalPanel {
 					
 					
 					anzeigenTable.setWidget(5, 0, koerpergLabel);
-					groessenAnzeigenPanel.add(von);
+					groessenAnzeigenPanel.add(new Label("von"));
+					groessenAnzeigenPanel.getWidget(0).setStylePrimaryName("Text-Box-Connector");
 					groessenAnzeigenPanel.add(minGroesseAnzeigenTextBox);
-					groessenAnzeigenPanel.add(bis);
+					groessenAnzeigenPanel.add(new Label("bis"));
+					groessenAnzeigenPanel.getWidget(2).setStylePrimaryName("Text-Box-Connector");
 					groessenAnzeigenPanel.add(maxGroesseAnzeigenTextBox);
 					anzeigenTable.setWidget(5, 1, groessenAnzeigenPanel);
 					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
