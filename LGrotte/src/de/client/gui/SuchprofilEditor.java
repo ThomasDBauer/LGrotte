@@ -1,5 +1,4 @@
 package de.client.gui;
-
 import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -22,6 +21,14 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.client.ClientSideSettings;
 import de.shared.BO.Suchprofil;
 
+/**
+ * GUI Klasse die das VerticalPanel erbt
+ * 
+ * @author Enrico Popaj, Nicolai Ehrmanntraut und Lukas Kircher
+ *
+ * @version 1.0
+ */
+
 public class SuchprofilEditor extends VerticalPanel {
 	// Verschiedene Panels
 		private VerticalPanel suchprofilPanel = this;
@@ -33,13 +40,15 @@ public class SuchprofilEditor extends VerticalPanel {
 		
 		// Startseite Buttons und Labels
 		private ListBox spListBox = new ListBox();
-		private Button spHinzufuegenButton = new Button("Suchprofil hinzuf&uumlgen", 
+		private Button spHinzufuegenButton = 
+				new Button("Suchprofil hinzuf&uumlgen", 
 				new SuchprofilHinzufuegenClickHandler());
 		private Button loeschenButton = new Button("L&oumlschen", 
 				new DeleteSuchprofilClickHandler());
 		private Button speichernButton = new Button("Speichern", 
 				new UpdateSuchprofilClickHandler());
-		private Label keinSPLabel = new Label("Hey erstell doch ein Suchprofil!");
+		private Label keinSPLabel = 
+				new Label("Hey erstell doch ein Suchprofil!");
 		private Button abbrechenButton = new Button("Abbrechen", 
 				new SuchProfilAbbrechenClickHandler());
 		// AnzeigenTable
@@ -83,9 +92,11 @@ public class SuchprofilEditor extends VerticalPanel {
 		private Label von = new Label("von");
 		private Label bis = new Label("bis");
 		
-		private Button anlegenButton = new Button("Speichern", new SuchProfilAnlegenClickHandler());
+		private Button anlegenButton = new Button("Speichern", 
+				new SuchProfilAnlegenClickHandler());
 
-		private SuchprofilInfoEditor eigenschaftenEditor = new SuchprofilInfoEditor();
+		private SuchprofilInfoEditor eigenschaftenEditor = 
+				new SuchprofilInfoEditor();
 		
 		// Editor 
 		public SuchprofilEditor(SuchprofilInfoEditor spie) throws Exception {
@@ -94,34 +105,39 @@ public class SuchprofilEditor extends VerticalPanel {
 			//CSS-Style der Button und Lables
 			Image hinzImage = new Image("hinzufuegen.png"); 
 			hinzImage.setStylePrimaryName("Button-img-Image");
-			spHinzufuegenButton.getElement().appendChild(hinzImage.getElement());
+			spHinzufuegenButton.getElement().
+			appendChild(hinzImage.getElement());
 			spHinzufuegenButton.setStylePrimaryName("Button-img");
 			spHinzufuegenButton.setStyleName("Margin-Bottom", true);
 			
 			Image loeschenImage = new Image("loeschen.png"); 
 			loeschenImage.setStylePrimaryName("Button-img-Image");
-			loeschenButton.getElement().appendChild(loeschenImage.getElement());
+			loeschenButton.getElement().
+			appendChild(loeschenImage.getElement());
 			loeschenButton.setStylePrimaryName("Button-img");
 			loeschenButton.setStyleName("Margin-Bottom", true);
 			
 			speichernButton.setStylePrimaryName("grotte-Button");
 			Image updateImage = new Image("speichern.png");
 			updateImage.setStylePrimaryName("Button-img-Image");
-			speichernButton.getElement().appendChild(updateImage.getElement());
+			speichernButton.getElement().
+			appendChild(updateImage.getElement());
 			speichernButton.setStylePrimaryName("Button-img");
 			speichernButton.setStyleName("Margin-Bottom", true);
 			
 			anlegenButton.setStylePrimaryName("grotte-Button");
 			Image speicherImage = new Image("speichern.png"); 
 			speicherImage.setStylePrimaryName("Button-img-Image");
-			anlegenButton.getElement().appendChild(speicherImage.getElement());
+			anlegenButton.getElement().
+			appendChild(speicherImage.getElement());
 			anlegenButton.setStylePrimaryName("Button-img");
 			anlegenButton.setStyleName("Margin-Bottom", true);
 			
 			abbrechenButton.setStyleName("grotte-Button");
 			Image abbrImage = new Image("abbrechen.png");
 			abbrImage.setStylePrimaryName("Button-img-Image");
-			abbrechenButton.getElement().appendChild(abbrImage.getElement());
+			abbrechenButton.getElement().
+			appendChild(abbrImage.getElement());
 			abbrechenButton.setStylePrimaryName("Button-img");
 			abbrechenButton.setStyleName("Margin-Bottom", true);
 			
@@ -139,7 +155,8 @@ public class SuchprofilEditor extends VerticalPanel {
 			spListBox.addClickHandler(new SuchProfilAnzeigenClickHandler());
 			spListBox.addChangeHandler(new ChangeHandler(){
 				public void onChange(ChangeEvent event) {
-					spListBox.addClickHandler(new SuchProfilAnzeigenClickHandler());
+					spListBox.addClickHandler
+					(new SuchProfilAnzeigenClickHandler());
 				}
 			});
 			
@@ -198,7 +215,8 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 		
 		// ClickHandler zum suchprofil hizufügen Funktion
-		private class SuchprofilHinzufuegenClickHandler implements ClickHandler {
+		private class SuchprofilHinzufuegenClickHandler 
+		implements ClickHandler {
 			public void onClick(ClickEvent event) {
 				keinSPLabel.setText("");
 				spHinzufuegenButton.setVisible(false);
@@ -235,10 +253,12 @@ public class SuchprofilEditor extends VerticalPanel {
 				anlegenTable.setWidget(5, 0, koerpergLabel);
 				
 				groessenPanel.add(new Label("von"));
-				groessenPanel.getWidget(0).setStylePrimaryName("Text-Box-Connector");
+				groessenPanel.getWidget(0).
+				setStylePrimaryName("Text-Box-Connector");
 				groessenPanel.add(minGroesseTextBox);
 				groessenPanel.add(new Label("bis"));
-				groessenPanel.getWidget(2).setStylePrimaryName("Text-Box-Connector");
+				groessenPanel.getWidget(2).
+				setStylePrimaryName("Text-Box-Connector");
 				groessenPanel.add(maxGroesseTextBox);
 				anlegenTable.setWidget(5, 1, groessenPanel);
 				
@@ -271,7 +291,8 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 		
 		// ClickHandler um das hinzufügen eines Suchprofil abzubrechen
-		private class SuchProfilAbbrechenClickHandler implements ClickHandler {
+		private class SuchProfilAbbrechenClickHandler 
+		implements ClickHandler {
 			public void onClick(ClickEvent event) {
 				spHinzufuegenButton.setVisible(true);
 				anlegenTable.clear();
@@ -282,19 +303,28 @@ public class SuchprofilEditor extends VerticalPanel {
 		
 		
 		// ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
-		private class SuchProfilAnlegenClickHandler implements ClickHandler {
+		private class SuchProfilAnlegenClickHandler 
+		implements ClickHandler {
 
 			private PopupPanel popup;
 			public void onClick(ClickEvent event) {
 				spHinzufuegenButton.setVisible(true);
 				try {
-					ClientSideSettings.getEditorService().insertSuchprofil(spNameTextBox.getText(),
-							geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex()),
-							raucherListBox.getItemText(raucherListBox.getSelectedIndex()),
-							religionListBox.getItemText(religionListBox.getSelectedIndex()),
-							Integer.parseInt(minAlterTextBox.getText()), Integer.parseInt(maxAlterTextBox.getText()),
-							Integer.parseInt(minGroesseTextBox.getText()), Integer.parseInt(maxGroesseTextBox.getText()),
-							haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex()), new SPAnlegenCallback());
+					ClientSideSettings.getEditorService().
+					insertSuchprofil(spNameTextBox.getText(),
+							geschlechtListBox.
+							getItemText(geschlechtListBox.getSelectedIndex()),
+							raucherListBox.
+							getItemText(raucherListBox.getSelectedIndex()),
+							religionListBox.
+							getItemText(religionListBox.getSelectedIndex()),
+							Integer.parseInt(minAlterTextBox.getText()), 
+							Integer.parseInt(maxAlterTextBox.getText()),
+							Integer.parseInt(minGroesseTextBox.getText()), 
+							Integer.parseInt(maxGroesseTextBox.getText()),
+							haarfarbeListBox.
+							getItemText(haarfarbeListBox.getSelectedIndex()), 
+							new SPAnlegenCallback());
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 				} catch (Exception e) {
@@ -303,22 +333,26 @@ public class SuchprofilEditor extends VerticalPanel {
 				
 					String input = minAlterTextBox.getText();
 					if (!input.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ minAlterTextBox.getText() + "'Beinhaltet ein ungültiges Symbol");
+						Window.alert("'"+ minAlterTextBox.getText() + 
+								"'Beinhaltet ein ungültiges Symbol");
 						return;
 					}else{
 					String input2 = maxAlterTextBox.getText();
 					if (!input2.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ maxAlterTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						Window.alert("'"+ maxAlterTextBox.getText() + 
+								"'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 					String input3 = minGroesseTextBox.getText();
 					if (!input3.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ minGroesseTextBox.getText() + "'beinhaltet ein ung&uumlltiges Symbol");
+						Window.alert("'"+ minGroesseTextBox.getText() + 
+								"'beinhaltet ein ung&uumlltiges Symbol");
 						return;
 					}
 					String input4 = maxGroesseTextBox.getText();
 					if (!input4.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ maxGroesseTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						Window.alert("'"+ maxGroesseTextBox.getText() + 
+								"'beinhaltet ein ungültiges Symbol");
 						return;
 					}else {
 						
@@ -339,14 +373,17 @@ public class SuchprofilEditor extends VerticalPanel {
 					}
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde angelegt "
-						+ "zum ausbelnden der Meldung einfach ausserhalb des Feldes Clicken"));
+						+ "zum ausbelnden der Meldung "
+						+ "einfach ausserhalb des Feldes Clicken"));
 				this.popup.center();
 			}
 		}
 		// Callback zum anlegen des Suchprofils
 		private class SPAnlegenCallback implements AsyncCallback {
 			public void onFailure(Throwable caught) {
-				RootPanel.get().add(new Label("Fehler in SuchprofilAnlegenEditor.SPAnlegenCallback" + caught.toString()));
+				RootPanel.get().add(new Label
+						("Fehler in SuchprofilAnlegenEditor.SPAnlegenCallback"
+				+ caught.toString()));
 			}
 			public void onSuccess(Object result) {
 					loadPage();
@@ -358,7 +395,10 @@ public class SuchprofilEditor extends VerticalPanel {
 
 				public void onClick(ClickEvent event) {
 					try {
-						ClientSideSettings.getEditorService().deleteSuchprofil(spListBox.getItemText(spListBox.getSelectedIndex()), new SPdeleteCallback());
+						ClientSideSettings.getEditorService().
+						deleteSuchprofil(spListBox.
+								getItemText(spListBox.getSelectedIndex()), 
+								new SPdeleteCallback());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -370,7 +410,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
 					this.popup = new PopupPanel(true,true);
 					this.popup.add(new Label("Suchprofil wurde angelegt "
-							+ "zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
+							+ "zum Ausbelnden der Meldung "
+							+ "ausserhalb des Feldes Clicken"));
 					this.popup.center();
 				}
 				
@@ -392,13 +433,25 @@ public class SuchprofilEditor extends VerticalPanel {
 			private PopupPanel popup;
 			public void onClick(ClickEvent event) {
 				try {
-					ClientSideSettings.getEditorService().updateSuchprofil(geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex()),
-							Integer.parseInt(minAlterAnzeigenTextBox.getText()), Integer.parseInt(maxAlterAnzeigenTextBox.getText()),
-							religionListBox.getItemText(religionListBox.getSelectedIndex()),
-							haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex()),
-							raucherListBox.getItemText(raucherListBox.getSelectedIndex()), 
-							Integer.parseInt(minGroesseAnzeigenTextBox.getText()), Integer.parseInt(maxGroesseAnzeigenTextBox.getText()),
-							spListBox.getItemText(spListBox.getSelectedIndex()), 
+					ClientSideSettings.getEditorService().
+					updateSuchprofil(geschlechtListBox.
+							getItemText(geschlechtListBox.getSelectedIndex()),
+							Integer.parseInt
+							(minAlterAnzeigenTextBox.getText()), 
+							Integer.parseInt
+							(maxAlterAnzeigenTextBox.getText()),
+							religionListBox.
+							getItemText(religionListBox.getSelectedIndex()),
+							haarfarbeListBox.
+							getItemText(haarfarbeListBox.getSelectedIndex()),
+							raucherListBox.
+							getItemText(raucherListBox.getSelectedIndex()), 
+							Integer.parseInt
+							(minGroesseAnzeigenTextBox.getText()), 
+							Integer.parseInt
+							(maxGroesseAnzeigenTextBox.getText()),
+							spListBox.
+							getItemText(spListBox.getSelectedIndex()), 
 							new UpdateCallback());
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
@@ -408,23 +461,27 @@ public class SuchprofilEditor extends VerticalPanel {
 				keinSPLabel.setText("");
 				String input = minAlterAnzeigenTextBox.getText();
 				if (!input.matches("[0-9]*") || input.matches("")) {
-					Window.alert("'"+ minAlterAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+					Window.alert("'"+ minAlterAnzeigenTextBox.getText() + 
+							"'beinhaltet ein ungültiges Symbol");
 					return;
 				} else {
 					String input2 = maxAlterAnzeigenTextBox.getText();
 					if (!input2.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ maxAlterAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						Window.alert("'"+ maxAlterAnzeigenTextBox.getText() + 
+								"'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 				
 					String input3 = minGroesseAnzeigenTextBox.getText();
 					if (!input3.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ minGroesseAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						Window.alert("'"+ minGroesseAnzeigenTextBox.getText() + 
+								"'beinhaltet ein ungültiges Symbol");
 						return;
 					}
 					String input4 = maxGroesseAnzeigenTextBox.getText();
 					if (!input4.matches("[0-9]*") || input.matches("")) {
-						Window.alert("'"+ maxGroesseAnzeigenTextBox.getText() + "'beinhaltet ein ungültiges Symbol");
+						Window.alert("'"+ maxGroesseAnzeigenTextBox.getText() + 
+								"'beinhaltet ein ungültiges Symbol");
 						return;
 					
 				} else {			
@@ -439,7 +496,8 @@ public class SuchprofilEditor extends VerticalPanel {
 				
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde aktualisiert "
-						+ "zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
+						+ "zum Ausbelnden der Meldung "
+						+ "ausserhalb des Feldes Clicken"));
 				this.popup.center();
 			
 			}
@@ -455,7 +513,8 @@ public class SuchprofilEditor extends VerticalPanel {
 			}
 		}
 		// Callback zum Anzeigen der neuen Suchprofile in unserer Listbox
-		private class GetSuchprofileCallback implements AsyncCallback<Vector<Suchprofil>> {
+		private class GetSuchprofileCallback implements 
+		AsyncCallback<Vector<Suchprofil>> {
 			public void onFailure(Throwable caught) {
 				RootPanel.get().add(new Label(caught.toString()));
 			}
@@ -477,8 +536,8 @@ public class SuchprofilEditor extends VerticalPanel {
 		private class SuchProfilAnzeigenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
 				try {
-					ClientSideSettings.getEditorService().getSuchprofileByName(
-							spListBox.getItemText(spListBox.getSelectedIndex()), 
+					ClientSideSettings.getEditorService().getSuchprofileByName
+					(spListBox.getItemText(spListBox.getSelectedIndex()), 
 							new GetSuchprofileKomplettCallback());
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -493,7 +552,8 @@ public class SuchprofilEditor extends VerticalPanel {
 			}
 		}	
 		// Callback zum Anzeigen des kompletten Suchprofils
-		private class GetSuchprofileKomplettCallback implements AsyncCallback<Suchprofil> {
+		private class GetSuchprofileKomplettCallback implements 
+		AsyncCallback<Suchprofil> {
 			public void onFailure(Throwable caught) {
 				RootPanel.get().add(new Label(caught.toString()));
 			}
@@ -516,7 +576,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					anzeigenTable.setWidget(1, 0, geschlechtLabel);
 					anzeigenTable.setWidget(1, 1, geschlechtListBox);
 					for (int g = 0; g < 4;g++) {
-						if(geschlechtListBox.getValue(g) == result.getGeschlecht()){
+						if(geschlechtListBox.getValue(g) == 
+								result.getGeschlecht()){
 							geschlechtListBox.setSelectedIndex(g);
 						}
 					}
@@ -533,7 +594,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					anzeigenTable.setWidget(3, 0, haarfarbeLabel);
 					anzeigenTable.setWidget(3, 1, haarfarbeListBox);
 					for (int g = 0; g < 7;g++) {
-						if(haarfarbeListBox.getValue(g) == result.getHaarfarbe()){
+						if(haarfarbeListBox.getValue(g) == 
+								result.getHaarfarbe()){
 							haarfarbeListBox.setSelectedIndex(g);
 						}
 					}
@@ -541,7 +603,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					anzeigenTable.setWidget(4, 0, religionLabel);
 					anzeigenTable.setWidget(4, 1, religionListBox);
 					for (int g = 0; g < 8;g++) {
-						if(religionListBox.getValue(g) == result.getReligion()){
+						if(religionListBox.getValue(g) == 
+								result.getReligion()){
 							religionListBox.setSelectedIndex(g);
 						}
 					}
@@ -549,14 +612,18 @@ public class SuchprofilEditor extends VerticalPanel {
 					
 					anzeigenTable.setWidget(5, 0, koerpergLabel);
 					groessenAnzeigenPanel.add(new Label("von"));
-					groessenAnzeigenPanel.getWidget(0).setStylePrimaryName("Text-Box-Connector");
+					groessenAnzeigenPanel.getWidget(0).
+					setStylePrimaryName("Text-Box-Connector");
 					groessenAnzeigenPanel.add(minGroesseAnzeigenTextBox);
 					groessenAnzeigenPanel.add(new Label("bis"));
-					groessenAnzeigenPanel.getWidget(2).setStylePrimaryName("Text-Box-Connector");
+					groessenAnzeigenPanel.getWidget(2).
+					setStylePrimaryName("Text-Box-Connector");
 					groessenAnzeigenPanel.add(maxGroesseAnzeigenTextBox);
 					anzeigenTable.setWidget(5, 1, groessenAnzeigenPanel);
-					minGroesseAnzeigenTextBox.setText(Integer.toString(result.getMinGroesse()));
-					maxGroesseAnzeigenTextBox.setText(Integer.toString(result.getMaxGroesse()));
+					minGroesseAnzeigenTextBox.setText
+					(Integer.toString(result.getMinGroesse()));
+					maxGroesseAnzeigenTextBox.setText
+					(Integer.toString(result.getMaxGroesse()));
 					
 					minGroesseAnzeigenTextBox.setVisibleLength(3);
 					minGroesseAnzeigenTextBox.setMaxLength(3);
@@ -570,8 +637,10 @@ public class SuchprofilEditor extends VerticalPanel {
 					alterAnzeigenPanel.add(bis);
 					alterAnzeigenPanel.add(maxAlterAnzeigenTextBox);
 					anzeigenTable.setWidget(6, 1, alterAnzeigenPanel);
-					minAlterAnzeigenTextBox.setText(Integer.toString(result.getMinAlter()));
-					maxAlterAnzeigenTextBox.setText(Integer.toString(result.getMaxAlter()));
+					minAlterAnzeigenTextBox.setText
+					(Integer.toString(result.getMinAlter()));
+					maxAlterAnzeigenTextBox.setText
+					(Integer.toString(result.getMaxAlter()));
 					
 					minAlterAnzeigenTextBox.setVisibleLength(3);
 					minAlterAnzeigenTextBox.setMaxLength(3);

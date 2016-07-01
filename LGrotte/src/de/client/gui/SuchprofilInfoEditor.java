@@ -1,5 +1,4 @@
 package de.client.gui;
-
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -24,17 +23,28 @@ import de.shared.BO.Info;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilEigenschaft;
 
+/**
+ * GUI Klasse die das VerticalPanel vererbt bekommt
+ * 
+ * @author ThomasBauer
+ *
+ * @version 1.0
+ */
+
 public class SuchprofilInfoEditor extends VerticalPanel {
 
 	// GUI Elemente
 	private VerticalPanel eigenschaftenPanel = new VerticalPanel();
-	private Button addEigenschaftenButton = new Button("Eigenschaft hinzufügen");
-	private Button speicherButton = new Button("Speichern", new InsertHandler());
+	private Button addEigenschaftenButton = 
+			new Button("Eigenschaft hinzufügen");
+	private Button speicherButton = 
+			new Button("Speichern", new InsertHandler());
 	private Button loeschenButton = new Button("Löschen");
 	private FlexTable table = new FlexTable();
 
 	// Daten und Zwischenspeicher
-	private HashMap<Eigenschaft, Widget> hashmap = new HashMap<Eigenschaft, Widget>();
+	private HashMap<Eigenschaft, Widget> hashmap = 
+			new HashMap<Eigenschaft, Widget>();
 	private Vector<Eigenschaft> eigenschaften = new Vector<Eigenschaft>();
 
 	// Das Suchprofil + Setter
@@ -55,16 +65,20 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 		speicherButton.setStylePrimaryName("Button-img");
 		loeschenButton.setStylePrimaryName("grotte-Button");
 	}
-
+	
+	// LoadPageMethode um die Eigenschaften immer aktuell zu halten
 	public void loadProfilEigenschaften() throws Exception {
-		ClientSideSettings.getEditorService().getSuchprofilEigenschaften(suchprofil.getSuchprofilname(),
+		ClientSideSettings.getEditorService().
+		getSuchprofilEigenschaften(suchprofil.getSuchprofilname(),
 				new ProfilEigenschaftenCallback());
 		this.add(speicherButton);
 		this.add(eigenschaftenPanel);
 		eigenschaftenPanel.add(table);
 	}
 
-	private class ProfilEigenschaftenCallback implements AsyncCallback<Vector<ProfilEigenschaft>> {
+	// Callback für Aufruf der Eigenschaften
+	private class ProfilEigenschaftenCallback implements 
+	AsyncCallback<Vector<ProfilEigenschaft>> {
 		public void onFailure(Throwable caught) {
 		}
 
@@ -88,7 +102,8 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 				} else {
 					ListBox lb = new ListBox();
 					try {
-						ClientSideSettings.getEditorService().getAuswahlForEigenschaft(e,
+						ClientSideSettings.getEditorService().
+						getAuswahlForEigenschaft(e,
 								new GetAuswahlCallback(lb, info.getValue()));
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -99,8 +114,10 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 			}
 		}
 	}
-
-	private class GetAuswahlCallback implements AsyncCallback<Vector<Auswahl>> {
+	
+	// Callback für Aufruf der Auswahl Eigenschaften
+	private class GetAuswahlCallback implements 
+	AsyncCallback<Vector<Auswahl>> {
 		private ListBox lb;
 		private String value;
 
@@ -128,13 +145,15 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 		}
 	}
 
+	// ClickHandler um Infos zu speichern
 	private class InsertHandler implements ClickHandler {
 		
 		private PopupPanel popup;
 		
 		public void onClick(ClickEvent e) {
 			try {
-				ClientSideSettings.getEditorService().deleteSuchprofilInfosForUser(suchprofil, new AsyncCallback() {
+				ClientSideSettings.getEditorService().
+				deleteSuchprofilInfosForUser(suchprofil, new AsyncCallback() {
 					public void onFailure(Throwable caught) {
 						Window.alert("deleteError");
 					}
@@ -147,11 +166,14 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 							if (w instanceof TextBox) {
 								info.setValue(((TextBox) w).getText());
 							} else {
-								info.setValue(((ListBox) w).getItemText(((ListBox) w).getSelectedIndex()));
+								info.setValue(((ListBox) w).
+										getItemText(((ListBox) w).
+												getSelectedIndex()));
 							}
 							info.setEigenschaft(e.getId());
 							try {
-								ClientSideSettings.getEditorService().insertSuchprofilInfo(suchprofil, info,
+								ClientSideSettings.getEditorService().
+								insertSuchprofilInfo(suchprofil, info,
 										new AsyncCallback() {
 									public void onFailure(Throwable caught) {
 									}
@@ -171,7 +193,8 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 			this.popup = new PopupPanel(true, true);
 			this.popup.add(new Label(
 					"Suchprofilinfos wurde aktualisiert " +
-					"zum Ausbelnden der Meldung ausserhalb des Feldes Clicken"));
+					"zum Ausbelnden der Meldung "
+					+ "ausserhalb des Feldes Clicken"));
 			this.popup.center();
 			try {
 				loadProfilEigenschaften();
