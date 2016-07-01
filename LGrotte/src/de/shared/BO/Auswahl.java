@@ -1,10 +1,14 @@
 package de.shared.BO;
 
+/**
+ * 
+ * 
+ * @author Thomas Bauer
+ * 
+ * @version 1.0
+ */
 public class Auswahl extends BusinessObject {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private int eigenschaft_id;

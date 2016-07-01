@@ -1,5 +1,12 @@
 package de.shared.BO;
 
+/**
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
+
 public class EigenschaftFrei extends Eigenschaft {
 
 	public EigenschaftFrei(int id) {

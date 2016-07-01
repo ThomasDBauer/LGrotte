@@ -1,5 +1,12 @@
 package de.shared.BO;
 
+/**
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
+
 public class EigenschaftAuswahl extends Eigenschaft {
 
 	public EigenschaftAuswahl(int id) {

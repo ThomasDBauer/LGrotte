@@ -1,6 +1,12 @@
 package de.shared.BO;
-
 import java.util.Date;
+
+/**
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
 
 public class Profil extends BusinessObject {
 

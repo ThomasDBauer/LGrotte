@@ -1,6 +1,12 @@
 package de.shared.BO;
-
 import java.io.Serializable;
+
+/**
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
 
 public class BusinessObject implements Serializable {
 

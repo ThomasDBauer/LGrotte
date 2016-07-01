@@ -1,8 +1,14 @@
 package de.shared.BO;
-
 import java.util.Vector;
 
 import de.shared.RO.ProfilEigenschaft;
+
+/**
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
 
 public class Suchprofil extends BusinessObject {
 

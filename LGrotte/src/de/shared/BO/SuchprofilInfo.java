@@ -1,5 +1,12 @@
 package de.shared.BO;
 
+/**
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
+
 public class SuchprofilInfo {
 
 	// Das Name des Suchprofils
