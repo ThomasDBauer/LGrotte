@@ -1,6 +1,6 @@
 package de.client.gui;
-
 import java.util.Date;
+
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -32,6 +32,14 @@ import de.shared.EditorService;
 import de.shared.EditorServiceAsync;
 import de.shared.BO.Profil;
 
+/**
+ * GUI KLasse die das Vertical Panel vererbt bekommt
+ * 
+ * @author Thomas Bauer, Enrico Popaj und Lukas Kircher
+ * 
+ * @version 1.0
+ */
+
 public class ProfilErstellenEditor extends VerticalPanel {
 	private VerticalPanel panel = this;
 	private FlexTable flexTable = new FlexTable();
@@ -51,7 +59,8 @@ public class ProfilErstellenEditor extends VerticalPanel {
 	private Label haarfarbeLabel = new Label("Haarfarbe");
 	private Label religionLabel = new Label("Religion");
 	private Label raucherLabel = new Label("Raucher");
-	private DateTimeFormat datumsFormat = DateTimeFormat.getFormat("yyyy-MM-dd");
+	private DateTimeFormat datumsFormat = 
+			DateTimeFormat.getFormat("yyyy-MM-dd");
 	private Label datumsinhalt = new Label();
 	private Label geburtsdatumLabel = new Label("Geburtsdatum");
 	private Label fNameLabel = new Label("Vorname");
@@ -72,19 +81,19 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		religionLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		raucherLabel.setStyleName("Profilbearbeiten-Boxen", true);
-//		geburtsdatumLabel.setStyleName("Profilbearbeiten-Boxen", true);
-//		datumsinhalt.setStyleName("Profilbearbeiten-Boxen", true);
 		fNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		lNameLabel.setStyleName("Profilbearbeiten-Boxen", true);
 		flexTable.setStylePrimaryName("Table-Margin");
 		
 		Image speicherImage = new Image("speichern.png");
 		speicherImage.setStylePrimaryName("Button-img-Image");
-		profilUpdateButton.getElement().appendChild(speicherImage.getElement());
+		profilUpdateButton.getElement().
+		appendChild(speicherImage.getElement());
 		profilUpdateButton.setStylePrimaryName("Button-img");
 		
 		try {
-			ClientSideSettings.getEditorService().getProfil(new ProfilAuslesenCallback());
+			ClientSideSettings.getEditorService().
+			getProfil(new ProfilAuslesenCallback());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,7 +130,8 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		datumsBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				Date datum = event.getValue();
-				String datumsString = DateTimeFormat.getFormat("yyyy-MM-dd").format(datum);
+				String datumsString = 
+						DateTimeFormat.getFormat("yyyy-MM-dd").format(datum);
 				datumsinhalt.setText(datumsString);
 			}
 		});
@@ -160,22 +170,26 @@ public class ProfilErstellenEditor extends VerticalPanel {
 
 	//Getter für Attribute
 	String getGeschlecht() {
-		String geschlecht = geschlechtListBox.getItemText(geschlechtListBox.getSelectedIndex());
+		String geschlecht = geschlechtListBox.
+				getItemText(geschlechtListBox.getSelectedIndex());
 		return geschlecht;
 	}
 	
 	String getHaarfarbe() {
-		String haarfarbe = haarfarbeListBox.getItemText(haarfarbeListBox.getSelectedIndex());
+		String haarfarbe = haarfarbeListBox.
+				getItemText(haarfarbeListBox.getSelectedIndex());
 		return haarfarbe;
 	}
 
 	String getReligion() {
-		String religion = religionListBox.getItemText(religionListBox.getSelectedIndex());
+		String religion = religionListBox.
+				getItemText(religionListBox.getSelectedIndex());
 		return religion;
 	}
 
 	String getRaucher() {
-		String raucher = raucherListBox.getItemText(raucherListBox.getSelectedIndex());
+		String raucher = raucherListBox.
+				getItemText(raucherListBox.getSelectedIndex());
 		return raucher;
 	}
 
@@ -200,15 +214,20 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		}
 
 	}
-
+	
+	// ClickHandler um die geänderten Attribute zu speichern
 	private class ProfilUpdateClickHandler implements ClickHandler {
 
 		public void onClick(ClickEvent event) {
 			Profil email = new Profil();
 				try {
-					ClientSideSettings.getEditorService().updateProfil(fNameTextBox.getText(), lNameTextBox.getText(),
-							Integer.parseInt(koerpergroesseTextBox.getText()), getGeschlecht(), getReligion(),
-							getHaarfarbe(), getRaucher(), getGeburtsdatum(), email.getEmail(), new ProfilUpdateCallback());
+					ClientSideSettings.getEditorService().
+					updateProfil(fNameTextBox.getText(), 
+							lNameTextBox.getText(),
+							Integer.parseInt(koerpergroesseTextBox.getText()), 
+							getGeschlecht(), getReligion(),
+							getHaarfarbe(), getRaucher(), getGeburtsdatum(), 
+							email.getEmail(), new ProfilUpdateCallback());
 				} catch (Exception e) {
 					Window.alert("catch " + e.toString());
 					e.printStackTrace();
@@ -264,7 +283,8 @@ public class ProfilErstellenEditor extends VerticalPanel {
 			if (result.getKoerpergroesse() == 0) {
 				koerpergroesseTextBox.setText("");
 			} else {
-				koerpergroesseTextBox.setText(Integer.toString(result.getKoerpergroesse()));
+				koerpergroesseTextBox.setText(Integer.toString
+						(result.getKoerpergroesse()));
 			}
 			for (int re = 0; re < 5; re++) {
 				if (religionListBox.getValue(re) == result.getReligion()) {

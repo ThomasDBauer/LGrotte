@@ -1,5 +1,4 @@
 package de.client.gui;
-
 import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -20,6 +19,13 @@ import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
 import de.shared.RO.ProfilEigenschaft;
 
+/**
+ * GUI Klasse die das VerticalPanel vererbt bekommt
+ * 
+ * @author Thomas Bauer, Enrico Popaj, Nicolai Ehrmanntraut und Lukas Kircher
+ *
+ * @version 1.0
+ */
 public class ProfilEigenschaftEditor extends VerticalPanel {
 
 	// GUI Elemente
@@ -60,33 +66,41 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		this.add(buttonPanel);
 		this.add(editPanel);
 		this.add(eigenschaftenPanel);
-		ClientSideSettings.getEditorService().getEigenschaften(new GetEigenschaftenCallback());
+		ClientSideSettings.getEditorService().
+		getEigenschaften(new GetEigenschaftenCallback());
 		loadProfilEigenschaften();
 	}
 
 	// Eigenschaften laden +
 	public void loadProfilEigenschaften() throws Exception {
 		eigenschaftenPanel.clear();
-		ClientSideSettings.getEditorService().getProfilEigenschaften(new LoadProfileCallback());
+		ClientSideSettings.getEditorService().
+		getProfilEigenschaften(new LoadProfileCallback());
 	}
 
 	// + Callback
-	private class LoadProfileCallback implements AsyncCallback<Vector<ProfilEigenschaft>> {
+	private class LoadProfileCallback implements 
+	AsyncCallback<Vector<ProfilEigenschaft>> {
 		public void onFailure(Throwable caught) {
-			eigenschaftenPanel.add(new Label("LoadProfileCallback " + caught.toString()));
+			eigenschaftenPanel.add(new Label("LoadProfileCallback " 
+		+ caught.toString()));
 		}
 
 		public void onSuccess(Vector<ProfilEigenschaft> result) {
 			if (result.size() == 0)
-				eigenschaftenPanel.add(new Label("Erz&aumlhle etwas &uumlber ich!"));
+				eigenschaftenPanel.add(new Label
+						("Erz&aumlhle etwas &uumlber ich!"));
 			FlexTable table = new FlexTable();
 			table.setStylePrimaryName("Eigenschaften-Table");
 			for (int i = 0; i < result.size(); i++) {
 				if(result.elementAt(i).getEigenschaft().getAuswahl() == 0){
-					table.setWidget(i, 0, new Label(result.elementAt(i).getName() + ": "));
-					table.setWidget(i, 1, new Label(result.elementAt(i).getWert()));
+					table.setWidget(i, 0, new Label
+							(result.elementAt(i).getName() + ": "));
+					table.setWidget(i, 1, new Label
+							(result.elementAt(i).getWert()));
 					CheckBox cb = new CheckBox();
-					cb.addClickHandler(new AddToDeleteHandler(result.elementAt(i).getInfo()));
+					cb.addClickHandler
+					(new AddToDeleteHandler(result.elementAt(i).getInfo()));
 					table.setWidget(i, 2, cb);
 				}
 			}
@@ -121,7 +135,8 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		public void onClick(ClickEvent e) {
 			for (int i = 0; i < infosToDelete.size(); i++) {
 				try {
-					ClientSideSettings.getEditorService().deleteInfo(infosToDelete.elementAt(i), 
+					ClientSideSettings.getEditorService().
+					deleteInfo(infosToDelete.elementAt(i), 
 							new AsyncCallback() {
 						public void onFailure(Throwable caught) {
 						}
@@ -164,7 +179,8 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 			}
 			// hübsch anordnen
 			HorizontalPanel hpanel = new HorizontalPanel();
-			Button abbrechenButton = new Button("abbrechen", new AbbrechenHandler(listbox, infotextbox));
+			Button abbrechenButton = new Button("abbrechen", 
+					new AbbrechenHandler(listbox, infotextbox));
 			Image breakImage = new Image("abbrechen.png");
 			breakImage.setStylePrimaryName("Button-img-Image");
 			abbrechenButton.getElement().appendChild(breakImage.getElement());
@@ -199,7 +215,8 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 	}
 
 	// Callback zum Laden der Eigenschaften. Aufruf im Konstruktor
-	private class GetEigenschaftenCallback implements AsyncCallback<Vector<Eigenschaft>> {
+	private class GetEigenschaftenCallback implements 
+	AsyncCallback<Vector<Eigenschaft>> {
 		public void onFailure(Throwable caught) {
 		}
 
@@ -216,7 +233,8 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 				ListBox lb = eigenschaftenListboxen.elementAt(i);
 				int eigenschaftsID = 0;
 				for (int o = 0; o < eigenschaften.size(); o++) {
-					if (lb.getItemText(lb.getSelectedIndex()).equals(eigenschaften.elementAt(o).getErlaeuterung())) {
+					if (lb.getItemText(lb.getSelectedIndex()).
+							equals(eigenschaften.elementAt(o).getErlaeuterung())) {
 						eigenschaftsID = eigenschaften.elementAt(o).getId();
 					}
 				}
@@ -224,7 +242,8 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 				info.setEigenschaft(eigenschaftsID);
 				info.setValue(eigenschaftenTextboxen.elementAt(i).getText());
 				try {
-					ClientSideSettings.getEditorService().insertProfilInfo(info, new InsertInfoCallback());
+					ClientSideSettings.getEditorService().
+					insertProfilInfo(info, new InsertInfoCallback());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

@@ -1,5 +1,4 @@
 package de.client.gui;
-
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -10,6 +9,14 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
+
+/**
+ * GUI Klasse die das VerticalPanel vererbt bekommt
+ * 
+ * @author Enrico Popaj, Nicolai Ehrmanntraut und Lukas Kircher
+ *
+ * @version 1.0
+ */
 
 public class ProfilAnzeigenEditor extends VerticalPanel {
 
@@ -34,6 +41,7 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 	private Label geburtstag = new Label("Geburtsdatum");
 	private Vector<Label> labels = new Vector<Label>();
 		
+		// Konstruktor
 		public ProfilAnzeigenEditor() {
 			try {
 				ClientSideSettings.getEditorService().getProfil(
@@ -79,7 +87,9 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 			vpanel.add(profilAnzeigenTable);
 		}
 		
-		private class ProfilAnzeigenCallback implements AsyncCallback<Profil> {
+		// Callback um die Profildaten anzuzeigen
+		private class ProfilAnzeigenCallback implements 
+		AsyncCallback<Profil> {
 			public void onFailure(Throwable caught) {
 			}
 			public void onSuccess(Profil result) {
