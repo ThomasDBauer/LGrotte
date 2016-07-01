@@ -1,5 +1,4 @@
 package de.shared;
-
 import java.util.Date;
 import java.util.Vector;
 
@@ -18,12 +17,18 @@ import de.shared.RO.ProfilEigenschaft;
 
 /**
  * The client-side stub for the RPC service.
+ * 
+ * @author Thomas Bauer, Enrico Popaj und Nicolai Ehrmanntraut
+ *
+ * @version 1.0 
  */
 @RemoteServiceRelativePath("editor")
 public interface EditorService extends RemoteService {
 
-	void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht, String religion,
-			String haarfarbe, String raucher, Date geburtsdatum) throws Exception;
+	void insertProfil(String email, String fname, String lname, int koerpergroesse, 
+			String geschlecht, String religion,
+			String haarfarbe, String raucher, Date geburtsdatum) 
+					throws Exception;
 	
 	Profil getProfil() throws Exception;
 	
@@ -34,15 +39,20 @@ public interface EditorService extends RemoteService {
 	Profil getProfil(String email) throws Exception;
 	
 	void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht,
-			String religion, String haarfarbe, String raucher, Date geburtsdatum, String email) throws Exception;
+			String religion, String haarfarbe, String raucher, 
+			Date geburtsdatum, String email) throws Exception;
 
 	void deleteProfil() throws Exception;
 
-	void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion, int minAlter,
-			int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) throws Exception;
+	void insertSuchprofil(String suchprofilname, String geschlecht, 
+			String raucher, String religion, int minAlter,
+			int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) 
+					throws Exception;
 	
 	void updateSuchprofil(String geschlecht, int minAlter, int maxAlter,
-			String religion, String haarfarbe, String raucher, int minGroesse, int maxGroesse, String suchprofilname) throws Exception;
+			String religion, String haarfarbe, String raucher, 
+			int minGroesse, int maxGroesse, String suchprofilname) 
+					throws Exception;
 
 	void deleteSuchprofil(String suchprofilname) throws Exception;
 
@@ -80,7 +90,8 @@ public interface EditorService extends RemoteService {
 	
 	Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception;
 	
-	Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception;
+	Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) 
+			throws Exception;
 	
 	Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception;
 	

@@ -1,5 +1,4 @@
 package de.server.editor;
-
 import java.util.Date;
 import java.util.Vector;
 
@@ -32,6 +31,10 @@ import de.shared.RO.ProfilEigenschaft;
 
 /**
  * The server-side implementation of the RPC service.
+ * 
+ * @author Thomas Bauer und Enrico Popaj und Nicolai Ehrmanntraut
+ *
+ * @version 1.0
  */
 @SuppressWarnings("serial")
 public class EditorServiceImpl extends RemoteServiceServlet implements EditorService {
@@ -44,7 +47,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		user = p;
 	}
 
-	// Methoden rund um das Profil
 	// Profil erstellen
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws Exception {
@@ -58,7 +60,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		p.setGeburtsdatum(geburtsdatum);
 		p.setRaucher(raucher);
 		p.setEmail(email);
-
 			ProfilMapper.profilMapper().insertProfil(p);
 	}
 	
@@ -94,7 +95,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			return ProfilMapper.profilMapper().getProfilByEmail(email);
 		}
 
-	// Methoden zum Suchprofil
 	// Suchprofil erstellen
 	public void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion,
 			int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) throws Exception {
@@ -136,14 +136,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		SuchprofilMapper.suchprofilMapper().deleteSuchprofil(deletesp);
 	}
 
-	// Methoden rund um die Eigenschaften und Infos
 	// Eigenschaften auslesen
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
 		return this.eMapper.getEigenschaften();
 	}
 
 	
-	
+	// Ruft alle Suchprofile eines Profils auf
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
 		String email = user.getEmail();
 		return SuchprofilMapper.suchprofilMapper().getSuchprofileByEmail(email);
@@ -151,7 +150,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 
 	/*
-	 * Die Methode liefert alle Profile zur�ck, die nicht auf Merkzetteln oder
+	 * Die Methode liefert alle Profile zurück, die nicht auf Merkzetteln oder
 	 * Kontaktsperren des Users stehen.
 	 */
 	public Vector<Profil> getProfilesForEditor() throws Exception {
@@ -171,7 +170,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			if(profile.elementAt(i).getEmail().equals(user.getEmail())){
 				ok = false;
 				continue;
-//				profile.remove(i);
 			}
 			
 			//Merkzettel aussortieren
@@ -180,7 +178,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 						merkzettel.elementAt(o).getGemerktesProfil())){
 					ok = false;
 					break;
-//					profile.remove(i);
 				};
 			}
 			//Kontaktsperren aussortieren
@@ -189,7 +186,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 						sperren.elementAt(o).getGesperrtesProfil())){
 					ok = false;
 					break;
-//					profile.remove(i);
 				};
 			}
 			if(ok)results.add(profile.elementAt(i));
@@ -197,14 +193,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return results;
 	}		
 	
+	// Gibt die Auswahlmöglichkeiten einer Eigenschaft aus
 	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception{
 		return AuswahlMapper.auswahlMapper().getAuswahlForEigenschaft(e);
 	}
+	
 	// Suchprofil anzeigen by name
 		public Suchprofil getSuchprofileByName(String suchprofilname) throws Exception{
 			return SuchprofilMapper.suchprofilMapper().getSuchprofiByName(suchprofilname);
 		}
 
+	// Profile auf Merkzettel setzen
 	public void insertMerkzettel(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++) {
 			Merkzettel mz = new Merkzettel();
@@ -214,11 +213,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 	}
 	
+	// Gibt den Merkzetel eines Profils aus
 	public Vector<Merkzettel> getMerkzettelByOwner() throws Exception{
 			String email = user.getEmail();
 			return MerkzettelMapper.merkzettelMapper().getMerkzettelByOwner(email);
 	}
 	
+	// Profile sperren
 	public void insertKontaktsperren(Vector<String>emails) throws Exception {
 		for(int i = 0; i < emails.size(); i++){
 			Kontaktsperre k = new Kontaktsperre();
@@ -228,6 +229,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 	}
 	
+	// Profil sperren
 	public void insertKontaktsperre(String email) throws Exception {
 			Kontaktsperre k = new Kontaktsperre();
 			k.setGesperrtesProfil(email);
@@ -235,6 +237,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			KontaktsperreMapper.kontaktsperreMapper().insertKontaktsperre(k);
 	}
 	
+	// Profil merken
 	public void insertMerkzettel(String email) throws Exception {
 			Merkzettel mz = new Merkzettel();
 			mz.setGemerktesProfil(email);
@@ -242,7 +245,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			MerkzettelMapper.merkzettelMapper().insertMerkzettel(mz);
 	}
 	
-	
+	// Info löschen
 	public void deleteInfo(Info info) throws Exception {
 		ProfilInfo pi = new ProfilInfo();
 		pi.setInfoID(info.getId());
@@ -250,6 +253,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		deleteProfilInfo(pi);
 	}
 	
+	// SuchprofilInfo löschen
 	public void deleteSuchprofilInfo(Suchprofil sp, Info info) throws Exception{
 		SuchprofilInfo spi = new SuchprofilInfo();
 		spi.setInfo(info);
@@ -258,7 +262,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		SuchprofilInfoMapper.suchprofilInfoMapper().deleteSuchprofilInfo(spi);
 	}
 	
-	
+	// ProfilInfo löschen
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
 		ProfilinfoMapper.profilinfoMapper().deleteProfilInfo(pi);
 	}
@@ -309,7 +313,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		// zur�ckgeben der ID
 		return infoID;
 	}
-
+	
+	// Eigenschaften von Suchprofil aufrufen
 	public Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception{
 		Vector<ProfilEigenschaft> results = SuchprofilInfoMapper.suchprofilInfoMapper().
 				getSuchprofilInfosByEmail(user.getEmail(), spname);
@@ -323,6 +328,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return results;
 	}
 	
+	// Profil Eigenschaften aufrufen
 	public Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception{
 		Vector<ProfilEigenschaft>results = ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				user.getEmail());
@@ -332,6 +338,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 		return results;
 	}
+	
+	// Profil eigengschaften füllen
 	private Vector<ProfilEigenschaft> fillEigenschaften(Vector<ProfilEigenschaft> peigenschaften, 
 			Vector<Eigenschaft> eigenschaften){
 		Vector<ProfilEigenschaft> results = new Vector<ProfilEigenschaft>();
@@ -356,26 +364,30 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return results;
 	}
 	
+	// Alle Infos löschen von einem Profil
 	public void deleteProfilInfosForUser() throws Exception{
 		ProfilinfoMapper.profilinfoMapper().deleteAllInfos(user.getEmail());
 	}
 	
+	// Alles Infos löschen von einem Suchprofil
 	public void deleteSuchprofilInfosForUser(Suchprofil sp) throws Exception{
 		System.out.println("Lösche Einträge für: " + sp.getSuchprofilname());
 		SuchprofilInfoMapper.suchprofilInfoMapper().deleteAllSuchprofilInfos(sp, user);
 	}
 	
+	// Profileigenschaften anhand der Email aufrufen
 	public Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception{
 		return ProfilinfoMapper.profilinfoMapper().getProfilInfosByEmail(
 				email);
 	}
 	
-
+	// gemerkte Profile eines Profils aufrufen
 	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
 		return MerkzettelMapper.merkzettelMapper().
 				getMerkzettelProfileByOwner(user.getEmail());
 	}
-
+	
+	// Profil vom Merkzettel entfernen
 	public void deleteMerkzettel(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++){
 			Merkzettel mz = new Merkzettel();
@@ -385,6 +397,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 	}
 	
+	// Kontaktsperre von einem Profil aufheben
 	public void deleteKontaktsperre(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++){
 			Kontaktsperre ks = new Kontaktsperre();
@@ -394,11 +407,13 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 	}
 	
+	// Alle Profile mit Kontaktsperre von einem Profil bekommen
 	public Vector<Profil> getKontaktsperrenByOwner() throws Exception {
 		return KontaktsperreMapper.kontaktsperreMapper().
 				getKontaktsperreProfileByOwner(user.getEmail());
 	}
 	
+	// Profil als besucht markieren
 	public void insertBesuch(Profil besuchtesProfil) throws Exception{
 		Besuch b = new Besuch();
 		b.setBesuchendesProfil(user);
