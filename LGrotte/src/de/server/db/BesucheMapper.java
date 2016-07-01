@@ -1,5 +1,4 @@
 package de.server.db;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +7,14 @@ import java.util.Vector;
 
 import de.shared.BO.Besuch;
 import de.shared.BO.Profil;
+
+/**
+ * Die BesucheMapper ist dafür zuständig um Profile als besucht zu merken
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
 
 public class BesucheMapper {
 	
@@ -24,6 +31,7 @@ public class BesucheMapper {
 		return besucheMapper;
 	}
 	
+	// Erstellt eine Tabelle für Profile die schon besucht worden
 	public void createBesucheTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) con
@@ -35,6 +43,7 @@ public class BesucheMapper {
 		create.execute();
 	}
 	
+	// Fügt besuchte Profile in die Tabelle 
 	public void insertBesuch(Besuch b) throws Exception {
 		if(!besuchExists(b)){
 			Connection con = (Connection) DBConnection.connection();
@@ -46,6 +55,7 @@ public class BesucheMapper {
 		}
 	}
 	
+	// Filtert nach Profilen die schon besucht worden
 	private boolean besuchExists(Besuch b) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = con.prepareStatement("SELECT * FROM besuche WHERE "
@@ -59,8 +69,7 @@ public class BesucheMapper {
 		}
 	}
 	
-	
-	
+	// Liest besuchte Profile aus der Datenbank
 	public Vector<Besuch> getBesuche(Profil user) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = con.prepareStatement("SELECT * FROM besuche WHERE "

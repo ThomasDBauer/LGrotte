@@ -1,5 +1,4 @@
 package de.server.db;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +10,14 @@ import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 import de.shared.BO.SuchprofilInfo;
 import de.shared.RO.ProfilEigenschaft;
+
+/**
+ * Die SuchprofilMapper zeigt auf welche Info zu welchem Suchprofil gehört
+ * 
+ * @author Thomas Bauer
+ *
+ * @version
+ */
 
 public class SuchprofilInfoMapper {
 
@@ -28,7 +35,10 @@ public class SuchprofilInfoMapper {
 		return suchprofilInfoMapper;
 	}
 	
-	
+	/*
+	 * Erstellt eine Tabelle in der die Primary Keys vom Suchprofil und Info
+	 * als Forgein Key eine Verbindung bilden
+	 */
 	public void createSuchProfilInfoTable() throws Exception {
 		Connection conn = DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement(
@@ -40,6 +50,7 @@ public class SuchprofilInfoMapper {
 		create.execute();
 	}
 	
+	// Fügt die Verbindung zwischen einem Suchprofil und einer Info ein
 	public void insertSuchprofilInfo(SuchprofilInfo spi) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
@@ -48,22 +59,16 @@ public class SuchprofilInfoMapper {
 		stmt.execute();
 	}
 
-	
+	// Gibt alle Infos mit zugehöriger Eigenschaft zu eine Suchprofil aus
 	public ProfilEigenschaft getSPInfosByInfoID(int infoID) throws Exception{
-		
 		Connection conn = DBConnection.connection();
-		
 		PreparedStatement select = conn.prepareStatement("SELECT infos.value, "
 				+ "infos.info_id, eigenschaft.auswahl, eigenschaft.erlauterung, eigenschaft.eigenschaft_id "
 				+ "FROM infos JOIN eigenschaft ON infos.eigenschaft_id = "
 				+ "eigenschaft.eigenschaft_id WHERE info_id = " + infoID);
-		
 		ResultSet result = select.executeQuery();
-		
 		ProfilEigenschaft pe = new ProfilEigenschaft();
-
 		while(result.next()){
-
 			Info info = new Info();
 			info.setEigenschaft(result.getInt("eigenschaft_id"));
 			info.setId(result.getInt("info_id"));
@@ -77,10 +82,10 @@ public class SuchprofilInfoMapper {
 			pe.setInfo(info);
 			pe.setEigenschaft(eigenschaft);
 		}
-		
 		return pe;
 	}
 	
+	// Löscht die Verbindung zwischen einem Suchprofil und einer Info
 	public void deleteSuchprofilInfo(SuchprofilInfo spi) throws Exception{
 		Connection conn = DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
@@ -90,6 +95,7 @@ public class SuchprofilInfoMapper {
 		stmt.execute();
 	}
 	
+	// Löscht die Verbindung zwischen ALLEN Infos zu einem Suchprofil
 	public void deleteAllSuchprofilInfos(Suchprofil sp, Profil user) throws Exception{
 		Connection conn = DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
@@ -98,20 +104,18 @@ public class SuchprofilInfoMapper {
 		stmt.execute();
 	}
 	
+	// Gibt alle Infos zu einem Suchprofil aus
 	public Vector <ProfilEigenschaft> getSuchprofilInfosByEmail(String email, String spname) throws Exception{
 		Connection conn = DBConnection.connection();
 		PreparedStatement select = conn.prepareStatement("SELECT info_id FROM "
 				+ "suchprofil_info WHERE email = '" + email + "' AND suchprofilname = '" + spname + "'");
-		
 		Vector<ProfilEigenschaft> suchprofilinfos = new Vector<ProfilEigenschaft>();
-		
 		ResultSet result = select.executeQuery();
 		while(result.next()){
 			ProfilEigenschaft pi = getSPInfosByInfoID(result.getInt("info_id"));
 			suchprofilinfos.add(pi);
 		}
-		return suchprofilinfos;
-		
+		return suchprofilinfos;	
 	}
 	
 }

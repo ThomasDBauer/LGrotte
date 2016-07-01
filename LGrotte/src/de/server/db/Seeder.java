@@ -1,10 +1,17 @@
 package de.server.db;
-
 import de.server.db.seeds.EigenschaftSeeds;
 import de.server.db.seeds.InfoSeeds;
 import de.server.db.seeds.ProfilInfoSeeds;
 import de.server.db.seeds.ProfilSeeds;
 import de.server.db.seeds.SuchprofilSeeds;
+
+/**
+ * Die Seeder
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
 
 public class Seeder {
 	/* !!Was ist das und warum?

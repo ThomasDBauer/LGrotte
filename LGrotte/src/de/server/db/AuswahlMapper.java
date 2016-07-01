@@ -5,8 +5,15 @@ import java.sql.ResultSet;
 import java.util.Vector;
 import de.shared.BO.Auswahl;
 import de.shared.BO.Eigenschaft;
-
+	/**
+	 * Die AuswahlMapper ist zuständig für unsere Auswahleigenschaften
+	 * 
+	 * @author Thomas Bauer
+	 * 
+	 * @version 1.0
+	 */
 public class AuswahlMapper {
+	
 	private static AuswahlMapper auswahlmapper = null;
 	
 	protected AuswahlMapper(){
@@ -20,9 +27,8 @@ public class AuswahlMapper {
 		return auswahlmapper;
 	}
 	
-	
+	// Erstellt eine Tabelle für unsere verschiedenen Auswahlmöglichkeiten
 	public void createAuswahlTable() throws Exception {
-		
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create =(PreparedStatement) con.prepareStatement(
 				"CREATE TABLE IF NOT EXISTS auswahl (auswahl_id int NOT NULL AUTO_INCREMENT, "
@@ -32,8 +38,8 @@ public class AuswahlMapper {
 		create.execute();
 	}	
 	
+	// Fügt eine gewählte Auswahleigenschaft hinzu
 	public void insertAuswahl(Auswahl a) throws Exception{
-		
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) con.prepareStatement(
 				"INSERT INTO auswahl (eigenschaft_id, value)"
@@ -41,6 +47,7 @@ public class AuswahlMapper {
 		insert.execute();
 	}
 	
+	// Liest die Auswahleigenschaften aus der Datenbank 
 	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create =(PreparedStatement) con.prepareStatement(

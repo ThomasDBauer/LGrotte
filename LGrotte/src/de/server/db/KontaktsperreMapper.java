@@ -1,7 +1,4 @@
 package de.server.db;
-
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +7,14 @@ import java.util.Vector;
 import de.shared.BO.Kontaktsperre;
 import de.shared.BO.Profil;
 
-
+/**
+ * Die KontaktsperreMapper ist zuständig für alle Profile
+ * die gesperrt werden sollen
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
 
 public class KontaktsperreMapper {
 	
@@ -27,6 +31,7 @@ public class KontaktsperreMapper {
 		return kontaktsperreMapper;	
 	}
 	
+	// Erstellt eine Tabelle in der die gesperrten Profile aufgelistet sind
 	public void createKontaktsperreTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createKontaktsperre = (PreparedStatement) con.prepareStatement(
@@ -37,6 +42,10 @@ public class KontaktsperreMapper {
 		createKontaktsperre.execute();
 	}
 	
+	/*
+	 * Fügt Profile die gesperrt worden sind in die Tabelle 
+	 * abhängig vom sperrenden Profil
+	 */
 	public void insertKontaktsperre(Kontaktsperre k) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertKontaktsperre = (PreparedStatement) con.prepareStatement(
@@ -45,6 +54,7 @@ public class KontaktsperreMapper {
 		insertKontaktsperre.execute();
 	}
 	
+	// Zeigt alle gesperrten Profil vom Sperrer
 	public Vector<Kontaktsperre> getKontaktsperreByOwner(String email) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) con.prepareStatement(
@@ -61,6 +71,7 @@ public class KontaktsperreMapper {
 		return kontaktsperren;
 	}
 	
+	// Ruft alle gesperrten Profile vom Sperrer auf
 	public Vector<Profil> getKontaktsperreProfileByOwner(String email)
 			throws Exception {
 		Connection con = (Connection) DBConnection.connection();
@@ -79,6 +90,7 @@ public class KontaktsperreMapper {
 		return merkzettelProfile;
 	}
 	
+	// Hebt die Kontaktsperre von einem gesperrten Profil auf
 	public void deleteKontaktsperre(Kontaktsperre ks) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteKontaktsperre = (PreparedStatement) con.prepareStatement(

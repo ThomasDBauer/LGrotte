@@ -1,6 +1,4 @@
 package de.server.db;
-
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -10,6 +8,14 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 import de.shared.BO.Profil;
+
+/**
+ * Die ProfilMapper verwaltet das komplette Profil mit seinen Attributen
+ * 
+ * @author Thomas Bauer, Enrico Popaj und Nicolai Ehrmanntraut
+ *	
+ * @version 1.0
+ */
 
 public class ProfilMapper {
 	
@@ -48,7 +54,7 @@ public class ProfilMapper {
 		return p;
 	}
 
-
+	// Gibt alle Profile aus die es gibt
 	public Vector<Profil> getAll() throws Exception {
 		Vector<Profil>profile = new Vector<Profil>();
 		Connection conn = (Connection) DBConnection.connection();
@@ -71,6 +77,7 @@ public class ProfilMapper {
 		return profile;
 	}
 	
+	// Gibt alle Profile gefiltert nach Geschlecht aus
 	public Vector<Profil> getProfileNachGeschlecht(String geschlecht) throws Exception {
 		Vector<Profil>profile = new Vector<Profil>();
 		Connection conn = (Connection) DBConnection.connection();
@@ -92,8 +99,7 @@ public class ProfilMapper {
 		return profile;
 	}
 	
-	
-
+	// Erstellt eine Tabelle in der die Profile eingefügt werden
 	public void createProfilTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
@@ -104,6 +110,7 @@ public class ProfilMapper {
 		create.execute();
 	}
 	
+	// Fügt ein neues Profil ein
 	public void insertProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
@@ -111,18 +118,18 @@ public class ProfilMapper {
 						+ "haarfarbe, raucher) VALUES ('"+p.getEmail()+"','"+p.getFname()+"','"+
 						p.getLname()+"',"+p.getKoerpergroesse()+",'"+p.getGeschlecht()+"','"+
 						p.getReligion()+"','"+p.getHaarfarbe()+"','"+ p.getRaucher()+"')");
-		insert.execute();
-		
+		insert.execute();	
 	}	
 	
+	// Löscht ein Profil komplett aus unserer Partnerbörse
 	public void deleteProfil(String email) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
 				("DELETE FROM profil WHERE email ='" + email +"'");
 		delete.execute();
-
 	}
 	
+	// Aktualisiert die Attribute von einem Profil
 	public void updateProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement update = (PreparedStatement) conn.prepareStatement
@@ -132,7 +139,6 @@ public class ProfilMapper {
 						+ "geburtsdatum = '"+p.getGeburtsdatum()+"', raucher = '"+p.getRaucher()+"' "
 						+ "WHERE email='"+p.getEmail()+"'");								
 		update.execute();
-
 	}
 
 

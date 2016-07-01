@@ -1,5 +1,4 @@
 package de.server.db;
-
 import java.util.Vector;
 
 import com.mysql.jdbc.Connection;
@@ -14,12 +13,20 @@ import java.sql.ResultSet;
 
 import de.shared.BO.Eigenschaft;
 
+/**
+ * Die EigenschaftMapper ist zuständig für die Eigenschaften
+ * vom Profil und Suchprofil
+ * 
+ * @author Thomas Bauer und Enrico Popaj
+ *
+ * @version 1.0
+ */
+
 public class EigenschaftMapper {
 
 	private static EigenschaftMapper eigenschaftMapper = null;
 
 	protected EigenschaftMapper() {
-
 	}
 	
 	public static EigenschaftMapper eigenschaftMapper(){
@@ -29,6 +36,7 @@ public class EigenschaftMapper {
 		return eigenschaftMapper;
 	}
 
+	// Erstellt eine Tabelle in der die Eigenschaften gespeichert werden
 	public void createEigenschaftTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
@@ -36,37 +44,22 @@ public class EigenschaftMapper {
 						+ "eigenschaft_id int NOT NULL AUTO_INCREMENT, auswahl int (1), "
 						+ "PRIMARY KEY(eigenschaft_id))");
 		create.execute();
-
 	}
-
+	
+	// Fügt neue Eigenschaften in die Tabelle
 	public void insertEigenschaft(Eigenschaft eigenschaft) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
 				("INSERT INTO eigenschaft(erlauterung, auswahl) VALUES ('" + 
 						eigenschaft.getErlaeuterung() + "', "+eigenschaft.getAuswahl()+")");
 		insert.execute();
-
 	}
-
-//	public void updateEigenschaft(Profil p) throws Exception {
-//		Connection conn = (Connection) DBConnection.connection();
-//		PreparedStatement update = (PreparedStatement) conn.prepareStatement
-//				("UPDATE EIGENSCHAFT (fname, lname) WHERE id ='"+p.getId()+"'  VALUES ('"+p.getFname()+"','"+p.getLname()+"')");
-//		update.execute();
-//	}
-//
-//	public void deleteEigenschaft(Profil p) throws Exception {
-//		Connection conn = (Connection) DBConnection.connection();
-//		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
-//				("DELETE EIGENSCHAFT WHERE id = '"+p.getId()+"'");
-//		delete.execute();
-//
-//	}
 
 	public Eigenschaft getEigenschaftByID(int id) {
 		return null;
 	}
-
+	
+	// Ruft die Eigenschaften aus der Datenbank auf
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(

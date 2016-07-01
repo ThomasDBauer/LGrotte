@@ -1,7 +1,4 @@
 package de.server.db;
-
-
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -17,6 +14,15 @@ import java.util.Vector;
 import de.shared.BO.Merkzettel;
 import de.shared.BO.Profil;
 
+/**
+ * Die MerktzettelMapper ist zuständig für alle Profile 
+ * die gemerkt werden sollen
+ * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
+ */
+
 public class MerkzettelMapper {
 
 	private static MerkzettelMapper merkzettelMapper = null;
@@ -30,7 +36,8 @@ public class MerkzettelMapper {
 		}
 		return merkzettelMapper;
 	}
-
+	
+	// Erstellt eine Tabelle in der die gemerkten Profile aufgelistet sind
 	public void createMerkzettelTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createMerkzettel = (PreparedStatement) con
@@ -42,6 +49,10 @@ public class MerkzettelMapper {
 		createMerkzettel.execute();
 	}
 
+	/*
+	 * Fügt Profile die gemerkt worden sind in die Tabelle 
+	 * abhängig vom merkenden Profil
+	 */
 	public void insertMerkzettel(Merkzettel mz) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertMerkzettel = (PreparedStatement) con
@@ -52,7 +63,8 @@ public class MerkzettelMapper {
 						+ mz.getMerkendesProfil() + "')");
 		insertMerkzettel.execute();
 	}
-
+	
+	// Enfernt das gemerkte Profil vom Merkzettel
 	public void deleteMerkzettel(Merkzettel mz) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement(
@@ -60,7 +72,8 @@ public class MerkzettelMapper {
 				+ " AND merkendesProfil='" + mz.getMerkendesProfil() + "'");
 		deleteMerkzettel.execute();
 	}
-
+	
+	// Ruft alle gemerkten Profile vom Merkenden auf
 	public Vector<Merkzettel> getMerkzettelByOwner(String email)
 			throws Exception {
 		Connection con = (Connection) DBConnection.connection();
@@ -78,6 +91,7 @@ public class MerkzettelMapper {
 		return merkzettel;
 	}
 
+	// Ruft alle gemerkten Profile vom Merkenden auf
 	public Vector<Profil> getMerkzettelProfileByOwner(String email)
 			throws Exception {
 		Connection con = (Connection) DBConnection.connection();

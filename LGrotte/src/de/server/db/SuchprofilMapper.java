@@ -1,6 +1,4 @@
 package de.server.db;
-
-
 import java.sql.ResultSet;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -8,6 +6,14 @@ import com.mysql.jdbc.PreparedStatement;
 import java.util.Vector;
 
 import de.shared.BO.Suchprofil;
+
+/**
+ * Die SuchprofilMapper verwaltet das komplette Suchprofil mit seinen Attributen
+ * 
+ * @author Thomas Bauer, Enrico Popaj und Nicolai Ehrmanntraut
+ * 
+ * @version 1.0
+ */
 
 public class SuchprofilMapper {
 	
@@ -23,7 +29,7 @@ public class SuchprofilMapper {
 	return suchprofilMapper;
 	}
 	
-	// Tabelle erstellen
+	// Erstellt eine Tabelle in der die Suchprofile eingefügt werden
 	public void createSuchprofilTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createSuchprofil = (PreparedStatement) con.prepareStatement(
@@ -36,15 +42,13 @@ public class SuchprofilMapper {
 		createSuchprofil.execute();
 	}
 	
-	// Suchprofil name anzeigen
+	// Gibt alle Suchprofile zu einem bestimmten Profil aus
 	public Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) con.prepareStatement(
 				"SELECT * FROM suchprofil WHERE email = '"+email+"'");
 		ResultSet result = select.executeQuery();
-		
 		Vector<Suchprofil> suchprofile = new Vector<Suchprofil>();
-		
 		while(result.next()){
 			Suchprofil sp = new Suchprofil();
 			sp.setGeschlecht(result.getString("geschlecht"));
@@ -62,7 +66,7 @@ public class SuchprofilMapper {
 		return suchprofile;
 	}
 	
-	// Suchprofil einfügen
+	// Fügt ein neues Suchrofil abhängig zu einem Profil ein
 	public void insertSuchprofil (Suchprofil sp) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertSuchprofil = (PreparedStatement)con.prepareStatement(
@@ -75,7 +79,7 @@ public class SuchprofilMapper {
 		insertSuchprofil.execute();
 	}
 	
-	// Suchprofil löschen
+	// Löscht ein Suchprofil von einem Profil
 	public void deleteSuchprofil (Suchprofil sp) throws Exception{
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
@@ -83,7 +87,7 @@ public class SuchprofilMapper {
 		delete.execute();
 	}
 	
-	// Komplettes Suchprofil anzeigen
+	// Gibt ein Suchprofil abhängig von seinem Suchprofilname aus
 		public Suchprofil getSuchprofiByName(String suchprofilname) throws Exception{
 			Connection con = (Connection) DBConnection.connection();
 			PreparedStatement select = (PreparedStatement) con.prepareStatement(
@@ -104,7 +108,7 @@ public class SuchprofilMapper {
 			return sp;
 		}
 	
-		//Suchprofil bearbeiten
+		// Aktualisiert die Attribute von einem Suchprofil
 		public void updateSuchprofil(Suchprofil sp) throws Exception {
 			Connection conn = (Connection) DBConnection.connection();
 			PreparedStatement update = (PreparedStatement) conn.prepareStatement(
