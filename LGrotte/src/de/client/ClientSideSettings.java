@@ -10,8 +10,16 @@ import de.shared.ReportService;
 import de.shared.ReportServiceAsync;
 import de.shared.BO.Profil;
 
+/**
+ * Die Service-Objekte 
+ * 
+ * @author Thomas Bauer
+ *
+ */
+
 public class ClientSideSettings {
 	
+	//Nullsetzen der Variablen
 	private static EditorServiceAsync editorService = null;
 	private static ReportServiceAsync reportService = null;
 	private static LoginServiceAsync loginService = null;

@@ -9,7 +9,19 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
+/**
+ * Die zweite Navigationsleiste, welche fuer die 
+ * Profile-Aktionen Buttons bereitstellt
+ * 
+ * @author Lukas Kircher
+ * 
+ * @version 1.0
+ *
+ */
+
 public class PopupNavi extends HorizontalPanel {
+	
+	//Die Buttons fuer die Aktionen mit dem Profil
 	public final Button profilBearbeitenButton = new Button(
 			"Profil bearbeiten", new PopupClickHandler());
 	public final Button suchprofilButton = new Button("Suchprofil",
@@ -20,9 +32,11 @@ public class PopupNavi extends HorizontalPanel {
 			new PopupClickHandler());
 	public final Button profilloeschenButton = new Button("Profil löschen",
 			new PopupClickHandler());
-	public final static ProfilLoeschenPopup profilLoeschenPopup = new ProfilLoeschenPopup();
+	public final static ProfilLoeschenPopup profilLoeschenPopup = 
+			new ProfilLoeschenPopup();
 
 	public PopupNavi() {
+		//Zuweisung der Styles und hinzufuegen zum Panel
 		profilBearbeitenButton.setStylePrimaryName("navi-button");
 		suchprofilButton.setStylePrimaryName("navi-button");
 		merklisteButton.setStylePrimaryName("navi-button");
@@ -37,10 +51,12 @@ public class PopupNavi extends HorizontalPanel {
 		this.add(kontaktsperreButton);
 		this.add(profilloeschenButton);
 		
+		//Das Profil-Loeschen-PopUp positionieren und anzeigen
 		profilloeschenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent e) {
 				profilLoeschenPopup
-						.setPopupPositionAndShow(new PopupPanel.PositionCallback() {
+						.setPopupPositionAndShow(new PopupPanel.
+								PositionCallback() {
 							public void setPosition(int offsetWidth,
 									int offsetHeight) {
 								int left = profilloeschenButton
@@ -55,7 +71,14 @@ public class PopupNavi extends HorizontalPanel {
 			}
 		});
 	}
-
+	
+	/*
+	 * Switch-Case, die prueft, welches Element angeklickt wurde und
+	 * je nach Text, dem RootPanel(dass davor gecleart wurde) 
+	 * weiter wird dem RootPanel ein neues Element je nach KlickText
+	 * angefuegt
+	 * Im voraus wurde der angeklickte Button mit einmem neuen Style versehen
+	 */
 	private class PopupClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 
@@ -112,7 +135,8 @@ public class PopupNavi extends HorizontalPanel {
 				RootPanel.get("Zusatz").clear();
 				RootPanel.get("Content").clear();
 				RootPanel.get("Inhalt").clear();
-				RootPanel.get("Inhalt").add(new HTML("<h2>Kontaktsperre</h2>"));
+				RootPanel.get("Inhalt").add(new HTML
+						("<h2>Kontaktsperre</h2>"));
 				try {
 					RootPanel.get("Inhalt").add(new KontaktsperreEditor());
 				} catch (Exception e1) {

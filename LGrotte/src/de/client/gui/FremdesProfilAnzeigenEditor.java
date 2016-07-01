@@ -18,15 +18,28 @@ import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 import de.shared.RO.ProfilEigenschaft;
 
+/**
+ * Diese Klasse ist ein Panel, der das angeklickte Profil anzeigt
+ * 
+ * @author Thomas Bauer, Enrico Popaj & Lukas Kircher
+ *
+ * @version 1.0
+ */
+
 public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 	
-		
+		//Profil zum auslesen der Personendaten
 		private Profil p;
-	
+
+		//Panles fuer die GUI
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
 		private FlexTable profilAnzeigenTable = new FlexTable();
 		
-		private Button zurueckButton = new Button("Zurueck", new ZurueckHandler());
+		//Button der zu den Partnervorschlaegen fuehrt
+		private Button zurueckButton = new Button("Zurueck", 
+				new ZurueckHandler());
+		
+		//Labels, Panels & ein Vector fuer die anzuzeigenden Texte
 		private Label fnameLabel = new Label();
 		private Label lnameLabel = new Label();
 		private Label namenLabel = new Label("Name: ");
@@ -52,11 +65,15 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		private Label eMail = new Label();
 		private Label mail = new Label("E-Mail: ");
 		private HorizontalPanel emailPanel = new HorizontalPanel();
-		private Vector<HorizontalPanel> eigenschaftPanel = new Vector<HorizontalPanel>();
+		private Vector<HorizontalPanel> eigenschaftPanel 
+		= new Vector<HorizontalPanel>();
 		
 		
+		//Konstruktor mit dem Ubergabeparameter Profil
 		public FremdesProfilAnzeigenEditor(Profil profil) throws Exception {
 			this.p = profil;
+			
+			//CSS-Zuweisung und Button mit Bilder versehen
 			zurueckButton.setStylePrimaryName("Button-img");
 			Image zurueckImage = new Image("zurueck.png");
 			zurueckImage.setStylePrimaryName("Button-img-Image");
@@ -80,6 +97,8 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			mail.setStyleName("Fremd-Profil-Label", true);
 			eMail.setStyleName("Fremd-Profil-Label2", true);
 			zurueckButton.setStyleName("Margin-Bottom", true);
+			
+			//Die Labels mit den aktuellen Werten des Profils versehen
 			fnameLabel.setText(p.getFname());
 			fnameLabel.setStyleName("Fremd-Profil-Name", true);
 			lnameLabel.setText(p.getLname());
@@ -91,12 +110,12 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			bdayLabel.setText(String.valueOf(p.getGeburtsdatum()));	
 			eMail.setText(p.getEmail());
 			
-			
-//			profilAnzeigenTable.addStyleName("findLove-table td");
-			
+			//ProfilEigenschaften auslesen
 			ClientSideSettings.getEditorService().getProfilEigenschaften(
 					profil.getEmail(), new ProfilEigenschaftenCallback());
 			
+			
+			//Die Labels dem im Konstruktor erstellten Objekt hinzufuegen
 			buttonPanel.add(zurueckButton);
 			this.add(buttonPanel);
 			
@@ -144,6 +163,10 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			
 		}
 		
+		/*
+		 * Auslesen der Werte aus dem Vector <Profileigenschaften>
+		 * Eintragen der zurueckgegebenen Eigenschafts-Werte in das RootPanel
+		 */
 		private class ProfilEigenschaftenCallback implements
 			AsyncCallback<Vector<ProfilEigenschaft>>{
 			public void onFailure(Throwable caught) {
@@ -155,18 +178,19 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 				for(int i = 0; i < result.size(); i++){
 					HorizontalPanel eigenschaft = new HorizontalPanel();
 					eigenschaft.add(new Label(result.elementAt(i).getName()));
-					eigenschaft.getWidget(0).setStyleName("Fremd-Profil-Label",true);
+					eigenschaft.getWidget(0).setStyleName
+					("Fremd-Profil-Label",true);
 					eigenschaft.add(new Label(result.elementAt(i).getWert()));
-					eigenschaft.getWidget(1).setStyleName("Fremd-Profil-Label2", true);
+					eigenschaft.getWidget(1).setStyleName
+					("Fremd-Profil-Label2", true);
 					eigenschaft.setStyleName("Fremd-Profil-Panel", true);
 					RootPanel.get("Zusatz").add(eigenschaft);
 				}			}
 		}
 		
 		
-		
-		
-		
+		// Erstellen eines neuen GUI-Objektes Partnervorschlaege 
+		// nach clearen aller Divs
 		private class ZurueckHandler implements ClickHandler {
 			public void onClick (ClickEvent e) {
 				RootPanel.get("Zusatz").clear();
@@ -184,10 +208,12 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			}
 		}
 		
+		//Callback vom Typ Object
 		private class InsertCallback implements AsyncCallback {
 			public void onFailure(Throwable caught) {
 				RootPanel.get().add(
-						new Label(caught.toString() + " @FindLove.InsertCallback"));
+						new Label(caught.toString() 
+								+ " @FindLove.InsertCallback"));
 			}
 
 			public void onSuccess(Object result) {

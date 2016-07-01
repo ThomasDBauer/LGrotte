@@ -2,8 +2,17 @@ package de.client.gui;
 
 import com.google.gwt.user.client.ui.HTML;
 
+/**
+ * Das Impressum als HTML-Text
+ * 
+ * @author Sedat Akar & Lukas Kircher
+ *
+ * @version 1.0
+ */
+
 public class Impressum extends HTML {
 
+	//Der Konstruktor, der den HTML-Text des erstellten Impressum setzt
 	public Impressum (){	
 	this.setHTML((
 			"<div class='Impressum'>"
