@@ -8,9 +8,9 @@ public abstract class ProfilInformation implements Serializable {
 	 * 
 	 * @author Thomas Bauer
 	 * 
-	 *        Super-Klasse von @class WeicheInformation und
-	 * 		  @class HarteInformation
-	 *        Trägt die Gemeinsamkeit, dass Informationen immer nach dem Schema
+	 *        Super-Klasse von @class ProfilAttribut und
+	 * 		  @class ProfilEigenschaft
+	 *        Trï¿½gt die Gemeinsamkeit, dass Informationen immer nach dem Schema
 	 *        >>> Attribut : Information <<< aufgebaut sind.
 	 * 
 	 */
