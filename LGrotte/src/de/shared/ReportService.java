@@ -1,5 +1,4 @@
 package de.shared;
-
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -13,6 +12,10 @@ import de.shared.RO.ProfilReport;
 
 /**
  * The client-side stub for the RPC service.
+ * 
+ * @author Thomas Bauer und Sedat Akar
+ * 
+ * @version 1.0
  */
 @RemoteServiceRelativePath("report")
 public interface ReportService extends RemoteService {

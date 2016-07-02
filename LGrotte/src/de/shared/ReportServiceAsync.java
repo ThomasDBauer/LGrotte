@@ -1,5 +1,4 @@
 package de.shared;
-
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -10,6 +9,13 @@ import de.shared.BO.Suchprofil;
 import de.shared.RO.ProfilInformation;
 import de.shared.RO.ProfilReport;
 
+/**
+ * 
+ * 
+ * @author Thomas Bauer und Sedat Akar
+ * 
+ * @version 1.0
+ */
 public interface ReportServiceAsync {
 	
 	void getProfilReport(Profil p, AsyncCallback<ProfilReport>callback) throws Exception;
