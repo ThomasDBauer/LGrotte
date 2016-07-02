@@ -1,10 +1,6 @@
 package de.server.db;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Vector;
 import de.shared.BO.Profil;
@@ -19,13 +15,23 @@ import de.shared.BO.Profil;
 
 public class ProfilMapper {
 	
-	
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static ProfilMapper profilMapper = null;
 	
-	protected ProfilMapper(){
-		
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
+	protected ProfilMapper(){	
 	}
 	
+	/**
+	 * Statische Methode vom Typ ProfilMapper
+	 * 
+	 * @return profilmapper
+	 */
 	public static ProfilMapper profilMapper(){
 		if(profilMapper ==null){
 			profilMapper = new ProfilMapper();
@@ -33,7 +39,12 @@ public class ProfilMapper {
 		return profilMapper;
 	}
 
-	// @param googleID
+	/**
+	 * Gibt Profil Attribute anhand der Email aus
+	 * 
+	 * @param email
+	 * @return p
+	 */
 	public Profil getProfilByEmail(String email) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(
@@ -54,7 +65,11 @@ public class ProfilMapper {
 		return p;
 	}
 
-	// Gibt alle Profile aus die es gibt
+	/**
+	 * Gibt alle Profile aus die es gibt
+	 * 
+	 * @return profile
+	 */
 	public Vector<Profil> getAll() throws Exception {
 		Vector<Profil>profile = new Vector<Profil>();
 		Connection conn = (Connection) DBConnection.connection();
@@ -77,7 +92,12 @@ public class ProfilMapper {
 		return profile;
 	}
 	
-	// Gibt alle Profile gefiltert nach Geschlecht aus
+	/**
+	 * Gibt alle Profile gefiltert nach Geschlecht aus
+	 * 
+	 * @param geschlecht
+	 * @return profile
+	 */
 	public Vector<Profil> getProfileNachGeschlecht(String geschlecht) throws Exception {
 		Vector<Profil>profile = new Vector<Profil>();
 		Connection conn = (Connection) DBConnection.connection();
@@ -99,7 +119,9 @@ public class ProfilMapper {
 		return profile;
 	}
 	
-	// Erstellt eine Tabelle in der die Profile eingefügt werden
+	/**
+	 * Erstellt eine Tabelle in der die Profile eingefügt werden
+	 */
 	public void createProfilTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
@@ -110,7 +132,11 @@ public class ProfilMapper {
 		create.execute();
 	}
 	
-	// Fügt ein neues Profil ein
+	/**
+	 * Fügt ein neues Profil ein
+	 * 
+	 * @param p
+	 */
 	public void insertProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
@@ -121,7 +147,11 @@ public class ProfilMapper {
 		insert.execute();	
 	}	
 	
-	// Löscht ein Profil komplett aus unserer Partnerbörse
+	/**
+	 * Löscht ein Profil komplett aus unserer Partnerbörse
+	 * 
+	 * @param email
+	 */
 	public void deleteProfil(String email) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
@@ -129,7 +159,11 @@ public class ProfilMapper {
 		delete.execute();
 	}
 	
-	// Aktualisiert die Attribute von einem Profil
+	/**
+	 * Aktualisiert die Attribute von einem Profil
+	 * 
+	 * @param p
+	 */
 	public void updateProfil(Profil p) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement update = (PreparedStatement) conn.prepareStatement

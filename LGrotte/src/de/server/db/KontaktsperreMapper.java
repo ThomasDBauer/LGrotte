@@ -3,7 +3,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
-
 import de.shared.BO.Kontaktsperre;
 import de.shared.BO.Profil;
 
@@ -17,13 +16,23 @@ import de.shared.BO.Profil;
  */
 
 public class KontaktsperreMapper {
-	
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static KontaktsperreMapper kontaktsperreMapper = null;
 	
-	protected KontaktsperreMapper() {
-		
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
+	protected KontaktsperreMapper() {	
 	}
 	
+	/**
+	 * Statische Methode vom Typ KontaktsperreMapper
+	 * 
+	 * @return kontaktsperremapper
+	 */
 	public static KontaktsperreMapper kontaktsperreMapper() {
 		if (kontaktsperreMapper == null) {
 			kontaktsperreMapper = new KontaktsperreMapper();
@@ -31,7 +40,10 @@ public class KontaktsperreMapper {
 		return kontaktsperreMapper;	
 	}
 	
-	// Erstellt eine Tabelle in der die gesperrten Profile aufgelistet sind
+	/**
+	 * Erstellt eine Tabelle in der die gesperrten Profile aufgelistet sind
+	 * 
+	 */
 	public void createKontaktsperreTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createKontaktsperre = (PreparedStatement) con.prepareStatement(
@@ -42,9 +54,10 @@ public class KontaktsperreMapper {
 		createKontaktsperre.execute();
 	}
 	
-	/*
+	/**
 	 * Fügt Profile die gesperrt worden sind in die Tabelle 
 	 * abhängig vom sperrenden Profil
+	 * @param k
 	 */
 	public void insertKontaktsperre(Kontaktsperre k) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
@@ -54,7 +67,12 @@ public class KontaktsperreMapper {
 		insertKontaktsperre.execute();
 	}
 	
-	// Zeigt alle gesperrten Profil vom Sperrer
+	/**
+	 * Zeigt alle gesperrten Profil vom Sperrer
+	 * 
+	 * @param email
+	 * @return kontaktsperren
+	 */
 	public Vector<Kontaktsperre> getKontaktsperreByOwner(String email) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) con.prepareStatement(
@@ -71,7 +89,12 @@ public class KontaktsperreMapper {
 		return kontaktsperren;
 	}
 	
-	// Gibt die Kontaktsperren an, auf denen der User gesperrt wurde
+	/**
+	 * Gibt die Kontaktsperren an, auf denen der User gesperrt wurde
+	 * 
+	 * @param email
+	 * @return kontaktsperren
+	 */
 		public Vector<Kontaktsperre> getKontaktsperren(String email) throws Exception{
 			Connection con = (Connection) DBConnection.connection();
 			PreparedStatement select = (PreparedStatement) con.prepareStatement(
@@ -88,7 +111,12 @@ public class KontaktsperreMapper {
 			return kontaktsperren;
 		}
 	
-	// Ruft alle gesperrten Profile vom Sperrer auf
+	/**
+	 * Ruft alle gesperrten Profile vom Sperrer auf
+	 * 
+	 * @param email
+	 * @return merkzettelProfile
+	 */
 	public Vector<Profil> getKontaktsperreProfileByOwner(String email)
 			throws Exception {
 		Connection con = (Connection) DBConnection.connection();
@@ -107,7 +135,11 @@ public class KontaktsperreMapper {
 		return merkzettelProfile;
 	}
 	
-	// Hebt die Kontaktsperre von einem gesperrten Profil auf
+	/**
+	 * Ruft alle gesperrten Profile vom Sperrer auf
+	 * 
+	 * @param ks
+	 */
 	public void deleteKontaktsperre(Kontaktsperre ks) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteKontaktsperre = (PreparedStatement) con.prepareStatement(
