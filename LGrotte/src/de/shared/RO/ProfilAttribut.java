@@ -1,32 +1,51 @@
 package de.shared.RO;
 
+/**
+ * @author Thomas Bauer, Sedat Akar
+ * 
+ *         Die Klasse ProfilAttribut erweitert die Klasse ProfilInformation.
+ *         Zur Darstellung von Profilattributen, wie z.B. Alter, Raucher,
+ *         Religion, Koerpergroesse folgt sie dem Muster der Superklasse:
+ *         Eigenschaft : Info
+ * 
+ */
+
 public class ProfilAttribut extends ProfilInformation {
 
-	/**
-	 * @author Thomas Bauer, Sedat Akar
-	 * 
-	 *         Zur Darstellung von Profilattributen, wie z.B. Alter, Raucher,
-	 *         Religion, K�rpergr��e Folgt dem Muster der Superklasse:
-	 *         Eigenschaft : Info
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	@Override
+	/*
+	 * Auslesen des Namens
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return super.getName();
 	}
 
-	@Override
+	/*
+	 * Setzen des Namens
+	 * 
+	 * @param name
+	 */
 	public void setName(String name) {
 		super.setName(name);
 	}
 
-	@Override
+	/*
+	 * Auslesen des Werts
+	 * 
+	 * @return wert
+	 */
 	public String getWert() {
 		return super.getWert();
 	}
 
+	/*
+	 * Setzen des Werts
+	 * 
+	 * @param wert
+	 */
 	public void setWert(String wert) {
 		super.setWert(wert);
 	}
