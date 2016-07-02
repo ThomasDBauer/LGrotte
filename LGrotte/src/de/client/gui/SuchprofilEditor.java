@@ -113,7 +113,7 @@ public class SuchprofilEditor extends VerticalPanel {
 		public SuchprofilEditor(SuchprofilInfoEditor spie) throws Exception {
 			this.eigenschaftenEditor = spie;
 			
-			/**
+			/*
 			 * Den Buttons uns Labels wird ein CSS-Sytle hinzugefügt
 			 */
 			Image hinzImage = new Image("hinzufuegen.png"); 
@@ -163,7 +163,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
 			koerpergLabel.setStyleName("Profilbearbeiten-Boxen", true);
 			
-			/**
+			/*
 			 * Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
 			 */
 			anlegenTable.clear();
@@ -175,7 +175,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				}
 			});
 			
-			/**
+			/*
 			 *  Anhängen der Panels
 			 */
 			buttonPanel.add(spHinzufuegenButton);
@@ -183,7 +183,7 @@ public class SuchprofilEditor extends VerticalPanel {
 			this.add(buttonPanel);
 			this.add(listBoxPanel);
 			
-			/**
+			/*
 			 * Anhängen der Items zur Auswahl
 			 */
 			geschlechtListBox.addItem("Männlich");
@@ -261,7 +261,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				
 				RootPanel.get("Zusatz").clear();
 				
-				/**
+				/*
 				 *  Der FlexTable unsere Labels und Listboxen geben
 				 */
 				anlegenTable.setWidget(0, 0, spNameLabel);
@@ -309,7 +309,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				maxAlterTextBox.setMaxLength(3);
 
 
-				/**
+				/*
 				 *  Anheften an Panels
 				 */
 				suchprofilPanel.add(anlegenTable);
@@ -362,7 +362,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				/**
+				/*
 				 * Überprüfung der Eingabefelder bei nicht korektem Zeichen 
 				 * oder leerer Angabe wird er Nutzer über Window.alert informiert
 				 */
@@ -408,7 +408,7 @@ public class SuchprofilEditor extends VerticalPanel {
 						RootPanel.get("Zusatz").clear();
 					}
 					}
-					/**
+					/*
 					 * Popup um den Nutzer ein feedback zu geben
 					 */
 				this.popup = new PopupPanel(true,true);
@@ -418,7 +418,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				this.popup.center();
 			}
 		}
-		/**
+		/*
 		 * Callback zum anlegen des Suchprofils
 		 */
 		private class SPAnlegenCallback implements AsyncCallback {
@@ -431,7 +431,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					loadPage();
 			}
 		}
-		/**
+		/*
 		 * ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
 		 */
 			private class DeleteSuchprofilClickHandler implements ClickHandler{
@@ -509,7 +509,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					e.printStackTrace();
 				}
 				keinSPLabel.setText("");
-				/**
+				/*
 				 * Field Verfier zum überprüfen ob die richtigen
 				 *  Zeichen eingegeben wurden
 				 */
@@ -550,7 +550,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					RootPanel.get("Zusatz").clear();
 					}
 				}
-				/**
+				/*
 				 * Anzeige, dass das Suchprofil geändert wurde
 				 */
 				this.popup = new PopupPanel(true,true);
@@ -607,7 +607,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				/**
+				/*
 				 * Editor erscheinen lassen per Click
 				 */
 				RootPanel.get("Zusatz").clear();
@@ -634,7 +634,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				/**
+				/*
 				 * clearen nach Ausführen des ClickHandlers
 				 */
 					anlegenTable.clear();
@@ -644,7 +644,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					groessenAnzeigenPanel.clear();
 					speichernButtonPanel.clear();
 					
-					/**
+					/*
 					 * Setzen von Indexen für die Listboxen für späteres auslesen
 					 */
 					anzeigenTable.setWidget(1, 0, geschlechtLabel);
@@ -683,7 +683,7 @@ public class SuchprofilEditor extends VerticalPanel {
 						}
 					}
 					
-					/**
+					/*
 					 * Anheften Textboxen für Groesse an Panels
 					 * sowie stylen durch CSS
 					 */
@@ -702,7 +702,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					maxGroesseAnzeigenTextBox.setText
 					(Integer.toString(result.getMaxGroesse()));
 					
-					/**
+					/*
 					 * festsetzen wie viel zeichen in eine Textbox kommen dürfen
 					 */
 					minGroesseAnzeigenTextBox.setVisibleLength(3);
@@ -710,7 +710,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					maxGroesseAnzeigenTextBox.setVisibleLength(3);
 					maxGroesseAnzeigenTextBox.setMaxLength(3);
 
-					/**
+					/*
 					 * Anheften Textboxen für Alter an Panels
 					 * sowie stylen durch CSS
 					 */
@@ -725,7 +725,7 @@ public class SuchprofilEditor extends VerticalPanel {
 					maxAlterAnzeigenTextBox.setText
 					(Integer.toString(result.getMaxAlter()));
 					
-					/**
+					/*
 					 * festsetzen wie viel zeichen in eine Textbox kommen dürfen
 					 */
 					minAlterAnzeigenTextBox.setVisibleLength(3);

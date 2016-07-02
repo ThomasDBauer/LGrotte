@@ -70,7 +70,7 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 			labels.addElement(bday);
 			labels.addElement(geburtstag);
 			
-			/**
+			/*
 			 * Hinzufügen von Style 
 			 */
 			for (int i = 0; i < labels.size(); i++){

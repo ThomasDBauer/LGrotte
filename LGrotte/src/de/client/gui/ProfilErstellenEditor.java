@@ -108,7 +108,7 @@ public class ProfilErstellenEditor extends VerticalPanel {
 			e.printStackTrace();
 		}
 
-		/**
+		/*
 		 * Anheften der Widgets in eine Flex Table
 		 */
 		flexTable.setWidget(0, 1, fNameTextBox);
@@ -137,7 +137,7 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		flexTable.setWidget(7, 1, datumsBox);
 		flexTable.setWidget(7, 0, geburtsdatumLabel);
 
-		/**
+		/*
 		 * Einrichten des DatePickers für die richtige Date Übergabe
 		 */
 		datumsBox.setFormat(new DateBox.DefaultFormat(datumsFormat));
@@ -154,7 +154,7 @@ public class ProfilErstellenEditor extends VerticalPanel {
 
 		datumsBox.setValue(new Date());
 
-		/**
+		/*
 		 * Befüllen der List Box
 		 */
 		geschlechtListBox.addItem("Männlich");
@@ -180,7 +180,7 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		raucherListBox.addItem("Nein");
 		raucherListBox.addItem("Ab und an");
 
-		/**
+		/*
 		 * Anfügen der FlexTable und Buttons an das Panel
 		 */
 		this.add(profilUpdateButton);
@@ -259,7 +259,7 @@ public class ProfilErstellenEditor extends VerticalPanel {
 					Window.alert("catch " + e.toString());
 					e.printStackTrace();
 				}
-				/**
+				/*
 				 * Prüfung ob die Textboxen gefüllt sind
 				 */
 			String input = fNameTextBox.getText();
@@ -302,7 +302,7 @@ public class ProfilErstellenEditor extends VerticalPanel {
 				lNameTextBox.setText(result.getLname());
 			}
 
-			/**
+			/*
 			 * Setzen von Indexen für die ListBoxen
 			 */
 			for (int g = 0; g < 3; g++) {

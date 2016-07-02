@@ -177,14 +177,14 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 	 */
 	private class AddEigenschaftenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-			/**
+			/*
 			 *  wir wollen eine listbox und eine textbox
 			 */
 			ListBox listbox = new ListBox(false);
 			TextBox infotextbox = new TextBox();
 			buttonPanel.add(speicherButton);
 			aktiveEigenschaftenCounter = aktiveEigenschaftenCounter + 1;
-			/**
+			/*
 			 *  um sie später auszulesen, werden sie außerhalb der methode
 			 *  gespeichert
 			 */
@@ -199,7 +199,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 					listbox.addItem(eigenschaft.getErlaeuterung());
 				}
 			}
-			/**
+			/*
 			 * hübsch anordnen 
 			 */
 			HorizontalPanel hpanel = new HorizontalPanel();
@@ -280,7 +280,7 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 					e1.printStackTrace();
 				}
 			}
-			/**
+			/*
 			 *  Löschen der Zwischenspeicher
 			 */
 			eigenschaftenListboxen.clear();

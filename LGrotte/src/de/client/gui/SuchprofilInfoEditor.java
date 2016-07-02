@@ -156,7 +156,7 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 				lb.addItem(result.elementAt(i).getValue());
 			}
 			if (value != null)
-				/**
+				/*
 				 * Wenn der der Wert ungleich null ist wird der bestehenden 
 				 * ListBox ein Index gegeben
 				 */
@@ -175,7 +175,7 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 	 */
 	private class InsertHandler implements ClickHandler {
 		
-		/**
+		/*
 		 * Popup Panel zum anzeigen einer fehlermeldung
 		 */
 		private PopupPanel popup;
@@ -220,7 +220,7 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			/**
+			/*
 			 * PopupPanel mit Meldung wird ausgegeben
 			 */
 			this.popup = new PopupPanel(true, true);
