@@ -44,12 +44,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		user = p;
 	}
 
-	public String hallo() {
-		return "Hallo, ich bin der ReportService";
-	}
-
-	/*
+	/**
 	 * Alle Suchprofile auslesen
+	 * 
+	 * @return Vector<Suchprofil>
+	 * @throws Exception
 	 */
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
 		Vector<Suchprofil> suchprofile = spMapper.getSuchprofileByEmail(user.getEmail());
@@ -59,8 +58,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return suchprofile;
 	}
 
-	/*
-	 * Erzeugt den ProfilReport f�r ein einzelnes Profil
+	/**
+	 * Erzeugt den ProfilReport für ein einzelnes Profil
+	 * 
+	 * @return ProfilReport
+	 * @param p Profil
+	 * @throws Exception
 	 */
 	@SuppressWarnings("deprecation")
 	public ProfilReport getProfilReport(Profil p) throws Exception {

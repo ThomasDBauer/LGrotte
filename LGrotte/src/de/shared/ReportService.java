@@ -17,8 +17,6 @@ import de.shared.RO.ProfilReport;
 @RemoteServiceRelativePath("report")
 public interface ReportService extends RemoteService {
 	
-	String hallo();
-
 	ProfilReport getProfilReport(Profil p) throws Exception;
 	
 	void setUser(Profil p);

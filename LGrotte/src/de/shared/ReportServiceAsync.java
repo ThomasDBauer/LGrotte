@@ -12,8 +12,6 @@ import de.shared.RO.ProfilReport;
 
 public interface ReportServiceAsync {
 	
-	void hallo(AsyncCallback<String>callback);
-
 	void getProfilReport(Profil p, AsyncCallback<ProfilReport>callback) throws Exception;
 	
 	void setUser(Profil p, AsyncCallback callback);
