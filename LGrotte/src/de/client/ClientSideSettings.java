@@ -19,12 +19,18 @@ import de.shared.BO.Profil;
 
 public class ClientSideSettings {
 	
-	//Nullsetzen der Variablen
+	/**Nullsetzen der Variablen
+	 * 
+	 */
 	private static EditorServiceAsync editorService = null;
 	private static ReportServiceAsync reportService = null;
 	private static LoginServiceAsync loginService = null;
 	private static Profil profil = null;
-	
+
+	/**
+	 * Getter und Setter für das UserProfil
+	 * @return
+	 */
 	public static Profil getUserProfil(){
 		return profil;
 	}
@@ -33,20 +39,30 @@ public class ClientSideSettings {
 		profil = p;
 	}
 	
+	/**
+	 * Abfrage ob LoginService = null ist 
+	 * @return
+	 */
 	public static LoginServiceAsync getLoginService(){
 		if(loginService == null){
 			loginService = GWT.create(LoginService.class);
 		}
 		return loginService;
 	}
-	
+	/**
+	 * Abfrage ob editorService = null ist 
+	 * @return
+	 */
 	public static EditorServiceAsync getEditorService() {
 		if (editorService == null) {
 			editorService = GWT.create(EditorService.class);
 		}
 		return editorService;
 	}
-	
+	/**
+	 * Abfrage ob reportService = null ist 
+	 * @return
+	 */
 	public static ReportServiceAsync getReportService() {
 		if (reportService == null) {
 			reportService = GWT.create(ReportService.class);

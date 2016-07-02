@@ -34,15 +34,21 @@ import de.shared.BO.Profil;
  */
 public class LGrotte implements EntryPoint {
 
-	//Zwei Panels fue die GUI
+	/**
+	 * Zwei Panels fue die GUI
+	 */
 	private VerticalPanel loginPanel = new VerticalPanel();
 	private HorizontalPanel naviPanel = new HorizontalPanel();
 	
-	//Begruessungstext im Label
+	/**
+	 * Begruessungstext im Label
+	 */
 	private Label loginLabel = new Label(
 			"Melde dich jetzt mit deinem Google-Account an und finde deine neue Liebe!");
 	
-	//Zur An- und Abmeldung
+	/**
+	 * Zur An- und Abmeldung
+	 */
 	private Anchor signInLink = new Anchor("Anmelden");
 	private final Button loginButton = new Button("Anmelden");
 	private final Anchor logOutLink = new Anchor("Abmelden");
@@ -50,7 +56,9 @@ public class LGrotte implements EntryPoint {
 	public static LogOutPopUp logOutPop = new LogOutPopUp();
 	public static String logOutUrl;
 	
-	//Zur Kommunikation mit der Datenbank
+	/**
+	 * Zur Kommunikation mit der Datenbank
+	 */
 	private EditorServiceAsync editorService;
 	private LoginServiceAsync loginService;
 	
