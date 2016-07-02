@@ -122,7 +122,7 @@ public class ProfilinfoMapper {
 	 * Gibt alle Infos zu einem Profil aus
 	 * 
 	 * @param email
-	 * @return profilinfos
+	 * @return Vector<ProfilEigenschaft>
 	 */
 	public Vector <ProfilEigenschaft> getProfilInfosByEmail(String email) throws Exception{
 		Connection conn = (Connection)DBConnection.connection();
@@ -141,7 +141,7 @@ public class ProfilinfoMapper {
 	 * Gibt alle Infos mit zugehöriger Eigenschaft zu eine Profil aus
 	 * 
 	 * @param infoID
-	 * @return pe
+	 * @return ProfilEigenschaft
 	 */
 	private ProfilEigenschaft getInfosForProfil(int infoID) throws Exception{
 		Connection conn = (Connection)DBConnection.connection();

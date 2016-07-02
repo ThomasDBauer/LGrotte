@@ -77,7 +77,7 @@ public class SuchprofilInfoMapper {
 	 * Gibt alle Infos mit zugehöriger Eigenschaft zu eine Suchprofil aus
 	 * 
 	 * @param infoID
-	 * @return pe
+	 * @return ProfilEigenschaft
 	 */
 	public ProfilEigenschaft getSPInfosByInfoID(int infoID) throws Exception{
 		Connection conn = DBConnection.connection();
@@ -137,7 +137,7 @@ public class SuchprofilInfoMapper {
 	 * 
 	 * @param email
 	 * @param spname
-	 * @return suchprofilinfos
+	 * @return Vector<ProfilEigenschaft>
 	 */
 	public Vector <ProfilEigenschaft> getSuchprofilInfosByEmail(String email, String spname) throws Exception{
 		Connection conn = DBConnection.connection();

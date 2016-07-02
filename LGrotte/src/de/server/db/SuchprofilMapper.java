@@ -30,9 +30,9 @@ public class SuchprofilMapper {
 	}
 	
 	/**
-	 * Statische Methode vom Typ BesucheMapper
+	 * Statische Methode vom Typ SuchprofilMapper
 	 * 
-	 * @return besuchemapper
+	 * @return suchprofilmapper
 	 */
 	public static SuchprofilMapper suchprofilMapper() {
 	if(suchprofilMapper == null) {
@@ -60,7 +60,7 @@ public class SuchprofilMapper {
 	 * Gibt alle Suchprofile zu einem bestimmten Profil aus
 	 * 
 	 * @param email
-	 * @return suchprofile
+	 * @return Vector<Suchprofil>
 	 */
 	public Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
@@ -117,7 +117,7 @@ public class SuchprofilMapper {
 	 * Gibt ein Suchprofil abhängig von seinem Suchprofilname aus
 	 * 
 	 * @param suchprofilname
-	 * @return sp
+	 * @return Suchprofil
 	 */
 		public Suchprofil getSuchprofiByName(String suchprofilname) throws Exception{
 			Connection con = (Connection) DBConnection.connection();

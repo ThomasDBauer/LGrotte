@@ -20,7 +20,7 @@ public class DBConnection {
 	/**
 	 * Baut Verbindung zur Datenbank auf
 	 * 
-	 * @return con
+	 * @return Connection
 	 */
 	public static Connection connection() throws Exception {
 

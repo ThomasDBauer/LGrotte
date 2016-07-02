@@ -71,7 +71,7 @@ public class EigenschaftMapper {
 	/**
 	 * Ruft die Eigenschaften aus der Datenbank auf
 	 * 
-	 * @return eigenschaften
+	 * @return Vector<Eigenschaft>
 	 */
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
 		Connection conn = (Connection)DBConnection.connection();

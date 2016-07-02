@@ -42,7 +42,6 @@ public class KontaktsperreMapper {
 	
 	/**
 	 * Erstellt eine Tabelle in der die gesperrten Profile aufgelistet sind
-	 * 
 	 */
 	public void createKontaktsperreTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
@@ -57,6 +56,7 @@ public class KontaktsperreMapper {
 	/**
 	 * Fügt Profile die gesperrt worden sind in die Tabelle 
 	 * abhängig vom sperrenden Profil
+	 * 
 	 * @param k
 	 */
 	public void insertKontaktsperre(Kontaktsperre k) throws Exception {
@@ -71,7 +71,7 @@ public class KontaktsperreMapper {
 	 * Zeigt alle gesperrten Profil vom Sperrer
 	 * 
 	 * @param email
-	 * @return kontaktsperren
+	 * @return Vector<Kontaktsperre>
 	 */
 	public Vector<Kontaktsperre> getKontaktsperreByOwner(String email) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
@@ -93,7 +93,7 @@ public class KontaktsperreMapper {
 	 * Gibt die Kontaktsperren an, auf denen der User gesperrt wurde
 	 * 
 	 * @param email
-	 * @return kontaktsperren
+	 * @return Vector<Kontaktsperre>
 	 */
 		public Vector<Kontaktsperre> getKontaktsperren(String email) throws Exception{
 			Connection con = (Connection) DBConnection.connection();
@@ -115,7 +115,7 @@ public class KontaktsperreMapper {
 	 * Ruft alle gesperrten Profile vom Sperrer auf
 	 * 
 	 * @param email
-	 * @return merkzettelProfile
+	 * @return Vector<Profil>
 	 */
 	public Vector<Profil> getKontaktsperreProfileByOwner(String email)
 			throws Exception {

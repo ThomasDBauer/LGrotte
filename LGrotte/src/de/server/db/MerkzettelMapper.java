@@ -89,7 +89,7 @@ public class MerkzettelMapper {
 	 * Ruft alle gemerkten Profile vom Merkenden auf
 	 * 
 	 * @param email
-	 * @return merkzettel
+	 * @return Vector<Merkzettel>
 	 */
 	public Vector<Merkzettel> getMerkzettelByOwner(String email)
 			throws Exception {
@@ -112,7 +112,7 @@ public class MerkzettelMapper {
 	 * Ruft alle gemerkten Profile vom Merkenden auf
 	 * 
 	 * @param email
-	 * @return merkzettelProfile
+	 * @return Vector<Profil>
 	 */
 	public Vector<Profil> getMerkzettelProfileByOwner(String email)
 			throws Exception {

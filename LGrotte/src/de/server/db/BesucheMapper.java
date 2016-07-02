@@ -58,6 +58,7 @@ public class BesucheMapper {
 	
 	/**
 	 *  Fügt besuchte Profile in die Tabelle 
+	 *  
 	 * @param b 
 	 */
 	public void insertBesuch(Besuch b) throws Exception {
@@ -94,7 +95,7 @@ public class BesucheMapper {
 	 *  Liest besuchte Profile aus der Datenbank
 	 *  
 	 * @param user
-	 * @return besuche
+	 * @return Vector<Besuch>
 	 */
 	public Vector<Besuch> getBesuche(Profil user) throws Exception{
 		Connection con = (Connection) DBConnection.connection();

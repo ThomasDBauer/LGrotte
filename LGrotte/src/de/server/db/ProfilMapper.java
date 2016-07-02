@@ -43,7 +43,7 @@ public class ProfilMapper {
 	 * Gibt Profil Attribute anhand der Email aus
 	 * 
 	 * @param email
-	 * @return p
+	 * @return Profil
 	 */
 	public Profil getProfilByEmail(String email) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
@@ -68,7 +68,7 @@ public class ProfilMapper {
 	/**
 	 * Gibt alle Profile aus die es gibt
 	 * 
-	 * @return profile
+	 * @return Vector<Profil>
 	 */
 	public Vector<Profil> getAll() throws Exception {
 		Vector<Profil>profile = new Vector<Profil>();
@@ -96,7 +96,7 @@ public class ProfilMapper {
 	 * Gibt alle Profile gefiltert nach Geschlecht aus
 	 * 
 	 * @param geschlecht
-	 * @return profile
+	 * @return Vector<Profil>
 	 */
 	public Vector<Profil> getProfileNachGeschlecht(String geschlecht) throws Exception {
 		Vector<Profil>profile = new Vector<Profil>();

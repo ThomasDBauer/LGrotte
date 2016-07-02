@@ -54,7 +54,7 @@ public class AuswahlMapper {
 	/**
 	 *  Fügt eine gewählte Auswahleigenschaft hinzu
 	 *  
-	 * @param a Auswahl
+	 * @param a
 	 */
 	public void insertAuswahl(Auswahl a) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
@@ -68,7 +68,7 @@ public class AuswahlMapper {
 	 * Liest die Auswahleigenschaften aus der Datenbank 
 	 * 
 	 * @param e 
-	 * @return auswahlopts
+	 * @return Vector<Auswahl>
 	 */
 	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
