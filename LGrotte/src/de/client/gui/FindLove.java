@@ -21,7 +21,11 @@ import de.client.ClientSideSettings;
 import de.shared.BO.Profil;
 
 /**
- * Partnervorschlaege GUI-Klasse
+ * Diese Klasse erbt von VerticalPanel und traegt die aus der Datenbank
+ * generierten Partnervorschlaege des Users in eine Tabelle, welche
+ * neben zwei Button dem der Klasse angehaengt wird. Zu jeder Spalte
+ * mit einem Partnervorschlag wird eine Checkbox zur Interaktion mit den
+ * Button erstellt 
  * 
  * @author Nicolai Ehrmanntraut, Thomas Bauer, Enrico Popaj & Lukas Kircher
  * 
@@ -31,28 +35,46 @@ import de.shared.BO.Profil;
 
 public class FindLove extends VerticalPanel {
 
-	//Die Tabelle mit den Vorschlaegen
+	/**
+	 * Die Tabelle fuer die Vorschlaege mit jeweiler CheckBox
+	 */
 	private FlexTable table = new FlexTable();
 	
-	//Die Emails in einem Vector, fuer Aktionen mit den Vorschlaegen
+	/**
+	 * Die Emails der mit einem Kreuz versehnen CheckBoxen
+	 * werden in einem Vector als String gespeichert.
+	 * Dieser wird hier erzeugt
+	 */
 	private Vector<String> emailBuffer = new Vector<String>();
 	
-	//Buttons die Aktionen mit den Ausgwaehlten Profilen ausfuehren
+	/**
+	 * Buttons, welche die in dem "emailBuffer" stehenden Strings
+	 * auslesen um diese ueber einen aufruf einer Mappermethode
+	 *  je nach Button in die Merkliste oder die Kontaktsperre einzutragen
+	 */
 	private Button merkButton = new Button("Profile merken", 
 			new MerkHandler());
 	private Button sperrButton = new Button("Profile sperren",
 			new SperrHandler());
 	
-	//Panel fuer keine Ergebnisse
+	/**
+	 * VerticalPanel, dass angezeigt wird, wenn keine Ergebnisse
+	 * vorhanden sind
+	 */
 	private VerticalPanel resultPanel = new VerticalPanel();
 
-	//Formatter zur individuellen Formatierung der Tabelle
+	/**
+	 * Formatter zur individuellen Formatierung der FelxTable "table"
+	 */
 	FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
 	
-	/*
-	 * Konstruktor der Klasse, der die Styles zuweisst, 
-	 * und die Methode loadProfiles aufruft
+	/**
+	 * No-Argument-Konstruktor erzeugen, der den Buttons die Styles zuweisst, 
+	 * die Bilder fuer die Buttons setzt, aber auch die in einem Panel befindlichen
+	 * Buttons dem durch den Konstruktor erzeugten Objekt anfuegt
+	 * und abschliessend die Methode loadProfiles aufruft, welche die bereits
+	 * in der Tabelle befindlichen Panels mit Inhalt versieht
 	 */
 	public FindLove() throws Exception {
 		HorizontalPanel controlPanel = new HorizontalPanel();
@@ -72,8 +94,9 @@ public class FindLove extends VerticalPanel {
 		loadProfiles();
 	}
 
-	/*
-	 * Hier werden die Profilvorschlaege aus der Datenbank generiert
+	/**
+	 * Die Methode loadProfiles generiert die Profilvorschlaege 
+	 * aus der Datenbank, sie wirft einen GeProfileCallback
 	 */
 	public void loadProfiles() throws Exception {
 		resultPanel.clear();
@@ -83,11 +106,13 @@ public class FindLove extends VerticalPanel {
 				new GetProfileCallback());
 	}
 
-	/*
-	 * Der Callback, der die generierten Profile beinhaltet,
+	/**
+	 * Der Callback, der die generierten Profile beinhaltet.
 	 * bei erfolgreichem Callback, wird die Tabelle mit den Profilen
-	 * befuellt und zu jedem Profil eine Checkbox in der Tabelle erstellt
-	 * auch werden Styles zu den einzelenen Labels und Button angefuegt
+	 * befuellt und zu jedem Profil eine Checkbox in der Tabelle erstellt.
+	 * Ein Button, welcher hinter jedem Partnervorschlag steht und das 
+	 * jeweilige Profil mit allen Informationen anzeigt wird erzeugt.
+	 * Auch werden Styles zu den einzelenen Labels und dem Button angefuegt
 	 * zum Schluss wird ein Clickhandler, der 
 	 * das einzelne Profil anzeigt hinzugefuegt
 	 */
@@ -98,7 +123,24 @@ public class FindLove extends VerticalPanel {
 					new Label(caught.toString()
 							+ " @FindLove.GetProfileCallback"));
 		}
-
+		
+		/**
+		 * Bei erfolgreichem Callback, wird geprueft, ob der Vector leer ist, 
+		 * da in diesem Fall keine Ergebnisse vorhanden sind 
+		 * und dies Ausgegeben wird. 
+		 * Ist der Vector nicht leer, so wird eine For-Schleife durchlaufen,
+		 * welche fuer jedes Profil im Vector jeweil ein Profil erstellt, dass
+		 * mit diesem Profil aus dem Vector Gleichgestellt wird. 
+		 * Weiter wird eine CheckBox zu jedem Profil erstellt. Diese CheckBox
+		 * bekommt einen ClickHandler mit der zum Profil gehoerenden Email-
+		 * Adresse als Uebergabeparameter. Ein Label, dass den Namen des
+		 * Profils als Text beinhaltet wird erzeugt und bekommt Styles 
+		 * zugewiesen. Die erstellten Obejekte werden der Tabell hinzuegefuegt
+		 * und der Button, welcher das jeweilige Profil anzeigt wird gestylt.
+		 * 
+		 * @param result Vector vom Typ Profil mit allen Profilen, 
+		 * außer dem eigenen
+		 */
 		public void onSuccess(Vector<Profil> result) {
 			if (result.size() == 0) {
 				resultPanel.add(new Label("Keine Ergebnisse"));
@@ -134,10 +176,11 @@ public class FindLove extends VerticalPanel {
 	}
 
 	
-	/*
-	 * Bei Klick auf den Button Anzeigen, wird der Editor 
-	 * FremdesProfilAnzeigenEditor erstellt und dem RootPanel hinzugefuegt
-	 * Die anderen Inhalte werden im voraus gecleart
+	/**
+	 * Dieser ClickHandler legt fest, dass bei Klick auf den Button Anzeigen, 
+	 * der Editor FremdesProfilAnzeigenEditor erstellt und dem RootPanel 
+	 * hinzugefuegt wird. Die anderen Inhalte, welche sich in den Inhalts-Divs
+	 * des RootPanels befinden werden im voraus geloescht.
 	 */
 	private class FremdesPAClickHandler implements ClickHandler {
 		
@@ -173,10 +216,10 @@ public class FindLove extends VerticalPanel {
 		}	
 	}
 	
-	/*
+	/**
 	 * Hier wird festgelegt, was passiert wenn eine CheckBox angeklickt
-	 * Die E-Mail wird dem emailBuffer angefuegt, 
-	 * bei erneutem klicken, also wenn das Kreuz wieder verschwindet, 
+	 * Die E-Mail wird dem Vector vom Typ String "emailBuffer" angefuegt. 
+	 * Bei erneutem klicken, also wenn das Kreuz wieder verschwindet, 
 	 * wird die Email dem Buffer wieder entnommen
 	 */
 	
@@ -195,14 +238,16 @@ public class FindLove extends VerticalPanel {
 		}
 	}
 
-	/*
+	/**
 	 * Die gespeicherten Emails werden, beim Klicken des Button
 	 * durch den ClickHandler mit dem insertMerkzettel bzw. der 
 	 * insertKontaktsperre in die Datenbank eingetragen 
-	 * Der Button wird gesperrrt
-	 * anschließend wird der emailBuffer geleert
-	 * Beim Callback werden die Buttons entsperrt und 
-	 * die Profile mit loadProfiles() neu geladen
+	 * Der Button wird waehrend des Ausfuehrens des ClickHandlers 
+	 * gesperrrt. Anschließend wird der emailBuffer geleert.
+	 * 
+	 * Beim Callback beider insert-Methoden werden die Buttons entsperrt und 
+	 * die Profile mit loadProfiles() neu geladen, ausserdem wird der
+	 * emailBuffer entleert.
 	 */
 	
 	private class MerkHandler implements ClickHandler {
