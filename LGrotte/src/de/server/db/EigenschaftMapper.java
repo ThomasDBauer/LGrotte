@@ -24,11 +24,23 @@ import de.shared.BO.Eigenschaft;
 
 public class EigenschaftMapper {
 
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static EigenschaftMapper eigenschaftMapper = null;
 
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected EigenschaftMapper() {
 	}
 	
+	/**
+	 * Statische Methode vom Typ EigenschaftMapper
+	 * 
+	 * @return eigenschaftMapper
+	 */
 	public static EigenschaftMapper eigenschaftMapper(){
 		if(eigenschaftMapper ==null){
 			eigenschaftMapper = new EigenschaftMapper();
@@ -36,7 +48,9 @@ public class EigenschaftMapper {
 		return eigenschaftMapper;
 	}
 
-	// Erstellt eine Tabelle in der die Eigenschaften gespeichert werden
+	/**
+	 * Erstellt eine Tabelle in der die Eigenschaften gespeichert werden
+	 */
 	public void createEigenschaftTable() throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) conn.prepareStatement
@@ -46,7 +60,11 @@ public class EigenschaftMapper {
 		create.execute();
 	}
 	
-	// Fügt neue Eigenschaften in die Tabelle
+	/**
+	 * Fügt neue Eigenschaften in die Tabelle
+	 * 
+	 * @param eigenschaft
+	 */
 	public void insertEigenschaft(Eigenschaft eigenschaft) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) conn.prepareStatement
@@ -54,12 +72,12 @@ public class EigenschaftMapper {
 						eigenschaft.getErlaeuterung() + "', "+eigenschaft.getAuswahl()+")");
 		insert.execute();
 	}
-
-	public Eigenschaft getEigenschaftByID(int id) {
-		return null;
-	}
 	
-	// Ruft die Eigenschaften aus der Datenbank auf
+	/**
+	 * Ruft die Eigenschaften aus der Datenbank auf
+	 * 
+	 * @return eigenschaften
+	 */
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement(

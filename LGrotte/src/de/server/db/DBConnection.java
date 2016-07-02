@@ -11,9 +11,17 @@ import java.sql.DriverManager;
  */
 public class DBConnection {
 
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static Connection con = null;
 
-	// Baut Verbindung zur Datenbank auf
+	/**
+	 * Baut Verbindung zur Datenbank auf
+	 * 
+	 * @return con
+	 */
 	public static Connection connection() throws Exception {
 
 		if (con == null) {
