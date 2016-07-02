@@ -1,15 +1,8 @@
 package de.server.db;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.Connection;
-
-
 import java.sql.ResultSet;
 import java.util.Vector;
-
 import de.server.db.DBConnection;
 import de.shared.BO.Eigenschaft;
 import de.shared.BO.Info;
@@ -26,20 +19,31 @@ import de.shared.RO.ProfilEigenschaft;
 
 public class ProfilinfoMapper {
 
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static ProfilinfoMapper profilinfoMapper = null;
 
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected ProfilinfoMapper() {
 	}
 
+	/**
+	 * Statische Methode vom Typ ProfilinfoMapper
+	 * 
+	 * @return profilinfomapper
+	 */
 	public static ProfilinfoMapper profilinfoMapper() {
 		if (profilinfoMapper == null) {
 			profilinfoMapper = new ProfilinfoMapper();
 		}
-
 		return profilinfoMapper;
 	}
-
-	/*
+	
+	/**
 	 * Erstellt eine Tabelle in der die Primary Keys vom Profil und Info
 	 * als Forgein Key eine Verbindung bilden
 	 */
@@ -52,7 +56,11 @@ public class ProfilinfoMapper {
 		create.execute();
 	}
 	
-	// Fügt die Verbindung zwischen einem Profil und einer Info ein
+	/**
+	 * Fügt die Verbindung zwischen einem Profil und einer Info ein
+	 * 
+	 * @param pi
+	 */
 	public void insertProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		
@@ -68,7 +76,11 @@ public class ProfilinfoMapper {
 		}
 	}
 	
-	// Aktualisiert die Verbidung zwischen einem Profil und einer Info
+	/**
+	 * Aktualisiert die Verbidung zwischen einem Profil und einer Info
+	 * 
+	 * @param pi
+	 */
 	public void updateProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		try {
@@ -81,7 +93,11 @@ public class ProfilinfoMapper {
 		}
 	}
 	
-	// Löscht die Verbindung zwischen einem Profil und einer Info
+	/**
+	 * Löscht die Verbindung zwischen einem Profil und einer Info
+	 * 
+	 * @param pi
+	 */
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
@@ -90,7 +106,11 @@ public class ProfilinfoMapper {
 		stmt.execute();
 	}
 	
-	// Löscht die Verbindung zwischen ALLEN Infos zu einem Profil
+	/**
+	 * Löscht die Verbindung zwischen ALLEN Infos zu einem Profil
+	 * 
+	 * @param usermail
+	 */
 	public void deleteAllInfos(String usermail) throws Exception{
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
@@ -98,7 +118,12 @@ public class ProfilinfoMapper {
 		stmt.execute();
 	}
 	
-	// Gibt alle Infos zu einem Profil aus
+	/**
+	 * Gibt alle Infos zu einem Profil aus
+	 * 
+	 * @param email
+	 * @return profilinfos
+	 */
 	public Vector <ProfilEigenschaft> getProfilInfosByEmail(String email) throws Exception{
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement("SELECT info_id FROM "
@@ -112,7 +137,12 @@ public class ProfilinfoMapper {
 		return profilinfos;
 	}
 	
-	// Gibt alle Infos mit zugehöriger Eigenschaft zu eine Profil aus
+	/**
+	 * Gibt alle Infos mit zugehöriger Eigenschaft zu eine Profil aus
+	 * 
+	 * @param infoID
+	 * @return pe
+	 */
 	private ProfilEigenschaft getInfosForProfil(int infoID) throws Exception{
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) conn.prepareStatement("SELECT infos.value, "
