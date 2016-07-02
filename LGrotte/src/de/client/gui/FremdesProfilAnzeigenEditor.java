@@ -177,7 +177,7 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			
 		}
 		
-		/*
+		/**
 		 * Die Klasse die ein Interface AsyncCallback vom Typ Vector 
 		 * ProfilEigenschaften implementiert.
 		 * Hier werden die  Werte  aus dem Vector <Profileigenschaften>
