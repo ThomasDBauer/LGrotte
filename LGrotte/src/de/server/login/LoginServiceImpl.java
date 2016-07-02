@@ -9,10 +9,21 @@ import de.server.db.ProfilMapper;
 import de.shared.LoginService;
 import de.shared.BO.Profil;
 
+/**
+ * 
+ * @author Thomas Bauer
+ * 
+ * Servlet, das den Login über die GoogleAccountsAPI verwaltet.
+ */
+
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 	@param Domain der Startseite
+	 * 	@return neues oder eingeloggtes Profil
+	 */
 	@SuppressWarnings("deprecation")
 	public Profil login(String requestUri) throws Exception {
 		UserService userService = UserServiceFactory.getUserService();
