@@ -18,15 +18,22 @@ import de.shared.BO.Profil;
 
 public class BesucheMapper {
 	
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static BesucheMapper besucheMapper = null;
 	
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected BesucheMapper(){
-		
 	}
 	
 	/**
-	 * Singleton-Pattern, die immer nur ein BesucheMapper-Objekt garantiert.
-	 * @return BesucheMapper
+	 * Statische Methode vom Typ BesucheMapper
+	 * 
+	 * @return besucheMapper
 	 */
 	public static BesucheMapper besucheMapper(){
 		if(besucheMapper ==null){
@@ -37,7 +44,6 @@ public class BesucheMapper {
 	
 	/**
 	 *  Erstellt eine Tabelle für Profile die schon besucht worden
-	 * @throws Exception
 	 */
 	public void createBesucheTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
@@ -52,8 +58,7 @@ public class BesucheMapper {
 	
 	/**
 	 *  Fügt besuchte Profile in die Tabelle 
-	 * @param b Besuch
-	 * @throws Exception
+	 * @param b 
 	 */
 	public void insertBesuch(Besuch b) throws Exception {
 		if(!besuchExists(b)){
@@ -68,9 +73,9 @@ public class BesucheMapper {
 	
 	/**
 	 *  Filtert nach Profilen die schon besucht worden
+	 *  
 	 * @param b
 	 * @return true, wenn ein Profil schon besucht wurde.
-	 * @throws Exception
 	 */
 	private boolean besuchExists(Besuch b) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
@@ -87,9 +92,9 @@ public class BesucheMapper {
 	
 	/**
 	 *  Liest besuchte Profile aus der Datenbank
+	 *  
 	 * @param user
-	 * @return Vector<Besuch>
-	 * @throws Exception
+	 * @return besuche
 	 */
 	public Vector<Besuch> getBesuche(Profil user) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
