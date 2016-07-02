@@ -28,8 +28,11 @@ public class HTMLWriter {
 		return this.reportText;
 	}
 
-	/*
-	 * Erstellt HTML Code f�r ein einzelnes, detaillierte dargestelltes Profil
+	/**
+	 * 
+	 * Erstellt aus einem ProfilReport Objekt HTML Code.
+	 * 
+	 * @param report ProfilReport
 	 */
 	public void process(ProfilReport report) {
 
@@ -67,10 +70,12 @@ public class HTMLWriter {
 		this.reportText = sb.toString();
 	}
 
-	/*
+	/**
 	 *  Erstellt HTML Code für einen Vector<ProfilReports>
 	 *  Ruft für jeden Report die process(ProfilReport) Methode auf und
 	 *  fügt die resultierenden Strings zusammen.
+	 *  
+	 * @param reports Vector<ProfilReport>
 	 */
 	public void process(Vector<ProfilReport> reports) {
 		StringBuffer buffer = new StringBuffer();

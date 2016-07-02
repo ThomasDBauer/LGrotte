@@ -27,7 +27,11 @@ public class AuswahlMapper {
 		return auswahlmapper;
 	}
 	
-	// Erstellt eine Tabelle für unsere verschiedenen Auswahlmöglichkeiten
+	/**
+	 * Create Table
+	 * 
+	 * @throws Exception
+	 */
 	public void createAuswahlTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create =(PreparedStatement) con.prepareStatement(
@@ -38,7 +42,11 @@ public class AuswahlMapper {
 		create.execute();
 	}	
 	
-	// Fügt eine gewählte Auswahleigenschaft hinzu
+	/**
+	 *  Fügt eine gewählte Auswahleigenschaft hinzu
+	 * @param a Auswahl
+	 * @throws Exception
+	 */
 	public void insertAuswahl(Auswahl a) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) con.prepareStatement(
@@ -47,7 +55,12 @@ public class AuswahlMapper {
 		insert.execute();
 	}
 	
-	// Liest die Auswahleigenschaften aus der Datenbank 
+	/**
+	 *  Liest die Auswahleigenschaften aus der Datenbank 
+	 * @param e Eigenschaft
+	 * @return Vector<Auswahl>
+	 * @throws Exception
+	 */
 	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create =(PreparedStatement) con.prepareStatement(

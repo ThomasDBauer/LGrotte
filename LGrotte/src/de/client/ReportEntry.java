@@ -115,9 +115,9 @@ public class ReportEntry implements EntryPoint {
 				});
 	}
 
-	/*
-	 * L�dt initial alle Suchprofile. --> Baut die ListBox zum Selektieren auf
-	 * --> �bergibt dem ListBox ChangeHandler das Suchprofil.
+	/**
+	 * Lädt initial alle Suchprofile. --> Baut die ListBox zum Selektieren auf
+	 * --> übergibt dem ListBox ChangeHandler das Suchprofil.
 	 */
 	public void loadSuchprofile() {
 		try {
@@ -148,7 +148,10 @@ public class ReportEntry implements EntryPoint {
 		}
 	}
 
-	// HtML Reports erstellen lassen f�r Report-Listen
+	/**
+	 *  HtML Reports erstellen lassen f�r Report-Listen
+	 * @param reports
+	 */
 	public void loadHtmlReports(Vector<ProfilReport> reports) {
 		links.clear();
 		if (reports.size() == 0)
@@ -158,38 +161,47 @@ public class ReportEntry implements EntryPoint {
 		links.add(new HTML(writer.getReportText()));
 	}
 
-	/*
-	 * Alle Profile laden
+	/**
+	 * Lädt alle Reports
+	 * @throws Exception
 	 */
 	public void loadAllReports() throws Exception {
 		reportService.getReports(new ReportCallback());
 	}
 
-	/*
-	 * Alle Profile nach Suchprofil gefiltert
+	/**
+	 *  Alle Profile nach Suchprofil gefiltert
+	 * @param sp
+	 * @throws Exception
 	 */
 	public void loadAllReports(Suchprofil sp) throws Exception {
 		reportService.getReports(sp, new ReportCallback());
 	}
 
-	/*
-	 * Baut Reports f�r nicht besuchte Profile auf
+	/**
+	 * Baut Reports für nicht besuchte Profile auf
+	 * @throws Exception
 	 */
 	public void loadReportsForNotVisited() throws Exception {
 		reportService.getNotVisitedReports(new ReportCallback());
 	}
 
-	/*
+	/**
 	 * Alle nicht besuchten Profile nach Suchprofil gefiltert
+	 * @param sp
+	 * @throws Exception
 	 */
 	public void loadReportsForNotVisited(Suchprofil sp) 
 			throws Exception {
 		reportService.getNotVisitedReports(sp, new ReportCallback());
 	}
 
-	/*
+	/**
 	 * Callback der LoadReport() Methoden
+	 *
 	 */
+	 
+	 
 	private class ReportCallback 
 	implements AsyncCallback<Vector<ProfilReport>> {
 		public void onFailure(Throwable caught) {
@@ -202,7 +214,7 @@ public class ReportEntry implements EntryPoint {
 		}
 	}
 
-	/*
+	/**
 	 * Der ChangeHandler der Suchprofil-ListBox
 	 */
 	private class SucheChangeHandler implements ClickHandler {
@@ -217,7 +229,9 @@ public class ReportEntry implements EntryPoint {
 			}
 		}
 	}
-
+	/**
+	 * @param sp
+	 */
 	public void updateSuchprofilPanel(Suchprofil sp) {
 		suchprofilPanel.setStylePrimaryName("suchprofil-filter");
 		suchprofilPanel.clear();
@@ -239,10 +253,12 @@ public class ReportEntry implements EntryPoint {
 		}
 	}
 
-	/*
-	 * Weil wir leider nicht mit einem DataListProvider arbeiten, m�ssen wir 
-	 * die Strings der ListBox mit den Suchprofilen abgleichen.
+	/**
+	 * Weil wir leider nicht mit einem DataListProvider arbeiten, müssen wir 
+	 *	die Strings der ListBox mit den Suchprofilen abgleichen.
+	 * @return Suchprofil
 	 */
+	 
 	public Suchprofil getSuchprofil() {
 		Suchprofil sp = null;
 		for (int i = 0; i < suchprofile.size(); i++) {
@@ -259,7 +275,7 @@ public class ReportEntry implements EntryPoint {
 		return sp;
 	}
 
-	/*
+	/**
 	 * ClickHandler f�r AlleProfile-Button
 	 */
 	public class AlleProfileHandler implements ClickHandler {

@@ -24,6 +24,10 @@ public class BesucheMapper {
 		
 	}
 	
+	/**
+	 * Singleton-Pattern, die immer nur ein BesucheMapper-Objekt garantiert.
+	 * @return BesucheMapper
+	 */
 	public static BesucheMapper besucheMapper(){
 		if(besucheMapper ==null){
 			besucheMapper = new BesucheMapper();
@@ -31,7 +35,10 @@ public class BesucheMapper {
 		return besucheMapper;
 	}
 	
-	// Erstellt eine Tabelle für Profile die schon besucht worden
+	/**
+	 *  Erstellt eine Tabelle für Profile die schon besucht worden
+	 * @throws Exception
+	 */
 	public void createBesucheTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) con
@@ -43,7 +50,11 @@ public class BesucheMapper {
 		create.execute();
 	}
 	
-	// Fügt besuchte Profile in die Tabelle 
+	/**
+	 *  Fügt besuchte Profile in die Tabelle 
+	 * @param b Besuch
+	 * @throws Exception
+	 */
 	public void insertBesuch(Besuch b) throws Exception {
 		if(!besuchExists(b)){
 			Connection con = (Connection) DBConnection.connection();
@@ -55,7 +66,12 @@ public class BesucheMapper {
 		}
 	}
 	
-	// Filtert nach Profilen die schon besucht worden
+	/**
+	 *  Filtert nach Profilen die schon besucht worden
+	 * @param b
+	 * @return true, wenn ein Profil schon besucht wurde.
+	 * @throws Exception
+	 */
 	private boolean besuchExists(Besuch b) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = con.prepareStatement("SELECT * FROM besuche WHERE "
@@ -69,7 +85,12 @@ public class BesucheMapper {
 		}
 	}
 	
-	// Liest besuchte Profile aus der Datenbank
+	/**
+	 *  Liest besuchte Profile aus der Datenbank
+	 * @param user
+	 * @return Vector<Besuch>
+	 * @throws Exception
+	 */
 	public Vector<Besuch> getBesuche(Profil user) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = con.prepareStatement("SELECT * FROM besuche WHERE "

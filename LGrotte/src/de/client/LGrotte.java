@@ -34,7 +34,7 @@ import de.shared.BO.Profil;
  */
 public class LGrotte implements EntryPoint {
 
-	//Zwei Panels fue die GUI
+	//Zwei Panels fuer die GUI
 	private VerticalPanel loginPanel = new VerticalPanel();
 	private HorizontalPanel naviPanel = new HorizontalPanel();
 	
