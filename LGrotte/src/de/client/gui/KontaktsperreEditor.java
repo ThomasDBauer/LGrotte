@@ -44,12 +44,10 @@ public class KontaktsperreEditor extends VerticalPanel {
 
 	FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
-	// No-Argument-Konstruktor
-	/*
-	 * Hier werden Styles vergeben und die Methode loadProfiles laedt die
+	/**
+	 * Hier werden Styles vergeben und die Methode loadProfiles lädt die
 	 * aktuellen Kontaktsperren in die Tabelle
 	 */
-
 	public KontaktsperreEditor() throws Exception {
 		table.addStyleName("findLove-table");
 		table.setWidth("45em");
@@ -64,7 +62,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 		this.add(resultPanel);
 	}
 
-	/*
+	/**
 	 * Die Panels und die Tabelle wird geleert und die Kontaktsperren werden aus
 	 * der Datenbank geholt
 	 */
@@ -76,7 +74,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 				new GetKontaktsperreProfileCallback());
 	}
 
-	/*
+	/**
 	 * Der Callback mit einem Vector<Profil> in dem die ausgelsenen Daten in die
 	 * Tabelle eingetragen werden und pro Profil eine CheckBox erstellt wird
 	 * Auch der Style wird zugeteilt
@@ -116,7 +114,7 @@ public class KontaktsperreEditor extends VerticalPanel {
 		}
 	}
 
-	/*
+	/**
 	 * Beim klicken der CheckBox wird die Email in den Vector eingetragen, beim
 	 * erneuten Klicken(das Kreuz verschwindet wieder) wird die Email aus dem
 	 * Vector entfernt
@@ -143,10 +141,10 @@ public class KontaktsperreEditor extends VerticalPanel {
 		}
 	}
 
-	/*
-	 * ClickHandler & Callback, die die im EmailBuffer(Vector) stehenden Emails
-	 * aus den Kontaktsperren loeschen und anschliessend den Vector EmailBuffer
-	 * clearen sowie die aktuellen Kontaktsperren laedt
+	/**
+	 * ClickHandler, der die im EmailBuffer(Vector) stehenden Emails
+	 * aus den Kontaktsperren löschen und anschließend den Vector EmailBuffer
+	 * clearen sowie die aktuellen Kontaktsperren lädt
 	 */
 	private class AufhebenHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
@@ -160,7 +158,12 @@ public class KontaktsperreEditor extends VerticalPanel {
 			}
 			emailBuffer.clear();
 		}
-
+		
+		/**
+		 * Callback, der die im EmailBuffer(Vector) stehenden Emails
+		 * aus den Kontaktsperren löschen und anschließend den Vector EmailBuffer
+		 * clearen sowie die aktuellen Kontaktsperren lädt
+		 */
 		private class DeleteCallback implements AsyncCallback {
 			public void onFailure(Throwable caught) {
 				RootPanel.get().add(

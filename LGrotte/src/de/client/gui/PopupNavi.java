@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.RootPanel;
  * @author Lukas Kircher
  * 
  * @version 1.0
- *
  */
 
 public class PopupNavi extends HorizontalPanel {
@@ -35,6 +34,11 @@ public class PopupNavi extends HorizontalPanel {
 	public final static ProfilLoeschenPopup profilLoeschenPopup = 
 			new ProfilLoeschenPopup();
 
+	/**
+	 * Konstruktor zur Klasse PopupNavi
+	 * Der die Buttons der NaviLeiste vom 
+	 * "Mein Profil" stylt
+	 */
 	public PopupNavi() {
 		//Zuweisung der Styles und hinzufuegen zum Panel
 		profilBearbeitenButton.setStylePrimaryName("navi-button");
@@ -51,7 +55,9 @@ public class PopupNavi extends HorizontalPanel {
 		this.add(kontaktsperreButton);
 		this.add(profilloeschenButton);
 		
-		//Das Profil-Loeschen-PopUp positionieren und anzeigen
+		/**
+		 * Das Profil-Loeschen-PopUp positionieren und anzeigen
+		 */
 		profilloeschenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent e) {
 				profilLoeschenPopup
@@ -72,7 +78,7 @@ public class PopupNavi extends HorizontalPanel {
 		});
 	}
 	
-	/*
+	/**
 	 * Switch-Case, die prueft, welches Element angeklickt wurde und
 	 * je nach Text, dem RootPanel(dass davor gecleart wurde) 
 	 * weiter wird dem RootPanel ein neues Element je nach KlickText
