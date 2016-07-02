@@ -17,11 +17,23 @@ import de.shared.BO.Suchprofil;
 
 public class SuchprofilMapper {
 	
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
     private static SuchprofilMapper suchprofilMapper = null; 
 	
+    /**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected SuchprofilMapper() {
 	}
 	
+	/**
+	 * Statische Methode vom Typ BesucheMapper
+	 * 
+	 * @return besuchemapper
+	 */
 	public static SuchprofilMapper suchprofilMapper() {
 	if(suchprofilMapper == null) {
 		suchprofilMapper = new SuchprofilMapper();
@@ -29,7 +41,9 @@ public class SuchprofilMapper {
 	return suchprofilMapper;
 	}
 	
-	// Erstellt eine Tabelle in der die Suchprofile eingefügt werden
+	/**
+	 * Erstellt eine Tabelle in der die Suchprofile eingefügt werden
+	 */
 	public void createSuchprofilTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createSuchprofil = (PreparedStatement) con.prepareStatement(
@@ -42,7 +56,12 @@ public class SuchprofilMapper {
 		createSuchprofil.execute();
 	}
 	
-	// Gibt alle Suchprofile zu einem bestimmten Profil aus
+	/**
+	 * Gibt alle Suchprofile zu einem bestimmten Profil aus
+	 * 
+	 * @param email
+	 * @return suchprofile
+	 */
 	public Vector<Suchprofil> getSuchprofileByEmail(String email) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = (PreparedStatement) con.prepareStatement(
@@ -66,7 +85,11 @@ public class SuchprofilMapper {
 		return suchprofile;
 	}
 	
-	// Fügt ein neues Suchrofil abhängig zu einem Profil ein
+	/**
+	 * Fügt ein neues Suchrofil abhängig zu einem Profil ein
+	 * 
+	 * @param sp
+	 */
 	public void insertSuchprofil (Suchprofil sp) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertSuchprofil = (PreparedStatement)con.prepareStatement(
@@ -78,8 +101,11 @@ public class SuchprofilMapper {
 				+ sp.getHaarfarbe() + "','"+sp.getProfil()+"')");
 		insertSuchprofil.execute();
 	}
-	
-	// Löscht ein Suchprofil von einem Profil
+	/**
+	 * Löscht ein Suchprofil von einem Profil
+	 * 
+	 * @param sp
+	 */
 	public void deleteSuchprofil (Suchprofil sp) throws Exception{
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement delete = (PreparedStatement) conn.prepareStatement
@@ -87,7 +113,12 @@ public class SuchprofilMapper {
 		delete.execute();
 	}
 	
-	// Gibt ein Suchprofil abhängig von seinem Suchprofilname aus
+	/**
+	 * Gibt ein Suchprofil abhängig von seinem Suchprofilname aus
+	 * 
+	 * @param suchprofilname
+	 * @return sp
+	 */
 		public Suchprofil getSuchprofiByName(String suchprofilname) throws Exception{
 			Connection con = (Connection) DBConnection.connection();
 			PreparedStatement select = (PreparedStatement) con.prepareStatement(
@@ -108,7 +139,11 @@ public class SuchprofilMapper {
 			return sp;
 		}
 	
-		// Aktualisiert die Attribute von einem Suchprofil
+		/**
+		 * Aktualisiert die Attribute von einem Suchprofil
+		 * 
+		 * @param sp
+		 */
 		public void updateSuchprofil(Suchprofil sp) throws Exception {
 			Connection conn = (Connection) DBConnection.connection();
 			PreparedStatement update = (PreparedStatement) conn.prepareStatement(
