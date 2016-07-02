@@ -5,6 +5,10 @@ package de.shared.BO;
  * @author Thomas Bauer
  *
  * @version 1.0
+ * 
+ * Eigenschaften bestehen aus einer ID, einer Erläuterung und
+ * der Information, ob sie Auswahl- oder Freitext-Eigenschaften sind.
+ * 
  */
 
 public class Eigenschaft extends BusinessObject {

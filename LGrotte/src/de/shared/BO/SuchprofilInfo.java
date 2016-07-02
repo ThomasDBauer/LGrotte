@@ -5,6 +5,9 @@ package de.shared.BO;
  * @author Thomas Bauer
  *
  * @version 1.0
+ * 
+ * Kombiniert alle wichtigen Informationen 
+ * zu SuchprofilInformationen in einem Objekt
  */
 
 public class SuchprofilInfo {

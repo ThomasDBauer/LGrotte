@@ -5,6 +5,8 @@ package de.shared.BO;
  * @author Thomas Bauer
  *
  * @version 1.0
+ * 
+ * Informationen zu einer Eigenschaft
  */
 
 public class Info extends BusinessObject {

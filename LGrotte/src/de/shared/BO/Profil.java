@@ -11,19 +11,24 @@ import java.util.Date;
 public class Profil extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	/*
+	 * ProfilAttribute
+	 */
 	private String fname, lname, haarfarbe, religion, geschlecht, raucher,
 			email;
 	private int koerpergroesse;
 	private Date geburtsdatum;
-	private Info[] profilInformation;
-	private Merkzettel merkzettel;
-	private Kontaktsperre[] sperrliste;
-	private Auswahl[] aehnlichkeitsmasse;
 
+	/*
+	 * Login-Informationen
+	 */
 	private boolean loggedIn;
 	private String loginUrl, logoutUrl;
-
+	
+	/*
+	 * Get und Set Methoden
+	 */
 	public boolean isLoggedIn() {
 		return loggedIn;
 	}
@@ -54,30 +59,6 @@ public class Profil extends BusinessObject {
 
 	public String getGeschlecht() {
 		return this.geschlecht;
-	}
-
-	public Merkzettel getMerkzettel() {
-		return merkzettel;
-	}
-
-	public void setMerkzettel(Merkzettel merkzettel) {
-		this.merkzettel = merkzettel;
-	}
-
-	public Kontaktsperre[] getSperrliste() {
-		return sperrliste;
-	}
-
-	public void setSperrliste(Kontaktsperre[] sperrliste) {
-		this.sperrliste = sperrliste;
-	}
-
-	public Auswahl[] getAehnlichkeitsmasse() {
-		return aehnlichkeitsmasse;
-	}
-
-	public void setAehnlichkeitsmasse(Auswahl[] aehnlichkeitsmasse) {
-		this.aehnlichkeitsmasse = aehnlichkeitsmasse;
 	}
 
 	public String getHaarfarbe() {
@@ -134,14 +115,6 @@ public class Profil extends BusinessObject {
 
 	public void setLname(String lname) {
 		this.lname = lname;
-	}
-
-	public Info[] getProfilInformation() {
-		return profilInformation;
-	}
-
-	public void setProfilInformation(Info[] profilInformation) {
-		this.profilInformation = profilInformation;
 	}
 
 	public String getEmail() {

@@ -6,6 +6,10 @@ import java.io.Serializable;
  * @author Thomas Bauer
  *
  * @version 1.0
+ * 
+ * Super-Klasse aller BusinessObjects. Implementiert 
+ * das Interface Serializable.
+ * 
  */
 
 public class BusinessObject implements Serializable {

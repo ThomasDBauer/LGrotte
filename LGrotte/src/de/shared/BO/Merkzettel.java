@@ -11,9 +11,16 @@ public class Merkzettel extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
 
+	/*
+	 * Merkzettel bestehen aus einem gemerkten und einem 
+	 * merkendem Profil
+	 */
 	private String gemerktesProfil;
 	private String merkendesProfil;
 
+	/*
+	 * Get und Set Methoden
+	 */
 	public String getGemerktesProfil() {
 		return gemerktesProfil;
 	}

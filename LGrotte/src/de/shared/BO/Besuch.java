@@ -4,6 +4,10 @@ package de.shared.BO;
  * @author Thomas Bauer
  * 
  * @version 1.0
+ * 
+ * Ein Besuch besteht aus einem besuchendem Profil und einem 
+ * besuchten Profil.
+ * 
  */
 
 public class Besuch {

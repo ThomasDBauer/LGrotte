@@ -14,11 +14,20 @@ public class Suchprofil extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
 
+	/*
+	 * Suchprofil-Attribute
+	 */
 	private String suchprofilname, profil, haarfarbe, religion, raucher,
 			geschlecht;
 	private int minGroesse, maxGroesse, minAlter, maxAlter;
+	/*
+	 * SuchprofilInformationen
+	 */
 	private Vector<ProfilEigenschaft> profileigenschaften = new Vector<ProfilEigenschaft>();
 
+	/*
+	 * Getter und Setter
+	 */
 	public String getSuchprofilname() {
 		return suchprofilname;
 	}
