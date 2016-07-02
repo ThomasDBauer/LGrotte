@@ -44,7 +44,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 	private VerticalPanel panel = this;
 	private FlexTable flexTable = new FlexTable();
 
-	//Erstellen von TextBoxen
+	/**
+	 * Erstellen von TextBoxen
+	 */
 	private TextBox fNameTextBox = new TextBox();
 	private TextBox lNameTextBox = new TextBox();
 	private TextBox koerpergroesseTextBox = new TextBox();
@@ -53,7 +55,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 	private ListBox religionListBox = new ListBox();
 	private ListBox raucherListBox = new ListBox();
 
-	//Erstellen von Labeln
+	/**
+	 * Erstellen von Labeln
+	 */
 	private Label koerpergroesseLabel = new Label("Körpergröße");
 	private Label geschlechtLabel = new Label("Geschlecht");
 	private Label haarfarbeLabel = new Label("Haarfarbe");
@@ -66,13 +70,19 @@ public class ProfilErstellenEditor extends VerticalPanel {
 	private Label fNameLabel = new Label("Vorname");
 	private Label lNameLabel = new Label("Nachname");
 
-	//Erstellen der DateBox
+	/**
+	 * Erstellen der DateBox
+	 */
 	private DateBox datumsBox = new DateBox();
 	
-	//Erstellen des Buttons
+	/**
+	 * Erstellen des Buttons
+	 */
 	private Button profilUpdateButton = new Button("Speichern");
 
-	//Konstruktor
+	/**
+	 * Konstruktor in dem die GUI Elemente gestylt werden
+	 */
 	public ProfilErstellenEditor() {
 		this.addStyleName("Attribute-bearbeiten");
 		profilUpdateButton.setStylePrimaryName("grotte-Button");
@@ -98,6 +108,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 			e.printStackTrace();
 		}
 
+		/**
+		 * Anheften der Widgets in eine Flex Table
+		 */
 		flexTable.setWidget(0, 1, fNameTextBox);
 		flexTable.setWidget(0, 0, fNameLabel);
 
@@ -124,6 +137,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		flexTable.setWidget(7, 1, datumsBox);
 		flexTable.setWidget(7, 0, geburtsdatumLabel);
 
+		/**
+		 * Einrichten des DatePickers für die richtige Date Übergabe
+		 */
 		datumsBox.setFormat(new DateBox.DefaultFormat(datumsFormat));
 		datumsBox.getDatePicker().setYearAndMonthDropdownVisible(true);
 		datumsBox.getDatePicker().setVisibleYearCount(20);
@@ -138,7 +154,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 
 		datumsBox.setValue(new Date());
 
-		//Befüllen der List Box
+		/**
+		 * Befüllen der List Box
+		 */
 		geschlechtListBox.addItem("Männlich");
 		geschlechtListBox.addItem("Weiblich");
 		geschlechtListBox.addItem("Andere");
@@ -162,13 +180,18 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		raucherListBox.addItem("Nein");
 		raucherListBox.addItem("Ab und an");
 
-		//Anfügen der FlexTable und Buttons an das Panel
+		/**
+		 * Anfügen der FlexTable und Buttons an das Panel
+		 */
 		this.add(profilUpdateButton);
 		this.add(flexTable);
 		profilUpdateButton.addClickHandler(new ProfilUpdateClickHandler());
 	}
 
-	//Getter für Attribute
+	/**
+	 * Getter für Attribute
+	 * @return
+	 */
 	String getGeschlecht() {
 		String geschlecht = geschlechtListBox.
 				getItemText(geschlechtListBox.getSelectedIndex());
@@ -199,7 +222,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		return sqlDate;
 	}
 
-	// Profil updaten
+	/**
+	 * Profil updaten
+	 */
 	private class ProfilUpdateCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 			panel.add(new Label("Fehler!!" + caught.toString()));
@@ -215,7 +240,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 
 	}
 	
-	// ClickHandler um die geänderten Attribute zu speichern
+	/**
+	 * ClickHandler um die geänderten Attribute zu speichern
+	 */
 	private class ProfilUpdateClickHandler implements ClickHandler {
 
 		public void onClick(ClickEvent event) {
@@ -232,6 +259,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 					Window.alert("catch " + e.toString());
 					e.printStackTrace();
 				}
+				/**
+				 * Prüfung ob die Textboxen gefüllt sind
+				 */
 			String input = fNameTextBox.getText();
 			if (input.matches("")) {
 				Window.alert("'" + fNameTextBox.getText() + 
@@ -254,7 +284,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 		}
 	}
 	
-	// Profil auslesen
+	/**
+	 * Profil auslesen
+	 */
 	private class ProfilAuslesenCallback implements AsyncCallback<Profil> {
 		public void onFailure(Throwable caught) {
 			RootPanel.get().add(new Label(caught.toString()));
@@ -270,6 +302,9 @@ public class ProfilErstellenEditor extends VerticalPanel {
 				lNameTextBox.setText(result.getLname());
 			}
 
+			/**
+			 * Setzen von Indexen für die ListBoxen
+			 */
 			for (int g = 0; g < 3; g++) {
 				if (geschlechtListBox.getValue(g) == result.getGeschlecht()) {
 					geschlechtListBox.setSelectedIndex(g);

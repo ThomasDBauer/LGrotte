@@ -19,7 +19,9 @@ import de.shared.BO.Profil;
  */
 
 public class ProfilAnzeigenEditor extends VerticalPanel {
-
+/**
+ * Anlegen der GUI
+ */
 	private VerticalPanel vpanel = this;
 	private FlexTable profilAnzeigenTable = new FlexTable();
 
@@ -41,7 +43,9 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 	private Label geburtstag = new Label("Geburtsdatum");
 	private Vector<Label> labels = new Vector<Label>();
 		
-		// Konstruktor
+		/**
+		 * Konstruktor mit Labels für die Profil anzeige 
+		 */
 		public ProfilAnzeigenEditor() {
 			try {
 				ClientSideSettings.getEditorService().getProfil(
@@ -66,6 +70,9 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 			labels.addElement(bday);
 			labels.addElement(geburtstag);
 			
+			/**
+			 * Hinzufügen von Style 
+			 */
 			for (int i = 0; i < labels.size(); i++){
 				
 				labels.get(i).setStylePrimaryName("Profil-Anzeigen-Label");
@@ -87,7 +94,9 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 			vpanel.add(profilAnzeigenTable);
 		}
 		
-		// Callback um die Profildaten anzuzeigen
+		/**
+		 * Callback um die Profildaten anzuzeigen
+		 */
 		private class ProfilAnzeigenCallback implements 
 		AsyncCallback<Profil> {
 			public void onFailure(Throwable caught) {

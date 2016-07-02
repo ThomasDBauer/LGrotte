@@ -28,7 +28,9 @@ import de.shared.RO.ProfilEigenschaft;
  */
 public class ProfilEigenschaftEditor extends VerticalPanel {
 
-	// GUI Elemente
+	/**
+	 * GUI Elemente
+	 */
 	private VerticalPanel editPanel = new VerticalPanel();
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
 	private VerticalPanel eigenschaftenPanel = new VerticalPanel();
@@ -36,14 +38,18 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 	private Button speicherButton = new Button("Speichern", new SpeicherClickHandler());
 	private Button loeschenButton = new Button("Löschen", new DeleteInfosHandler());
 
-	// Daten und Zwischenspeicher
+	/**
+	 *  Daten und Zwischenspeicher
+	 */
 	private Vector<ListBox> eigenschaftenListboxen = new Vector<ListBox>();
 	private Vector<TextBox> eigenschaftenTextboxen = new Vector<TextBox>();
 	private Vector<Eigenschaft> eigenschaften;
 	private Vector<Info> infosToDelete = new Vector<Info>();
 	private int aktiveEigenschaftenCounter = 0;
 
-	// Konstruktor
+	/**
+	 * Konstruktor mit Methoden zum Stylen
+	 */
 	public ProfilEigenschaftEditor() throws Exception {
 		this.addStyleName("Eigenschaft-bearbeiten");
 		addEigenschaftenButton.setStylePrimaryName("grotte-Button");
@@ -71,14 +77,18 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		loadProfilEigenschaften();
 	}
 
-	// Eigenschaften laden +
+	/**
+	 *  Eigenschaften laden 
+	 */
 	public void loadProfilEigenschaften() throws Exception {
 		eigenschaftenPanel.clear();
 		ClientSideSettings.getEditorService().
 		getProfilEigenschaften(new LoadProfileCallback());
 	}
 
-	// + Callback
+	/**
+	 * Callback zum Laden der Profile
+	 */
 	private class LoadProfileCallback implements 
 	AsyncCallback<Vector<ProfilEigenschaft>> {
 		public void onFailure(Throwable caught) {
@@ -109,7 +119,9 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
-	// Add To Delete ClickHandler
+	/**
+	 *  Delete ClickHandler um Infos auszuwählen
+	 */
 	private class AddToDeleteHandler implements ClickHandler {
 		private Info info;
 		public AddToDeleteHandler(Info info) {
@@ -130,7 +142,9 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 	
-	// Delete Handler
+	/**
+	 * Delete Handler um infos zu löschen
+	 */
 	private class DeleteInfosHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			for (int i = 0; i < infosToDelete.size(); i++) {
@@ -158,26 +172,36 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
-	// Hinzufügen ClickHandler
+	/**
+	 *  Hinzufügen ClickHandler
+	 */
 	private class AddEigenschaftenClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
-			// wir wollen eine listbox und eine textbox
+			/**
+			 *  wir wollen eine listbox und eine textbox
+			 */
 			ListBox listbox = new ListBox(false);
 			TextBox infotextbox = new TextBox();
 			buttonPanel.add(speicherButton);
 			aktiveEigenschaftenCounter = aktiveEigenschaftenCounter + 1;
-			// um sie später auszulesen, werden sie außerhalb der methode
-			// gespeichert
+			/**
+			 *  um sie später auszulesen, werden sie außerhalb der methode
+			 *  gespeichert
+			 */
 			eigenschaftenListboxen.add(listbox);
 			eigenschaftenTextboxen.add(infotextbox);
-			// füllen der listbox mit allen eigenschaften
+			/**füllen der listbox mit allen eigenschaften
+			 * 
+			 */
 			for (int i = 0; i < eigenschaften.size(); i++) {
 				Eigenschaft eigenschaft = eigenschaften.elementAt(i);
 				if(eigenschaft.getAuswahl()==0){
 					listbox.addItem(eigenschaft.getErlaeuterung());
 				}
 			}
-			// hübsch anordnen
+			/**
+			 * hübsch anordnen 
+			 */
 			HorizontalPanel hpanel = new HorizontalPanel();
 			Button abbrechenButton = new Button("abbrechen", 
 					new AbbrechenHandler(listbox, infotextbox));
@@ -192,7 +216,11 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
-	// Wenn doch keine Eigenschaften eingegeben werden.
+	/**
+	 * Abbrechen ClickHandler, wenn doch
+	 * keine Eigenschaften eingegeben werden.
+	 * 
+	 */
 	private class AbbrechenHandler implements ClickHandler {
 		private ListBox listbox;
 		private TextBox textbox;
@@ -214,7 +242,9 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
-	// Callback zum Laden der Eigenschaften. Aufruf im Konstruktor
+	/**
+	 * Callback zum Laden der Eigenschaften. Aufruf im Konstruktor
+	 */
 	private class GetEigenschaftenCallback implements 
 	AsyncCallback<Vector<Eigenschaft>> {
 		public void onFailure(Throwable caught) {
@@ -225,7 +255,9 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
-	// Speichern ClickHandler
+	/**
+	 * Speichern ClickHandler
+	 */
 	private class SpeicherClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			editPanel.clear();
@@ -248,7 +280,9 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 					e1.printStackTrace();
 				}
 			}
-			// Löschen der Zwischenspeicher
+			/**
+			 *  Löschen der Zwischenspeicher
+			 */
 			eigenschaftenListboxen.clear();
 			eigenschaftenTextboxen.clear();
 			speicherButton.removeFromParent();
@@ -256,7 +290,9 @@ public class ProfilEigenschaftEditor extends VerticalPanel {
 		}
 	}
 
-	// Speichern Callback - tut nix, außer das GUI neu laden
+	/**
+	 * Speichern Callback - tut nix, außer das GUI neu laden
+	 */
 	private class InsertInfoCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 		}

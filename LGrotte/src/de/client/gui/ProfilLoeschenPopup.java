@@ -15,7 +15,9 @@ import de.client.LGrotte;
 
 
 public class ProfilLoeschenPopup extends PopupPanel {
-	// Alles um das Profil zu löschen
+	/**
+	 * Erstellen verschiedner Buttons, Panels und Label
+	 */
 		private VerticalPanel loeschenLabelPanel = new VerticalPanel();
 		private HorizontalPanel loeschenButtonPanel = new HorizontalPanel();
 		public final Button loeschenjaButton = new Button("Ja", 
@@ -23,7 +25,9 @@ public class ProfilLoeschenPopup extends PopupPanel {
 		public final Button loeschenneinButton = new Button("Nein", 
 				new LoeschenNeinClickHandler());
 		public final Label loeschenLabel = new Label("Möchtest du dein Profil wirklich löschen");
-		
+		/**
+		 * Stylen der GUI Elemente im Konstruktor
+		 */
 		public ProfilLoeschenPopup(){
 			loeschenjaButton.setStylePrimaryName("loeschen-button");
 			loeschenneinButton.setStylePrimaryName("loeschen-button");
@@ -37,12 +41,17 @@ public class ProfilLoeschenPopup extends PopupPanel {
 			this.add(loeschenLabelPanel);
 		}
 		
+		/**
+		 * Clickhandler um Popup bei Auswahl Nein zu schließen
+		 */
 		private class LoeschenNeinClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
 				PopupNavi.profilLoeschenPopup.hide();
 			}	
 		}
-		
+		/**
+		 * Clickhandler zum löschen des Profils
+		 */
 		private class ProfilLoeschenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
 				try {
@@ -54,7 +63,9 @@ public class ProfilLoeschenPopup extends PopupPanel {
 				Window.open(LGrotte.logOutUrl, "_self", "");
 			}	
 		}
-		
+		/**
+		 * Callback für das Loeschen
+		 */
 		private class ProfilLoeschenCallback implements AsyncCallback {
 			public void onFailure(Throwable caught) {
 			}

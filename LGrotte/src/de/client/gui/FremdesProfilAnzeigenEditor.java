@@ -29,6 +29,7 @@ import de.shared.RO.ProfilEigenschaft;
 public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 	
 		//Profil zum auslesen der Personendaten
+	
 		private Profil p;
 
 		//Panles fuer die GUI
