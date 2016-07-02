@@ -25,14 +25,26 @@ public class ClientSideSettings {
 	private static LoginServiceAsync loginService = null;
 	private static Profil profil = null;
 	
+	/**
+	 * Gibt das eingeloggte Profil zurück
+	 * @return Profil des eingeloggten Users
+	 */
 	public static Profil getUserProfil(){
 		return profil;
 	}
 	
+	/**
+	 * aktuelles Profil setzen
+	 * @param p Profil
+	 */
 	public static void setUserProfil(Profil p){
 		profil = p;
 	}
 	
+	/**
+	 * Singleton-Methode
+	 * @return LoginService Objekt
+	 */
 	public static LoginServiceAsync getLoginService(){
 		if(loginService == null){
 			loginService = GWT.create(LoginService.class);
@@ -40,6 +52,10 @@ public class ClientSideSettings {
 		return loginService;
 	}
 	
+	/**
+	 * Singleton-Methode
+	 * @return EditorService Objekt
+	 */
 	public static EditorServiceAsync getEditorService() {
 		if (editorService == null) {
 			editorService = GWT.create(EditorService.class);
@@ -47,6 +63,10 @@ public class ClientSideSettings {
 		return editorService;
 	}
 	
+	/**
+	 * Singleton-Methode
+	 * @return ReportService Objekt
+	 */
 	public static ReportServiceAsync getReportService() {
 		if (reportService == null) {
 			reportService = GWT.create(ReportService.class);
