@@ -8,6 +8,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.server.db.BesucheMapper;
 import de.server.db.EigenschaftMapper;
+import de.server.db.KontaktsperreMapper;
 import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
@@ -15,6 +16,7 @@ import de.server.db.SuchprofilMapper;
 import de.shared.ReportService;
 import de.shared.BO.Besuch;
 import de.shared.BO.Eigenschaft;
+import de.shared.BO.Kontaktsperre;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.Match;
@@ -34,6 +36,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
 	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.suchprofilInfoMapper();
 	private EigenschaftMapper eMapper = EigenschaftMapper.eigenschaftMapper();
+	private KontaktsperreMapper ksMapper = KontaktsperreMapper.kontaktsperreMapper();
 
 	private Profil user;
 
@@ -61,8 +64,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 */
 	@SuppressWarnings("deprecation")
 	public ProfilReport getProfilReport(Profil p) throws Exception {
-		// Auslesen des Profils aus der DB
-		// Erstellen des Reports
+
 		// 1. Attribute:
 		ProfilReport report = new ProfilReport();
 		report.setHeader(p.getFname() + " " + p.getLname());
@@ -128,6 +130,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getReports() throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
 		userAussortieren(profile);
+		aussortierenNachKontaktsperren(profile);
 		return reportErstellen(profile);
 	}
 
@@ -137,6 +140,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getReports(Suchprofil sp) throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
 		userAussortieren(profile);
+		aussortierenNachKontaktsperren(profile);
 		profile = aussortierenNachSP(profile, sp);
 		return reportErstellen(profile);
 	}
@@ -148,6 +152,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
 		userAussortieren(profiles);
+		aussortierenNachKontaktsperren(profiles);
 		profiles = aussortierenNachSP(profiles, sp);
 		profiles = besucheAussortieren(profiles);
 		return reportErstellen(profiles);
@@ -160,6 +165,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
 		userAussortieren(profiles);
+		aussortierenNachKontaktsperren(profiles);
 		profiles = besucheAussortieren(profiles);
 		return reportErstellen(profiles);
 	}
@@ -276,6 +282,35 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			Profil p = profiles.elementAt(i);
 			if (p.getEmail().equals(user.getEmail()))
 				profiles.remove(p);
+		}
+	}
+	
+	/*
+	 *  Aussortieren von Kontaktsperren
+	 */
+	public void aussortierenNachKontaktsperren(Vector<Profil>profile) throws Exception{
+		Vector<Kontaktsperre> sperren = ksMapper.
+				getKontaktsperreByOwner(user.getEmail());
+		Vector<Kontaktsperre> gesperrtVon = ksMapper.
+				getKontaktsperren(user.getEmail());
+		//Profil für Profil..
+		for(int i = 0; i < profile.size(); i++){
+			//Sperren des Users selbst:
+			for(int o = 0; o < sperren.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						sperren.elementAt(o).getGesperrtesProfil())){
+					profile.remove(profile.elementAt(i));
+					break;
+				};
+			}
+			//Andere Profile, die unsern User gesperrt haben:
+			for(int o = 0; o < gesperrtVon.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						gesperrtVon.elementAt(o).getSperrendesProfil())){
+					profile.remove(profile.elementAt(i));
+					break;
+				};
+			}
 		}
 	}
 
