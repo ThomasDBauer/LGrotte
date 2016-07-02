@@ -46,10 +46,9 @@ public class MeinProfilEditor extends VerticalPanel {
 			new HashMap<Eigenschaft, Widget>();
 	private Vector<Eigenschaft> eigenschaften = new Vector<Eigenschaft>();
 
-	// Konstruktor
-	/*
-	 * Styles zuweisen und mit der Methode loadProfilEigenschaften die
-	 * Profil-Eigenschaften zurueckgeben lassen
+	/**
+	 * Konstruktor, der Styles zuweißt und mit der Methode
+	 * loadProfilEigenschaften die Profil-Eigenschaften zurück gibt 
 	 */
 	public MeinProfilEditor() throws Exception {
 		this.add(speicherButton);
@@ -65,13 +64,15 @@ public class MeinProfilEditor extends VerticalPanel {
 		eigenschaftenPanel.add(table);
 	}
 
-	// auf die Datenbank zugreifen und Daten auslesen
+	/**
+	 * Auf die Datenbank zugreifen und Daten auslesen
+	 */
 	public void loadProfilEigenschaften() throws Exception {
 		ClientSideSettings.getEditorService().getProfilEigenschaften(
 				new ProfilEigenschaftenCallback());
 	}
 
-	/*
+	/**
 	 * Eigenschaften des Profils die zurueckgegeben werden in die Tabelle
 	 * eintraegen, weiter in die hashmap eintraegen, je nachdem, ob eine
 	 * Eigenschaft oder ein Attribut vorliegt, wird erneut der Eigenschafts-
@@ -114,9 +115,9 @@ public class MeinProfilEditor extends VerticalPanel {
 		}
 	}
 
-	/*
+	/**
 	 * Hier werden die Auswahleigenschaften zurueckgegeben
-	 * und mit den Listboxen gleichgesetzt
+	 * und mit den Listboxen gleichgesetz
 	 */
 	private class GetAuswahlCallback 
 	implements AsyncCallback<Vector<Auswahl>> {
@@ -147,7 +148,7 @@ public class MeinProfilEditor extends VerticalPanel {
 		}
 	}
 
-	/*
+	/**
 	 * Hier werden die eingegebenen Werte in die Datenbank gespeicher,
 	 * je nach Inhalt wird uberprueft, welcher Wert in der DB geloescht
 	 * werden muss und anschliessend neu angelegt werden muss

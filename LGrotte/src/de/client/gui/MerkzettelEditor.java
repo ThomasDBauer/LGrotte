@@ -43,13 +43,11 @@ import de.shared.BO.Profil;
 
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
-		// No-Argument-Konstruktor
-			/*
-			 * Hier werden Styles vergeben 
-			 * und die Methode loadProfiles laedt die
-			 * aktuellen Merklisten-Profile in die Tabelle
-			 */
-		 
+		 /**
+		  * Hier werden Styles vergeben 
+		  * und die Methode loadProfiles lädt die
+		  * aktuellen Merklisten-Profile in die Tabelle
+		  */
 		public MerkzettelEditor() throws Exception {
 			aufhebenButton.setStylePrimaryName("grotte-Button");
 			aufhebenButton.setStyleName("Margin-Bottom", true);
@@ -65,8 +63,8 @@ import de.shared.BO.Profil;
 			loadProfiles();
 		}
 		
-		/*
-		 * Die Panels und die Tabelle wird geleert 
+		/**
+		 * Die Panels und die Tabelle wird geleert
 		 * und die Merklisten werden aus
 		 * der Datenbank geholt
 		 */
@@ -78,7 +76,8 @@ import de.shared.BO.Profil;
 					new GetMerkzettelProfileCallback());
 		}
 		
-		/*
+		
+		/**
 		 * Der Callback mit einem Vector<Profil> in dem 
 		 * die ausgelsenen Daten in die
 		 * Tabelle eingetragen werden und 
@@ -121,7 +120,7 @@ import de.shared.BO.Profil;
 			}
 		}
 
-		/*
+		/**
 		 * Beim klicken der CheckBox wird die 
 		 * Email in den Vector eingetragen, beim
 		 * erneuten Klicken(das Kreuz verschwindet wieder) 
@@ -150,13 +149,13 @@ import de.shared.BO.Profil;
 			}
 		}
 
-		/*
-		 * ClickHandler & Callback, die die 
-		 * im EmailBuffer(Vector) stehenden Emails
-		 * aus der Merklister loeschen und anschliessend clearen sowie 
-		 * die aktuellen Merkliste laedt
-		 */
-		private class LoeschenHandler implements ClickHandler {
+	/**
+	 * ClickHandler, der die 
+	 * im EmailBuffer(Vector) stehenden Emails
+	 * aus der Merklister loeschen und anschliessend clearen sowie 
+	 * die aktuellen Merkliste laedt
+	 */
+	private class LoeschenHandler implements ClickHandler {
 			public void onClick(ClickEvent e) {
 				aufhebenButton.setEnabled(false);
 				try {
@@ -171,6 +170,9 @@ import de.shared.BO.Profil;
 		}
 	}
 			
+	/**
+	 * Callback zum ClickHandler "LoeschenHandler"
+	 */
 	private class DeleteCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {
 			RootPanel.get().add(new Label(caught.toString() 
