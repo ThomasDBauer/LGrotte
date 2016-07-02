@@ -3,19 +3,19 @@ package de.shared.RO;
 import java.io.Serializable;
 import java.util.Vector;
 
+/**
+ * @author Thomas Bauer, Sedat Akar
+ * 
+ *         Jedes Report-Object traegt Informationen ueber ein einzelnes,
+ *         detailliertes Profil, das zur Darstellung kommen soll. Es findet
+ *         eine Unterscheidung statt zwischen @class ProfilEigenschaft und @class
+ *         ProfilAttribut, die ProfilAttribute und ProfilInfos
+ *         repraesentieren.
+ * 
+ * 
+ */
 public class ProfilReport implements Serializable, Comparable<ProfilReport> {
 
-	/**
-	 * @author Thomas Bauer, Sedat Akar
-	 * 
-	 *         Jedes Report-Object traegt Informationen ueber ein einzelnes,
-	 *         detailliertes Profil, das zur Darstellung kommen soll. Es findet
-	 *         eine Unterscheidung statt zwischen @class ProfilEigenschaft und @class
-	 *         ProfilAttribut, die ProfilAttribute und ProfilInfos
-	 *         repr�sentieren.
-	 * 
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/*
@@ -36,7 +36,7 @@ public class ProfilReport implements Serializable, Comparable<ProfilReport> {
 	private Vector<ProfilAttribut> attribute = new Vector<ProfilAttribut>();
 
 	/*
-	 * Hinzuf�gen einzelner Eigenschaften
+	 * Hinzufuegen einzelner Eigenschaften
 	 */
 	public void addEigenschaft(ProfilEigenschaft pe) {
 		eigenschaften.add(pe);
@@ -57,7 +57,7 @@ public class ProfilReport implements Serializable, Comparable<ProfilReport> {
 	}
 
 	/*
-	 * Hinzuf�gen einzelner Attribute
+	 * Hinzufuegen einzelner Attribute
 	 */
 	public void addAttribut(ProfilAttribut pa) {
 		attribute.add(pa);
