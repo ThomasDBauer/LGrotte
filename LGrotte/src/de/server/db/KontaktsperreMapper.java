@@ -71,6 +71,23 @@ public class KontaktsperreMapper {
 		return kontaktsperren;
 	}
 	
+	// Gibt die Kontaktsperren an, auf denen der User gesperrt wurde
+		public Vector<Kontaktsperre> getKontaktsperren(String email) throws Exception{
+			Connection con = (Connection) DBConnection.connection();
+			PreparedStatement select = (PreparedStatement) con.prepareStatement(
+					"SELECT sperrendesProfil FROM kontaktsperre WHERE gesperrtesProfil="
+					+ "'" + email + "'");
+			ResultSet result = select.executeQuery();
+			Vector<Kontaktsperre> kontaktsperren = new Vector<Kontaktsperre>();
+			while(result.next()){
+				Kontaktsperre k = new Kontaktsperre();
+				k.setSperrendesProfil(result.getString("sperrendesProfil"));
+				k.setGesperrtesProfil(email);
+				kontaktsperren.add(k);
+			}
+			return kontaktsperren;
+		}
+	
 	// Ruft alle gesperrten Profile vom Sperrer auf
 	public Vector<Profil> getKontaktsperreProfileByOwner(String email)
 			throws Exception {

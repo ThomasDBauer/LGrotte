@@ -124,7 +124,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 	/*
 	 * Alle Profile, die nicht auf Merkzetteln oder
-	 * Kontaktsperren des Users stehen. //TODO oder die gesperrt wurden!
+	 * Kontaktsperren des Users stehen oder die gesperrt wurden!
 	 */
 	public Vector<Profil> getProfilesForEditor() throws Exception {
 		
@@ -135,6 +135,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 				getMerkzettelByOwner(user.getEmail());
 		Vector<Kontaktsperre> sperren = ksMapper.
 				getKontaktsperreByOwner(user.getEmail());
+		Vector<Kontaktsperre> gesperrtVon = ksMapper.
+				getKontaktsperren(user.getEmail());
 		
 		Vector<Profil>results = new Vector<Profil>();
 		for(int i = 0; i < profile.size(); i++){
@@ -157,6 +159,14 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			for(int o = 0; o < sperren.size(); o++){
 				if(profile.elementAt(i).getEmail().equals(
 						sperren.elementAt(o).getGesperrtesProfil())){
+					ok = false;
+					break;
+				};
+			}
+			//User aussortieren, die den User gesperrt haben
+			for(int o = 0; o < gesperrtVon.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						gesperrtVon.elementAt(o).getSperrendesProfil())){
 					ok = false;
 					break;
 				};
