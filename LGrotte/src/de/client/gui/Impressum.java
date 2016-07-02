@@ -3,16 +3,19 @@ package de.client.gui;
 import com.google.gwt.user.client.ui.HTML;
 
 /**
- * Das Impressum als HTML-Text
+ * Die Impressum-Klasse erbt von HTML. Sie setzt den Text, der 
+ * als Impressum angezeigt.
  * 
  * @author Sedat Akar & Lukas Kircher
  *
  * @version 1.0
  */
-
 public class Impressum extends HTML {
 
-	//Der Konstruktor, der den HTML-Text des erstellten Impressum setzt
+	/**
+	 * Setzt den HTML-Text des erstellten Impressum, der in einem Div
+	 * steht und unter anderem einen Link zum Impressum der HdM beinhaltet
+	 */
 	public Impressum (){	
 	this.setHTML((
 			"<div class='Impressum'>"

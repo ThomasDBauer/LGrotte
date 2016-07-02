@@ -19,23 +19,26 @@ import de.shared.BO.Profil;
 import de.shared.RO.ProfilEigenschaft;
 
 /**
- * Diese Klasse ist ein Panel, der das angeklickte Profil anzeigt
+ * Diese Klasse erbt von VerticalPanel. Sie zeigt dass in den Partnervor-
+ * schlaegen angeklickte Profil in einer ausfuehrlicheren Form
  * 
  * @author Thomas Bauer, Enrico Popaj & Lukas Kircher
  *
  * @version 1.0
  */
-
 public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 	
-		//Profil zum auslesen der Personendaten
+	/**
+	 * Instanz-Variablen werden deklariert
+	 */
+		//Profil, dass spater zum auslesen der Personendaten benutzt wird
 		private Profil p;
 
 		//Panles fuer die GUI
 		private HorizontalPanel buttonPanel = new HorizontalPanel();
 		private FlexTable profilAnzeigenTable = new FlexTable();
 		
-		//Button der zu den Partnervorschlaegen fuehrt
+		//Button der zurueck zu den Partnervorschlaegen fuehrt
 		private Button zurueckButton = new Button("Zurueck", 
 				new ZurueckHandler());
 		
@@ -69,7 +72,16 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		= new Vector<HorizontalPanel>();
 		
 		
-		//Konstruktor mit dem Ubergabeparameter Profil
+		/**
+		 * Der Konstruktor setzt zuerst die Styles der bereits deklarierten
+		 * Labels, zieht dann die Werte aus dem ubergebenen Profil und 
+		 * schreibt diese in die dafuer vorhergesehenen Labels.
+		 * Weiter erfolgt ein aufruf der Methode getProfileigenschaften
+		 * 
+		 * @param profil Profil das im ClickHandler hinterlegte Profil, wird
+		 * im Konstruktor dieser Klasse als Uebergabe-Parameter benutzt.
+		 * Es ist das Profil, dass dargesteltt werden muss.
+		 */
 		public FremdesProfilAnzeigenEditor(Profil profil) throws Exception {
 			this.p = profil;
 			
@@ -110,12 +122,14 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 			bdayLabel.setText(String.valueOf(p.getGeburtsdatum()));	
 			eMail.setText(p.getEmail());
 			
-			//ProfilEigenschaften auslesen
+			/* Die Methode holt alle Profil-Eigenschaften zum uebergebenen
+			 * Profil aus der Datenbank und wirft einen Callback zurueck
+			 */
 			ClientSideSettings.getEditorService().getProfilEigenschaften(
 					profil.getEmail(), new ProfilEigenschaftenCallback());
 			
 			
-			//Die Labels dem im Konstruktor erstellten Objekt hinzufuegen
+			//Die Labels dem im Konstruktor neu konstruierten Objekt hinzufuegen
 			buttonPanel.add(zurueckButton);
 			this.add(buttonPanel);
 			
@@ -164,8 +178,11 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		}
 		
 		/*
-		 * Auslesen der Werte aus dem Vector <Profileigenschaften>
-		 * Eintragen der zurueckgegebenen Eigenschafts-Werte in das RootPanel
+		 * Die Klasse die ein Interface AsyncCallback vom Typ Vector 
+		 * ProfilEigenschaften implementiert.
+		 * Hier werden die  Werte  aus dem Vector <Profileigenschaften>
+		 * ausgelesen und  der zurueckgegebenen Eigenschafts-Werte in das 
+		 * RootPanel eingetragen 
 		 */
 		private class ProfilEigenschaftenCallback implements
 			AsyncCallback<Vector<ProfilEigenschaft>>{
@@ -189,8 +206,13 @@ public class FremdesProfilAnzeigenEditor extends VerticalPanel{
 		}
 		
 		
-		// Erstellen eines neuen GUI-Objektes Partnervorschlaege 
-		// nach clearen aller Divs
+		/**
+		 * Die Klasse ZurueckHandler hat die Aufgabe, 
+		 * ein neues GUI-Objektes Partnervorschlaege zu Erzeugen
+		 * nachdem clearen aller Divs. Auch wird vor dem Erzeugen
+		 * ein HTML Text, der die Uerbschrift anzeigt dem RootPanel
+		 * hinzugefuegt
+		 */
 		private class ZurueckHandler implements ClickHandler {
 			public void onClick (ClickEvent e) {
 				RootPanel.get("Zusatz").clear();
