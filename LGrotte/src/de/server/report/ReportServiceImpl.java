@@ -48,7 +48,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * Alle Suchprofile auslesen
 	 * 
 	 * @return Vector<Suchprofil>
-	 * @throws Exception
 	 */
 	public Vector<Suchprofil> getSuchprofile() throws Exception {
 		Vector<Suchprofil> suchprofile = spMapper.getSuchprofileByEmail(user.getEmail());
@@ -63,7 +62,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * 
 	 * @return ProfilReport
 	 * @param p Profil
-	 * @throws Exception
 	 */
 	@SuppressWarnings("deprecation")
 	public ProfilReport getProfilReport(Profil p) throws Exception {
@@ -115,8 +113,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * 
 	 * @param results Vector<Profil>
 	 * @return Vector<ProfilReport>
-	 * @throws Exception
-	 *
 	 */
 	public Vector<ProfilReport> reportErstellen(Vector<Profil> results) throws Exception {
 		// ProfilReports erstellen
@@ -136,7 +132,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	/**
 	 * Reports für alle Profile
 	 * @return Vector<Profil>
-	 * @throws Exception
 	 */
 	public Vector<ProfilReport> getReports() throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
@@ -150,7 +145,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 * 
 	 * @param einzelnes Suchprofil
 	 * @return Vector<ProfilReport>
-	 * @throws Exception
 	 */
 	public Vector<ProfilReport> getReports(Suchprofil sp) throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
@@ -161,11 +155,10 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/**
-	 * nicht besuchte Profile nach Suchprofil
+	 * Nicht besuchte Profile nach Suchprofil
 	 * 
 	 * @param einzelnes Suchprofil
 	 * @return Vector<ProfilReport>
-	 * @throws Exception
 	 */
 
 	public Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception {
@@ -179,9 +172,9 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/**
-	 * nicht besuchte Profile ohne Filter
+	 * Nicht besuchte Profile ohne Filter
+	 * 
 	 * @return Vector<ProfilReport>
-	 * @throws Exception
 	 */
 	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
@@ -193,8 +186,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	/**
 	 * Hilfsmethode Besuche aussortieren
+	 * 
 	 * @return Vector<Profil>
-	 * @throws Exception
 	 * @param Vector<Profil>
 	 */
 	public Vector<Profil> besucheAussortieren(Vector<Profil> profiles) throws Exception {
@@ -217,8 +210,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	/**
 	 * Hilfsmethode Aussortieren nach Suchprofil
+	 * 
 	 * @param Vector<Profil>, einzelnes Suchprofil
-	 * @throws Exception
 	 * @return Vector<Profil>
 	 */
 	public Vector<Profil> aussortierenNachSP(Vector<Profil> profile, Suchprofil sp) throws Exception {
@@ -300,6 +293,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	/**
 	 * Hilfsmethode User aussortieren Hilfsmethode
+	 * 
 	 * @param Vector<Profil>
 	 */
 	public void userAussortieren(Vector<Profil> profiles) {
@@ -312,8 +306,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	
 	/**
 	 *  Aussortieren von Kontaktsperren
+	 *  
 	 *  @param Vector<Profil>
-	 *  @throws Exception
 	 *  @return Vector<Profil>
 	 */
 	public Vector<Profil> aussortierenNachKontaktsperren(Vector<Profil>profile) throws Exception{
@@ -345,9 +339,9 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	/**
 	 * Hilfsmethode Ähnlichkeit: Profil vs.Profile
+	 * 
 	 * @param Einzelnes Profil
 	 * @return int
-	 * @throws Exception
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich) throws Exception {
 		// Die Ähnlichkeit
@@ -384,6 +378,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	
 	/**
 	 * Sortiert einen Vektor mit ProfilReports nach Aehnlichkeit
+	 * 
 	 * @param reports
 	 * @return Vector<ProfilReport>
 	 */
@@ -402,6 +397,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 	/**
 	 * Hier wird das Alter anhand des Geburtsdatums berechnet.
+	 * 
 	 * @param Geburtsdatum
 	 * @return Alter in Jahren
 	 */
