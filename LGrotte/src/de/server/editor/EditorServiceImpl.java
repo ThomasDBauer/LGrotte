@@ -38,7 +38,9 @@ import de.shared.RO.ProfilEigenschaft;
  */
 @SuppressWarnings("serial")
 public class EditorServiceImpl extends RemoteServiceServlet implements EditorService {
-
+	
+	
+	//Instanzen der Datenbank-Mappern
 	private ProfilMapper pMapper = ProfilMapper.profilMapper();
 	private EigenschaftMapper eMapper = EigenschaftMapper.eigenschaftMapper();
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
@@ -49,12 +51,22 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	private InfoMapper infoMapper = InfoMapper.infoMapper();
 	private ProfilinfoMapper piMapper = ProfilinfoMapper.profilinfoMapper();
 	private BesucheMapper besuchMapper = BesucheMapper.besucheMapper();
+	
+	
+	//Das eingeloggte Profil
 	private Profil user;
+	
+	/***************************************************************
+	 *  Profil
+	 ***************************************************************/
 
 	public void setUser(Profil p) {
 		user = p;
 	}
-
+	
+	/*
+	 * Ein Profil erstellen
+	 */
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws Exception {
 		Profil p = new Profil();
@@ -70,7 +82,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		pMapper.insertProfil(p);
 	}
 	
-	// Profil bearbeiten
+	/*
+	 * Ein Profil bearbeiten / updaten
+	 */
 	public void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum, String email) throws Exception {
 		Profil p = new Profil();
@@ -87,81 +101,33 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		pMapper.updateProfil(p);
 	}
 
-	// Profil löschen
+	/*
+	 *  Profil löschen
+	 */
 	public void deleteProfil() throws Exception {
 			pMapper.deleteProfil(user.getEmail());
 	}
 	
-	// Profil auslesen mit User-Email
+	/*
+	 *  Profil auslesen
+	 */
 	public Profil getProfil() throws Exception {
 		return pMapper.getProfilByEmail(user.getEmail());
 	}
 	
-	// Profil auslesen #2 mit Fremd-Email
-		public Profil getProfil(String email) throws Exception {
-			return pMapper.getProfilByEmail(email);
-		}
-
-	// Suchprofil erstellen
-	public void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion,
-			int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) throws Exception {
-		Suchprofil sp = new Suchprofil();
-		sp.setGeschlecht(geschlecht);
-		sp.setRaucher(raucher);
-		sp.setReligion(religion);
-		sp.setMinAlter(minAlter);
-		sp.setMaxAlter(maxAlter);
-		sp.setMinGroesse(minGroesse);
-		sp.setMaxGroesse(maxGroesse);
-		sp.setHaarfarbe(haarfarbe);
-		sp.setSuchprofilname(suchprofilname);
-		sp.setProfil(user.getEmail());
-		spMapper.insertSuchprofil(sp);
-	}
-	
-	// Suchprofil bearbeiten
-	public void updateSuchprofil(String geschlecht, int minAlter, int maxAlter,
-			String religion, String haarfarbe, String raucher, int minGroesse, int maxGroesse, String suchprofilname) throws Exception {
-		Suchprofil sp = new Suchprofil();
-		sp.setGeschlecht(geschlecht);
-		sp.setMinAlter(minAlter);
-		sp.setMaxAlter(maxAlter);
-		sp.setReligion(religion);
-		sp.setHaarfarbe(haarfarbe);
-		sp.setRaucher(raucher);
-		sp.setMinGroesse(minGroesse);
-		sp.setMaxGroesse(maxGroesse);
-		sp.setSuchprofilname(suchprofilname);
-		sp.setProfil(user.getEmail());
-		spMapper.updateSuchprofil(sp);
-	}
-
-	// Suchprofillöschen
-	public void deleteSuchprofil(String suchprofilname) throws Exception {
-		Suchprofil deletesp = new Suchprofil();
-		deletesp.setSuchprofilname(suchprofilname);
-		spMapper.deleteSuchprofil(deletesp);
-	}
-
-	// Eigenschaften auslesen
-	public Vector<Eigenschaft> getEigenschaften() throws Exception {
-		return this.eMapper.getEigenschaften();
-	}
-
-	
-	// Ruft alle Suchprofile eines Profils auf
-	public Vector<Suchprofil> getSuchprofile() throws Exception {
-		String email = user.getEmail();
-		return spMapper.getSuchprofileByEmail(email);
-	}
-	
-
 	/*
-	 * Die Methode liefert alle Profile zurück, die nicht auf Merkzetteln oder
-	 * Kontaktsperren des Users stehen.
+	 *  Profil auslesen #2 mit Fremd-Email
+	 */
+	public Profil getProfil(String email) throws Exception {
+		return pMapper.getProfilByEmail(email);
+	}
+	
+	/*
+	 * Alle Profile, die nicht auf Merkzetteln oder
+	 * Kontaktsperren des Users stehen. //TODO oder die gesperrt wurden!
 	 */
 	public Vector<Profil> getProfilesForEditor() throws Exception {
-
+		
 		// Erstmal alle Profile auslesen:
 		Vector<Profil> profile = pMapper.getAll();
 		// Au0erdem alle Merkzettel und Kontaktsperren des Users:
@@ -200,15 +166,95 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return results;
 	}		
 	
+	
+	/***************************************************************
+	 * Suchprofil
+	 ***************************************************************/
+
+	// Suchprofil erstellen
+	public void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion,
+			int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) throws Exception {
+		Suchprofil sp = new Suchprofil();
+		sp.setGeschlecht(geschlecht);
+		sp.setRaucher(raucher);
+		sp.setReligion(religion);
+		sp.setMinAlter(minAlter);
+		sp.setMaxAlter(maxAlter);
+		sp.setMinGroesse(minGroesse);
+		sp.setMaxGroesse(maxGroesse);
+		sp.setHaarfarbe(haarfarbe);
+		sp.setSuchprofilname(suchprofilname);
+		sp.setProfil(user.getEmail());
+		spMapper.insertSuchprofil(sp);
+	}
+	
+	// Suchprofil bearbeiten
+	public void updateSuchprofil(String geschlecht, int minAlter, int maxAlter,
+			String religion, String haarfarbe, String raucher, int minGroesse, int maxGroesse, String suchprofilname) throws Exception {
+		Suchprofil sp = new Suchprofil();
+		sp.setGeschlecht(geschlecht);
+		sp.setMinAlter(minAlter);
+		sp.setMaxAlter(maxAlter);
+		sp.setReligion(religion);
+		sp.setHaarfarbe(haarfarbe);
+		sp.setRaucher(raucher);
+		sp.setMinGroesse(minGroesse);
+		sp.setMaxGroesse(maxGroesse);
+		sp.setSuchprofilname(suchprofilname);
+		sp.setProfil(user.getEmail());
+		spMapper.updateSuchprofil(sp);
+	}
+
+	// Suchprofil löschen
+	public void deleteSuchprofil(String suchprofilname) throws Exception {
+		Suchprofil deletesp = new Suchprofil();
+		deletesp.setSuchprofilname(suchprofilname);
+		spMapper.deleteSuchprofil(deletesp);
+	}
+
+	// Ruft alle Suchprofile eines Profils auf
+	public Vector<Suchprofil> getSuchprofile() throws Exception {
+		String email = user.getEmail();
+		return spMapper.getSuchprofileByEmail(email);
+	}
+	
+	// Suchprofil anzeigen by name
+	public Suchprofil getSuchprofileByName(String suchprofilname) throws Exception{
+		return spMapper.getSuchprofiByName(suchprofilname);
+	}
+	
+	
+	
+	/*********************************************************************
+	 * Eigenschaften und Auwahl
+	 ********************************************************************/
+	
+	// Eigenschaften auslesen
+	public Vector<Eigenschaft> getEigenschaften() throws Exception {
+		return this.eMapper.getEigenschaften();
+	}
+
 	// Gibt die Auswahlmöglichkeiten einer Eigenschaft aus
 	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception{
 		return auswahlMapper.getAuswahlForEigenschaft(e);
 	}
 	
-	// Suchprofil anzeigen by name
-		public Suchprofil getSuchprofileByName(String suchprofilname) throws Exception{
-			return spMapper.getSuchprofiByName(suchprofilname);
-		}
+	/*********************************************************************
+	 * Besuche
+	 ********************************************************************/
+	
+	// Profil als besucht markieren
+	public void insertBesuch(Profil besuchtesProfil) throws Exception{
+		Besuch b = new Besuch();
+		b.setBesuchendesProfil(user);
+		b.setBesuchtesProfil(besuchtesProfil);
+		besuchMapper.insertBesuch(b);
+	}
+
+	
+	/*********************************************************************
+	 * Merkzettel und Kontaktsperren
+	 ********************************************************************/
 
 	// Profile auf Merkzettel setzen
 	public void insertMerkzettel(Vector<String> emails) throws Exception {
@@ -252,6 +298,43 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 			merkMapper.insertMerkzettel(mz);
 	}
 	
+	// gemerkte Profile eines Profils aufrufen
+		public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
+			return merkMapper.
+					getMerkzettelProfileByOwner(user.getEmail());
+		}
+		
+		// Profil vom Merkzettel entfernen
+		public void deleteMerkzettel(Vector<String> emails) throws Exception {
+			for (int i = 0; i < emails.size(); i++){
+				Merkzettel mz = new Merkzettel();
+				mz.setGemerktesProfil(emails.elementAt(i));
+				mz.setMerkendesProfil(user.getEmail());
+				merkMapper.deleteMerkzettel(mz);
+			}
+		}
+		
+		// Kontaktsperre von einem Profil aufheben
+		public void deleteKontaktsperre(Vector<String> emails) throws Exception {
+			for (int i = 0; i < emails.size(); i++){
+				Kontaktsperre ks = new Kontaktsperre();
+				ks.setGesperrtesProfil(emails.elementAt(i));
+				ks.setSperrendesProfil(user.getEmail());;
+				ksMapper.deleteKontaktsperre(ks);
+			}
+		}
+		
+		// Alle Profile mit Kontaktsperre von einem Profil bekommen
+		public Vector<Profil> getKontaktsperrenByOwner() throws Exception {
+			return ksMapper.
+					getKontaktsperreProfileByOwner(user.getEmail());
+		}
+	
+	
+	/*********************************************************************
+	 * Infos, SuchprofilInfos und ProfilInfos
+	 ********************************************************************/
+
 	// Info löschen
 	public void deleteInfo(Info info) throws Exception {
 		ProfilInfo pi = new ProfilInfo();
@@ -378,7 +461,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 	// Alles Infos löschen von einem Suchprofil
 	public void deleteSuchprofilInfosForUser(Suchprofil sp) throws Exception{
-		System.out.println("Lösche Einträge für: " + sp.getSuchprofilname());
 		spiMapper.deleteAllSuchprofilInfos(sp, user);
 	}
 	
@@ -387,46 +469,5 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		return piMapper.getProfilInfosByEmail(
 				email);
 	}
-	
-	// gemerkte Profile eines Profils aufrufen
-	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
-		return merkMapper.
-				getMerkzettelProfileByOwner(user.getEmail());
-	}
-	
-	// Profil vom Merkzettel entfernen
-	public void deleteMerkzettel(Vector<String> emails) throws Exception {
-		for (int i = 0; i < emails.size(); i++){
-			Merkzettel mz = new Merkzettel();
-			mz.setGemerktesProfil(emails.elementAt(i));
-			mz.setMerkendesProfil(user.getEmail());
-			merkMapper.deleteMerkzettel(mz);
-		}
-	}
-	
-	// Kontaktsperre von einem Profil aufheben
-	public void deleteKontaktsperre(Vector<String> emails) throws Exception {
-		for (int i = 0; i < emails.size(); i++){
-			Kontaktsperre ks = new Kontaktsperre();
-			ks.setGesperrtesProfil(emails.elementAt(i));
-			ks.setSperrendesProfil(user.getEmail());;
-			ksMapper.deleteKontaktsperre(ks);
-		}
-	}
-	
-	// Alle Profile mit Kontaktsperre von einem Profil bekommen
-	public Vector<Profil> getKontaktsperrenByOwner() throws Exception {
-		return ksMapper.
-				getKontaktsperreProfileByOwner(user.getEmail());
-	}
-	
-	// Profil als besucht markieren
-	public void insertBesuch(Profil besuchtesProfil) throws Exception{
-		Besuch b = new Besuch();
-		b.setBesuchendesProfil(user);
-		b.setBesuchtesProfil(besuchtesProfil);
-		besuchMapper.insertBesuch(b);
-	}
-
 }
 
