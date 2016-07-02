@@ -239,27 +239,27 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			}
 
 			// ProfilEigenschaften aussortieren
-//			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
-//					sp.getSuchprofilname());
-//			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
-//			if (suchPEs != null) {
-//				boolean peOK = false;
-//				for (int u = 0; u < suchPEs.size(); u++) {
-//					if (fremdPEs != null) {
-//						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
-//						for (int z = 0; z < fremdPEs.size(); z++) {
-//							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
-//							if (suchPE.getEigenschaft().getId() == fremdPE.getEigenschaft().getId()) {
-//								if (fremdPE.getWert().equals(suchPE.getWert())) {
-//									peOK = true;
-//								}
-//							}
-//						}
-//					}
-//				}
-//				if (peOK == false)
-//					ok = false;
-//			}
+			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
+					sp.getSuchprofilname());
+			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
+			if (suchPEs != null) {
+				boolean peOK = false;
+				for (int u = 0; u < suchPEs.size(); u++) {
+					if (fremdPEs != null) {
+						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
+						for (int z = 0; z < fremdPEs.size(); z++) {
+							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
+							if (suchPE.getEigenschaft().getId() == fremdPE.getEigenschaft().getId()) {
+								if (fremdPE.getWert().equals(suchPE.getWert())) {
+									peOK = true;
+								}
+							}
+						}
+					}
+				}
+				if (peOK == false)
+					ok = false;
+			}
 
 			// TODO Größe und Alter
 			if (ok)

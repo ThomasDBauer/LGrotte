@@ -70,7 +70,7 @@ public class LGrotte implements EntryPoint {
 
 		editorService = ClientSideSettings.getEditorService();
 		loginService = ClientSideSettings.getLoginService();
-		RootPanel.get("Zusatz").add(new SeedButton());
+//		RootPanel.get("Zusatz").add(new SeedButton());
 
 		/*
 		 * Wir rufen die Methode login mit den Uebergabeparametern request Uri &
