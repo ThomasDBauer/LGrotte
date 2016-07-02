@@ -109,8 +109,14 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return report;
 	}
 
-	/*
+	/**
+	 * 
 	 * Reports zusammensetzen
+	 * 
+	 * @param results Vector<Profil>
+	 * @return Vector<ProfilReport>
+	 * @throws Exception
+	 *
 	 */
 	public Vector<ProfilReport> reportErstellen(Vector<Profil> results) throws Exception {
 		// ProfilReports erstellen
@@ -128,7 +134,9 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/**
-	 * Alle Reports
+	 * Reports für alle Profile
+	 * @return Vector<Profil>
+	 * @throws Exception
 	 */
 	public Vector<ProfilReport> getReports() throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
@@ -139,6 +147,10 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	/**
 	 * Alle Reports nach Suchprofil
+	 * 
+	 * @param einzelnes Suchprofil
+	 * @return Vector<ProfilReport>
+	 * @throws Exception
 	 */
 	public Vector<ProfilReport> getReports(Suchprofil sp) throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
@@ -150,6 +162,10 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	/**
 	 * nicht besuchte Profile nach Suchprofil
+	 * 
+	 * @param einzelnes Suchprofil
+	 * @return Vector<ProfilReport>
+	 * @throws Exception
 	 */
 
 	public Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception {
@@ -164,6 +180,8 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 
 	/**
 	 * nicht besuchte Profile ohne Filter
+	 * @return Vector<ProfilReport>
+	 * @throws Exception
 	 */
 	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
@@ -173,8 +191,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return reportErstellen(profiles);
 	}
 
-	/*
+	/**
 	 * Hilfsmethode Besuche aussortieren
+	 * @return Vector<Profil>
+	 * @throws Exception
+	 * @param Vector<Profil>
 	 */
 	public Vector<Profil> besucheAussortieren(Vector<Profil> profiles) throws Exception {
 		Vector<Profil> results = new Vector<Profil>();
@@ -194,8 +215,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return results;
 	}
 
-	/*
+	/**
 	 * Hilfsmethode Aussortieren nach Suchprofil
+	 * @param Vector<Profil>, einzelnes Suchprofil
+	 * @throws Exception
+	 * @return Vector<Profil>
 	 */
 	public Vector<Profil> aussortierenNachSP(Vector<Profil> profile, Suchprofil sp) throws Exception {
 		Vector<Profil> results = new Vector<Profil>();
@@ -274,8 +298,9 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return results;
 	}
 
-	/*
+	/**
 	 * Hilfsmethode User aussortieren Hilfsmethode
+	 * @param Vector<Profil>
 	 */
 	public void userAussortieren(Vector<Profil> profiles) {
 		for (int i = 0; i < profiles.size(); i++) {
@@ -285,8 +310,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 	}
 	
-	/*
+	/**
 	 *  Aussortieren von Kontaktsperren
+	 *  @param Vector<Profil>
+	 *  @throws Exception
+	 *  @return Vector<Profil>
 	 */
 	public Vector<Profil> aussortierenNachKontaktsperren(Vector<Profil>profile) throws Exception{
 		Vector<Kontaktsperre> sperren = ksMapper.
@@ -315,8 +343,11 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		return profile;
 	}
 
-	/*
+	/**
 	 * Hilfsmethode Ähnlichkeit: Profil vs.Profile
+	 * @param Einzelnes Profil
+	 * @return int
+	 * @throws Exception
 	 */
 	public int aehnlichkeitBerechnen(Profil vergleich) throws Exception {
 		// Die Ähnlichkeit
@@ -350,7 +381,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		Vector<Eigenschaft> eigenschaften = eMapper.getEigenschaften();
 		return (aehnlichkeit * 10) / (eigenschaften.size() + 2);
 	}
-
+	
+	/**
+	 * Sortiert einen Vektor mit ProfilReports nach Aehnlichkeit
+	 * @param reports
+	 * @return Vector<ProfilReport>
+	 */
 	public Vector<ProfilReport> sortierenNachAehn(Vector<ProfilReport> reports) {
 
 		ProfilReport[] array = new ProfilReport[reports.size()];
@@ -364,8 +400,10 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		}
 		return reports;
 	}
-	/*
+	/**
 	 * Hier wird das Alter anhand des Geburtsdatums berechnet.
+	 * @param Geburtsdatum
+	 * @return Alter in Jahren
 	 */
 	 public int getAlter(Date geburtsdatum) {
 		 String s = geburtsdatum.toString();
