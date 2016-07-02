@@ -42,15 +42,19 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	private ProfilMapper pMapper = ProfilMapper.profilMapper();
 	private EigenschaftMapper eMapper = EigenschaftMapper.eigenschaftMapper();
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
-	private KontaktsperreMapper ksMapper = KontaktsperreMapper.kontaktsperreMapper();
+	private KontaktsperreMapper ksMapper = 
+			KontaktsperreMapper.kontaktsperreMapper();
 	private MerkzettelMapper merkMapper = MerkzettelMapper.merkzettelMapper();
-	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.suchprofilInfoMapper();
+	private SuchprofilInfoMapper spiMapper = 
+			SuchprofilInfoMapper.suchprofilInfoMapper();
 	private AuswahlMapper auswahlMapper = AuswahlMapper.auswahlMapper();
 	private InfoMapper infoMapper = InfoMapper.infoMapper();
 	private ProfilinfoMapper piMapper = ProfilinfoMapper.profilinfoMapper();
 	private BesucheMapper besuchMapper = BesucheMapper.besucheMapper();
 
-	// Das eingeloggte Profil
+	/**
+	 * Das eingeloggte Profil
+	 */
 	private Profil user;
 
 	/***************************************************************
@@ -69,7 +73,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Ein Profil in das System eintragen.
 	 * 
 	 * @param Profilattribute
-	 * @throws Exception
 	 */
 	public void insertProfil(String email, String fname, String lname, int koerpergroesse, String geschlecht,
 			String religion, String haarfarbe, String raucher, Date geburtsdatum) throws Exception {
@@ -90,8 +93,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Ein Profil bearbeiten / updaten
 	 * 
 	 * @param Alle
-	 *            Profilattribute
-	 * @throws Exception
 	 */
 
 	public void updateProfil(String fname, String lname, int koerpergroesse, String geschlecht, String religion,
@@ -112,8 +113,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 * User Profil löschen
-	 * 
-	 * @throws Exception
 	 */
 	public void deleteProfil() throws Exception {
 		pMapper.deleteProfil(user.getEmail());
@@ -121,8 +120,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 * Profil auslesen
-	 * 
-	 * @throws Exception
 	 */
 	public Profil getProfil() throws Exception {
 		return pMapper.getProfilByEmail(user.getEmail());
@@ -132,9 +129,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Profil auslesen #2 mit Fremd-Email
 	 * 
 	 * @param Email
-	 *            des Profils
 	 * @return Profil-Objekt
-	 * @throws Exception
 	 */
 	public Profil getProfil(String email) throws Exception {
 		return pMapper.getProfilByEmail(email);
@@ -145,7 +140,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * stehen oder die gesperrt wurden!
 	 * 
 	 * @return Vector<Profil>
-	 * @throws Exception
 	 */
 	public Vector<Profil> getProfilesForEditor() throws Exception {
 
@@ -203,8 +197,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Suchprofil erstellen
 	 * 
 	 * @param Alle
-	 *            Attribute eines Suchprofils
-	 * @throws Exception
 	 */
 	public void insertSuchprofil(String suchprofilname, String geschlecht, String raucher, String religion,
 			int minAlter, int maxAlter, int minGroesse, int maxGroesse, String haarfarbe) throws Exception {
@@ -226,8 +218,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Suchprofil bearbeiten
 	 * 
 	 * @param Alle
-	 *            Attribute eines Suchprofils
-	 * @throws Exception
 	 */
 	public void updateSuchprofil(String geschlecht, int minAlter, int maxAlter, String religion, String haarfarbe,
 			String raucher, int minGroesse, int maxGroesse, String suchprofilname) throws Exception {
@@ -249,8 +239,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Suchprofil löschen
 	 * 
 	 * @param Name
-	 *            des Suchprofils
-	 * @throws Exception
 	 */
 	public void deleteSuchprofil(String suchprofilname) throws Exception {
 		Suchprofil deletesp = new Suchprofil();
@@ -271,9 +259,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Suchprofil Anzeigen nach Suchprofilname
 	 * 
 	 * @param Name
-	 *            des Suchprofils
 	 * @return Suchprofil
-	 * @throws Exception
 	 */
 	public Suchprofil getSuchprofileByName(String suchprofilname) throws Exception {
 		return spMapper.getSuchprofiByName(suchprofilname);
@@ -287,7 +273,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Eigenschaften auslesen
 	 * 
 	 * @return Vector<Eigenschaft> alle Eigenschaften
-	 * @throws Exception
 	 */
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
 		return this.eMapper.getEigenschaften();
@@ -297,9 +282,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Gibt die Auswahlmöglichkeiten einer Eigenschaft aus
 	 * 
 	 * @param Eigenschaft
-	 *            e
 	 * @return Vector<Auswahl> alle AuswahlObjekte zu einer Eigenschaft
-	 * @return Exception
 	 */
 	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception {
 		return auswahlMapper.getAuswahlForEigenschaft(e);
@@ -313,7 +296,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Profil als besucht markieren
 	 * 
 	 * @param Profil
-	 * @throws Exception
 	 */
 	public void insertBesuch(Profil besuchtesProfil) throws Exception {
 		Besuch b = new Besuch();
@@ -330,8 +312,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * Profile auf Merkzettel setzen
 	 * 
 	 * @param Vector
-	 *            mit Emails
-	 * @throws Exception
 	 */
 	public void insertMerkzettel(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++) {
@@ -354,9 +334,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	/**
 	 * Profile sperren
 	 * 
-	 * @param Vector
-	 *            mit Emails
-	 * @throws Exception
+	 * @param emails
 	 */
 	public void insertKontaktsperren(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++) {
@@ -370,9 +348,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	/**
 	 * Profil sperren
 	 * 
-	 * @param Email
-	 *            eines Profils
-	 * @throws Exception
+	 * @param email
 	 */
 	public void insertKontaktsperre(String email) throws Exception {
 		Kontaktsperre k = new Kontaktsperre();
@@ -384,9 +360,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	/**
 	 * Profil merken
 	 * 
-	 * @param Email
-	 *            eines Profils
-	 * @throws Exception
+	 * @param email
 	 */
 	public void insertMerkzettel(String email) throws Exception {
 		Merkzettel mz = new Merkzettel();
@@ -399,7 +373,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * gemerkte Profile eines Profils aufrufen
 	 * 
 	 * @return Vector<Profil>
-	 * @throws Exception
 	 */
 	public Vector<Profil> getMerkzettelProfileByOwner() throws Exception {
 		return merkMapper.getMerkzettelProfileByOwner(user.getEmail());
@@ -408,9 +381,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	/**
 	 * Profil vom Merkzettel entfernen
 	 * 
-	 * @param Vector
-	 *            mit Emails
-	 * @throws Exception
+	 * @param emails
 	 */
 	public void deleteMerkzettel(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++) {
@@ -423,9 +394,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  Kontaktsperre von einem Profil aufheben
-	 * @param Vector
-	 *            mit Emails
-	 * @throws Exception 
+	 * @param emails
 	 */
 	public void deleteKontaktsperre(Vector<String> emails) throws Exception {
 		for (int i = 0; i < emails.size(); i++) {
@@ -440,7 +409,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	/**
 	 *  Alle Profile mit Kontaktsperre von einem Profil bekommen
 	 *  @return Vector<Profil>
-	 *  @throws Exception
 	 */
 	public Vector<Profil> getKontaktsperrenByOwner() throws Exception {
 		return ksMapper.getKontaktsperreProfileByOwner(user.getEmail());
@@ -452,8 +420,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  Info löschen
-	 *  @param Info
-	 *  @throws Exception
+	 *  
+	 *  @param info
 	 */
 	public void deleteInfo(Info info) throws Exception {
 		ProfilInfo pi = new ProfilInfo();
@@ -464,8 +432,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  SuchprofilInfo löschen
-	 *  @param Suchprofil, Info
-	 *  @throws Exception
+	 *  
+	 *  @param suchprofil
+	 *  @param info
 	 */
 	public void deleteSuchprofilInfo(Suchprofil sp, Info info) throws Exception {
 		SuchprofilInfo spi = new SuchprofilInfo();
@@ -477,8 +446,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  ProfilInfo löschen
-	 *  @param ProfilInfo
-	 *  @throws Exception
+	 *  
+	 *  @param pi
 	 */
 	public void deleteProfilInfo(ProfilInfo pi) throws Exception {
 		piMapper.deleteProfilInfo(pi);
@@ -486,8 +455,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  ProfilInfos Hauptmethode
-	 *  @param Info
-	 *  @throws Exception
+	 *  
+	 *  @param info
 	 */
 	public void insertProfilInfo(Info info) throws Exception {
 		// Verarbeitung der Info und Auslesen der ID
@@ -502,8 +471,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  SuchprofilInfos Hauptmethode
-	 *  @param Suchprofil, Info
-	 *  @throws Exception
+	 *  
+	 *  @param sp
+	 *  @param info
 	 */
 	public void insertSuchprofilInfo(Suchprofil sp, Info info) throws Exception {
 		System.out.println("Speichere " + info.getValue() + " für " + sp.getSuchprofilname());
@@ -523,9 +493,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 *  Checkt, ob es die Info bereits gibt. Gibt in jedem Fall
 	 *  die InfoID zur�ck, damit die beiden n:m Tabellen damit
 	 *  best�ckt werden k�nnen.
+	 *  
 	 * @param info
 	 * @return Info-ID
-	 * @throws Exception
 	 */
 	private int insertInfo(Info info) throws Exception {
 		if (info.getValue().equals("")) {
@@ -544,9 +514,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  Eigenschaften von Suchprofil aufrufen
+	 *  
 	 *  @param Suchprofilname
 	 *  @return Vector mit SuchProfilEigenschaften
-	 *  @throws Exception
 	 */
 	public Vector<ProfilEigenschaft> getSuchprofilEigenschaften(String spname) throws Exception {
 		Vector<ProfilEigenschaft> results = spiMapper.getSuchprofilInfosByEmail(user.getEmail(), spname);
@@ -562,8 +532,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  Profil Eigenschaften aufrufen
+	 *  
 	 *  @return Vector mit ProfilEigenschaften für das eingeloggte Profil
-	 *  @throws Exception
 	 */
 	public Vector<ProfilEigenschaft> getProfilEigenschaften() throws Exception {
 		Vector<ProfilEigenschaft> results = piMapper.getProfilInfosByEmail(user.getEmail());
@@ -576,9 +546,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  Profil Eigengschaften füllen, falls noch keine in der Datenbank vorhanden sind.
+	 *  
 	 * @param peigenschaften
 	 * @param eigenschaften
-	 * @return Vector mit vollständigen ProfilEigenschaften
 	 */
 	private Vector<ProfilEigenschaft> fillEigenschaften(Vector<ProfilEigenschaft> peigenschaften,
 			Vector<Eigenschaft> eigenschaften) {
@@ -606,7 +576,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  Alle Infos löschen von einem Profil
-	 *  @throws Exception
 	 */
 	public void deleteProfilInfosForUser() throws Exception {
 		piMapper.deleteAllInfos(user.getEmail());
@@ -614,8 +583,8 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  Alles Infos löschen von einem Suchprofil
-	 *  @param Suchprofil
-	 *  @throws Exception
+	 *  
+	 *  @param sp
 	 */
 	public void deleteSuchprofilInfosForUser(Suchprofil sp) throws Exception {
 		spiMapper.deleteAllSuchprofilInfos(sp, user);
@@ -623,9 +592,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 *  Profileigenschaften anhand der Email aufrufen
-	 *  @param Email eines PRofils
+	 *  
+	 *  @param email
 	 *  @return Vector mit ProfilEigenschaften zu diesem Profil
-	 *  @throws Exception
 	 */
 	public Vector<ProfilEigenschaft> getProfilEigenschaften(String email) throws Exception {
 		return piMapper.getProfilInfosByEmail(email);
