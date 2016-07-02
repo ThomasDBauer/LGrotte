@@ -100,7 +100,7 @@ public class LGrotte implements EntryPoint {
 					public void onSuccess(Profil result) {
 						editorService.setUser(result, new SetUserCallback());
 						if (result.isLoggedIn()) {
-							if (result.getFname() == null) {
+							if (result.getFname() == "null") {
 								try {
 									RootPanel.get("Inhalt").add(
 											new ProfilErstellenEditor());
