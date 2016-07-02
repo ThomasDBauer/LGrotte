@@ -20,7 +20,6 @@ public class HTMLWriter {
 	 * gibt es eine get() aber keine set() Methode.
 	 */
 	private String reportText;
-	private int report;
 
 	/*
 	 * Zum Auslesen des HTML Codes.
@@ -35,14 +34,6 @@ public class HTMLWriter {
 	public void process(ProfilReport report) {
 
 		StringBuffer sb = new StringBuffer();
-
-		/*
-		 * Der Header des Reports wird aufgerufen
-		 */
-
-		/*
-		 * Style der einzelnen Report-Elemente
-		 */
 
 		sb.append("<div class =\"Report-Container\">");
 
@@ -76,6 +67,11 @@ public class HTMLWriter {
 		this.reportText = sb.toString();
 	}
 
+	/*
+	 *  Erstellt HTML Code für einen Vector<ProfilReports>
+	 *  Ruft für jeden Report die process(ProfilReport) Methode auf und
+	 *  fügt die resultierenden Strings zusammen.
+	 */
 	public void process(Vector<ProfilReport> reports) {
 		StringBuffer buffer = new StringBuffer();
 		ProfilReport[]array = new ProfilReport[reports.size()];
