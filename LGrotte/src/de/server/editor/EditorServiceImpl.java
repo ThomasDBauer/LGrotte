@@ -4,8 +4,6 @@ import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import de.client.ClientSideSettings;
-import de.client.TestService;
 import de.server.db.AuswahlMapper;
 import de.server.db.BesucheMapper;
 import de.server.db.EigenschaftMapper;

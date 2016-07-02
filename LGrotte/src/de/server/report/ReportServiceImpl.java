@@ -130,7 +130,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getReports() throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
 		userAussortieren(profile);
-		aussortierenNachKontaktsperren(profile);
+		profile = aussortierenNachKontaktsperren(profile);
 		return reportErstellen(profile);
 	}
 
@@ -140,7 +140,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getReports(Suchprofil sp) throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
 		userAussortieren(profile);
-		aussortierenNachKontaktsperren(profile);
+		profile = aussortierenNachKontaktsperren(profile);
 		profile = aussortierenNachSP(profile, sp);
 		return reportErstellen(profile);
 	}
@@ -152,7 +152,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
 		userAussortieren(profiles);
-		aussortierenNachKontaktsperren(profiles);
+		profiles = aussortierenNachKontaktsperren(profiles);
 		profiles = aussortierenNachSP(profiles, sp);
 		profiles = besucheAussortieren(profiles);
 		return reportErstellen(profiles);
@@ -160,12 +160,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/**
-	 * ohne Filter
+	 * nicht besuchte Profile ohne Filter
 	 */
 	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
 		userAussortieren(profiles);
-		aussortierenNachKontaktsperren(profiles);
+		profiles = aussortierenNachKontaktsperren(profiles);
 		profiles = besucheAussortieren(profiles);
 		return reportErstellen(profiles);
 	}
@@ -202,7 +202,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		for (int i = 0; i < profile.size(); i++) {
 			boolean ok = true;
 			Profil p = profile.elementAt(i);
-			System.out.println(p.getFname() + ": ");
 			// Eigene Identität
 			if (user.getEmail().equals(p.getEmail())) {
 				ok = false;
@@ -210,14 +209,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			// Geschlecht
 			if (!sp.getGeschlecht().equals("Egal")) {
 				if (!sp.getGeschlecht().equals(p.getGeschlecht()) || p.getGeschlecht() == null) {
-					System.out.println("Geschl");
 					ok = false;
 				}
 			}
 			// Raucher
 			if (!sp.getRaucher().equals("Egal")) {
 				if (!sp.getRaucher().equals(p.getRaucher()) || p.getRaucher() == null) {
-					System.out.println("Raucher");
 					ok = false;
 				}
 			}
@@ -248,7 +245,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
 					sp.getSuchprofilname());
 			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
-			if (suchPEs != null) {
+			if (suchPEs != null & suchPEs.size() != 0) {
 				boolean peOK = false;
 				for (int u = 0; u < suchPEs.size(); u++) {
 					if (fremdPEs != null) {
@@ -288,7 +285,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	/*
 	 *  Aussortieren von Kontaktsperren
 	 */
-	public void aussortierenNachKontaktsperren(Vector<Profil>profile) throws Exception{
+	public Vector<Profil> aussortierenNachKontaktsperren(Vector<Profil>profile) throws Exception{
 		Vector<Kontaktsperre> sperren = ksMapper.
 				getKontaktsperreByOwner(user.getEmail());
 		Vector<Kontaktsperre> gesperrtVon = ksMapper.
@@ -312,6 +309,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 				};
 			}
 		}
+		return profile;
 	}
 
 	/*
