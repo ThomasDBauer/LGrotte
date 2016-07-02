@@ -21,12 +21,23 @@ import de.shared.RO.ProfilEigenschaft;
 
 public class SuchprofilInfoMapper {
 
-	
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static SuchprofilInfoMapper suchprofilInfoMapper = null;
 
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected SuchprofilInfoMapper() {
 	}
 
+	/**
+	 * Statische Methode vom Typ SuchprofilInfoMapper
+	 * 
+	 * @return suchprofilinfomapper
+	 */
 	public static SuchprofilInfoMapper suchprofilInfoMapper() {
 		if (suchprofilInfoMapper == null) {
 			suchprofilInfoMapper = new SuchprofilInfoMapper();
@@ -35,7 +46,7 @@ public class SuchprofilInfoMapper {
 		return suchprofilInfoMapper;
 	}
 	
-	/*
+	/**
 	 * Erstellt eine Tabelle in der die Primary Keys vom Suchprofil und Info
 	 * als Forgein Key eine Verbindung bilden
 	 */
@@ -50,7 +61,11 @@ public class SuchprofilInfoMapper {
 		create.execute();
 	}
 	
-	// Fügt die Verbindung zwischen einem Suchprofil und einer Info ein
+	/**
+	 * Fügt die Verbindung zwischen einem Suchprofil und einer Info ein
+	 * 
+	 * @param spi
+	 */
 	public void insertSuchprofilInfo(SuchprofilInfo spi) throws Exception {
 		Connection conn = (Connection) DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
@@ -59,7 +74,12 @@ public class SuchprofilInfoMapper {
 		stmt.execute();
 	}
 
-	// Gibt alle Infos mit zugehöriger Eigenschaft zu eine Suchprofil aus
+	/**
+	 * Gibt alle Infos mit zugehöriger Eigenschaft zu eine Suchprofil aus
+	 * 
+	 * @param infoID
+	 * @return pe
+	 */
 	public ProfilEigenschaft getSPInfosByInfoID(int infoID) throws Exception{
 		Connection conn = DBConnection.connection();
 		PreparedStatement select = conn.prepareStatement("SELECT infos.value, "
@@ -85,7 +105,11 @@ public class SuchprofilInfoMapper {
 		return pe;
 	}
 	
-	// Löscht die Verbindung zwischen einem Suchprofil und einer Info
+	/**
+	 * Löscht die Verbindung zwischen einem Suchprofil und einer Info
+	 * 
+	 * @param spi
+	 */
 	public void deleteSuchprofilInfo(SuchprofilInfo spi) throws Exception{
 		Connection conn = DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
@@ -95,7 +119,12 @@ public class SuchprofilInfoMapper {
 		stmt.execute();
 	}
 	
-	// Löscht die Verbindung zwischen ALLEN Infos zu einem Suchprofil
+	/**
+	 * Löscht die Verbindung zwischen ALLEN Infos zu einem Suchprofil
+	 * 
+	 * @param sp
+	 * @param user
+	 */
 	public void deleteAllSuchprofilInfos(Suchprofil sp, Profil user) throws Exception{
 		Connection conn = DBConnection.connection();
 		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(
@@ -104,7 +133,13 @@ public class SuchprofilInfoMapper {
 		stmt.execute();
 	}
 	
-	// Gibt alle Infos zu einem Suchprofil aus
+	/**
+	 * Gibt alle Infos zu einem Suchprofil aus
+	 * 
+	 * @param email
+	 * @param spname
+	 * @return suchprofilinfos
+	 */
 	public Vector <ProfilEigenschaft> getSuchprofilInfosByEmail(String email, String spname) throws Exception{
 		Connection conn = DBConnection.connection();
 		PreparedStatement select = conn.prepareStatement("SELECT info_id FROM "

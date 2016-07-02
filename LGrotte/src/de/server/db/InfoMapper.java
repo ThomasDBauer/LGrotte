@@ -20,27 +20,34 @@ import de.shared.BO.Info;
  */
 
 public class InfoMapper {
-	//Klasse ist Singleton und das gewährleistet diese Funktion, es speichert die einzige Instanz dieser Klasse.
+	
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static InfoMapper infomapper = null;
 
-
-	//Ein geschützter Konstruktor, der verhindert dass man per "new" eine neue Instanz erzeugen kann.
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected InfoMapper() {
 	}
 
-
+	/**
+	 * Statische Methode vom Typ InfoMapper
+	 * 
+	 * @return infomapper
+	 */
 	public static InfoMapper infoMapper(){
-
-
 	if(infomapper == null){
 	infomapper = new InfoMapper();
 	}
-
-
 	return infomapper;
 	}
-
-	// Erstellt eine Tabelle in der die Infos gespeichert werden
+	
+	/**
+	 * Erstellt eine Tabelle in der die Infos gespeichert werden
+	 */
 	public void createInfoTable() throws Exception{
 		Connection conn = (Connection)DBConnection.connection();
 		PreparedStatement createInfo = (PreparedStatement) conn.prepareStatement(
@@ -51,7 +58,11 @@ public class InfoMapper {
 		createInfo.execute();
 	}
 
-	// Fügt die Infos in die Tabelle ein
+	/**
+	 * Fügt die Infos in die Tabelle ein
+	 * 
+	 * @param info
+	 */
 	public void insertInfo(Info info) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insertInfo = (PreparedStatement) con.prepareStatement(
@@ -60,9 +71,13 @@ public class InfoMapper {
 		insertInfo.execute();
 	}
 	
-	/*
+	/**
 	 * Ruft die Info-ID anhand der Eigenschafts-ID und 
 	 * der Erläuterung der Info auf
+	 * 
+	 * @param eID
+	 * @param value
+	 * @return id
 	 */
 	public int getInfoIDByEigenschaftsIDAndValue(int eID, String value) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
@@ -76,7 +91,11 @@ public class InfoMapper {
 		return id;
 	}
 	
-	// Löscht Infos aus der Tabelle 
+	/**
+	 * Löscht Infos aus der Tabelle 
+	 * 
+	 * @param info
+	 */
 	public void deleteInfo (Info info) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteInfo =  (PreparedStatement) con.prepareStatement(
@@ -85,7 +104,11 @@ public class InfoMapper {
 		deleteInfo.execute();
 	}
 	
-	// Akualisiert die Erläuterung der Infos
+	/**
+	 * Akualisiert die Erläuterung der Infos
+	 * 
+	 * @param info
+	 */
 	public void updateInfo (Info info) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		

@@ -62,6 +62,12 @@ public class LGrotte implements EntryPoint {
 	 */
 
 	public void onModuleLoad() {
+		/*
+		 *  uncomment this to migrate and seed you db:
+		 *  >>>
+		 *  RootPanel.get().add(new SeedButton());
+		 *  <<<
+		 */
 
 		/*
 		 * Zuerst instanzieren wir jeweils eine EditorService-Instanz & eine
@@ -70,7 +76,6 @@ public class LGrotte implements EntryPoint {
 
 		editorService = ClientSideSettings.getEditorService();
 		loginService = ClientSideSettings.getLoginService();
-		RootPanel.get("Zusatz").add(new SeedButton());
 
 		/*
 		 * Wir rufen die Methode login mit den Uebergabeparametern request Uri &

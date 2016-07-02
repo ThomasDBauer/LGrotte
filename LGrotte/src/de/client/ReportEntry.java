@@ -193,7 +193,7 @@ public class ReportEntry implements EntryPoint {
 	private class ReportCallback 
 	implements AsyncCallback<Vector<ProfilReport>> {
 		public void onFailure(Throwable caught) {
-			Window.alert("Entry.loadReportsForNotVisited " + caught.
+			Window.alert("Entry.ReportCallback: " + caught.
 					toString());
 		}
 

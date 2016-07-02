@@ -8,6 +8,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.server.db.BesucheMapper;
 import de.server.db.EigenschaftMapper;
+import de.server.db.KontaktsperreMapper;
 import de.server.db.ProfilMapper;
 import de.server.db.ProfilinfoMapper;
 import de.server.db.SuchprofilInfoMapper;
@@ -15,6 +16,7 @@ import de.server.db.SuchprofilMapper;
 import de.shared.ReportService;
 import de.shared.BO.Besuch;
 import de.shared.BO.Eigenschaft;
+import de.shared.BO.Kontaktsperre;
 import de.shared.BO.Profil;
 import de.shared.BO.Suchprofil;
 import de.shared.RO.Match;
@@ -34,6 +36,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
 	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.suchprofilInfoMapper();
 	private EigenschaftMapper eMapper = EigenschaftMapper.eigenschaftMapper();
+	private KontaktsperreMapper ksMapper = KontaktsperreMapper.kontaktsperreMapper();
 
 	private Profil user;
 
@@ -61,8 +64,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	 */
 	@SuppressWarnings("deprecation")
 	public ProfilReport getProfilReport(Profil p) throws Exception {
-		// Auslesen des Profils aus der DB
-		// Erstellen des Reports
+
 		// 1. Attribute:
 		ProfilReport report = new ProfilReport();
 		report.setHeader(p.getFname() + " " + p.getLname());
@@ -81,21 +83,21 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		ProfilAttribut koerpergroesse = new ProfilAttribut();
 		koerpergroesse.setName("K&oumlrpergr&oumlsse");
 		koerpergroesse.setWert(Integer.toString(p.getKoerpergroesse()));
-		ProfilAttribut geburtsdatum = new ProfilAttribut();
-		geburtsdatum.setName("Geburtsdatum");
-		geburtsdatum.setWert(String.valueOf(p.getGeburtsdatum()));
-
-		ProfilAttribut alter = new ProfilAttribut();
-		alter.setName("Alter");
-		alter.setWert(Integer.toString(getAlter(p.getGeburtsdatum())));
-
+		if(p.getGeburtsdatum()!=null){
+			ProfilAttribut geburtsdatum = new ProfilAttribut();
+			geburtsdatum.setName("Geburtsdatum");
+			geburtsdatum.setWert(String.valueOf(p.getGeburtsdatum()));
+			ProfilAttribut alter = new ProfilAttribut();
+			alter.setName("Alter");
+			alter.setWert(Integer.toString(getAlter(p.getGeburtsdatum())));
+			report.addAttribut(geburtsdatum);
+			report.addAttribut(alter);
+		}
 		report.addAttribut(geschlecht);
 		report.addAttribut(haarFarbe);
 		report.addAttribut(religion);
 		report.addAttribut(raucher);
 		report.addAttribut(koerpergroesse);
-		report.addAttribut(geburtsdatum);
-		report.addAttribut(alter);
 		// 2. Eigenschaften
 		Vector<ProfilEigenschaft> profilinfos = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
 		for (int i = 0; i < profilinfos.size(); i++) {
@@ -128,6 +130,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getReports() throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
 		userAussortieren(profile);
+		profile = aussortierenNachKontaktsperren(profile);
 		return reportErstellen(profile);
 	}
 
@@ -137,6 +140,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getReports(Suchprofil sp) throws Exception {
 		Vector<Profil> profile = profilMapper.getAll();
 		userAussortieren(profile);
+		profile = aussortierenNachKontaktsperren(profile);
 		profile = aussortierenNachSP(profile, sp);
 		return reportErstellen(profile);
 	}
@@ -148,6 +152,7 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	public Vector<ProfilReport> getNotVisitedReports(Suchprofil sp) throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
 		userAussortieren(profiles);
+		profiles = aussortierenNachKontaktsperren(profiles);
 		profiles = aussortierenNachSP(profiles, sp);
 		profiles = besucheAussortieren(profiles);
 		return reportErstellen(profiles);
@@ -155,11 +160,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 	}
 
 	/**
-	 * ohne Filter
+	 * nicht besuchte Profile ohne Filter
 	 */
 	public Vector<ProfilReport> getNotVisitedReports() throws Exception {
 		Vector<Profil> profiles = profilMapper.getAll();
 		userAussortieren(profiles);
+		profiles = aussortierenNachKontaktsperren(profiles);
 		profiles = besucheAussortieren(profiles);
 		return reportErstellen(profiles);
 	}
@@ -196,7 +202,6 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 		for (int i = 0; i < profile.size(); i++) {
 			boolean ok = true;
 			Profil p = profile.elementAt(i);
-			System.out.println(p.getFname() + ": ");
 			// Eigene Identität
 			if (user.getEmail().equals(p.getEmail())) {
 				ok = false;
@@ -204,14 +209,12 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			// Geschlecht
 			if (!sp.getGeschlecht().equals("Egal")) {
 				if (!sp.getGeschlecht().equals(p.getGeschlecht()) || p.getGeschlecht() == null) {
-					System.out.println("Geschl");
 					ok = false;
 				}
 			}
 			// Raucher
 			if (!sp.getRaucher().equals("Egal")) {
 				if (!sp.getRaucher().equals(p.getRaucher()) || p.getRaucher() == null) {
-					System.out.println("Raucher");
 					ok = false;
 				}
 			}
@@ -239,27 +242,27 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			}
 
 			// ProfilEigenschaften aussortieren
-//			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
-//					sp.getSuchprofilname());
-//			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
-//			if (suchPEs != null) {
-//				boolean peOK = false;
-//				for (int u = 0; u < suchPEs.size(); u++) {
-//					if (fremdPEs != null) {
-//						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
-//						for (int z = 0; z < fremdPEs.size(); z++) {
-//							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
-//							if (suchPE.getEigenschaft().getId() == fremdPE.getEigenschaft().getId()) {
-//								if (fremdPE.getWert().equals(suchPE.getWert())) {
-//									peOK = true;
-//								}
-//							}
-//						}
-//					}
-//				}
-//				if (peOK == false)
-//					ok = false;
-//			}
+			Vector<ProfilEigenschaft> suchPEs = spiMapper.getSuchprofilInfosByEmail(user.getEmail(),
+					sp.getSuchprofilname());
+			Vector<ProfilEigenschaft> fremdPEs = profilInfoMapper.getProfilInfosByEmail(p.getEmail());
+			if (suchPEs != null & suchPEs.size() != 0) {
+				boolean peOK = false;
+				for (int u = 0; u < suchPEs.size(); u++) {
+					if (fremdPEs != null) {
+						ProfilEigenschaft suchPE = suchPEs.elementAt(u);
+						for (int z = 0; z < fremdPEs.size(); z++) {
+							ProfilEigenschaft fremdPE = fremdPEs.elementAt(z);
+							if (suchPE.getEigenschaft().getId() == fremdPE.getEigenschaft().getId()) {
+								if (fremdPE.getWert().equals(suchPE.getWert())) {
+									peOK = true;
+								}
+							}
+						}
+					}
+				}
+				if (peOK == false)
+					ok = false;
+			}
 
 			// TODO Größe und Alter
 			if (ok)
@@ -277,6 +280,36 @@ public class ReportServiceImpl extends RemoteServiceServlet implements ReportSer
 			if (p.getEmail().equals(user.getEmail()))
 				profiles.remove(p);
 		}
+	}
+	
+	/*
+	 *  Aussortieren von Kontaktsperren
+	 */
+	public Vector<Profil> aussortierenNachKontaktsperren(Vector<Profil>profile) throws Exception{
+		Vector<Kontaktsperre> sperren = ksMapper.
+				getKontaktsperreByOwner(user.getEmail());
+		Vector<Kontaktsperre> gesperrtVon = ksMapper.
+				getKontaktsperren(user.getEmail());
+		//Profil für Profil..
+		for(int i = 0; i < profile.size(); i++){
+			//Sperren des Users selbst:
+			for(int o = 0; o < sperren.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						sperren.elementAt(o).getGesperrtesProfil())){
+					profile.remove(profile.elementAt(i));
+					break;
+				};
+			}
+			//Andere Profile, die unsern User gesperrt haben:
+			for(int o = 0; o < gesperrtVon.size(); o++){
+				if(profile.elementAt(i).getEmail().equals(
+						gesperrtVon.elementAt(o).getSperrendesProfil())){
+					profile.remove(profile.elementAt(i));
+					break;
+				};
+			}
+		}
+		return profile;
 	}
 
 	/*

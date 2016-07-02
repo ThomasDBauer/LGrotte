@@ -18,12 +18,23 @@ import de.shared.BO.Profil;
 
 public class BesucheMapper {
 	
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static BesucheMapper besucheMapper = null;
-	
+
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected BesucheMapper(){
-		
 	}
 	
+	/**
+	 * Statische Methode vom Typ BesucheMapper
+	 * 
+	 * @return besuchemapper
+	 */
 	public static BesucheMapper besucheMapper(){
 		if(besucheMapper ==null){
 			besucheMapper = new BesucheMapper();
@@ -31,7 +42,9 @@ public class BesucheMapper {
 		return besucheMapper;
 	}
 	
-	// Erstellt eine Tabelle für Profile die schon besucht worden
+	/**
+	 * Erstellt eine Tabelle für Profile die schon besucht worden
+	 */
 	public void createBesucheTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create = (PreparedStatement) con
@@ -43,7 +56,11 @@ public class BesucheMapper {
 		create.execute();
 	}
 	
-	// Fügt besuchte Profile in die Tabelle 
+	/**
+	 * Fügt besuchte Profile in die Tabelle 
+	 * 
+	 * @param b
+	 */
 	public void insertBesuch(Besuch b) throws Exception {
 		if(!besuchExists(b)){
 			Connection con = (Connection) DBConnection.connection();
@@ -55,7 +72,12 @@ public class BesucheMapper {
 		}
 	}
 	
-	// Filtert nach Profilen die schon besucht worden
+	/**
+	 * Filtert nach Profilen die schon besucht worden
+	 * 
+	 * @param b
+	 * @return true oder false
+	 */
 	private boolean besuchExists(Besuch b) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = con.prepareStatement("SELECT * FROM besuche WHERE "
@@ -69,7 +91,12 @@ public class BesucheMapper {
 		}
 	}
 	
-	// Liest besuchte Profile aus der Datenbank
+	/**
+	 * Liest besuchte Profile aus der Datenbank
+	 * 
+	 * @param user
+	 * @return besuche
+	 */
 	public Vector<Besuch> getBesuche(Profil user) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement select = con.prepareStatement("SELECT * FROM besuche WHERE "

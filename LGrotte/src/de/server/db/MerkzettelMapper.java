@@ -25,11 +25,23 @@ import de.shared.BO.Profil;
 
 public class MerkzettelMapper {
 
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static MerkzettelMapper merkzettelMapper = null;
 
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected MerkzettelMapper() {
 	}
 
+	/**
+	 * Statische Methode vom Typ MerkzettelMapper
+	 * 
+	 * @return merkzettelmapper
+	 */
 	public static MerkzettelMapper merkzettelMapper() {
 		if (merkzettelMapper == null) {
 			merkzettelMapper = new MerkzettelMapper();
@@ -37,7 +49,9 @@ public class MerkzettelMapper {
 		return merkzettelMapper;
 	}
 	
-	// Erstellt eine Tabelle in der die gemerkten Profile aufgelistet sind
+	/**
+	 * Erstellt eine Tabelle in der die gemerkten Profile aufgelistet sind
+	 */
 	public void createMerkzettelTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement createMerkzettel = (PreparedStatement) con
@@ -49,9 +63,11 @@ public class MerkzettelMapper {
 		createMerkzettel.execute();
 	}
 
-	/*
+	/**
 	 * Fügt Profile die gemerkt worden sind in die Tabelle 
 	 * abhängig vom merkenden Profil
+	 * 
+	 * @param mz
 	 */
 	public void insertMerkzettel(Merkzettel mz) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
@@ -64,7 +80,11 @@ public class MerkzettelMapper {
 		insertMerkzettel.execute();
 	}
 	
-	// Enfernt das gemerkte Profil vom Merkzettel
+	/**
+	 * Enfernt das gemerkte Profil vom Merkzettel
+	 * 
+	 * @param mz
+	 */
 	public void deleteMerkzettel(Merkzettel mz) throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement deleteMerkzettel = (PreparedStatement) con.prepareStatement(
@@ -73,7 +93,12 @@ public class MerkzettelMapper {
 		deleteMerkzettel.execute();
 	}
 	
-	// Ruft alle gemerkten Profile vom Merkenden auf
+	/**
+	 * Ruft alle gemerkten Profile vom Merkenden auf
+	 * 
+	 * @param email
+	 * @return merkzettel
+	 */
 	public Vector<Merkzettel> getMerkzettelByOwner(String email)
 			throws Exception {
 		Connection con = (Connection) DBConnection.connection();
@@ -91,7 +116,12 @@ public class MerkzettelMapper {
 		return merkzettel;
 	}
 
-	// Ruft alle gemerkten Profile vom Merkenden auf
+	/**
+	 * Ruft alle gemerkten Profile vom Merkenden auf
+	 * 
+	 * @param email
+	 * @return merkzettelProfile
+	 */
 	public Vector<Profil> getMerkzettelProfileByOwner(String email)
 			throws Exception {
 		Connection con = (Connection) DBConnection.connection();

@@ -14,12 +14,23 @@ import de.shared.BO.Eigenschaft;
 	 */
 public class AuswahlMapper {
 	
+	/**
+	 * Statische Variable, und ist deßhalb für alle Instanzen 
+	 * dieser Klasse verfügbar
+	 */
 	private static AuswahlMapper auswahlmapper = null;
 	
+	/**
+	 * Protected (geschützer) Konstruktur
+	 */
 	protected AuswahlMapper(){
-		
 	}
 	
+	/**
+	 * Statische Methode vom Typ AuswahlMapper
+	 * 
+	 * @return auswahlmapper
+	 */
 	public static AuswahlMapper auswahlMapper(){
 		if(auswahlmapper==null){
 			auswahlmapper = new AuswahlMapper();
@@ -27,7 +38,9 @@ public class AuswahlMapper {
 		return auswahlmapper;
 	}
 	
-	// Erstellt eine Tabelle für unsere verschiedenen Auswahlmöglichkeiten
+	/**
+	 * Erstellt eine Tabelle für unsere verschiedenen Auswahlmöglichkeiten
+	 */
 	public void createAuswahlTable() throws Exception {
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create =(PreparedStatement) con.prepareStatement(
@@ -38,7 +51,11 @@ public class AuswahlMapper {
 		create.execute();
 	}	
 	
-	// Fügt eine gewählte Auswahleigenschaft hinzu
+	/**
+	 * Fügt eine gewählte Auswahleigenschaft hinzu
+	 * 
+	 * @param a
+	 */
 	public void insertAuswahl(Auswahl a) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement insert = (PreparedStatement) con.prepareStatement(
@@ -47,7 +64,12 @@ public class AuswahlMapper {
 		insert.execute();
 	}
 	
-	// Liest die Auswahleigenschaften aus der Datenbank 
+	/**
+	 * Liest die Auswahleigenschaften aus der Datenbank 
+	 * 
+	 * @param e
+	 * @return auswahlopts
+	 */
 	public Vector<Auswahl> getAuswahlForEigenschaft(Eigenschaft e) throws Exception{
 		Connection con = (Connection) DBConnection.connection();
 		PreparedStatement create =(PreparedStatement) con.prepareStatement(
