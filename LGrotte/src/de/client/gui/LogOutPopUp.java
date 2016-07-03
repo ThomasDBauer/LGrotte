@@ -11,27 +11,33 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.client.LGrotte;
 
 /**
- * Der PopupPanel, fuer die Logoutabfrage
+ * Diese Gui-Klasse erbt vom PopupPanel. 
+ * Sie ist fuer die Darstellung der Logoutabfrage zustaendig
  * 
  * @author Lukas Kircher
  * 
  * @version 1.0
  *
  */
-
 public class LogOutPopUp extends PopupPanel {
-	// Label und zwei Button, zum befuellen des Panels
+	/**
+	 * Instanz-Variablen werden deklariert
+	 */
+	//Zur besseren Darstellung zwei Panels
 	private VerticalPanel popupPanel = new VerticalPanel();
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
+	
+	// Label und zwei Button, zum befuellen der bereits deklarierten Panels
 	public final Button jaButton = new Button("Ja", new LogOutClickHandler());
 	public final Button neinButton = new Button
 			("Nein", new HideClickHandler());
 	private Label logOutText = new Label
 			("Möchtest du dich wirklich abmelden?");
 
-	/*
-	 * Im Konstruktor wird das Panel sichtbar, Styles werden zugewiesen und dem
-	 * Panel hinzugefuegt
+	/**
+	 * Im No-Argument-Konstruktor wird das Panel sichtbar gemacht, 
+	 * Styles werden den sichtbaren Elementen zugewiesen und 
+	 * die Elemente werden dem Panel hinzugefuegt
 	 */
 	public LogOutPopUp() {
 		super(true);
@@ -45,7 +51,12 @@ public class LogOutPopUp extends PopupPanel {
 		setWidget(popupPanel);
 	}
 
-	// ClickHandler zum schliessen des Popups
+	/**
+	 * ClickHandler zum schliessen des Popups, der den das Objekt, welches
+	 * in der LGrotte-Klasse erstellt wurde holt und die sichtbarkeit 
+	 * veraendert, abschliessend wird es dem in der LGrotte befindlichen
+	 * gleichgesetzt
+	 */
 	public class HideClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 
@@ -55,7 +66,9 @@ public class LogOutPopUp extends PopupPanel {
 		}
 	}
 
-	// ClickHandler zum durchfuehren des Logouts
+	/**
+	 *  ClickHandler zum durchfuehren des Logouts
+	 */
 	private class LogOutClickHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
 			Window.open(LGrotte.logOutUrl, "_self", "");

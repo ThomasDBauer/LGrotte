@@ -9,29 +9,37 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
- * Navigations-Gui, welches vom HorizontalPanel erbt
+ * Navigations-Gui, welches vom HorizontalPanel erbt. Sie stellt die Button zur
+ * Navigation durch das Programm dar.
  * 
  * @author Lukas Kircher
  *
  * @version 1.0
  */
-
 public class Navigation extends HorizontalPanel {
-
+	
+	/**
+	 * Instanz-Variablen werden deklariert
+	 */
 	public Navigation navigation = this;
 
-	//Buttons werden erstellt
+	//Buttons, die dem User die Interaktion ermoeglichen werden erstellt
 	private final Button findLoveButton = new Button("Find Love",
 			new NavigationsButtonHandler());
 	private final Button profilButton = new Button("Mein Profil",
 			new ProfilPopupClickHandler());
 	private final Button impressumButton = new Button("Impressum",
 			new NavigationsButtonHandler());
+	
+	//Das PopupPanel, dass beim anklicken des Button "mein Profil" erscheint
 	public PopupNavi popup = new PopupNavi();
+	
+	//Das anzuzeigende Impressum
 	public Impressum imp = new Impressum();
 
-	/*
-	 * Styles werden zugewiesen und die Buttons werden dem Panel zugefuegt
+	/**
+	 * Im No-Argument-Konstruktor werden Styles zugewiesen und die Button
+	 * dem Panel zugefuegt
 	 */
 	public Navigation() {
 		findLoveButton.setStylePrimaryName("navi-button");
@@ -45,8 +53,10 @@ public class Navigation extends HorizontalPanel {
 
 	}
 	
-	/*
-	 * Beim Klick auf den Button "Mein Profil" wird das Profil angzeigt,
+	/**
+	 * Beim Klick auf den Button "Mein Profil" wird das Profil, 
+	 * durch das Erzeugen einer neuen Instanz 
+	 * der Klasse ProfilAnzeigenEditor angzeigt,
 	 * die Divs im RootPanel werden gecleart & dass PopupPanel-Navi geaddet
 	 */
 	private class ProfilPopupClickHandler implements ClickHandler {
@@ -60,10 +70,12 @@ public class Navigation extends HorizontalPanel {
 		}
 	}
 
-	/*
-	 * Der geklickte Button bekommt einen anderen Style zugewiesen
+	/**
+	 * Im NavigationsButtonHandler wird zuerst dem geklickten Button 
+	 * ein anderer Style zugewiesen
 	 * Je nachdem, welcher Button aufgerufen wird wird ein neues
-	 * GUI-Element erstellt und dem RootPanel angefuegt
+	 * GUI-Objekt mit passender HTML-Ueberschrift erzeugt 
+	 * und dem RootPanel angefuegt
 	 */
 	private class NavigationsButtonHandler implements ClickHandler {
 		public void onClick(ClickEvent e) {
