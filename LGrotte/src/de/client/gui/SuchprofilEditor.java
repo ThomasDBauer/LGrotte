@@ -30,7 +30,9 @@ import de.shared.BO.Suchprofil;
  */
 
 public class SuchprofilEditor extends VerticalPanel {
-	// Verschiedene Panels
+	/**
+	 * Verschiedene Panels werden instanziert
+	 */
 		private VerticalPanel suchprofilPanel = this;
 		private HorizontalPanel buttonPanel =  new HorizontalPanel();
 		private HorizontalPanel loeschenPanel = new HorizontalPanel();
@@ -38,7 +40,9 @@ public class SuchprofilEditor extends VerticalPanel {
 		private HorizontalPanel speichernButtonPanel = new HorizontalPanel();
 		private HorizontalPanel listBoxPanel = new HorizontalPanel();
 		
-		// Startseite Buttons und Labels
+		/**
+		 * Buttons uns Labels werden erstellt
+		 */
 		private ListBox spListBox = new ListBox();
 		private Button spHinzufuegenButton = 
 				new Button("Suchprofil hinzuf&uumlgen", 
@@ -51,7 +55,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				new Label("Hey erstell doch ein Suchprofil!");
 		private Button abbrechenButton = new Button("Abbrechen", 
 				new SuchProfilAbbrechenClickHandler());
-		// AnzeigenTable
+		/**
+		 * Anzeiegn Tabelle wird erstellt zusammen mit verschieden Labels
+		 */
 		private FlexTable anzeigenTable = new FlexTable();
 		private HorizontalPanel groessenAnzeigenPanel = new HorizontalPanel();
 		private HorizontalPanel alterAnzeigenPanel = new HorizontalPanel();
@@ -60,7 +66,9 @@ public class SuchprofilEditor extends VerticalPanel {
 		private TextBox minAlterAnzeigenTextBox = new TextBox();
 		private TextBox maxAlterAnzeigenTextBox = new TextBox();
 		
-		// Buttons, Labels und Table fürs Suchprofil hinzufügen
+		/**
+		 * Buttons, Labels und Table für die Suchprofilmaske hinzufügen
+		 */
 		private FlexTable anlegenTable = new FlexTable();
 
 		private Label spNameLabel = new Label("Name");
@@ -98,11 +106,16 @@ public class SuchprofilEditor extends VerticalPanel {
 		private SuchprofilInfoEditor eigenschaftenEditor = 
 				new SuchprofilInfoEditor();
 		
-		// Editor 
+		/**
+		 * Konstruktor des Suchprofils
+		 * @param spie
+		 */
 		public SuchprofilEditor(SuchprofilInfoEditor spie) throws Exception {
 			this.eigenschaftenEditor = spie;
 			
-			//CSS-Style der Button und Lables
+			/*
+			 * Den Buttons uns Labels wird ein CSS-Sytle hinzugefügt
+			 */
 			Image hinzImage = new Image("hinzufuegen.png"); 
 			hinzImage.setStylePrimaryName("Button-img-Image");
 			spHinzufuegenButton.getElement().
@@ -150,7 +163,9 @@ public class SuchprofilEditor extends VerticalPanel {
 			haarfarbeLabel.setStyleName("Profilbearbeiten-Boxen", true);
 			koerpergLabel.setStyleName("Profilbearbeiten-Boxen", true);
 			
-			// Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
+			/*
+			 * Click- und ChangeHandler für ListBox damit wir keinen Anzeigen Button brauchen
+			 */
 			anlegenTable.clear();
 			spListBox.addClickHandler(new SuchProfilAnzeigenClickHandler());
 			spListBox.addChangeHandler(new ChangeHandler(){
@@ -160,13 +175,17 @@ public class SuchprofilEditor extends VerticalPanel {
 				}
 			});
 			
-			// Anhängen der Panels
+			/*
+			 *  Anhängen der Panels
+			 */
 			buttonPanel.add(spHinzufuegenButton);
 			listBoxPanel.add(spListBox);
 			this.add(buttonPanel);
 			this.add(listBoxPanel);
 			
-			// Anhängen der Items zur Auswahl
+			/*
+			 * Anhängen der Items zur Auswahl
+			 */
 			geschlechtListBox.addItem("Männlich");
 			geschlechtListBox.addItem("Weiblich");
 			geschlechtListBox.addItem("Andere");
@@ -198,7 +217,10 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 		
 	
-		// loadPage Methode die unseren Browser automatisch aktualisiert
+		/**
+		 * loadPage Methode die unseren Browser automatisch aktualisiert
+		 * un im Konstruktor aufgerufen wird
+		 */
 		public void loadPage(){
 			listBoxPanel.clear();
 			buttonPanel.clear();
@@ -214,7 +236,9 @@ public class SuchprofilEditor extends VerticalPanel {
 			}
 		}
 		
-		// ClickHandler zum suchprofil hizufügen Funktion
+		/**
+		 *  ClickHandler zum Suchprofil hizufügen Funktion
+		 */
 		private class SuchprofilHinzufuegenClickHandler 
 		implements ClickHandler {
 			public void onClick(ClickEvent event) {
@@ -237,7 +261,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				
 				RootPanel.get("Zusatz").clear();
 				
-				// Der FlexTable unsere Labels und Listboxen geben
+				/*
+				 *  Der FlexTable unsere Labels und Listboxen geben
+				 */
 				anlegenTable.setWidget(0, 0, spNameLabel);
 				anlegenTable.setWidget(0, 1, spNameTextBox);
 
@@ -283,14 +309,18 @@ public class SuchprofilEditor extends VerticalPanel {
 				maxAlterTextBox.setMaxLength(3);
 
 
-				// Anheften an Panels
+				/*
+				 *  Anheften an Panels
+				 */
 				suchprofilPanel.add(anlegenTable);
 				
 
 			}
 		}
 		
-		// ClickHandler um das hinzufügen eines Suchprofil abzubrechen
+		/**
+		 * ClickHandler um das hinzufügen eines Suchprofil abzubrechen
+		 */
 		private class SuchProfilAbbrechenClickHandler 
 		implements ClickHandler {
 			public void onClick(ClickEvent event) {
@@ -302,7 +332,9 @@ public class SuchprofilEditor extends VerticalPanel {
 		}
 		
 		
-		// ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
+		/**
+		 * ClickHandler um das neue Suchprofil in die Datenbank zu schreiben
+		 */
 		private class SuchProfilAnlegenClickHandler 
 		implements ClickHandler {
 
@@ -330,7 +362,10 @@ public class SuchprofilEditor extends VerticalPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+				/*
+				 * Überprüfung der Eingabefelder bei nicht korektem Zeichen 
+				 * oder leerer Angabe wird er Nutzer über Window.alert informiert
+				 */
 					String input = minAlterTextBox.getText();
 					if (!input.matches("[0-9]*") || input.matches("")) {
 						Window.alert("'"+ minAlterTextBox.getText() + 
@@ -355,7 +390,9 @@ public class SuchprofilEditor extends VerticalPanel {
 								"'beinhaltet ein ungültiges Symbol");
 						return;
 					}else {
-						
+						/**
+						 * clearen der Suchprofilmaske
+						 */
 						anzeigenTable.clear();
 						alterAnzeigenPanel.clear();
 						groessenAnzeigenPanel.clear();
@@ -371,6 +408,9 @@ public class SuchprofilEditor extends VerticalPanel {
 						RootPanel.get("Zusatz").clear();
 					}
 					}
+					/*
+					 * Popup um den Nutzer ein feedback zu geben
+					 */
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde angelegt "
 						+ "zum ausbelnden der Meldung "
@@ -378,7 +418,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				this.popup.center();
 			}
 		}
-		// Callback zum anlegen des Suchprofils
+		/*
+		 * Callback zum anlegen des Suchprofils
+		 */
 		private class SPAnlegenCallback implements AsyncCallback {
 			public void onFailure(Throwable caught) {
 				RootPanel.get().add(new Label
@@ -389,7 +431,9 @@ public class SuchprofilEditor extends VerticalPanel {
 					loadPage();
 			}
 		}
-			// ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
+		/*
+		 * ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
+		 */
 			private class DeleteSuchprofilClickHandler implements ClickHandler{
 				private PopupPanel popup;
 
@@ -407,7 +451,9 @@ public class SuchprofilEditor extends VerticalPanel {
 					alterAnzeigenPanel.clear();
 					groessenAnzeigenPanel.clear();
 					RootPanel.get("Zusatz").clear();
-					// Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
+					/**
+					 *  Hiermit sieht der Nutzer das sein Suchprofil gelöscht wurde
+					 */
 					this.popup = new PopupPanel(true,true);
 					this.popup.add(new Label("Suchprofil wurde angelegt "
 							+ "zum Ausbelnden der Meldung "
@@ -416,7 +462,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				}
 				
 			}
-			// Callback zum löschen des Suchprofils
+			/**
+			 * Callback zum löschen des Suchprofils
+			 */
 			private class SPdeleteCallback implements AsyncCallback{
 				public void onFailure(Throwable caught) {
 					suchprofilPanel.add(new Label (caught.toString()));
@@ -427,7 +475,9 @@ public class SuchprofilEditor extends VerticalPanel {
 			}
 			
 			
-		//Clickhandler zum Updaten des Suchprofils
+		/**
+		 * Clickhandler zum Updaten des Suchprofils
+		 */
 		private class UpdateSuchprofilClickHandler implements ClickHandler{
 
 			private PopupPanel popup;
@@ -459,6 +509,10 @@ public class SuchprofilEditor extends VerticalPanel {
 					e.printStackTrace();
 				}
 				keinSPLabel.setText("");
+				/*
+				 * Field Verfier zum überprüfen ob die richtigen
+				 *  Zeichen eingegeben wurden
+				 */
 				String input = minAlterAnzeigenTextBox.getText();
 				if (!input.matches("[0-9]*") || input.matches("")) {
 					Window.alert("'"+ minAlterAnzeigenTextBox.getText() + 
@@ -484,7 +538,10 @@ public class SuchprofilEditor extends VerticalPanel {
 								"'beinhaltet ein ungültiges Symbol");
 						return;
 					
-				} else {			
+				} else {	
+					/**
+					 * clearen des Suchprofils nach updaten
+					 */
 					updatePanel.clear();
 					loeschenPanel.clear();
 					anzeigenTable.clear();
@@ -493,7 +550,9 @@ public class SuchprofilEditor extends VerticalPanel {
 					RootPanel.get("Zusatz").clear();
 					}
 				}
-				
+				/*
+				 * Anzeige, dass das Suchprofil geändert wurde
+				 */
 				this.popup = new PopupPanel(true,true);
 				this.popup.add(new Label("Suchprofil wurde aktualisiert "
 						+ "zum Ausbelnden der Meldung "
@@ -504,7 +563,9 @@ public class SuchprofilEditor extends VerticalPanel {
 			
 		}
 
-		//Callback zum Updaten des Suchprofils 
+		/**
+		 * Callback zum Updaten des Suchprofils 
+		 */
 		private class UpdateCallback implements AsyncCallback {
 			public void onFailure(Throwable caught) {				
 			}
@@ -512,7 +573,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				loadPage();
 			}
 		}
-		// Callback zum Anzeigen der neuen Suchprofile in unserer Listbox
+		/**
+		 * Callback zum Anzeigen der neuen Suchprofile in unserer Listbox
+		 */
 		private class GetSuchprofileCallback implements 
 		AsyncCallback<Vector<Suchprofil>> {
 			public void onFailure(Throwable caught) {
@@ -532,7 +595,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				}
 			}
 		}
-		// ClickHandler zum Anzeigen des Suchprofils
+		/**
+		 * ClickHandler zum Anzeigen des Suchprofils
+		 */
 		private class SuchProfilAnzeigenClickHandler implements ClickHandler {
 			public void onClick(ClickEvent event) {
 				try {
@@ -542,7 +607,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-//				 Editor erscheinen lassen per Click
+				/*
+				 * Editor erscheinen lassen per Click
+				 */
 				RootPanel.get("Zusatz").clear();
 				keinSPLabel.setText("");
 				try {
@@ -551,7 +618,9 @@ public class SuchprofilEditor extends VerticalPanel {
 				}
 			}
 		}	
-		// Callback zum Anzeigen des kompletten Suchprofils
+		/**
+		 * Callback zum Anzeigen des kompletten Suchprofils
+		 */
 		private class GetSuchprofileKomplettCallback implements 
 		AsyncCallback<Suchprofil> {
 			public void onFailure(Throwable caught) {
@@ -565,7 +634,9 @@ public class SuchprofilEditor extends VerticalPanel {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				
+				/*
+				 * clearen nach Ausführen des ClickHandlers
+				 */
 					anlegenTable.clear();
 					alterPanel.clear();
 					groessenPanel.clear();
@@ -573,6 +644,9 @@ public class SuchprofilEditor extends VerticalPanel {
 					groessenAnzeigenPanel.clear();
 					speichernButtonPanel.clear();
 					
+					/*
+					 * Setzen von Indexen für die Listboxen für späteres auslesen
+					 */
 					anzeigenTable.setWidget(1, 0, geschlechtLabel);
 					anzeigenTable.setWidget(1, 1, geschlechtListBox);
 					for (int g = 0; g < 4;g++) {
@@ -609,7 +683,10 @@ public class SuchprofilEditor extends VerticalPanel {
 						}
 					}
 					
-					
+					/*
+					 * Anheften Textboxen für Groesse an Panels
+					 * sowie stylen durch CSS
+					 */
 					anzeigenTable.setWidget(5, 0, koerpergLabel);
 					groessenAnzeigenPanel.add(new Label("von"));
 					groessenAnzeigenPanel.getWidget(0).
@@ -625,12 +702,18 @@ public class SuchprofilEditor extends VerticalPanel {
 					maxGroesseAnzeigenTextBox.setText
 					(Integer.toString(result.getMaxGroesse()));
 					
+					/*
+					 * festsetzen wie viel zeichen in eine Textbox kommen dürfen
+					 */
 					minGroesseAnzeigenTextBox.setVisibleLength(3);
 					minGroesseAnzeigenTextBox.setMaxLength(3);
 					maxGroesseAnzeigenTextBox.setVisibleLength(3);
 					maxGroesseAnzeigenTextBox.setMaxLength(3);
 
-					
+					/*
+					 * Anheften Textboxen für Alter an Panels
+					 * sowie stylen durch CSS
+					 */
 					anzeigenTable.setWidget(6, 0, alterLabel);
 					alterAnzeigenPanel.add(von);
 					alterAnzeigenPanel.add(minAlterAnzeigenTextBox);
@@ -642,6 +725,9 @@ public class SuchprofilEditor extends VerticalPanel {
 					maxAlterAnzeigenTextBox.setText
 					(Integer.toString(result.getMaxAlter()));
 					
+					/*
+					 * festsetzen wie viel zeichen in eine Textbox kommen dürfen
+					 */
 					minAlterAnzeigenTextBox.setVisibleLength(3);
 					minAlterAnzeigenTextBox.setMaxLength(3);
 					maxAlterAnzeigenTextBox.setVisibleLength(3);
