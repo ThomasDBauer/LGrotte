@@ -3,34 +3,33 @@ package de.shared.BO;
 import java.util.Date;
 
 /**
- * 
- * @author Thomas Bauer
- *
- * @version 1.0
- * 
  *          Die Klasse Profil erweitert die Klasse BusinessObject. Die Klasse
  *          Profil enthaelt Attribute, die die Eigenschaften einer Person
  *          darstellen.
+ *          
+ * @author Thomas Bauer
+ *
+ * @version 1.0
  */
 
 public class Profil extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
+	/**
 	 * Deklaration der ProfilAttribute
 	 */
 	private String fname, lname, haarfarbe, religion, geschlecht, raucher, email;
 	private int koerpergroesse;
 	private Date geburtsdatum;
 
-	/*
+	/**
 	 * Deklaration der Login-Informationen
 	 */
 	private boolean loggedIn;
 	private String loginUrl, logoutUrl;
 
-	/*
+	/**
 	 * Auslesen des LogIn
 	 * 
 	 * @return loggedIn
@@ -39,7 +38,7 @@ public class Profil extends BusinessObject {
 		return loggedIn;
 	}
 
-	/*
+	/**
 	 * Setzen des LogIn
 	 * 
 	 * @param loggedIn
@@ -48,7 +47,7 @@ public class Profil extends BusinessObject {
 		this.loggedIn = loggedIn;
 	}
 
-	/*
+	/**
 	 * Auslesen der LogInUrl
 	 * 
 	 * @return loginUrl
@@ -57,7 +56,7 @@ public class Profil extends BusinessObject {
 		return loginUrl;
 	}
 
-	/*
+	/**
 	 * Setzen der LoginUrl
 	 * 
 	 * @param loginUrl
@@ -66,7 +65,7 @@ public class Profil extends BusinessObject {
 		this.loginUrl = loginUrl;
 	}
 
-	/*
+	/**
 	 * Auslesen der LogoutUrl
 	 * 
 	 * @return logoutUrl
@@ -75,7 +74,7 @@ public class Profil extends BusinessObject {
 		return logoutUrl;
 	}
 
-	/*
+	/**
 	 * Setzen der LogotUrl
 	 * 
 	 * @param logotUrl
@@ -84,7 +83,7 @@ public class Profil extends BusinessObject {
 		this.logoutUrl = logoutUrl;
 	}
 
-	/*
+	/**
 	 * Auslesen des Geschlechts
 	 * 
 	 * @return geschlecht
@@ -93,7 +92,7 @@ public class Profil extends BusinessObject {
 		return this.geschlecht;
 	}
 
-	/*
+	/**
 	 * Setzen der LogotUrl
 	 * 
 	 * @param logotUrl
@@ -102,7 +101,7 @@ public class Profil extends BusinessObject {
 		this.geschlecht = geschlecht;
 	}
 
-	/*
+	/**
 	 * Auslesen der Haarfarbe
 	 * 
 	 * @return haarfarbe
@@ -111,7 +110,7 @@ public class Profil extends BusinessObject {
 		return haarfarbe;
 	}
 
-	/*
+	/**
 	 * Setzen der Haarfarbe
 	 * 
 	 * @param haarfarbe
@@ -120,7 +119,7 @@ public class Profil extends BusinessObject {
 		this.haarfarbe = haarfarbe;
 	}
 
-	/*
+	/**
 	 * Auslesen der Religion
 	 * 
 	 * @return religion
@@ -129,7 +128,7 @@ public class Profil extends BusinessObject {
 		return religion;
 	}
 
-	/*
+	/**
 	 * Setzen der Religion
 	 * 
 	 * @param religion
@@ -138,7 +137,7 @@ public class Profil extends BusinessObject {
 		this.religion = religion;
 	}
 
-	/*
+	/**
 	 * Auslesen der Koerpergroesse
 	 * 
 	 * @return koerpergroesse
@@ -147,7 +146,7 @@ public class Profil extends BusinessObject {
 		return koerpergroesse;
 	}
 
-	/*
+	/**
 	 * Setzen der Koerpergroesse
 	 * 
 	 * @param koerpergroesse
@@ -156,7 +155,7 @@ public class Profil extends BusinessObject {
 		this.koerpergroesse = koerpergroesse;
 	}
 
-	/*
+	/**
 	 * Auslesen des Geburtsdatums
 	 * 
 	 * @return geburtsdatum
@@ -165,7 +164,7 @@ public class Profil extends BusinessObject {
 		return geburtsdatum;
 	}
 
-	/*
+	/**
 	 * Setzen des Geburtsdatums
 	 * 
 	 * @param geburtsdatum
@@ -174,7 +173,7 @@ public class Profil extends BusinessObject {
 		this.geburtsdatum = geburtsdatum;
 	}
 
-	/*
+	/**
 	 * Auslesen ob Raucher
 	 * 
 	 * @return raucher
@@ -183,7 +182,7 @@ public class Profil extends BusinessObject {
 		return raucher;
 	}
 
-	/*
+	/**
 	 * Setzen ob Raucher
 	 * 
 	 * @param raucher
@@ -192,7 +191,7 @@ public class Profil extends BusinessObject {
 		this.raucher = raucher;
 	}
 
-	/*
+	/**
 	 * Auslesen des Vornamens
 	 * 
 	 * @return fname
@@ -201,7 +200,7 @@ public class Profil extends BusinessObject {
 		return fname;
 	}
 
-	/*
+	/**
 	 * Setzen des Vornamens
 	 * 
 	 * @param fname
@@ -210,7 +209,7 @@ public class Profil extends BusinessObject {
 		this.fname = fname;
 	}
 
-	/*
+	/**
 	 * Auslesen des Nachnames
 	 * 
 	 * @return lname
@@ -219,7 +218,7 @@ public class Profil extends BusinessObject {
 		return lname;
 	}
 
-	/*
+	/**
 	 * Setzen des Vornamens
 	 * 
 	 * @param fname
@@ -228,7 +227,7 @@ public class Profil extends BusinessObject {
 		this.lname = lname;
 	}
 
-	/*
+	/**
 	 * Auslesen der Email
 	 * 
 	 * @return email
@@ -237,7 +236,7 @@ public class Profil extends BusinessObject {
 		return email;
 	}
 
-	/*
+	/**
 	 * Setzen der Email
 	 * 
 	 * @param email

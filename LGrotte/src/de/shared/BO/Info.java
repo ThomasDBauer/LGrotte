@@ -1,20 +1,19 @@
 package de.shared.BO;
 
 /**
+ * Die Klasse Info erweitert die Klasse BusinessObject.
+ * Informationen zu einer Eigenschaft
  * 
  * @author Thomas Bauer
  *
  * @version 1.0
- * 
- * Die Klasse Info erweitert die Klasse BusinessObject.
- * Informationen zu einer Eigenschaft
  */
 
 public class Info extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
+	/**
 	 * Deklaration der Attribute
 	 */
 	// Der Primary Key
@@ -26,7 +25,7 @@ public class Info extends BusinessObject {
 	// Der Foreign Key auf
 	private int eigenschaft;
 
-	/*
+	/**
 	 * Auslesen der ID
 	 * 
 	 * @return id
@@ -35,7 +34,7 @@ public class Info extends BusinessObject {
 		return id;
 	}
 	
-	/*
+	/**
 	 * Setzen der ID
 	 * 
 	 * @param id
@@ -44,7 +43,7 @@ public class Info extends BusinessObject {
 		this.id = id;
 	}
 
-	/*
+	/**
 	 * Auslesen des Values
 	 * 
 	 * @return value
@@ -53,7 +52,7 @@ public class Info extends BusinessObject {
 		return value;
 	}
 
-	/*
+	/**
 	 * Setzen des Values
 	 * 
 	 * @param value
@@ -62,7 +61,7 @@ public class Info extends BusinessObject {
 		this.value = value;
 	}
 
-	/*
+	/**
 	 * Auslesen der Eigenschaft
 	 * 
 	 * @return eigenschaft
@@ -71,7 +70,7 @@ public class Info extends BusinessObject {
 		return eigenschaft;
 	}
 
-	/*
+	/**
 	 * Setzen des Eigenschaft
 	 * 
 	 * @param eigenschaft

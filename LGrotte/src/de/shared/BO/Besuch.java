@@ -2,24 +2,23 @@ package de.shared.BO;
 
 /**
  * 
- * @author Thomas Bauer
- * 
- * @version 1.0
- * 
  *          Ein Besuch besteht aus einem besuchendem Profil und einem besuchten
  *          Profil.
  * 
+ * @author Thomas Bauer
+ * 
+ * @version 1.0
  */
 
 public class Besuch {
 
-	/*
+	/**
 	 * Deklaration der Attribute
 	 */
 	private Profil besuchtesProfil;
 	private Profil besuchendesProfil;
 
-	/*
+	/**
 	 * Auslesen des besuchten Profils
 	 * 
 	 * @return besuchtesProfil
@@ -28,7 +27,7 @@ public class Besuch {
 		return besuchtesProfil;
 	}
 
-	/*
+	/**
 	 * Setzen des besuchten Profils
 	 * 
 	 * @param besuchtesProfil
@@ -37,7 +36,7 @@ public class Besuch {
 		this.besuchtesProfil = besuchtesProfil;
 	}
 
-	/*
+	/**
 	 * Auslesen des besuchenden Profils
 	 * 
 	 * @return besuchendesProfil
@@ -46,7 +45,7 @@ public class Besuch {
 		return besuchendesProfil;
 	}
 
-	/*
+	/**
 	 * Setzen des besuchten Profils
 	 * 
 	 * @param besuchendesProfil

@@ -6,31 +6,31 @@ import de.shared.RO.ProfilEigenschaft;
 
 /**
  * 
+ * Die Klasse Suchprofil erweitert die Klasse BusinessObject. Sie enthaelt
+ * Attribute, die im Suchprofil dargestellt werden und einen Vector der die
+ * SuchprofilInformationen abspeichert.
+ * 
  * @author Thomas Bauer
  *
  * @version 1.0
- * 
- *          Die Klasse Suchprofil erweitert die Klasse BusinessObject. Sie
- *          enthaelt Attribute, die im Suchprofil dargestellt werden und einen
- *          Vector der die SuchprofilInformationen abspeichert.
  */
 
 public class Suchprofil extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
+	/**
 	 * Deklaration der Suchprofil-Attribute
 	 */
 	private String suchprofilname, profil, haarfarbe, religion, raucher, geschlecht;
 	private int minGroesse, maxGroesse, minAlter, maxAlter;
 
-	/*
+	/**
 	 * SuchprofilInformationen werden in einem Vector abgelegt
 	 */
 	private Vector<ProfilEigenschaft> profileigenschaften = new Vector<ProfilEigenschaft>();
 
-	/*
+	/**
 	 * Auslesen des Suchprofil Namen
 	 * 
 	 * @return suchprofilname
@@ -39,7 +39,7 @@ public class Suchprofil extends BusinessObject {
 		return suchprofilname;
 	}
 
-	/*
+	/**
 	 * Setzen des Suchprofil Namens
 	 * 
 	 * @param suchprofilname
@@ -48,7 +48,7 @@ public class Suchprofil extends BusinessObject {
 		this.suchprofilname = suchprofilname;
 	}
 
-	/*
+	/**
 	 * Auslesen der Haarfarbe
 	 * 
 	 * @return haarfarbe
@@ -57,7 +57,7 @@ public class Suchprofil extends BusinessObject {
 		return haarfarbe;
 	}
 
-	/*
+	/**
 	 * Setzen der Haarfarbe
 	 * 
 	 * @param haarfarbe
@@ -66,7 +66,7 @@ public class Suchprofil extends BusinessObject {
 		this.haarfarbe = haarfarbe;
 	}
 
-	/*
+	/**
 	 * Auslesen der Religion
 	 * 
 	 * @return religion
@@ -75,7 +75,7 @@ public class Suchprofil extends BusinessObject {
 		return religion;
 	}
 
-	/*
+	/**
 	 * Setzen der Religion
 	 * 
 	 * @param religion
@@ -84,7 +84,7 @@ public class Suchprofil extends BusinessObject {
 		this.religion = religion;
 	}
 
-	/*
+	/**
 	 * Auslesen ob Raucher
 	 * 
 	 * @return religion
@@ -93,7 +93,7 @@ public class Suchprofil extends BusinessObject {
 		return raucher;
 	}
 
-	/*
+	/**
 	 * Setzen ob Raucher
 	 * 
 	 * @param raucher
@@ -102,7 +102,7 @@ public class Suchprofil extends BusinessObject {
 		this.raucher = raucher;
 	}
 
-	/*
+	/**
 	 * Auslesen des Geschlechts
 	 * 
 	 * @return geschelcht
@@ -111,7 +111,7 @@ public class Suchprofil extends BusinessObject {
 		return geschlecht;
 	}
 
-	/*
+	/**
 	 * Setzen des Geschlechts
 	 * 
 	 * @param geschlecht
@@ -120,7 +120,7 @@ public class Suchprofil extends BusinessObject {
 		this.geschlecht = geschlecht;
 	}
 
-	/*
+	/**
 	 * Auslesen des Mindestalters
 	 * 
 	 * @return minAlter
@@ -129,7 +129,7 @@ public class Suchprofil extends BusinessObject {
 		return minAlter;
 	}
 
-	/*
+	/**
 	 * Setzen des Mindestalters
 	 * 
 	 * @param minalter
@@ -138,7 +138,7 @@ public class Suchprofil extends BusinessObject {
 		this.minAlter = minAlter;
 	}
 
-	/*
+	/**
 	 * Auslesen des Maximalalters
 	 * 
 	 * @return maxAlter
@@ -147,7 +147,7 @@ public class Suchprofil extends BusinessObject {
 		return maxAlter;
 	}
 
-	/*
+	/**
 	 * Setzen des Maximalalters
 	 * 
 	 * @param maxAlter
@@ -156,7 +156,7 @@ public class Suchprofil extends BusinessObject {
 		this.maxAlter = maxAlter;
 	}
 
-	/*
+	/**
 	 * Auslesen des Profils
 	 * 
 	 * @return profil
@@ -165,7 +165,7 @@ public class Suchprofil extends BusinessObject {
 		return profil;
 	}
 
-	/*
+	/**
 	 * Setzen des Profils
 	 * 
 	 * @param profil
@@ -174,7 +174,7 @@ public class Suchprofil extends BusinessObject {
 		this.profil = profil;
 	}
 
-	/*
+	/**
 	 * Auslesen der Mindestgroesse
 	 * 
 	 * @return minGroesse
@@ -183,7 +183,7 @@ public class Suchprofil extends BusinessObject {
 		return minGroesse;
 	}
 
-	/*
+	/**
 	 * Setzen der Mindestgroesse
 	 * 
 	 * @param minGroesse
@@ -192,7 +192,7 @@ public class Suchprofil extends BusinessObject {
 		this.minGroesse = minGroesse;
 	}
 
-	/*
+	/**
 	 * Auslesen der Maximalgroesse
 	 * 
 	 * @return maxGroesse
@@ -201,7 +201,7 @@ public class Suchprofil extends BusinessObject {
 		return maxGroesse;
 	}
 
-	/*
+	/**
 	 * Setzen der Maximalgroesse
 	 * 
 	 * @param maxGroesse
@@ -210,7 +210,7 @@ public class Suchprofil extends BusinessObject {
 		this.maxGroesse = maxGroesse;
 	}
 
-	/*
+	/**
 	 * Auslesen der Profileigenschaften
 	 * 
 	 * @return profilEigenschaften
@@ -219,7 +219,7 @@ public class Suchprofil extends BusinessObject {
 		return profileigenschaften;
 	}
 
-	/*
+	/**
 	 * Setzen der Profileigenschaften
 	 * 
 	 * @param profileigenschaften
