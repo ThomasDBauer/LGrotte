@@ -33,7 +33,10 @@ import de.shared.RO.ProfilEigenschaft;
 
 public class SuchprofilInfoEditor extends VerticalPanel {
 
-	// GUI Elemente
+	/**
+	 * Die GUI Elemente Buttons werden insanziert und 
+	 * durch Vertical Panel und FlexTable angeordnet
+	 */
 	private VerticalPanel eigenschaftenPanel = new VerticalPanel();
 	private Button addEigenschaftenButton = 
 			new Button("Eigenschaft hinzufügen");
@@ -41,13 +44,17 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 			new Button("Speichern", new InsertHandler());
 	private Button loeschenButton = new Button("Löschen");
 	private FlexTable table = new FlexTable();
-
-	// Daten und Zwischenspeicher
+/**
+ * Die HashMap <Eiegnschaft,Widget>wird instanziert ebenso ein
+ * Vector mit Eigenschaften
+ */
 	private HashMap<Eigenschaft, Widget> hashmap = 
 			new HashMap<Eigenschaft, Widget>();
 	private Vector<Eigenschaft> eigenschaften = new Vector<Eigenschaft>();
 
-	// Das Suchprofil + Setter
+	/**
+	 * Das Suchprofil und sein Setter werden angelegt
+	 */
 	private Suchprofil suchprofil;
 
 	public void setSuchprofil(Suchprofil suchprofil) throws Exception {
@@ -55,7 +62,9 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 		loadProfilEigenschaften();
 	}
 
-	// Konstruktor
+	/**
+	 * Im Konstruktor werden die Styles für die Buttons angeben
+	 */
 	public SuchprofilInfoEditor() throws Exception {
 		addEigenschaftenButton.setStylePrimaryName("grotte-Button");
 		speicherButton.setStylePrimaryName("grotte-Button");
@@ -66,7 +75,9 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 		loeschenButton.setStylePrimaryName("grotte-Button");
 	}
 	
-	// LoadPageMethode um die Eigenschaften immer aktuell zu halten
+	/**
+	 * LoadPageMethode um die Eigenschaften immer aktuell zu halten
+	 */
 	public void loadProfilEigenschaften() throws Exception {
 		ClientSideSettings.getEditorService().
 		getSuchprofilEigenschaften(suchprofil.getSuchprofilname(),
@@ -76,7 +87,9 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 		eigenschaftenPanel.add(table);
 	}
 
-	// Callback für Aufruf der Eigenschaften
+	/**
+	 * Callback für Aufruf der Eigenschaften
+	 */
 	private class ProfilEigenschaftenCallback implements 
 	AsyncCallback<Vector<ProfilEigenschaft>> {
 		public void onFailure(Throwable caught) {
@@ -115,7 +128,10 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 		}
 	}
 	
-	// Callback für Aufruf der Auswahl Eigenschaften
+	/**
+	 *  Callback für Aufruf der Auswahl Eigenschaften
+	 *
+	 */
 	private class GetAuswahlCallback implements 
 	AsyncCallback<Vector<Auswahl>> {
 		private ListBox lb;
@@ -125,16 +141,25 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 			this.lb = lb;
 			this.value = value;
 		}
-
+/**
+ * On Failure Methode gibt eine Fehlermeldung bei Fehlschlagen aus
+ */
 		public void onFailure(Throwable caught) {
 			Window.alert("GetAuswahlCallback " + caught.toString());
 		}
-
+/**
+ * Bei erfolgreichem Ausführen wird über eine For-Schleife der ListBox 
+ * ein Item hinzugefügt
+ */
 		public void onSuccess(Vector<Auswahl> result) {
 			for (int i = 0; i < result.size(); i++) {
 				lb.addItem(result.elementAt(i).getValue());
 			}
 			if (value != null)
+				/*
+				 * Wenn der der Wert ungleich null ist wird der bestehenden 
+				 * ListBox ein Index gegeben
+				 */
 			for (int i = 0; i < lb.getItemCount(); i++) {
 				if (lb.getItemText(i).equals(value)) {
 					lb.setSelectedIndex(i);
@@ -145,9 +170,14 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 		}
 	}
 
-	// ClickHandler um Infos zu speichern
+	/**
+	 * Ein Clickhandler um die Infos zu speichern
+	 */
 	private class InsertHandler implements ClickHandler {
 		
+		/*
+		 * Popup Panel zum anzeigen einer fehlermeldung
+		 */
 		private PopupPanel popup;
 		
 		public void onClick(ClickEvent e) {
@@ -190,6 +220,9 @@ public class SuchprofilInfoEditor extends VerticalPanel {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
+			/*
+			 * PopupPanel mit Meldung wird ausgegeben
+			 */
 			this.popup = new PopupPanel(true, true);
 			this.popup.add(new Label(
 					"Suchprofilinfos wurde aktualisiert " +
