@@ -418,7 +418,7 @@ public class SuchprofilEditor extends VerticalPanel {
 				this.popup.center();
 			}
 		}
-		/*
+		/**
 		 * Callback zum anlegen des Suchprofils
 		 */
 		private class SPAnlegenCallback implements AsyncCallback {
@@ -431,7 +431,8 @@ public class SuchprofilEditor extends VerticalPanel {
 					loadPage();
 			}
 		}
-		/*
+		
+		/**
 		 * ClickHandler um das Suchprofil auch aus der Datenbank zu löschen
 		 */
 			private class DeleteSuchprofilClickHandler implements ClickHandler{
