@@ -3,26 +3,29 @@ package de.shared.RO;
 import java.io.Serializable;
 
 /**
+ * Traegt Informationen ueber das Matching-Ergebnis, das in Reports
+ * dargestellt wird.
+ * 
  * @author Thomas Bauer
  * 
- *         Traegt Informationen ueber das Matching-Ergebnis, das in Reports
- *         dargestellt wird.
+ * @version 1.0
  */
 public class Match implements Serializable {
 
 
-	/*
+	
+	/**
 	 * Das Ergebnis eines Matches wird repraesentiert durch eine Zahl. In den
 	 * Servlets wird das Objekt beschrieben. In den Writer-Klassen, die aus den
 	 * Report-Objects HTML-Code generieren, wird das Ergebnis ausgelesen.
 	 */
 
-	/*
+	/**
 	 * Deklaration des Attributs
 	 */
 	private int matchResult;
 
-	/*
+	/**
 	 * Konstruktoren der Klasse
 	 */
 	public Match() {
@@ -33,7 +36,7 @@ public class Match implements Serializable {
 		matchResult = m;
 	}
 
-	/*
+	/**
 	 * Auslesen des Match Results
 	 * 
 	 * @return matchResult
@@ -42,7 +45,7 @@ public class Match implements Serializable {
 		return matchResult;
 	}
 
-	/*
+	/**
 	 * Setzen des Match Results
 	 * 
 	 * @param matchResult
