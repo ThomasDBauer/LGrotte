@@ -5,7 +5,6 @@ import java.util.Vector;
 import de.shared.RO.ProfilEigenschaft;
 
 /**
- * 
  * Die Klasse Suchprofil erweitert die Klasse BusinessObject. Sie enthaelt
  * Attribute, die im Suchprofil dargestellt werden und einen Vector der die
  * SuchprofilInformationen abspeichert.

@@ -1,13 +1,10 @@
 package de.shared.BO;
 
 /**
- * 
- * 
  * Die Klasse Auswahl erweitert die Klasse BusinessObject.
- *          Auswahl-Objekte repräsentieren die Auswahl zu Auswahl-Eigenschaften.
- *          Entsprechend tragen sie die Information, zu welcher Eigenschaft sie
- *          gehören und den Wert der Auswahl.
- * 
+ * Auswahl-Objekte repräsentieren die Auswahl zu Auswahl-Eigenschaften.
+ * Entsprechend tragen sie die Information, zu welcher Eigenschaft sie
+ * gehören und den Wert der Auswahl.
  * 
  * @author Thomas Bauer
  * 

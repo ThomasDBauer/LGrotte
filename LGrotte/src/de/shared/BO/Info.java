@@ -16,13 +16,8 @@ public class Info extends BusinessObject {
 	/**
 	 * Deklaration der Attribute
 	 */
-	// Der Primary Key
 	private int id;
-
-	// Der Wert
 	private String value;
-
-	// Der Foreign Key auf
 	private int eigenschaft;
 
 	/**

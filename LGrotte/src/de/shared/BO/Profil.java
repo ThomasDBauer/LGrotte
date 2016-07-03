@@ -3,9 +3,9 @@ package de.shared.BO;
 import java.util.Date;
 
 /**
- *          Die Klasse Profil erweitert die Klasse BusinessObject. Die Klasse
- *          Profil enthaelt Attribute, die die Eigenschaften einer Person
- *          darstellen.
+ * Die Klasse Profil erweitert die Klasse BusinessObject. Die Klasse
+ * Profil enthaelt Attribute, die die Eigenschaften einer Person
+ * darstellen.
  *          
  * @author Thomas Bauer
  *

@@ -1,9 +1,8 @@
 package de.shared.BO;
 
 /**
- * 
- *          Ein Besuch besteht aus einem besuchendem Profil und einem besuchten
- *          Profil.
+ * Ein Besuch besteht aus einem besuchendem Profil und einem besuchten
+ * Profil.
  * 
  * @author Thomas Bauer
  * 

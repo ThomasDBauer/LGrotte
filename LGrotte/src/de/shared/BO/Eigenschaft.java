@@ -1,9 +1,9 @@
 package de.shared.BO;
 
 /**
- *          Die Klasse Eigenschaft erweiter die Klasse BusinessObject.
- *          Eigenschaften bestehen aus einer ID, einer Erläuterung und der
- *          Information, ob sie Auswahl- oder Freitext-Eigenschaften sind.
+ * Die Klasse Eigenschaft erweiter die Klasse BusinessObject.
+ * Eigenschaften bestehen aus einer ID, einer Erläuterung und der
+ * Information, ob sie Auswahl- oder Freitext-Eigenschaften sind.
  * 
  * @author Thomas Bauer
  *
