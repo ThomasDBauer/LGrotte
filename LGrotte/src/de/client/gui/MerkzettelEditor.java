@@ -24,7 +24,6 @@ import de.shared.BO.Profil;
  *
  * @version 1.0 
  */
-
 	public class MerkzettelEditor extends VerticalPanel {
 		
 		// Die Tabelle in der die Profile angezeigt werden
@@ -44,7 +43,7 @@ import de.shared.BO.Profil;
 		 FlexCellFormatter cellFormatter = table.getFlexCellFormatter();
 
 		 /**
-		  * Hier werden Styles vergeben 
+		  * Im No-Argument-Konstrutor werden Styles vergeben 
 		  * und die Methode loadProfiles lädt die
 		  * aktuellen Merklisten-Profile in die Tabelle
 		  */
@@ -171,7 +170,9 @@ import de.shared.BO.Profil;
 	}
 			
 	/**
-	 * Callback zum ClickHandler "LoeschenHandler"
+	 * Callback zum ClickHandler "LoeschenHandler", bei
+	 * erfolgreichem Callback werden die Merklistenprofile
+	 * neu geladen
 	 */
 	private class DeleteCallback implements AsyncCallback {
 		public void onFailure(Throwable caught) {

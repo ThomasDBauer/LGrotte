@@ -12,7 +12,9 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 
 public class SuchprofilMainFrame extends HorizontalPanel{
 	
-	// SuchprofilEditor bekommt den SuchprofilInfoEditor als Parameter
+	/**
+	 * SuchprofilEditor bekommt den SuchprofilInfoEditor als Parameter
+	 */
 	SuchprofilInfoEditor spie = new SuchprofilInfoEditor();
 	public SuchprofilMainFrame() throws Exception{
 		this.add(new SuchprofilEditor(spie));
