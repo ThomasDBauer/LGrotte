@@ -1,18 +1,18 @@
 package de.shared.BO;
 
 /**
+ *          Die Klasse SuchprofilInfo kombiniert alle wichtigen Informationen zu
+ *          SuchprofilInformationen in einem Objekt. 
  * 
  * @author Thomas Bauer
  *
  * @version 1.0
  * 
- *          Die Klasse SuchprofilInfo kombiniert alle wichtigen Informationen zu
- *          SuchprofilInformationen in einem Objekt. 
  */
 
 public class SuchprofilInfo {
 
-	/*
+	/**
 	 * Deklaration der Attribute
 	 */
 	
@@ -26,7 +26,7 @@ public class SuchprofilInfo {
 	private Profil profil;
 
 	
-	/*
+	/**
 	 * Auslesen des Suchprofils
 	 * 
 	 * @return sp
@@ -35,7 +35,7 @@ public class SuchprofilInfo {
 		return sp;
 	}
 
-	/*
+	/**
 	 * Setzen des Suchprofils
 	 * 
 	 * @param sp
@@ -44,7 +44,7 @@ public class SuchprofilInfo {
 		this.sp = sp;
 	}
 
-	/*
+	/**
 	 * Auslesen der Info
 	 * 
 	 * @return info
@@ -53,7 +53,7 @@ public class SuchprofilInfo {
 		return info;
 	}
 
-	/*
+	/**
 	 * Setzen der Info
 	 * 
 	 * @param info
@@ -62,7 +62,7 @@ public class SuchprofilInfo {
 		this.info = info;
 	}
 
-	/*
+	/**
 	 * Auslesen des Profils
 	 * 
 	 * @return profil
@@ -71,7 +71,7 @@ public class SuchprofilInfo {
 		return profil;
 	}
 
-	/*
+	/**
 	 * Setzen des Profils
 	 * 
 	 * @param profil

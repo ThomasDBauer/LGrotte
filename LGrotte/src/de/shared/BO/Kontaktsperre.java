@@ -1,28 +1,26 @@
 package de.shared.BO;
 
 /**
- * 
- * @author Thomas Bauer
- *
- * @version 1.0
- * 
  *          Die Klasse Kontaktsperre erweitert die Klasse BusinessObject.
  *          Kontaktsperren bestehen aus einem sperrenden und einem gesperrten
  *          Profil.
  * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
  */
 
 public class Kontaktsperre extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
+	/**
 	 * Deklaration der Attribute
 	 */
 	private String sperrendesProfil;
 	private String gesperrtesProfil;
 
-	/*
+	/**
 	 * Auslesen des sperrenden Profils
 	 * 
 	 * @return sperrendesProfil
@@ -31,7 +29,7 @@ public class Kontaktsperre extends BusinessObject {
 		return sperrendesProfil;
 	}
 
-	/*
+	/**
 	 * Setzen des sperrenden Profils
 	 * 
 	 * @param sperrendesProfil
@@ -40,7 +38,7 @@ public class Kontaktsperre extends BusinessObject {
 		this.sperrendesProfil = sperrendesProfil;
 	}
 
-	/*
+	/**
 	 * Auslesen des gesperrten Profils
 	 * 
 	 * @return gesperrtesProfil
@@ -49,7 +47,7 @@ public class Kontaktsperre extends BusinessObject {
 		return gesperrtesProfil;
 	}
 
-	/*
+	/**
 	 * Setzen des gesperrten Profils
 	 * 
 	 * @param gesperrtesProfil

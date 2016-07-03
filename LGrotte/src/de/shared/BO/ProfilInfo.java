@@ -1,20 +1,20 @@
 package de.shared.BO;
 
 /**
+ *  
+ * Die Klasse ProfilInfo erweitert die Klasse BusinessObject.
+ * Sie enthaelt Attribute, die Fremdschluessel auf das dazugehoerige Profil bilden
  * 
  * @author Thomas Bauer
  *
  * @version 1.0
- * 
- * Die Klasse ProfilInfo erweitert die Klasse BusinessObject.
- * Sie enthaelt Attribute, die Fremdschluessel auf das dazugehoerige Profil bilden
  */
 
 public class ProfilInfo extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
+	/**
 	 * Deklaration der Attribute
 	 */
 	
@@ -24,7 +24,7 @@ public class ProfilInfo extends BusinessObject {
 	// Foreign Key auf die Info. Siehe @class Info
 	private int infoID;
 
-	/*
+	/**
 	 * Auslesen der ProfilEmail
 	 * 
 	 * @return profilEmail
@@ -33,7 +33,7 @@ public class ProfilInfo extends BusinessObject {
 		return profilEmail;
 	}
 
-	/*
+	/**
 	 * Setzen der ProfilEmail
 	 * 
 	 * @param profilEmail
@@ -42,7 +42,7 @@ public class ProfilInfo extends BusinessObject {
 		this.profilEmail = profilEmail;
 	}
 
-	/*
+	/**
 	 * Auslesen der InfoID
 	 * 
 	 * @return infoID
@@ -51,7 +51,7 @@ public class ProfilInfo extends BusinessObject {
 		return infoID;
 	}
 
-	/*
+	/**
 	 * Setzen der InfoID
 	 * 
 	 * @param infoID

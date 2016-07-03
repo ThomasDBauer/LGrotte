@@ -1,29 +1,27 @@
 package de.shared.BO;
 
 /**
- * 
- * @author Thomas Bauer
- *
- * @version 1.0
- * 
  *          Die Klasse Eigenschaft erweiter die Klasse BusinessObject.
  *          Eigenschaften bestehen aus einer ID, einer Erläuterung und der
  *          Information, ob sie Auswahl- oder Freitext-Eigenschaften sind.
  * 
+ * @author Thomas Bauer
+ *
+ * @version 1.0
  */
 
 public class Eigenschaft extends BusinessObject {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
+	/**
 	 * Deklaration der Attribute
 	 */
 	private int id;
 	private String erlaeuterung;
 	private int auswahl;
 
-	/*
+	/**
 	 * Auslesen der ID
 	 * 
 	 * @return id
@@ -32,7 +30,7 @@ public class Eigenschaft extends BusinessObject {
 		return id;
 	}
 
-	/*
+	/**
 	 * Setzen der ID
 	 * 
 	 * @param id
@@ -41,7 +39,7 @@ public class Eigenschaft extends BusinessObject {
 		this.id = id;
 	}
 
-	/*
+	/**
 	 * Auslesen der Erlaeuterung
 	 * 
 	 * @return erlaeuterung
@@ -50,7 +48,7 @@ public class Eigenschaft extends BusinessObject {
 		return erlaeuterung;
 	}
 
-	/*
+	/**
 	 * Setzen der Erlaeuterung
 	 * 
 	 * @param name
@@ -59,7 +57,7 @@ public class Eigenschaft extends BusinessObject {
 		this.erlaeuterung = name;
 	}
 
-	/*
+	/**
 	 * Auslesen der Auswahl
 	 * 
 	 * @return auswahl
@@ -68,7 +66,7 @@ public class Eigenschaft extends BusinessObject {
 		return auswahl;
 	}
 
-	/*
+	/**
 	 * Setzen der Auswahl
 	 * 
 	 * @param auswahl
