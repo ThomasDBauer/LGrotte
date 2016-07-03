@@ -41,7 +41,9 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 	private Label geburtstag = new Label("Geburtsdatum");
 	private Vector<Label> labels = new Vector<Label>();
 		
-		// Konstruktor
+		/**
+		 * Konstruktor
+		 */
 		public ProfilAnzeigenEditor() {
 			try {
 				ClientSideSettings.getEditorService().getProfil(
@@ -87,7 +89,9 @@ public class ProfilAnzeigenEditor extends VerticalPanel {
 			vpanel.add(profilAnzeigenTable);
 		}
 		
-		// Callback um die Profildaten anzuzeigen
+		/**
+		 * Callback um die Profildaten anzuzeigen
+		 */
 		private class ProfilAnzeigenCallback implements 
 		AsyncCallback<Profil> {
 			public void onFailure(Throwable caught) {
