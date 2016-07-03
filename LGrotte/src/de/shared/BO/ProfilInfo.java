@@ -1,7 +1,6 @@
 package de.shared.BO;
 
 /**
- *  
  * Die Klasse ProfilInfo erweitert die Klasse BusinessObject.
  * Sie enthaelt Attribute, die Fremdschluessel auf das dazugehoerige Profil bilden
  * 
@@ -17,11 +16,8 @@ public class ProfilInfo extends BusinessObject {
 	/**
 	 * Deklaration der Attribute
 	 */
-	
-	// Foreign Key auf das zugeh�rige Profil
-	private String profilEmail;
 
-	// Foreign Key auf die Info. Siehe @class Info
+	private String profilEmail;
 	private int infoID;
 
 	/**

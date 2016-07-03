@@ -1,9 +1,9 @@
 package de.shared.BO;
 
 /**
- *          Die Klasse Kontaktsperre erweitert die Klasse BusinessObject.
- *          Kontaktsperren bestehen aus einem sperrenden und einem gesperrten
- *          Profil.
+ * Die Klasse Kontaktsperre erweitert die Klasse BusinessObject.
+ * Kontaktsperren bestehen aus einem sperrenden und einem gesperrten
+ * Profil.
  * 
  * @author Thomas Bauer
  *

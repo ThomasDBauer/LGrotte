@@ -1,8 +1,8 @@
 package de.shared.BO;
 
 /**
- *          Die Klasse Merkzettel erweitert die Klasse BusinessObject Der
- *          Merkzettel besteht aus einem gemerkten und einem merkendem Profil
+ * Die Klasse Merkzettel erweitert die Klasse BusinessObject Der
+ * Merkzettel besteht aus einem gemerkten und einem merkendem Profil
  *          
  * @author Thomas Bauer
  *

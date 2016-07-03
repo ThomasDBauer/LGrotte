@@ -1,13 +1,12 @@
 package de.shared.BO;
 
 /**
- *          Die Klasse SuchprofilInfo kombiniert alle wichtigen Informationen zu
- *          SuchprofilInformationen in einem Objekt. 
+ * Die Klasse SuchprofilInfo kombiniert alle wichtigen Informationen zu
+ * SuchprofilInformationen in einem Objekt. 
  * 
  * @author Thomas Bauer
  *
  * @version 1.0
- * 
  */
 
 public class SuchprofilInfo {
@@ -15,14 +14,8 @@ public class SuchprofilInfo {
 	/**
 	 * Deklaration der Attribute
 	 */
-	
-	// Das Name des Suchprofils
 	private Suchprofil sp;
-
-	// Die Information
 	private Info info;
-
-	// Das Profil
 	private Profil profil;
 
 	

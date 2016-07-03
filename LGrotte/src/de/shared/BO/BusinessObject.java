@@ -2,8 +2,6 @@ package de.shared.BO;
 import java.io.Serializable;
 
 /**
- * 
- * 
  * Super-Klasse aller BusinessObjects. Implementiert 
  * das Interface Serializable.
  * 
